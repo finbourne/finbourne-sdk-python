@@ -14,6 +14,7 @@
 | **parameters** | [Dict[str, ComplianceParameter]](ComplianceParameter.md) | Optional | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -35,6 +36,7 @@ instance = ComplianceRuleResponse(
     parameters=ComplianceParameter(...),  # optional
     properties=PerpetualProperty(...),  # optional
     version=Version(...),  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -48,6 +50,7 @@ instance = ComplianceRuleResponse(
 - [ComplianceParameter](ComplianceParameter.md)
 - [PerpetualProperty](PerpetualProperty.md)
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 

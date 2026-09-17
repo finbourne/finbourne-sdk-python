@@ -25,6 +25,7 @@ from finbourne.sdk.services.lusid.models.compliance_parameter import ComplianceP
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.version import Version
 
 
@@ -42,8 +43,9 @@ class ComplianceRuleResponse(BaseModel):
     parameters: Optional[Dict[str, ComplianceParameter]] = None
     properties: Optional[Dict[str, PerpetualProperty]] = None
     version: Optional[Version] = None
+    staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "description", "active", "templateId", "variation", "portfolioGroupId", "parameters", "properties", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "active", "templateId", "variation", "portfolioGroupId", "parameters", "properties", "version", "stagedModifications", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,6 +107,9 @@ class ComplianceRuleResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of staged_modifications
+        if self.staged_modifications:
+            _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -174,6 +179,7 @@ class ComplianceRuleResponse(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

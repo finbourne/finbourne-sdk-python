@@ -10,6 +10,7 @@ One member share class's outcome within an apportionment result: the base value 
 | **fund_code** | **str** | Optional | The code of the fund the member share class belongs to. |
 | **base_value** | **float** | Optional | The base value the method produced for the member, or null for the SetFactor method. |
 | **apportionment_factor** | **float** | Required | The member&#39;s apportionment factor: its base value over the total across the group or fund. |
+| **inputs** | [List[ApportionmentInput]](ApportionmentInput.md) | Optional | The named amounts the apportionment method summed to reach the base value, always summing to it. Absent where the method defines no such breakdown. |
 
 
 ## Usage
@@ -24,10 +25,12 @@ instance = ApportionmentMemberFactor(
     fund_scope="...",  # optional — The scope of the fund the member share class belongs to.
     fund_code="...",  # optional — The code of the fund the member share class belongs to.
     base_value=0.0,  # optional — The base value the method produced for the member, or null for the SetFactor method.
-    apportionment_factor=0.0  # required — The member&#39;s apportionment factor: its base value over the total across the group or fund.
+    apportionment_factor=0.0,  # required — The member&#39;s apportionment factor: its base value over the total across the group or fund.
+    inputs=[]  # optional — The named amounts the apportionment method summed to reach the base value, always summing to it. Absent where the method defines no such breakdown.
 )
 ```
 
+- [ApportionmentInput](ApportionmentInput.md) — used in `inputs`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.rec_date_policy import RecDatePolicy
 from finbourne.sdk.services.lusid.models.rec_def_currencies import RecDefCurrencies
 from finbourne.sdk.services.lusid.models.rec_def_recipe_ids import RecDefRecipeIds
 from finbourne.sdk.services.lusid.models.rec_def_ruleset import RecDefRuleset
@@ -43,7 +44,8 @@ class UpdateRecDefinitionRequest(BaseModel):
     currencies: Optional[RecDefCurrencies] = None
     rulesets: List[RecDefRuleset] = Field(description="The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.")
     review_configuration: Optional[RecReviewConfiguration] = Field(default=None, alias="reviewConfiguration")
-    __properties: ClassVar[List[str]] = ["displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "reviewConfiguration"]
+    date_policy: Optional[RecDatePolicy] = Field(default=None, alias="datePolicy")
+    __properties: ClassVar[List[str]] = ["displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "reviewConfiguration", "datePolicy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,6 +114,9 @@ class UpdateRecDefinitionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of review_configuration
         if self.review_configuration:
             _dict['reviewConfiguration'] = self.review_configuration.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of date_policy
+        if self.date_policy:
+            _dict['datePolicy'] = self.date_policy.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -148,7 +153,8 @@ class UpdateRecDefinitionRequest(BaseModel):
             "valuation_recipes": RecDefRecipeIds.from_dict(_v) if (_v := obj.get("valuationRecipes")) is not None else None,
             "currencies": RecDefCurrencies.from_dict(_v) if (_v := obj.get("currencies")) is not None else None,
             "rulesets": [RecDefRuleset.from_dict(_item) for _item in _v] if (_v := obj.get("rulesets")) is not None else None,
-            "review_configuration": RecReviewConfiguration.from_dict(_v) if (_v := obj.get("reviewConfiguration")) is not None else None
+            "review_configuration": RecReviewConfiguration.from_dict(_v) if (_v := obj.get("reviewConfiguration")) is not None else None,
+            "date_policy": RecDatePolicy.from_dict(_v) if (_v := obj.get("datePolicy")) is not None else None
         })
         return _obj
 

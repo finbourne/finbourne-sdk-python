@@ -38,8 +38,9 @@ class SubscriptionDefinition(BaseModel):
     by_tax_lots: Optional[StrictBool] = Field(default=None, alias="byTaxLots")
     subscription_type:  Optional[StrictStr] = Field(default=None,alias="subscriptionType", description="The kind of data the subscription streams (holdings or transactions), defaulting to holdings.  Address keys and byTaxLots are not valid for a transactions subscription. Available values: Holdings, Transactions.") 
     start_effective_at: Optional[datetime] = Field(default=None, alias="startEffectiveAt")
-    end_effective_at: Optional[datetime] = Field(default=None, alias="endEffectiveAt")
-    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "portfolioId", "timelineId", "addressKeys", "byTaxLots", "subscriptionType", "startEffectiveAt", "endEffectiveAt"]
+    end_effective_at: Optional[datetime] = Field(default=None, description="Deprecated and no longer honoured: a fixed forward date stops being a forward view once  the live edge passes it. Use effectiveForwardDays instead. Still accepted and echoed back  so existing subscriptions keep round-tripping.", alias="endEffectiveAt")
+    effective_forward_days: Optional[StrictInt] = Field(default=None, description="How far forward the subscription reports, as a number of calendar days past the live  edge — a rolling forward view that advances as time passes.", alias="effectiveForwardDays")
+    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "portfolioId", "timelineId", "addressKeys", "byTaxLots", "subscriptionType", "startEffectiveAt", "endEffectiveAt", "effectiveForwardDays"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,6 +112,11 @@ class SubscriptionDefinition(BaseModel):
         if self.end_effective_at is None and "end_effective_at" in self.model_fields_set:
             _dict['endEffectiveAt'] = None
 
+        # set to None if effective_forward_days (nullable) is None
+        # and model_fields_set contains the field
+        if self.effective_forward_days is None and "effective_forward_days" in self.model_fields_set:
+            _dict['effectiveForwardDays'] = None
+
         return _dict
 
     @classmethod
@@ -133,7 +139,8 @@ class SubscriptionDefinition(BaseModel):
             "by_tax_lots": obj.get("byTaxLots"),
             "subscription_type": obj.get("subscriptionType"),
             "start_effective_at": obj.get("startEffectiveAt"),
-            "end_effective_at": obj.get("endEffectiveAt")
+            "end_effective_at": obj.get("endEffectiveAt"),
+            "effective_forward_days": obj.get("effectiveForwardDays")
         })
         return _obj
 

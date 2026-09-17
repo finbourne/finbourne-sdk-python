@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.rec_date_policy import RecDatePolicy
 from finbourne.sdk.services.lusid.models.rec_def_currencies import RecDefCurrencies
 from finbourne.sdk.services.lusid.models.rec_def_recipe_ids import RecDefRecipeIds
 from finbourne.sdk.services.lusid.models.rec_def_ruleset import RecDefRuleset
@@ -47,10 +48,11 @@ class RecDefinition(BaseModel):
     currencies: Optional[RecDefCurrencies] = None
     rulesets: List[RecDefRuleset] = Field(description="The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.")
     review_configuration: RecReviewConfiguration = Field(alias="reviewConfiguration")
+    date_policy: RecDatePolicy = Field(alias="datePolicy")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "reviewConfiguration", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "reviewConfiguration", "datePolicy", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,6 +124,9 @@ class RecDefinition(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of review_configuration
         if self.review_configuration:
             _dict['reviewConfiguration'] = self.review_configuration.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of date_policy
+        if self.date_policy:
+            _dict['datePolicy'] = self.date_policy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
@@ -170,6 +175,7 @@ class RecDefinition(BaseModel):
             "currencies": RecDefCurrencies.from_dict(_v) if (_v := obj.get("currencies")) is not None else None,
             "rulesets": [RecDefRuleset.from_dict(_item) for _item in _v] if (_v := obj.get("rulesets")) is not None else None,
             "review_configuration": RecReviewConfiguration.from_dict(_v) if (_v := obj.get("reviewConfiguration")) is not None else None,
+            "date_policy": RecDatePolicy.from_dict(_v) if (_v := obj.get("datePolicy")) is not None else None,
             "href": obj.get("href"),
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None

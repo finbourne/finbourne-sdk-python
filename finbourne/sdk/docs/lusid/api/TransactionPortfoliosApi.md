@@ -40,9 +40,11 @@ Method | HTTP request | Description
 [**get_transaction_settlement_status**](TransactionPortfoliosApi.md#get_transaction_settlement_status) | **GET** /api/api/transactionportfolios/{scope}/{code}/transactions/{transactionId}/settlementstatus | [EARLY ACCESS] GetTransactionSettlementStatus: Get transaction settlement status
 [**get_transactions**](TransactionPortfoliosApi.md#get_transactions) | **GET** /api/api/transactionportfolios/{scope}/{code}/transactions | GetTransactions: Get transactions
 [**get_upsertable_portfolio_cash_flows**](TransactionPortfoliosApi.md#get_upsertable_portfolio_cash_flows) | **GET** /api/api/transactionportfolios/{scope}/{code}/upsertablecashflows | GetUpsertablePortfolioCashFlows: Get upsertable portfolio cash flows.
+[**get_virtual_transaction_override**](TransactionPortfoliosApi.md#get_virtual_transaction_override) | **GET** /api/api/transactionportfolios/{scope}/{code}/overridevirtualtransactions | [EARLY ACCESS] GetVirtualTransactionOverride: [EARLY ACCESS] Get virtual transaction overrides and suppressions for an instrument event
 [**list_custodian_accounts**](TransactionPortfoliosApi.md#list_custodian_accounts) | **GET** /api/api/transactionportfolios/{scope}/{code}/custodianaccounts | ListCustodianAccounts: List Custodian Accounts
 [**list_holdings_adjustments**](TransactionPortfoliosApi.md#list_holdings_adjustments) | **GET** /api/api/transactionportfolios/{scope}/{code}/holdingsadjustments | ListHoldingsAdjustments: List holdings adjustments
 [**list_settlement_instructions**](TransactionPortfoliosApi.md#list_settlement_instructions) | **GET** /api/api/transactionportfolios/{scope}/{code}/settlementinstructions | [EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.
+[**list_virtual_transaction_overrides**](TransactionPortfoliosApi.md#list_virtual_transaction_overrides) | **GET** /api/api/transactionportfolios/{scope}/{code}/overridevirtualtransactions/$list | [EARLY ACCESS] ListVirtualTransactionOverrides: [EARLY ACCESS] List virtual transaction overrides and suppressions
 [**patch_portfolio_details**](TransactionPortfoliosApi.md#patch_portfolio_details) | **PATCH** /api/api/transactionportfolios/{scope}/{code}/details | PatchPortfolioDetails: Patch portfolio details
 [**preview_transaction**](TransactionPortfoliosApi.md#preview_transaction) | **POST** /api/api/transactionportfolios/{scope}/{code}/previewTransaction | PreviewTransaction: Preview a transaction
 [**resolve_instrument**](TransactionPortfoliosApi.md#resolve_instrument) | **POST** /api/api/transactionportfolios/{scope}/{code}/$resolve | ResolveInstrument: Resolve instrument
@@ -53,7 +55,7 @@ Method | HTTP request | Description
 [**upsert_settlement_instructions**](TransactionPortfoliosApi.md#upsert_settlement_instructions) | **POST** /api/api/transactionportfolios/{scope}/{code}/settlementinstructions | [EARLY ACCESS] UpsertSettlementInstructions: Upsert Settlement Instructions.
 [**upsert_transaction_properties**](TransactionPortfoliosApi.md#upsert_transaction_properties) | **POST** /api/api/transactionportfolios/{scope}/{code}/transactions/{transactionId}/properties | UpsertTransactionProperties: Upsert transaction properties
 [**upsert_transactions**](TransactionPortfoliosApi.md#upsert_transactions) | **POST** /api/api/transactionportfolios/{scope}/{code}/transactions | UpsertTransactions: Upsert transactions
-[**upsert_virtual_transaction_override**](TransactionPortfoliosApi.md#upsert_virtual_transaction_override) | **POST** /api/api/transactionportfolios/{scope}/{code}/overridevirtualtransactions | [EARLY ACCESS] UpsertVirtualTransactionOverride: [EARLY ACCESS] Upsert a virtual transaction override
+[**upsert_virtual_transaction_override**](TransactionPortfoliosApi.md#upsert_virtual_transaction_override) | **POST** /api/api/transactionportfolios/{scope}/{code}/overridevirtualtransactions | [EARLY ACCESS] UpsertVirtualTransactionOverride: [EARLY ACCESS] Upsert virtual transaction overrides and suppressions
 
 
 ### Example
@@ -246,7 +248,7 @@ Batch create trade tickets. Each ticket is broadly equivalent to a singular call
 api_instance = api_client_factory.build(TransactionPortfoliosApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-lusid_trade_ticket = [{"transactionId":"TradeTicket-1111111","transactionType":"OpenTradeTicket","source":"default","transactionDate":"2020-01-01T09:00:00.00Z","settlementDate":"2020-01-01T09:00:00.00Z","totalConsideration":{"amount":1020000.0,"currency":"GBP"},"units":1000000.0,"instrumentIdentifiers":{"Instrument/default/ClientInternal":"my-bond"},"instrumentScope":"myScope","instrumentName":"my_bond","instrumentDefinition":{"startDate":"2018-01-01T00:00:00.0000000+00:00","maturityDate":"2019-01-01T00:00:00.0000000+00:00","domAmount":1.0,"domCcy":"GBP","fgnAmount":-1.5,"fgnCcy":"USD","refSpotRate":1.5,"isNdf":false,"fixingDate":"0001-01-01T00:00:00.0000000+00:00","bookedAsSpot":false,"instrumentType":"FxForward"},"counterpartyAgreementId":{"scope":"demoScope","code":"myCounterparty"},"tradeTicketType":"LusidTradeTicket"}] # List[LusidTradeTicket]
+lusid_trade_ticket = [{"transactionId":"TradeTicket-1111111","transactionType":"OpenTradeTicket","source":"default","transactionDate":"2020-01-01T09:00:00.00Z","settlementDate":"2020-01-01T09:00:00.00Z","totalConsideration":{"amount":1020000.0,"currency":"GBP"},"units":1000000.0,"instrumentIdentifiers":{"Instrument/default/ClientInternal":"my-bond"},"instrumentScope":"myScope","instrumentName":"my_bond","instrumentDefinition":{"startDate":"2018-01-01T00:00:00.0000000+00:00","maturityDate":"2019-01-01T00:00:00.0000000+00:00","domAmount":1.0,"domCcy":"GBP","fgnAmount":-1.5,"fgnCcy":"USD","refSpotRate":1.5,"isNdf":false,"fixingDate":"0001-01-01T00:00:00.0000000+00:00","bookedAsSpot":false,"isPooled":false,"instrumentType":"FxForward"},"counterpartyAgreementId":{"scope":"demoScope","code":"myCounterparty"},"tradeTicketType":"LusidTradeTicket"}] # List[LusidTradeTicket]
 api_response = api_instance.batch_create_trade_tickets(scope, code, lusid_trade_ticket)
 pprint(api_response)
 ```
@@ -2013,6 +2015,56 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_virtual_transaction_override**
+> VirtualTransactionOverridesResponse getVirtualTransactionOverride = get_virtual_transaction_override(scope, code, instrument_event_id, portfolio_effective_at=portfolio_effective_at, as_at=as_at)
+
+[EARLY ACCESS] GetVirtualTransactionOverride: [EARLY ACCESS] Get virtual transaction overrides and suppressions for an instrument event
+
+Returns the overrides and suppressions affecting this portfolio for the specified instrument event,  each entry's status, and the virtual transaction ids the event currently generates that none of them  target. A derived portfolio is affected by its own record and by every record held by an ancestor, so  one record is returned per holding portfolio, nearest first, each carrying the portfolio that holds  it. An entry's map key is the virtual transaction id as it appears in the portfolio holding the  record, which is the id to override or suppress against that portfolio.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransactionPortfoliosApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+instrument_event_id = 'instrument_event_id_example' # str
+portfolio_effective_at = 'portfolio_effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_virtual_transaction_override(scope, code, instrument_event_id, portfolio_effective_at=portfolio_effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the transaction portfolio. | [required] 
+ **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies the transaction portfolio. | [required] 
+ **instrument_event_id** | **str**| The ID of the instrument event whose overrides and suppressions should be returned. | [required] 
+ **portfolio_effective_at** | **str**| The effective datetime used to resolve the portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the overrides and suppressions. Defaults to returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**VirtualTransactionOverridesResponse**](../model/VirtualTransactionOverridesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The overrides and suppressions affecting this portfolio for the requested instrument event |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **list_custodian_accounts**
 > PagedResourceListOfCustodianAccount listCustodianAccounts = list_custodian_accounts(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys)
 
@@ -2178,6 +2230,58 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Requested settlement instructions from the specified portfolio |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_virtual_transaction_overrides**
+> ResourceListOfVirtualTransactionOverrideRecord listVirtualTransactionOverrides = list_virtual_transaction_overrides(scope, code, portfolio_effective_at=portfolio_effective_at, as_at=as_at, override_match_status=override_match_status, override_application_status=override_application_status)
+
+[EARLY ACCESS] ListVirtualTransactionOverrides: [EARLY ACCESS] List virtual transaction overrides and suppressions
+
+Returns every override and suppression record affecting this portfolio, across every instrument  event, optionally restricted to the given match and application statuses. Filtering to the orphaned  and partially-applied statuses gives a reconciliation worklist of records whose targets no longer  generate. A derived portfolio is affected by its own records and by every record held by an ancestor,  so each returned record carries the portfolio that holds it.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransactionPortfoliosApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+portfolio_effective_at = 'portfolio_effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+override_match_status = ['override_match_status_example'] # List[str] (optional)
+override_application_status = ['override_application_status_example'] # List[str] (optional)
+api_response = api_instance.list_virtual_transaction_overrides(scope, code, portfolio_effective_at=portfolio_effective_at, as_at=as_at, override_match_status=override_match_status, override_application_status=override_application_status)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the transaction portfolio. | [required] 
+ **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies the transaction portfolio. | [required] 
+ **portfolio_effective_at** | **str**| The effective datetime used to resolve the portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the overrides and suppressions. Defaults to returning the latest version if not specified. | [optional] 
+ **override_match_status** | [**List[str]**](../model/str.md)| Restrict the records returned to those with one of these match statuses. May be specified more than once. Available values: Matched, Orphaned. | [optional] 
+ **override_application_status** | [**List[str]**](../model/str.md)| Restrict the records returned to those with one of these application statuses. May be specified more than once. Available values: Full, Partial, Orphaned. | [optional] 
+
+### Return type
+
+[**ResourceListOfVirtualTransactionOverrideRecord**](../model/ResourceListOfVirtualTransactionOverrideRecord.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The override and suppression records affecting this portfolio |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -2688,11 +2792,11 @@ Name | Type | Description  | Notes
 ---
 
 # **upsert_virtual_transaction_override**
-> OverrideVirtualTransactionsResponse upsertVirtualTransactionOverride = upsert_virtual_transaction_override(scope, code, instrument_event_id, transaction_request, portfolio_effective_at=portfolio_effective_at, preserve_properties=preserve_properties, data_model_scope=data_model_scope, data_model_code=data_model_code)
+> UpsertVirtualTransactionOverrideResponse upsertVirtualTransactionOverride = upsert_virtual_transaction_override(scope, code, instrument_event_id, override_virtual_transactions_request, portfolio_effective_at=portfolio_effective_at, preserve_properties=preserve_properties)
 
-[EARLY ACCESS] UpsertVirtualTransactionOverride: [EARLY ACCESS] Upsert a virtual transaction override
+[EARLY ACCESS] UpsertVirtualTransactionOverride: [EARLY ACCESS] Upsert virtual transaction overrides and suppressions
 
-Creates or updates virtual transaction overrides for an instrument event with manually provided input transactions.  This will cancel the specified instrument event and upsert the provided transactions as replacements.  The replacement transactions will have the OverrideOfInstrumentEvent system property set and a source type of OverriddenVirtualTransaction.  Calling this endpoint again with the same transaction IDs will update the existing overrides in place.
+Creates or updates overrides and suppressions of virtual transactions generated by a single instrument  event. Overrides and suppressions are each keyed by the virtual transaction id they target. This is a  full replace of the previously stored overrides and suppressions for the targeted instrument event -  any previously stored entry not present in this request is removed.  Calling this endpoint again with the same virtual transaction id will replace the existing override or  suppression in place.
 
 ### Example
 
@@ -2701,12 +2805,10 @@ api_instance = api_client_factory.build(TransactionPortfoliosApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 instrument_event_id = 'instrument_event_id_example' # str
-transaction_request = [{"transactionId":"TransactionId-111111","type":"StockIn","instrumentIdentifiers":{"Instrument/default/Figi":"BBG000C6K6G9","Instrument/default/Isin":"GB00BH4HKS39"},"transactionDate":"2018-03-05T00:00:00.0000000+00:00","settlementDate":"2018-03-08T00:00:00.0000000+00:00","units":1000.0,"transactionPrice":{"price":123.0,"type":"Price"},"totalConsideration":{"amount":123000.0,"currency":"GBP"},"transactionCurrency":"GBP","properties":{"Transaction/Algo/Name":{"key":"Transaction/Algo/Name","value":{"labelValue":"Algo1"}}},"counterpartyId":"CounterpartyId-118263","source":"","otcConfirmation":{"counterpartyAgreementId":{"scope":"someScope","code":"someCode"}},"orderId":{"scope":"someScope","code":"ORD001"},"allocationId":{"scope":"someScope","code":"ALLOC001"}}] # List[TransactionRequest]
+override_virtual_transactions_request = OverrideVirtualTransactionsRequest()
 portfolio_effective_at = 'portfolio_effective_at_example' # str (optional)
 preserve_properties = True # bool (optional)
-data_model_scope = 'data_model_scope_example' # str (optional)
-data_model_code = 'data_model_code_example' # str (optional)
-api_response = api_instance.upsert_virtual_transaction_override(scope, code, instrument_event_id, transaction_request, portfolio_effective_at=portfolio_effective_at, preserve_properties=preserve_properties, data_model_scope=data_model_scope, data_model_code=data_model_code)
+api_response = api_instance.upsert_virtual_transaction_override(scope, code, instrument_event_id, override_virtual_transactions_request, portfolio_effective_at=portfolio_effective_at, preserve_properties=preserve_properties)
 pprint(api_response)
 ```
 
@@ -2716,16 +2818,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **instrument_event_id** | **str**| The ID of the instrument event whose virtual transactions should be overridden. | [required] 
- **transaction_request** | [**List[TransactionRequest]**](../model/TransactionRequest.md)| A list of transactions to replace the virtual transactions generated by the instrument event. | [required] 
+ **instrument_event_id** | **str**| The ID of the instrument event whose virtual transactions should be overridden or suppressed. | [required] 
+ **override_virtual_transactions_request** | [**OverrideVirtualTransactionsRequest**](../model/OverrideVirtualTransactionsRequest.md)| The overrides and suppressions to upsert, keyed by the virtual transaction id being overridden or suppressed. | [required] 
  **portfolio_effective_at** | **str**| The effective datetime used to resolve the portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
- **preserve_properties** | **bool**| If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated. | [optional] [default to True]
- **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
- **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
+ **preserve_properties** | **bool**| If set to false, the entire property set of an updated override entry will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated. | [optional] [default to True]
 
 ### Return type
 
-[**OverrideVirtualTransactionsResponse**](../model/OverrideVirtualTransactionsResponse.md)
+[**UpsertVirtualTransactionOverrideResponse**](../model/UpsertVirtualTransactionOverrideResponse.md)
 
 ### HTTP request headers
 
@@ -2735,7 +2835,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The result of the upsert including the cancel instruction and instrument event details |  -  |
+**200** | The result of the upsert including the persisted overrides, suppressions, and instrument event details |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

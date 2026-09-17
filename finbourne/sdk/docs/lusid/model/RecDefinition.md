@@ -15,6 +15,7 @@
 | **currencies** | [RecDefCurrencies](RecDefCurrencies.md) | Optional | *No description available.* |
 | **rulesets** | [List[RecDefRuleset]](RecDefRuleset.md) | Required | The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once. |
 | **review_configuration** | [RecReviewConfiguration](RecReviewConfiguration.md) | Required | *No description available.* |
+| **date_policy** | [RecDatePolicy](RecDatePolicy.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
@@ -39,6 +40,7 @@ instance = RecDefinition(
     currencies=RecDefCurrencies(...),  # optional
     rulesets=[],  # required — The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.
     review_configuration=RecReviewConfiguration(...),  # required
+    date_policy=RecDatePolicy(...),  # required
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.
     version=Version(...),  # optional
     links=[]  # optional
@@ -56,6 +58,7 @@ instance = RecDefinition(
 - [RecDefCurrencies](RecDefCurrencies.md)
 - [RecDefRuleset](RecDefRuleset.md) — used in `rulesets`
 - [RecReviewConfiguration](RecReviewConfiguration.md)
+- [RecDatePolicy](RecDatePolicy.md)
 - [Version](Version.md)
 - [Link](Link.md)
 

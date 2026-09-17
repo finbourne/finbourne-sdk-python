@@ -14,6 +14,7 @@
 | **currencies** | [RecDefCurrencies](RecDefCurrencies.md) | Optional | *No description available.* |
 | **rulesets** | [List[RecDefRuleset]](RecDefRuleset.md) | Required | The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once. |
 | **review_configuration** | [RecReviewConfiguration](RecReviewConfiguration.md) | Optional | *No description available.* |
+| **date_policy** | [RecDatePolicy](RecDatePolicy.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -33,7 +34,8 @@ instance = UpdateRecDefinitionRequest(
     valuation_recipes=RecDefRecipeIds(...),  # optional
     currencies=RecDefCurrencies(...),  # optional
     rulesets=[],  # required — The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.
-    review_configuration=RecReviewConfiguration(...)  # optional
+    review_configuration=RecReviewConfiguration(...),  # optional
+    date_policy=RecDatePolicy(...)  # optional
 )
 ```
 
@@ -44,6 +46,7 @@ instance = UpdateRecDefinitionRequest(
 - [RecDefCurrencies](RecDefCurrencies.md)
 - [RecDefRuleset](RecDefRuleset.md) — used in `rulesets`
 - [RecReviewConfiguration](RecReviewConfiguration.md)
+- [RecDatePolicy](RecDatePolicy.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -196,6 +196,7 @@ from finbourne.sdk.services.lusid.models.applicable_entity_types import Applicab
 from finbourne.sdk.services.lusid.models.applicable_instrument_event import ApplicableInstrumentEvent
 from finbourne.sdk.services.lusid.models.applied_scenario_shift import AppliedScenarioShift
 from finbourne.sdk.services.lusid.models.apportionment_breakdown import ApportionmentBreakdown
+from finbourne.sdk.services.lusid.models.apportionment_input import ApportionmentInput
 from finbourne.sdk.services.lusid.models.apportionment_member_factor import ApportionmentMemberFactor
 from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
 from finbourne.sdk.services.lusid.models.asset_class import AssetClass
@@ -364,6 +365,7 @@ from finbourne.sdk.services.lusid.models.compliance_parameter_type import Compli
 from finbourne.sdk.services.lusid.models.compliance_rule import ComplianceRule
 from finbourne.sdk.services.lusid.models.compliance_rule_breakdown import ComplianceRuleBreakdown
 from finbourne.sdk.services.lusid.models.compliance_rule_breakdown_request import ComplianceRuleBreakdownRequest
+from finbourne.sdk.services.lusid.models.compliance_rule_entity import ComplianceRuleEntity
 from finbourne.sdk.services.lusid.models.compliance_rule_response import ComplianceRuleResponse
 from finbourne.sdk.services.lusid.models.compliance_rule_result import ComplianceRuleResult
 from finbourne.sdk.services.lusid.models.compliance_rule_result_detail import ComplianceRuleResultDetail
@@ -985,7 +987,10 @@ from finbourne.sdk.services.lusid.models.order_update_request import OrderUpdate
 from finbourne.sdk.services.lusid.models.otc_confirmation import OtcConfirmation
 from finbourne.sdk.services.lusid.models.output_transaction import OutputTransaction
 from finbourne.sdk.services.lusid.models.output_transition import OutputTransition
-from finbourne.sdk.services.lusid.models.override_virtual_transactions_response import OverrideVirtualTransactionsResponse
+from finbourne.sdk.services.lusid.models.override_definition_request import OverrideDefinitionRequest
+from finbourne.sdk.services.lusid.models.override_definition_response import OverrideDefinitionResponse
+from finbourne.sdk.services.lusid.models.override_entry_response import OverrideEntryResponse
+from finbourne.sdk.services.lusid.models.override_virtual_transactions_request import OverrideVirtualTransactionsRequest
 from finbourne.sdk.services.lusid.models.oversubscribe_election import OversubscribeElection
 from finbourne.sdk.services.lusid.models.package import Package
 from finbourne.sdk.services.lusid.models.package_request import PackageRequest
@@ -1223,12 +1228,15 @@ from finbourne.sdk.services.lusid.models.rate_curve_shift_scale import RateCurve
 from finbourne.sdk.services.lusid.models.raw_vendor_event import RawVendorEvent
 from finbourne.sdk.services.lusid.models.re_open_period_diary_entry_request import ReOpenPeriodDiaryEntryRequest
 from finbourne.sdk.services.lusid.models.realised_gain_loss import RealisedGainLoss
+from finbourne.sdk.services.lusid.models.rec_activity_window import RecActivityWindow
 from finbourne.sdk.services.lusid.models.rec_approval_decision import RecApprovalDecision
+from finbourne.sdk.services.lusid.models.rec_as_at_policy import RecAsAtPolicy
 from finbourne.sdk.services.lusid.models.rec_closed_exception_counts import RecClosedExceptionCounts
 from finbourne.sdk.services.lusid.models.rec_closed_period_reference import RecClosedPeriodReference
 from finbourne.sdk.services.lusid.models.rec_closed_periods import RecClosedPeriods
 from finbourne.sdk.services.lusid.models.rec_dataset_schema import RecDatasetSchema
 from finbourne.sdk.services.lusid.models.rec_dataset_schemas import RecDatasetSchemas
+from finbourne.sdk.services.lusid.models.rec_date_policy import RecDatePolicy
 from finbourne.sdk.services.lusid.models.rec_dates_reconciled import RecDatesReconciled
 from finbourne.sdk.services.lusid.models.rec_def_currencies import RecDefCurrencies
 from finbourne.sdk.services.lusid.models.rec_def_recipe_ids import RecDefRecipeIds
@@ -1403,6 +1411,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_transaction_fee_type i
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_settlement_instruction import ResourceListOfTransactionSettlementInstruction
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_type import ResourceListOfTransactionType
 from finbourne.sdk.services.lusid.models.resource_list_of_value_type import ResourceListOfValueType
+from finbourne.sdk.services.lusid.models.resource_list_of_virtual_transaction_override_record import ResourceListOfVirtualTransactionOverrideRecord
 from finbourne.sdk.services.lusid.models.resource_list_with_post_bodies_of_settlement_activity_to_settlement_activity_query import ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery
 from finbourne.sdk.services.lusid.models.resource_record import ResourceRecord
 from finbourne.sdk.services.lusid.models.response_meta_data import ResponseMetaData
@@ -1427,6 +1436,9 @@ from finbourne.sdk.services.lusid.models.return_zero_pv_options import ReturnZer
 from finbourne.sdk.services.lusid.models.returns_entity import ReturnsEntity
 from finbourne.sdk.services.lusid.models.returns_metric import ReturnsMetric
 from finbourne.sdk.services.lusid.models.reverse_stock_split_event import ReverseStockSplitEvent
+from finbourne.sdk.services.lusid.models.reverse_stress_request import ReverseStressRequest
+from finbourne.sdk.services.lusid.models.reverse_stress_response import ReverseStressResponse
+from finbourne.sdk.services.lusid.models.reverse_stress_rung import ReverseStressRung
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.risk_bump_options import RiskBumpOptions
 from finbourne.sdk.services.lusid.models.roll_interest_updates import RollInterestUpdates
@@ -1519,6 +1531,7 @@ from finbourne.sdk.services.lusid.models.staging_rule_set import StagingRuleSet
 from finbourne.sdk.services.lusid.models.step_schedule import StepSchedule
 from finbourne.sdk.services.lusid.models.stock_dividend_event import StockDividendEvent
 from finbourne.sdk.services.lusid.models.stock_split_event import StockSplitEvent
+from finbourne.sdk.services.lusid.models.stored_override_definition import StoredOverrideDefinition
 from finbourne.sdk.services.lusid.models.strategy import Strategy
 from finbourne.sdk.services.lusid.models.string_comparison_type import StringComparisonType
 from finbourne.sdk.services.lusid.models.string_compliance_parameter import StringComplianceParameter
@@ -1532,6 +1545,7 @@ from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElec
 from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
 from finbourne.sdk.services.lusid.models.supplemental_attribute import SupplementalAttribute
 from finbourne.sdk.services.lusid.models.supplemental_attribute_values import SupplementalAttributeValues
+from finbourne.sdk.services.lusid.models.suppression_entry_response import SuppressionEntryResponse
 from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlowEvent
 from finbourne.sdk.services.lusid.models.swap_principal_event import SwapPrincipalEvent
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
@@ -1731,6 +1745,7 @@ from finbourne.sdk.services.lusid.models.upsert_transaction_properties_response 
 from finbourne.sdk.services.lusid.models.upsert_transfer_agency_order_request import UpsertTransferAgencyOrderRequest
 from finbourne.sdk.services.lusid.models.upsert_translation_script_request import UpsertTranslationScriptRequest
 from finbourne.sdk.services.lusid.models.upsert_valuation_point_request import UpsertValuationPointRequest
+from finbourne.sdk.services.lusid.models.upsert_virtual_transaction_override_response import UpsertVirtualTransactionOverrideResponse
 from finbourne.sdk.services.lusid.models.user import User
 from finbourne.sdk.services.lusid.models.valuation_point import ValuationPoint
 from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters import ValuationPointDataQueryParameters
@@ -1773,6 +1788,8 @@ from finbourne.sdk.services.lusid.models.versioned_resource_list_with_warnings_o
 from finbourne.sdk.services.lusid.models.virtual_document import VirtualDocument
 from finbourne.sdk.services.lusid.models.virtual_document_row import VirtualDocumentRow
 from finbourne.sdk.services.lusid.models.virtual_row import VirtualRow
+from finbourne.sdk.services.lusid.models.virtual_transaction_override_record import VirtualTransactionOverrideRecord
+from finbourne.sdk.services.lusid.models.virtual_transaction_overrides_response import VirtualTransactionOverridesResponse
 from finbourne.sdk.services.lusid.models.vol_surface_shift_definition import VolSurfaceShiftDefinition
 from finbourne.sdk.services.lusid.models.vol_surface_shift_mode import VolSurfaceShiftMode
 from finbourne.sdk.services.lusid.models.volatility_swap import VolatilitySwap
@@ -1977,6 +1994,7 @@ __all__ = [
     "ApplicableInstrumentEvent",
     "AppliedScenarioShift",
     "ApportionmentBreakdown",
+    "ApportionmentInput",
     "ApportionmentMemberFactor",
     "ApportionmentMethodProperty",
     "AssetClass",
@@ -2145,6 +2163,7 @@ __all__ = [
     "ComplianceRule",
     "ComplianceRuleBreakdown",
     "ComplianceRuleBreakdownRequest",
+    "ComplianceRuleEntity",
     "ComplianceRuleResponse",
     "ComplianceRuleResult",
     "ComplianceRuleResultDetail",
@@ -2766,7 +2785,10 @@ __all__ = [
     "OtcConfirmation",
     "OutputTransaction",
     "OutputTransition",
-    "OverrideVirtualTransactionsResponse",
+    "OverrideDefinitionRequest",
+    "OverrideDefinitionResponse",
+    "OverrideEntryResponse",
+    "OverrideVirtualTransactionsRequest",
     "OversubscribeElection",
     "Package",
     "PackageRequest",
@@ -3004,12 +3026,15 @@ __all__ = [
     "RawVendorEvent",
     "ReOpenPeriodDiaryEntryRequest",
     "RealisedGainLoss",
+    "RecActivityWindow",
     "RecApprovalDecision",
+    "RecAsAtPolicy",
     "RecClosedExceptionCounts",
     "RecClosedPeriodReference",
     "RecClosedPeriods",
     "RecDatasetSchema",
     "RecDatasetSchemas",
+    "RecDatePolicy",
     "RecDatesReconciled",
     "RecDefCurrencies",
     "RecDefRecipeIds",
@@ -3184,6 +3209,7 @@ __all__ = [
     "ResourceListOfTransactionSettlementInstruction",
     "ResourceListOfTransactionType",
     "ResourceListOfValueType",
+    "ResourceListOfVirtualTransactionOverrideRecord",
     "ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery",
     "ResourceRecord",
     "ResponseMetaData",
@@ -3208,6 +3234,9 @@ __all__ = [
     "ReturnsEntity",
     "ReturnsMetric",
     "ReverseStockSplitEvent",
+    "ReverseStressRequest",
+    "ReverseStressResponse",
+    "ReverseStressRung",
     "RevertValuationPointDataRequest",
     "RiskBumpOptions",
     "RollInterestUpdates",
@@ -3300,6 +3329,7 @@ __all__ = [
     "StepSchedule",
     "StockDividendEvent",
     "StockSplitEvent",
+    "StoredOverrideDefinition",
     "Strategy",
     "StringComparisonType",
     "StringComplianceParameter",
@@ -3313,6 +3343,7 @@ __all__ = [
     "SubscriptionDefinition",
     "SupplementalAttribute",
     "SupplementalAttributeValues",
+    "SuppressionEntryResponse",
     "SwapCashFlowEvent",
     "SwapPrincipalEvent",
     "SweepBlocksRequest",
@@ -3512,6 +3543,7 @@ __all__ = [
     "UpsertTransferAgencyOrderRequest",
     "UpsertTranslationScriptRequest",
     "UpsertValuationPointRequest",
+    "UpsertVirtualTransactionOverrideResponse",
     "User",
     "ValuationPoint",
     "ValuationPointDataQueryParameters",
@@ -3554,6 +3586,8 @@ __all__ = [
     "VirtualDocument",
     "VirtualDocumentRow",
     "VirtualRow",
+    "VirtualTransactionOverrideRecord",
+    "VirtualTransactionOverridesResponse",
     "VolSurfaceShiftDefinition",
     "VolSurfaceShiftMode",
     "VolatilitySwap",

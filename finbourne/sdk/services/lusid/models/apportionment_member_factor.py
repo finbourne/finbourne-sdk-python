@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.apportionment_input import ApportionmentInput
 
 
 class ApportionmentMemberFactor(BaseModel):
@@ -32,7 +33,8 @@ class ApportionmentMemberFactor(BaseModel):
     fund_code:  Optional[StrictStr] = Field(default=None,alias="fundCode", description="The code of the fund the member share class belongs to.") 
     base_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The base value the method produced for the member, or null for the SetFactor method.", alias="baseValue")
     apportionment_factor: Union[StrictFloat, StrictInt] = Field(description="The member's apportionment factor: its base value over the total across the group or fund.", alias="apportionmentFactor")
-    __properties: ClassVar[List[str]] = ["memberIdentifier", "fundScope", "fundCode", "baseValue", "apportionmentFactor"]
+    inputs: Optional[List[ApportionmentInput]] = Field(default=None, description="The named amounts the apportionment method summed to reach the base value, always summing to it. Absent where the method defines no such breakdown.")
+    __properties: ClassVar[List[str]] = ["memberIdentifier", "fundScope", "fundCode", "baseValue", "apportionmentFactor", "inputs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,6 +70,13 @@ class ApportionmentMemberFactor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in inputs (list)
+        _items = []
+        if self.inputs:
+            for _item in self.inputs:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['inputs'] = _items
         # set to None if fund_scope (nullable) is None
         # and model_fields_set contains the field
         if self.fund_scope is None and "fund_scope" in self.model_fields_set:
@@ -82,6 +91,11 @@ class ApportionmentMemberFactor(BaseModel):
         # and model_fields_set contains the field
         if self.base_value is None and "base_value" in self.model_fields_set:
             _dict['baseValue'] = None
+
+        # set to None if inputs (nullable) is None
+        # and model_fields_set contains the field
+        if self.inputs is None and "inputs" in self.model_fields_set:
+            _dict['inputs'] = None
 
         return _dict
 
@@ -99,7 +113,8 @@ class ApportionmentMemberFactor(BaseModel):
             "fund_scope": obj.get("fundScope"),
             "fund_code": obj.get("fundCode"),
             "base_value": obj.get("baseValue"),
-            "apportionment_factor": obj.get("apportionmentFactor")
+            "apportionment_factor": obj.get("apportionmentFactor"),
+            "inputs": [ApportionmentInput.from_dict(_item) for _item in _v] if (_v := obj.get("inputs")) is not None else None
         })
         return _obj
 

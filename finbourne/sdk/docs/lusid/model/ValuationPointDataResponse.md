@@ -15,6 +15,7 @@ The Valuation Point Data Response for the Fund and specified date.
 | **previous_valuation_point_code** | **str** | Optional | The code of the previous valuation point. |
 | **apportionment_results** | [List[ApportionmentBreakdown]](ApportionmentBreakdown.md) | Optional | The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group. |
 | **bucket_set_results** | [List[BucketSetResult]](BucketSetResult.md) | Optional | The bucket set results for the valuation point: for each bucket set, the per-node (fund and share class) buckets and NAV. |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -36,6 +37,7 @@ instance = ValuationPointDataResponse(
     previous_valuation_point_code="...",  # optional — The code of the previous valuation point.
     apportionment_results=[],  # optional — The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group.
     bucket_set_results=[],  # optional — The bucket set results for the valuation point: for each bucket set, the per-node (fund and share class) buckets and NAV.
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -45,6 +47,7 @@ instance = ValuationPointDataResponse(
 - [ShareClassData](ShareClassData.md) — used in `share_class_data`
 - [ApportionmentBreakdown](ApportionmentBreakdown.md) — used in `apportionment_results`
 - [BucketSetResult](BucketSetResult.md) — used in `bucket_set_results`
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 
