@@ -11,6 +11,7 @@ A Workflow
 | **description** | **str** | Optional | Human readable description |
 | **root_task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **workflow_structure** | [WorkflowStructure](WorkflowStructure.md) | Required | *No description available.* |
+| **run_count** | **int** | Required | The number of times this Workflow has been run. Starts at 0 and increments by 1 each time a new run is instantiated. |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Workflow, keyed by property key. |
 
 
@@ -28,6 +29,7 @@ instance = WorkflowResponse(
     description="...",  # optional — Human readable description
     root_task_definition_id=ResourceId(...),  # required
     workflow_structure=WorkflowStructure(...),  # required
+    run_count=0,  # required — The number of times this Workflow has been run. Starts at 0 and increments by 1 each time a new run is instantiated.
     properties=PerpetualProperty(...)  # optional — The properties of the Workflow, keyed by property key.
 )
 ```

@@ -162,6 +162,7 @@ from finbourne.sdk.services.workflow.models.worker_configuration import WorkerCo
 from finbourne.sdk.services.workflow.models.worker_configuration_response import WorkerConfigurationResponse
 from finbourne.sdk.services.workflow.models.worker_status_triggers import WorkerStatusTriggers
 from finbourne.sdk.services.workflow.models.workflow_response import WorkflowResponse
+from finbourne.sdk.services.workflow.models.workflow_run import WorkflowRun
 from finbourne.sdk.services.workflow.models.workflow_structure import WorkflowStructure
 from finbourne.sdk.services.workflow.models.workflow_structure_edges import WorkflowStructureEdges
 from finbourne.sdk.services.workflow.models.workflow_structure_nodes import WorkflowStructureNodes
@@ -315,6 +316,7 @@ __all__ = [
     "WorkerConfigurationResponse",
     "WorkerStatusTriggers",
     "WorkflowResponse",
+    "WorkflowRun",
     "WorkflowStructure",
     "WorkflowStructureEdges",
     "WorkflowStructureNodes",

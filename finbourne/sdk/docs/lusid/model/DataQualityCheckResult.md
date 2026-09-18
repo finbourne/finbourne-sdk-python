@@ -20,8 +20,9 @@ Represents the result of a data quality check operation
 | **lusid_entity** | [LusidEntityResult](LusidEntityResult.md) | Optional | *No description available.* |
 | **count_rule_breaches** | **int** | Optional | The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit) |
 | **error_detail** | **str** | Optional | Error details (for RulesetInvalid, RuleInvalid) |
-| **result_id** | **str** | Optional | Unique identifier for the result in format: {{GUID of Check Definition}}-{{resultType}}-{{rulesetKey}}-{{ruleKey}}-{{entity GUID}}.  For holdings the trailing segment is {{source portfolio GUID}}-{{subEntityId}}, since a holding id only  identifies a holding within its own portfolio. |
+| **result_id** | **str** | Optional | Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType. |
 | **portfolio_holding** | [PortfolioHoldingResult](PortfolioHoldingResult.md) | Optional | *No description available.* |
+| **portfolio_transaction** | [PortfolioTransactionResult](PortfolioTransactionResult.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -47,13 +48,15 @@ instance = DataQualityCheckResult(
     lusid_entity=LusidEntityResult(...),  # optional
     count_rule_breaches=0,  # optional — The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit)
     error_detail="...",  # optional — Error details (for RulesetInvalid, RuleInvalid)
-    result_id="...",  # optional — Unique identifier for the result in format: {{GUID of Check Definition}}-{{resultType}}-{{rulesetKey}}-{{ruleKey}}-{{entity GUID}}.  For holdings the trailing segment is {{source portfolio GUID}}-{{subEntityId}}, since a holding id only  identifies a holding within its own portfolio.
-    portfolio_holding=PortfolioHoldingResult(...)  # optional
+    result_id="...",  # optional — Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType.
+    portfolio_holding=PortfolioHoldingResult(...),  # optional
+    portfolio_transaction=PortfolioTransactionResult(...)  # optional
 )
 ```
 
 - [LusidEntityResult](LusidEntityResult.md)
 - [PortfolioHoldingResult](PortfolioHoldingResult.md)
+- [PortfolioTransactionResult](PortfolioTransactionResult.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

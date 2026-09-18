@@ -8,7 +8,7 @@ A currency group: a set of related currencies sharing a major unit (e.g. GBP wit
 | **code** | **str** | Optional | The code of the currency group. This uniquely identifies the currency group within the tenant. |
 | **display_name** | **str** | Optional | The name of the currency group. |
 | **description** | **str** | Optional | A description for the currency group. |
-| **major_unit_currency** | **str** | Optional | The three-letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group. |
+| **major_unit_currency** | **str** | Optional | The three to five letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group. |
 | **circulation_domain** | **str** | Optional | The domain in which the group&#39;s currencies circulate, e.g. an ISO 3166 country code. |
 | **minor_units** | [List[CurrencyGroupMinorUnit]](CurrencyGroupMinorUnit.md) | Optional | The minor unit currencies belonging to this currency group. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
@@ -27,7 +27,7 @@ instance = CurrencyGroupResponse(
     code="...",  # optional — The code of the currency group. This uniquely identifies the currency group within the tenant.
     display_name="...",  # optional — The name of the currency group.
     description="...",  # optional — A description for the currency group.
-    major_unit_currency="...",  # optional — The three-letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group.
+    major_unit_currency="...",  # optional — The three to five letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group.
     circulation_domain="...",  # optional — The domain in which the group&#39;s currencies circulate, e.g. an ISO 3166 country code.
     minor_units=[],  # optional — The minor unit currencies belonging to this currency group.
     version=Version(...),  # optional

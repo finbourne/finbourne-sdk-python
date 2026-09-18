@@ -37,8 +37,9 @@ class WorkflowResponse(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Human readable description") 
     root_task_definition_id: ResourceId = Field(alias="rootTaskDefinitionId")
     workflow_structure: WorkflowStructure = Field(alias="workflowStructure")
+    run_count: StrictInt = Field(description="The number of times this Workflow has been run. Starts at 0 and increments by 1 each time a new run is instantiated.", alias="runCount")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The properties of the Workflow, keyed by property key.")
-    __properties: ClassVar[List[str]] = ["id", "version", "displayName", "description", "rootTaskDefinitionId", "workflowStructure", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "version", "displayName", "description", "rootTaskDefinitionId", "workflowStructure", "runCount", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,6 +122,7 @@ class WorkflowResponse(BaseModel):
             "description": obj.get("description"),
             "root_task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("rootTaskDefinitionId")) is not None else None,
             "workflow_structure": WorkflowStructure.from_dict(_v) if (_v := obj.get("workflowStructure")) is not None else None,
+            "run_count": obj.get("runCount"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
                 for _k, _v in _val.items()

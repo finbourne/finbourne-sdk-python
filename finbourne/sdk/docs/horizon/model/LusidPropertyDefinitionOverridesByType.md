@@ -9,6 +9,7 @@
 | **entity_type** | **str** | Optional | *No description available.* |
 | **entity_sub_type** | **List[str]** | Optional | *No description available.* |
 | **vendor_package** | **List[str]** | Optional | *No description available.* |
+| **effective_from_override** | **str** | Optional | ISO-8601 instant to use as the property value&#39;s effectiveFrom instead of the date the integration derives, e.g. \&quot;0001-01-01T00:00:00Z\&quot;. Only accepted for integrations reporting supportsEffectiveFromOverride, and only for TimeVariant property definitions. Omit to leave any stored value untouched; send an empty string to clear it. |
 
 
 ## Usage
@@ -23,7 +24,8 @@ instance = LusidPropertyDefinitionOverridesByType(
     description_override="...",  # optional
     entity_type="...",  # optional
     entity_sub_type=,  # optional
-    vendor_package=  # optional
+    vendor_package=,  # optional
+    effective_from_override="..."  # optional — ISO-8601 instant to use as the property value&#39;s effectiveFrom instead of the date the integration derives, e.g. \&quot;0001-01-01T00:00:00Z\&quot;. Only accepted for integrations reporting supportsEffectiveFromOverride, and only for TimeVariant property definitions. Omit to leave any stored value untouched; send an empty string to clear it.
 )
 ```
 

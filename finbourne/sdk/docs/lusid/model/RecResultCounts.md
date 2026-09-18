@@ -5,6 +5,7 @@ Counts of results broken down by the structural categories that align with the r
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
+| **total** | **int** | Required | The total number of results in this result set, across all categories. |
 | **open_exceptions** | [RecOpenExceptionCounts](RecOpenExceptionCounts.md) | Required | *No description available.* |
 | **closed_exceptions** | [RecClosedExceptionCounts](RecClosedExceptionCounts.md) | Required | *No description available.* |
 | **matches** | [RecMatchCounts](RecMatchCounts.md) | Required | *No description available.* |
@@ -18,14 +19,12 @@ Counts of results broken down by the structural categories that align with the r
 from finbourne.sdk.services.lusid.models.RecResultCounts import RecResultCounts
 
 instance = RecResultCounts(
+    total=0,  # required — The total number of results in this result set, across all categories.
     open_exceptions=RecOpenExceptionCounts(...),  # required
     closed_exceptions=RecClosedExceptionCounts(...),  # required
     matches=RecMatchCounts(...)  # required
 )
 ```
-
-
-## Related Models
 
 - [RecOpenExceptionCounts](RecOpenExceptionCounts.md)
 - [RecClosedExceptionCounts](RecClosedExceptionCounts.md)

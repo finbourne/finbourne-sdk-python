@@ -10,6 +10,7 @@ Response containing the description of an integration.
 | **description** | **str** | Required | Describes the purpose of the integration. |
 | **supported_trigger_types** | **List[str]** | Required | Trigger types (Time, File) the integration supports. |
 | **licensed** | **bool** | Required | True if your domain is licensed to use this integration, otherwise false. |
+| **supports_effective_from_override** | **bool** | Required | True if this integration allows a per-property effectiveFromOverride to be set via the optional property mapping endpoints, otherwise false. |
 
 
 ## Usage
@@ -24,7 +25,8 @@ instance = IntegrationDescription(
     name="...",  # required — Readable name of the integration e.g. \&quot;Copp Clark\&quot;.
     description="...",  # required — Describes the purpose of the integration.
     supported_trigger_types=,  # required — Trigger types (Time, File) the integration supports.
-    licensed=True  # required — True if your domain is licensed to use this integration, otherwise false.
+    licensed=True,  # required — True if your domain is licensed to use this integration, otherwise false.
+    supports_effective_from_override=True  # required — True if this integration allows a per-property effectiveFromOverride to be set via the optional property mapping endpoints, otherwise false.
 )
 ```
 

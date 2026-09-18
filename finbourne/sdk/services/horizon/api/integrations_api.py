@@ -35,6 +35,7 @@ from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_field_mappin
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_property_mapping import PagedResourceListOfIPropertyMapping
 from finbourne.sdk.services.horizon.models.processor_description import ProcessorDescription
 from finbourne.sdk.services.horizon.models.processor_schema_response import ProcessorSchemaResponse
+from finbourne.sdk.services.horizon.models.set_instance_optional_property_mapping_response import SetInstanceOptionalPropertyMappingResponse
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
 from finbourne.sdk.services.horizon.models.workflow_result_fields_response import WorkflowResultFieldsResponse
 from finbourne.sdk.api_client import ApiClient
@@ -567,6 +568,7 @@ class IntegrationsApi:
     def get_dataflow_processor_schema(self, processor_type: StrictStr, **kwargs) -> ProcessorSchemaResponse:
         """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
 
+        The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method. An unlicensed domain is answered with a 404, as for an unknown processor type.  # noqa: E501
         :param processor_type:  (required)
         :type processor_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -586,6 +588,7 @@ class IntegrationsApi:
     def get_dataflow_processor_schema_with_http_info(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
         """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
 
+        The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method. An unlicensed domain is answered with a 404, as for an unknown processor type.  # noqa: E501
         :param processor_type:  (required)
         :type processor_type: str
         :param _preload_content: if False, the ApiResponse.data will
@@ -933,7 +936,7 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_instance_optional_property_mapping(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
+    def get_instance_optional_property_mapping(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> SetInstanceOptionalPropertyMappingResponse:
         """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
         Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
@@ -945,7 +948,7 @@ class IntegrationsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
+        :rtype: SetInstanceOptionalPropertyMappingResponse
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -955,7 +958,7 @@ class IntegrationsApi:
         return response.data
 
     @validate_call
-    def get_instance_optional_property_mapping_with_http_info(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
+    def get_instance_optional_property_mapping_with_http_info(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[SetInstanceOptionalPropertyMappingResponse]:
         """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
         Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
@@ -980,7 +983,7 @@ class IntegrationsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(Dict[str, LusidPropertyDefinitionOverridesByType], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SetInstanceOptionalPropertyMappingResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1041,7 +1044,7 @@ class IntegrationsApi:
         _response_types_map = {
             '404': None,
             '400': "LusidValidationProblemDetails",
-            '200': "Dict[str, LusidPropertyDefinitionOverridesByType]",
+            '200': "SetInstanceOptionalPropertyMappingResponse",
         }
 
         return self.sync_api_client.call_api(
@@ -1736,7 +1739,7 @@ class IntegrationsApi:
     def list_dataflow_processors(self, **kwargs) -> List[ProcessorDescription]:
         """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
-        The user must be authenticated to call this method.  # noqa: E501
+        Any authenticated user can call this method. The processor list is empty unless the user's domain is licensed for integration dataflow.  # noqa: E501
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1754,7 +1757,7 @@ class IntegrationsApi:
     def list_dataflow_processors_with_http_info(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
         """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
-        The user must be authenticated to call this method.  # noqa: E501
+        Any authenticated user can call this method. The processor list is empty unless the user's domain is licensed for integration dataflow.  # noqa: E501
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1845,10 +1848,14 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_instances(self, **kwargs) -> List[IntegrationInstance]:
+    def list_instances(self, integration_types: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> List[IntegrationInstance]:
         """[EXPERIMENTAL] ListInstances: List instances across all integrations.  # noqa: E501
 
         The user must be authenticated to call this method.  # noqa: E501
+        :param integration_types: Restrict results to these integration types e.g. \"copp-clark\". Types the caller is not licensed and entitled for match nothing.
+        :type integration_types: List[str]
+        :param filter: A Finbourne filter over Name, Description and Enabled e.g. Name eq 'Market data'.
+        :type filter: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1859,14 +1866,18 @@ class IntegrationsApi:
             message = "Error! Please call the list_instances_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_instances_with_http_info(**kwargs)
+        response = self.list_instances_with_http_info(integration_types, filter, **kwargs)
         return response.data
 
     @validate_call
-    def list_instances_with_http_info(self, **kwargs) -> ApiResponse[List[IntegrationInstance]]:
+    def list_instances_with_http_info(self, integration_types: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[IntegrationInstance]]:
         """[EXPERIMENTAL] ListInstances: List instances across all integrations.  # noqa: E501
 
         The user must be authenticated to call this method.  # noqa: E501
+        :param integration_types: Restrict results to these integration types e.g. \"copp-clark\". Types the caller is not licensed and entitled for match nothing.
+        :type integration_types: List[str]
+        :param filter: A Finbourne filter over Name, Description and Enabled e.g. Name eq 'Market data'.
+        :type filter: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1890,6 +1901,8 @@ class IntegrationsApi:
         _params = locals()
 
         _all_params = [
+            'integration_types',
+            'filter'
         ]
         _all_params.extend(
             [
@@ -1920,6 +1933,13 @@ class IntegrationsApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('integration_types') is not None:  # noqa: E501
+            _query_params.append(('integrationTypes', _params['integration_types']))
+            _collection_formats['integrationTypes'] = 'multi'
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1936,6 +1956,7 @@ class IntegrationsApi:
 
         _response_types_map = {
             '200': "List[IntegrationInstance]",
+            '400': "LusidValidationProblemDetails",
             '404': None,
         }
 
@@ -2068,7 +2089,7 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def set_instance_optional_property_mapping(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
+    def set_instance_optional_property_mapping(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> SetInstanceOptionalPropertyMappingResponse:
         """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
 
         The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
@@ -2082,7 +2103,7 @@ class IntegrationsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
+        :rtype: SetInstanceOptionalPropertyMappingResponse
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -2092,7 +2113,7 @@ class IntegrationsApi:
         return response.data
 
     @validate_call
-    def set_instance_optional_property_mapping_with_http_info(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
+    def set_instance_optional_property_mapping_with_http_info(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[SetInstanceOptionalPropertyMappingResponse]:
         """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
 
         The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
@@ -2119,7 +2140,7 @@ class IntegrationsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(Dict[str, LusidPropertyDefinitionOverridesByType], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SetInstanceOptionalPropertyMappingResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2191,7 +2212,7 @@ class IntegrationsApi:
         _response_types_map = {
             '404': None,
             '400': "LusidValidationProblemDetails",
-            '200': "Dict[str, LusidPropertyDefinitionOverridesByType]",
+            '200': "SetInstanceOptionalPropertyMappingResponse",
         }
 
         return self.sync_api_client.call_api(
@@ -2856,6 +2877,7 @@ class IntegrationsApi:
     @validate_call
     async def get_dataflow_processor_schema_async(self, processor_type: StrictStr, **kwargs) -> ProcessorSchemaResponse:
             """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
+            The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method. An unlicensed domain is answered with a 404, as for an unknown processor type.  # noqa: E501
             
             :param processor_type:  (required)
             :type processor_type: str
@@ -2876,6 +2898,7 @@ class IntegrationsApi:
     async def get_dataflow_processor_schema_with_http_info_async(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
             """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
 
+            The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method. An unlicensed domain is answered with a 404, as for an unknown processor type.  # noqa: E501
 
             :param processor_type:  (required)
             :type processor_type: str
@@ -3226,7 +3249,7 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_instance_optional_property_mapping_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
+    async def get_instance_optional_property_mapping_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> SetInstanceOptionalPropertyMappingResponse:
             """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
             Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
             
@@ -3238,7 +3261,7 @@ class IntegrationsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
+            :rtype: SetInstanceOptionalPropertyMappingResponse
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -3248,7 +3271,7 @@ class IntegrationsApi:
             return response.data
 
     @validate_call
-    async def get_instance_optional_property_mapping_with_http_info_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
+    async def get_instance_optional_property_mapping_with_http_info_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[SetInstanceOptionalPropertyMappingResponse]:
             """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
             Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
@@ -3274,7 +3297,7 @@ class IntegrationsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(Dict[str, LusidPropertyDefinitionOverridesByType], status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(SetInstanceOptionalPropertyMappingResponse, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -3335,7 +3358,7 @@ class IntegrationsApi:
             _response_types_map = {
                 '404': None,
                 '400': "LusidValidationProblemDetails",
-                '200': "Dict[str, LusidPropertyDefinitionOverridesByType]",
+                '200': "SetInstanceOptionalPropertyMappingResponse",
             }
 
             return await self.api_client.call_api_async(
@@ -4034,7 +4057,7 @@ class IntegrationsApi:
     @validate_call
     async def list_dataflow_processors_async(self, **kwargs) -> List[ProcessorDescription]:
             """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
-            The user must be authenticated to call this method.  # noqa: E501
+            Any authenticated user can call this method. The processor list is empty unless the user's domain is licensed for integration dataflow.  # noqa: E501
             
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4053,7 +4076,7 @@ class IntegrationsApi:
     async def list_dataflow_processors_with_http_info_async(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
             """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
-            The user must be authenticated to call this method.  # noqa: E501
+            Any authenticated user can call this method. The processor list is empty unless the user's domain is licensed for integration dataflow.  # noqa: E501
 
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -4145,10 +4168,14 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_instances_async(self, **kwargs) -> List[IntegrationInstance]:
+    async def list_instances_async(self, integration_types: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> List[IntegrationInstance]:
             """[EXPERIMENTAL] ListInstances: List instances across all integrations.  # noqa: E501
             The user must be authenticated to call this method.  # noqa: E501
             
+            :param integration_types: Restrict results to these integration types e.g. \"copp-clark\". Types the caller is not licensed and entitled for match nothing.
+            :type integration_types: List[str]
+            :param filter: A Finbourne filter over Name, Description and Enabled e.g. Name eq 'Market data'.
+            :type filter: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -4159,15 +4186,19 @@ class IntegrationsApi:
                 message = "Error! Please call the list_instances_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_instances_with_http_info_async(**kwargs)
+            response = await self.list_instances_with_http_info_async(integration_types, filter, **kwargs)
             return response.data
 
     @validate_call
-    async def list_instances_with_http_info_async(self, **kwargs) -> ApiResponse[List[IntegrationInstance]]:
+    async def list_instances_with_http_info_async(self, integration_types: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[IntegrationInstance]]:
             """[EXPERIMENTAL] ListInstances: List instances across all integrations.  # noqa: E501
 
             The user must be authenticated to call this method.  # noqa: E501
 
+            :param integration_types: Restrict results to these integration types e.g. \"copp-clark\". Types the caller is not licensed and entitled for match nothing.
+            :type integration_types: List[str]
+            :param filter: A Finbourne filter over Name, Description and Enabled e.g. Name eq 'Market data'.
+            :type filter: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -4191,6 +4222,8 @@ class IntegrationsApi:
             _params = locals()
 
             _all_params = [
+                'integration_types',
+                'filter'
             ]
             _all_params.extend(
                 [
@@ -4221,6 +4254,13 @@ class IntegrationsApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('integration_types') is not None:  # noqa: E501
+                _query_params.append(('integrationTypes', _params['integration_types']))
+                _collection_formats['integrationTypes'] = 'multi'
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -4237,6 +4277,7 @@ class IntegrationsApi:
 
             _response_types_map = {
                 '200': "List[IntegrationInstance]",
+                '400': "LusidValidationProblemDetails",
                 '404': None,
             }
 
@@ -4370,7 +4411,7 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def set_instance_optional_property_mapping_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
+    async def set_instance_optional_property_mapping_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> SetInstanceOptionalPropertyMappingResponse:
             """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
             The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
             
@@ -4384,7 +4425,7 @@ class IntegrationsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
+            :rtype: SetInstanceOptionalPropertyMappingResponse
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -4394,7 +4435,7 @@ class IntegrationsApi:
             return response.data
 
     @validate_call
-    async def set_instance_optional_property_mapping_with_http_info_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
+    async def set_instance_optional_property_mapping_with_http_info_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[SetInstanceOptionalPropertyMappingResponse]:
             """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
 
             The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
@@ -4422,7 +4463,7 @@ class IntegrationsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(Dict[str, LusidPropertyDefinitionOverridesByType], status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(SetInstanceOptionalPropertyMappingResponse, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -4494,7 +4535,7 @@ class IntegrationsApi:
             _response_types_map = {
                 '404': None,
                 '400': "LusidValidationProblemDetails",
-                '200': "Dict[str, LusidPropertyDefinitionOverridesByType]",
+                '200': "SetInstanceOptionalPropertyMappingResponse",
             }
 
             return await self.api_client.call_api_async(

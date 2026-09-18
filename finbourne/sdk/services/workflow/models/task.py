@@ -28,6 +28,7 @@ from finbourne.sdk.services.workflow.models.task_definition_version import TaskD
 from finbourne.sdk.services.workflow.models.task_instance_field import TaskInstanceField
 from finbourne.sdk.services.workflow.models.task_summary import TaskSummary
 from finbourne.sdk.services.workflow.models.version_info import VersionInfo
+from finbourne.sdk.services.workflow.models.workflow_run import WorkflowRun
 
 
 class Task(BaseModel):
@@ -40,6 +41,7 @@ class Task(BaseModel):
     task_definition_display_name:  StrictStr = Field(...,alias="taskDefinitionDisplayName", description="The display name of the Task Definition used by this Task") 
     workflow_id: Optional[ResourceId] = Field(default=None, alias="workflowId")
     workflow_display_name:  Optional[StrictStr] = Field(default=None,alias="workflowDisplayName", description="The display name of the Workflow that this Task is a member of, if any") 
+    workflow_run: Optional[WorkflowRun] = Field(default=None, alias="workflowRun")
     state:  StrictStr = Field(...,alias="state", description="Current State") 
     state_display_name:  Optional[StrictStr] = Field(default=None,alias="stateDisplayName", description="The display name of the current State, from the Task Definition, if one is provided") 
     ultimate_parent_task: TaskSummary = Field(alias="ultimateParentTask")
@@ -61,7 +63,7 @@ class Task(BaseModel):
     open_duration_since_last_update: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was last updated. 0 if the Task is Completed.", alias="openDurationSinceLastUpdate")
     open_duration_since_last_transition: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task last transitioned. 0 if the Task is Completed.", alias="openDurationSinceLastTransition")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The requested TaskDefinition and Workflow properties decorated onto this Task, keyed by property key. Only populated when property keys were requested.")
-    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "state", "stateDisplayName", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "workflowRun", "state", "stateDisplayName", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +108,9 @@ class Task(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of workflow_id
         if self.workflow_id:
             _dict['workflowId'] = self.workflow_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of workflow_run
+        if self.workflow_run:
+            _dict['workflowRun'] = self.workflow_run.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of ultimate_parent_task
         if self.ultimate_parent_task:
             _dict['ultimateParentTask'] = self.ultimate_parent_task.to_dict(by_alias=by_alias)
@@ -237,6 +242,7 @@ class Task(BaseModel):
             "task_definition_display_name": obj.get("taskDefinitionDisplayName"),
             "workflow_id": ResourceId.from_dict(_v) if (_v := obj.get("workflowId")) is not None else None,
             "workflow_display_name": obj.get("workflowDisplayName"),
+            "workflow_run": WorkflowRun.from_dict(_v) if (_v := obj.get("workflowRun")) is not None else None,
             "state": obj.get("state"),
             "state_display_name": obj.get("stateDisplayName"),
             "ultimate_parent_task": TaskSummary.from_dict(_v) if (_v := obj.get("ultimateParentTask")) is not None else None,

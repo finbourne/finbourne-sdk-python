@@ -227,6 +227,8 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.
 
+The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method. An unlicensed domain is answered with a 404, as for an unknown processor type.
+
 ### Example
 
 ```python
@@ -256,7 +258,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **400** | The details of the input related failure |  -  |
 **200** | OK |  -  |
-**404** | The processor type does not exist. |  -  |
+**404** | The processor type does not exist, or your domain is not licensed for integration dataflow. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -352,7 +354,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_instance_optional_property_mapping**
-> Dict[str, LusidPropertyDefinitionOverridesByType] getInstanceOptionalPropertyMapping = get_instance_optional_property_mapping(integration, instance_id)
+> SetInstanceOptionalPropertyMappingResponse getInstanceOptionalPropertyMapping = get_instance_optional_property_mapping(integration, instance_id)
 
 [EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance
 
@@ -377,7 +379,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dict[str, LusidPropertyDefinitionOverridesByType]**](../model/LusidPropertyDefinitionOverridesByType.md)
+[**SetInstanceOptionalPropertyMappingResponse**](../model/SetInstanceOptionalPropertyMappingResponse.md)
 
 ### HTTP request headers
 
@@ -632,7 +634,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] ListDataflowProcessors: List processor types.
 
-The user must be authenticated to call this method.
+Any authenticated user can call this method. The processor list is empty unless the user's domain is licensed for integration dataflow.
 
 ### Example
 
@@ -666,7 +668,7 @@ This endpoint does not need any parameter.
 ---
 
 # **list_instances**
-> List[IntegrationInstance] listInstances = list_instances()
+> List[IntegrationInstance] listInstances = list_instances(integration_types=integration_types, filter=filter)
 
 [EXPERIMENTAL] ListInstances: List instances across all integrations.
 
@@ -676,12 +678,18 @@ The user must be authenticated to call this method.
 
 ```python
 api_instance = api_client_factory.build(IntegrationsApi)
-api_response = api_instance.list_instances()
+integration_types = ['integration_types_example'] # List[str] (optional)
+filter = 'filter_example' # str (optional)
+api_response = api_instance.list_instances(integration_types=integration_types, filter=filter)
 pprint(api_response)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **integration_types** | [**List[str]**](../model/str.md)| Restrict results to these integration types e.g. \&quot;copp-clark\&quot;. Types the caller is not licensed and entitled for match nothing. | [optional] 
+ **filter** | **str**| A Finbourne filter over Name, Description and Enabled e.g. Name eq &#39;Market data&#39;. | [optional] 
 
 ### Return type
 
@@ -696,6 +704,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
 **404** | The requested instance(s) do not exist. |  -  |
 **0** | Error response |  -  |
 
@@ -741,7 +750,7 @@ This endpoint does not need any parameter.
 ---
 
 # **set_instance_optional_property_mapping**
-> Dict[str, LusidPropertyDefinitionOverridesByType] setInstanceOptionalPropertyMapping = set_instance_optional_property_mapping(instance_id, integration, request_body=request_body)
+> SetInstanceOptionalPropertyMappingResponse setInstanceOptionalPropertyMapping = set_instance_optional_property_mapping(instance_id, integration, request_body=request_body)
 
 [EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance
 
@@ -753,7 +762,7 @@ The full list of properties must be supplied, the removal of a property from thi
 api_instance = api_client_factory.build(IntegrationsApi)
 instance_id = 'instance_id_example' # str
 integration = 'integration_example' # str
-request_body = {"Instrument/TestVendor/CreditRating":{"displayNameOverride":"Vendor Credit Rating","entityType":"Instrument","entitySubType":["Equity"],"vendorPackage":["Transaction"]}} # Dict[str, LusidPropertyDefinitionOverridesByType] (optional)
+request_body = {"Instrument/TestVendor/CreditRating":{"displayNameOverride":"Vendor Credit Rating","entityType":"Instrument","entitySubType":["Equity"],"vendorPackage":["Transaction"],"effectiveFromOverride":"0001-01-01T00:00:00Z"},"Instrument/TestVendor/CouponRate":{"entityType":"Instrument","entitySubType":["Bond"],"vendorPackage":["Transaction"]}} # Dict[str, LusidPropertyDefinitionOverridesByType] (optional)
 api_response = api_instance.set_instance_optional_property_mapping(instance_id, integration, request_body=request_body)
 pprint(api_response)
 ```
@@ -768,7 +777,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dict[str, LusidPropertyDefinitionOverridesByType]**](../model/LusidPropertyDefinitionOverridesByType.md)
+[**SetInstanceOptionalPropertyMappingResponse**](../model/SetInstanceOptionalPropertyMappingResponse.md)
 
 ### HTTP request headers
 

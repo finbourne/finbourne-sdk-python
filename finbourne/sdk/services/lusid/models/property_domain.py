@@ -122,6 +122,7 @@ class PropertyDomain(str, Enum):  # type: ignore[misc]
     TRANSFER = 'Transfer'
     CURRENCYGROUP = 'CurrencyGroup'
     RECDEFINITION = 'RecDefinition'
+    RECRESULT = 'RecResult'
 
     @classmethod
     def from_json(cls, json_str: str) -> PropertyDomain:

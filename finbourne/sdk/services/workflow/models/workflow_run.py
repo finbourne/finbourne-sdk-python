@@ -23,15 +23,14 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class TransactionEntityLink(BaseModel):
+class WorkflowRun(BaseModel):
     """
-    TransactionEntityLink
+    Information about the run of the Workflow that created this Task, inherited from the root/ultimate parent Task.  # noqa: E501
     """
-    entity_type:  StrictStr = Field(...,alias="entityType", description="Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, FundStructure, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction, Transfer, RecDefinition, RecResult.") 
-    entity_id_name:  StrictStr = Field(...,alias="entityIdName") 
-    entity_id_value:  StrictStr = Field(...,alias="entityIdValue") 
-    restrict_editing: StrictBool = Field(alias="restrictEditing")
-    __properties: ClassVar[List[str]] = ["entityType", "entityIdName", "entityIdValue", "restrictEditing"]
+    id: StrictInt = Field(description="The id of this run of the Workflow. Assigned once, when the run is instantiated.")
+    as_at_created: datetime = Field(description="The version.asAtCreated of the root/ultimate parent Task of this run.", alias="asAtCreated")
+    completion_status:  StrictStr = Field(...,alias="completionStatus", description="The completion status of the root/ultimate parent Task of this run: NotStarted, InProgress, or Completed.") 
+    __properties: ClassVar[List[str]] = ["id", "asAtCreated", "completionStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,8 +55,8 @@ class TransactionEntityLink(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TransactionEntityLink:
-        """Create an instance of TransactionEntityLink from a JSON string"""
+    def from_json(cls, json_str: str) -> WorkflowRun:
+        """Create an instance of WorkflowRun from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -70,21 +69,20 @@ class TransactionEntityLink(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TransactionEntityLink:
-        """Create an instance of TransactionEntityLink from a dict"""
+    def from_dict(cls, obj: dict) -> WorkflowRun:
+        """Create an instance of WorkflowRun from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TransactionEntityLink.model_validate(obj)
+            return WorkflowRun.model_validate(obj)
 
-        _obj = TransactionEntityLink.model_validate({
-            "entity_type": obj.get("entityType"),
-            "entity_id_name": obj.get("entityIdName"),
-            "entity_id_value": obj.get("entityIdValue"),
-            "restrict_editing": obj.get("restrictEditing")
+        _obj = WorkflowRun.model_validate({
+            "id": obj.get("id"),
+            "as_at_created": obj.get("asAtCreated"),
+            "completion_status": obj.get("completionStatus")
         })
         return _obj
 
-TransactionEntityLink.model_rebuild()
+WorkflowRun.model_rebuild()
 

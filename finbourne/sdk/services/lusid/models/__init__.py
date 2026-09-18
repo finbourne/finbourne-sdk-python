@@ -1056,6 +1056,8 @@ from finbourne.sdk.services.lusid.models.portfolio_settlement_instruction_adjust
 from finbourne.sdk.services.lusid.models.portfolio_trade_ticket import PortfolioTradeTicket
 from finbourne.sdk.services.lusid.models.portfolio_transaction import PortfolioTransaction
 from finbourne.sdk.services.lusid.models.portfolio_transaction_adjustment import PortfolioTransactionAdjustment
+from finbourne.sdk.services.lusid.models.portfolio_transaction_dataset import PortfolioTransactionDataset
+from finbourne.sdk.services.lusid.models.portfolio_transaction_result import PortfolioTransactionResult
 from finbourne.sdk.services.lusid.models.portfolio_type import PortfolioType
 from finbourne.sdk.services.lusid.models.portfolio_weight import PortfolioWeight
 from finbourne.sdk.services.lusid.models.portfolio_without_href import PortfolioWithoutHref
@@ -2762,6 +2764,8 @@ __all__ = [
     "PortfolioTradeTicket",
     "PortfolioTransaction",
     "PortfolioTransactionAdjustment",
+    "PortfolioTransactionDataset",
+    "PortfolioTransactionResult",
     "PortfolioType",
     "PortfolioWeight",
     "PortfolioWithoutHref",

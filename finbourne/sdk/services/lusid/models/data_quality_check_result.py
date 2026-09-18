@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.lusid_entity_result import LusidEntityResult
 from finbourne.sdk.services.lusid.models.portfolio_holding_result import PortfolioHoldingResult
+from finbourne.sdk.services.lusid.models.portfolio_transaction_result import PortfolioTransactionResult
 
 
 class DataQualityCheckResult(BaseModel):
@@ -44,9 +45,10 @@ class DataQualityCheckResult(BaseModel):
     lusid_entity: Optional[LusidEntityResult] = Field(default=None, alias="lusidEntity")
     count_rule_breaches: Optional[StrictInt] = Field(default=None, description="The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit)", alias="countRuleBreaches")
     error_detail:  Optional[StrictStr] = Field(default=None,alias="errorDetail", description="Error details (for RulesetInvalid, RuleInvalid)") 
-    result_id:  Optional[StrictStr] = Field(default=None,alias="resultId", description="Unique identifier for the result in format: {{GUID of Check Definition}}-{{resultType}}-{{rulesetKey}}-{{ruleKey}}-{{entity GUID}}.  For holdings the trailing segment is {{source portfolio GUID}}-{{subEntityId}}, since a holding id only  identifies a holding within its own portfolio.") 
+    result_id:  Optional[StrictStr] = Field(default=None,alias="resultId", description="Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType.") 
     portfolio_holding: Optional[PortfolioHoldingResult] = Field(default=None, alias="portfolioHolding")
-    __properties: ClassVar[List[str]] = ["checkDefinitionScope", "checkDefinitionCode", "checkDefinitionDisplayName", "checkRunAsAt", "resultType", "ruleSetKey", "ruleSetDisplayName", "ruleKey", "ruleDisplayName", "ruleDescription", "ruleFormula", "severity", "lusidEntity", "countRuleBreaches", "errorDetail", "resultId", "portfolioHolding"]
+    portfolio_transaction: Optional[PortfolioTransactionResult] = Field(default=None, alias="portfolioTransaction")
+    __properties: ClassVar[List[str]] = ["checkDefinitionScope", "checkDefinitionCode", "checkDefinitionDisplayName", "checkRunAsAt", "resultType", "ruleSetKey", "ruleSetDisplayName", "ruleKey", "ruleDisplayName", "ruleDescription", "ruleFormula", "severity", "lusidEntity", "countRuleBreaches", "errorDetail", "resultId", "portfolioHolding", "portfolioTransaction"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +90,9 @@ class DataQualityCheckResult(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of portfolio_holding
         if self.portfolio_holding:
             _dict['portfolioHolding'] = self.portfolio_holding.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of portfolio_transaction
+        if self.portfolio_transaction:
+            _dict['portfolioTransaction'] = self.portfolio_transaction.to_dict(by_alias=by_alias)
         # set to None if check_definition_scope (nullable) is None
         # and model_fields_set contains the field
         if self.check_definition_scope is None and "check_definition_scope" in self.model_fields_set:
@@ -186,7 +191,8 @@ class DataQualityCheckResult(BaseModel):
             "count_rule_breaches": obj.get("countRuleBreaches"),
             "error_detail": obj.get("errorDetail"),
             "result_id": obj.get("resultId"),
-            "portfolio_holding": PortfolioHoldingResult.from_dict(_v) if (_v := obj.get("portfolioHolding")) is not None else None
+            "portfolio_holding": PortfolioHoldingResult.from_dict(_v) if (_v := obj.get("portfolioHolding")) is not None else None,
+            "portfolio_transaction": PortfolioTransactionResult.from_dict(_v) if (_v := obj.get("portfolioTransaction")) is not None else None
         })
         return _obj
 

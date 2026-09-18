@@ -30,10 +30,11 @@ class RecResultCounts(BaseModel):
     """
     Counts of results broken down by the structural categories that align with the review configuration.  # noqa: E501
     """
+    total: StrictInt = Field(description="The total number of results in this result set, across all categories.")
     open_exceptions: RecOpenExceptionCounts = Field(alias="openExceptions")
     closed_exceptions: RecClosedExceptionCounts = Field(alias="closedExceptions")
     matches: RecMatchCounts
-    __properties: ClassVar[List[str]] = ["openExceptions", "closedExceptions", "matches"]
+    __properties: ClassVar[List[str]] = ["total", "openExceptions", "closedExceptions", "matches"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +91,7 @@ class RecResultCounts(BaseModel):
             return RecResultCounts.model_validate(obj)
 
         _obj = RecResultCounts.model_validate({
+            "total": obj.get("total"),
             "open_exceptions": RecOpenExceptionCounts.from_dict(_v) if (_v := obj.get("openExceptions")) is not None else None,
             "closed_exceptions": RecClosedExceptionCounts.from_dict(_v) if (_v := obj.get("closedExceptions")) is not None else None,
             "matches": RecMatchCounts.from_dict(_v) if (_v := obj.get("matches")) is not None else None
