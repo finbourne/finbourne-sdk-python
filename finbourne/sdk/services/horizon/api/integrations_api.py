@@ -936,7 +936,7 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_instance_optional_property_mapping(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> SetInstanceOptionalPropertyMappingResponse:
+    def get_instance_optional_property_mapping(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
         """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
         Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
@@ -948,7 +948,7 @@ class IntegrationsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: SetInstanceOptionalPropertyMappingResponse
+        :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -958,7 +958,7 @@ class IntegrationsApi:
         return response.data
 
     @validate_call
-    def get_instance_optional_property_mapping_with_http_info(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[SetInstanceOptionalPropertyMappingResponse]:
+    def get_instance_optional_property_mapping_with_http_info(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
         """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
         Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
@@ -983,7 +983,7 @@ class IntegrationsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(SetInstanceOptionalPropertyMappingResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Dict[str, LusidPropertyDefinitionOverridesByType], status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1044,7 +1044,7 @@ class IntegrationsApi:
         _response_types_map = {
             '404': None,
             '400': "LusidValidationProblemDetails",
-            '200': "SetInstanceOptionalPropertyMappingResponse",
+            '200': "Dict[str, LusidPropertyDefinitionOverridesByType]",
         }
 
         return self.sync_api_client.call_api(
@@ -3249,7 +3249,7 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_instance_optional_property_mapping_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> SetInstanceOptionalPropertyMappingResponse:
+    async def get_instance_optional_property_mapping_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
             """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
             Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
             
@@ -3261,7 +3261,7 @@ class IntegrationsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: SetInstanceOptionalPropertyMappingResponse
+            :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -3271,7 +3271,7 @@ class IntegrationsApi:
             return response.data
 
     @validate_call
-    async def get_instance_optional_property_mapping_with_http_info_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[SetInstanceOptionalPropertyMappingResponse]:
+    async def get_instance_optional_property_mapping_with_http_info_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
             """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
             Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
@@ -3297,7 +3297,7 @@ class IntegrationsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(SetInstanceOptionalPropertyMappingResponse, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(Dict[str, LusidPropertyDefinitionOverridesByType], status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -3358,7 +3358,7 @@ class IntegrationsApi:
             _response_types_map = {
                 '404': None,
                 '400': "LusidValidationProblemDetails",
-                '200': "SetInstanceOptionalPropertyMappingResponse",
+                '200': "Dict[str, LusidPropertyDefinitionOverridesByType]",
             }
 
             return await self.api_client.call_api_async(

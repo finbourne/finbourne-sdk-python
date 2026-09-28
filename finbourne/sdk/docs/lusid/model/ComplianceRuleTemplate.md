@@ -10,6 +10,7 @@
 | **variations** | [List[ComplianceTemplateVariationDto]](ComplianceTemplateVariationDto.md) | Optional | Variation details of a Compliance Template |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -27,6 +28,7 @@ instance = ComplianceRuleTemplate(
     variations=[],  # optional — Variation details of a Compliance Template
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.
     version=Version(...),  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -38,6 +40,7 @@ instance = ComplianceRuleTemplate(
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [ComplianceTemplateVariationDto](ComplianceTemplateVariationDto.md) — used in `variations`
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 

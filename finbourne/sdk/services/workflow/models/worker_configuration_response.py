@@ -19,7 +19,7 @@ from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.fail_response import FailResponse
 from finbourne.sdk.services.workflow.models.group_reconciliation_response import GroupReconciliationResponse
 from finbourne.sdk.services.workflow.models.health_check_response import HealthCheckResponse
@@ -28,11 +28,12 @@ from finbourne.sdk.services.workflow.models.library_response import LibraryRespo
 from finbourne.sdk.services.workflow.models.luminesce_view_response import LuminesceViewResponse
 from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check_response import LusidEntityDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check_response import PortfolioHoldingDataQualityCheckResponse
+from finbourne.sdk.services.workflow.models.portfolio_transaction_data_quality_check_response import PortfolioTransactionDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.scheduler_job_response import SchedulerJobResponse
 from finbourne.sdk.services.workflow.models.sleep_response import SleepResponse
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
-WORKERCONFIGURATIONRESPONSE_ONE_OF_SCHEMAS = ["FailResponse", "GroupReconciliationResponse", "HealthCheckResponse", "HorizonIntegrationResponse", "LibraryResponse", "LuminesceViewResponse", "LusidEntityDataQualityCheckResponse", "PortfolioHoldingDataQualityCheckResponse", "SchedulerJobResponse", "SleepResponse"]
+WORKERCONFIGURATIONRESPONSE_ONE_OF_SCHEMAS = ["FailResponse", "GroupReconciliationResponse", "HealthCheckResponse", "HorizonIntegrationResponse", "LibraryResponse", "LuminesceViewResponse", "LusidEntityDataQualityCheckResponse", "PortfolioHoldingDataQualityCheckResponse", "PortfolioTransactionDataQualityCheckResponse", "SchedulerJobResponse", "SleepResponse"]
 
 class WorkerConfigurationResponse(BaseModel):
     """
@@ -54,12 +55,14 @@ class WorkerConfigurationResponse(BaseModel):
     oneof_schema_7_validator: Optional[LusidEntityDataQualityCheckResponse] = None
     # data type: PortfolioHoldingDataQualityCheckResponse
     oneof_schema_8_validator: Optional[PortfolioHoldingDataQualityCheckResponse] = None
+    # data type: PortfolioTransactionDataQualityCheckResponse
+    oneof_schema_9_validator: Optional[PortfolioTransactionDataQualityCheckResponse] = None
     # data type: SchedulerJobResponse
-    oneof_schema_9_validator: Optional[SchedulerJobResponse] = None
+    oneof_schema_10_validator: Optional[SchedulerJobResponse] = None
     # data type: SleepResponse
-    oneof_schema_10_validator: Optional[SleepResponse] = None
+    oneof_schema_11_validator: Optional[SleepResponse] = None
     if TYPE_CHECKING:
-        actual_instance: Union[FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, SchedulerJobResponse, SleepResponse]
+        actual_instance: Union[FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse]
     else:
         actual_instance: Any
     one_of_schemas: ClassVar[List[str]] = WORKERCONFIGURATIONRESPONSE_ONE_OF_SCHEMAS
@@ -77,6 +80,16 @@ class WorkerConfigurationResponse(BaseModel):
             super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
@@ -132,6 +145,12 @@ class WorkerConfigurationResponse(BaseModel):
         else:
             match += 1
             matchclass = matchclass + " PortfolioHoldingDataQualityCheckResponse"
+        # validate data type: PortfolioTransactionDataQualityCheckResponse
+        if not isinstance(v, PortfolioTransactionDataQualityCheckResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PortfolioTransactionDataQualityCheckResponse`")
+        else:
+            match += 1
+            matchclass = matchclass + " PortfolioTransactionDataQualityCheckResponse"
         # validate data type: SchedulerJobResponse
         if not isinstance(v, SchedulerJobResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `SchedulerJobResponse`")
@@ -146,10 +165,10 @@ class WorkerConfigurationResponse(BaseModel):
             matchclass = matchclass + " SleepResponse"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -168,6 +187,17 @@ class WorkerConfigurationResponse(BaseModel):
 
         # deserialize data into FailResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(FailResponse, "_FailResponse__properties", None) or getattr(FailResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for FailResponse: {_extra}")
             instance.actual_instance = FailResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " FailResponse"
@@ -175,6 +205,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into GroupReconciliationResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(GroupReconciliationResponse, "_GroupReconciliationResponse__properties", None) or getattr(GroupReconciliationResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for GroupReconciliationResponse: {_extra}")
             instance.actual_instance = GroupReconciliationResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " GroupReconciliationResponse"
@@ -182,6 +223,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into HealthCheckResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(HealthCheckResponse, "_HealthCheckResponse__properties", None) or getattr(HealthCheckResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for HealthCheckResponse: {_extra}")
             instance.actual_instance = HealthCheckResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " HealthCheckResponse"
@@ -189,6 +241,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into HorizonIntegrationResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(HorizonIntegrationResponse, "_HorizonIntegrationResponse__properties", None) or getattr(HorizonIntegrationResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for HorizonIntegrationResponse: {_extra}")
             instance.actual_instance = HorizonIntegrationResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " HorizonIntegrationResponse"
@@ -196,6 +259,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into LibraryResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(LibraryResponse, "_LibraryResponse__properties", None) or getattr(LibraryResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for LibraryResponse: {_extra}")
             instance.actual_instance = LibraryResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " LibraryResponse"
@@ -203,6 +277,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into LuminesceViewResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(LuminesceViewResponse, "_LuminesceViewResponse__properties", None) or getattr(LuminesceViewResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for LuminesceViewResponse: {_extra}")
             instance.actual_instance = LuminesceViewResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " LuminesceViewResponse"
@@ -210,6 +295,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into LusidEntityDataQualityCheckResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(LusidEntityDataQualityCheckResponse, "_LusidEntityDataQualityCheckResponse__properties", None) or getattr(LusidEntityDataQualityCheckResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for LusidEntityDataQualityCheckResponse: {_extra}")
             instance.actual_instance = LusidEntityDataQualityCheckResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " LusidEntityDataQualityCheckResponse"
@@ -217,13 +313,53 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into PortfolioHoldingDataQualityCheckResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(PortfolioHoldingDataQualityCheckResponse, "_PortfolioHoldingDataQualityCheckResponse__properties", None) or getattr(PortfolioHoldingDataQualityCheckResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for PortfolioHoldingDataQualityCheckResponse: {_extra}")
             instance.actual_instance = PortfolioHoldingDataQualityCheckResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " PortfolioHoldingDataQualityCheckResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into PortfolioTransactionDataQualityCheckResponse
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(PortfolioTransactionDataQualityCheckResponse, "_PortfolioTransactionDataQualityCheckResponse__properties", None) or getattr(PortfolioTransactionDataQualityCheckResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for PortfolioTransactionDataQualityCheckResponse: {_extra}")
+            instance.actual_instance = PortfolioTransactionDataQualityCheckResponse.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " PortfolioTransactionDataQualityCheckResponse"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into SchedulerJobResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(SchedulerJobResponse, "_SchedulerJobResponse__properties", None) or getattr(SchedulerJobResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for SchedulerJobResponse: {_extra}")
             instance.actual_instance = SchedulerJobResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " SchedulerJobResponse"
@@ -231,6 +367,17 @@ class WorkerConfigurationResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into SleepResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(SleepResponse, "_SleepResponse__properties", None) or getattr(SleepResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for SleepResponse: {_extra}")
             instance.actual_instance = SleepResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " SleepResponse"
@@ -239,10 +386,10 @@ class WorkerConfigurationResponse(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: " + ", ".join(error_messages))
         else:
             return instance
 

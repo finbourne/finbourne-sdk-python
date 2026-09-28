@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.fractional_units_true_up_configuration import FractionalUnitsTrueUpConfiguration
 from finbourne.sdk.services.lusid.models.instrument_event_configuration import InstrumentEventConfiguration
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.portfolio_settlement_configuration import PortfolioSettlementConfiguration
@@ -35,7 +36,7 @@ class CreateTransactionPortfolioRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the transaction portfolio.") 
     code:  StrictStr = Field(...,alias="code", description="The code of the transaction portfolio. Together with the scope this uniquely identifies the transaction portfolio.") 
     created: Optional[datetime] = Field(default=None, description="The effective datetime at which to create the transaction portfolio. No transactions can be added to the transaction portfolio before this date. Defaults to the current LUSID system datetime if not specified.")
-    enablement_date: Optional[datetime] = Field(default=None, description="The effective datetime from which transactions booked to the transaction portfolio begin contributing to holdings, valuations and other computed results. Transactions with an earlier effective date are still accepted and stored, but do not affect any computed results until this date. Defaults to the portfolio's creation date if not specified.", alias="enablementDate")
+    enablement_date: Optional[datetime] = Field(default=None, description="The effective datetime from which instrument events and corporate actions are generated and applied to the transaction portfolio. Transactions contribute to holdings, valuations and other computed results from the portfolio's creation date whatever the enablement date. Defaults to the portfolio's creation date if not specified.", alias="enablementDate")
     base_currency:  StrictStr = Field(...,alias="baseCurrency", description="The base currency of the transaction portfolio in ISO 4217 currency code format.") 
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
     accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description="Determines the accounting treatment given to the transaction portfolio's tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
@@ -51,20 +52,19 @@ class CreateTransactionPortfolioRequest(BaseModel):
     settlement_configuration: Optional[PortfolioSettlementConfiguration] = Field(default=None, alias="settlementConfiguration")
     transaction_exclusion_filter:  Optional[StrictStr] = Field(default=None,alias="transactionExclusionFilter", description="A filter expression that identifies transactions to exclude when building the transaction portfolio's transactions and holdings. Transactions matching this filter are flagged as excluded.") 
     tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.") 
-    __properties: ClassVar[List[str]] = ["displayName", "description", "code", "created", "enablementDate", "baseCurrency", "corporateActionSourceId", "accountingMethod", "subHoldingKeys", "properties", "instrumentScopes", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxRuleSetScope", "settlementConfiguration", "transactionExclusionFilter", "taxLotSelectionCostBasis"]
+    fractional_units_true_up_configuration: Optional[FractionalUnitsTrueUpConfiguration] = Field(default=None, alias="fractionalUnitsTrueUpConfiguration")
+    holdings_fungibility:  Optional[StrictStr] = Field(default=None,alias="holdingsFungibility", description="Whether the portfolio's holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled.") 
+    __properties: ClassVar[List[str]] = ["displayName", "description", "code", "created", "enablementDate", "baseCurrency", "corporateActionSourceId", "accountingMethod", "subHoldingKeys", "properties", "instrumentScopes", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxRuleSetScope", "settlementConfiguration", "transactionExclusionFilter", "taxLotSelectionCostBasis", "fractionalUnitsTrueUpConfiguration", "holdingsFungibility"]
 
     @field_validator('accounting_method')
     def accounting_method_validate_enum(cls, value):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "accounting_method" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         if value is None:
             return value
@@ -129,6 +129,9 @@ class CreateTransactionPortfolioRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of settlement_configuration
         if self.settlement_configuration:
             _dict['settlementConfiguration'] = self.settlement_configuration.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of fractional_units_true_up_configuration
+        if self.fractional_units_true_up_configuration:
+            _dict['fractionalUnitsTrueUpConfiguration'] = self.fractional_units_true_up_configuration.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -189,6 +192,11 @@ class CreateTransactionPortfolioRequest(BaseModel):
         if self.tax_lot_selection_cost_basis is None and "tax_lot_selection_cost_basis" in self.model_fields_set:
             _dict['taxLotSelectionCostBasis'] = None
 
+        # set to None if holdings_fungibility (nullable) is None
+        # and model_fields_set contains the field
+        if self.holdings_fungibility is None and "holdings_fungibility" in self.model_fields_set:
+            _dict['holdingsFungibility'] = None
+
         return _dict
 
     @classmethod
@@ -225,7 +233,9 @@ class CreateTransactionPortfolioRequest(BaseModel):
             "tax_rule_set_scope": obj.get("taxRuleSetScope"),
             "settlement_configuration": PortfolioSettlementConfiguration.from_dict(_v) if (_v := obj.get("settlementConfiguration")) is not None else None,
             "transaction_exclusion_filter": obj.get("transactionExclusionFilter"),
-            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis")
+            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis"),
+            "fractional_units_true_up_configuration": FractionalUnitsTrueUpConfiguration.from_dict(_v) if (_v := obj.get("fractionalUnitsTrueUpConfiguration")) is not None else None,
+            "holdings_fungibility": obj.get("holdingsFungibility")
         })
         return _obj
 

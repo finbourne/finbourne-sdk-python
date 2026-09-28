@@ -19,7 +19,7 @@ from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.create_new_task_activity_response import CreateNewTaskActivityResponse
 from finbourne.sdk.services.workflow.models.update_matching_tasks_activity_response import UpdateMatchingTasksActivityResponse
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
@@ -53,6 +53,16 @@ class TaskActivityResponse(BaseModel):
             super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
@@ -96,6 +106,17 @@ class TaskActivityResponse(BaseModel):
 
         # deserialize data into CreateNewTaskActivityResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(CreateNewTaskActivityResponse, "_CreateNewTaskActivityResponse__properties", None) or getattr(CreateNewTaskActivityResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for CreateNewTaskActivityResponse: {_extra}")
             instance.actual_instance = CreateNewTaskActivityResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " CreateNewTaskActivityResponse"
@@ -103,6 +124,17 @@ class TaskActivityResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into UpdateMatchingTasksActivityResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(UpdateMatchingTasksActivityResponse, "_UpdateMatchingTasksActivityResponse__properties", None) or getattr(UpdateMatchingTasksActivityResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for UpdateMatchingTasksActivityResponse: {_extra}")
             instance.actual_instance = UpdateMatchingTasksActivityResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " UpdateMatchingTasksActivityResponse"

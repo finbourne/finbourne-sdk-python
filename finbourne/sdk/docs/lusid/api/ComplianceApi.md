@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_compliance_rule**](ComplianceApi.md#delete_compliance_rule) | **DELETE** /api/api/compliance/rules/{scope}/{code} | [EARLY ACCESS] DeleteComplianceRule: Delete compliance rule.
 [**delete_compliance_template**](ComplianceApi.md#delete_compliance_template) | **DELETE** /api/api/compliance/templates/{scope}/{code} | [EARLY ACCESS] DeleteComplianceTemplate: Delete a ComplianceRuleTemplate
 [**get_compliance_rule**](ComplianceApi.md#get_compliance_rule) | **GET** /api/api/compliance/rules/{scope}/{code} | [EARLY ACCESS] GetComplianceRule: Get compliance rule.
+[**get_compliance_rule_breakdown**](ComplianceApi.md#get_compliance_rule_breakdown) | **GET** /api/api/compliance/runs/breakdown/{runScope}/{runCode}/{ruleScope}/{ruleCode} | [EARLY ACCESS] GetComplianceRuleBreakdown: Get the position-level breakdown for a single rule of a compliance run.
 [**get_compliance_rule_result**](ComplianceApi.md#get_compliance_rule_result) | **GET** /api/api/compliance/runs/summary/{runScope}/{runCode}/{ruleScope}/{ruleCode} | [EARLY ACCESS] GetComplianceRuleResult: Get detailed results for a specific rule within a compliance run.
 [**get_compliance_template**](ComplianceApi.md#get_compliance_template) | **GET** /api/api/compliance/templates/{scope}/{code} | [EARLY ACCESS] GetComplianceTemplate: Get the requested compliance template.
 [**get_decorated_compliance_run_summary**](ComplianceApi.md#get_decorated_compliance_run_summary) | **GET** /api/api/compliance/runs/summary/{scope}/{code}/$decorate | [EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.
@@ -220,6 +221,54 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested compliance rule. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_compliance_rule_breakdown**
+> ComplianceRuleResultV2WithContributions getComplianceRuleBreakdown = get_compliance_rule_breakdown(run_scope, run_code, rule_scope, rule_code)
+
+[EARLY ACCESS] GetComplianceRuleBreakdown: Get the position-level breakdown for a single rule of a compliance run.
+
+Specify a run scope and code from a previously run compliance check, and the scope and code of a rule within that run, to get the per-position contributions behind that rule's breakdown groups.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+run_scope = 'run_scope_example' # str
+run_code = 'run_code_example' # str
+rule_scope = 'rule_scope_example' # str
+rule_code = 'rule_code_example' # str
+api_response = api_instance.get_compliance_rule_breakdown(run_scope, run_code, rule_scope, rule_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_scope** | **str**| Required: Run Scope. | [required] 
+ **run_code** | **str**| Required: Run Code. | [required] 
+ **rule_scope** | **str**| Required: Rule Scope. | [required] 
+ **rule_code** | **str**| Required: Rule Code. | [required] 
+
+### Return type
+
+[**ComplianceRuleResultV2WithContributions**](../model/ComplianceRuleResultV2WithContributions.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The position-level breakdown for the requested rule of a compliance run. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

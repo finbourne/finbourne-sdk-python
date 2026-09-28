@@ -19,7 +19,7 @@ from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.day_regularity import DayRegularity
 from finbourne.sdk.services.workflow.models.relative_month_regularity import RelativeMonthRegularity
 from finbourne.sdk.services.workflow.models.specific_month_regularity import SpecificMonthRegularity
@@ -62,6 +62,16 @@ class DateRegularity(BaseModel):
             super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
@@ -123,6 +133,17 @@ class DateRegularity(BaseModel):
 
         # deserialize data into DayRegularity
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(DayRegularity, "_DayRegularity__properties", None) or getattr(DayRegularity, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for DayRegularity: {_extra}")
             instance.actual_instance = DayRegularity.from_json(json_str)
             match += 1
             matchclass =matchclass + " DayRegularity"
@@ -130,6 +151,17 @@ class DateRegularity(BaseModel):
             error_messages.append(str(e))
         # deserialize data into RelativeMonthRegularity
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(RelativeMonthRegularity, "_RelativeMonthRegularity__properties", None) or getattr(RelativeMonthRegularity, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for RelativeMonthRegularity: {_extra}")
             instance.actual_instance = RelativeMonthRegularity.from_json(json_str)
             match += 1
             matchclass =matchclass + " RelativeMonthRegularity"
@@ -137,6 +169,17 @@ class DateRegularity(BaseModel):
             error_messages.append(str(e))
         # deserialize data into SpecificMonthRegularity
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(SpecificMonthRegularity, "_SpecificMonthRegularity__properties", None) or getattr(SpecificMonthRegularity, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for SpecificMonthRegularity: {_extra}")
             instance.actual_instance = SpecificMonthRegularity.from_json(json_str)
             match += 1
             matchclass =matchclass + " SpecificMonthRegularity"
@@ -144,6 +187,17 @@ class DateRegularity(BaseModel):
             error_messages.append(str(e))
         # deserialize data into WeekRegularity
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(WeekRegularity, "_WeekRegularity__properties", None) or getattr(WeekRegularity, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for WeekRegularity: {_extra}")
             instance.actual_instance = WeekRegularity.from_json(json_str)
             match += 1
             matchclass =matchclass + " WeekRegularity"
@@ -151,6 +205,17 @@ class DateRegularity(BaseModel):
             error_messages.append(str(e))
         # deserialize data into YearRegularity
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(YearRegularity, "_YearRegularity__properties", None) or getattr(YearRegularity, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for YearRegularity: {_extra}")
             instance.actual_instance = YearRegularity.from_json(json_str)
             match += 1
             matchclass =matchclass + " YearRegularity"

@@ -13,9 +13,10 @@ A Fund entity.
 | **investor_structure** | **str** | Required | The Investor structure to be used by the Fund. Available values: NonUnitised, Classes. |
 | **portfolio_ids** | [List[PortfolioEntityIdWithDetails]](PortfolioEntityIdWithDetails.md) | Optional | A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency. |
 | **fund_configuration_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **short_code** | **str** | Optional | A short code for the Fund. A fund structure tags journal entry lines with the short code of the member they originated from, so it should be unique across the funds of one structure. Optional. |
 | **abor_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
-| **type** | **str** | Optional | The type of fund. Available values: Standalone, Master, Feeder. |
+| **type** | **str** | Optional | The kind of vehicle the fund is, one of the values of the system/fundVehicleType data type. Standalone, Master and Feeder are retained for compatibility; the structural role of a fund now lives on its fund structure node. Available values: Standalone, Master, Feeder, SPV, AIV, TaxBlocker, CarryVehicle, SponsorCommitmentVehicle, CoInvestVehicle, GPInterestHolder, SMA, CTA. |
 | **inception_date** | **datetime** | Required | Inception date of the Fund |
 | **decimal_places** | **int** | Optional | Number of decimal places for reporting |
 | **year_end_date** | [DayMonth](DayMonth.md) | Optional | *No description available.* |
@@ -46,9 +47,10 @@ instance = Fund(
     investor_structure="...",  # required — The Investor structure to be used by the Fund. Available values: NonUnitised, Classes.
     portfolio_ids=[],  # optional — A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency.
     fund_configuration_id=ResourceId(...),  # optional
+    short_code="...",  # optional — A short code for the Fund. A fund structure tags journal entry lines with the short code of the member they originated from, so it should be unique across the funds of one structure. Optional.
     abor_id=ResourceId(...),  # optional
     share_class_instruments=[],  # optional — Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.
-    type="...",  # optional — The type of fund. Available values: Standalone, Master, Feeder.
+    type="...",  # optional — The kind of vehicle the fund is, one of the values of the system/fundVehicleType data type. Standalone, Master and Feeder are retained for compatibility; the structural role of a fund now lives on its fund structure node. Available values: Standalone, Master, Feeder, SPV, AIV, TaxBlocker, CarryVehicle, SponsorCommitmentVehicle, CoInvestVehicle, GPInterestHolder, SMA, CTA.
     inception_date=datetime.now(),  # required — Inception date of the Fund
     decimal_places=0,  # optional — Number of decimal places for reporting
     year_end_date=DayMonth(...),  # optional

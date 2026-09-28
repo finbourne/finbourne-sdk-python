@@ -32,11 +32,11 @@ class TransactionResponse(BaseModel):
     publication_status:  StrictStr = Field(...,alias="publicationStatus") 
     portfolio_scope:  Optional[StrictStr] = Field(default=None,alias="portfolioScope") 
     portfolio_code:  Optional[StrictStr] = Field(default=None,alias="portfolioCode") 
-    instrument_id:  StrictStr = Field(...,alias="instrumentId") 
-    instrument_type:  StrictStr = Field(...,alias="instrumentType") 
-    instrument_name:  StrictStr = Field(...,alias="instrumentName") 
-    trade_date: datetime = Field(alias="tradeDate")
-    settlement_date: datetime = Field(alias="settlementDate")
+    instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId") 
+    instrument_type:  Optional[StrictStr] = Field(default=None,alias="instrumentType") 
+    instrument_name:  Optional[StrictStr] = Field(default=None,alias="instrumentName") 
+    trade_date: Optional[datetime] = Field(default=None, alias="tradeDate")
+    settlement_date: Optional[datetime] = Field(default=None, alias="settlementDate")
     status:  StrictStr = Field(...,alias="status") 
     skip_reason:  Optional[StrictStr] = Field(default=None,alias="skipReason") 
     failure_reason:  Optional[StrictStr] = Field(default=None,alias="failureReason") 
@@ -95,6 +95,31 @@ class TransactionResponse(BaseModel):
         # and model_fields_set contains the field
         if self.portfolio_code is None and "portfolio_code" in self.model_fields_set:
             _dict['portfolioCode'] = None
+
+        # set to None if instrument_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_id is None and "instrument_id" in self.model_fields_set:
+            _dict['instrumentId'] = None
+
+        # set to None if instrument_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_type is None and "instrument_type" in self.model_fields_set:
+            _dict['instrumentType'] = None
+
+        # set to None if instrument_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_name is None and "instrument_name" in self.model_fields_set:
+            _dict['instrumentName'] = None
+
+        # set to None if trade_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.trade_date is None and "trade_date" in self.model_fields_set:
+            _dict['tradeDate'] = None
+
+        # set to None if settlement_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.settlement_date is None and "settlement_date" in self.model_fields_set:
+            _dict['settlementDate'] = None
 
         # set to None if skip_reason (nullable) is None
         # and model_fields_set contains the field

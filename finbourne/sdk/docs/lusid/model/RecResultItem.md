@@ -1,28 +1,42 @@
 # RecResultItem
 
-An individual item that makes up (one side of) a rec result. Polymorphic by rec type / item type.
-## Properties
+An individual item that makes up (one side of) a rec result. Polymorphic by itemType; each value has a  corresponding inherited class.
 
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| **item_type** | **str** | Required | The polymorphic item-type discriminator (e.g. SettlementActivity, Holding, Transaction). Available values: SettlementActivity, Holding, Transaction. |
-| **rule_and_attribute_values** | **Dict[str, Optional[str]]** | Optional | The core rule, aggregate rule and supplemental attribute values for the item, keyed by name. *(read-only)* |
+## oneOf Type
 
+`RecResultItem` can be one of the following types:
+
+* [RecResultHoldingItem](./RecResultHoldingItem.md)
+* [RecResultSettlementActivityItem](./RecResultSettlementActivityItem.md)
+* [RecResultTransactionItem](./RecResultTransactionItem.md)
 
 ## Usage
 
-### Creating from keyword arguments
+### Creating from a compatible type
 
 ```python
 from finbourne.sdk.services.lusid.models.RecResultItem import RecResultItem
 
-instance = RecResultItem(
-    item_type="...",  # required — The polymorphic item-type discriminator (e.g. SettlementActivity, Holding, Transaction). Available values: SettlementActivity, Holding, Transaction.
-    rule_and_attribute_values=  # optional — The core rule, aggregate rule and supplemental attribute values for the item, keyed by name.
-)
+# Construct using any of the compatible types above
+rec_result_holding_item_instance = lusid.models.rec_result_holding_item.RecResultHoldingItem(
+                        portfolio_id = lusid.models.resource_id.ResourceId(
+                            scope = '', 
+                            code = '', ), 
+                        holding_id = '', 
+                        tax_lot_id = '', 
+                        item_type = '', 
+                        rule_and_attribute_values = {
+                            'key' : ''
+                            }, )
+
+instance = RecResultItem(rec_result_holding_item_instance)
 ```
 
+## Related Models
 
+- [RecResultHoldingItem](./RecResultHoldingItem.md)
+- [RecResultSettlementActivityItem](./RecResultSettlementActivityItem.md)
+- [RecResultTransactionItem](./RecResultTransactionItem.md)
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
 

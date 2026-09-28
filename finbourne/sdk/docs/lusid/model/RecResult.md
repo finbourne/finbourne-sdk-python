@@ -21,6 +21,7 @@ An individual reconciliation result — the aggregate result for a set of core r
 | **aggregate_rules** | [List[AggregateRuleValues]](AggregateRuleValues.md) | Required | The aggregate matching rules and their measured values. |
 | **supplemental_attributes** | [List[SupplementalAttributeValues]](SupplementalAttributeValues.md) | Required | Additional attribute values carried on the result for context. Do not contribute to matching or the result id. |
 | **items** | [RecResultItemDetails](RecResultItemDetails.md) | Required | *No description available.* |
+| **linked_results** | [List[RecLinkedResult]](RecLinkedResult.md) | Required | Results of other rec types in the same rec instance run whose items share an identifier with this result&#39;s items. Only exceptions link, and only to exceptions; symmetric. Set by the linking pass once every rec type of the run has completed, so empty until then. |
 | **comments** | [List[RecUserComment]](RecUserComment.md) | Required | User-authored comments attached to the result. Carried forward across runs. |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecResult domain. Filterable and sortable. |
 | **assigned_user** | **str** | Optional | The LUSID user id assigned to the result. |
@@ -54,6 +55,7 @@ instance = RecResult(
     aggregate_rules=[],  # required — The aggregate matching rules and their measured values.
     supplemental_attributes=[],  # required — Additional attribute values carried on the result for context. Do not contribute to matching or the result id.
     items=RecResultItemDetails(...),  # required
+    linked_results=[],  # required — Results of other rec types in the same rec instance run whose items share an identifier with this result&#39;s items. Only exceptions link, and only to exceptions; symmetric. Set by the linking pass once every rec type of the run has completed, so empty until then.
     comments=[],  # required — User-authored comments attached to the result. Carried forward across runs.
     properties=PerpetualProperty(...),  # optional — Properties in the RecResult domain. Filterable and sortable.
     assigned_user="...",  # optional — The LUSID user id assigned to the result.
@@ -73,6 +75,7 @@ instance = RecResult(
 - [AggregateRuleValues](AggregateRuleValues.md) — used in `aggregate_rules`
 - [SupplementalAttributeValues](SupplementalAttributeValues.md) — used in `supplemental_attributes`
 - [RecResultItemDetails](RecResultItemDetails.md)
+- [RecLinkedResult](RecLinkedResult.md) — used in `linked_results`
 - [RecUserComment](RecUserComment.md) — used in `comments`
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 - [Version](Version.md)

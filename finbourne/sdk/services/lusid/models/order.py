@@ -59,8 +59,9 @@ class Order(BaseModel):
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     derived_compliance_state:  Optional[StrictStr] = Field(default=None,alias="derivedComplianceState", description="The compliance state of the order, derived from pre-trade compliance runs.") 
     derived_approval_state:  Optional[StrictStr] = Field(default=None,alias="derivedApprovalState", description="The approval state of the order.") 
+    direction: Optional[StrictInt] = Field(default=None, description="The direction of the order's side, derived from its transaction type at write time: 1 the side increases the position (longer), -1 it decreases it (shorter), null when no direction could be resolved.")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "basis", "custodianAccountId", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "links"]
+    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "basis", "custodianAccountId", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "direction", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -197,6 +198,11 @@ class Order(BaseModel):
         if self.derived_approval_state is None and "derived_approval_state" in self.model_fields_set:
             _dict['derivedApprovalState'] = None
 
+        # set to None if direction (nullable) is None
+        # and model_fields_set contains the field
+        if self.direction is None and "direction" in self.model_fields_set:
+            _dict['direction'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -245,6 +251,7 @@ class Order(BaseModel):
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
             "derived_compliance_state": obj.get("derivedComplianceState"),
             "derived_approval_state": obj.get("derivedApprovalState"),
+            "direction": obj.get("direction"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

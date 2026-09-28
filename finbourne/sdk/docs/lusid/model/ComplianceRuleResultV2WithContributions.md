@@ -1,0 +1,38 @@
+# ComplianceRuleResultV2WithContributions
+
+## Properties
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| **run_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **instigated_at** | **datetime** | Required | *No description available.* |
+| **completed_at** | **datetime** | Required | *No description available.* |
+| **schedule** | **str** | Required | Available values: PreTrade, PostTrade, PreAndPostTrade. |
+| **rule_result** | [ComplianceSummaryRuleResultWithContributions](ComplianceSummaryRuleResultWithContributions.md) | Required | *No description available.* |
+
+
+## Usage
+
+### Creating from keyword arguments
+
+```python
+from finbourne.sdk.services.lusid.models.ComplianceRuleResultV2WithContributions import ComplianceRuleResultV2WithContributions
+
+instance = ComplianceRuleResultV2WithContributions(
+    run_id=ResourceId(...),  # required
+    instigated_at=datetime.now(),  # required
+    completed_at=datetime.now(),  # required
+    schedule="...",  # required — Available values: PreTrade, PostTrade, PreAndPostTrade.
+    rule_result=ComplianceSummaryRuleResultWithContributions(...)  # required
+)
+```
+
+
+## Related Models
+
+- [ResourceId](ResourceId.md)
+- [ComplianceSummaryRuleResultWithContributions](ComplianceSummaryRuleResultWithContributions.md)
+
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
+

@@ -41,13 +41,10 @@ class QuoteSeriesId(BaseModel):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "instrument_id_type" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         _allowed = ['LusidInstrumentId', 'Figi', 'RIC', 'QuotePermId', 'Isin', 'CurrencyPair', 'ClientInternal', 'Sedol', 'Cusip']
         if len(_allowed) != 1:
@@ -61,13 +58,10 @@ class QuoteSeriesId(BaseModel):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "quote_type" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         _allowed = ['Price', 'Spread', 'Rate', 'LogNormalVol', 'NormalVol', 'ParSpread', 'IsdaSpread', 'Upfront', 'Index', 'Ratio', 'Delta', 'PoolFactor', 'InflationAssumption', 'DirtyPrice', 'PrincipalWriteOff', 'InterestDeferred', 'InterestShortfall', 'ConstituentWeightFactor', 'ForwardPrice', 'DiscountFactor']
         if len(_allowed) != 1:

@@ -8,7 +8,7 @@
 | **description** | **str** | Optional | A description for the transaction portfolio. |
 | **code** | **str** | Required | The code of the transaction portfolio. Together with the scope this uniquely identifies the transaction portfolio. |
 | **created** | **datetime** | Optional | The effective datetime at which to create the transaction portfolio. No transactions can be added to the transaction portfolio before this date. Defaults to the current LUSID system datetime if not specified. |
-| **enablement_date** | **datetime** | Optional | The effective datetime from which transactions booked to the transaction portfolio begin contributing to holdings, valuations and other computed results. Transactions with an earlier effective date are still accepted and stored, but do not affect any computed results until this date. Defaults to the portfolio&#39;s creation date if not specified. |
+| **enablement_date** | **datetime** | Optional | The effective datetime from which instrument events and corporate actions are generated and applied to the transaction portfolio. Transactions contribute to holdings, valuations and other computed results from the portfolio&#39;s creation date whatever the enablement date. Defaults to the portfolio&#39;s creation date if not specified. |
 | **base_currency** | **str** | Required | The base currency of the transaction portfolio in ISO 4217 currency code format. |
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **accounting_method** | **str** | Optional | Determines the accounting treatment given to the transaction portfolio&#39;s tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
@@ -24,6 +24,8 @@
 | **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
 | **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost. |
+| **fractional_units_true_up_configuration** | [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md) | Optional | *No description available.* |
+| **holdings_fungibility** | **str** | Optional | Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled. |
 
 
 ## Usage
@@ -38,7 +40,7 @@ instance = CreateTransactionPortfolioRequest(
     description="...",  # optional — A description for the transaction portfolio.
     code="...",  # required — The code of the transaction portfolio. Together with the scope this uniquely identifies the transaction portfolio.
     created=datetime.now(),  # optional — The effective datetime at which to create the transaction portfolio. No transactions can be added to the transaction portfolio before this date. Defaults to the current LUSID system datetime if not specified.
-    enablement_date=datetime.now(),  # optional — The effective datetime from which transactions booked to the transaction portfolio begin contributing to holdings, valuations and other computed results. Transactions with an earlier effective date are still accepted and stored, but do not affect any computed results until this date. Defaults to the portfolio&#39;s creation date if not specified.
+    enablement_date=datetime.now(),  # optional — The effective datetime from which instrument events and corporate actions are generated and applied to the transaction portfolio. Transactions contribute to holdings, valuations and other computed results from the portfolio&#39;s creation date whatever the enablement date. Defaults to the portfolio&#39;s creation date if not specified.
     base_currency="...",  # required — The base currency of the transaction portfolio in ISO 4217 currency code format.
     corporate_action_source_id=ResourceId(...),  # optional
     accounting_method="...",  # optional — Determines the accounting treatment given to the transaction portfolio&#39;s tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
@@ -53,7 +55,9 @@ instance = CreateTransactionPortfolioRequest(
     tax_rule_set_scope="...",  # optional — The scope of the tax rule sets for this portfolio.
     settlement_configuration=PortfolioSettlementConfiguration(...),  # optional
     transaction_exclusion_filter="...",  # optional — A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded.
-    tax_lot_selection_cost_basis="..."  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
+    tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
+    fractional_units_true_up_configuration=FractionalUnitsTrueUpConfiguration(...),  # optional
+    holdings_fungibility="..."  # optional — Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled.
 )
 ```
 
@@ -62,6 +66,7 @@ instance = CreateTransactionPortfolioRequest(
 - [InstrumentEventConfiguration](InstrumentEventConfiguration.md)
 - [ResourceId](ResourceId.md)
 - [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md)
+- [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

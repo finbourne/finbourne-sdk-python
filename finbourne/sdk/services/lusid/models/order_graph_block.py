@@ -42,7 +42,8 @@ class OrderGraphBlock(BaseModel):
     derived_state:  StrictStr = Field(...,alias="derivedState", description="A simple description of the overall state of a block.") 
     derived_compliance_state:  StrictStr = Field(...,alias="derivedComplianceState", description="The overall compliance state of a block, derived from the block's orders. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning.") 
     derived_approval_state:  StrictStr = Field(...,alias="derivedApprovalState", description="The overall approval state of a block, derived from approval of the block's orders. Available values: Pending, Rejected, Approved, Placed.") 
-    __properties: ClassVar[List[str]] = ["block", "ordered", "placed", "executed", "allocated", "booked", "derivedState", "derivedComplianceState", "derivedApprovalState"]
+    derived_direction: Optional[StrictInt] = Field(default=None, description="The overall direction of a block, derived from its orders' transaction types: 1 the block increases the position (longer), -1 it decreases it (shorter), 0 its orders net flat, null when no direction could be resolved (including unsolicited blocks).", alias="derivedDirection")
+    __properties: ClassVar[List[str]] = ["block", "ordered", "placed", "executed", "allocated", "booked", "derivedState", "derivedComplianceState", "derivedApprovalState", "derivedDirection"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +97,11 @@ class OrderGraphBlock(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of booked
         if self.booked:
             _dict['booked'] = self.booked.to_dict(by_alias=by_alias)
+        # set to None if derived_direction (nullable) is None
+        # and model_fields_set contains the field
+        if self.derived_direction is None and "derived_direction" in self.model_fields_set:
+            _dict['derivedDirection'] = None
+
         return _dict
 
     @classmethod
@@ -116,7 +122,8 @@ class OrderGraphBlock(BaseModel):
             "booked": OrderGraphBlockTransactionSynopsis.from_dict(_v) if (_v := obj.get("booked")) is not None else None,
             "derived_state": obj.get("derivedState"),
             "derived_compliance_state": obj.get("derivedComplianceState"),
-            "derived_approval_state": obj.get("derivedApprovalState")
+            "derived_approval_state": obj.get("derivedApprovalState"),
+            "derived_direction": obj.get("derivedDirection")
         })
         return _obj
 

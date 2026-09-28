@@ -9,7 +9,7 @@
 | **code** | **str** | Required | The code of the derived transaction portfolio. Together with the scope this uniquely identifies the derived transaction portfolio. |
 | **parent_portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **created** | **datetime** | Optional | This will be auto-populated to be the parent portfolio creation date. |
-| **enablement_date** | **datetime** | Optional | The effective datetime from which transactions booked to the derived transaction portfolio begin contributing to holdings, valuations and other computed results. Transactions with an earlier effective date are still accepted and stored, but do not affect any computed results until this date. Defaults to the portfolio&#39;s creation date if not specified. |
+| **enablement_date** | **datetime** | Optional | The effective datetime from which instrument events and corporate actions are generated and applied to the derived transaction portfolio. Transactions contribute to holdings, valuations and other computed results from the portfolio&#39;s creation date whatever the enablement date. Defaults to the portfolio&#39;s creation date if not specified. |
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **accounting_method** | **str** | Optional | Determines the accounting treatment given to the transaction portfolio&#39;s tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
 | **sub_holding_keys** | **List[str]** | Optional | A set of unique transaction properties to group the derived transaction portfolio&#39;s holdings by, perhaps for strategy tagging. Each property must be from the &#39;Transaction&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Transaction/strategies/quantsignal&#39;. See https://support.lusid.com/docs/how-do-i-register-sub-holding-keys-shks-with-a-portfolio for more information. |
@@ -22,6 +22,8 @@
 | **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
 | **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost. |
+| **fractional_units_true_up_configuration** | [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md) | Optional | *No description available.* |
+| **holdings_fungibility** | **str** | Optional | Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled. |
 
 
 ## Usage
@@ -37,7 +39,7 @@ instance = CreateDerivedTransactionPortfolioRequest(
     code="...",  # required — The code of the derived transaction portfolio. Together with the scope this uniquely identifies the derived transaction portfolio.
     parent_portfolio_id=ResourceId(...),  # required
     created=datetime.now(),  # optional — This will be auto-populated to be the parent portfolio creation date.
-    enablement_date=datetime.now(),  # optional — The effective datetime from which transactions booked to the derived transaction portfolio begin contributing to holdings, valuations and other computed results. Transactions with an earlier effective date are still accepted and stored, but do not affect any computed results until this date. Defaults to the portfolio&#39;s creation date if not specified.
+    enablement_date=datetime.now(),  # optional — The effective datetime from which instrument events and corporate actions are generated and applied to the derived transaction portfolio. Transactions contribute to holdings, valuations and other computed results from the portfolio&#39;s creation date whatever the enablement date. Defaults to the portfolio&#39;s creation date if not specified.
     corporate_action_source_id=ResourceId(...),  # optional
     accounting_method="...",  # optional — Determines the accounting treatment given to the transaction portfolio&#39;s tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
     sub_holding_keys=,  # optional — A set of unique transaction properties to group the derived transaction portfolio&#39;s holdings by, perhaps for strategy tagging. Each property must be from the &#39;Transaction&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Transaction/strategies/quantsignal&#39;. See https://support.lusid.com/docs/how-do-i-register-sub-holding-keys-shks-with-a-portfolio for more information.
@@ -49,7 +51,9 @@ instance = CreateDerivedTransactionPortfolioRequest(
     instrument_event_configuration=InstrumentEventConfiguration(...),  # optional
     settlement_configuration=PortfolioSettlementConfiguration(...),  # optional
     transaction_exclusion_filter="...",  # optional — A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded.
-    tax_lot_selection_cost_basis="..."  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
+    tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
+    fractional_units_true_up_configuration=FractionalUnitsTrueUpConfiguration(...),  # optional
+    holdings_fungibility="..."  # optional — Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled.
 )
 ```
 
@@ -58,6 +62,7 @@ instance = CreateDerivedTransactionPortfolioRequest(
 - [ResourceId](ResourceId.md)
 - [InstrumentEventConfiguration](InstrumentEventConfiguration.md)
 - [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md)
+- [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

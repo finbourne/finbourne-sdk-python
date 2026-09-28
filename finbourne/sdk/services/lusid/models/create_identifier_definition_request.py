@@ -28,7 +28,7 @@ class CreateIdentifierDefinitionRequest(BaseModel):
     """
     CreateIdentifierDefinitionRequest
     """
-    domain:  StrictStr = Field(...,alias="domain", description="The type of entity to which the identifier can be attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, FundStructure, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction, Transfer, RecDefinition, RecResult.") 
+    domain:  StrictStr = Field(...,alias="domain", description="The type of entity to which the identifier can be attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, FundStructure, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction, Transfer, RecDefinition, RecResult, JournalEntry.") 
     identifier_scope:  StrictStr = Field(...,alias="identifierScope", description="The scope that the identifier definition exists in.") 
     identifier_type:  StrictStr = Field(...,alias="identifierType", description="What the identifier represents. Together with \"domain\" and \"identifierScope\" this uniquely identifies the identifier definition.") 
     life_time:  StrictStr = Field(...,alias="lifeTime", description="Describes whether an identifier value is associated with an entity for all effective dates or applies within a specified effective date range. Available values: Perpetual, TimeVariant.") 
@@ -44,15 +44,12 @@ class CreateIdentifierDefinitionRequest(BaseModel):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
-        if "domain" != "type":
-            return value
-
-        _allowed = ['NotDefined', 'Transaction', 'Portfolio', 'Holding', 'ReferenceHolding', 'TransactionConfiguration', 'Instrument', 'CutLabelDefinition', 'Analytic', 'PortfolioGroup', 'Person', 'AccessMetadata', 'Order', 'UnitResult', 'MarketData', 'ConfigurationRecipe', 'Allocation', 'Calendar', 'LegalEntity', 'InvestorRecord', 'InvestmentAccount', 'Placement', 'Execution', 'Block', 'Participation', 'Package', 'OrderInstruction', 'NextBestAction', 'CustomEntity', 'InstrumentEvent', 'Account', 'ChartOfAccounts', 'CustodianAccount', 'CheckDefinition', 'Abor', 'AborConfiguration', 'Fund', 'FundConfiguration', 'FundStructure', 'Fee', 'Reconciliation', 'PropertyDefinition', 'Compliance', 'DiaryEntry', 'Leg', 'DerivedValuation', 'Timeline', 'ClosedPeriod', 'AddressKeyDefinition', 'AmortisationRuleSet', 'AnalyticsSetInventory', 'AtomUnitResult', 'CleardownModule', 'ComplexMarketData', 'ComplianceRunSummary', 'ComplianceRule', 'ComplianceRunInfo', 'CorporateActionSource', 'CounterpartyAgreement', 'CustomEntityDefinition', 'DataType', 'Dialect', 'EventHandler', 'GeneralLedgerProfile', 'PostingModule', 'Quote', 'RecipeComposer', 'ReconciliationRunBreak', 'ReferenceList', 'RelationDefinition', 'ReturnBlockIndex', 'SRSDocument', 'SRSIndex', 'TransactionTemplate', 'TransactionTemplateScope', 'TransactionType', 'TransactionTypeConfig', 'TranslationScript', 'TaskDefinition', 'TaskInstance', 'Worker', 'Workflow', 'StagingRuleSet', 'IdentifierDefinition', 'SettlementInstruction', 'TransactionFeeType', 'AllocationMethod', 'TransactionFee', 'Subscription', 'ScenarioDefinition', 'PaymentInstruction', 'Transfer', 'CurrencyGroup', 'RecDefinition', 'RecResult']
+        _allowed = ['NotDefined', 'Transaction', 'Portfolio', 'Holding', 'ReferenceHolding', 'TransactionConfiguration', 'Instrument', 'CutLabelDefinition', 'Analytic', 'PortfolioGroup', 'Person', 'AccessMetadata', 'Order', 'UnitResult', 'MarketData', 'ConfigurationRecipe', 'Allocation', 'Calendar', 'LegalEntity', 'InvestorRecord', 'InvestmentAccount', 'Placement', 'Execution', 'Block', 'Participation', 'Package', 'OrderInstruction', 'NextBestAction', 'CustomEntity', 'InstrumentEvent', 'Account', 'ChartOfAccounts', 'CustodianAccount', 'CheckDefinition', 'Abor', 'AborConfiguration', 'Fund', 'FundConfiguration', 'FundStructure', 'Fee', 'Reconciliation', 'PropertyDefinition', 'Compliance', 'DiaryEntry', 'Leg', 'DerivedValuation', 'Timeline', 'ClosedPeriod', 'AddressKeyDefinition', 'AmortisationRuleSet', 'AnalyticsSetInventory', 'AtomUnitResult', 'CleardownModule', 'ComplexMarketData', 'ComplianceRunSummary', 'ComplianceRule', 'ComplianceRunInfo', 'CorporateActionSource', 'CounterpartyAgreement', 'CustomEntityDefinition', 'DataType', 'Dialect', 'EventHandler', 'GeneralLedgerProfile', 'PostingModule', 'Quote', 'RecipeComposer', 'ReconciliationRunBreak', 'ReferenceList', 'RelationDefinition', 'ReturnBlockIndex', 'SRSDocument', 'SRSIndex', 'TransactionTemplate', 'TransactionTemplateScope', 'TransactionType', 'TransactionTypeConfig', 'TranslationScript', 'TaskDefinition', 'TaskInstance', 'Worker', 'Workflow', 'StagingRuleSet', 'IdentifierDefinition', 'SettlementInstruction', 'TransactionFeeType', 'AllocationMethod', 'TransactionFee', 'Subscription', 'ScenarioDefinition', 'PaymentInstruction', 'Transfer', 'CurrencyGroup', 'RecDefinition', 'RecResult', 'JournalEntry']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -64,13 +61,10 @@ class CreateIdentifierDefinitionRequest(BaseModel):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "life_time" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         _allowed = ['Perpetual', 'TimeVariant']
         if len(_allowed) != 1:

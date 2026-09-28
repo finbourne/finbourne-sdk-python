@@ -28,19 +28,20 @@ from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 class PlacementUpdateRequest(BaseModel):
     """
-    A request to create or update a Placement.  # noqa: E501
+    A request to update a Placement.  # noqa: E501
     """
     id: ResourceId
     quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The quantity of given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Client-defined properties associated with this placement.")
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of this placement (Market, Limit, etc).") 
-    limit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The optional price, as currency and amount, associated with this placement.", alias="limitPrice")
-    stop_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The optional price, as currency and amount, associated with this placement.", alias="stopPrice")
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="Optionally changes the type of this placement (Market, Limit, Stop, StopLimit, etc). A type change is permitted only when the associated block is of type 'Market'. Setting the type to 'Market' clears the placement's stop and limit prices; any other type change leaves them as they are.") 
+    limit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally updates the limit price of this placement, in the placement's limit price currency unless a currency is also specified. A price on a placement with no limit price currency is stored but not returned until a currency is supplied.", alias="limitPrice")
+    stop_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally updates the stop price of this placement, in the placement's stop price currency unless a currency is also specified. A price on a placement with no stop price currency is stored but not returned until a currency is supplied.", alias="stopPrice")
     counterparty:  Optional[StrictStr] = Field(default=None,alias="counterparty", description="Optionally specifies the market entity this placement is placed with.") 
     execution_system:  Optional[StrictStr] = Field(default=None,alias="executionSystem", description="Optionally specifies the execution system in use.") 
     entry_type:  Optional[StrictStr] = Field(default=None,alias="entryType", description="Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External.") 
-    __properties: ClassVar[List[str]] = ["id", "quantity", "amount", "properties", "type", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType"]
+    currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="Optionally sets the ISO currency code of the placement's stop and/or limit price. Not permitted for a Market placement. For a value placement it must match the currency of the amount exactly, whether that amount is on the placement or in the update. When omitted, no currency checks are applied.") 
+    __properties: ClassVar[List[str]] = ["id", "quantity", "amount", "properties", "type", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType", "currency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,6 +130,11 @@ class PlacementUpdateRequest(BaseModel):
         if self.entry_type is None and "entry_type" in self.model_fields_set:
             _dict['entryType'] = None
 
+        # set to None if currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.currency is None and "currency" in self.model_fields_set:
+            _dict['currency'] = None
+
         return _dict
 
     @classmethod
@@ -155,7 +161,8 @@ class PlacementUpdateRequest(BaseModel):
             "stop_price": obj.get("stopPrice"),
             "counterparty": obj.get("counterparty"),
             "execution_system": obj.get("executionSystem"),
-            "entry_type": obj.get("entryType")
+            "entry_type": obj.get("entryType"),
+            "currency": obj.get("currency")
         })
         return _obj
 

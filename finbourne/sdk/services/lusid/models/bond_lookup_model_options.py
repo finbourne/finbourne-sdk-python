@@ -30,7 +30,7 @@ class BondLookupModelOptions(ModelOptions):
     """
     spread_anchored_risk: StrictBool = Field(description="Price the bond by discounting its own cashflows over its discounting curve at a constant  spread, instead of marking it to its quoted price. Marking to a quote declares no curve  dependency, so a lookup-priced bond reports no curve delta at all. In this mode the pricer  declares both the discounting curve and a ZSpread quote for the instrument and prices off  them, so holding the spread fixed while the curve is perturbed produces the curve's delta.  Off by default, as the mode changes both the declared dependencies and where the price  comes from.", alias="spreadAnchoredRisk")
     cs01_bump_width: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The TOTAL width of the central-difference stencil behind the CS01/Central measure: the  instrument's own z-spread is repriced at spread ± width/2, so a width of 0.0001 means  ±0.5bp reprice points. The width is the whole distance between the two reprice points,  NOT the half-shift. The reported measure is always per one basis point of widening  whatever width is configured. Must be strictly positive.  Defaults to 0.0001 (1bp, repriced at ±0.5bp) when not supplied.", alias="cs01BumpWidth")
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions, BondForwardModelOptions.") 
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions, BondForwardModelOptions, SimpleModelOptions.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["modelOptionsType", "spreadAnchoredRisk", "cs01BumpWidth"]
 
@@ -39,15 +39,12 @@ class BondLookupModelOptions(ModelOptions):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
-        if "model_options_type" != "type":
-            return value
-
-        _allowed = ['Invalid', 'OpaqueModelOptions', 'EmptyModelOptions', 'IndexModelOptions', 'FxForwardModelOptions', 'FundingLegModelOptions', 'EquityModelOptions', 'CdsModelOptions', 'FlexibleLoanPricerOptions', 'HullWhiteModelOptions', 'BondLookupModelOptions', 'BondForwardModelOptions']
+        _allowed = ['Invalid', 'OpaqueModelOptions', 'EmptyModelOptions', 'IndexModelOptions', 'FxForwardModelOptions', 'FundingLegModelOptions', 'EquityModelOptions', 'CdsModelOptions', 'FlexibleLoanPricerOptions', 'HullWhiteModelOptions', 'BondLookupModelOptions', 'BondForwardModelOptions', 'SimpleModelOptions']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

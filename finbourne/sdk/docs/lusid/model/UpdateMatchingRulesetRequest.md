@@ -14,6 +14,7 @@
 | **aggregate_tolerances** | [List[ToleranceBase]](ToleranceBase.md) | Optional | Tolerance configurations applied to aggregate rule matching. |
 | **allow_partial_matching** | **bool** | Optional | Whether to permit partial matches when applying rules. |
 | **supplemental_attributes** | [List[SupplementalAttribute]](SupplementalAttribute.md) | Optional | Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself. |
+| **writeback_configurations** | [List[WritebackConfiguration]](WritebackConfiguration.md) | Optional | The writeback suggestions generated against this ruleset&#39;s results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty. |
 
 
 ## Usage
@@ -33,7 +34,8 @@ instance = UpdateMatchingRulesetRequest(
     core_tolerances=[],  # optional — Tolerance configurations applied to core rule matching, in the specified order.
     aggregate_tolerances=[],  # optional — Tolerance configurations applied to aggregate rule matching.
     allow_partial_matching=True,  # optional — Whether to permit partial matches when applying rules.
-    supplemental_attributes=[]  # optional — Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself.
+    supplemental_attributes=[],  # optional — Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself.
+    writeback_configurations=[]  # optional — The writeback suggestions generated against this ruleset&#39;s results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty.
 )
 ```
 
@@ -44,6 +46,7 @@ instance = UpdateMatchingRulesetRequest(
 - [ToleranceBase](ToleranceBase.md) — used in `core_tolerances`
 - [ToleranceBase](ToleranceBase.md) — used in `aggregate_tolerances`
 - [SupplementalAttribute](SupplementalAttribute.md) — used in `supplemental_attributes`
+- [WritebackConfiguration](WritebackConfiguration.md) — used in `writeback_configurations`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

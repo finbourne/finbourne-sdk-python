@@ -34,17 +34,21 @@ class CashFlowDetail(BaseModel):
     currency:  StrictStr = Field(...,alias="currency", description="The payment currency of the cashflow.") 
     source_type:  StrictStr = Field(...,alias="sourceType", description="The source that produced the cashflow in the cash flow waterfall. One of 'Instrument' (produced by the valuation engine), 'Transaction' (produced from a booked transaction or movement) or 'SRS' (sourced from the structured results store).") 
     instrument_id:  StrictStr = Field(...,alias="instrumentId", description="The LUSID instrument identifier of the instrument that produced the cashflow.") 
+    instrument_display_name:  Optional[StrictStr] = Field(default=None,alias="instrumentDisplayName", description="The display name of the instrument that produced the cashflow. Not present when the instrument cannot be resolved (e.g. deleted, no permission).") 
     transaction_id:  Optional[StrictStr] = Field(default=None,alias="transactionId", description="The identifier of the transaction from which the cashflow originates, where known.") 
     portfolio_id: ResourceId = Field(alias="portfolioId")
     flow_type:  Optional[StrictStr] = Field(default=None,alias="flowType", description="The type of the cashflow, e.g. Coupon, Principal or Premium.") 
+    movement_name:  Optional[StrictStr] = Field(default=None,alias="movementName", description="The name of the movement that produced the cashflow (e.g. Coupon, Side1), falling back to the flow type when the movement is unnamed. Not present when the cashflow could not be valued.") 
     pay_receive:  Optional[StrictStr] = Field(default=None,alias="payReceive", description="Indicates whether the cashflow is paid or received.") 
     gross_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The signed amount of the cashflow before any haircut was applied. Only populated when haircut rules were supplied on the request.", alias="grossAmount")
     haircut_fraction: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The fraction of the gross amount removed by the haircut, in the range [0, 1]. Zero for outflows and for cashflows no rule matched. Only populated when haircut rules were supplied on the request.", alias="haircutFraction")
     net_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The signed amount of the cashflow net of the haircut. Only populated when haircut rules were supplied on the request.", alias="netAmount")
     haircut_rule_applied:  Optional[StrictStr] = Field(default=None,alias="haircutRuleApplied", description="The identifier of the haircut rule that was applied to the cashflow, or not present when no rule matched or no haircut rules were supplied on the request.") 
-    error:  Optional[StrictStr] = Field(default=None,alias="error", description="Only present when the cashflow could not be valued, for example because of missing market data: the valuation error, matching the CashflowError diagnostic reported by the QueryCashFlows endpoint. When set, the amount is null rather than zero.") 
+    error:  Optional[StrictStr] = Field(default=None,alias="error", description="Present when the cashflow could not be valued, for example because of missing market data: the valuation error, matching the CashflowError diagnostic reported by the QueryCashFlows endpoint. In that case the amount is null rather than zero. Error may also be set when only the portfolio-currency FX lookup failed (see AmountInPortfolioCcy), in which case the base Amount remains populated and only AmountInPortfolioCcy and TradeToPortfolioRate are null.") 
+    amount_in_portfolio_ccy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The signed amount of the cashflow (see Amount), converted into the portfolio's base currency. Not present when the FX rate used to convert into the portfolio currency could not be resolved; see Error.", alias="amountInPortfolioCcy")
+    trade_to_portfolio_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The FX rate used to convert the cashflow amount into the portfolio's base currency, resolved at the cashflow's transaction (trade) date, not its payment date. Not present when the rate could not be resolved; see Error.", alias="tradeToPortfolioRate")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["paymentDate", "amount", "currency", "sourceType", "instrumentId", "transactionId", "portfolioId", "flowType", "payReceive", "grossAmount", "haircutFraction", "netAmount", "haircutRuleApplied", "error", "links"]
+    __properties: ClassVar[List[str]] = ["paymentDate", "amount", "currency", "sourceType", "instrumentId", "instrumentDisplayName", "transactionId", "portfolioId", "flowType", "movementName", "payReceive", "grossAmount", "haircutFraction", "netAmount", "haircutRuleApplied", "error", "amountInPortfolioCcy", "tradeToPortfolioRate", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +99,11 @@ class CashFlowDetail(BaseModel):
         if self.amount is None and "amount" in self.model_fields_set:
             _dict['amount'] = None
 
+        # set to None if instrument_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_display_name is None and "instrument_display_name" in self.model_fields_set:
+            _dict['instrumentDisplayName'] = None
+
         # set to None if transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.transaction_id is None and "transaction_id" in self.model_fields_set:
@@ -104,6 +113,11 @@ class CashFlowDetail(BaseModel):
         # and model_fields_set contains the field
         if self.flow_type is None and "flow_type" in self.model_fields_set:
             _dict['flowType'] = None
+
+        # set to None if movement_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.movement_name is None and "movement_name" in self.model_fields_set:
+            _dict['movementName'] = None
 
         # set to None if pay_receive (nullable) is None
         # and model_fields_set contains the field
@@ -135,6 +149,16 @@ class CashFlowDetail(BaseModel):
         if self.error is None and "error" in self.model_fields_set:
             _dict['error'] = None
 
+        # set to None if amount_in_portfolio_ccy (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount_in_portfolio_ccy is None and "amount_in_portfolio_ccy" in self.model_fields_set:
+            _dict['amountInPortfolioCcy'] = None
+
+        # set to None if trade_to_portfolio_rate (nullable) is None
+        # and model_fields_set contains the field
+        if self.trade_to_portfolio_rate is None and "trade_to_portfolio_rate" in self.model_fields_set:
+            _dict['tradeToPortfolioRate'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -157,15 +181,19 @@ class CashFlowDetail(BaseModel):
             "currency": obj.get("currency"),
             "source_type": obj.get("sourceType"),
             "instrument_id": obj.get("instrumentId"),
+            "instrument_display_name": obj.get("instrumentDisplayName"),
             "transaction_id": obj.get("transactionId"),
             "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "flow_type": obj.get("flowType"),
+            "movement_name": obj.get("movementName"),
             "pay_receive": obj.get("payReceive"),
             "gross_amount": obj.get("grossAmount"),
             "haircut_fraction": obj.get("haircutFraction"),
             "net_amount": obj.get("netAmount"),
             "haircut_rule_applied": obj.get("haircutRuleApplied"),
             "error": obj.get("error"),
+            "amount_in_portfolio_ccy": obj.get("amountInPortfolioCcy"),
+            "trade_to_portfolio_rate": obj.get("tradeToPortfolioRate"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

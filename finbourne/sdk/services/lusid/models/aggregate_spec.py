@@ -38,13 +38,10 @@ class AggregateSpec(BaseModel):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "op" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         _allowed = ['Sum', 'DefaultSum', 'Proportion', 'Average', 'Count', 'Min', 'Max', 'Value', 'SumOfPositiveValues', 'SumOfNegativeValues', 'SumOfAbsoluteValues', 'ProportionOfAbsoluteValues', 'SumCumulativeInAdvance', 'SumCumulativeInArrears']
         if len(_allowed) != 1:

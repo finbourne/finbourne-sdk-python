@@ -54,8 +54,9 @@ class Placement(BaseModel):
     entry_type:  Optional[StrictStr] = Field(default=None,alias="entryType", description="Optionally specifies the entry type of this placement.") 
     version: Optional[Version] = None
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
+    direction: Optional[StrictInt] = Field(default=None, description="The direction of the placement's side, inherited at creation from its block's orders: 1 the side increases the position (longer), -1 it decreases it (shorter), 0 the block's orders net flat, null when no direction could be resolved.")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "parentPlacementId", "blockIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "amount", "basis", "state", "side", "timeInForce", "type", "createdDate", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType", "version", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["id", "parentPlacementId", "blockIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "amount", "basis", "state", "side", "timeInForce", "type", "createdDate", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType", "version", "dataModelMembership", "direction", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -164,6 +165,11 @@ class Placement(BaseModel):
         if self.entry_type is None and "entry_type" in self.model_fields_set:
             _dict['entryType'] = None
 
+        # set to None if direction (nullable) is None
+        # and model_fields_set contains the field
+        if self.direction is None and "direction" in self.model_fields_set:
+            _dict['direction'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -207,6 +213,7 @@ class Placement(BaseModel):
             "entry_type": obj.get("entryType"),
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "direction": obj.get("direction"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

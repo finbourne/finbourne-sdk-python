@@ -581,7 +581,7 @@ class SqlBackgroundExecutionApi:
         :type end_at: datetime
         :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
         :type bucket_size: str
-        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+        :param filter: Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` or `SomeField in 'a', 'b'`
         :type filter: str
         :param json_proper: Should this be text/json (not json-encoded-as-a-string)
         :type json_proper: bool
@@ -613,7 +613,7 @@ class SqlBackgroundExecutionApi:
         :type end_at: datetime
         :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
         :type bucket_size: str
-        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+        :param filter: Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` or `SomeField in 'a', 'b'`
         :type filter: str
         :param json_proper: Should this be text/json (not json-encoded-as-a-string)
         :type json_proper: bool
@@ -3254,7 +3254,7 @@ class SqlBackgroundExecutionApi:
             :type end_at: datetime
             :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
             :type bucket_size: str
-            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+            :param filter: Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` or `SomeField in 'a', 'b'`
             :type filter: str
             :param json_proper: Should this be text/json (not json-encoded-as-a-string)
             :type json_proper: bool
@@ -3287,7 +3287,7 @@ class SqlBackgroundExecutionApi:
             :type end_at: datetime
             :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
             :type bucket_size: str
-            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+            :param filter: Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` or `SomeField in 'a', 'b'`
             :type filter: str
             :param json_proper: Should this be text/json (not json-encoded-as-a-string)
             :type json_proper: bool

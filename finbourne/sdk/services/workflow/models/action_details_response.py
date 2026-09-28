@@ -19,7 +19,7 @@ from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.create_child_tasks_action_response import CreateChildTasksActionResponse
 from finbourne.sdk.services.workflow.models.run_worker_action_response import RunWorkerActionResponse
 from finbourne.sdk.services.workflow.models.trigger_child_tasks_action_response import TriggerChildTasksActionResponse
@@ -59,6 +59,16 @@ class ActionDetailsResponse(BaseModel):
             super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
@@ -114,6 +124,17 @@ class ActionDetailsResponse(BaseModel):
 
         # deserialize data into CreateChildTasksActionResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(CreateChildTasksActionResponse, "_CreateChildTasksActionResponse__properties", None) or getattr(CreateChildTasksActionResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for CreateChildTasksActionResponse: {_extra}")
             instance.actual_instance = CreateChildTasksActionResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " CreateChildTasksActionResponse"
@@ -121,6 +142,17 @@ class ActionDetailsResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into RunWorkerActionResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(RunWorkerActionResponse, "_RunWorkerActionResponse__properties", None) or getattr(RunWorkerActionResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for RunWorkerActionResponse: {_extra}")
             instance.actual_instance = RunWorkerActionResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " RunWorkerActionResponse"
@@ -128,6 +160,17 @@ class ActionDetailsResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into TriggerChildTasksActionResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(TriggerChildTasksActionResponse, "_TriggerChildTasksActionResponse__properties", None) or getattr(TriggerChildTasksActionResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for TriggerChildTasksActionResponse: {_extra}")
             instance.actual_instance = TriggerChildTasksActionResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " TriggerChildTasksActionResponse"
@@ -135,6 +178,17 @@ class ActionDetailsResponse(BaseModel):
             error_messages.append(str(e))
         # deserialize data into TriggerParentTaskActionResponse
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(TriggerParentTaskActionResponse, "_TriggerParentTaskActionResponse__properties", None) or getattr(TriggerParentTaskActionResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for TriggerParentTaskActionResponse: {_extra}")
             instance.actual_instance = TriggerParentTaskActionResponse.from_json(json_str)
             match += 1
             matchclass =matchclass + " TriggerParentTaskActionResponse"

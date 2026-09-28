@@ -47,7 +47,8 @@ class NavType(BaseModel):
     amortisation_rule_set_id: Optional[ResourceId] = Field(default=None, alias="amortisationRuleSetId")
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
     transaction_template_scope:  StrictStr = Field(...,alias="transactionTemplateScope", description="The Transaction Template Scope used by the NavType.") 
-    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope"]
+    transaction_exclusion_filter:  Optional[StrictStr] = Field(default=None,alias="transactionExclusionFilter", description="Optional filter expression to exclude specific transactions from this NavType's derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.") 
+    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope", "transactionExclusionFilter"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -133,6 +134,11 @@ class NavType(BaseModel):
         if self.leader_nav_type_code is None and "leader_nav_type_code" in self.model_fields_set:
             _dict['leaderNavTypeCode'] = None
 
+        # set to None if transaction_exclusion_filter (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_exclusion_filter is None and "transaction_exclusion_filter" in self.model_fields_set:
+            _dict['transactionExclusionFilter'] = None
+
         return _dict
 
     @classmethod
@@ -162,7 +168,8 @@ class NavType(BaseModel):
             "cash_gain_loss_calculation_date": obj.get("cashGainLossCalculationDate"),
             "amortisation_rule_set_id": ResourceId.from_dict(_v) if (_v := obj.get("amortisationRuleSetId")) is not None else None,
             "leader_nav_type_code": obj.get("leaderNavTypeCode"),
-            "transaction_template_scope": obj.get("transactionTemplateScope")
+            "transaction_template_scope": obj.get("transactionTemplateScope"),
+            "transaction_exclusion_filter": obj.get("transactionExclusionFilter")
         })
         return _obj
 

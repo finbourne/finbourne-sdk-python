@@ -22,6 +22,7 @@
 | **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
 | **transaction_template_scope** | **str** | Required | The Transaction Template Scope used by the NavType. |
+| **transaction_exclusion_filter** | **str** | Optional | Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties. |
 
 
 ## Usage
@@ -49,7 +50,8 @@ instance = NavType(
     cash_gain_loss_calculation_date="...",  # required — The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. A non-default value is required. Available values: SettlementDate, TransactionDate.
     amortisation_rule_set_id=ResourceId(...),  # optional
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
-    transaction_template_scope="..."  # required — The Transaction Template Scope used by the NavType.
+    transaction_template_scope="...",  # required — The Transaction Template Scope used by the NavType.
+    transaction_exclusion_filter="..."  # optional — Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.
 )
 ```
 

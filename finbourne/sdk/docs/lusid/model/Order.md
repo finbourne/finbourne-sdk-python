@@ -31,6 +31,7 @@ An Order for a certain quantity of a specific instrument
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **derived_compliance_state** | **str** | Optional | The compliance state of the order, derived from pre-trade compliance runs. |
 | **derived_approval_state** | **str** | Optional | The approval state of the order. |
+| **direction** | **int** | Optional | The direction of the order&#39;s side, derived from its transaction type at write time: 1 the side increases the position (longer), -1 it decreases it (shorter), null when no direction could be resolved. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -68,6 +69,7 @@ instance = Order(
     data_model_membership=DataModelMembership(...),  # optional
     derived_compliance_state="...",  # optional — The compliance state of the order, derived from pre-trade compliance runs.
     derived_approval_state="...",  # optional — The approval state of the order.
+    direction=0,  # optional — The direction of the order&#39;s side, derived from its transaction type at write time: 1 the side increases the position (longer), -1 it decreases it (shorter), null when no direction could be resolved.
     links=[]  # optional
 )
 ```

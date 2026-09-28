@@ -29,22 +29,20 @@ class DecimalComplianceParameter(ComplianceParameter):
     DecimalComplianceParameter
     """
     value: Union[StrictFloat, StrictInt]
+    inclusive_bounds: Optional[StrictBool] = Field(default=None, description="Whether the bound is inclusive of the value; when true a candidate landing exactly on the bound satisfies it. Defaults to false (exclusive).", alias="inclusiveBounds")
     compliance_parameter_type:  StrictStr = Field(...,alias="complianceParameterType", description="The parameter type. Available values: BoolComplianceParameter, StringComplianceParameter, DecimalComplianceParameter, DateTimeComplianceParameter, PropertyKeyComplianceParameter, AddressKeyComplianceParameter, PortfolioIdComplianceParameter, PortfolioGroupIdComplianceParameter, StringListComplianceParameter, BoolListComplianceParameter, DateTimeListComplianceParameter, DecimalListComplianceParameter, PropertyKeyListComplianceParameter, AddressKeyListComplianceParameter, PortfolioIdListComplianceParameter, PortfolioGroupIdListComplianceParameter, InstrumentListComplianceParameter, FilterPredicateComplianceParameter, GroupFilterPredicateComplianceParameter, GroupBySelectorComplianceParameter, PropertyListComplianceParameter, GroupCalculationComplianceParameter.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["complianceParameterType", "value"]
+    __properties: ClassVar[List[str]] = ["complianceParameterType", "value", "inclusiveBounds"]
 
     @field_validator('compliance_parameter_type')
     def compliance_parameter_type_validate_enum(cls, value):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "compliance_parameter_type" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         _allowed = ['BoolComplianceParameter', 'StringComplianceParameter', 'DecimalComplianceParameter', 'DateTimeComplianceParameter', 'PropertyKeyComplianceParameter', 'AddressKeyComplianceParameter', 'PortfolioIdComplianceParameter', 'PortfolioGroupIdComplianceParameter', 'StringListComplianceParameter', 'BoolListComplianceParameter', 'DateTimeListComplianceParameter', 'DecimalListComplianceParameter', 'PropertyKeyListComplianceParameter', 'AddressKeyListComplianceParameter', 'PortfolioIdListComplianceParameter', 'PortfolioGroupIdListComplianceParameter', 'InstrumentListComplianceParameter', 'FilterPredicateComplianceParameter', 'GroupFilterPredicateComplianceParameter', 'GroupBySelectorComplianceParameter', 'PropertyListComplianceParameter', 'GroupCalculationComplianceParameter']
         if len(_allowed) != 1:
@@ -106,7 +104,8 @@ class DecimalComplianceParameter(ComplianceParameter):
 
         _obj = DecimalComplianceParameter.model_validate({
             "compliance_parameter_type": obj.get("complianceParameterType"),
-            "value": obj.get("value")
+            "value": obj.get("value"),
+            "inclusive_bounds": obj.get("inclusiveBounds")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

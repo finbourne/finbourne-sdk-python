@@ -9,11 +9,11 @@ Response containing details of a single transaction for a run.
 | **publication_status** | **str** | Required | *No description available.* |
 | **portfolio_scope** | **str** | Optional | *No description available.* |
 | **portfolio_code** | **str** | Optional | *No description available.* |
-| **instrument_id** | **str** | Required | *No description available.* |
-| **instrument_type** | **str** | Required | *No description available.* |
-| **instrument_name** | **str** | Required | *No description available.* |
-| **trade_date** | **datetime** | Required | *No description available.* |
-| **settlement_date** | **datetime** | Required | *No description available.* |
+| **instrument_id** | **str** | Optional | *No description available.* |
+| **instrument_type** | **str** | Optional | *No description available.* |
+| **instrument_name** | **str** | Optional | *No description available.* |
+| **trade_date** | **datetime** | Optional | *No description available.* |
+| **settlement_date** | **datetime** | Optional | *No description available.* |
 | **status** | **str** | Required | *No description available.* |
 | **skip_reason** | **str** | Optional | *No description available.* |
 | **failure_reason** | **str** | Optional | *No description available.* |
@@ -34,11 +34,11 @@ instance = TransactionResponse(
     publication_status="...",  # required
     portfolio_scope="...",  # optional
     portfolio_code="...",  # optional
-    instrument_id="...",  # required
-    instrument_type="...",  # required
-    instrument_name="...",  # required
-    trade_date=datetime.now(),  # required
-    settlement_date=datetime.now(),  # required
+    instrument_id="...",  # optional
+    instrument_type="...",  # optional
+    instrument_name="...",  # optional
+    trade_date=datetime.now(),  # optional
+    settlement_date=datetime.now(),  # optional
     status="...",  # required
     skip_reason="...",  # optional
     failure_reason="...",  # optional

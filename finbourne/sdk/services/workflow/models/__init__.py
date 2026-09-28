@@ -26,13 +26,16 @@ from finbourne.sdk.services.workflow.models.batch_update_tasks_request import Ba
 from finbourne.sdk.services.workflow.models.batch_update_tasks_response import BatchUpdateTasksResponse
 from finbourne.sdk.services.workflow.models.batch_upsert_task_definition_properties_response import BatchUpsertTaskDefinitionPropertiesResponse
 from finbourne.sdk.services.workflow.models.batch_upsert_workflow_properties_response import BatchUpsertWorkflowPropertiesResponse
+from finbourne.sdk.services.workflow.models.calendar_context import CalendarContext
 from finbourne.sdk.services.workflow.models.calendar_reference import CalendarReference
 from finbourne.sdk.services.workflow.models.change_item import ChangeItem
 from finbourne.sdk.services.workflow.models.child_task_definition_edge import ChildTaskDefinitionEdge
+from finbourne.sdk.services.workflow.models.correlation_id_mapping import CorrelationIdMapping
 from finbourne.sdk.services.workflow.models.create_child_task_configuration import CreateChildTaskConfiguration
 from finbourne.sdk.services.workflow.models.create_child_tasks_action import CreateChildTasksAction
 from finbourne.sdk.services.workflow.models.create_child_tasks_action_response import CreateChildTasksActionResponse
 from finbourne.sdk.services.workflow.models.create_event_handler_request import CreateEventHandlerRequest
+from finbourne.sdk.services.workflow.models.create_launcher_request import CreateLauncherRequest
 from finbourne.sdk.services.workflow.models.create_new_task_activity import CreateNewTaskActivity
 from finbourne.sdk.services.workflow.models.create_new_task_activity_response import CreateNewTaskActivityResponse
 from finbourne.sdk.services.workflow.models.create_task_definition_request import CreateTaskDefinitionRequest
@@ -42,6 +45,7 @@ from finbourne.sdk.services.workflow.models.create_workflow_request import Creat
 from finbourne.sdk.services.workflow.models.cut_label_reference import CutLabelReference
 from finbourne.sdk.services.workflow.models.date_adjustment import DateAdjustment
 from finbourne.sdk.services.workflow.models.date_regularity import DateRegularity
+from finbourne.sdk.services.workflow.models.date_time_adjustment import DateTimeAdjustment
 from finbourne.sdk.services.workflow.models.day_of_year import DayOfYear
 from finbourne.sdk.services.workflow.models.day_regularity import DayRegularity
 from finbourne.sdk.services.workflow.models.delete_tasks_request import DeleteTasksRequest
@@ -49,7 +53,10 @@ from finbourne.sdk.services.workflow.models.deleted_entity_response import Delet
 from finbourne.sdk.services.workflow.models.error_detail import ErrorDetail
 from finbourne.sdk.services.workflow.models.event_handler import EventHandler
 from finbourne.sdk.services.workflow.models.event_handler_mapping import EventHandlerMapping
+from finbourne.sdk.services.workflow.models.event_launcher_details import EventLauncherDetails
+from finbourne.sdk.services.workflow.models.event_launcher_details_response import EventLauncherDetailsResponse
 from finbourne.sdk.services.workflow.models.event_matching_pattern import EventMatchingPattern
+from finbourne.sdk.services.workflow.models.event_task_field_mapping import EventTaskFieldMapping
 from finbourne.sdk.services.workflow.models.existing_tasks_not_recurring_configuration import ExistingTasksNotRecurringConfiguration
 from finbourne.sdk.services.workflow.models.existing_tasks_recurring_configuration import ExistingTasksRecurringConfiguration
 from finbourne.sdk.services.workflow.models.fail import Fail
@@ -66,6 +73,13 @@ from finbourne.sdk.services.workflow.models.id_selector_definition import IdSele
 from finbourne.sdk.services.workflow.models.identifier_part_schema import IdentifierPartSchema
 from finbourne.sdk.services.workflow.models.initial_state import InitialState
 from finbourne.sdk.services.workflow.models.label_value_set import LabelValueSet
+from finbourne.sdk.services.workflow.models.launcher_details import LauncherDetails
+from finbourne.sdk.services.workflow.models.launcher_details_response import LauncherDetailsResponse
+from finbourne.sdk.services.workflow.models.launcher_event_matching_pattern import LauncherEventMatchingPattern
+from finbourne.sdk.services.workflow.models.launcher_mapping import LauncherMapping
+from finbourne.sdk.services.workflow.models.launcher_response import LauncherResponse
+from finbourne.sdk.services.workflow.models.launcher_schedule import LauncherSchedule
+from finbourne.sdk.services.workflow.models.launcher_summaries import LauncherSummaries
 from finbourne.sdk.services.workflow.models.library_response import LibraryResponse
 from finbourne.sdk.services.workflow.models.link import Link
 from finbourne.sdk.services.workflow.models.luminesce_view import LuminesceView
@@ -77,6 +91,7 @@ from finbourne.sdk.services.workflow.models.lusid_validation_problem_details imp
 from finbourne.sdk.services.workflow.models.metric_value import MetricValue
 from finbourne.sdk.services.workflow.models.new_tasks_recurring_configuration import NewTasksRecurringConfiguration
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_event_handler import PagedResourceListOfEventHandler
+from finbourne.sdk.services.workflow.models.paged_resource_list_of_launcher_response import PagedResourceListOfLauncherResponse
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task import PagedResourceListOfTask
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task_definition import PagedResourceListOfTaskDefinition
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_worker import PagedResourceListOfWorker
@@ -86,6 +101,8 @@ from finbourne.sdk.services.workflow.models.parameter_value import ParameterValu
 from finbourne.sdk.services.workflow.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check import PortfolioHoldingDataQualityCheck
 from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check_response import PortfolioHoldingDataQualityCheckResponse
+from finbourne.sdk.services.workflow.models.portfolio_transaction_data_quality_check import PortfolioTransactionDataQualityCheck
+from finbourne.sdk.services.workflow.models.portfolio_transaction_data_quality_check_response import PortfolioTransactionDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.property_value import PropertyValue
 from finbourne.sdk.services.workflow.models.re_run_configuration import ReRunConfiguration
 from finbourne.sdk.services.workflow.models.read_only_states import ReadOnlyStates
@@ -104,8 +121,11 @@ from finbourne.sdk.services.workflow.models.run_worker_action import RunWorkerAc
 from finbourne.sdk.services.workflow.models.run_worker_action_response import RunWorkerActionResponse
 from finbourne.sdk.services.workflow.models.run_worker_request import RunWorkerRequest
 from finbourne.sdk.services.workflow.models.run_worker_response import RunWorkerResponse
+from finbourne.sdk.services.workflow.models.schedule_launcher_details import ScheduleLauncherDetails
+from finbourne.sdk.services.workflow.models.schedule_launcher_details_response import ScheduleLauncherDetailsResponse
 from finbourne.sdk.services.workflow.models.schedule_matching_pattern import ScheduleMatchingPattern
 from finbourne.sdk.services.workflow.models.schedule_matching_pattern_context import ScheduleMatchingPatternContext
+from finbourne.sdk.services.workflow.models.schedule_task_field_mapping import ScheduleTaskFieldMapping
 from finbourne.sdk.services.workflow.models.scheduled_time_adjustment import ScheduledTimeAdjustment
 from finbourne.sdk.services.workflow.models.scheduler_job import SchedulerJob
 from finbourne.sdk.services.workflow.models.scheduler_job_response import SchedulerJobResponse
@@ -134,6 +154,7 @@ from finbourne.sdk.services.workflow.models.trigger_parent_task_action import Tr
 from finbourne.sdk.services.workflow.models.trigger_parent_task_action_response import TriggerParentTaskActionResponse
 from finbourne.sdk.services.workflow.models.trigger_schema import TriggerSchema
 from finbourne.sdk.services.workflow.models.update_event_handler_request import UpdateEventHandlerRequest
+from finbourne.sdk.services.workflow.models.update_launcher_request import UpdateLauncherRequest
 from finbourne.sdk.services.workflow.models.update_matching_tasks_activity import UpdateMatchingTasksActivity
 from finbourne.sdk.services.workflow.models.update_matching_tasks_activity_response import UpdateMatchingTasksActivityResponse
 from finbourne.sdk.services.workflow.models.update_task_definition_request import UpdateTaskDefinitionRequest
@@ -172,13 +193,16 @@ __all__ = [
     "BatchUpdateTasksResponse",
     "BatchUpsertTaskDefinitionPropertiesResponse",
     "BatchUpsertWorkflowPropertiesResponse",
+    "CalendarContext",
     "CalendarReference",
     "ChangeItem",
     "ChildTaskDefinitionEdge",
+    "CorrelationIdMapping",
     "CreateChildTaskConfiguration",
     "CreateChildTasksAction",
     "CreateChildTasksActionResponse",
     "CreateEventHandlerRequest",
+    "CreateLauncherRequest",
     "CreateNewTaskActivity",
     "CreateNewTaskActivityResponse",
     "CreateTaskDefinitionRequest",
@@ -188,6 +212,7 @@ __all__ = [
     "CutLabelReference",
     "DateAdjustment",
     "DateRegularity",
+    "DateTimeAdjustment",
     "DayOfYear",
     "DayRegularity",
     "DeleteTasksRequest",
@@ -195,7 +220,10 @@ __all__ = [
     "ErrorDetail",
     "EventHandler",
     "EventHandlerMapping",
+    "EventLauncherDetails",
+    "EventLauncherDetailsResponse",
     "EventMatchingPattern",
+    "EventTaskFieldMapping",
     "ExistingTasksNotRecurringConfiguration",
     "ExistingTasksRecurringConfiguration",
     "Fail",
@@ -212,6 +240,13 @@ __all__ = [
     "IdentifierPartSchema",
     "InitialState",
     "LabelValueSet",
+    "LauncherDetails",
+    "LauncherDetailsResponse",
+    "LauncherEventMatchingPattern",
+    "LauncherMapping",
+    "LauncherResponse",
+    "LauncherSchedule",
+    "LauncherSummaries",
     "LibraryResponse",
     "Link",
     "LuminesceView",
@@ -223,6 +258,7 @@ __all__ = [
     "MetricValue",
     "NewTasksRecurringConfiguration",
     "PagedResourceListOfEventHandler",
+    "PagedResourceListOfLauncherResponse",
     "PagedResourceListOfTask",
     "PagedResourceListOfTaskDefinition",
     "PagedResourceListOfWorker",
@@ -232,6 +268,8 @@ __all__ = [
     "PerpetualProperty",
     "PortfolioHoldingDataQualityCheck",
     "PortfolioHoldingDataQualityCheckResponse",
+    "PortfolioTransactionDataQualityCheck",
+    "PortfolioTransactionDataQualityCheckResponse",
     "PropertyValue",
     "ReRunConfiguration",
     "ReadOnlyStates",
@@ -250,8 +288,11 @@ __all__ = [
     "RunWorkerActionResponse",
     "RunWorkerRequest",
     "RunWorkerResponse",
+    "ScheduleLauncherDetails",
+    "ScheduleLauncherDetailsResponse",
     "ScheduleMatchingPattern",
     "ScheduleMatchingPatternContext",
+    "ScheduleTaskFieldMapping",
     "ScheduledTimeAdjustment",
     "SchedulerJob",
     "SchedulerJobResponse",
@@ -280,6 +321,7 @@ __all__ = [
     "TriggerParentTaskActionResponse",
     "TriggerSchema",
     "UpdateEventHandlerRequest",
+    "UpdateLauncherRequest",
     "UpdateMatchingTasksActivity",
     "UpdateMatchingTasksActivityResponse",
     "UpdateTaskDefinitionRequest",

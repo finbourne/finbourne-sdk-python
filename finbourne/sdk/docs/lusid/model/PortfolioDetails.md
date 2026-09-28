@@ -22,6 +22,8 @@
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
 | **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost. |
+| **fractional_units_true_up_configuration** | [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md) | Optional | *No description available.* |
+| **holdings_fungibility** | **str** | Optional | Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -51,6 +53,8 @@ instance = PortfolioDetails(
     staged_modifications=StagedModificationsInfo(...),  # optional
     transaction_exclusion_filter="...",  # optional — A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded.
     tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
+    fractional_units_true_up_configuration=FractionalUnitsTrueUpConfiguration(...),  # optional
+    holdings_fungibility="...",  # optional — Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled.
     links=[]  # optional
 )
 ```
@@ -62,6 +66,7 @@ instance = PortfolioDetails(
 - [ResourceId](ResourceId.md)
 - [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md)
 - [StagedModificationsInfo](StagedModificationsInfo.md)
+- [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md)
 - [Link](Link.md)
 
 

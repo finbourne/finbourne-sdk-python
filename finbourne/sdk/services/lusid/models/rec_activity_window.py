@@ -21,14 +21,17 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.rec_activity_since_effective_at import RecActivitySinceEffectiveAt
 
 
 class RecActivityWindow(BaseModel):
     """
     Base class for the activity windows that give the date range a rec definition's activity-based  reconciliations cover. Polymorphic by windowType; each supported type has a corresponding inherited class.  # noqa: E501
     """
+    initial_activity_since_effective_at: RecActivitySinceEffectiveAt = Field(alias="initialActivitySinceEffectiveAt")
     window_type:  StrictStr = Field(...,alias="windowType", description="Polymorphic discriminator. Supported types: Contiguous. Contiguous requires effectiveAtProgression Series. Available values: Contiguous, FixedLookback, Explicit, ClosedPeriod, ContiguousAsAt.") 
-    __properties: ClassVar[List[str]] = ["windowType"]
+    additional_properties: Dict[str, Any] = {}
+    __properties: ClassVar[List[str]] = ["initialActivitySinceEffectiveAt", "windowType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,8 +65,17 @@ class RecActivityWindow(BaseModel):
         _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
+                            "additional_properties"
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of initial_activity_since_effective_at
+        if self.initial_activity_since_effective_at:
+            _dict['initialActivitySinceEffectiveAt'] = self.initial_activity_since_effective_at.to_dict(by_alias=by_alias)
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -76,8 +88,14 @@ class RecActivityWindow(BaseModel):
             return RecActivityWindow.model_validate(obj)
 
         _obj = RecActivityWindow.model_validate({
+            "initial_activity_since_effective_at": RecActivitySinceEffectiveAt.from_dict(_v) if (_v := obj.get("initialActivitySinceEffectiveAt")) is not None else None,
             "window_type": obj.get("windowType")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 RecActivityWindow.model_rebuild()

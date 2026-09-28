@@ -23,7 +23,9 @@ from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
+from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.fund_structure import FundStructure
+from finbourne.sdk.services.lusid.models.fund_structure_member_request import FundStructureMemberRequest
 from finbourne.sdk.services.lusid.models.fund_structure_request import FundStructureRequest
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_structure import PagedResourceListOfFundStructure
 from finbourne.sdk.api_client import ApiClient
@@ -49,6 +51,157 @@ class FundStructuresApi:
             self.api_client = api_client
         else:
             self.sync_api_client = SyncApiClient.get_default()
+
+    @validate_call
+    def add_fund_structure_member(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
+        """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+
+        Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+        :param scope: The scope of the Fund Structure. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+        :type code: str
+        :param fund_structure_member_request: The node to add and the links joining it to existing members. (required)
+        :type fund_structure_member_request: FundStructureMemberRequest
+        :param effective_at: The effective datetime or cut label from which the member is part of the structure. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: FundStructure
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the add_fund_structure_member_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.add_fund_structure_member_with_http_info(scope, code, fund_structure_member_request, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def add_fund_structure_member_with_http_info(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
+        """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+
+        Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+        :param scope: The scope of the Fund Structure. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+        :type code: str
+        :param fund_structure_member_request: The node to add and the links joining it to existing members. (required)
+        :type fund_structure_member_request: FundStructureMemberRequest
+        :param effective_at: The effective datetime or cut label from which the member is part of the structure. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(FundStructure, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'fund_structure_member_request',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method add_fund_structure_member" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['fund_structure_member_request'] is not None:
+            _body_params = _params['fund_structure_member_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "FundStructure",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/fundstructures/{scope}/{code}/members', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     def create_fund_structure(self, scope: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
@@ -186,14 +339,152 @@ class FundStructuresApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_fund_structure(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundStructure:
+    def delete_fund_structure(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
+        """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+
+        Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
+        :param scope: The scope of the Fund Structure to be deleted. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure to be deleted. Together with the scope this uniquely identifies the Fund Structure. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label from which the Fund Structure is deleted. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: DeletedEntityResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the delete_fund_structure_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.delete_fund_structure_with_http_info(scope, code, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def delete_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+        """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+
+        Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
+        :param scope: The scope of the Fund Structure to be deleted. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure to be deleted. Together with the scope this uniquely identifies the Fund Structure. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label from which the Fund Structure is deleted. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(DeletedEntityResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_fund_structure" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "DeletedEntityResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/fundstructures/{scope}/{code}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_fund_structure(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundStructure:
         """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
 
-        Retrieve the definition of a particular Fund Structure, including its nodes, edges, and any inline fund definitions.  # noqa: E501
+        Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
         :type scope: str
         :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
         :type code: str
+        :param effective_at: The effective datetime or cut label at which to retrieve the Fund Structure. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the Fund Structure. Defaults to returning the latest version if not specified.
         :type as_at: datetime
         :param property_keys: A list of property keys from the 'FundStructure' domain to decorate onto the Fund Structure.              These must take the format {domain}/{scope}/{code}, for example 'FundStructure/Manager/Id'. If no properties are specified, then no properties will be returned.
@@ -208,18 +499,20 @@ class FundStructuresApi:
             message = "Error! Please call the get_fund_structure_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_fund_structure_with_http_info(scope, code, as_at, property_keys, **kwargs)
+        response = self.get_fund_structure_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundStructure]:
+    def get_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundStructure]:
         """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
 
-        Retrieve the definition of a particular Fund Structure, including its nodes, edges, and any inline fund definitions.  # noqa: E501
+        Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
         :type scope: str
         :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
         :type code: str
+        :param effective_at: The effective datetime or cut label at which to retrieve the Fund Structure. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the Fund Structure. Defaults to returning the latest version if not specified.
         :type as_at: datetime
         :param property_keys: A list of property keys from the 'FundStructure' domain to decorate onto the Fund Structure.              These must take the format {domain}/{scope}/{code}, for example 'FundStructure/Manager/Id'. If no properties are specified, then no properties will be returned.
@@ -249,6 +542,7 @@ class FundStructuresApi:
         _all_params = [
             'scope',
             'code',
+            'effective_at',
             'as_at',
             'property_keys'
         ]
@@ -287,6 +581,9 @@ class FundStructuresApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
         if _params.get('as_at') is not None:  # noqa: E501
             if isinstance(_params['as_at'], datetime):
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
@@ -334,10 +631,12 @@ class FundStructuresApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_fund_structures(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundStructure:
+    def list_fund_structures(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundStructure:
         """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
 
         List all the Fund Structures matching the given criteria.  # noqa: E501
+        :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
         :param as_at: The asAt datetime at which to list Fund Structures. Defaults to returning the latest version of each Fund Structure if not specified.
         :type as_at: datetime
         :param page: The pagination token to use to continue listing Fund Structures; this value is returned from the previous call. If a pagination token is provided, the filter and asAt fields must not have changed since the original request.
@@ -360,14 +659,16 @@ class FundStructuresApi:
             message = "Error! Please call the list_fund_structures_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_fund_structures_with_http_info(as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        response = self.list_fund_structures_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def list_fund_structures_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundStructure]:
+    def list_fund_structures_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundStructure]:
         """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
 
         List all the Fund Structures matching the given criteria.  # noqa: E501
+        :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
         :param as_at: The asAt datetime at which to list Fund Structures. Defaults to returning the latest version of each Fund Structure if not specified.
         :type as_at: datetime
         :param page: The pagination token to use to continue listing Fund Structures; this value is returned from the previous call. If a pagination token is provided, the filter and asAt fields must not have changed since the original request.
@@ -403,6 +704,7 @@ class FundStructuresApi:
         _params = locals()
 
         _all_params = [
+            'effective_at',
             'as_at',
             'page',
             'limit',
@@ -439,6 +741,9 @@ class FundStructuresApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
         if _params.get('as_at') is not None:  # noqa: E501
             if isinstance(_params['as_at'], datetime):
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
@@ -498,9 +803,448 @@ class FundStructuresApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
+    @validate_call
+    def remove_fund_structure_member(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
+        """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+
+        Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+        :param scope: The scope of the Fund Structure. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+        :type code: str
+        :param node_code: The node code of the member to remove. (required)
+        :type node_code: str
+        :param effective_at: The effective datetime or cut label from which the member is no longer part of the structure. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: FundStructure
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the remove_fund_structure_member_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.remove_fund_structure_member_with_http_info(scope, code, node_code, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def remove_fund_structure_member_with_http_info(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
+        """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+
+        Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+        :param scope: The scope of the Fund Structure. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+        :type code: str
+        :param node_code: The node code of the member to remove. (required)
+        :type node_code: str
+        :param effective_at: The effective datetime or cut label from which the member is no longer part of the structure. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(FundStructure, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'node_code',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method remove_fund_structure_member" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+        if _params['node_code'] is not None:
+            _path_params['nodeCode'] = _params['node_code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "FundStructure",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/fundstructures/{scope}/{code}/members/{nodeCode}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def upsert_fund_structure(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
+        """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+
+        Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
+        :param scope: The scope of the Fund Structure. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure, and must match the code in the request body. (required)
+        :type code: str
+        :param fund_structure_request: The full definition of the Fund Structure from the effective datetime in the request, or the current LUSID system datetime if not specified. (required)
+        :type fund_structure_request: FundStructureRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: FundStructure
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the upsert_fund_structure_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.upsert_fund_structure_with_http_info(scope, code, fund_structure_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def upsert_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> ApiResponse[FundStructure]:
+        """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+
+        Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
+        :param scope: The scope of the Fund Structure. (required)
+        :type scope: str
+        :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure, and must match the code in the request body. (required)
+        :type code: str
+        :param fund_structure_request: The full definition of the Fund Structure from the effective datetime in the request, or the current LUSID system datetime if not specified. (required)
+        :type fund_structure_request: FundStructureRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(FundStructure, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'fund_structure_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method upsert_fund_structure" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['fund_structure_request'] is not None:
+            _body_params = _params['fund_structure_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "FundStructure",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/fundstructures/{scope}/{code}', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
 
   # --- ASYNC API METHODS ---
 
+
+    @validate_call
+    async def add_fund_structure_member_async(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
+            """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+            Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+            
+            :param scope: The scope of the Fund Structure. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+            :type code: str
+            :param fund_structure_member_request: The node to add and the links joining it to existing members. (required)
+            :type fund_structure_member_request: FundStructureMemberRequest
+            :param effective_at: The effective datetime or cut label from which the member is part of the structure. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: FundStructure
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the add_fund_structure_member_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.add_fund_structure_member_with_http_info_async(scope, code, fund_structure_member_request, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def add_fund_structure_member_with_http_info_async(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
+            """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+
+            Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+
+            :param scope: The scope of the Fund Structure. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+            :type code: str
+            :param fund_structure_member_request: The node to add and the links joining it to existing members. (required)
+            :type fund_structure_member_request: FundStructureMemberRequest
+            :param effective_at: The effective datetime or cut label from which the member is part of the structure. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(FundStructure, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'fund_structure_member_request',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method add_fund_structure_member" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['fund_structure_member_request'] is not None:
+                _body_params = _params['fund_structure_member_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "FundStructure",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/fundstructures/{scope}/{code}/members', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     async def create_fund_structure_async(self, scope: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
@@ -639,14 +1383,153 @@ class FundStructuresApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_fund_structure_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundStructure:
+    async def delete_fund_structure_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
+            """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+            Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
+            
+            :param scope: The scope of the Fund Structure to be deleted. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure to be deleted. Together with the scope this uniquely identifies the Fund Structure. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label from which the Fund Structure is deleted. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: DeletedEntityResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the delete_fund_structure_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.delete_fund_structure_with_http_info_async(scope, code, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def delete_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+            """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+
+            Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
+
+            :param scope: The scope of the Fund Structure to be deleted. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure to be deleted. Together with the scope this uniquely identifies the Fund Structure. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label from which the Fund Structure is deleted. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(DeletedEntityResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method delete_fund_structure" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "DeletedEntityResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/fundstructures/{scope}/{code}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_fund_structure_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundStructure:
             """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
-            Retrieve the definition of a particular Fund Structure, including its nodes, edges, and any inline fund definitions.  # noqa: E501
+            Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
             
             :param scope: The scope of the Fund Structure. (required)
             :type scope: str
             :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
             :type code: str
+            :param effective_at: The effective datetime or cut label at which to retrieve the Fund Structure. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the Fund Structure. Defaults to returning the latest version if not specified.
             :type as_at: datetime
             :param property_keys: A list of property keys from the 'FundStructure' domain to decorate onto the Fund Structure.              These must take the format {domain}/{scope}/{code}, for example 'FundStructure/Manager/Id'. If no properties are specified, then no properties will be returned.
@@ -661,19 +1544,21 @@ class FundStructuresApi:
                 message = "Error! Please call the get_fund_structure_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_fund_structure_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
+            response = await self.get_fund_structure_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundStructure]:
+    async def get_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundStructure]:
             """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
 
-            Retrieve the definition of a particular Fund Structure, including its nodes, edges, and any inline fund definitions.  # noqa: E501
+            Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
 
             :param scope: The scope of the Fund Structure. (required)
             :type scope: str
             :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
             :type code: str
+            :param effective_at: The effective datetime or cut label at which to retrieve the Fund Structure. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the Fund Structure. Defaults to returning the latest version if not specified.
             :type as_at: datetime
             :param property_keys: A list of property keys from the 'FundStructure' domain to decorate onto the Fund Structure.              These must take the format {domain}/{scope}/{code}, for example 'FundStructure/Manager/Id'. If no properties are specified, then no properties will be returned.
@@ -703,6 +1588,7 @@ class FundStructuresApi:
             _all_params = [
                 'scope',
                 'code',
+                'effective_at',
                 'as_at',
                 'property_keys'
             ]
@@ -741,6 +1627,9 @@ class FundStructuresApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
             if _params.get('as_at') is not None:  # noqa: E501
                 if isinstance(_params['as_at'], datetime):
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
@@ -788,10 +1677,12 @@ class FundStructuresApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_fund_structures_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundStructure:
+    async def list_fund_structures_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundStructure:
             """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
             List all the Fund Structures matching the given criteria.  # noqa: E501
             
+            :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
             :param as_at: The asAt datetime at which to list Fund Structures. Defaults to returning the latest version of each Fund Structure if not specified.
             :type as_at: datetime
             :param page: The pagination token to use to continue listing Fund Structures; this value is returned from the previous call. If a pagination token is provided, the filter and asAt fields must not have changed since the original request.
@@ -814,15 +1705,17 @@ class FundStructuresApi:
                 message = "Error! Please call the list_fund_structures_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_fund_structures_with_http_info_async(as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            response = await self.list_fund_structures_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def list_fund_structures_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundStructure]:
+    async def list_fund_structures_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundStructure]:
             """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
 
             List all the Fund Structures matching the given criteria.  # noqa: E501
 
+            :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
             :param as_at: The asAt datetime at which to list Fund Structures. Defaults to returning the latest version of each Fund Structure if not specified.
             :type as_at: datetime
             :param page: The pagination token to use to continue listing Fund Structures; this value is returned from the previous call. If a pagination token is provided, the filter and asAt fields must not have changed since the original request.
@@ -858,6 +1751,7 @@ class FundStructuresApi:
             _params = locals()
 
             _all_params = [
+                'effective_at',
                 'as_at',
                 'page',
                 'limit',
@@ -894,6 +1788,9 @@ class FundStructuresApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
             if _params.get('as_at') is not None:  # noqa: E501
                 if isinstance(_params['as_at'], datetime):
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
@@ -938,6 +1835,295 @@ class FundStructuresApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/fundstructures', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def remove_fund_structure_member_async(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
+            """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+            Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+            
+            :param scope: The scope of the Fund Structure. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+            :type code: str
+            :param node_code: The node code of the member to remove. (required)
+            :type node_code: str
+            :param effective_at: The effective datetime or cut label from which the member is no longer part of the structure. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: FundStructure
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the remove_fund_structure_member_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.remove_fund_structure_member_with_http_info_async(scope, code, node_code, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def remove_fund_structure_member_with_http_info_async(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
+            """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+
+            Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
+
+            :param scope: The scope of the Fund Structure. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. (required)
+            :type code: str
+            :param node_code: The node code of the member to remove. (required)
+            :type node_code: str
+            :param effective_at: The effective datetime or cut label from which the member is no longer part of the structure. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(FundStructure, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'node_code',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method remove_fund_structure_member" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+            if _params['node_code'] is not None:
+                _path_params['nodeCode'] = _params['node_code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "FundStructure",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/fundstructures/{scope}/{code}/members/{nodeCode}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def upsert_fund_structure_async(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
+            """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+            Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
+            
+            :param scope: The scope of the Fund Structure. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure, and must match the code in the request body. (required)
+            :type code: str
+            :param fund_structure_request: The full definition of the Fund Structure from the effective datetime in the request, or the current LUSID system datetime if not specified. (required)
+            :type fund_structure_request: FundStructureRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: FundStructure
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the upsert_fund_structure_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.upsert_fund_structure_with_http_info_async(scope, code, fund_structure_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def upsert_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> ApiResponse[FundStructure]:
+            """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+
+            Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
+
+            :param scope: The scope of the Fund Structure. (required)
+            :type scope: str
+            :param code: The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure, and must match the code in the request body. (required)
+            :type code: str
+            :param fund_structure_request: The full definition of the Fund Structure from the effective datetime in the request, or the current LUSID system datetime if not specified. (required)
+            :type fund_structure_request: FundStructureRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(FundStructure, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'fund_structure_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method upsert_fund_structure" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['fund_structure_request'] is not None:
+                _body_params = _params['fund_structure_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "FundStructure",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/fundstructures/{scope}/{code}', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

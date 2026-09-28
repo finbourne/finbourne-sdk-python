@@ -32,6 +32,7 @@ A request to create a transfer: the paired transaction legs that move a position
 | **accounting_method** | **str** | Optional | Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
 | **properties_out** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 | **properties_in** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -68,7 +69,8 @@ instance = CreateTransferRequest(
     source="...",  # required
     accounting_method="...",  # optional — Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
     properties_out=PerpetualProperty(...),  # optional
-    properties_in=PerpetualProperty(...)  # optional
+    properties_in=PerpetualProperty(...),  # optional
+    properties=PerpetualProperty(...)  # optional
 )
 ```
 
@@ -80,6 +82,7 @@ instance = CreateTransferRequest(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
+- [PerpetualProperty](PerpetualProperty.md)
 - [PerpetualProperty](PerpetualProperty.md)
 - [PerpetualProperty](PerpetualProperty.md)
 

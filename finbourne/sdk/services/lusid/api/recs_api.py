@@ -209,7 +209,7 @@ class RecsApi:
     def batch_manage_rec_result_comments(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchManageCommentResponse:
         """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
 
-        Add, edit or delete comments on rec results in a batch.  # noqa: E501
+        Add, edit or delete comments on rec results in a batch.  The batch limit per request is 2,000.  # noqa: E501
         :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
         :type request_body: Dict[str, BatchManageCommentRequest]
         :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
@@ -231,7 +231,7 @@ class RecsApi:
     def batch_manage_rec_result_comments_with_http_info(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchManageCommentResponse]:
         """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
 
-        Add, edit or delete comments on rec results in a batch.  # noqa: E501
+        Add, edit or delete comments on rec results in a batch.  The batch limit per request is 2,000.  # noqa: E501
         :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
         :type request_body: Dict[str, BatchManageCommentRequest]
         :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
@@ -344,7 +344,7 @@ class RecsApi:
     def batch_review_rec_results(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchReviewRecResultResponse:
         """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
 
-        Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+        Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  The batch limit per request is 2,000.  # noqa: E501
         :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
         :type request_body: Dict[str, BatchReviewRecResultRequest]
         :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
@@ -366,7 +366,7 @@ class RecsApi:
     def batch_review_rec_results_with_http_info(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchReviewRecResultResponse]:
         """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
 
-        Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+        Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  The batch limit per request is 2,000.  # noqa: E501
         :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
         :type request_body: Dict[str, BatchReviewRecResultRequest]
         :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
@@ -3312,7 +3312,7 @@ class RecsApi:
     @validate_call
     async def batch_manage_rec_result_comments_async(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchManageCommentResponse:
             """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
-            Add, edit or delete comments on rec results in a batch.  # noqa: E501
+            Add, edit or delete comments on rec results in a batch.  The batch limit per request is 2,000.  # noqa: E501
             
             :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
             :type request_body: Dict[str, BatchManageCommentRequest]
@@ -3335,7 +3335,7 @@ class RecsApi:
     async def batch_manage_rec_result_comments_with_http_info_async(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchManageCommentResponse]:
             """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
 
-            Add, edit or delete comments on rec results in a batch.  # noqa: E501
+            Add, edit or delete comments on rec results in a batch.  The batch limit per request is 2,000.  # noqa: E501
 
             :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
             :type request_body: Dict[str, BatchManageCommentRequest]
@@ -3448,7 +3448,7 @@ class RecsApi:
     @validate_call
     async def batch_review_rec_results_async(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchReviewRecResultResponse:
             """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
-            Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+            Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  The batch limit per request is 2,000.  # noqa: E501
             
             :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
             :type request_body: Dict[str, BatchReviewRecResultRequest]
@@ -3471,7 +3471,7 @@ class RecsApi:
     async def batch_review_rec_results_with_http_info_async(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchReviewRecResultResponse]:
             """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
 
-            Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+            Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  The batch limit per request is 2,000.  # noqa: E501
 
             :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
             :type request_body: Dict[str, BatchReviewRecResultRequest]

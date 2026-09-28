@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**delete_payment_instruction**](PaymentInstructionsApi.md#delete_payment_instruction) | **DELETE** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] DeletePaymentInstruction: Delete Payment Instruction
 [**get_payment_instruction**](PaymentInstructionsApi.md#get_payment_instruction) | **GET** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] GetPaymentInstruction: Get Payment Instruction
 [**get_payment_instructions_by_payment_record_ids**](PaymentInstructionsApi.md#get_payment_instructions_by_payment_record_ids) | **POST** /api/api/paymentinstructions/$getByPaymentRecordIds | [EXPERIMENTAL] GetPaymentInstructionsByPaymentRecordIds: Get Payment Instructions by Payment Record Ids
+[**list_payment_instructions**](PaymentInstructionsApi.md#list_payment_instructions) | **GET** /api/api/paymentinstructions | [EXPERIMENTAL] ListPaymentInstructions: List Payment Instructions
 [**upsert_payment_instructions**](PaymentInstructionsApi.md#upsert_payment_instructions) | **POST** /api/api/paymentinstructions | [EXPERIMENTAL] UpsertPaymentInstructions: Upsert Payment Instructions
 
 
@@ -170,6 +171,60 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The payment instructions that could be found for the supplied payment record ids, along with any failures |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_payment_instructions**
+> PagedResourceListOfPaymentInstruction listPaymentInstructions = list_payment_instructions(as_at=as_at, effective_at=effective_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
+
+[EXPERIMENTAL] ListPaymentInstructions: List Payment Instructions
+
+List all Payment Instructions matching the given criteria.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PaymentInstructionsApi)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+effective_at = 'effective_at_example' # str (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_payment_instructions(as_at=as_at, effective_at=effective_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **as_at** | **datetime**| The asAt datetime at which to list the payment instructions. Defaults to return the latest              version of each payment instruction if not specified. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list the payment instructions.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing payment instructions from a previous call to              list payment instructions. This value is returned from the previous call. If a pagination token is provided,              the filter, limit and asAt fields must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
+ **filter** | **str**| Expression to filter the results. For example, to filter on the currency, specify              \&quot;currency eq &#39;GBP&#39;\&quot;. For more information about filtering results, see              https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;PaymentInstruction\&quot; domain to decorate onto each              payment instruction. These take the format {domain}/{scope}/{code} e.g. \&quot;PaymentInstruction/myScope/myProperty\&quot;. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfPaymentInstruction**](../model/PagedResourceListOfPaymentInstruction.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The payment instructions matching the given criteria |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**generate_configuration_recipe**](AggregationApi.md#generate_configuration_recipe) | **POST** /api/api/aggregation/{scope}/{code}/$generateconfigurationrecipe | [EXPERIMENTAL] GenerateConfigurationRecipe: Generates a recipe sufficient to perform valuations for the given portfolio.
 [**get_queryable_keys**](AggregationApi.md#get_queryable_keys) | **GET** /api/api/results/queryable/keys | GetQueryableKeys: Query the set of supported \&quot;addresses\&quot; that can be queried from the aggregation endpoint.
+[**get_queryable_keys_for_metrics**](AggregationApi.md#get_queryable_keys_for_metrics) | **POST** /api/api/aggregation/$queryablekeys | [EXPERIMENTAL] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.
 [**get_valuation**](AggregationApi.md#get_valuation) | **POST** /api/api/aggregation/$valuation | GetValuation: Perform valuation for a list of portfolios and/or portfolio groups
 [**get_valuation_of_weighted_instruments**](AggregationApi.md#get_valuation_of_weighted_instruments) | **POST** /api/api/aggregation/$valuationinlined | GetValuationOfWeightedInstruments: Perform valuation for an inlined portfolio
 
@@ -114,6 +115,48 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_queryable_keys_for_metrics**
+> QueryableKeysForMetricsResponse getQueryableKeysForMetrics = get_queryable_keys_for_metrics(queryable_keys_for_metrics_request=queryable_keys_for_metrics_request)
+
+[EXPERIMENTAL] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.
+
+Describes what a valuation would return for each of the supplied metrics, so that a caller can  prepare for the response, and render it, without having to ask for the valuation first. The  metrics are given exactly as they would be supplied to the metrics of a valuation request.                Each metric is reported on individually, keyed by its normalised address key: those that resolve  appear under metrics with their queryable key definition, and the rest appear under failed with the  reason. A metric that does not exist, or that you are not entitled to read, is reported as failed;  the two cases are not distinguished from one another.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AggregationApi)
+queryable_keys_for_metrics_request = QueryableKeysForMetricsRequest()
+api_response = api_instance.get_queryable_keys_for_metrics(queryable_keys_for_metrics_request=queryable_keys_for_metrics_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **queryable_keys_for_metrics_request** | [**QueryableKeysForMetricsRequest**](../model/QueryableKeysForMetricsRequest.md)| The set of metrics whose queryable keys are to be described | [optional] 
+
+### Return type
+
+[**QueryableKeysForMetricsResponse**](../model/QueryableKeysForMetricsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details

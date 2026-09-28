@@ -572,7 +572,7 @@ The response returns both the collection of successfully updated placements, as 
 
 ```python
 api_instance = api_client_factory.build(OrderManagementApi)
-request_body = {"full_request":{"id":{"scope":"MyScope","code":"PLAC00000123"},"quantity":100.0,"properties":{"Placement/MyScope/SomePlacementProperty":{"key":"Placement/MyScope/SomePlacementProperty","value":{"labelValue":"XYZ000034567"}}},"type":"Limit","limitPrice":100.0,"stopPrice":100.0,"counterparty":"SomeCounterparty","entryType":"Manual"}} # Dict[str, PlacementUpdateRequest]
+request_body = {"full_request":{"id":{"scope":"MyScope","code":"PLAC00000123"},"quantity":100.0,"properties":{"Placement/MyScope/SomePlacementProperty":{"key":"Placement/MyScope/SomePlacementProperty","value":{"labelValue":"XYZ000034567"}}},"type":"Limit","limitPrice":100.0,"counterparty":"SomeCounterparty","entryType":"Manual","currency":"USD"}} # Dict[str, PlacementUpdateRequest]
 api_response = api_instance.update_placements(request_body)
 pprint(api_response)
 ```

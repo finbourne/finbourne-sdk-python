@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_reference_portfolio**](ReferencePortfolioApi.md#create_reference_portfolio) | **POST** /api/api/referenceportfolios/{scope} | CreateReferencePortfolio: Create reference portfolio
+[**delete_reference_portfolio_constituent_adjustment**](ReferencePortfolioApi.md#delete_reference_portfolio_constituent_adjustment) | **DELETE** /api/api/referenceportfolios/{scope}/{code}/constituentsadjustment | DeleteReferencePortfolioConstituentAdjustment: Delete constituents adjustment
 [**get_reference_portfolio_constituents**](ReferencePortfolioApi.md#get_reference_portfolio_constituents) | **GET** /api/api/referenceportfolios/{scope}/{code}/constituents | GetReferencePortfolioConstituents: Get reference portfolio constituents
 [**list_constituents_adjustments**](ReferencePortfolioApi.md#list_constituents_adjustments) | **GET** /api/api/referenceportfolios/{scope}/{code}/constituentsadjustments | ListConstituentsAdjustments: List constituents adjustments
 [**upsert_reference_portfolio_constituent_properties**](ReferencePortfolioApi.md#upsert_reference_portfolio_constituent_properties) | **POST** /api/api/referenceportfolios/{scope}/{code}/constituents/properties | [EARLY ACCESS] UpsertReferencePortfolioConstituentProperties: Upsert constituent properties
@@ -73,6 +74,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | The created reference portfolio, with populated id |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_reference_portfolio_constituent_adjustment**
+> DeletedEntityResponse deleteReferencePortfolioConstituentAdjustment = delete_reference_portfolio_constituent_adjustment(scope, code, effective_at)
+
+DeleteReferencePortfolioConstituentAdjustment: Delete constituents adjustment
+
+Delete the constituents adjustment made to a reference portfolio at the specified effective  datetime. After deletion the constituents in effect revert to the previous effective-dated  adjustment, or to none if there is no earlier adjustment.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ReferencePortfolioApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str
+api_response = api_instance.delete_reference_portfolio_constituent_adjustment(scope, code, effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the reference portfolio. | [required] 
+ **code** | **str**| The code of the reference portfolio. Together with the scope this uniquely              identifies the reference portfolio. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which the constituents adjustment was made. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The datetime that the constituents adjustment was deleted |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

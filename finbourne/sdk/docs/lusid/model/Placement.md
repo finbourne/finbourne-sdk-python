@@ -26,6 +26,7 @@ A street order for a quantity of a single instrument placed with a single market
 | **entry_type** | **str** | Optional | Optionally specifies the entry type of this placement. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **direction** | **int** | Optional | The direction of the placement&#39;s side, inherited at creation from its block&#39;s orders: 1 the side increases the position (longer), -1 it decreases it (shorter), 0 the block&#39;s orders net flat, null when no direction could be resolved. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -58,6 +59,7 @@ instance = Placement(
     entry_type="...",  # optional — Optionally specifies the entry type of this placement.
     version=Version(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
+    direction=0,  # optional — The direction of the placement&#39;s side, inherited at creation from its block&#39;s orders: 1 the side increases the position (longer), -1 it decreases it (shorter), 0 the block&#39;s orders net flat, null when no direction could be resolved.
     links=[]  # optional
 )
 ```

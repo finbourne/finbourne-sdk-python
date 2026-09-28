@@ -7,6 +7,8 @@ from finbourne.sdk.services.lusid.api.address_key_definition_api import AddressK
 from finbourne.sdk.services.lusid.api.address_key_alias_api import AddressKeyAliasApi
 from finbourne.sdk.services.lusid.api.aggregated_returns_api import AggregatedReturnsApi
 from finbourne.sdk.services.lusid.api.aggregation_api import AggregationApi
+from finbourne.sdk.services.lusid.api.allocation_events_api import AllocationEventsApi
+from finbourne.sdk.services.lusid.api.allocation_maps_api import AllocationMapsApi
 from finbourne.sdk.services.lusid.api.allocations_api import AllocationsApi
 from finbourne.sdk.services.lusid.api.amortisation_rule_sets_api import AmortisationRuleSetsApi
 from finbourne.sdk.services.lusid.api.application_metadata_api import ApplicationMetadataApi
@@ -29,6 +31,7 @@ from finbourne.sdk.services.lusid.api.cut_label_definitions_api import CutLabelD
 from finbourne.sdk.services.lusid.api.data_types_api import DataTypesApi
 from finbourne.sdk.services.lusid.api.derived_transaction_portfolios_api import DerivedTransactionPortfoliosApi
 from finbourne.sdk.services.lusid.api.entities_api import EntitiesApi
+from finbourne.sdk.services.lusid.api.entity_resolvers_api import EntityResolversApi
 from finbourne.sdk.services.lusid.api.executions_api import ExecutionsApi
 from finbourne.sdk.services.lusid.api.fee_types_api import FeeTypesApi
 from finbourne.sdk.services.lusid.api.fund_configuration_api import FundConfigurationApi
@@ -91,6 +94,7 @@ from finbourne.sdk.services.lusid.api.transaction_portfolios_api import Transact
 from finbourne.sdk.services.lusid.api.transfer_agency_api import TransferAgencyApi
 from finbourne.sdk.services.lusid.api.transfers_api import TransfersApi
 from finbourne.sdk.services.lusid.api.translation_api import TranslationApi
+from finbourne.sdk.services.lusid.api.withholding_tax_api import WithholdingTaxApi
 from finbourne.sdk.services.lusid.api.workspace_api import WorkspaceApi
 
 
@@ -101,6 +105,8 @@ __all__ = [
     "AddressKeyAliasApi",
     "AggregatedReturnsApi",
     "AggregationApi",
+    "AllocationEventsApi",
+    "AllocationMapsApi",
     "AllocationsApi",
     "AmortisationRuleSetsApi",
     "ApplicationMetadataApi",
@@ -123,6 +129,7 @@ __all__ = [
     "DataTypesApi",
     "DerivedTransactionPortfoliosApi",
     "EntitiesApi",
+    "EntityResolversApi",
     "ExecutionsApi",
     "FeeTypesApi",
     "FundConfigurationApi",
@@ -185,5 +192,6 @@ __all__ = [
     "TransferAgencyApi",
     "TransfersApi",
     "TranslationApi",
+    "WithholdingTaxApi",
     "WorkspaceApi"
 ]

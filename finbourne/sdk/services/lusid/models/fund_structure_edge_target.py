@@ -25,10 +25,10 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class FundStructureEdgeTarget(BaseModel):
     """
-    The target of a Fund Structure edge, identifying the master node and share class the feeder invests into.  # noqa: E501
+    The member a link points at, and for a dedicated share class link the share class on that member.  # noqa: E501
     """
-    node:  StrictStr = Field(...,alias="node", description="The node code of the master node that is the target of this relationship.") 
-    share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="The short code of the share class on the master fund that the feeder invests into.") 
+    node:  StrictStr = Field(...,alias="node", description="The node code of the member the link points at.") 
+    share_class_short_code:  Optional[StrictStr] = Field(default=None,alias="shareClassShortCode", description="The short code of the share class on the target member that the source invests into. Required for a DedicatedShareClass link and not allowed on any other.") 
     __properties: ClassVar[List[str]] = ["node", "shareClassShortCode"]
 
     model_config = ConfigDict(
@@ -65,6 +65,11 @@ class FundStructureEdgeTarget(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if share_class_short_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.share_class_short_code is None and "share_class_short_code" in self.model_fields_set:
+            _dict['shareClassShortCode'] = None
+
         return _dict
 
     @classmethod

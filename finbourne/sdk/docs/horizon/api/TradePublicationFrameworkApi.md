@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_instance_run_history**
-> PagedResourceListOfInstanceRunResponse listInstanceRunHistory = list_instance_run_history(instance_id, page=page, page_size=page_size)
+> PagedResourceListOfInstanceRunResponse listInstanceRunHistory = list_instance_run_history(instance_id, page=page, page_size=page_size, filter=filter)
 
 [EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.
 
@@ -243,7 +243,8 @@ api_instance = api_client_factory.build(TradePublicationFrameworkApi)
 instance_id = 'instance_id_example' # str
 page = '' # str (optional)
 page_size = 100 # int (optional)
-api_response = api_instance.list_instance_run_history(instance_id, page=page, page_size=page_size)
+filter = 'filter_example' # str (optional)
+api_response = api_instance.list_instance_run_history(instance_id, page=page, page_size=page_size, filter=filter)
 pprint(api_response)
 ```
 
@@ -254,6 +255,7 @@ Name | Type | Description  | Notes
  **instance_id** | **str**|  | [required] 
  **page** | **str**|  | [optional] [default to &#39;&#39;]
  **page_size** | **int**|  | [optional] [default to 100]
+ **filter** | **str**| A Finbourne filter over runId, referenceId, attempt, total, sentCount, skippedCount, failedCount and failedFiles e.g. failedCount gt 0. status, triggeredBy, duration, startTime and endTime are not filterable and will result in a 400 response. | [optional] 
 
 ### Return type
 

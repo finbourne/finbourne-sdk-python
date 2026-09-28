@@ -10,7 +10,7 @@ A list of portfolios.
 | **display_name** | **str** | Required | The name of the portfolio. |
 | **description** | **str** | Optional | The long form description of the portfolio. |
 | **created** | **datetime** | Required | The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date. |
-| **enablement_date** | **datetime** | Optional | The effective datetime from which transactions or holdings booked to the portfolio begin contributing to holdings, valuations and other computed results. Data with an earlier effective date is still accepted and stored, but does not affect any computed results until this date. Defaults to the portfolio&#39;s creation date when not explicitly set. |
+| **enablement_date** | **datetime** | Optional | The effective datetime from which instrument events and corporate actions are generated and applied to the portfolio. Transactions and holdings booked to the portfolio contribute to holdings, valuations and other computed results from its creation date whatever the enablement date. Defaults to the portfolio&#39;s creation date when not explicitly set. |
 | **parent_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
@@ -29,6 +29,8 @@ A list of portfolios.
 | **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
 | **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost. |
+| **fractional_units_true_up_configuration** | [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md) | Optional | *No description available.* |
+| **holdings_fungibility** | **str** | Optional | Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -45,7 +47,7 @@ instance = PortfolioWithoutHref(
     display_name="...",  # required — The name of the portfolio.
     description="...",  # optional — The long form description of the portfolio.
     created=datetime.now(),  # required — The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date.
-    enablement_date=datetime.now(),  # optional — The effective datetime from which transactions or holdings booked to the portfolio begin contributing to holdings, valuations and other computed results. Data with an earlier effective date is still accepted and stored, but does not affect any computed results until this date. Defaults to the portfolio&#39;s creation date when not explicitly set.
+    enablement_date=datetime.now(),  # optional — The effective datetime from which instrument events and corporate actions are generated and applied to the portfolio. Transactions and holdings booked to the portfolio contribute to holdings, valuations and other computed results from its creation date whatever the enablement date. Defaults to the portfolio&#39;s creation date when not explicitly set.
     parent_portfolio_id=ResourceId(...),  # optional
     version=Version(...),  # optional
     staged_modifications=StagedModificationsInfo(...),  # optional
@@ -64,6 +66,8 @@ instance = PortfolioWithoutHref(
     settlement_configuration=PortfolioSettlementConfiguration(...),  # optional
     transaction_exclusion_filter="...",  # optional — A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded.
     tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
+    fractional_units_true_up_configuration=FractionalUnitsTrueUpConfiguration(...),  # optional
+    holdings_fungibility="...",  # optional — Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. Defaults to Default if not specified, which currently means holdings fungibility is not applied. Supply Default to explicitly reset it; a reset or never-configured flag reads back as absent. Available values: Default, Enabled.
     links=[]  # optional
 )
 ```
@@ -80,6 +84,7 @@ instance = PortfolioWithoutHref(
 - [InstrumentEventConfiguration](InstrumentEventConfiguration.md)
 - [ResourceId](ResourceId.md)
 - [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md)
+- [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md)
 - [Link](Link.md)
 
 

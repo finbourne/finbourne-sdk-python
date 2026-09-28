@@ -33,25 +33,23 @@ class FlexibleLoan(LusidInstrument):
     start_date: datetime = Field(description="The start date of the instrument. This is normally synonymous with the trade-date.", alias="startDate")
     maturity_date: datetime = Field(description="The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it.", alias="maturityDate")
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency of the instrument.") 
+    parent_facility:  Optional[StrictStr] = Field(default=None,alias="parentFacility", description="The parent loan facility of this loan if this loan is a contract on a facility.  This resolves to the facility's LusidInstrumentId, falling back to its ClientInternal identifier,  and is null when the loan is not a contract on a facility.") 
     parent_facility_details: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The details of the parent loan facility of this loan if this loan is a contract on a facility.", alias="parentFacilityDetails")
     schedules: List[Schedule] = Field(description="Repayment schedules for the loan.")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "domCcy", "parentFacilityDetails", "schedules", "timeZoneConventions"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "domCcy", "parentFacility", "parentFacilityDetails", "schedules", "timeZoneConventions"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
         """Validates the enum"""
 
         # Finbourne removed enum validation on all models except the
-        # oneOf-discriminator case: each oneOf variant declares a `type`
-        # field whose enum has exactly one allowable value, which pydantic
-        # uses to route the union. We detect that shape here (property
-        # named `type`, single allowable value) — no manual class list.
-
-        if "instrument_type" != "type":
-            return value
+        # oneOf-discriminator case: each oneOf variant declares a
+        # discriminator field whose enum has exactly one allowable value,
+        # which pydantic uses to route the union. We detect that shape by
+        # allowable-value count alone (single value → treat as discriminator).
 
         _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest']
         if len(_allowed) != 1:
@@ -92,6 +90,7 @@ class FlexibleLoan(LusidInstrument):
         _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
+                            "parent_facility",
                             "parent_facility_details",
                             "additional_properties"
                           },
@@ -110,6 +109,11 @@ class FlexibleLoan(LusidInstrument):
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if parent_facility (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_facility is None and "parent_facility" in self.model_fields_set:
+            _dict['parentFacility'] = None
 
         # set to None if parent_facility_details (nullable) is None
         # and model_fields_set contains the field
@@ -132,6 +136,7 @@ class FlexibleLoan(LusidInstrument):
             "start_date": obj.get("startDate"),
             "maturity_date": obj.get("maturityDate"),
             "dom_ccy": obj.get("domCcy"),
+            "parent_facility": obj.get("parentFacility"),
             "parent_facility_details": obj.get("parentFacilityDetails"),
             "schedules": [Schedule.from_dict(_item) for _item in _v] if (_v := obj.get("schedules")) is not None else None,
             "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None

@@ -27,22 +27,25 @@ from finbourne.sdk.services.lusid.models.bucket_set_share_class_details import B
 
 class BucketSetNode(BaseModel):
     """
-    One node within a bucket set result: the fund aggregate or a single share class. Both carry NAV and buckets; the  capital ratio, the unit counts and the per-unit values are set only on share class nodes.  # noqa: E501
+    One node within a bucket set result: the fund aggregate or a single share class. Both carry NAV and buckets; the  capital ratio, the unit counts and the per-unit values belong to share class nodes and are omitted on the fund node.  # noqa: E501
     """
     node_type:  StrictStr = Field(...,alias="nodeType", description="The kind of node: the fund aggregate or a single share class. Available values: Fund, Class.") 
-    share_class_short_code:  Optional[StrictStr] = Field(default=None,alias="shareClassShortCode", description="The short code of the share class this node is for, or null for the fund node.") 
-    nav: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net asset value at this node, in the fund currency, or null where it does not apply to the node type.")
-    capital_ratio: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's capital ratio (its share of the fund NAV), set only on share class nodes.", alias="capitalRatio")
+    share_class_short_code:  Optional[StrictStr] = Field(default=None,alias="shareClassShortCode", description="The short code of the share class this node is for. Omitted on the fund node.") 
+    nav: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net asset value at this node, in the fund currency.")
+    capital_ratio: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's capital ratio (its share of the fund NAV). Omitted on the fund node.", alias="capitalRatio")
     buckets: List[BucketSetResultBucket] = Field(description="The buckets on this node, each with its period movement and cumulative values.")
-    per_unit_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's NAV per unit in issue, in the fund currency, rounded to the share class's PricePrecision (left unrounded where the share class declares none). Reported only for a share class that is unitised and has units in issue to divide by. The dealing price - in the share class currency, with its instrument's rounding convention applied - is on the share class breakdown's unitisation data.", alias="perUnitValue")
-    shares_in_issue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's units in issue at the end of the period. Reported only for a share class that is unitised.", alias="sharesInIssue")
-    previous_per_unit_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's NAV per unit at the previous valuation point, on the same basis as PerUnitValue.", alias="previousPerUnitValue")
-    previous_shares_in_issue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's units in issue at the start of the period. Reported only for a share class that is unitised.", alias="previousSharesInIssue")
+    per_unit_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's NAV per unit in issue, in the fund currency, rounded to the share class's PricePrecision (left unrounded where the share class declares none). Omitted on the fund node, for a share class that is not unitised, and for a unitised share class with no units in issue to divide by (SharesInIssue is then reported as zero). The dealing price - in the share class currency, with its instrument's rounding convention applied - is on the share class breakdown's unitisation data.", alias="perUnitValue")
+    shares_in_issue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's units in issue at the end of the period. Omitted on the fund node and for a share class that is not unitised.", alias="sharesInIssue")
+    previous_per_unit_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's NAV per unit at the previous valuation point, on the same basis as PerUnitValue. Omitted on the fund node, for a share class that is not unitised, and where the share class had no units in issue at the previous valuation point (including the fund's first valuation point).", alias="previousPerUnitValue")
+    previous_shares_in_issue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class's units in issue at the start of the period. Omitted on the fund node and for a share class that is not unitised; zero at the fund's first valuation point.", alias="previousSharesInIssue")
     label:  Optional[StrictStr] = Field(default=None,alias="label", description="A display label for the node: the fund's display name on the fund node, the share class's name on a share class node.") 
     previous_nav: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net asset value this node carried at the previous valuation point, in the fund currency. Zero at the fund's first valuation point.", alias="previousNav")
-    net_dealing_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net units dealt for the share class over the period, so that the shares in issue are the previous shares in issue plus this. Set only on share class nodes, and only where the bucket set is unitised.", alias="netDealingUnits")
+    net_dealing_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net units dealt for the share class over the period, so that the shares in issue are the previous shares in issue plus this. Omitted on the fund node and where the bucket set is not unitised.", alias="netDealingUnits")
     share_class_details: Optional[BucketSetShareClassDetails] = Field(default=None, alias="shareClassDetails")
-    __properties: ClassVar[List[str]] = ["nodeType", "shareClassShortCode", "nav", "capitalRatio", "buckets", "perUnitValue", "sharesInIssue", "previousPerUnitValue", "previousSharesInIssue", "label", "previousNav", "netDealingUnits", "shareClassDetails"]
+    nav_share_class_currency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The node's net asset value restated in the share class' own currency, at the rate this node publishes. Set only on share class nodes.", alias="navShareClassCurrency")
+    share_class_to_fund_fx_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The fx rate from the share class currency to the fund currency at this valuation point. Nav and the bucket values are in the fund currency, so divide by this rate to restate them in the share class currency. Set only on share class nodes.", alias="shareClassToFundFxRate")
+    previous_nav_share_class_currency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net asset value in the share class' currency at the previous valuation point, as that point published it, at the rate that point struck. Zero at the fund's first valuation point. Absent (rather than zero) if the previous valuation point predates this field.", alias="previousNavShareClassCurrency")
+    __properties: ClassVar[List[str]] = ["nodeType", "shareClassShortCode", "nav", "capitalRatio", "buckets", "perUnitValue", "sharesInIssue", "previousPerUnitValue", "previousSharesInIssue", "label", "previousNav", "netDealingUnits", "shareClassDetails", "navShareClassCurrency", "shareClassToFundFxRate", "previousNavShareClassCurrency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -138,6 +141,21 @@ class BucketSetNode(BaseModel):
         if self.net_dealing_units is None and "net_dealing_units" in self.model_fields_set:
             _dict['netDealingUnits'] = None
 
+        # set to None if nav_share_class_currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.nav_share_class_currency is None and "nav_share_class_currency" in self.model_fields_set:
+            _dict['navShareClassCurrency'] = None
+
+        # set to None if share_class_to_fund_fx_rate (nullable) is None
+        # and model_fields_set contains the field
+        if self.share_class_to_fund_fx_rate is None and "share_class_to_fund_fx_rate" in self.model_fields_set:
+            _dict['shareClassToFundFxRate'] = None
+
+        # set to None if previous_nav_share_class_currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.previous_nav_share_class_currency is None and "previous_nav_share_class_currency" in self.model_fields_set:
+            _dict['previousNavShareClassCurrency'] = None
+
         return _dict
 
     @classmethod
@@ -162,7 +180,10 @@ class BucketSetNode(BaseModel):
             "label": obj.get("label"),
             "previous_nav": obj.get("previousNav"),
             "net_dealing_units": obj.get("netDealingUnits"),
-            "share_class_details": BucketSetShareClassDetails.from_dict(_v) if (_v := obj.get("shareClassDetails")) is not None else None
+            "share_class_details": BucketSetShareClassDetails.from_dict(_v) if (_v := obj.get("shareClassDetails")) is not None else None,
+            "nav_share_class_currency": obj.get("navShareClassCurrency"),
+            "share_class_to_fund_fx_rate": obj.get("shareClassToFundFxRate"),
+            "previous_nav_share_class_currency": obj.get("previousNavShareClassCurrency")
         })
         return _obj
 

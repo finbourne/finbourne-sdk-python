@@ -288,7 +288,7 @@ class AuthenticationApi:
 
     @validate_call
     def get_session_policy(self, **kwargs) -> SessionPolicyResponse:
-        """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+        """GetSessionPolicy: Get session policy  # noqa: E501
 
         Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -306,7 +306,7 @@ class AuthenticationApi:
 
     @validate_call
     def get_session_policy_with_http_info(self, **kwargs) -> ApiResponse[SessionPolicyResponse]:
-        """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+        """GetSessionPolicy: Get session policy  # noqa: E501
 
         Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         :param _preload_content: if False, the ApiResponse.data will
@@ -1017,7 +1017,7 @@ class AuthenticationApi:
 
     @validate_call
     def update_session_policy(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> SessionPolicyResponse:
-        """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+        """UpdateSessionPolicy: Update session policy  # noqa: E501
 
         Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         :param update_session_policy_request: The desired session timing settings (required)
@@ -1037,7 +1037,7 @@ class AuthenticationApi:
 
     @validate_call
     def update_session_policy_with_http_info(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> ApiResponse[SessionPolicyResponse]:
-        """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+        """UpdateSessionPolicy: Update session policy  # noqa: E501
 
         Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         :param update_session_policy_request: The desired session timing settings (required)
@@ -1381,7 +1381,7 @@ class AuthenticationApi:
 
     @validate_call
     async def get_session_policy_async(self, **kwargs) -> SessionPolicyResponse:
-            """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+            """GetSessionPolicy: Get session policy  # noqa: E501
             Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
             
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -1399,7 +1399,7 @@ class AuthenticationApi:
 
     @validate_call
     async def get_session_policy_with_http_info_async(self, **kwargs) -> ApiResponse[SessionPolicyResponse]:
-            """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+            """GetSessionPolicy: Get session policy  # noqa: E501
 
             Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
 
@@ -2116,7 +2116,7 @@ class AuthenticationApi:
 
     @validate_call
     async def update_session_policy_async(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> SessionPolicyResponse:
-            """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+            """UpdateSessionPolicy: Update session policy  # noqa: E501
             Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
             
             :param update_session_policy_request: The desired session timing settings (required)
@@ -2136,7 +2136,7 @@ class AuthenticationApi:
 
     @validate_call
     async def update_session_policy_with_http_info_async(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> ApiResponse[SessionPolicyResponse]:
-            """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+            """UpdateSessionPolicy: Update session policy  # noqa: E501
 
             Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
 

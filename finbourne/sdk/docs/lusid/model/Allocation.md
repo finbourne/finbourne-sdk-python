@@ -27,6 +27,7 @@ An Allocation of a certain quantity of a specific instrument against an originat
 | **execution_ids** | [List[ResourceId]](ResourceId.md) | Optional | The executions associated with this allocation |
 | **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **direction** | **int** | Optional | The direction of the allocation&#39;s side, derived from its transaction type at write time: 1 the side increases the position (longer), -1 it decreases it (shorter), null when no direction could be resolved. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -60,6 +61,7 @@ instance = Allocation(
     execution_ids=[],  # optional — The executions associated with this allocation
     custodian_account_id=ResourceId(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
+    direction=0,  # optional — The direction of the allocation&#39;s side, derived from its transaction type at write time: 1 the side increases the position (longer), -1 it decreases it (shorter), null when no direction could be resolved.
     links=[]  # optional
 )
 ```

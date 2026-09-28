@@ -1442,7 +1442,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_valuation_point_transactions**
-> ValuationPointResourceListOfAccountedTransaction getValuationPointTransactions = get_valuation_point_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, data_model_scope=data_model_scope, data_model_code=data_model_code, show_cancelled_transactions=show_cancelled_transactions, membership_type=membership_type)
+> ValuationPointResourceListOfAccountedTransaction getValuationPointTransactions = get_valuation_point_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, data_model_scope=data_model_scope, data_model_code=data_model_code, show_cancelled_transactions=show_cancelled_transactions, membership_type=membership_type, return_excluded_transactions=return_excluded_transactions)
 
 [EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.
 
@@ -1465,7 +1465,8 @@ data_model_scope = 'data_model_scope_example' # str (optional)
 data_model_code = 'data_model_code_example' # str (optional)
 show_cancelled_transactions = True # bool (optional)
 membership_type = 'membership_type_example' # str (optional)
-api_response = api_instance.get_valuation_point_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, data_model_scope=data_model_scope, data_model_code=data_model_code, show_cancelled_transactions=show_cancelled_transactions, membership_type=membership_type)
+return_excluded_transactions = True # bool (optional)
+api_response = api_instance.get_valuation_point_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, data_model_scope=data_model_scope, data_model_code=data_model_code, show_cancelled_transactions=show_cancelled_transactions, membership_type=membership_type, return_excluded_transactions=return_excluded_transactions)
 pprint(api_response)
 ```
 
@@ -1486,6 +1487,7 @@ Name | Type | Description  | Notes
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
  **show_cancelled_transactions** | **bool**| Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified. | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
+ **return_excluded_transactions** | **bool**| Option to specify whether or not to include transactions excluded by the              NavType&#39;s TransactionExclusionFilter. Defaults to False if not specified. | [optional] 
 
 ### Return type
 
@@ -1570,11 +1572,11 @@ Name | Type | Description  | Notes
 ---
 
 # **get_valuation_point_unsettled_transactions**
-> ValuationPointResourceListOfUnsettledTransaction getValuationPointUnsettledTransactions = get_valuation_point_unsettled_transactions(scope, code, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, var_date=var_date, diary_entry=diary_entry, variant=variant, single_valuation_point_query_parameters=single_valuation_point_query_parameters)
+> ValuationPointResourceListOfUnsettledTransaction getValuationPointUnsettledTransactions = get_valuation_point_unsettled_transactions(scope, code, single_valuation_point_query_parameters, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
 
 [EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
 
-Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  The Valuation Point must be identified either by the date or diaryEntry query parameters or by the  'dateOrDiaryEntry' parameter in the request body; when both are supplied the query parameters are used.
+Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.
 
 ### Example
 
@@ -1582,16 +1584,13 @@ Gets all transactions that remain unsettled as at the specified Valuation Point 
 api_instance = api_client_factory.build(FundsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
+single_valuation_point_query_parameters = SingleValuationPointQueryParameters()
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 limit = 56 # int (optional)
 page = 'page_example' # str (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
 nav_type_code = 'nav_type_code_example' # str (optional)
-var_date = 'var_date_example' # str (optional)
-diary_entry = 'diary_entry_example' # str (optional)
-variant = 'variant_example' # str (optional)
-single_valuation_point_query_parameters = SingleValuationPointQueryParameters()
-api_response = api_instance.get_valuation_point_unsettled_transactions(scope, code, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, var_date=var_date, diary_entry=diary_entry, variant=variant, single_valuation_point_query_parameters=single_valuation_point_query_parameters)
+api_response = api_instance.get_valuation_point_unsettled_transactions(scope, code, single_valuation_point_query_parameters, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
 pprint(api_response)
 ```
 
@@ -1601,15 +1600,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Fund. | [required] 
  **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **single_valuation_point_query_parameters** | [**SingleValuationPointQueryParameters**](../model/SingleValuationPointQueryParameters.md)| The arguments to use for querying the unsettled transactions. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the report. Defaults to latest. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing from a previous call. | [optional] 
  **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39;, &#39;Transaction&#39;, &#39;Portfolio&#39;, or &#39;Account&#39;              domain to decorate onto the transactions. | [optional] 
  **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
- **var_date** | **str**| The optional date of the Valuation Point to report against, as an alternative to supplying              it in the request body. Must not be supplied together with diaryEntry. | [optional] 
- **diary_entry** | **str**| The optional diary entry code of the Valuation Point to report against, as an              alternative to supplying it in the request body. Must not be supplied together with date. | [optional] 
- **variant** | **str**| The optional variant code of the Valuation Point to report against, as an alternative to              supplying it in the request body. Only required when it is necessary to choose between scenarios with multiple              estimates. | [optional] 
- **single_valuation_point_query_parameters** | [**SingleValuationPointQueryParameters**](../model/SingleValuationPointQueryParameters.md)| The optional arguments to use for querying the unsettled transactions. Can be              omitted when the Valuation Point is identified by the date or diaryEntry query parameters. | [optional] 
 
 ### Return type
 

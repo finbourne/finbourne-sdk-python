@@ -19,7 +19,7 @@ from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.fail import Fail
 from finbourne.sdk.services.workflow.models.group_reconciliation import GroupReconciliation
 from finbourne.sdk.services.workflow.models.health_check import HealthCheck
@@ -27,11 +27,12 @@ from finbourne.sdk.services.workflow.models.horizon_integration import HorizonIn
 from finbourne.sdk.services.workflow.models.luminesce_view import LuminesceView
 from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check import LusidEntityDataQualityCheck
 from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check import PortfolioHoldingDataQualityCheck
+from finbourne.sdk.services.workflow.models.portfolio_transaction_data_quality_check import PortfolioTransactionDataQualityCheck
 from finbourne.sdk.services.workflow.models.scheduler_job import SchedulerJob
 from finbourne.sdk.services.workflow.models.sleep import Sleep
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
-WORKERCONFIGURATION_ONE_OF_SCHEMAS = ["Fail", "GroupReconciliation", "HealthCheck", "HorizonIntegration", "LuminesceView", "LusidEntityDataQualityCheck", "PortfolioHoldingDataQualityCheck", "SchedulerJob", "Sleep"]
+WORKERCONFIGURATION_ONE_OF_SCHEMAS = ["Fail", "GroupReconciliation", "HealthCheck", "HorizonIntegration", "LuminesceView", "LusidEntityDataQualityCheck", "PortfolioHoldingDataQualityCheck", "PortfolioTransactionDataQualityCheck", "SchedulerJob", "Sleep"]
 
 class WorkerConfiguration(BaseModel):
     """
@@ -51,12 +52,14 @@ class WorkerConfiguration(BaseModel):
     oneof_schema_6_validator: Optional[LusidEntityDataQualityCheck] = None
     # data type: PortfolioHoldingDataQualityCheck
     oneof_schema_7_validator: Optional[PortfolioHoldingDataQualityCheck] = None
+    # data type: PortfolioTransactionDataQualityCheck
+    oneof_schema_8_validator: Optional[PortfolioTransactionDataQualityCheck] = None
     # data type: SchedulerJob
-    oneof_schema_8_validator: Optional[SchedulerJob] = None
+    oneof_schema_9_validator: Optional[SchedulerJob] = None
     # data type: Sleep
-    oneof_schema_9_validator: Optional[Sleep] = None
+    oneof_schema_10_validator: Optional[Sleep] = None
     if TYPE_CHECKING:
-        actual_instance: Union[Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep]
+        actual_instance: Union[Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, PortfolioTransactionDataQualityCheck, SchedulerJob, Sleep]
     else:
         actual_instance: Any
     one_of_schemas: ClassVar[List[str]] = WORKERCONFIGURATION_ONE_OF_SCHEMAS
@@ -74,6 +77,16 @@ class WorkerConfiguration(BaseModel):
             super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
@@ -123,6 +136,12 @@ class WorkerConfiguration(BaseModel):
         else:
             match += 1
             matchclass = matchclass + " PortfolioHoldingDataQualityCheck"
+        # validate data type: PortfolioTransactionDataQualityCheck
+        if not isinstance(v, PortfolioTransactionDataQualityCheck):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PortfolioTransactionDataQualityCheck`")
+        else:
+            match += 1
+            matchclass = matchclass + " PortfolioTransactionDataQualityCheck"
         # validate data type: SchedulerJob
         if not isinstance(v, SchedulerJob):
             error_messages.append(f"Error! Input type `{type(v)}` is not `SchedulerJob`")
@@ -137,10 +156,10 @@ class WorkerConfiguration(BaseModel):
             matchclass = matchclass + " Sleep"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, PortfolioTransactionDataQualityCheck, SchedulerJob, Sleep. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, PortfolioTransactionDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -159,6 +178,17 @@ class WorkerConfiguration(BaseModel):
 
         # deserialize data into Fail
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(Fail, "_Fail__properties", None) or getattr(Fail, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for Fail: {_extra}")
             instance.actual_instance = Fail.from_json(json_str)
             match += 1
             matchclass =matchclass + " Fail"
@@ -166,6 +196,17 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into GroupReconciliation
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(GroupReconciliation, "_GroupReconciliation__properties", None) or getattr(GroupReconciliation, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for GroupReconciliation: {_extra}")
             instance.actual_instance = GroupReconciliation.from_json(json_str)
             match += 1
             matchclass =matchclass + " GroupReconciliation"
@@ -173,6 +214,17 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into HealthCheck
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(HealthCheck, "_HealthCheck__properties", None) or getattr(HealthCheck, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for HealthCheck: {_extra}")
             instance.actual_instance = HealthCheck.from_json(json_str)
             match += 1
             matchclass =matchclass + " HealthCheck"
@@ -180,6 +232,17 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into HorizonIntegration
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(HorizonIntegration, "_HorizonIntegration__properties", None) or getattr(HorizonIntegration, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for HorizonIntegration: {_extra}")
             instance.actual_instance = HorizonIntegration.from_json(json_str)
             match += 1
             matchclass =matchclass + " HorizonIntegration"
@@ -187,6 +250,17 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into LuminesceView
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(LuminesceView, "_LuminesceView__properties", None) or getattr(LuminesceView, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for LuminesceView: {_extra}")
             instance.actual_instance = LuminesceView.from_json(json_str)
             match += 1
             matchclass =matchclass + " LuminesceView"
@@ -194,6 +268,17 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into LusidEntityDataQualityCheck
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(LusidEntityDataQualityCheck, "_LusidEntityDataQualityCheck__properties", None) or getattr(LusidEntityDataQualityCheck, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for LusidEntityDataQualityCheck: {_extra}")
             instance.actual_instance = LusidEntityDataQualityCheck.from_json(json_str)
             match += 1
             matchclass =matchclass + " LusidEntityDataQualityCheck"
@@ -201,13 +286,53 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into PortfolioHoldingDataQualityCheck
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(PortfolioHoldingDataQualityCheck, "_PortfolioHoldingDataQualityCheck__properties", None) or getattr(PortfolioHoldingDataQualityCheck, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for PortfolioHoldingDataQualityCheck: {_extra}")
             instance.actual_instance = PortfolioHoldingDataQualityCheck.from_json(json_str)
             match += 1
             matchclass =matchclass + " PortfolioHoldingDataQualityCheck"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into PortfolioTransactionDataQualityCheck
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(PortfolioTransactionDataQualityCheck, "_PortfolioTransactionDataQualityCheck__properties", None) or getattr(PortfolioTransactionDataQualityCheck, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for PortfolioTransactionDataQualityCheck: {_extra}")
+            instance.actual_instance = PortfolioTransactionDataQualityCheck.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " PortfolioTransactionDataQualityCheck"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into SchedulerJob
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(SchedulerJob, "_SchedulerJob__properties", None) or getattr(SchedulerJob, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for SchedulerJob: {_extra}")
             instance.actual_instance = SchedulerJob.from_json(json_str)
             match += 1
             matchclass =matchclass + " SchedulerJob"
@@ -215,6 +340,17 @@ class WorkerConfiguration(BaseModel):
             error_messages.append(str(e))
         # deserialize data into Sleep
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(Sleep, "_Sleep__properties", None) or getattr(Sleep, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for Sleep: {_extra}")
             instance.actual_instance = Sleep.from_json(json_str)
             match += 1
             matchclass =matchclass + " Sleep"
@@ -223,10 +359,10 @@ class WorkerConfiguration(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, PortfolioTransactionDataQualityCheck, SchedulerJob, Sleep. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, PortfolioTransactionDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
         else:
             return instance
 

@@ -31,8 +31,9 @@ class UpdateIdentifierDefinitionRequest(BaseModel):
     hierarchy_level:  Optional[StrictStr] = Field(default=None,alias="hierarchyLevel", description="Optional metadata associated with the identifier definition.") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="A display name for the identifier. E.g. Figi.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="An optional description for the identifier.") 
+    hierarchy_usage:  Optional[StrictStr] = Field(default=None,alias="hierarchyUsage", description="Optional. When supplied, relaxes the identifier definition from MasterIdentifier (unique) to ParentIdentifier (non-unique).  Tightening from ParentIdentifier back to MasterIdentifier is refused.  Omit to leave the HierarchyUsage unchanged. Available values: MasterIdentifier, ParentIdentifier.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the identifier definition.")
-    __properties: ClassVar[List[str]] = ["hierarchyLevel", "displayName", "description", "properties"]
+    __properties: ClassVar[List[str]] = ["hierarchyLevel", "displayName", "description", "hierarchyUsage", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +91,11 @@ class UpdateIdentifierDefinitionRequest(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if hierarchy_usage (nullable) is None
+        # and model_fields_set contains the field
+        if self.hierarchy_usage is None and "hierarchy_usage" in self.model_fields_set:
+            _dict['hierarchyUsage'] = None
+
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -110,6 +116,7 @@ class UpdateIdentifierDefinitionRequest(BaseModel):
             "hierarchy_level": obj.get("hierarchyLevel"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
+            "hierarchy_usage": obj.get("hierarchyUsage"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
                 for _k, _v in _val.items()

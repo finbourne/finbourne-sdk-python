@@ -19,7 +19,7 @@ from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.notifications.models.amazon_sqs_notification_type import AmazonSqsNotificationType
 from finbourne.sdk.services.notifications.models.amazon_sqs_principal_auth_notification_type import AmazonSqsPrincipalAuthNotificationType
 from finbourne.sdk.services.notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
@@ -65,6 +65,16 @@ class NotificationType(BaseModel):
             super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
@@ -132,6 +142,17 @@ class NotificationType(BaseModel):
 
         # deserialize data into AmazonSqsNotificationType
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(AmazonSqsNotificationType, "_AmazonSqsNotificationType__properties", None) or getattr(AmazonSqsNotificationType, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for AmazonSqsNotificationType: {_extra}")
             instance.actual_instance = AmazonSqsNotificationType.from_json(json_str)
             match += 1
             matchclass =matchclass + " AmazonSqsNotificationType"
@@ -139,6 +160,17 @@ class NotificationType(BaseModel):
             error_messages.append(str(e))
         # deserialize data into AmazonSqsPrincipalAuthNotificationType
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(AmazonSqsPrincipalAuthNotificationType, "_AmazonSqsPrincipalAuthNotificationType__properties", None) or getattr(AmazonSqsPrincipalAuthNotificationType, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for AmazonSqsPrincipalAuthNotificationType: {_extra}")
             instance.actual_instance = AmazonSqsPrincipalAuthNotificationType.from_json(json_str)
             match += 1
             matchclass =matchclass + " AmazonSqsPrincipalAuthNotificationType"
@@ -146,6 +178,17 @@ class NotificationType(BaseModel):
             error_messages.append(str(e))
         # deserialize data into AzureServiceBusNotificationType
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(AzureServiceBusNotificationType, "_AzureServiceBusNotificationType__properties", None) or getattr(AzureServiceBusNotificationType, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for AzureServiceBusNotificationType: {_extra}")
             instance.actual_instance = AzureServiceBusNotificationType.from_json(json_str)
             match += 1
             matchclass =matchclass + " AzureServiceBusNotificationType"
@@ -153,6 +196,17 @@ class NotificationType(BaseModel):
             error_messages.append(str(e))
         # deserialize data into EmailNotificationType
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(EmailNotificationType, "_EmailNotificationType__properties", None) or getattr(EmailNotificationType, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for EmailNotificationType: {_extra}")
             instance.actual_instance = EmailNotificationType.from_json(json_str)
             match += 1
             matchclass =matchclass + " EmailNotificationType"
@@ -160,6 +214,17 @@ class NotificationType(BaseModel):
             error_messages.append(str(e))
         # deserialize data into SmsNotificationType
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(SmsNotificationType, "_SmsNotificationType__properties", None) or getattr(SmsNotificationType, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for SmsNotificationType: {_extra}")
             instance.actual_instance = SmsNotificationType.from_json(json_str)
             match += 1
             matchclass =matchclass + " SmsNotificationType"
@@ -167,6 +232,17 @@ class NotificationType(BaseModel):
             error_messages.append(str(e))
         # deserialize data into WebhookNotificationType
         try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(WebhookNotificationType, "_WebhookNotificationType__properties", None) or getattr(WebhookNotificationType, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for WebhookNotificationType: {_extra}")
             instance.actual_instance = WebhookNotificationType.from_json(json_str)
             match += 1
             matchclass =matchclass + " WebhookNotificationType"

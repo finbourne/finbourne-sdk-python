@@ -51,6 +51,7 @@ class JournalEntryLine(BaseModel):
     source_id:  StrictStr = Field(...,alias="sourceId", description="For the Lusid Source Type this will be the txn Id. For the rest will be what the user populates.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Abor.")
     movement_name:  Optional[StrictStr] = Field(default=None,alias="movementName", description="If the JE Line is generated from a transaction, the name of the side in the transaction type's movement. If from a valuation, this is 'MarkToMarket'.") 
+    txn_type:  Optional[StrictStr] = Field(default=None,alias="txnType", description="If the JE Line is generated from a transaction, the type of that transaction. Null where the line is not linked to a transaction, such as a valuation line.") 
     holding_type:  StrictStr = Field(...,alias="holdingType", description="One of the LUSID holding types such as 'P' for position or 'B' for settled cash balance.") 
     economic_bucket:  StrictStr = Field(...,alias="economicBucket", description="LUSID automatically categorises a JE Line into a broad economic bucket such as 'NA_Cost' or 'PL_RealPriceGL'.") 
     economic_bucket_component:  Optional[StrictStr] = Field(default=None,alias="economicBucketComponent", description="Sub bucket of the economic bucket. Available values: Undefined, Premium, OID, MarketDiscount, AcquisitionPremium, CoreMarket, CrossGainLoss, TradedInterest, Income, Expense.") 
@@ -64,7 +65,7 @@ class JournalEntryLine(BaseModel):
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     custodian_account_type:  Optional[StrictStr] = Field(default=None,alias="custodianAccountType", description="Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["accountingDate", "activityDate", "portfolioId", "instrumentId", "instrumentScope", "subHoldingKeys", "taxLotId", "generalLedgerAccountCode", "local", "base", "units", "postingModuleCode", "postingRule", "asAtDate", "activitiesDescription", "sourceType", "sourceId", "properties", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "levels", "sourceLevels", "movementSign", "holdingSign", "ledgerColumn", "journalEntryLineType", "custodianAccountId", "custodianAccountType", "links"]
+    __properties: ClassVar[List[str]] = ["accountingDate", "activityDate", "portfolioId", "instrumentId", "instrumentScope", "subHoldingKeys", "taxLotId", "generalLedgerAccountCode", "local", "base", "units", "postingModuleCode", "postingRule", "asAtDate", "activitiesDescription", "sourceType", "sourceId", "properties", "movementName", "txnType", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "levels", "sourceLevels", "movementSign", "holdingSign", "ledgerColumn", "journalEntryLineType", "custodianAccountId", "custodianAccountType", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -163,6 +164,11 @@ class JournalEntryLine(BaseModel):
         if self.movement_name is None and "movement_name" in self.model_fields_set:
             _dict['movementName'] = None
 
+        # set to None if txn_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.txn_type is None and "txn_type" in self.model_fields_set:
+            _dict['txnType'] = None
+
         # set to None if economic_bucket_component (nullable) is None
         # and model_fields_set contains the field
         if self.economic_bucket_component is None and "economic_bucket_component" in self.model_fields_set:
@@ -254,6 +260,7 @@ class JournalEntryLine(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "movement_name": obj.get("movementName"),
+            "txn_type": obj.get("txnType"),
             "holding_type": obj.get("holdingType"),
             "economic_bucket": obj.get("economicBucket"),
             "economic_bucket_component": obj.get("economicBucketComponent"),

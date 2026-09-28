@@ -9,7 +9,7 @@ A currency group: a set of related currencies sharing a major unit (e.g. GBP wit
 | **display_name** | **str** | Optional | The name of the currency group. |
 | **description** | **str** | Optional | A description for the currency group. |
 | **major_unit_currency** | **str** | Optional | The three to five letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group. |
-| **circulation_domain** | **str** | Optional | The domain in which the group&#39;s currencies circulate, e.g. an ISO 3166 country code. |
+| **circulation_domain** | **List[str]** | Optional | The domains in which the group&#39;s currencies circulate, e.g. ISO 3166 country codes or the ISO 4217 entity names of the countries using the major unit. |
 | **minor_units** | [List[CurrencyGroupMinorUnit]](CurrencyGroupMinorUnit.md) | Optional | The minor unit currencies belonging to this currency group. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource. |
@@ -28,7 +28,7 @@ instance = CurrencyGroupResponse(
     display_name="...",  # optional — The name of the currency group.
     description="...",  # optional — A description for the currency group.
     major_unit_currency="...",  # optional — The three to five letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group.
-    circulation_domain="...",  # optional — The domain in which the group&#39;s currencies circulate, e.g. an ISO 3166 country code.
+    circulation_domain=,  # optional — The domains in which the group&#39;s currencies circulate, e.g. ISO 3166 country codes or the ISO 4217 entity names of the countries using the major unit.
     minor_units=[],  # optional — The minor unit currencies belonging to this currency group.
     version=Version(...),  # optional
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource.

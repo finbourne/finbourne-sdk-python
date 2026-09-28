@@ -24,6 +24,7 @@ A Journal Entry line entity specifically for fund valuation point lines.
 | **source_id** | **str** | Required | For the Lusid Source Type this will be the txn Id. For the rest will be what the user populates. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
 | **movement_name** | **str** | Optional | If the JE Line is generated from a transaction, the name of the side in the transaction type&#39;s movement. If from a valuation, this is &#39;MarkToMarket&#39;. |
+| **txn_type** | **str** | Optional | If the JE Line is generated from a transaction, the type of that transaction. Null where the line is not linked to a transaction, such as a valuation line. |
 | **holding_type** | **str** | Required | One of the LUSID holding types such as &#39;P&#39; for position or &#39;B&#39; for settled cash balance. |
 | **economic_bucket** | **str** | Required | LUSID automatically categorises a JE Line into a broad economic bucket such as &#39;NA_Cost&#39; or &#39;PL_RealPriceGL&#39;. |
 | **economic_bucket_component** | **str** | Optional | Sub bucket of the economic bucket. Available values: Undefined, Premium, OID, MarketDiscount, AcquisitionPremium, CoreMarket, CrossGainLoss, TradedInterest, Income, Expense. |
@@ -68,6 +69,7 @@ instance = FundJournalEntryLine(
     source_id="...",  # required — For the Lusid Source Type this will be the txn Id. For the rest will be what the user populates.
     properties=ModelProperty(...),  # optional — A set of properties for the Abor.
     movement_name="...",  # optional — If the JE Line is generated from a transaction, the name of the side in the transaction type&#39;s movement. If from a valuation, this is &#39;MarkToMarket&#39;.
+    txn_type="...",  # optional — If the JE Line is generated from a transaction, the type of that transaction. Null where the line is not linked to a transaction, such as a valuation line.
     holding_type="...",  # required — One of the LUSID holding types such as &#39;P&#39; for position or &#39;B&#39; for settled cash balance.
     economic_bucket="...",  # required — LUSID automatically categorises a JE Line into a broad economic bucket such as &#39;NA_Cost&#39; or &#39;PL_RealPriceGL&#39;.
     economic_bucket_component="...",  # optional — Sub bucket of the economic bucket. Available values: Undefined, Premium, OID, MarketDiscount, AcquisitionPremium, CoreMarket, CrossGainLoss, TradedInterest, Income, Expense.

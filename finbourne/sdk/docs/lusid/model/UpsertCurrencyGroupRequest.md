@@ -9,7 +9,7 @@ Request body for creating or updating a currency group.
 | **display_name** | **str** | Required | The name of the currency group. |
 | **description** | **str** | Optional | A description for the currency group. |
 | **major_unit_currency** | **str** | Required | The three to five letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group. |
-| **circulation_domain** | **str** | Optional | The domain in which the group&#39;s currencies circulate, e.g. an ISO 3166 country code. |
+| **circulation_domain** | **List[str]** | Optional | The domains in which the group&#39;s currencies circulate, e.g. ISO 3166 country codes or the ISO 4217 entity names of the countries using the major unit. |
 | **minor_units** | [List[CurrencyGroupMinorUnit]](CurrencyGroupMinorUnit.md) | Optional | The minor unit currencies belonging to this currency group. |
 
 
@@ -25,7 +25,7 @@ instance = UpsertCurrencyGroupRequest(
     display_name="...",  # required — The name of the currency group.
     description="...",  # optional — A description for the currency group.
     major_unit_currency="...",  # required — The three to five letter, case-sensitive currency code of the group&#39;s major unit, e.g. GBP for the sterling group.
-    circulation_domain="...",  # optional — The domain in which the group&#39;s currencies circulate, e.g. an ISO 3166 country code.
+    circulation_domain=,  # optional — The domains in which the group&#39;s currencies circulate, e.g. ISO 3166 country codes or the ISO 4217 entity names of the countries using the major unit.
     minor_units=[]  # optional — The minor unit currencies belonging to this currency group.
 )
 ```

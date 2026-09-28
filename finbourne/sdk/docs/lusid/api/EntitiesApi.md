@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_bookmark_by_entity_unique_id**](EntitiesApi.md#get_bookmark_by_entity_unique_id) | **GET** /api/api/entities/bookmarks/{entityUniqueId} | GetBookmarkByEntityUniqueId: Get bookmark by EntityUniqueId
 [**get_compliance_rule_by_entity_unique_id**](EntitiesApi.md#get_compliance_rule_by_entity_unique_id) | **GET** /api/api/entities/compliancerules/{entityUniqueId} | [EARLY ACCESS] GetComplianceRuleByEntityUniqueId: Get compliance rule by EntityUniqueId
+[**get_compliance_rule_template_by_entity_unique_id**](EntitiesApi.md#get_compliance_rule_template_by_entity_unique_id) | **GET** /api/api/entities/complianceruletemplates/{entityUniqueId} | [EARLY ACCESS] GetComplianceRuleTemplateByEntityUniqueId: Get compliance rule template by EntityUniqueId
 [**get_custom_entity_by_entity_unique_id**](EntitiesApi.md#get_custom_entity_by_entity_unique_id) | **GET** /api/api/entities/customentities/{entityUniqueId} | GetCustomEntityByEntityUniqueId: Get a Custom Entity instance by its EntityUniqueId
 [**get_data_type_by_entity_unique_id**](EntitiesApi.md#get_data_type_by_entity_unique_id) | **GET** /api/api/entities/datatypes/{entityUniqueId} | GetDataTypeByEntityUniqueId: Get DataType by EntityUniqueId
 [**get_entity_history**](EntitiesApi.md#get_entity_history) | **GET** /api/api/entities/{entityType}/{entityUniqueId}/history | GetEntityHistory: List an entity&#39;s history information
@@ -127,6 +128,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested compliance rule entity |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_compliance_rule_template_by_entity_unique_id**
+> ComplianceRuleTemplateEntity getComplianceRuleTemplateByEntityUniqueId = get_compliance_rule_template_by_entity_unique_id(entity_unique_id, as_at=as_at, previews=previews)
+
+[EARLY ACCESS] GetComplianceRuleTemplateByEntityUniqueId: Get compliance rule template by EntityUniqueId
+
+Retrieve the definition of a particular compliance rule template.    If the compliance rule template is deleted, this will return the state of the template immediately prior to  deletion.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(EntitiesApi)
+entity_unique_id = 'entity_unique_id_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+previews = ['previews_example'] # List[str] (optional)
+api_response = api_instance.get_compliance_rule_template_by_entity_unique_id(entity_unique_id, as_at=as_at, previews=previews)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_unique_id** | **str**| The universally unique identifier of the compliance rule template. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the compliance rule template. Defaults to returning the latest version of the compliance rule template if not specified. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+
+### Return type
+
+[**ComplianceRuleTemplateEntity**](../model/ComplianceRuleTemplateEntity.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested compliance rule template entity |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

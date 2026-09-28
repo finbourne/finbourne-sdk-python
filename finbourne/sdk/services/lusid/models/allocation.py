@@ -55,8 +55,9 @@ class Allocation(BaseModel):
     execution_ids: Optional[List[ResourceId]] = Field(default=None, description="The executions associated with this allocation", alias="executionIds")
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
+    direction: Optional[StrictInt] = Field(default=None, description="The direction of the allocation's side, derived from its transaction type at write time: 1 the side increases the position (longer), -1 it decreases it (shorter), null when no direction could be resolved.")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "allocatedOrderId", "portfolioId", "quantity", "instrumentIdentifiers", "version", "properties", "instrumentScope", "lusidInstrumentId", "placementIds", "state", "side", "type", "settlementDate", "date", "price", "settlementCurrency", "settlementCurrencyFxRate", "counterparty", "executionIds", "custodianAccountId", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["id", "allocatedOrderId", "portfolioId", "quantity", "instrumentIdentifiers", "version", "properties", "instrumentScope", "lusidInstrumentId", "placementIds", "state", "side", "type", "settlementDate", "date", "price", "settlementCurrency", "settlementCurrencyFxRate", "counterparty", "executionIds", "custodianAccountId", "dataModelMembership", "direction", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -196,6 +197,11 @@ class Allocation(BaseModel):
         if self.execution_ids is None and "execution_ids" in self.model_fields_set:
             _dict['executionIds'] = None
 
+        # set to None if direction (nullable) is None
+        # and model_fields_set contains the field
+        if self.direction is None and "direction" in self.model_fields_set:
+            _dict['direction'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -240,6 +246,7 @@ class Allocation(BaseModel):
             "execution_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("executionIds")) is not None else None,
             "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "direction": obj.get("direction"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

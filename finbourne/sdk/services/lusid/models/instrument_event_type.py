@@ -139,6 +139,7 @@ class InstrumentEventType(str, Enum):  # type: ignore[misc]
     NAVREPORTEVENT = 'NavReportEvent'
     DIVIDENDSUSPENSIONEVENT = 'DividendSuspensionEvent'
     LOANINTERESTCAPITALISATIONEVENT = 'LoanInterestCapitalisationEvent'
+    TOTALRETURNSWAPCASHFLOWEVENT = 'TotalReturnSwapCashFlowEvent'
 
     @classmethod
     def from_json(cls, json_str: str) -> InstrumentEventType:

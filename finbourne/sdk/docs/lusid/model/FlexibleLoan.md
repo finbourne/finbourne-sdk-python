@@ -8,6 +8,7 @@ LUSID flexible loan instrument. Represents the basic building block of a more co
 | **start_date** | **datetime** | Required | The start date of the instrument. This is normally synonymous with the trade-date. |
 | **maturity_date** | **datetime** | Required | The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it. |
 | **dom_ccy** | **str** | Required | The domestic currency of the instrument. |
+| **parent_facility** | **str** | Optional | The parent loan facility of this loan if this loan is a contract on a facility.  This resolves to the facility&#39;s LusidInstrumentId, falling back to its ClientInternal identifier,  and is null when the loan is not a contract on a facility. *(read-only)* |
 | **parent_facility_details** | **Dict[str, Optional[str]]** | Optional | The details of the parent loan facility of this loan if this loan is a contract on a facility. *(read-only)* |
 | **schedules** | [List[Schedule]](Schedule.md) | Required | Repayment schedules for the loan. |
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
@@ -25,6 +26,7 @@ instance = FlexibleLoan(
     start_date=datetime.now(),  # required — The start date of the instrument. This is normally synonymous with the trade-date.
     maturity_date=datetime.now(),  # required — The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it.
     dom_ccy="...",  # required — The domestic currency of the instrument.
+    parent_facility="...",  # optional — The parent loan facility of this loan if this loan is a contract on a facility.  This resolves to the facility&#39;s LusidInstrumentId, falling back to its ClientInternal identifier,  and is null when the loan is not a contract on a facility.
     parent_facility_details=,  # optional — The details of the parent loan facility of this loan if this loan is a contract on a facility.
     schedules=[],  # required — Repayment schedules for the loan.
     time_zone_conventions=TimeZoneConventions(...),  # optional
