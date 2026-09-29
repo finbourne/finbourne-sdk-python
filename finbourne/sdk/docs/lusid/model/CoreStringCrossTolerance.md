@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **reference_value** | **str** | Required | The value for the reference side. |
 | **cross_value** | **str** | Required | The value for the side other than the reference one. |
-| **reference_side** | **str** | Optional | Reference side (source of truth). One of: Left, Right. Available values: Left, Right, Either. |
+| **reference_side** | **str** | Optional | Reference side (source of truth). Available values: Left, Right, Either. |
 | **tolerance_type** | **str** | Required | Polymorphic discriminator. Supported types: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric. Available values: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric. |
 | **rule_name** | **str** | Required | The reference name of the rule that this tolerance relaxes. |
 
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.CoreStringCrossTolerance import CoreStr
 instance = CoreStringCrossTolerance(
     reference_value="...",  # required — The value for the reference side.
     cross_value="...",  # required — The value for the side other than the reference one.
-    reference_side="...",  # optional — Reference side (source of truth). One of: Left, Right. Available values: Left, Right, Either.
+    reference_side="...",  # optional — Reference side (source of truth). Available values: Left, Right, Either.
     tolerance_type="...",  # required — Polymorphic discriminator. Supported types: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric. Available values: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric.
     rule_name="..."  # required — The reference name of the rule that this tolerance relaxes.
 )

@@ -12,6 +12,7 @@ A corporate action source
 | **description** | **str** | Optional | The description of the corporate action source |
 | **instrument_scopes** | **List[str]** | Optional | The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions. |
 | **event_inheritance** | [EventInheritance](EventInheritance.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -30,6 +31,7 @@ instance = CorporateActionSource(
     description="...",  # optional — The description of the corporate action source
     instrument_scopes=,  # optional — The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions.
     event_inheritance=EventInheritance(...),  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -37,6 +39,7 @@ instance = CorporateActionSource(
 - [ResourceId](ResourceId.md)
 - [Version](Version.md)
 - [EventInheritance](EventInheritance.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 

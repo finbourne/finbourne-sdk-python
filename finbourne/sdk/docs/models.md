@@ -811,6 +811,7 @@
 * [CoreStringCrossTolerance](lusid/model/CoreStringCrossTolerance.md)
 * [CorporateAction](lusid/model/CorporateAction.md)
 * [CorporateActionSource](lusid/model/CorporateActionSource.md)
+* [CorporateActionSourceEntity](lusid/model/CorporateActionSourceEntity.md)
 * [CorporateActionTransition](lusid/model/CorporateActionTransition.md)
 * [CorporateActionTransitionComponent](lusid/model/CorporateActionTransitionComponent.md)
 * [CorporateActionTransitionComponentRequest](lusid/model/CorporateActionTransitionComponentRequest.md)

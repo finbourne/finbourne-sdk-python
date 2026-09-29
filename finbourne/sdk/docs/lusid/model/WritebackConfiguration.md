@@ -8,7 +8,7 @@ Base class for the configuration of a writeback a matching ruleset generates sug
 | **mandatory_rule_names** | [SettleExpectedActivityRuleNames](SettleExpectedActivityRuleNames.md) | Required | *No description available.* |
 | **result_patterns** | [List[WritebackResultPattern]](WritebackResultPattern.md) | Required | The combinations of units difference and result cardinality for which writeback is suggested. A combination that is not present never produces a suggestion. Each combination may appear once, and the collection is returned in a canonical order regardless of the order supplied. |
 | **writeback_type** | **str** | Required | Polymorphic discriminator, naming the change the writeback makes to LUSID. Supported types: SettleExpectedActivity, which is only valid when recType is SettlementActivity. Available values: SettleExpectedActivity. |
-| **target_side** | **str** | Required | The side the writeback changes, the other being the source of truth. One of: Left, Right. As the writeback changes LUSID, this side must draw on a native LUSID dataset rather than relational data. Available values: Left, Right. |
+| **target_side** | **str** | Required | The side the writeback changes, the other being the source of truth. As the writeback changes LUSID, this side must draw on a native LUSID dataset rather than relational data. Available values: Left, Right. |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = WritebackConfiguration(
     mandatory_rule_names=SettleExpectedActivityRuleNames(...),  # required
     result_patterns=[],  # required — The combinations of units difference and result cardinality for which writeback is suggested. A combination that is not present never produces a suggestion. Each combination may appear once, and the collection is returned in a canonical order regardless of the order supplied.
     writeback_type="...",  # required — Polymorphic discriminator, naming the change the writeback makes to LUSID. Supported types: SettleExpectedActivity, which is only valid when recType is SettlementActivity. Available values: SettleExpectedActivity.
-    target_side="..."  # required — The side the writeback changes, the other being the source of truth. One of: Left, Right. As the writeback changes LUSID, this side must draw on a native LUSID dataset rather than relational data. Available values: Left, Right.
+    target_side="..."  # required — The side the writeback changes, the other being the source of truth. As the writeback changes LUSID, this side must draw on a native LUSID dataset rather than relational data. Available values: Left, Right.
 )
 ```
 

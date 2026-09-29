@@ -1353,34 +1353,34 @@ class SqlDesignApi:
     def put_query_to_format(self, body: StrictStr, trailing_commas: Optional[bool] = None, uppercase_keywords: Optional[bool] = None, break_join_on_sections: Optional[bool] = None, space_after_expanded_comma: Optional[bool] = None, keyword_standardization: Optional[bool] = None, expand_comma_lists: Optional[bool] = None, expand_in_lists: Optional[bool] = None, expand_boolean_expressions: Optional[bool] = None, expand_between_conditions: Optional[bool] = None, expand_case_statements: Optional[bool] = None, max_line_width: Optional[int] = None, space_before_trailing_single_line_comments: Optional[bool] = None, multiline_comment_extra_line_break: Optional[bool] = None, **kwargs) -> str:
         """PutQueryToFormat: Format SQL into a more readable form  # noqa: E501
 
-         This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b    on a.x = b.x where x > y    or y != z ```   # noqa: E501
+         This formats SQL, a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. Of the options only `maxLineWidth` has any effect, the rest are retained for compatibility. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b on a.x = b.x where x > y   or y != z ```   # noqa: E501
         :param body: LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it (required)
         :type body: str
-        :param trailing_commas: Should commas be after an expression (as opposed to before)
+        :param trailing_commas: No longer has any effect, retained only for compatibility
         :type trailing_commas: bool
-        :param uppercase_keywords: Should key words be capitalized
+        :param uppercase_keywords: No longer has any effect, retained only for compatibility
         :type uppercase_keywords: bool
-        :param break_join_on_sections: Should clauses on joins be given line breaks?
+        :param break_join_on_sections: No longer has any effect, retained only for compatibility
         :type break_join_on_sections: bool
-        :param space_after_expanded_comma: Should comma-lists have spaces after the commas?
+        :param space_after_expanded_comma: No longer has any effect, retained only for compatibility
         :type space_after_expanded_comma: bool
-        :param keyword_standardization: Should the \"nicest\" key words be used? (e.g. JOIN -> INNER JOIN)
+        :param keyword_standardization: No longer has any effect, retained only for compatibility
         :type keyword_standardization: bool
-        :param expand_comma_lists: Should comma-lists (e.g. select a,b,c) have line breaks added?
+        :param expand_comma_lists: No longer has any effect, retained only for compatibility
         :type expand_comma_lists: bool
-        :param expand_in_lists: Should IN-lists have line breaks added?
+        :param expand_in_lists: No longer has any effect, retained only for compatibility
         :type expand_in_lists: bool
-        :param expand_boolean_expressions: Should boolean expressions have line breaks added?
+        :param expand_boolean_expressions: No longer has any effect, retained only for compatibility
         :type expand_boolean_expressions: bool
-        :param expand_between_conditions: Should between conditions have line breaks added?
+        :param expand_between_conditions: No longer has any effect, retained only for compatibility
         :type expand_between_conditions: bool
-        :param expand_case_statements: Should case-statements have line breaks added?
+        :param expand_case_statements: No longer has any effect, retained only for compatibility
         :type expand_case_statements: bool
         :param max_line_width: Maximum number of characters to allow on one line (if possible)
         :type max_line_width: int
-        :param space_before_trailing_single_line_comments: Should the be a space before trailing single line comments?
+        :param space_before_trailing_single_line_comments: No longer has any effect, retained only for compatibility
         :type space_before_trailing_single_line_comments: bool
-        :param multiline_comment_extra_line_break: Should an additional line break be added after multi-line comments?
+        :param multiline_comment_extra_line_break: No longer has any effect, retained only for compatibility
         :type multiline_comment_extra_line_break: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1399,34 +1399,34 @@ class SqlDesignApi:
     def put_query_to_format_with_http_info(self, body: StrictStr, trailing_commas: Optional[bool] = None, uppercase_keywords: Optional[bool] = None, break_join_on_sections: Optional[bool] = None, space_after_expanded_comma: Optional[bool] = None, keyword_standardization: Optional[bool] = None, expand_comma_lists: Optional[bool] = None, expand_in_lists: Optional[bool] = None, expand_boolean_expressions: Optional[bool] = None, expand_between_conditions: Optional[bool] = None, expand_case_statements: Optional[bool] = None, max_line_width: Optional[int] = None, space_before_trailing_single_line_comments: Optional[bool] = None, multiline_comment_extra_line_break: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
         """PutQueryToFormat: Format SQL into a more readable form  # noqa: E501
 
-         This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b    on a.x = b.x where x > y    or y != z ```   # noqa: E501
+         This formats SQL, a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. Of the options only `maxLineWidth` has any effect, the rest are retained for compatibility. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b on a.x = b.x where x > y   or y != z ```   # noqa: E501
         :param body: LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it (required)
         :type body: str
-        :param trailing_commas: Should commas be after an expression (as opposed to before)
+        :param trailing_commas: No longer has any effect, retained only for compatibility
         :type trailing_commas: bool
-        :param uppercase_keywords: Should key words be capitalized
+        :param uppercase_keywords: No longer has any effect, retained only for compatibility
         :type uppercase_keywords: bool
-        :param break_join_on_sections: Should clauses on joins be given line breaks?
+        :param break_join_on_sections: No longer has any effect, retained only for compatibility
         :type break_join_on_sections: bool
-        :param space_after_expanded_comma: Should comma-lists have spaces after the commas?
+        :param space_after_expanded_comma: No longer has any effect, retained only for compatibility
         :type space_after_expanded_comma: bool
-        :param keyword_standardization: Should the \"nicest\" key words be used? (e.g. JOIN -> INNER JOIN)
+        :param keyword_standardization: No longer has any effect, retained only for compatibility
         :type keyword_standardization: bool
-        :param expand_comma_lists: Should comma-lists (e.g. select a,b,c) have line breaks added?
+        :param expand_comma_lists: No longer has any effect, retained only for compatibility
         :type expand_comma_lists: bool
-        :param expand_in_lists: Should IN-lists have line breaks added?
+        :param expand_in_lists: No longer has any effect, retained only for compatibility
         :type expand_in_lists: bool
-        :param expand_boolean_expressions: Should boolean expressions have line breaks added?
+        :param expand_boolean_expressions: No longer has any effect, retained only for compatibility
         :type expand_boolean_expressions: bool
-        :param expand_between_conditions: Should between conditions have line breaks added?
+        :param expand_between_conditions: No longer has any effect, retained only for compatibility
         :type expand_between_conditions: bool
-        :param expand_case_statements: Should case-statements have line breaks added?
+        :param expand_case_statements: No longer has any effect, retained only for compatibility
         :type expand_case_statements: bool
         :param max_line_width: Maximum number of characters to allow on one line (if possible)
         :type max_line_width: int
-        :param space_before_trailing_single_line_comments: Should the be a space before trailing single line comments?
+        :param space_before_trailing_single_line_comments: No longer has any effect, retained only for compatibility
         :type space_before_trailing_single_line_comments: bool
-        :param multiline_comment_extra_line_break: Should an additional line break be added after multi-line comments?
+        :param multiline_comment_extra_line_break: No longer has any effect, retained only for compatibility
         :type multiline_comment_extra_line_break: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -3815,35 +3815,35 @@ class SqlDesignApi:
     @validate_call
     async def put_query_to_format_async(self, body: StrictStr, trailing_commas: Optional[bool] = None, uppercase_keywords: Optional[bool] = None, break_join_on_sections: Optional[bool] = None, space_after_expanded_comma: Optional[bool] = None, keyword_standardization: Optional[bool] = None, expand_comma_lists: Optional[bool] = None, expand_in_lists: Optional[bool] = None, expand_boolean_expressions: Optional[bool] = None, expand_between_conditions: Optional[bool] = None, expand_case_statements: Optional[bool] = None, max_line_width: Optional[int] = None, space_before_trailing_single_line_comments: Optional[bool] = None, multiline_comment_extra_line_break: Optional[bool] = None, **kwargs) -> str:
             """PutQueryToFormat: Format SQL into a more readable form  # noqa: E501
-             This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b    on a.x = b.x where x > y    or y != z ```   # noqa: E501
+             This formats SQL, a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. Of the options only `maxLineWidth` has any effect, the rest are retained for compatibility. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b on a.x = b.x where x > y   or y != z ```   # noqa: E501
             
             :param body: LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it (required)
             :type body: str
-            :param trailing_commas: Should commas be after an expression (as opposed to before)
+            :param trailing_commas: No longer has any effect, retained only for compatibility
             :type trailing_commas: bool
-            :param uppercase_keywords: Should key words be capitalized
+            :param uppercase_keywords: No longer has any effect, retained only for compatibility
             :type uppercase_keywords: bool
-            :param break_join_on_sections: Should clauses on joins be given line breaks?
+            :param break_join_on_sections: No longer has any effect, retained only for compatibility
             :type break_join_on_sections: bool
-            :param space_after_expanded_comma: Should comma-lists have spaces after the commas?
+            :param space_after_expanded_comma: No longer has any effect, retained only for compatibility
             :type space_after_expanded_comma: bool
-            :param keyword_standardization: Should the \"nicest\" key words be used? (e.g. JOIN -> INNER JOIN)
+            :param keyword_standardization: No longer has any effect, retained only for compatibility
             :type keyword_standardization: bool
-            :param expand_comma_lists: Should comma-lists (e.g. select a,b,c) have line breaks added?
+            :param expand_comma_lists: No longer has any effect, retained only for compatibility
             :type expand_comma_lists: bool
-            :param expand_in_lists: Should IN-lists have line breaks added?
+            :param expand_in_lists: No longer has any effect, retained only for compatibility
             :type expand_in_lists: bool
-            :param expand_boolean_expressions: Should boolean expressions have line breaks added?
+            :param expand_boolean_expressions: No longer has any effect, retained only for compatibility
             :type expand_boolean_expressions: bool
-            :param expand_between_conditions: Should between conditions have line breaks added?
+            :param expand_between_conditions: No longer has any effect, retained only for compatibility
             :type expand_between_conditions: bool
-            :param expand_case_statements: Should case-statements have line breaks added?
+            :param expand_case_statements: No longer has any effect, retained only for compatibility
             :type expand_case_statements: bool
             :param max_line_width: Maximum number of characters to allow on one line (if possible)
             :type max_line_width: int
-            :param space_before_trailing_single_line_comments: Should the be a space before trailing single line comments?
+            :param space_before_trailing_single_line_comments: No longer has any effect, retained only for compatibility
             :type space_before_trailing_single_line_comments: bool
-            :param multiline_comment_extra_line_break: Should an additional line break be added after multi-line comments?
+            :param multiline_comment_extra_line_break: No longer has any effect, retained only for compatibility
             :type multiline_comment_extra_line_break: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -3862,35 +3862,35 @@ class SqlDesignApi:
     async def put_query_to_format_with_http_info_async(self, body: StrictStr, trailing_commas: Optional[bool] = None, uppercase_keywords: Optional[bool] = None, break_join_on_sections: Optional[bool] = None, space_after_expanded_comma: Optional[bool] = None, keyword_standardization: Optional[bool] = None, expand_comma_lists: Optional[bool] = None, expand_in_lists: Optional[bool] = None, expand_boolean_expressions: Optional[bool] = None, expand_between_conditions: Optional[bool] = None, expand_case_statements: Optional[bool] = None, max_line_width: Optional[int] = None, space_before_trailing_single_line_comments: Optional[bool] = None, multiline_comment_extra_line_break: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
             """PutQueryToFormat: Format SQL into a more readable form  # noqa: E501
 
-             This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b    on a.x = b.x where x > y    or y != z ```   # noqa: E501
+             This formats SQL, a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. Of the options only `maxLineWidth` has any effect, the rest are retained for compatibility. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b on a.x = b.x where x > y   or y != z ```   # noqa: E501
 
             :param body: LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it (required)
             :type body: str
-            :param trailing_commas: Should commas be after an expression (as opposed to before)
+            :param trailing_commas: No longer has any effect, retained only for compatibility
             :type trailing_commas: bool
-            :param uppercase_keywords: Should key words be capitalized
+            :param uppercase_keywords: No longer has any effect, retained only for compatibility
             :type uppercase_keywords: bool
-            :param break_join_on_sections: Should clauses on joins be given line breaks?
+            :param break_join_on_sections: No longer has any effect, retained only for compatibility
             :type break_join_on_sections: bool
-            :param space_after_expanded_comma: Should comma-lists have spaces after the commas?
+            :param space_after_expanded_comma: No longer has any effect, retained only for compatibility
             :type space_after_expanded_comma: bool
-            :param keyword_standardization: Should the \"nicest\" key words be used? (e.g. JOIN -> INNER JOIN)
+            :param keyword_standardization: No longer has any effect, retained only for compatibility
             :type keyword_standardization: bool
-            :param expand_comma_lists: Should comma-lists (e.g. select a,b,c) have line breaks added?
+            :param expand_comma_lists: No longer has any effect, retained only for compatibility
             :type expand_comma_lists: bool
-            :param expand_in_lists: Should IN-lists have line breaks added?
+            :param expand_in_lists: No longer has any effect, retained only for compatibility
             :type expand_in_lists: bool
-            :param expand_boolean_expressions: Should boolean expressions have line breaks added?
+            :param expand_boolean_expressions: No longer has any effect, retained only for compatibility
             :type expand_boolean_expressions: bool
-            :param expand_between_conditions: Should between conditions have line breaks added?
+            :param expand_between_conditions: No longer has any effect, retained only for compatibility
             :type expand_between_conditions: bool
-            :param expand_case_statements: Should case-statements have line breaks added?
+            :param expand_case_statements: No longer has any effect, retained only for compatibility
             :type expand_case_statements: bool
             :param max_line_width: Maximum number of characters to allow on one line (if possible)
             :type max_line_width: int
-            :param space_before_trailing_single_line_comments: Should the be a space before trailing single line comments?
+            :param space_before_trailing_single_line_comments: No longer has any effect, retained only for compatibility
             :type space_before_trailing_single_line_comments: bool
-            :param multiline_comment_extra_line_break: Should an additional line break be added after multi-line comments?
+            :param multiline_comment_extra_line_break: No longer has any effect, retained only for compatibility
             :type multiline_comment_extra_line_break: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

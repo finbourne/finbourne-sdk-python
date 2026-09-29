@@ -24,6 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.event_inheritance import EventInheritance
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.version import Version
 
 
@@ -38,8 +39,9 @@ class CorporateActionSource(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the corporate action source") 
     instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions.", alias="instrumentScopes")
     event_inheritance: Optional[EventInheritance] = Field(default=None, alias="eventInheritance")
+    staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "version", "displayName", "description", "instrumentScopes", "eventInheritance", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "version", "displayName", "description", "instrumentScopes", "eventInheritance", "stagedModifications", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +86,9 @@ class CorporateActionSource(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of event_inheritance
         if self.event_inheritance:
             _dict['eventInheritance'] = self.event_inheritance.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of staged_modifications
+        if self.staged_modifications:
+            _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -135,6 +140,7 @@ class CorporateActionSource(BaseModel):
             "description": obj.get("description"),
             "instrument_scopes": obj.get("instrumentScopes"),
             "event_inheritance": EventInheritance.from_dict(_v) if (_v := obj.get("eventInheritance")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

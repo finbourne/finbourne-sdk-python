@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_rec_definition**
-> RecDefinition getRecDefinition = get_rec_definition(scope, code, as_at=as_at)
+> RecDefinition getRecDefinition = get_rec_definition(scope, code, as_at=as_at, property_keys=property_keys)
 
 [EXPERIMENTAL] GetRecDefinition: GetRecDefinition
 
@@ -417,7 +417,8 @@ api_instance = api_client_factory.build(RecsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_rec_definition(scope, code, as_at=as_at)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_rec_definition(scope, code, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -428,6 +429,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the rec definition. | [required] 
  **code** | **str**| The code of the rec definition. Together with the scope this uniquely identifies the rec definition. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the rec definition. Defaults to latest if not specified. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;RecDefinition&#39; domain to decorate onto the rec              definition. These must have the format {domain}/{scope}/{code}, for example              &#39;RecDefinition/Workflow/WorkflowId&#39;. | [optional] 
 
 ### Return type
 
@@ -680,7 +682,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_rec_definitions**
-> PagedResourceListOfRecDefinition listRecDefinitions = list_rec_definitions(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
+> PagedResourceListOfRecDefinition listRecDefinitions = list_rec_definitions(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys)
 
 [EXPERIMENTAL] ListRecDefinitions: ListRecDefinitions
 
@@ -695,7 +697,8 @@ page = 'page_example' # str (optional)
 sort_by = ['sort_by_example'] # List[str] (optional)
 limit = 56 # int (optional)
 filter = 'filter_example' # str (optional)
-api_response = api_instance.list_rec_definitions(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_rec_definitions(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -708,6 +711,7 @@ Name | Type | Description  | Notes
  **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many per page. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;RecDefinition&#39; domain to decorate onto the rec              definitions. These must have the format {domain}/{scope}/{code}, for example              &#39;RecDefinition/Workflow/WorkflowId&#39;. They are not carried in the pagination token, so must be supplied again              with each page. | [optional] 
 
 ### Return type
 
@@ -1024,7 +1028,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] UpdateRecDefinition: UpdateRecDefinition
 
-Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.
+Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  Properties are merged rather than overwritten - each property supplied is set, a property supplied with a null  value is deleted, and any property not supplied is left unchanged.
 
 ### Example
 

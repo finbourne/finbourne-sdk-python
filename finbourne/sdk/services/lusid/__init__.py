@@ -442,6 +442,7 @@ from finbourne.sdk.services.lusid.models.core_rule_values import CoreRuleValues
 from finbourne.sdk.services.lusid.models.core_string_cross_tolerance import CoreStringCrossTolerance
 from finbourne.sdk.services.lusid.models.corporate_action import CorporateAction
 from finbourne.sdk.services.lusid.models.corporate_action_source import CorporateActionSource
+from finbourne.sdk.services.lusid.models.corporate_action_source_entity import CorporateActionSourceEntity
 from finbourne.sdk.services.lusid.models.corporate_action_transition import CorporateActionTransition
 from finbourne.sdk.services.lusid.models.corporate_action_transition_component import CorporateActionTransitionComponent
 from finbourne.sdk.services.lusid.models.corporate_action_transition_component_request import CorporateActionTransitionComponentRequest
@@ -2308,6 +2309,7 @@ __all__ = [
     "CoreStringCrossTolerance",
     "CorporateAction",
     "CorporateActionSource",
+    "CorporateActionSourceEntity",
     "CorporateActionTransition",
     "CorporateActionTransitionComponent",
     "CorporateActionTransitionComponentRequest",

@@ -21,7 +21,7 @@ from typing_extensions import Annotated
 import finbourne.sdk.services.horizon.models as packageModels
 from datetime import datetime
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.horizon.models.file_delivery_status import FileDeliveryStatus
 from finbourne.sdk.services.horizon.models.instances_response import InstancesResponse
@@ -650,17 +650,19 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_instance_run_history(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstanceRunResponse:
+    def list_instance_run_history(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfInstanceRunResponse:
         """[EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.  # noqa: E501
 
         :param instance_id: (required)
         :type instance_id: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
         :param page_size:
         :type page_size: int
-        :param filter: A Finbourne filter over runId, referenceId, attempt, total, sentCount, skippedCount, failedCount and failedFiles e.g. failedCount gt 0. status, triggeredBy, duration, startTime and endTime are not filterable and will result in a 400 response.
+        :param filter: A Finbourne filter on any response field except duration, e.g. startTime gte '2026-04-01T00:00:00Z' and status eq 'Auto-retry'. status is the displayed status.
         :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first.
+        :type sort_by: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -671,21 +673,23 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the list_instance_run_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_instance_run_history_with_http_info(instance_id, page, page_size, filter, **kwargs)
+        response = self.list_instance_run_history_with_http_info(instance_id, page, page_size, filter, sort_by, **kwargs)
         return response.data
 
     @validate_call
-    def list_instance_run_history_with_http_info(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstanceRunResponse]:
+    def list_instance_run_history_with_http_info(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstanceRunResponse]:
         """[EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.  # noqa: E501
 
         :param instance_id: (required)
         :type instance_id: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
         :param page_size:
         :type page_size: int
-        :param filter: A Finbourne filter over runId, referenceId, attempt, total, sentCount, skippedCount, failedCount and failedFiles e.g. failedCount gt 0. status, triggeredBy, duration, startTime and endTime are not filterable and will result in a 400 response.
+        :param filter: A Finbourne filter on any response field except duration, e.g. startTime gte '2026-04-01T00:00:00Z' and status eq 'Auto-retry'. status is the displayed status.
         :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first.
+        :type sort_by: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -712,7 +716,8 @@ class TradePublicationFrameworkApi:
             'instance_id',
             'page',
             'page_size',
-            'filter'
+            'filter',
+            'sort_by'
         ]
         _all_params.extend(
             [
@@ -754,6 +759,10 @@ class TradePublicationFrameworkApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -2329,17 +2338,19 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_instance_run_history_async(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstanceRunResponse:
+    async def list_instance_run_history_async(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfInstanceRunResponse:
             """[EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.  # noqa: E501
             
             :param instance_id: (required)
             :type instance_id: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
             :param page_size:
             :type page_size: int
-            :param filter: A Finbourne filter over runId, referenceId, attempt, total, sentCount, skippedCount, failedCount and failedFiles e.g. failedCount gt 0. status, triggeredBy, duration, startTime and endTime are not filterable and will result in a 400 response.
+            :param filter: A Finbourne filter on any response field except duration, e.g. startTime gte '2026-04-01T00:00:00Z' and status eq 'Auto-retry'. status is the displayed status.
             :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first.
+            :type sort_by: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2350,22 +2361,24 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the list_instance_run_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_instance_run_history_with_http_info_async(instance_id, page, page_size, filter, **kwargs)
+            response = await self.list_instance_run_history_with_http_info_async(instance_id, page, page_size, filter, sort_by, **kwargs)
             return response.data
 
     @validate_call
-    async def list_instance_run_history_with_http_info_async(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstanceRunResponse]:
+    async def list_instance_run_history_with_http_info_async(self, instance_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstanceRunResponse]:
             """[EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.  # noqa: E501
 
 
             :param instance_id: (required)
             :type instance_id: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
             :param page_size:
             :type page_size: int
-            :param filter: A Finbourne filter over runId, referenceId, attempt, total, sentCount, skippedCount, failedCount and failedFiles e.g. failedCount gt 0. status, triggeredBy, duration, startTime and endTime are not filterable and will result in a 400 response.
+            :param filter: A Finbourne filter on any response field except duration, e.g. startTime gte '2026-04-01T00:00:00Z' and status eq 'Auto-retry'. status is the displayed status.
             :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first.
+            :type sort_by: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2392,7 +2405,8 @@ class TradePublicationFrameworkApi:
                 'instance_id',
                 'page',
                 'page_size',
-                'filter'
+                'filter',
+                'sort_by'
             ]
             _all_params.extend(
                 [
@@ -2434,6 +2448,10 @@ class TradePublicationFrameworkApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

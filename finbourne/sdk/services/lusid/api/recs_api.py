@@ -1125,7 +1125,7 @@ class RecsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_rec_definition(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> RecDefinition:
+    def get_rec_definition(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecDefinition:
         """[EXPERIMENTAL] GetRecDefinition: GetRecDefinition  # noqa: E501
 
         Retrieve a single rec definition by scope and code.  # noqa: E501
@@ -1135,6 +1135,8 @@ class RecsApi:
         :type code: str
         :param as_at: The asAt datetime at which to retrieve the rec definition. Defaults to latest if not specified.
         :type as_at: datetime
+        :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definition. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1145,11 +1147,11 @@ class RecsApi:
             message = "Error! Please call the get_rec_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_rec_definition_with_http_info(scope, code, as_at, **kwargs)
+        response = self.get_rec_definition_with_http_info(scope, code, as_at, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_rec_definition_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[RecDefinition]:
+    def get_rec_definition_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecDefinition]:
         """[EXPERIMENTAL] GetRecDefinition: GetRecDefinition  # noqa: E501
 
         Retrieve a single rec definition by scope and code.  # noqa: E501
@@ -1159,6 +1161,8 @@ class RecsApi:
         :type code: str
         :param as_at: The asAt datetime at which to retrieve the rec definition. Defaults to latest if not specified.
         :type as_at: datetime
+        :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definition. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1184,7 +1188,8 @@ class RecsApi:
         _all_params = [
             'scope',
             'code',
-            'as_at'
+            'as_at',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -1226,6 +1231,10 @@ class RecsApi:
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
             else:
                 _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1965,7 +1974,7 @@ class RecsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_rec_definitions(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfRecDefinition:
+    def list_rec_definitions(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRecDefinition:
         """[EXPERIMENTAL] ListRecDefinitions: ListRecDefinitions  # noqa: E501
 
         List rec definitions, optionally filtered and sorted. Supports pagination.  # noqa: E501
@@ -1979,6 +1988,8 @@ class RecsApi:
         :type limit: int
         :param filter: Expression to filter the result set. Read more about filtering results from LUSID here              https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
+        :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definitions. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'. They are not carried in the pagination token, so must be supplied again              with each page.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1989,11 +2000,11 @@ class RecsApi:
             message = "Error! Please call the list_rec_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_rec_definitions_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)
+        response = self.list_rec_definitions_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def list_rec_definitions_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecDefinition]:
+    def list_rec_definitions_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecDefinition]:
         """[EXPERIMENTAL] ListRecDefinitions: ListRecDefinitions  # noqa: E501
 
         List rec definitions, optionally filtered and sorted. Supports pagination.  # noqa: E501
@@ -2007,6 +2018,8 @@ class RecsApi:
         :type limit: int
         :param filter: Expression to filter the result set. Read more about filtering results from LUSID here              https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
+        :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definitions. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'. They are not carried in the pagination token, so must be supplied again              with each page.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2034,7 +2047,8 @@ class RecsApi:
             'page',
             'sort_by',
             'limit',
-            'filter'
+            'filter',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -2083,6 +2097,10 @@ class RecsApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -3030,7 +3048,7 @@ class RecsApi:
     def update_rec_definition(self, scope: StrictStr, code: StrictStr, update_rec_definition_request: UpdateRecDefinitionRequest, **kwargs) -> RecDefinition:
         """[EXPERIMENTAL] UpdateRecDefinition: UpdateRecDefinition  # noqa: E501
 
-        Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  # noqa: E501
+        Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  Properties are merged rather than overwritten - each property supplied is set, a property supplied with a null  value is deleted, and any property not supplied is left unchanged.  # noqa: E501
         :param scope: The scope of the rec definition. (required)
         :type scope: str
         :param code: The code of the rec definition. Together with the scope this uniquely identifies the rec definition. (required)
@@ -3054,7 +3072,7 @@ class RecsApi:
     def update_rec_definition_with_http_info(self, scope: StrictStr, code: StrictStr, update_rec_definition_request: UpdateRecDefinitionRequest, **kwargs) -> ApiResponse[RecDefinition]:
         """[EXPERIMENTAL] UpdateRecDefinition: UpdateRecDefinition  # noqa: E501
 
-        Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  # noqa: E501
+        Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  Properties are merged rather than overwritten - each property supplied is set, a property supplied with a null  value is deleted, and any property not supplied is left unchanged.  # noqa: E501
         :param scope: The scope of the rec definition. (required)
         :type scope: str
         :param code: The code of the rec definition. Together with the scope this uniquely identifies the rec definition. (required)
@@ -4236,7 +4254,7 @@ class RecsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_rec_definition_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> RecDefinition:
+    async def get_rec_definition_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecDefinition:
             """[EXPERIMENTAL] GetRecDefinition: GetRecDefinition  # noqa: E501
             Retrieve a single rec definition by scope and code.  # noqa: E501
             
@@ -4246,6 +4264,8 @@ class RecsApi:
             :type code: str
             :param as_at: The asAt datetime at which to retrieve the rec definition. Defaults to latest if not specified.
             :type as_at: datetime
+            :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definition. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -4256,11 +4276,11 @@ class RecsApi:
                 message = "Error! Please call the get_rec_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_rec_definition_with_http_info_async(scope, code, as_at, **kwargs)
+            response = await self.get_rec_definition_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_rec_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[RecDefinition]:
+    async def get_rec_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecDefinition]:
             """[EXPERIMENTAL] GetRecDefinition: GetRecDefinition  # noqa: E501
 
             Retrieve a single rec definition by scope and code.  # noqa: E501
@@ -4271,6 +4291,8 @@ class RecsApi:
             :type code: str
             :param as_at: The asAt datetime at which to retrieve the rec definition. Defaults to latest if not specified.
             :type as_at: datetime
+            :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definition. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -4296,7 +4318,8 @@ class RecsApi:
             _all_params = [
                 'scope',
                 'code',
-                'as_at'
+                'as_at',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -4338,6 +4361,10 @@ class RecsApi:
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
                 else:
                     _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -5082,7 +5109,7 @@ class RecsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_rec_definitions_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfRecDefinition:
+    async def list_rec_definitions_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRecDefinition:
             """[EXPERIMENTAL] ListRecDefinitions: ListRecDefinitions  # noqa: E501
             List rec definitions, optionally filtered and sorted. Supports pagination.  # noqa: E501
             
@@ -5096,6 +5123,8 @@ class RecsApi:
             :type limit: int
             :param filter: Expression to filter the result set. Read more about filtering results from LUSID here              https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
+            :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definitions. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'. They are not carried in the pagination token, so must be supplied again              with each page.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -5106,11 +5135,11 @@ class RecsApi:
                 message = "Error! Please call the list_rec_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_rec_definitions_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)
+            response = await self.list_rec_definitions_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def list_rec_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecDefinition]:
+    async def list_rec_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecDefinition]:
             """[EXPERIMENTAL] ListRecDefinitions: ListRecDefinitions  # noqa: E501
 
             List rec definitions, optionally filtered and sorted. Supports pagination.  # noqa: E501
@@ -5125,6 +5154,8 @@ class RecsApi:
             :type limit: int
             :param filter: Expression to filter the result set. Read more about filtering results from LUSID here              https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
+            :param property_keys: A list of property keys from the 'RecDefinition' domain to decorate onto the rec              definitions. These must have the format {domain}/{scope}/{code}, for example              'RecDefinition/Workflow/WorkflowId'. They are not carried in the pagination token, so must be supplied again              with each page.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -5152,7 +5183,8 @@ class RecsApi:
                 'page',
                 'sort_by',
                 'limit',
-                'filter'
+                'filter',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -5201,6 +5233,10 @@ class RecsApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -6153,7 +6189,7 @@ class RecsApi:
     @validate_call
     async def update_rec_definition_async(self, scope: StrictStr, code: StrictStr, update_rec_definition_request: UpdateRecDefinitionRequest, **kwargs) -> RecDefinition:
             """[EXPERIMENTAL] UpdateRecDefinition: UpdateRecDefinition  # noqa: E501
-            Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  # noqa: E501
+            Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  Properties are merged rather than overwritten - each property supplied is set, a property supplied with a null  value is deleted, and any property not supplied is left unchanged.  # noqa: E501
             
             :param scope: The scope of the rec definition. (required)
             :type scope: str
@@ -6178,7 +6214,7 @@ class RecsApi:
     async def update_rec_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_rec_definition_request: UpdateRecDefinitionRequest, **kwargs) -> ApiResponse[RecDefinition]:
             """[EXPERIMENTAL] UpdateRecDefinition: UpdateRecDefinition  # noqa: E501
 
-            Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  # noqa: E501
+            Overwrite an existing rec definition identified by scope and code.  The update request has the same required fields as create, apart from the identifier.  Properties are merged rather than overwritten - each property supplied is set, a property supplied with a null  value is deleted, and any property not supplied is left unchanged.  # noqa: E501
 
             :param scope: The scope of the rec definition. (required)
             :type scope: str

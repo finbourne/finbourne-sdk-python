@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_instance_run_history**
-> PagedResourceListOfInstanceRunResponse listInstanceRunHistory = list_instance_run_history(instance_id, page=page, page_size=page_size, filter=filter)
+> PagedResourceListOfInstanceRunResponse listInstanceRunHistory = list_instance_run_history(instance_id, page=page, page_size=page_size, filter=filter, sort_by=sort_by)
 
 [EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.
 
@@ -244,7 +244,8 @@ instance_id = 'instance_id_example' # str
 page = '' # str (optional)
 page_size = 100 # int (optional)
 filter = 'filter_example' # str (optional)
-api_response = api_instance.list_instance_run_history(instance_id, page=page, page_size=page_size, filter=filter)
+sort_by = ['sort_by_example'] # List[str] (optional)
+api_response = api_instance.list_instance_run_history(instance_id, page=page, page_size=page_size, filter=filter, sort_by=sort_by)
 pprint(api_response)
 ```
 
@@ -253,9 +254,10 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**|  | [required] 
- **page** | **str**|  | [optional] [default to &#39;&#39;]
+ **page** | **str**| The pagination token from the previous response; &lt;i&gt;filter&lt;/i&gt; and &lt;i&gt;sortBy&lt;/i&gt; must be unchanged. | [optional] [default to &#39;&#39;]
  **page_size** | **int**|  | [optional] [default to 100]
- **filter** | **str**| A Finbourne filter over runId, referenceId, attempt, total, sentCount, skippedCount, failedCount and failedFiles e.g. failedCount gt 0. status, triggeredBy, duration, startTime and endTime are not filterable and will result in a 400 response. | [optional] 
+ **filter** | **str**| A Finbourne filter on any response field except duration, e.g. startTime gte &#39;2026-04-01T00:00:00Z&#39; and status eq &#39;Auto-retry&#39;. status is the displayed status. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Up to two filterable fields, each suffixed \&quot; ASC\&quot; or \&quot; DESC\&quot;. Defaults to newest first. | [optional] 
 
 ### Return type
 
