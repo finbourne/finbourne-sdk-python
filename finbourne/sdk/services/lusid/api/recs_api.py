@@ -37,6 +37,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_definition i
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_instance import PagedResourceListOfRecInstance
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result import PagedResourceListOfRecResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result_set import PagedResourceListOfRecResultSet
+from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.rec_definition import RecDefinition
 from finbourne.sdk.services.lusid.models.rec_instance import RecInstance
 from finbourne.sdk.services.lusid.models.rec_result import RecResult
@@ -46,6 +47,7 @@ from finbourne.sdk.services.lusid.models.submit_rec_result_set_review_request im
 from finbourne.sdk.services.lusid.models.transition_rec_instance_request import TransitionRecInstanceRequest
 from finbourne.sdk.services.lusid.models.update_matching_ruleset_request import UpdateMatchingRulesetRequest
 from finbourne.sdk.services.lusid.models.update_rec_definition_request import UpdateRecDefinitionRequest
+from finbourne.sdk.services.lusid.models.upsert_rec_definition_properties_response import UpsertRecDefinitionPropertiesResponse
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -1412,11 +1414,19 @@ class RecsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_rec_result(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
+    def get_rec_result(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
         """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-        Retrieve a single rec result by its id.  # noqa: E501
-        :param id: The system-generated id of the rec result. (required)
+        Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
+        :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
+        :type instance_id_type: str
+        :param instance_id_value: The unique identifier of the rec instance. (required)
+        :type instance_id_value: str
+        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+        :type rec_type: str
+        :param run_number: The run of the instance the result belongs to. (required)
+        :type run_number: int
+        :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
@@ -1432,15 +1442,23 @@ class RecsApi:
             message = "Error! Please call the get_rec_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_rec_result_with_http_info(id, as_at, property_keys, **kwargs)
+        response = self.get_rec_result_with_http_info(instance_id_type, instance_id_value, rec_type, run_number, id, as_at, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_rec_result_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
+    def get_rec_result_with_http_info(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
         """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-        Retrieve a single rec result by its id.  # noqa: E501
-        :param id: The system-generated id of the rec result. (required)
+        Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
+        :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
+        :type instance_id_type: str
+        :param instance_id_value: The unique identifier of the rec instance. (required)
+        :type instance_id_value: str
+        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+        :type rec_type: str
+        :param run_number: The run of the instance the result belongs to. (required)
+        :type run_number: int
+        :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
@@ -1469,6 +1487,10 @@ class RecsApi:
         _params = locals()
 
         _all_params = [
+            'instance_id_type',
+            'instance_id_value',
+            'rec_type',
+            'run_number',
             'id',
             'as_at',
             'property_keys'
@@ -1499,6 +1521,18 @@ class RecsApi:
 
         # process the path parameters
         _path_params = {}
+        if _params['instance_id_type'] is not None:
+            _path_params['instanceIdType'] = _params['instance_id_type']
+
+        if _params['instance_id_value'] is not None:
+            _path_params['instanceIdValue'] = _params['instance_id_value']
+
+        if _params['rec_type'] is not None:
+            _path_params['recType'] = _params['rec_type']
+
+        if _params['run_number'] is not None:
+            _path_params['runNumber'] = _params['run_number']
+
         if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
@@ -1535,7 +1569,7 @@ class RecsApi:
         }
 
         return self.sync_api_client.call_api(
-            '/api/api/recs/results/{id}', 'GET',
+            '/api/api/recs/results/{instanceIdType}/{instanceIdValue}/{recType}/{runNumber}/{id}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -3187,6 +3221,149 @@ class RecsApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
+    @validate_call
+    def upsert_rec_definition_properties(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, PerpetualProperty], **kwargs) -> UpsertRecDefinitionPropertiesResponse:
+        """[EXPERIMENTAL] UpsertRecDefinitionProperties: UpsertRecDefinitionProperties  # noqa: E501
+
+        Update or insert one or more properties onto a single rec definition. A property will be updated if it already  exists and inserted if it does not. All properties must be of the domain 'RecDefinition', and are perpetual.                Upserting a property that exists for a rec definition, with a null value, will delete the instance of the  property for that rec definition. Properties not supplied are left unchanged, as is every other field of the  rec definition.  # noqa: E501
+        :param scope: The scope of the rec definition to update or insert the properties onto. (required)
+        :type scope: str
+        :param code: The code of the rec definition to update or insert the properties onto. Together with the               scope this uniquely identifies the rec definition. (required)
+        :type code: str
+        :param request_body: The properties to be updated or inserted onto the rec definition. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               'RecDefinition/Workflow/WorkflowId'. (required)
+        :type request_body: Dict[str, PerpetualProperty]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: UpsertRecDefinitionPropertiesResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the upsert_rec_definition_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.upsert_rec_definition_properties_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
+
+    @validate_call
+    def upsert_rec_definition_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, PerpetualProperty], **kwargs) -> ApiResponse[UpsertRecDefinitionPropertiesResponse]:
+        """[EXPERIMENTAL] UpsertRecDefinitionProperties: UpsertRecDefinitionProperties  # noqa: E501
+
+        Update or insert one or more properties onto a single rec definition. A property will be updated if it already  exists and inserted if it does not. All properties must be of the domain 'RecDefinition', and are perpetual.                Upserting a property that exists for a rec definition, with a null value, will delete the instance of the  property for that rec definition. Properties not supplied are left unchanged, as is every other field of the  rec definition.  # noqa: E501
+        :param scope: The scope of the rec definition to update or insert the properties onto. (required)
+        :type scope: str
+        :param code: The code of the rec definition to update or insert the properties onto. Together with the               scope this uniquely identifies the rec definition. (required)
+        :type code: str
+        :param request_body: The properties to be updated or inserted onto the rec definition. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               'RecDefinition/Workflow/WorkflowId'. (required)
+        :type request_body: Dict[str, PerpetualProperty]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(UpsertRecDefinitionPropertiesResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'request_body'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method upsert_rec_definition_properties" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "UpsertRecDefinitionPropertiesResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/recs/definitions/{scope}/{code}/properties/$upsert', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
 
   # --- ASYNC API METHODS ---
 
@@ -4543,11 +4720,19 @@ class RecsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_rec_result_async(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
+    async def get_rec_result_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
             """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
-            Retrieve a single rec result by its id.  # noqa: E501
+            Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
             
-            :param id: The system-generated id of the rec result. (required)
+            :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
+            :type instance_id_type: str
+            :param instance_id_value: The unique identifier of the rec instance. (required)
+            :type instance_id_value: str
+            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+            :type rec_type: str
+            :param run_number: The run of the instance the result belongs to. (required)
+            :type run_number: int
+            :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
@@ -4563,16 +4748,24 @@ class RecsApi:
                 message = "Error! Please call the get_rec_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_rec_result_with_http_info_async(id, as_at, property_keys, **kwargs)
+            response = await self.get_rec_result_with_http_info_async(instance_id_type, instance_id_value, rec_type, run_number, id, as_at, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_rec_result_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
+    async def get_rec_result_with_http_info_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
             """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-            Retrieve a single rec result by its id.  # noqa: E501
+            Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
 
-            :param id: The system-generated id of the rec result. (required)
+            :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
+            :type instance_id_type: str
+            :param instance_id_value: The unique identifier of the rec instance. (required)
+            :type instance_id_value: str
+            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+            :type rec_type: str
+            :param run_number: The run of the instance the result belongs to. (required)
+            :type run_number: int
+            :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
@@ -4601,6 +4794,10 @@ class RecsApi:
             _params = locals()
 
             _all_params = [
+                'instance_id_type',
+                'instance_id_value',
+                'rec_type',
+                'run_number',
                 'id',
                 'as_at',
                 'property_keys'
@@ -4631,6 +4828,18 @@ class RecsApi:
 
             # process the path parameters
             _path_params = {}
+            if _params['instance_id_type'] is not None:
+                _path_params['instanceIdType'] = _params['instance_id_type']
+
+            if _params['instance_id_value'] is not None:
+                _path_params['instanceIdValue'] = _params['instance_id_value']
+
+            if _params['rec_type'] is not None:
+                _path_params['recType'] = _params['rec_type']
+
+            if _params['run_number'] is not None:
+                _path_params['runNumber'] = _params['run_number']
+
             if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
@@ -4667,7 +4876,7 @@ class RecsApi:
             }
 
             return await self.api_client.call_api_async(
-                '/api/api/recs/results/{id}', 'GET',
+                '/api/api/recs/results/{instanceIdType}/{instanceIdValue}/{recType}/{runNumber}/{id}', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -6315,6 +6524,150 @@ class RecsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/recs/definitions/{scope}/{code}', 'PUT',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def upsert_rec_definition_properties_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, PerpetualProperty], **kwargs) -> UpsertRecDefinitionPropertiesResponse:
+            """[EXPERIMENTAL] UpsertRecDefinitionProperties: UpsertRecDefinitionProperties  # noqa: E501
+            Update or insert one or more properties onto a single rec definition. A property will be updated if it already  exists and inserted if it does not. All properties must be of the domain 'RecDefinition', and are perpetual.                Upserting a property that exists for a rec definition, with a null value, will delete the instance of the  property for that rec definition. Properties not supplied are left unchanged, as is every other field of the  rec definition.  # noqa: E501
+            
+            :param scope: The scope of the rec definition to update or insert the properties onto. (required)
+            :type scope: str
+            :param code: The code of the rec definition to update or insert the properties onto. Together with the               scope this uniquely identifies the rec definition. (required)
+            :type code: str
+            :param request_body: The properties to be updated or inserted onto the rec definition. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               'RecDefinition/Workflow/WorkflowId'. (required)
+            :type request_body: Dict[str, PerpetualProperty]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: UpsertRecDefinitionPropertiesResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the upsert_rec_definition_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.upsert_rec_definition_properties_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
+
+    @validate_call
+    async def upsert_rec_definition_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, PerpetualProperty], **kwargs) -> ApiResponse[UpsertRecDefinitionPropertiesResponse]:
+            """[EXPERIMENTAL] UpsertRecDefinitionProperties: UpsertRecDefinitionProperties  # noqa: E501
+
+            Update or insert one or more properties onto a single rec definition. A property will be updated if it already  exists and inserted if it does not. All properties must be of the domain 'RecDefinition', and are perpetual.                Upserting a property that exists for a rec definition, with a null value, will delete the instance of the  property for that rec definition. Properties not supplied are left unchanged, as is every other field of the  rec definition.  # noqa: E501
+
+            :param scope: The scope of the rec definition to update or insert the properties onto. (required)
+            :type scope: str
+            :param code: The code of the rec definition to update or insert the properties onto. Together with the               scope this uniquely identifies the rec definition. (required)
+            :type code: str
+            :param request_body: The properties to be updated or inserted onto the rec definition. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               'RecDefinition/Workflow/WorkflowId'. (required)
+            :type request_body: Dict[str, PerpetualProperty]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(UpsertRecDefinitionPropertiesResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'request_body'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method upsert_rec_definition_properties" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "UpsertRecDefinitionPropertiesResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/recs/definitions/{scope}/{code}/properties/$upsert', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

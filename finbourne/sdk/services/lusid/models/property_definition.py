@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
+from finbourne.sdk.services.lusid.models.qualifier_definition import QualifierDefinition
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.version import Version
@@ -55,8 +56,9 @@ class PropertyDefinition(BaseModel):
     is_filterable: Optional[StrictBool] = Field(default=None, description="Bool indicating whether the values of this property are fitlerable, this is true for all non-derived property defintions.  For a derived definition this must be set true to enable filtering.", alias="isFilterable")
     custom_entity_types: Optional[List[StrictStr]] = Field(default=None, description="The custom entity types that properties relating to this property definition can be applied to.", alias="customEntityTypes")
     value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented.") 
+    qualifier_definitions: Optional[List[QualifierDefinition]] = Field(default=None, description="The qualifiers declared against this property definition, each with its value type resolved from its data type. Absent where the definition declares no qualifiers. Qualifiers are supported only on single-value properties.", alias="qualifierDefinitions")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "key", "valueType", "displayName", "dataTypeId", "type", "unitSchema", "domain", "scope", "code", "valueRequired", "lifeTime", "constraintStyle", "propertyDefinitionType", "propertyDescription", "derivationFormula", "collectionType", "properties", "version", "stagedModifications", "isFilterable", "customEntityTypes", "valueFormat", "links"]
+    __properties: ClassVar[List[str]] = ["href", "key", "valueType", "displayName", "dataTypeId", "type", "unitSchema", "domain", "scope", "code", "valueRequired", "lifeTime", "constraintStyle", "propertyDefinitionType", "propertyDescription", "derivationFormula", "collectionType", "properties", "version", "stagedModifications", "isFilterable", "customEntityTypes", "valueFormat", "qualifierDefinitions", "links"]
 
     @field_validator('value_type')
     def value_type_validate_enum(cls, value):
@@ -230,6 +232,13 @@ class PropertyDefinition(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of staged_modifications
         if self.staged_modifications:
             _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in qualifier_definitions (list)
+        _items = []
+        if self.qualifier_definitions:
+            for _item in self.qualifier_definitions:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['qualifierDefinitions'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -297,6 +306,11 @@ class PropertyDefinition(BaseModel):
         if self.value_format is None and "value_format" in self.model_fields_set:
             _dict['valueFormat'] = None
 
+        # set to None if qualifier_definitions (nullable) is None
+        # and model_fields_set contains the field
+        if self.qualifier_definitions is None and "qualifier_definitions" in self.model_fields_set:
+            _dict['qualifierDefinitions'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -342,6 +356,7 @@ class PropertyDefinition(BaseModel):
             "is_filterable": obj.get("isFilterable"),
             "custom_entity_types": obj.get("customEntityTypes"),
             "value_format": obj.get("valueFormat"),
+            "qualifier_definitions": [QualifierDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("qualifierDefinitions")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

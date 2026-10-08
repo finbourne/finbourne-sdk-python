@@ -5,7 +5,7 @@ A result flagged for re-review as part of a Request Revisions decision.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rec_result_id** | **str** | Required | The identifier of the result to flag for re-review. |
+| **rec_result_id** | **str** | Required | The id of the result to flag for re-review, as carried on the result itself, e.g. &#39;break-3&#39;. Resolved within the run this result set is for. |
 | **comment_text** | **str** | Optional | An optional per-result comment added to the result&#39;s user comments. |
 
 
@@ -17,7 +17,7 @@ A result flagged for re-review as part of a Request Revisions decision.
 from finbourne.sdk.services.lusid.models.RecRequestedResultRevision import RecRequestedResultRevision
 
 instance = RecRequestedResultRevision(
-    rec_result_id="...",  # required — The identifier of the result to flag for re-review.
+    rec_result_id="...",  # required — The id of the result to flag for re-review, as carried on the result itself, e.g. &#39;break-3&#39;. Resolved within the run this result set is for.
     comment_text="..."  # optional — An optional per-result comment added to the result&#39;s user comments.
 )
 ```

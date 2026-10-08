@@ -48,15 +48,19 @@ class InflationLinkedBond(LusidInstrument):
     principal: Union[StrictFloat, StrictInt] = Field(description="The face-value or principal for the bond at outset.")
     principal_protection: Optional[StrictBool] = Field(default=None, description="If true then the principal is protected in that the redemption amount will be at least the face value (Principal).  This is typically set to true for inflation linked bonds issued by the United States and France (for example).  This is typically set to false for inflation linked bonds issued by the United Kingdom (post 2005).  For other sovereigns this can vary from issue to issue.  If not set this property defaults to true.  This is sometimes referred to as Deflation protection or an inflation floor of 0%.", alias="principalProtection")
     stub_type:  Optional[StrictStr] = Field(default=None,alias="stubType", description="StubType. Most Inflation linked bonds have a ShortFront stub type so this is the default, however in some cases  with a long front stub LongFront should be selected.  StubType Both is not supported for InflationLinkedBonds.    Supported string (enumeration) values are: [ShortFront, ShortBack, LongBack, LongFront, Both].") 
+    first_coupon_pay_date: Optional[datetime] = Field(default=None, description="Optional. The date on which the first coupon is paid. Set this date for an irregular first coupon period.  If this date is an adjusted date, also set SecondPeriodStartDate.", alias="firstCouponPayDate")
+    second_period_start_date: Optional[datetime] = Field(default=None, description="Optional. The date on which the second coupon period starts. This is also the accrual end date of the first coupon period.  Set this date together with FirstCouponPayDate when the first coupon pay date is an adjusted date.", alias="secondPeriodStartDate")
+    penultimate_coupon_pay_date: Optional[datetime] = Field(default=None, description="Optional. The date on which the penultimate coupon is paid. Set this date for an irregular last coupon period.  If this date is an adjusted date, also set LastPeriodStartDate.", alias="penultimateCouponPayDate")
+    last_period_start_date: Optional[datetime] = Field(default=None, description="Optional. The date on which the last coupon period starts. This is also the accrual end date of the penultimate coupon period.  Set this date together with PenultimateCouponPayDate when the penultimate coupon pay date is an adjusted date.", alias="lastPeriodStartDate")
     rounding_conventions: Optional[List[RoundingConvention]] = Field(default=None, description="Rounding conventions for analytics, if any.", alias="roundingConventions")
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
     original_issue_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The price the bond was issued at. This is to be entered as a percentage of par, for example a value of 98.5 would represent 98.5%.", alias="originalIssuePrice")
     par_per_unit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional value used to scale accrued interest and coupon amounts only (not CleanPV), in addition to  currentNotional and units. If you do not set this field, the value is 1 and no amount changes.  A model that calculates the price from the cash flows, for example InflationForward, includes the scaled  coupons in the PV and thus in the CleanPV. The CleanPV exclusion applies to a quoted price.", alias="parPerUnit")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     amortisation_schedule: Optional[StepSchedule] = Field(default=None, alias="amortisationSchedule")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest.") 
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest, WholeLoanFacility.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "flowConventions", "inflationIndexConventions", "couponRate", "identifiers", "baseCPI", "baseCPIDate", "calculationType", "exDividendDays", "indexPrecision", "principal", "principalProtection", "stubType", "roundingConventions", "tradingConventions", "originalIssuePrice", "parPerUnit", "timeZoneConventions", "amortisationSchedule"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "flowConventions", "inflationIndexConventions", "couponRate", "identifiers", "baseCPI", "baseCPIDate", "calculationType", "exDividendDays", "indexPrecision", "principal", "principalProtection", "stubType", "firstCouponPayDate", "secondPeriodStartDate", "penultimateCouponPayDate", "lastPeriodStartDate", "roundingConventions", "tradingConventions", "originalIssuePrice", "parPerUnit", "timeZoneConventions", "amortisationSchedule"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -68,7 +72,7 @@ class InflationLinkedBond(LusidInstrument):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest']
+        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest', 'WholeLoanFacility']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -167,6 +171,26 @@ class InflationLinkedBond(LusidInstrument):
         if self.stub_type is None and "stub_type" in self.model_fields_set:
             _dict['stubType'] = None
 
+        # set to None if first_coupon_pay_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.first_coupon_pay_date is None and "first_coupon_pay_date" in self.model_fields_set:
+            _dict['firstCouponPayDate'] = None
+
+        # set to None if second_period_start_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.second_period_start_date is None and "second_period_start_date" in self.model_fields_set:
+            _dict['secondPeriodStartDate'] = None
+
+        # set to None if penultimate_coupon_pay_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.penultimate_coupon_pay_date is None and "penultimate_coupon_pay_date" in self.model_fields_set:
+            _dict['penultimateCouponPayDate'] = None
+
+        # set to None if last_period_start_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_period_start_date is None and "last_period_start_date" in self.model_fields_set:
+            _dict['lastPeriodStartDate'] = None
+
         # set to None if rounding_conventions (nullable) is None
         # and model_fields_set contains the field
         if self.rounding_conventions is None and "rounding_conventions" in self.model_fields_set:
@@ -209,6 +233,10 @@ class InflationLinkedBond(LusidInstrument):
             "principal": obj.get("principal"),
             "principal_protection": obj.get("principalProtection"),
             "stub_type": obj.get("stubType"),
+            "first_coupon_pay_date": obj.get("firstCouponPayDate"),
+            "second_period_start_date": obj.get("secondPeriodStartDate"),
+            "penultimate_coupon_pay_date": obj.get("penultimateCouponPayDate"),
+            "last_period_start_date": obj.get("lastPeriodStartDate"),
             "rounding_conventions": [RoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventions")) is not None else None,
             "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None,
             "original_issue_price": obj.get("originalIssuePrice"),

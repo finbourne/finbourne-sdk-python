@@ -16,6 +16,7 @@
 | **collection_type** | **str** | Optional | Describes whether a collection property should behave as a Set or as an Array. Available values: Set, Array. |
 | **custom_entity_types** | **List[str]** | Optional | The custom entity types that properties relating to this property definition can be applied to. |
 | **value_format** | **str** | Optional | The format in which values for this property definition should be represented. Available values: Text, Html. |
+| **qualifier_definitions** | [List[QualifierDefinitionRequest]](QualifierDefinitionRequest.md) | Optional | The qualifiers to declare against this property definition. A qualifier attaches an individually typed supporting fact to a value of this property, sharing that value&#39;s interval. Supported only where the constraint style is Property and no collection type is set. |
 
 
 ## Usage
@@ -37,11 +38,13 @@ instance = CreatePropertyDefinitionRequest(
     property_description="...",  # optional — Describes the property
     collection_type="...",  # optional — Describes whether a collection property should behave as a Set or as an Array. Available values: Set, Array.
     custom_entity_types=,  # optional — The custom entity types that properties relating to this property definition can be applied to.
-    value_format="..."  # optional — The format in which values for this property definition should be represented. Available values: Text, Html.
+    value_format="...",  # optional — The format in which values for this property definition should be represented. Available values: Text, Html.
+    qualifier_definitions=[]  # optional — The qualifiers to declare against this property definition. A qualifier attaches an individually typed supporting fact to a value of this property, sharing that value&#39;s interval. Supported only where the constraint style is Property and no collection type is set.
 )
 ```
 
 - [ResourceId](ResourceId.md)
+- [QualifierDefinitionRequest](QualifierDefinitionRequest.md) — used in `qualifier_definitions`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

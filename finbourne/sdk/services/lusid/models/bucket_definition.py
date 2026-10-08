@@ -32,7 +32,9 @@ class BucketDefinition(BaseModel):
     filter_expression:  StrictStr = Field(...,alias="filterExpression") 
     bucket_type:  StrictStr = Field(...,alias="bucketType", description="Available values: Dealing, PnL, Fees, BalanceSheet, Misc.") 
     unitised: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["bucketId", "displayName", "filterExpression", "bucketType", "unitised"]
+    cleardown_behaviour:  Optional[StrictStr] = Field(default=None,alias="cleardownBehaviour", description="Available values: Clear, CarryForward.") 
+    clears_to:  Optional[StrictStr] = Field(default=None,alias="clearsTo") 
+    __properties: ClassVar[List[str]] = ["bucketId", "displayName", "filterExpression", "bucketType", "unitised", "cleardownBehaviour", "clearsTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +75,16 @@ class BucketDefinition(BaseModel):
         if self.unitised is None and "unitised" in self.model_fields_set:
             _dict['unitised'] = None
 
+        # set to None if cleardown_behaviour (nullable) is None
+        # and model_fields_set contains the field
+        if self.cleardown_behaviour is None and "cleardown_behaviour" in self.model_fields_set:
+            _dict['cleardownBehaviour'] = None
+
+        # set to None if clears_to (nullable) is None
+        # and model_fields_set contains the field
+        if self.clears_to is None and "clears_to" in self.model_fields_set:
+            _dict['clearsTo'] = None
+
         return _dict
 
     @classmethod
@@ -89,7 +101,9 @@ class BucketDefinition(BaseModel):
             "display_name": obj.get("displayName"),
             "filter_expression": obj.get("filterExpression"),
             "bucket_type": obj.get("bucketType"),
-            "unitised": obj.get("unitised")
+            "unitised": obj.get("unitised"),
+            "cleardown_behaviour": obj.get("cleardownBehaviour"),
+            "clears_to": obj.get("clearsTo")
         })
         return _obj
 

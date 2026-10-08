@@ -21,6 +21,7 @@
 | **is_active** | **bool** | Optional | Indicates whether the settlement instruction is active. When false, the instruction has no impact on settlement positions, but remains visible. Defaults to true. |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties which have been requested to be decorated onto the settlement instruction. These will be from the &#39;SettlementInstruction&#39;, &#39;Portfolio&#39;, or &#39;Instrument&#39; domains. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **problem_code** | **str** | Optional | Why the settlement instruction was not applied. Set only when the status is Invalid, Orphan or Rejected. |
 
 
 ## Usage
@@ -47,7 +48,8 @@ instance = TransactionSettlementInstruction(
     settlement_in_lieu=SettlementInLieu(...),  # optional
     is_active=True,  # optional — Indicates whether the settlement instruction is active. When false, the instruction has no impact on settlement positions, but remains visible. Defaults to true.
     properties=PerpetualProperty(...),  # optional — The properties which have been requested to be decorated onto the settlement instruction. These will be from the &#39;SettlementInstruction&#39;, &#39;Portfolio&#39;, or &#39;Instrument&#39; domains.
-    version=Version(...)  # optional
+    version=Version(...),  # optional
+    problem_code="..."  # optional — Why the settlement instruction was not applied. Set only when the status is Invalid, Orphan or Rejected.
 )
 ```
 

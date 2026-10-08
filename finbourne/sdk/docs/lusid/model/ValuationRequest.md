@@ -20,6 +20,7 @@ Specification object for the parameters of a valuation
 | **market_data_overrides** | [MarketDataOverrides](MarketDataOverrides.md) | Optional | *No description available.* |
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **scenario** | [ScenarioReference](ScenarioReference.md) | Optional | *No description available.* |
+| **notional_dealing_cost_table_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -44,7 +45,8 @@ instance = ValuationRequest(
     valuation_schedule=ValuationSchedule(...),  # required
     market_data_overrides=MarketDataOverrides(...),  # optional
     corporate_action_source_id=ResourceId(...),  # optional
-    scenario=ScenarioReference(...)  # optional
+    scenario=ScenarioReference(...),  # optional
+    notional_dealing_cost_table_id=ResourceId(...)  # optional
 )
 ```
 
@@ -61,6 +63,7 @@ instance = ValuationRequest(
 - [MarketDataOverrides](MarketDataOverrides.md)
 - [ResourceId](ResourceId.md)
 - [ScenarioReference](ScenarioReference.md)
+- [ResourceId](ResourceId.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

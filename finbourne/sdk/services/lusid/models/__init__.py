@@ -146,6 +146,7 @@ from finbourne.sdk.services.lusid.models.batch_upsert_portfolio_transactions_res
 from finbourne.sdk.services.lusid.models.batch_upsert_property_definition_properties_response import BatchUpsertPropertyDefinitionPropertiesResponse
 from finbourne.sdk.services.lusid.models.batch_upsert_relational_datasets_response import BatchUpsertRelationalDatasetsResponse
 from finbourne.sdk.services.lusid.models.batch_upsert_transaction_settlement_instruction_response import BatchUpsertTransactionSettlementInstructionResponse
+from finbourne.sdk.services.lusid.models.batch_upsert_withholding_tax_rates_response import BatchUpsertWithholdingTaxRatesResponse
 from finbourne.sdk.services.lusid.models.block import Block
 from finbourne.sdk.services.lusid.models.block_and_order_id_request import BlockAndOrderIdRequest
 from finbourne.sdk.services.lusid.models.block_and_orders import BlockAndOrders
@@ -459,6 +460,7 @@ from finbourne.sdk.services.lusid.models.decimal_compliance_parameter import Dec
 from finbourne.sdk.services.lusid.models.decimal_list import DecimalList
 from finbourne.sdk.services.lusid.models.decimal_list_compliance_parameter import DecimalListComplianceParameter
 from finbourne.sdk.services.lusid.models.decorated_compliance_run_summary import DecoratedComplianceRunSummary
+from finbourne.sdk.services.lusid.models.decorated_compliance_run_summary_request import DecoratedComplianceRunSummaryRequest
 from finbourne.sdk.services.lusid.models.delete_accounts_response import DeleteAccountsResponse
 from finbourne.sdk.services.lusid.models.delete_custodian_accounts_response import DeleteCustodianAccountsResponse
 from finbourne.sdk.services.lusid.models.delete_data_quality_rule import DeleteDataQualityRule
@@ -472,6 +474,7 @@ from finbourne.sdk.services.lusid.models.delete_relationship_request import Dele
 from finbourne.sdk.services.lusid.models.delete_transfer_agency_order_request import DeleteTransferAgencyOrderRequest
 from finbourne.sdk.services.lusid.models.delete_transfer_agency_order_result import DeleteTransferAgencyOrderResult
 from finbourne.sdk.services.lusid.models.delete_transfer_agency_orders_response import DeleteTransferAgencyOrdersResponse
+from finbourne.sdk.services.lusid.models.delete_withholding_tax_rate_request import DeleteWithholdingTaxRateRequest
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.delisting_event import DelistingEvent
 from finbourne.sdk.services.lusid.models.dependency_source_filter import DependencySourceFilter
@@ -604,6 +607,7 @@ from finbourne.sdk.services.lusid.models.fund_request import FundRequest
 from finbourne.sdk.services.lusid.models.fund_share_class import FundShareClass
 from finbourne.sdk.services.lusid.models.fund_structure import FundStructure
 from finbourne.sdk.services.lusid.models.fund_structure_allocation_basis import FundStructureAllocationBasis
+from finbourne.sdk.services.lusid.models.fund_structure_drift_materiality import FundStructureDriftMateriality
 from finbourne.sdk.services.lusid.models.fund_structure_edge import FundStructureEdge
 from finbourne.sdk.services.lusid.models.fund_structure_edge_target import FundStructureEdgeTarget
 from finbourne.sdk.services.lusid.models.fund_structure_member_request import FundStructureMemberRequest
@@ -660,8 +664,9 @@ from finbourne.sdk.services.lusid.models.get_scenario_response import GetScenari
 from finbourne.sdk.services.lusid.models.get_structured_result_data_response import GetStructuredResultDataResponse
 from finbourne.sdk.services.lusid.models.get_subscription_response import GetSubscriptionResponse
 from finbourne.sdk.services.lusid.models.get_transfer_request import GetTransferRequest
-from finbourne.sdk.services.lusid.models.get_transfer_response import GetTransferResponse
 from finbourne.sdk.services.lusid.models.get_virtual_document_response import GetVirtualDocumentResponse
+from finbourne.sdk.services.lusid.models.global_loan_facility_contract_state import GlobalLoanFacilityContractState
+from finbourne.sdk.services.lusid.models.global_loan_facility_reinitialisation_event import GlobalLoanFacilityReinitialisationEvent
 from finbourne.sdk.services.lusid.models.group_by_selector_compliance_parameter import GroupBySelectorComplianceParameter
 from finbourne.sdk.services.lusid.models.group_by_step import GroupByStep
 from finbourne.sdk.services.lusid.models.group_by_step_request import GroupByStepRequest
@@ -777,6 +782,7 @@ from finbourne.sdk.services.lusid.models.investment_portfolio import InvestmentP
 from finbourne.sdk.services.lusid.models.investment_portfolio_identifier import InvestmentPortfolioIdentifier
 from finbourne.sdk.services.lusid.models.investor import Investor
 from finbourne.sdk.services.lusid.models.investor_identifier import InvestorIdentifier
+from finbourne.sdk.services.lusid.models.investor_loan_facility_reinitialisation_event import InvestorLoanFacilityReinitialisationEvent
 from finbourne.sdk.services.lusid.models.investor_record import InvestorRecord
 from finbourne.sdk.services.lusid.models.ir_vol_cube_data import IrVolCubeData
 from finbourne.sdk.services.lusid.models.ir_vol_dependency import IrVolDependency
@@ -803,6 +809,8 @@ from finbourne.sdk.services.lusid.models.list_complex_market_data_with_meta_data
 from finbourne.sdk.services.lusid.models.loan_facility import LoanFacility
 from finbourne.sdk.services.lusid.models.loan_facility_contract_rollover_event import LoanFacilityContractRolloverEvent
 from finbourne.sdk.services.lusid.models.loan_facility_delayed_compensation_payment_event import LoanFacilityDelayedCompensationPaymentEvent
+from finbourne.sdk.services.lusid.models.loan_facility_tax_lot_allocation import LoanFacilityTaxLotAllocation
+from finbourne.sdk.services.lusid.models.loan_facility_tax_lot_state import LoanFacilityTaxLotState
 from finbourne.sdk.services.lusid.models.loan_interest_capitalisation_event import LoanInterestCapitalisationEvent
 from finbourne.sdk.services.lusid.models.loan_interest_repayment_event import LoanInterestRepaymentEvent
 from finbourne.sdk.services.lusid.models.loan_period import LoanPeriod
@@ -865,6 +873,7 @@ from finbourne.sdk.services.lusid.models.movement_condition_match import Movemen
 from finbourne.sdk.services.lusid.models.movement_settlement_summary import MovementSettlementSummary
 from finbourne.sdk.services.lusid.models.movement_type import MovementType
 from finbourne.sdk.services.lusid.models.multi_currency_amounts import MultiCurrencyAmounts
+from finbourne.sdk.services.lusid.models.named_price import NamedPrice
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment import NavActivityAdjustment
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response import NavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response_type import NavActivityAdjustmentResponseType
@@ -1146,6 +1155,8 @@ from finbourne.sdk.services.lusid.models.property_value_equals import PropertyVa
 from finbourne.sdk.services.lusid.models.property_value_in import PropertyValueIn
 from finbourne.sdk.services.lusid.models.protection_payout_cash_flow_event import ProtectionPayoutCashFlowEvent
 from finbourne.sdk.services.lusid.models.put_redemption_event import PutRedemptionEvent
+from finbourne.sdk.services.lusid.models.qualifier_definition import QualifierDefinition
+from finbourne.sdk.services.lusid.models.qualifier_definition_request import QualifierDefinitionRequest
 from finbourne.sdk.services.lusid.models.quantity_instructed import QuantityInstructed
 from finbourne.sdk.services.lusid.models.query_applicable_instrument_events_request import QueryApplicableInstrumentEventsRequest
 from finbourne.sdk.services.lusid.models.query_bucket_cash_flow_drill_down_request import QueryBucketCashFlowDrillDownRequest
@@ -1366,6 +1377,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_transaction import Res
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_fee_type import ResourceListOfTransactionFeeType
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_settlement_instruction import ResourceListOfTransactionSettlementInstruction
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_type import ResourceListOfTransactionType
+from finbourne.sdk.services.lusid.models.resource_list_of_transfer import ResourceListOfTransfer
 from finbourne.sdk.services.lusid.models.resource_list_of_value_type import ResourceListOfValueType
 from finbourne.sdk.services.lusid.models.resource_list_of_virtual_transaction_override_record import ResourceListOfVirtualTransactionOverrideRecord
 from finbourne.sdk.services.lusid.models.resource_list_with_post_bodies_of_settlement_activity_to_settlement_activity_query import ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery
@@ -1396,6 +1408,7 @@ from finbourne.sdk.services.lusid.models.reverse_stress_request import ReverseSt
 from finbourne.sdk.services.lusid.models.reverse_stress_response import ReverseStressResponse
 from finbourne.sdk.services.lusid.models.reverse_stress_rung import ReverseStressRung
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
+from finbourne.sdk.services.lusid.models.revert_valuation_point_response import RevertValuationPointResponse
 from finbourne.sdk.services.lusid.models.risk_bump_options import RiskBumpOptions
 from finbourne.sdk.services.lusid.models.roll_interest_updates import RollInterestUpdates
 from finbourne.sdk.services.lusid.models.roll_principal_updates import RollPrincipalUpdates
@@ -1441,6 +1454,7 @@ from finbourne.sdk.services.lusid.models.set_transaction_configuration_alias imp
 from finbourne.sdk.services.lusid.models.set_transaction_configuration_source_request import SetTransactionConfigurationSourceRequest
 from finbourne.sdk.services.lusid.models.settle_expected_activity_rule_names import SettleExpectedActivityRuleNames
 from finbourne.sdk.services.lusid.models.settle_expected_activity_writeback_configuration import SettleExpectedActivityWritebackConfiguration
+from finbourne.sdk.services.lusid.models.settle_expected_activity_writeback_suggestion import SettleExpectedActivityWritebackSuggestion
 from finbourne.sdk.services.lusid.models.settlement_activity import SettlementActivity
 from finbourne.sdk.services.lusid.models.settlement_activity_query import SettlementActivityQuery
 from finbourne.sdk.services.lusid.models.settlement_configuration_category import SettlementConfigurationCategory
@@ -1510,6 +1524,8 @@ from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlo
 from finbourne.sdk.services.lusid.models.swap_principal_event import SwapPrincipalEvent
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
 from finbourne.sdk.services.lusid.models.sweep_blocks_response import SweepBlocksResponse
+from finbourne.sdk.services.lusid.models.swing_pricing_decision import SwingPricingDecision
+from finbourne.sdk.services.lusid.models.swing_pricing_rule import SwingPricingRule
 from finbourne.sdk.services.lusid.models.target_tax_lot import TargetTaxLot
 from finbourne.sdk.services.lusid.models.target_tax_lot_request import TargetTaxLotRequest
 from finbourne.sdk.services.lusid.models.tax_rule import TaxRule
@@ -1578,6 +1594,7 @@ from finbourne.sdk.services.lusid.models.transaction_type_movement import Transa
 from finbourne.sdk.services.lusid.models.transaction_type_property_mapping import TransactionTypePropertyMapping
 from finbourne.sdk.services.lusid.models.transaction_type_request import TransactionTypeRequest
 from finbourne.sdk.services.lusid.models.transactions_reconciliations_response import TransactionsReconciliationsResponse
+from finbourne.sdk.services.lusid.models.transfer import Transfer
 from finbourne.sdk.services.lusid.models.transfer_agency_dates import TransferAgencyDates
 from finbourne.sdk.services.lusid.models.transfer_agency_excluded_order import TransferAgencyExcludedOrder
 from finbourne.sdk.services.lusid.models.transfer_agency_order_estimate_result import TransferAgencyOrderEstimateResult
@@ -1688,6 +1705,7 @@ from finbourne.sdk.services.lusid.models.upsert_portfolio_transactions_response 
 from finbourne.sdk.services.lusid.models.upsert_quote_access_metadata_rule_request import UpsertQuoteAccessMetadataRuleRequest
 from finbourne.sdk.services.lusid.models.upsert_quote_request import UpsertQuoteRequest
 from finbourne.sdk.services.lusid.models.upsert_quotes_response import UpsertQuotesResponse
+from finbourne.sdk.services.lusid.models.upsert_rec_definition_properties_response import UpsertRecDefinitionPropertiesResponse
 from finbourne.sdk.services.lusid.models.upsert_recipe_composer_request import UpsertRecipeComposerRequest
 from finbourne.sdk.services.lusid.models.upsert_recipe_request import UpsertRecipeRequest
 from finbourne.sdk.services.lusid.models.upsert_reference_portfolio_constituent_properties_request import UpsertReferencePortfolioConstituentPropertiesRequest
@@ -1709,11 +1727,13 @@ from finbourne.sdk.services.lusid.models.upsert_translation_script_request impor
 from finbourne.sdk.services.lusid.models.upsert_valuation_point_request import UpsertValuationPointRequest
 from finbourne.sdk.services.lusid.models.upsert_virtual_transaction_override_response import UpsertVirtualTransactionOverrideResponse
 from finbourne.sdk.services.lusid.models.upsert_withholding_tax_configuration_request import UpsertWithholdingTaxConfigurationRequest
+from finbourne.sdk.services.lusid.models.upsert_withholding_tax_rate_request import UpsertWithholdingTaxRateRequest
 from finbourne.sdk.services.lusid.models.user import User
 from finbourne.sdk.services.lusid.models.valuation_point import ValuationPoint
 from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters import ValuationPointDataQueryParameters
 from finbourne.sdk.services.lusid.models.valuation_point_data_request import ValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
+from finbourne.sdk.services.lusid.models.valuation_point_diagnostic import ValuationPointDiagnostic
 from finbourne.sdk.services.lusid.models.valuation_point_entity import ValuationPointEntity
 from finbourne.sdk.services.lusid.models.valuation_point_instrument import ValuationPointInstrument
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
@@ -1763,9 +1783,11 @@ from finbourne.sdk.services.lusid.models.weighted_allocation_service_run_request
 from finbourne.sdk.services.lusid.models.weighted_instrument import WeightedInstrument
 from finbourne.sdk.services.lusid.models.weighted_instrument_in_line_lookup_identifiers import WeightedInstrumentInLineLookupIdentifiers
 from finbourne.sdk.services.lusid.models.weighted_instruments import WeightedInstruments
+from finbourne.sdk.services.lusid.models.whole_loan_facility import WholeLoanFacility
 from finbourne.sdk.services.lusid.models.withholding_tax_configuration import WithholdingTaxConfiguration
 from finbourne.sdk.services.lusid.models.withholding_tax_dataset import WithholdingTaxDataset
 from finbourne.sdk.services.lusid.models.withholding_tax_dataset_definitions import WithholdingTaxDatasetDefinitions
+from finbourne.sdk.services.lusid.models.withholding_tax_rate_response import WithholdingTaxRateResponse
 from finbourne.sdk.services.lusid.models.withholding_tax_value_source import WithholdingTaxValueSource
 from finbourne.sdk.services.lusid.models.workspace import Workspace
 from finbourne.sdk.services.lusid.models.workspace_creation_request import WorkspaceCreationRequest
@@ -1778,6 +1800,7 @@ from finbourne.sdk.services.lusid.models.workspace_visibility import WorkspaceVi
 from finbourne.sdk.services.lusid.models.worthless_event import WorthlessEvent
 from finbourne.sdk.services.lusid.models.writeback_configuration import WritebackConfiguration
 from finbourne.sdk.services.lusid.models.writeback_result_pattern import WritebackResultPattern
+from finbourne.sdk.services.lusid.models.writeback_suggestion import WritebackSuggestion
 from finbourne.sdk.services.lusid.models.year_month_day import YearMonthDay
 from finbourne.sdk.services.lusid.models.yield_curve_data import YieldCurveData
 
@@ -1917,6 +1940,7 @@ __all__ = [
     "BatchUpsertPropertyDefinitionPropertiesResponse",
     "BatchUpsertRelationalDatasetsResponse",
     "BatchUpsertTransactionSettlementInstructionResponse",
+    "BatchUpsertWithholdingTaxRatesResponse",
     "Block",
     "BlockAndOrderIdRequest",
     "BlockAndOrders",
@@ -2230,6 +2254,7 @@ __all__ = [
     "DecimalList",
     "DecimalListComplianceParameter",
     "DecoratedComplianceRunSummary",
+    "DecoratedComplianceRunSummaryRequest",
     "DeleteAccountsResponse",
     "DeleteCustodianAccountsResponse",
     "DeleteDataQualityRule",
@@ -2243,6 +2268,7 @@ __all__ = [
     "DeleteTransferAgencyOrderRequest",
     "DeleteTransferAgencyOrderResult",
     "DeleteTransferAgencyOrdersResponse",
+    "DeleteWithholdingTaxRateRequest",
     "DeletedEntityResponse",
     "DelistingEvent",
     "DependencySourceFilter",
@@ -2375,6 +2401,7 @@ __all__ = [
     "FundShareClass",
     "FundStructure",
     "FundStructureAllocationBasis",
+    "FundStructureDriftMateriality",
     "FundStructureEdge",
     "FundStructureEdgeTarget",
     "FundStructureMemberRequest",
@@ -2431,8 +2458,9 @@ __all__ = [
     "GetStructuredResultDataResponse",
     "GetSubscriptionResponse",
     "GetTransferRequest",
-    "GetTransferResponse",
     "GetVirtualDocumentResponse",
+    "GlobalLoanFacilityContractState",
+    "GlobalLoanFacilityReinitialisationEvent",
     "GroupBySelectorComplianceParameter",
     "GroupByStep",
     "GroupByStepRequest",
@@ -2548,6 +2576,7 @@ __all__ = [
     "InvestmentPortfolioIdentifier",
     "Investor",
     "InvestorIdentifier",
+    "InvestorLoanFacilityReinitialisationEvent",
     "InvestorRecord",
     "IrVolCubeData",
     "IrVolDependency",
@@ -2574,6 +2603,8 @@ __all__ = [
     "LoanFacility",
     "LoanFacilityContractRolloverEvent",
     "LoanFacilityDelayedCompensationPaymentEvent",
+    "LoanFacilityTaxLotAllocation",
+    "LoanFacilityTaxLotState",
     "LoanInterestCapitalisationEvent",
     "LoanInterestRepaymentEvent",
     "LoanPeriod",
@@ -2636,6 +2667,7 @@ __all__ = [
     "MovementSettlementSummary",
     "MovementType",
     "MultiCurrencyAmounts",
+    "NamedPrice",
     "NavActivityAdjustment",
     "NavActivityAdjustmentResponse",
     "NavActivityAdjustmentResponseType",
@@ -2917,6 +2949,8 @@ __all__ = [
     "PropertyValueIn",
     "ProtectionPayoutCashFlowEvent",
     "PutRedemptionEvent",
+    "QualifierDefinition",
+    "QualifierDefinitionRequest",
     "QuantityInstructed",
     "QueryApplicableInstrumentEventsRequest",
     "QueryBucketCashFlowDrillDownRequest",
@@ -3137,6 +3171,7 @@ __all__ = [
     "ResourceListOfTransactionFeeType",
     "ResourceListOfTransactionSettlementInstruction",
     "ResourceListOfTransactionType",
+    "ResourceListOfTransfer",
     "ResourceListOfValueType",
     "ResourceListOfVirtualTransactionOverrideRecord",
     "ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery",
@@ -3167,6 +3202,7 @@ __all__ = [
     "ReverseStressResponse",
     "ReverseStressRung",
     "RevertValuationPointDataRequest",
+    "RevertValuationPointResponse",
     "RiskBumpOptions",
     "RollInterestUpdates",
     "RollPrincipalUpdates",
@@ -3212,6 +3248,7 @@ __all__ = [
     "SetTransactionConfigurationSourceRequest",
     "SettleExpectedActivityRuleNames",
     "SettleExpectedActivityWritebackConfiguration",
+    "SettleExpectedActivityWritebackSuggestion",
     "SettlementActivity",
     "SettlementActivityQuery",
     "SettlementConfigurationCategory",
@@ -3281,6 +3318,8 @@ __all__ = [
     "SwapPrincipalEvent",
     "SweepBlocksRequest",
     "SweepBlocksResponse",
+    "SwingPricingDecision",
+    "SwingPricingRule",
     "TargetTaxLot",
     "TargetTaxLotRequest",
     "TaxRule",
@@ -3349,6 +3388,7 @@ __all__ = [
     "TransactionTypePropertyMapping",
     "TransactionTypeRequest",
     "TransactionsReconciliationsResponse",
+    "Transfer",
     "TransferAgencyDates",
     "TransferAgencyExcludedOrder",
     "TransferAgencyOrderEstimateResult",
@@ -3459,6 +3499,7 @@ __all__ = [
     "UpsertQuoteAccessMetadataRuleRequest",
     "UpsertQuoteRequest",
     "UpsertQuotesResponse",
+    "UpsertRecDefinitionPropertiesResponse",
     "UpsertRecipeComposerRequest",
     "UpsertRecipeRequest",
     "UpsertReferencePortfolioConstituentPropertiesRequest",
@@ -3480,11 +3521,13 @@ __all__ = [
     "UpsertValuationPointRequest",
     "UpsertVirtualTransactionOverrideResponse",
     "UpsertWithholdingTaxConfigurationRequest",
+    "UpsertWithholdingTaxRateRequest",
     "User",
     "ValuationPoint",
     "ValuationPointDataQueryParameters",
     "ValuationPointDataRequest",
     "ValuationPointDataResponse",
+    "ValuationPointDiagnostic",
     "ValuationPointEntity",
     "ValuationPointInstrument",
     "ValuationPointOverview",
@@ -3534,9 +3577,11 @@ __all__ = [
     "WeightedInstrument",
     "WeightedInstrumentInLineLookupIdentifiers",
     "WeightedInstruments",
+    "WholeLoanFacility",
     "WithholdingTaxConfiguration",
     "WithholdingTaxDataset",
     "WithholdingTaxDatasetDefinitions",
+    "WithholdingTaxRateResponse",
     "WithholdingTaxValueSource",
     "Workspace",
     "WorkspaceCreationRequest",
@@ -3549,6 +3594,7 @@ __all__ = [
     "WorthlessEvent",
     "WritebackConfiguration",
     "WritebackResultPattern",
+    "WritebackSuggestion",
     "YearMonthDay",
     "YieldCurveData"
 ]

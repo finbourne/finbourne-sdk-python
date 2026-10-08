@@ -40,7 +40,8 @@ class RunWorkerActionResponse(BaseModel):
     child_task_configurations: Optional[List[ResultantChildTaskConfiguration]] = Field(default=None, description="Tasks can be generated from run worker results; this is the configuration", alias="childTaskConfigurations")
     re_run_configurations: Optional[List[ReRunConfiguration]] = Field(default=None, description="Configuration governing how re-run results are reconciled against existing child tasks from a previous run of this action against the same parent Task instance", alias="reRunConfigurations")
     worker_timeout: Optional[StrictInt] = Field(default=None, description="Worker timeout in seconds", alias="workerTimeout")
-    __properties: ClassVar[List[str]] = ["type", "workerId", "workerAsAt", "workerParameters", "workerStatusTriggers", "childTaskConfigurations", "reRunConfigurations", "workerTimeout"]
+    ordering:  Optional[StrictStr] = Field(default=None,alias="ordering", description="How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries") 
+    __properties: ClassVar[List[str]] = ["type", "workerId", "workerAsAt", "workerParameters", "workerStatusTriggers", "childTaskConfigurations", "reRunConfigurations", "workerTimeout", "ordering"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -153,6 +154,11 @@ class RunWorkerActionResponse(BaseModel):
         if self.worker_timeout is None and "worker_timeout" in self.model_fields_set:
             _dict['workerTimeout'] = None
 
+        # set to None if ordering (nullable) is None
+        # and model_fields_set contains the field
+        if self.ordering is None and "ordering" in self.model_fields_set:
+            _dict['ordering'] = None
+
         return _dict
 
     @classmethod
@@ -177,7 +183,8 @@ class RunWorkerActionResponse(BaseModel):
             "worker_status_triggers": WorkerStatusTriggers.from_dict(_v) if (_v := obj.get("workerStatusTriggers")) is not None else None,
             "child_task_configurations": [ResultantChildTaskConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskConfigurations")) is not None else None,
             "re_run_configurations": [ReRunConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("reRunConfigurations")) is not None else None,
-            "worker_timeout": obj.get("workerTimeout")
+            "worker_timeout": obj.get("workerTimeout"),
+            "ordering": obj.get("ordering")
         })
         return _obj
 

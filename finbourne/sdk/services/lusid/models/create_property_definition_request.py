@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.qualifier_definition_request import QualifierDefinitionRequest
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
@@ -40,7 +41,8 @@ class CreatePropertyDefinitionRequest(BaseModel):
     collection_type:  Optional[StrictStr] = Field(default=None,alias="collectionType", description="Describes whether a collection property should behave as a Set or as an Array. Available values: Set, Array.") 
     custom_entity_types: Optional[List[StrictStr]] = Field(default=None, description="The custom entity types that properties relating to this property definition can be applied to.", alias="customEntityTypes")
     value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented. Available values: Text, Html.") 
-    __properties: ClassVar[List[str]] = ["domain", "scope", "code", "valueRequired", "displayName", "dataTypeId", "lifeTime", "constraintStyle", "propertyDescription", "collectionType", "customEntityTypes", "valueFormat"]
+    qualifier_definitions: Optional[List[QualifierDefinitionRequest]] = Field(default=None, description="The qualifiers to declare against this property definition. A qualifier attaches an individually typed supporting fact to a value of this property, sharing that value's interval. Supported only where the constraint style is Property and no collection type is set.", alias="qualifierDefinitions")
+    __properties: ClassVar[List[str]] = ["domain", "scope", "code", "valueRequired", "displayName", "dataTypeId", "lifeTime", "constraintStyle", "propertyDescription", "collectionType", "customEntityTypes", "valueFormat", "qualifierDefinitions"]
 
     @field_validator('domain')
     def domain_validate_enum(cls, value):
@@ -116,6 +118,13 @@ class CreatePropertyDefinitionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of data_type_id
         if self.data_type_id:
             _dict['dataTypeId'] = self.data_type_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in qualifier_definitions (list)
+        _items = []
+        if self.qualifier_definitions:
+            for _item in self.qualifier_definitions:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['qualifierDefinitions'] = _items
         # set to None if constraint_style (nullable) is None
         # and model_fields_set contains the field
         if self.constraint_style is None and "constraint_style" in self.model_fields_set:
@@ -141,6 +150,11 @@ class CreatePropertyDefinitionRequest(BaseModel):
         if self.value_format is None and "value_format" in self.model_fields_set:
             _dict['valueFormat'] = None
 
+        # set to None if qualifier_definitions (nullable) is None
+        # and model_fields_set contains the field
+        if self.qualifier_definitions is None and "qualifier_definitions" in self.model_fields_set:
+            _dict['qualifierDefinitions'] = None
+
         return _dict
 
     @classmethod
@@ -164,7 +178,8 @@ class CreatePropertyDefinitionRequest(BaseModel):
             "property_description": obj.get("propertyDescription"),
             "collection_type": obj.get("collectionType"),
             "custom_entity_types": obj.get("customEntityTypes"),
-            "value_format": obj.get("valueFormat")
+            "value_format": obj.get("valueFormat"),
+            "qualifier_definitions": [QualifierDefinitionRequest.from_dict(_item) for _item in _v] if (_v := obj.get("qualifierDefinitions")) is not None else None
         })
         return _obj
 

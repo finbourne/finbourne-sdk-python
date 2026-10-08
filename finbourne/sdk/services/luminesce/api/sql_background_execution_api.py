@@ -21,9 +21,10 @@ from typing_extensions import Annotated
 import finbourne.sdk.services.luminesce.models as packageModels
 from datetime import datetime
 from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
-from typing import Dict, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 from finbourne.sdk.services.luminesce.models.background_query_cancel_response import BackgroundQueryCancelResponse
+from finbourne.sdk.services.luminesce.models.background_query_list_item import BackgroundQueryListItem
 from finbourne.sdk.services.luminesce.models.background_query_progress_response import BackgroundQueryProgressResponse
 from finbourne.sdk.services.luminesce.models.background_query_response import BackgroundQueryResponse
 from finbourne.sdk.services.luminesce.models.export_type import ExportType
@@ -2302,6 +2303,125 @@ class SqlBackgroundExecutionApi:
 
         return self.sync_api_client.call_api(
             '/honeycomb/api/SqlBackground/{executionId}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_queries(self, sql_like: Optional[StrictStr] = None, **kwargs) -> List[BackgroundQueryListItem]:
+        """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+
+        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+        :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
+        :type sql_like: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: List[BackgroundQueryListItem]
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_queries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_queries_with_http_info(sql_like, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_queries_with_http_info(self, sql_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[BackgroundQueryListItem]]:
+        """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+
+        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+        :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
+        :type sql_like: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(List[BackgroundQueryListItem], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'sql_like'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_queries" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('sql_like') is not None:  # noqa: E501
+            _query_params.append(('sqlLike', _params['sql_like']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[BackgroundQueryListItem]",
+        }
+
+        return self.sync_api_client.call_api(
+            '/honeycomb/api/SqlBackground', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -4985,6 +5105,126 @@ class SqlBackgroundExecutionApi:
 
             return await self.api_client.call_api_async(
                 '/honeycomb/api/SqlBackground/{executionId}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_queries_async(self, sql_like: Optional[StrictStr] = None, **kwargs) -> List[BackgroundQueryListItem]:
+            """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+            Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+            
+            :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
+            :type sql_like: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: List[BackgroundQueryListItem]
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_queries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_queries_with_http_info_async(sql_like, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_queries_with_http_info_async(self, sql_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[BackgroundQueryListItem]]:
+            """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+
+            Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+
+            :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
+            :type sql_like: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(List[BackgroundQueryListItem], status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'sql_like'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_queries" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('sql_like') is not None:  # noqa: E501
+                _query_params.append(('sqlLike', _params['sql_like']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "List[BackgroundQueryListItem]",
+            }
+
+            return await self.api_client.call_api_async(
+                '/honeycomb/api/SqlBackground', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

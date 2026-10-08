@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Allocation Map. | [required] 
  **code** | **str**| The code of the Allocation Map. Together with the scope this uniquely identifies the Allocation Map. | [required] 
  **allocation_map_exception** | [**AllocationMapException**](../model/AllocationMapException.md)| The exception to add. | [required] 
- **effective_at** | **str**| The effective datetime or cut label from which the exception applies. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label of the map version that gains the exception. Defaults to the exception&#39;s effectiveFrom when that is earlier than the current LUSID system datetime, and to the current LUSID system datetime otherwise. Refused if the map has any version starting after that datetime, including a re-save of the same definition, or a later deletion, since neither would carry the exception. Also refused, with the reason, if the defaulted effectiveFrom is before the map&#39;s first version. | [optional] 
 
 ### Return type
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Allocation Map. | [required] 
  **code** | **str**| The code of the Allocation Map. Together with the scope this uniquely identifies the Allocation Map. | [required] 
  **investor_record_id** | **str**| The investor record whose exception is removed. | [required] 
- **effective_at** | **str**| The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified. Refused if the map has any version starting after that datetime, including a re-save of the same definition, which would still carry the exception, or a later deletion. | [optional] 
 
 ### Return type
 

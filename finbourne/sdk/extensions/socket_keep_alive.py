@@ -24,9 +24,10 @@ def keep_alive_socket_options() -> Sequence[Tuple[Any, Any, Any]]:
     Sequence
         Set of socket options.
     """
+    default_options: Any = HTTPConnection.default_socket_options
     try:
         # linux and some windows runtimes
-        return HTTPConnection.default_socket_options + [
+        return list(default_options) + [
             (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
             (socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, TCP_KEEP_IDLE),
             (socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, TCP_KEEPALIVE_INTERVAL),
@@ -36,7 +37,7 @@ def keep_alive_socket_options() -> Sequence[Tuple[Any, Any, Any]]:
         pass
     try:
         # darwin
-        return HTTPConnection.default_socket_options + [
+        return list(default_options) + [
             (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
             (socket.IPPROTO_TCP, TCP_KEEPALIVE, TCP_KEEPALIVE_INTERVAL),
         ]
@@ -44,7 +45,7 @@ def keep_alive_socket_options() -> Sequence[Tuple[Any, Any, Any]]:
         pass
     try:
         # windows
-        return HTTPConnection.default_socket_options + [
+        return list(default_options) + [
             (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
         ]
     except AttributeError:

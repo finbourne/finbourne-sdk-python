@@ -65,7 +65,7 @@ class AllocationMapsApi:
         :type code: str
         :param allocation_map_exception: The exception to add. (required)
         :type allocation_map_exception: AllocationMapException
-        :param effective_at: The effective datetime or cut label from which the exception applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label of the map version that gains the exception. Defaults to the exception's effectiveFrom when that is earlier than the current LUSID system datetime, and to the current LUSID system datetime otherwise. Refused if the map has any version starting after that datetime, including a re-save of the same definition, or a later deletion, since neither would carry the exception. Also refused, with the reason, if the defaulted effectiveFrom is before the map's first version.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -91,7 +91,7 @@ class AllocationMapsApi:
         :type code: str
         :param allocation_map_exception: The exception to add. (required)
         :type allocation_map_exception: AllocationMapException
-        :param effective_at: The effective datetime or cut label from which the exception applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label of the map version that gains the exception. Defaults to the exception's effectiveFrom when that is earlier than the current LUSID system datetime, and to the current LUSID system datetime otherwise. Refused if the map has any version starting after that datetime, including a re-save of the same definition, or a later deletion, since neither would carry the exception. Also refused, with the reason, if the defaulted effectiveFrom is before the map's first version.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -798,7 +798,7 @@ class AllocationMapsApi:
         :type code: str
         :param investor_record_id: The investor record whose exception is removed. (required)
         :type investor_record_id: str
-        :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified. Refused if the map has any version starting after that datetime, including a re-save of the same definition, which would still carry the exception, or a later deletion.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -824,7 +824,7 @@ class AllocationMapsApi:
         :type code: str
         :param investor_record_id: The investor record whose exception is removed. (required)
         :type investor_record_id: str
-        :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified. Refused if the map has any version starting after that datetime, including a re-save of the same definition, which would still carry the exception, or a later deletion.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1251,7 +1251,7 @@ class AllocationMapsApi:
             :type code: str
             :param allocation_map_exception: The exception to add. (required)
             :type allocation_map_exception: AllocationMapException
-            :param effective_at: The effective datetime or cut label from which the exception applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label of the map version that gains the exception. Defaults to the exception's effectiveFrom when that is earlier than the current LUSID system datetime, and to the current LUSID system datetime otherwise. Refused if the map has any version starting after that datetime, including a re-save of the same definition, or a later deletion, since neither would carry the exception. Also refused, with the reason, if the defaulted effectiveFrom is before the map's first version.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -1278,7 +1278,7 @@ class AllocationMapsApi:
             :type code: str
             :param allocation_map_exception: The exception to add. (required)
             :type allocation_map_exception: AllocationMapException
-            :param effective_at: The effective datetime or cut label from which the exception applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label of the map version that gains the exception. Defaults to the exception's effectiveFrom when that is earlier than the current LUSID system datetime, and to the current LUSID system datetime otherwise. Refused if the map has any version starting after that datetime, including a re-save of the same definition, or a later deletion, since neither would carry the exception. Also refused, with the reason, if the defaulted effectiveFrom is before the map's first version.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -1989,7 +1989,7 @@ class AllocationMapsApi:
             :type code: str
             :param investor_record_id: The investor record whose exception is removed. (required)
             :type investor_record_id: str
-            :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified. Refused if the map has any version starting after that datetime, including a re-save of the same definition, which would still carry the exception, or a later deletion.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2016,7 +2016,7 @@ class AllocationMapsApi:
             :type code: str
             :param investor_record_id: The investor record whose exception is removed. (required)
             :type investor_record_id: str
-            :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label from which the exception no longer applies. Defaults to the current LUSID system datetime if not specified. Refused if the map has any version starting after that datetime, including a re-save of the same definition, which would still carry the exception, or a later deletion.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

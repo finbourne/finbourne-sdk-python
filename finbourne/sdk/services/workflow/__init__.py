@@ -35,6 +35,7 @@ from finbourne.sdk.services.workflow.models.action_id import ActionId
 from finbourne.sdk.services.workflow.models.action_log import ActionLog
 from finbourne.sdk.services.workflow.models.action_log_item import ActionLogItem
 from finbourne.sdk.services.workflow.models.action_log_origin import ActionLogOrigin
+from finbourne.sdk.services.workflow.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.workflow.models.batch_update_tasks_request import BatchUpdateTasksRequest
 from finbourne.sdk.services.workflow.models.batch_update_tasks_response import BatchUpdateTasksResponse
 from finbourne.sdk.services.workflow.models.batch_upsert_task_definition_properties_response import BatchUpsertTaskDefinitionPropertiesResponse
@@ -85,9 +86,12 @@ from finbourne.sdk.services.workflow.models.horizon_integration_response import 
 from finbourne.sdk.services.workflow.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.workflow.models.identifier_part_schema import IdentifierPartSchema
 from finbourne.sdk.services.workflow.models.initial_state import InitialState
+from finbourne.sdk.services.workflow.models.instantiate_rec import InstantiateRec
+from finbourne.sdk.services.workflow.models.instantiate_rec_response import InstantiateRecResponse
 from finbourne.sdk.services.workflow.models.label_value_set import LabelValueSet
 from finbourne.sdk.services.workflow.models.launcher_details import LauncherDetails
 from finbourne.sdk.services.workflow.models.launcher_details_response import LauncherDetailsResponse
+from finbourne.sdk.services.workflow.models.launcher_edge import LauncherEdge
 from finbourne.sdk.services.workflow.models.launcher_event_matching_pattern import LauncherEventMatchingPattern
 from finbourne.sdk.services.workflow.models.launcher_mapping import LauncherMapping
 from finbourne.sdk.services.workflow.models.launcher_response import LauncherResponse
@@ -142,6 +146,7 @@ from finbourne.sdk.services.workflow.models.schedule_task_field_mapping import S
 from finbourne.sdk.services.workflow.models.scheduled_time_adjustment import ScheduledTimeAdjustment
 from finbourne.sdk.services.workflow.models.scheduler_job import SchedulerJob
 from finbourne.sdk.services.workflow.models.scheduler_job_response import SchedulerJobResponse
+from finbourne.sdk.services.workflow.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.workflow.models.sleep import Sleep
 from finbourne.sdk.services.workflow.models.sleep_response import SleepResponse
 from finbourne.sdk.services.workflow.models.specific_month_regularity import SpecificMonthRegularity
@@ -211,6 +216,7 @@ __all__ = [
     "ActionLog",
     "ActionLogItem",
     "ActionLogOrigin",
+    "ApiEndpoint",
     "BatchUpdateTasksRequest",
     "BatchUpdateTasksResponse",
     "BatchUpsertTaskDefinitionPropertiesResponse",
@@ -261,9 +267,12 @@ __all__ = [
     "IdSelectorDefinition",
     "IdentifierPartSchema",
     "InitialState",
+    "InstantiateRec",
+    "InstantiateRecResponse",
     "LabelValueSet",
     "LauncherDetails",
     "LauncherDetailsResponse",
+    "LauncherEdge",
     "LauncherEventMatchingPattern",
     "LauncherMapping",
     "LauncherResponse",
@@ -318,6 +327,7 @@ __all__ = [
     "ScheduledTimeAdjustment",
     "SchedulerJob",
     "SchedulerJobResponse",
+    "ServiceApiEndpoints",
     "Sleep",
     "SleepResponse",
     "SpecificMonthRegularity",

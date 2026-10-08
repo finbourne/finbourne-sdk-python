@@ -8,7 +8,7 @@ The transfer to read. Every part of its identity is required: a transfer is iden
 | **transfer_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **portfolio_id_out** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **portfolio_id_in** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **property_keys** | **List[str]** | Optional | *No description available.* |
+| **property_keys** | **List[str]** | Optional | A list of property keys from the Transfer domain to decorate onto the transfer. These must have the format {domain}/{scope}/{code}. |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = GetTransferRequest(
     transfer_id=ResourceId(...),  # required
     portfolio_id_out=ResourceId(...),  # required
     portfolio_id_in=ResourceId(...),  # required
-    property_keys=  # optional
+    property_keys=  # optional — A list of property keys from the Transfer domain to decorate onto the transfer. These must have the format {domain}/{scope}/{code}.
 )
 ```
 

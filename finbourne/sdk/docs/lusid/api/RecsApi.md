@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**get_matching_ruleset**](RecsApi.md#get_matching_ruleset) | **GET** /api/api/recs/matchingrulesets/{scope}/{code} | [EXPERIMENTAL] GetMatchingRuleset: GetMatchingRuleset
 [**get_rec_definition**](RecsApi.md#get_rec_definition) | **GET** /api/api/recs/definitions/{scope}/{code} | [EXPERIMENTAL] GetRecDefinition: GetRecDefinition
 [**get_rec_instance**](RecsApi.md#get_rec_instance) | **GET** /api/api/recs/instances/{instanceIdType}/{instanceIdValue} | [EXPERIMENTAL] GetRecInstance: GetRecInstance
-[**get_rec_result**](RecsApi.md#get_rec_result) | **GET** /api/api/recs/results/{id} | [EXPERIMENTAL] GetRecResult: GetRecResult
+[**get_rec_result**](RecsApi.md#get_rec_result) | **GET** /api/api/recs/results/{instanceIdType}/{instanceIdValue}/{recType}/{runNumber}/{id} | [EXPERIMENTAL] GetRecResult: GetRecResult
 [**get_rec_result_set**](RecsApi.md#get_rec_result_set) | **GET** /api/api/recs/resultsets/{entityUniqueId} | [EXPERIMENTAL] GetRecResultSet: GetRecResultSet
 [**instantiate_rec**](RecsApi.md#instantiate_rec) | **POST** /api/api/recs/instances | [EXPERIMENTAL] InstantiateRec: InstantiateRec
 [**list_matching_rulesets**](RecsApi.md#list_matching_rulesets) | **GET** /api/api/recs/matchingrulesets | [EXPERIMENTAL] ListMatchingRulesets: ListMatchingRulesets
@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**transition_rec_instance**](RecsApi.md#transition_rec_instance) | **POST** /api/api/recs/instances/{instanceIdType}/{instanceIdValue}/$transition | [EXPERIMENTAL] TransitionRecInstance: TransitionRecInstance
 [**update_matching_ruleset**](RecsApi.md#update_matching_ruleset) | **PUT** /api/api/recs/matchingrulesets/{scope}/{code} | [EXPERIMENTAL] UpdateMatchingRuleset: UpdateMatchingRuleset
 [**update_rec_definition**](RecsApi.md#update_rec_definition) | **PUT** /api/api/recs/definitions/{scope}/{code} | [EXPERIMENTAL] UpdateRecDefinition: UpdateRecDefinition
+[**upsert_rec_definition_properties**](RecsApi.md#upsert_rec_definition_properties) | **POST** /api/api/recs/definitions/{scope}/{code}/properties/$upsert | [EXPERIMENTAL] UpsertRecDefinitionProperties: UpsertRecDefinitionProperties
 
 
 ### Example
@@ -108,7 +109,7 @@ Add, edit or delete comments on rec results in a batch.  The batch limit per req
 
 ```python
 api_instance = api_client_factory.build(RecsApi)
-request_body = {"add-a-comment":{"recResultId":"rec-result-1","commentText":"Investigating this break."},"delete-a-comment":{"recResultId":"rec-result-1","commentId":"00000000-0000-0000-0000-000000000009"}} # Dict[str, BatchManageCommentRequest]
+request_body = {"add-a-comment":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultId":"break-1","commentText":"Investigating this break."},"delete-a-comment":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultId":"break-1","commentId":"00000000-0000-0000-0000-000000000009"}} # Dict[str, BatchManageCommentRequest]
 success_mode = 'Partial' # str (optional)
 api_response = api_instance.batch_manage_rec_result_comments(request_body, success_mode=success_mode)
 pprint(api_response)
@@ -152,7 +153,7 @@ Apply a batch of review actions (decisions, assignments, comments, properties) t
 
 ```python
 api_instance = api_client_factory.build(RecsApi)
-request_body = {"accept-a-break":{"recResultIds":["rec-result-1"],"decision":{"value":"Accept","affirm":false}},"force-match-two":{"recResultIds":["rec-result-2","rec-result-3"],"decision":{"value":"ForceMatch","affirm":false,"coreRulesExcused":["Broker Name"]}}} # Dict[str, BatchReviewRecResultRequest]
+request_body = {"accept-a-break":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultIds":["break-1"],"decision":{"value":"Accept","affirm":false}},"force-match-two":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultIds":["break-2","break-3"],"decision":{"value":"ForceMatch","affirm":false,"coreRulesExcused":["Broker Name"]}}} # Dict[str, BatchReviewRecResultRequest]
 success_mode = 'Partial' # str (optional)
 api_response = api_instance.batch_review_rec_results(request_body, success_mode=success_mode)
 pprint(api_response)
@@ -498,20 +499,24 @@ Name | Type | Description  | Notes
 ---
 
 # **get_rec_result**
-> RecResult getRecResult = get_rec_result(id, as_at=as_at, property_keys=property_keys)
+> RecResult getRecResult = get_rec_result(instance_id_type, instance_id_value, rec_type, run_number, id, as_at=as_at, property_keys=property_keys)
 
 [EXPERIMENTAL] GetRecResult: GetRecResult
 
-Retrieve a single rec result by its id.
+Retrieve a single rec result by the run it belongs to and its id within that run.
 
 ### Example
 
 ```python
 api_instance = api_client_factory.build(RecsApi)
+instance_id_type = 'instance_id_type_example' # str
+instance_id_value = 'instance_id_value_example' # str
+rec_type = 'rec_type_example' # str
+run_number = 56 # int
 id = 'id_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
-api_response = api_instance.get_rec_result(id, as_at=as_at, property_keys=property_keys)
+api_response = api_instance.get_rec_result(instance_id_type, instance_id_value, rec_type, run_number, id, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -519,7 +524,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The system-generated id of the rec result. | [required] 
+ **instance_id_type** | **str**| How the instance was created: \&quot;WorkflowServiceTaskId\&quot; or \&quot;Manual\&quot;. Available values: WorkflowServiceTaskId, Manual. | [required] 
+ **instance_id_value** | **str**| The unique identifier of the rec instance. | [required] 
+ **rec_type** | **str**| The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. | [required] 
+ **run_number** | **int**| The run of the instance the result belongs to. | [required] 
+ **id** | **str**| The id of the rec result within the run, e.g. \&quot;break-3\&quot;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the result. Defaults to latest if not specified. | [optional] 
  **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto the result. | [optional] 
 
@@ -1062,6 +1071,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated rec definition. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_rec_definition_properties**
+> UpsertRecDefinitionPropertiesResponse upsertRecDefinitionProperties = upsert_rec_definition_properties(scope, code, request_body)
+
+[EXPERIMENTAL] UpsertRecDefinitionProperties: UpsertRecDefinitionProperties
+
+Update or insert one or more properties onto a single rec definition. A property will be updated if it already  exists and inserted if it does not. All properties must be of the domain 'RecDefinition', and are perpetual.                Upserting a property that exists for a rec definition, with a null value, will delete the instance of the  property for that rec definition. Properties not supplied are left unchanged, as is every other field of the  rec definition.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RecsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"RecDefinition/Workflow/WorkflowId":{"key":"RecDefinition/Workflow/WorkflowId","value":{"labelValue":"CustodyReviewWorkflow"}}} # Dict[str, PerpetualProperty]
+api_response = api_instance.upsert_rec_definition_properties(scope, code, request_body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the rec definition to update or insert the properties onto. | [required] 
+ **code** | **str**| The code of the rec definition to update or insert the properties onto. Together with the               scope this uniquely identifies the rec definition. | [required] 
+ **request_body** | [**Dict[str, PerpetualProperty]**](../model/PerpetualProperty.md)| The properties to be updated or inserted onto the rec definition. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               &#39;RecDefinition/Workflow/WorkflowId&#39;. | [required] 
+
+### Return type
+
+[**UpsertRecDefinitionPropertiesResponse**](../model/UpsertRecDefinitionPropertiesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated or inserted properties. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

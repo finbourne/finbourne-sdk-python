@@ -12,6 +12,7 @@ A node in a Fund Structure, representing a Fund and its role within the structur
 | **allocation_basis** | [FundStructureAllocationBasis](FundStructureAllocationBasis.md) | Optional | *No description available.* |
 | **pnl_flow_mode** | **str** | Optional | How profit and loss reaches this member from the members it holds. EquityPickup (the default) revalues the position in each held member; BucketFlowThrough receives one line per economic bucket, tagged with its origin; TransactionFlowThrough receives every line, tagged with its origin and path. Available values: EquityPickup, BucketFlowThrough, TransactionFlowThrough. |
 | **allocation_map_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **drift_materiality** | [FundStructureDriftMateriality](FundStructureDriftMateriality.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -28,12 +29,14 @@ instance = FundStructureNode(
     role="...",  # required — The role of this node within the structure. Must be one of the acceptable values of the structure&#39;s role data type.
     allocation_basis=FundStructureAllocationBasis(...),  # optional
     pnl_flow_mode="...",  # optional — How profit and loss reaches this member from the members it holds. EquityPickup (the default) revalues the position in each held member; BucketFlowThrough receives one line per economic bucket, tagged with its origin; TransactionFlowThrough receives every line, tagged with its origin and path. Available values: EquityPickup, BucketFlowThrough, TransactionFlowThrough.
-    allocation_map_id=ResourceId(...)  # optional
+    allocation_map_id=ResourceId(...),  # optional
+    drift_materiality=FundStructureDriftMateriality(...)  # optional
 )
 ```
 
 - [FundStructureAllocationBasis](FundStructureAllocationBasis.md)
 - [ResourceId](ResourceId.md)
+- [FundStructureDriftMateriality](FundStructureDriftMateriality.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

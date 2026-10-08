@@ -16,6 +16,9 @@ The Valuation Point Data Response for the Fund and specified date.
 | **apportionment_results** | [List[ApportionmentBreakdown]](ApportionmentBreakdown.md) | Optional | The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group. |
 | **bucket_set_results** | [List[BucketSetResult]](BucketSetResult.md) | Optional | The bucket set results for the valuation point: for each bucket set, the per-node (fund and share class) buckets and NAV. |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **is_backfilled** | **bool** | Optional | Set to True if the Valuation Point has backfilled bucket set results, False otherwise. |
+| **apply_clear_down** | **bool** | Optional | Set to True if the Valuation Point applies a clear down, False otherwise. The Valuation Point shows its bucket values before the clear down, and the next Valuation Point opens from the balances after it. |
+| **diagnostics** | [List[ValuationPointDiagnostic]](ValuationPointDiagnostic.md) | Optional | Findings made while striking the valuation point that did not stop it but should be looked at, such as a fund structure holder whose declared sharing percentage in a member has drifted from the share its contributions make of that member&#39;s capital. Absent when there are none. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -38,6 +41,9 @@ instance = ValuationPointDataResponse(
     apportionment_results=[],  # optional — The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group.
     bucket_set_results=[],  # optional — The bucket set results for the valuation point: for each bucket set, the per-node (fund and share class) buckets and NAV.
     staged_modifications=StagedModificationsInfo(...),  # optional
+    is_backfilled=True,  # optional — Set to True if the Valuation Point has backfilled bucket set results, False otherwise.
+    apply_clear_down=True,  # optional — Set to True if the Valuation Point applies a clear down, False otherwise. The Valuation Point shows its bucket values before the clear down, and the next Valuation Point opens from the balances after it.
+    diagnostics=[],  # optional — Findings made while striking the valuation point that did not stop it but should be looked at, such as a fund structure holder whose declared sharing percentage in a member has drifted from the share its contributions make of that member&#39;s capital. Absent when there are none.
     links=[]  # optional
 )
 ```
@@ -48,6 +54,7 @@ instance = ValuationPointDataResponse(
 - [ApportionmentBreakdown](ApportionmentBreakdown.md) — used in `apportionment_results`
 - [BucketSetResult](BucketSetResult.md) — used in `bucket_set_results`
 - [StagedModificationsInfo](StagedModificationsInfo.md)
+- [ValuationPointDiagnostic](ValuationPointDiagnostic.md) — used in `diagnostics`
 - [Link](Link.md)
 
 

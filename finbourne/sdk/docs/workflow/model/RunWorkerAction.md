@@ -13,6 +13,7 @@ Defines a Run Worker Action
 | **child_task_configurations** | [List[ResultantChildTaskConfiguration]](ResultantChildTaskConfiguration.md) | Optional | Tasks can be generated from run worker results; this is the configuration |
 | **re_run_configurations** | [List[ReRunConfiguration]](ReRunConfiguration.md) | Optional | Configuration governing how re-run results are reconciled against existing child tasks from a previous run of this action against the same parent Task instance |
 | **worker_timeout** | **int** | Optional | Worker WorkerTimeout in seconds |
+| **ordering** | **str** | Optional | How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = RunWorkerAction(
     worker_status_triggers=WorkerStatusTriggers(...),  # optional
     child_task_configurations=[],  # optional — Tasks can be generated from run worker results; this is the configuration
     re_run_configurations=[],  # optional — Configuration governing how re-run results are reconciled against existing child tasks from a previous run of this action against the same parent Task instance
-    worker_timeout=0  # optional — Worker WorkerTimeout in seconds
+    worker_timeout=0,  # optional — Worker WorkerTimeout in seconds
+    ordering="..."  # optional — How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries
 )
 ```
 

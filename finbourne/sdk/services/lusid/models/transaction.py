@@ -57,7 +57,7 @@ class Transaction(BaseModel):
     source:  Optional[StrictStr] = Field(default=None,alias="source", description="The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration.") 
     entry_date_time: Optional[datetime] = Field(default=None, description="The asAt datetime that the transaction was added to LUSID.", alias="entryDateTime")
     otc_confirmation: Optional[OtcConfirmation] = Field(default=None, alias="otcConfirmation")
-    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp.") 
+    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp, PendingReversal, Reversed.") 
     cancel_date_time: Optional[datetime] = Field(default=None, description="If the transaction has been cancelled, the asAt datetime that the transaction was cancelled.", alias="cancelDateTime")
     order_id: Optional[ResourceId] = Field(default=None, alias="orderId")
     allocation_id: Optional[ResourceId] = Field(default=None, alias="allocationId")
@@ -85,7 +85,7 @@ class Transaction(BaseModel):
         if value is None:
             return value
 
-        _allowed = ['Active', 'Amended', 'Cancelled', 'ActiveReversal', 'ActiveTrueUp', 'CancelledTrueUp']
+        _allowed = ['Active', 'Amended', 'Cancelled', 'ActiveReversal', 'ActiveTrueUp', 'CancelledTrueUp', 'PendingReversal', 'Reversed']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

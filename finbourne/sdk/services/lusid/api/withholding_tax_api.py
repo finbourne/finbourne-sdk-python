@@ -21,14 +21,18 @@ from typing_extensions import Annotated
 import finbourne.sdk.services.lusid.models as packageModels
 from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Annotated
+from finbourne.sdk.services.lusid.models.batch_delete_relational_data_response import BatchDeleteRelationalDataResponse
+from finbourne.sdk.services.lusid.models.batch_upsert_withholding_tax_rates_response import BatchUpsertWithholdingTaxRatesResponse
 from finbourne.sdk.services.lusid.models.create_withholding_tax_dataset_definitions_request import CreateWithholdingTaxDatasetDefinitionsRequest
+from finbourne.sdk.services.lusid.models.delete_withholding_tax_rate_request import DeleteWithholdingTaxRateRequest
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.operation import Operation
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_withholding_tax_configuration import PagedResourceListOfWithholdingTaxConfiguration
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_withholding_tax_dataset import PagedResourceListOfWithholdingTaxDataset
 from finbourne.sdk.services.lusid.models.upsert_withholding_tax_configuration_request import UpsertWithholdingTaxConfigurationRequest
+from finbourne.sdk.services.lusid.models.upsert_withholding_tax_rate_request import UpsertWithholdingTaxRateRequest
 from finbourne.sdk.services.lusid.models.withholding_tax_configuration import WithholdingTaxConfiguration
 from finbourne.sdk.services.lusid.models.withholding_tax_dataset import WithholdingTaxDataset
 from finbourne.sdk.services.lusid.models.withholding_tax_dataset_definitions import WithholdingTaxDatasetDefinitions
@@ -55,6 +59,308 @@ class WithholdingTaxApi:
             self.api_client = api_client
         else:
             self.sync_api_client = SyncApiClient.get_default()
+
+    @validate_call
+    def batch_delete_withholding_tax_rates(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, DeleteWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchDeleteRelationalDataResponse:
+        """[EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.  # noqa: E501
+
+        Also how a rate with no replacement is expired, there being no effectiveTo field. Deletes are  bitemporal, so rows stay readable at a prior asAt.  # noqa: E501
+        :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+        :type scope: str
+        :param code: The Code of the rate dataset's relational dataset definition. (required)
+        :type code: str
+        :param request_body: The rate rows to delete, keyed by a correlation id echoed back in the response. (required)
+        :type request_body: Dict[str, DeleteWithholdingTaxRateRequest]
+        :param success_mode: Atomic or Partial; defaults to Atomic. In Partial mode failures are returned              in the response body with a 200 status.
+        :type success_mode: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: BatchDeleteRelationalDataResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the batch_delete_withholding_tax_rates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.batch_delete_withholding_tax_rates_with_http_info(scope, code, request_body, success_mode, **kwargs)
+        return response.data
+
+    @validate_call
+    def batch_delete_withholding_tax_rates_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, DeleteWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchDeleteRelationalDataResponse]:
+        """[EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.  # noqa: E501
+
+        Also how a rate with no replacement is expired, there being no effectiveTo field. Deletes are  bitemporal, so rows stay readable at a prior asAt.  # noqa: E501
+        :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+        :type scope: str
+        :param code: The Code of the rate dataset's relational dataset definition. (required)
+        :type code: str
+        :param request_body: The rate rows to delete, keyed by a correlation id echoed back in the response. (required)
+        :type request_body: Dict[str, DeleteWithholdingTaxRateRequest]
+        :param success_mode: Atomic or Partial; defaults to Atomic. In Partial mode failures are returned              in the response body with a 200 status.
+        :type success_mode: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(BatchDeleteRelationalDataResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'request_body',
+            'success_mode'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method batch_delete_withholding_tax_rates" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('success_mode') is not None:  # noqa: E501
+            _query_params.append(('successMode', _params['success_mode']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BatchDeleteRelationalDataResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/withholdingtax/rates/{scope}/{code}/$batchDelete', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def batch_upsert_withholding_tax_rates(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchUpsertWithholdingTaxRatesResponse:
+        """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
+
+        Row identity is the matching dimensions plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same dimensions.  # noqa: E501
+        :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+        :type scope: str
+        :param code: The Code of the rate dataset's relational dataset definition. (required)
+        :type code: str
+        :param request_body: The rate rows to upsert, keyed by a correlation id echoed back in the response. (required)
+        :type request_body: Dict[str, UpsertWithholdingTaxRateRequest]
+        :param success_mode: Atomic or Partial; defaults to Atomic, because a partly loaded feed silently              under-withholds. In Partial mode failures are returned in the response body with a 200 status.
+        :type success_mode: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: BatchUpsertWithholdingTaxRatesResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the batch_upsert_withholding_tax_rates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.batch_upsert_withholding_tax_rates_with_http_info(scope, code, request_body, success_mode, **kwargs)
+        return response.data
+
+    @validate_call
+    def batch_upsert_withholding_tax_rates_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertWithholdingTaxRatesResponse]:
+        """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
+
+        Row identity is the matching dimensions plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same dimensions.  # noqa: E501
+        :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+        :type scope: str
+        :param code: The Code of the rate dataset's relational dataset definition. (required)
+        :type code: str
+        :param request_body: The rate rows to upsert, keyed by a correlation id echoed back in the response. (required)
+        :type request_body: Dict[str, UpsertWithholdingTaxRateRequest]
+        :param success_mode: Atomic or Partial; defaults to Atomic, because a partly loaded feed silently              under-withholds. In Partial mode failures are returned in the response body with a 200 status.
+        :type success_mode: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(BatchUpsertWithholdingTaxRatesResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'request_body',
+            'success_mode'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method batch_upsert_withholding_tax_rates" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('success_mode') is not None:  # noqa: E501
+            _query_params.append(('successMode', _params['success_mode']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BatchUpsertWithholdingTaxRatesResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/withholdingtax/rates/{scope}/{code}/$batchUpsert', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     def create_withholding_tax_dataset_definitions(self, create_withholding_tax_dataset_definitions_request: CreateWithholdingTaxDatasetDefinitionsRequest, **kwargs) -> WithholdingTaxDatasetDefinitions:
@@ -1033,7 +1339,7 @@ class WithholdingTaxApi:
     def patch_withholding_tax_dataset_definition(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> WithholdingTaxDataset:
         """[EARLY ACCESS] PatchWithholdingTaxDatasetDefinition: Patch a Withholding Tax dataset definition.  # noqa: E501
 
-        Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", and amend one in place with an add on its index.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
+        Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", insert one at a position with an add on its index,  and remove one with a remove on its index. To amend a dimension, remove it and add it again.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
         :param scope: The scope of the dataset definition to amend. (required)
         :type scope: str
         :param code: The code of the dataset definition to amend. Together with the scope this uniquely identifies the definition. (required)
@@ -1057,7 +1363,7 @@ class WithholdingTaxApi:
     def patch_withholding_tax_dataset_definition_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[WithholdingTaxDataset]:
         """[EARLY ACCESS] PatchWithholdingTaxDatasetDefinition: Patch a Withholding Tax dataset definition.  # noqa: E501
 
-        Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", and amend one in place with an add on its index.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
+        Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", insert one at a position with an add on its index,  and remove one with a remove on its index. To amend a dimension, remove it and add it again.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
         :param scope: The scope of the dataset definition to amend. (required)
         :type scope: str
         :param code: The code of the dataset definition to amend. Together with the scope this uniquely identifies the definition. (required)
@@ -1318,6 +1624,310 @@ class WithholdingTaxApi:
 
   # --- ASYNC API METHODS ---
 
+
+    @validate_call
+    async def batch_delete_withholding_tax_rates_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, DeleteWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchDeleteRelationalDataResponse:
+            """[EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.  # noqa: E501
+            Also how a rate with no replacement is expired, there being no effectiveTo field. Deletes are  bitemporal, so rows stay readable at a prior asAt.  # noqa: E501
+            
+            :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+            :type scope: str
+            :param code: The Code of the rate dataset's relational dataset definition. (required)
+            :type code: str
+            :param request_body: The rate rows to delete, keyed by a correlation id echoed back in the response. (required)
+            :type request_body: Dict[str, DeleteWithholdingTaxRateRequest]
+            :param success_mode: Atomic or Partial; defaults to Atomic. In Partial mode failures are returned              in the response body with a 200 status.
+            :type success_mode: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: BatchDeleteRelationalDataResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the batch_delete_withholding_tax_rates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.batch_delete_withholding_tax_rates_with_http_info_async(scope, code, request_body, success_mode, **kwargs)
+            return response.data
+
+    @validate_call
+    async def batch_delete_withholding_tax_rates_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, DeleteWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchDeleteRelationalDataResponse]:
+            """[EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.  # noqa: E501
+
+            Also how a rate with no replacement is expired, there being no effectiveTo field. Deletes are  bitemporal, so rows stay readable at a prior asAt.  # noqa: E501
+
+            :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+            :type scope: str
+            :param code: The Code of the rate dataset's relational dataset definition. (required)
+            :type code: str
+            :param request_body: The rate rows to delete, keyed by a correlation id echoed back in the response. (required)
+            :type request_body: Dict[str, DeleteWithholdingTaxRateRequest]
+            :param success_mode: Atomic or Partial; defaults to Atomic. In Partial mode failures are returned              in the response body with a 200 status.
+            :type success_mode: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(BatchDeleteRelationalDataResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'request_body',
+                'success_mode'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method batch_delete_withholding_tax_rates" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('success_mode') is not None:  # noqa: E501
+                _query_params.append(('successMode', _params['success_mode']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "BatchDeleteRelationalDataResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/withholdingtax/rates/{scope}/{code}/$batchDelete', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def batch_upsert_withholding_tax_rates_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchUpsertWithholdingTaxRatesResponse:
+            """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
+            Row identity is the matching dimensions plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same dimensions.  # noqa: E501
+            
+            :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+            :type scope: str
+            :param code: The Code of the rate dataset's relational dataset definition. (required)
+            :type code: str
+            :param request_body: The rate rows to upsert, keyed by a correlation id echoed back in the response. (required)
+            :type request_body: Dict[str, UpsertWithholdingTaxRateRequest]
+            :param success_mode: Atomic or Partial; defaults to Atomic, because a partly loaded feed silently              under-withholds. In Partial mode failures are returned in the response body with a 200 status.
+            :type success_mode: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: BatchUpsertWithholdingTaxRatesResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the batch_upsert_withholding_tax_rates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.batch_upsert_withholding_tax_rates_with_http_info_async(scope, code, request_body, success_mode, **kwargs)
+            return response.data
+
+    @validate_call
+    async def batch_upsert_withholding_tax_rates_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertWithholdingTaxRatesResponse]:
+            """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
+
+            Row identity is the matching dimensions plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same dimensions.  # noqa: E501
+
+            :param scope: The Scope of the rate dataset's relational dataset definition. (required)
+            :type scope: str
+            :param code: The Code of the rate dataset's relational dataset definition. (required)
+            :type code: str
+            :param request_body: The rate rows to upsert, keyed by a correlation id echoed back in the response. (required)
+            :type request_body: Dict[str, UpsertWithholdingTaxRateRequest]
+            :param success_mode: Atomic or Partial; defaults to Atomic, because a partly loaded feed silently              under-withholds. In Partial mode failures are returned in the response body with a 200 status.
+            :type success_mode: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(BatchUpsertWithholdingTaxRatesResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'request_body',
+                'success_mode'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method batch_upsert_withholding_tax_rates" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('success_mode') is not None:  # noqa: E501
+                _query_params.append(('successMode', _params['success_mode']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "BatchUpsertWithholdingTaxRatesResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/withholdingtax/rates/{scope}/{code}/$batchUpsert', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     async def create_withholding_tax_dataset_definitions_async(self, create_withholding_tax_dataset_definitions_request: CreateWithholdingTaxDatasetDefinitionsRequest, **kwargs) -> WithholdingTaxDatasetDefinitions:
@@ -2302,7 +2912,7 @@ class WithholdingTaxApi:
     @validate_call
     async def patch_withholding_tax_dataset_definition_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> WithholdingTaxDataset:
             """[EARLY ACCESS] PatchWithholdingTaxDatasetDefinition: Patch a Withholding Tax dataset definition.  # noqa: E501
-            Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", and amend one in place with an add on its index.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
+            Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", insert one at a position with an add on its index,  and remove one with a remove on its index. To amend a dimension, remove it and add it again.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
             
             :param scope: The scope of the dataset definition to amend. (required)
             :type scope: str
@@ -2327,7 +2937,7 @@ class WithholdingTaxApi:
     async def patch_withholding_tax_dataset_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[WithholdingTaxDataset]:
             """[EARLY ACCESS] PatchWithholdingTaxDatasetDefinition: Patch a Withholding Tax dataset definition.  # noqa: E501
 
-            Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", and amend one in place with an add on its index.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
+            Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", insert one at a position with an add on its index,  and remove one with a remove on its index. To amend a dimension, remove it and add it again.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.  # noqa: E501
 
             :param scope: The scope of the dataset definition to amend. (required)
             :type scope: str

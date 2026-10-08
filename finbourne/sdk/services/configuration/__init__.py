@@ -22,6 +22,7 @@ from finbourne.sdk.services.configuration.api.configuration_sets_api import Conf
 from finbourne.sdk.services.configuration.models.access_controlled_action import AccessControlledAction
 from finbourne.sdk.services.configuration.models.access_controlled_resource import AccessControlledResource
 from finbourne.sdk.services.configuration.models.action_id import ActionId
+from finbourne.sdk.services.configuration.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.configuration.models.configuration_item import ConfigurationItem
 from finbourne.sdk.services.configuration.models.configuration_item_summary import ConfigurationItemSummary
 from finbourne.sdk.services.configuration.models.configuration_set import ConfigurationSet
@@ -39,6 +40,7 @@ from finbourne.sdk.services.configuration.models.resource_list_of_access_control
 from finbourne.sdk.services.configuration.models.resource_list_of_configuration_item import ResourceListOfConfigurationItem
 from finbourne.sdk.services.configuration.models.resource_list_of_configuration_set import ResourceListOfConfigurationSet
 from finbourne.sdk.services.configuration.models.resource_list_of_configuration_set_summary import ResourceListOfConfigurationSetSummary
+from finbourne.sdk.services.configuration.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.configuration.models.update_configuration_item import UpdateConfigurationItem
 from finbourne.sdk.services.configuration.models.update_configuration_set import UpdateConfigurationSet
 
@@ -50,6 +52,7 @@ __all__ = [
     "AccessControlledAction",
     "AccessControlledResource",
     "ActionId",
+    "ApiEndpoint",
     "ConfigurationItem",
     "ConfigurationItemSummary",
     "ConfigurationSet",
@@ -67,6 +70,7 @@ __all__ = [
     "ResourceListOfConfigurationItem",
     "ResourceListOfConfigurationSet",
     "ResourceListOfConfigurationSetSummary",
+    "ServiceApiEndpoints",
     "UpdateConfigurationItem",
     "UpdateConfigurationSet",
     

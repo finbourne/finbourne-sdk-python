@@ -19,6 +19,7 @@ from finbourne.sdk.services.notifications.models.amazon_sqs_notification_type im
 from finbourne.sdk.services.notifications.models.amazon_sqs_notification_type_response import AmazonSqsNotificationTypeResponse
 from finbourne.sdk.services.notifications.models.amazon_sqs_principal_auth_notification_type import AmazonSqsPrincipalAuthNotificationType
 from finbourne.sdk.services.notifications.models.amazon_sqs_principal_auth_notification_type_response import AmazonSqsPrincipalAuthNotificationTypeResponse
+from finbourne.sdk.services.notifications.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.notifications.models.attempt import Attempt
 from finbourne.sdk.services.notifications.models.attempt_status import AttemptStatus
 from finbourne.sdk.services.notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
@@ -50,6 +51,7 @@ from finbourne.sdk.services.notifications.models.resource_list_of_delivery impor
 from finbourne.sdk.services.notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
 from finbourne.sdk.services.notifications.models.resource_list_of_notification import ResourceListOfNotification
 from finbourne.sdk.services.notifications.models.resource_list_of_subscription import ResourceListOfSubscription
+from finbourne.sdk.services.notifications.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.notifications.models.sms_notification_type import SmsNotificationType
 from finbourne.sdk.services.notifications.models.sms_notification_type_response import SmsNotificationTypeResponse
 from finbourne.sdk.services.notifications.models.subscription import Subscription
@@ -67,6 +69,7 @@ __all__ = [
     "AmazonSqsNotificationTypeResponse",
     "AmazonSqsPrincipalAuthNotificationType",
     "AmazonSqsPrincipalAuthNotificationTypeResponse",
+    "ApiEndpoint",
     "Attempt",
     "AttemptStatus",
     "AzureServiceBusNotificationType",
@@ -98,6 +101,7 @@ __all__ = [
     "ResourceListOfEventTypeSchema",
     "ResourceListOfNotification",
     "ResourceListOfSubscription",
+    "ServiceApiEndpoints",
     "SmsNotificationType",
     "SmsNotificationTypeResponse",
     "Subscription",

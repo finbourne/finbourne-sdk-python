@@ -15,6 +15,7 @@
 from finbourne.sdk.services.scheduler.models.access_controlled_action import AccessControlledAction
 from finbourne.sdk.services.scheduler.models.access_controlled_resource import AccessControlledResource
 from finbourne.sdk.services.scheduler.models.action_id import ActionId
+from finbourne.sdk.services.scheduler.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.scheduler.models.argument_definition import ArgumentDefinition
 from finbourne.sdk.services.scheduler.models.create_job_request import CreateJobRequest
 from finbourne.sdk.services.scheduler.models.create_schedule_request import CreateScheduleRequest
@@ -42,6 +43,7 @@ from finbourne.sdk.services.scheduler.models.resource_list_of_string import Reso
 from finbourne.sdk.services.scheduler.models.scan_report import ScanReport
 from finbourne.sdk.services.scheduler.models.scan_summary import ScanSummary
 from finbourne.sdk.services.scheduler.models.schedule_definition import ScheduleDefinition
+from finbourne.sdk.services.scheduler.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.scheduler.models.start_job_request import StartJobRequest
 from finbourne.sdk.services.scheduler.models.start_job_response import StartJobResponse
 from finbourne.sdk.services.scheduler.models.start_schedule_response import StartScheduleResponse
@@ -59,6 +61,7 @@ __all__ = [
     "AccessControlledAction",
     "AccessControlledResource",
     "ActionId",
+    "ApiEndpoint",
     "ArgumentDefinition",
     "CreateJobRequest",
     "CreateScheduleRequest",
@@ -86,6 +89,7 @@ __all__ = [
     "ScanReport",
     "ScanSummary",
     "ScheduleDefinition",
+    "ServiceApiEndpoints",
     "StartJobRequest",
     "StartJobResponse",
     "StartScheduleResponse",

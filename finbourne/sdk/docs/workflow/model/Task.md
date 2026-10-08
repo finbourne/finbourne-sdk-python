@@ -17,6 +17,9 @@ Defines a Task created based on a Task Definition
 | **ultimate_parent_task** | [TaskSummary](TaskSummary.md) | Required | *No description available.* |
 | **parent_task** | [TaskSummary](TaskSummary.md) | Optional | *No description available.* |
 | **child_tasks** | [List[TaskSummary]](TaskSummary.md) | Optional | This Task&#39;s child tasks |
+| **previous_task** | [TaskSummary](TaskSummary.md) | Optional | *No description available.* |
+| **next_task** | [TaskSummary](TaskSummary.md) | Optional | *No description available.* |
+| **next_task_initial_trigger** | **str** | Optional | The trigger this Task&#39;s next Task should receive when this Task completes, if any |
 | **correlation_ids** | **List[str]** | Optional | User-provided ID used to link entities and tasks |
 | **version** | [VersionInfo](VersionInfo.md) | Optional | *No description available.* |
 | **terminal_state** | **bool** | Required | True if no onward transitions are possible |
@@ -55,6 +58,9 @@ instance = Task(
     ultimate_parent_task=TaskSummary(...),  # required
     parent_task=TaskSummary(...),  # optional
     child_tasks=[],  # optional — This Task&#39;s child tasks
+    previous_task=TaskSummary(...),  # optional
+    next_task=TaskSummary(...),  # optional
+    next_task_initial_trigger="...",  # optional — The trigger this Task&#39;s next Task should receive when this Task completes, if any
     correlation_ids=,  # optional — User-provided ID used to link entities and tasks
     version=VersionInfo(...),  # optional
     terminal_state=True,  # required — True if no onward transitions are possible
@@ -81,6 +87,8 @@ instance = Task(
 - [TaskSummary](TaskSummary.md)
 - [TaskSummary](TaskSummary.md)
 - [TaskSummary](TaskSummary.md) — used in `child_tasks`
+- [TaskSummary](TaskSummary.md)
+- [TaskSummary](TaskSummary.md)
 - [VersionInfo](VersionInfo.md)
 - [TaskInstanceField](TaskInstanceField.md) — used in `fields`
 - [Stack](Stack.md)

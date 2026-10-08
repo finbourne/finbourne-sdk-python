@@ -4,6 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batch_delete_withholding_tax_rates**](WithholdingTaxApi.md#batch_delete_withholding_tax_rates) | **POST** /api/api/withholdingtax/rates/{scope}/{code}/$batchDelete | [EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.
+[**batch_upsert_withholding_tax_rates**](WithholdingTaxApi.md#batch_upsert_withholding_tax_rates) | **POST** /api/api/withholdingtax/rates/{scope}/{code}/$batchUpsert | [EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.
 [**create_withholding_tax_dataset_definitions**](WithholdingTaxApi.md#create_withholding_tax_dataset_definitions) | **POST** /api/api/withholdingtax/datasetdefinitions | [EARLY ACCESS] CreateWithholdingTaxDatasetDefinitions: Create the Withholding Tax dataset definitions.
 [**delete_withholding_tax_configuration**](WithholdingTaxApi.md#delete_withholding_tax_configuration) | **DELETE** /api/api/withholdingtax/configurations/{scope}/{code} | [EARLY ACCESS] DeleteWithholdingTaxConfiguration: Delete a Withholding Tax Configuration.
 [**delete_withholding_tax_dataset_definition**](WithholdingTaxApi.md#delete_withholding_tax_dataset_definition) | **DELETE** /api/api/withholdingtax/datasetdefinitions/{scope}/{code} | [EARLY ACCESS] DeleteWithholdingTaxDatasetDefinition: Delete a Withholding Tax dataset definition.
@@ -37,6 +39,102 @@ from finbourne.sdk.services.lusid.api.withholding_tax_api import WithholdingTaxA
 api_client_factory = SyncApiClientFactory()
 api_instance = api_client_factory.build(WithholdingTaxApi)
 ```
+
+---
+
+# **batch_delete_withholding_tax_rates**
+> BatchDeleteRelationalDataResponse batchDeleteWithholdingTaxRates = batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+
+[EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.
+
+Also how a rate with no replacement is expired, there being no effectiveTo field. Deletes are  bitemporal, so rows stay readable at a prior asAt.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WithholdingTaxApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"gb-treaty-us":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"US"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00"}} # Dict[str, DeleteWithholdingTaxRateRequest]
+success_mode = 'Atomic' # str (optional)
+api_response = api_instance.batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The Scope of the rate dataset&#39;s relational dataset definition. | [required] 
+ **code** | **str**| The Code of the rate dataset&#39;s relational dataset definition. | [required] 
+ **request_body** | [**Dict[str, DeleteWithholdingTaxRateRequest]**](../model/DeleteWithholdingTaxRateRequest.md)| The rate rows to delete, keyed by a correlation id echoed back in the response. | [required] 
+ **success_mode** | **str**| Atomic or Partial; defaults to Atomic. In Partial mode failures are returned              in the response body with a 200 status. | [optional] [default to &#39;Atomic&#39;]
+
+### Return type
+
+[**BatchDeleteRelationalDataResponse**](../model/BatchDeleteRelationalDataResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deleted rate row metadata. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **batch_upsert_withholding_tax_rates**
+> BatchUpsertWithholdingTaxRatesResponse batchUpsertWithholdingTaxRates = batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+
+[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.
+
+Row identity is the matching dimensions plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same dimensions.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WithholdingTaxApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"gb-treaty-us":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"US"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.3,"treatyRate":0.15,"treatyRAS":true}},"gb-treaty-fr":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"FR"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.25,"treatyRate":0.15,"treatyRAS":false}}} # Dict[str, UpsertWithholdingTaxRateRequest]
+success_mode = 'Atomic' # str (optional)
+api_response = api_instance.batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The Scope of the rate dataset&#39;s relational dataset definition. | [required] 
+ **code** | **str**| The Code of the rate dataset&#39;s relational dataset definition. | [required] 
+ **request_body** | [**Dict[str, UpsertWithholdingTaxRateRequest]**](../model/UpsertWithholdingTaxRateRequest.md)| The rate rows to upsert, keyed by a correlation id echoed back in the response. | [required] 
+ **success_mode** | **str**| Atomic or Partial; defaults to Atomic, because a partly loaded feed silently              under-withholds. In Partial mode failures are returned in the response body with a 200 status. | [optional] [default to &#39;Atomic&#39;]
+
+### Return type
+
+[**BatchUpsertWithholdingTaxRatesResponse**](../model/BatchUpsertWithholdingTaxRatesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Withholding Tax rate rows that were upserted. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
 ---
 
@@ -367,7 +465,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] PatchWithholdingTaxDatasetDefinition: Patch a Withholding Tax dataset definition.
 
-Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", and amend one in place with an add on its index.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.
+Amend one Withholding Tax relational dataset definition, adding a matching dimension being the common case.  Subject to the platform's own rules on what may be changed on a populated dataset.                Only the matching dimensions the document addresses are affected; a dimension it does not address is left as  it is. Append a dimension with an add on \"/dimensions/-\", insert one at a position with an add on its index,  and remove one with a remove on its index. To amend a dimension, remove it and add it again.                A dimension whose name collides with a mandatory core field is rejected, as is any attempt to add a rate tier:  the tier set is fixed at four and cannot be extended by schema evolution, because the engine could never read  a tier it does not know by name. The mandatory core is not addressable by this endpoint at all.                The amended dataset is returned in the same shape the get and the list return: the matching dimensions alone.  Read the full field schema from the relational dataset definition at the returned href.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: Dimensions.
 
 ### Example
 
@@ -375,7 +473,7 @@ Amend one Withholding Tax relational dataset definition, adding a matching dimen
 api_instance = api_client_factory.build(WithholdingTaxApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-operation = [{"value":{"fieldName":"isin","displayName":"ISIN","description":"The ISIN of the instrument the rate row applies to.","dataTypeId":{"scope":"system","code":"string"}},"path":"/dimensions/-","op":"add"},{"value":{"fieldName":"custodian","displayName":"Custodian","description":"The custodian holding the position the rate row applies to.","dataTypeId":{"scope":"system","code":"string"}},"path":"/dimensions/1","op":"add"}] # List[Operation]
+operation = [{"value":{"fieldName":"isin","displayName":"ISIN","description":"The ISIN of the instrument the rate row applies to.","dataTypeId":{"scope":"system","code":"string"}},"path":"/dimensions/-","op":"add"}] # List[Operation]
 api_response = api_instance.patch_withholding_tax_dataset_definition(scope, code, operation)
 pprint(api_response)
 ```

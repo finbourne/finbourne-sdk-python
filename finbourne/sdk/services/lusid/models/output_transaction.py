@@ -60,7 +60,7 @@ class OutputTransaction(BaseModel):
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Set of unique transaction properties and associated values to stored with the transaction. Each property will be from the 'Transaction' domain.")
     counterparty_id:  Optional[StrictStr] = Field(default=None,alias="counterpartyId", description="The identifier for the counterparty of the transaction.") 
     source:  Optional[StrictStr] = Field(default=None,alias="source", description="The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration.") 
-    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp.") 
+    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp, PendingReversal, Reversed.") 
     entry_date_time: Optional[datetime] = Field(default=None, description="The asAt datetime that the transaction was added to LUSID.", alias="entryDateTime")
     cancel_date_time: Optional[datetime] = Field(default=None, description="If the transaction has been cancelled, the asAt datetime that the transaction was cancelled.", alias="cancelDateTime")
     realised_gain_loss: Optional[List[RealisedGainLoss]] = Field(default=None, description="The collection of realised gains or losses resulting from relevant transactions e.g. a sale transaction. The cost used in calculating the realised gain or loss is determined by the accounting method defined when the transaction portfolio is created.", alias="realisedGainLoss")
@@ -101,7 +101,7 @@ class OutputTransaction(BaseModel):
         if value is None:
             return value
 
-        _allowed = ['Active', 'Amended', 'Cancelled', 'ActiveReversal', 'ActiveTrueUp', 'CancelledTrueUp']
+        _allowed = ['Active', 'Amended', 'Cancelled', 'ActiveReversal', 'ActiveTrueUp', 'CancelledTrueUp', 'PendingReversal', 'Reversed']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

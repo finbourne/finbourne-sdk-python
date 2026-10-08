@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.rec_result_holding_impact import RecResultHoldingImpact
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.writeback_suggestion import WritebackSuggestion
 
 
 class RecResultSettlementActivityItem(BaseModel):
@@ -36,7 +37,8 @@ class RecResultSettlementActivityItem(BaseModel):
     holding_impacts: List[RecResultHoldingImpact] = Field(description="The holdings, and where the source states them the tax lots, the item impacted. A distinct set ordered by holdingId then taxLotId; may be empty. An input transaction has not run the movements engine and impacts nothing yet.", alias="holdingImpacts")
     item_type:  StrictStr = Field(...,alias="itemType", description="The polymorphic item-type discriminator: Holding, ValuedHolding, Transaction or SettlementActivity. Names the item rather than the rec type: Holding and CashHolding recs produce Holding items, a Valuation rec produces ValuedHolding items, and both transaction rec types produce Transaction items. Available values: SettlementActivity, Holding, Transaction, ValuedHolding.") 
     rule_and_attribute_values: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The core rule, aggregate rule and supplemental attribute values for the item, keyed by name.", alias="ruleAndAttributeValues")
-    __properties: ClassVar[List[str]] = ["portfolioId", "activityId", "transactionId", "settlementInstructionId", "holdingImpacts", "itemType", "ruleAndAttributeValues"]
+    writeback_suggestions: List[WritebackSuggestion] = Field(description="The writebacks suggested against this item, as configured by the matching ruleset's writebackConfigurations. Only ever populated on target-side items. Suggestions only: a user is expected to review them before acting. Required, but may be empty.", alias="writebackSuggestions")
+    __properties: ClassVar[List[str]] = ["portfolioId", "activityId", "transactionId", "settlementInstructionId", "holdingImpacts", "itemType", "ruleAndAttributeValues", "writebackSuggestions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +72,7 @@ class RecResultSettlementActivityItem(BaseModel):
         _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
+                            "writeback_suggestions",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of portfolio_id
@@ -82,6 +85,13 @@ class RecResultSettlementActivityItem(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['holdingImpacts'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in writeback_suggestions (list)
+        _items = []
+        if self.writeback_suggestions:
+            for _item in self.writeback_suggestions:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['writebackSuggestions'] = _items
         # set to None if activity_id (nullable) is None
         # and model_fields_set contains the field
         if self.activity_id is None and "activity_id" in self.model_fields_set:
@@ -120,7 +130,8 @@ class RecResultSettlementActivityItem(BaseModel):
             "settlement_instruction_id": obj.get("settlementInstructionId"),
             "holding_impacts": [RecResultHoldingImpact.from_dict(_item) for _item in _v] if (_v := obj.get("holdingImpacts")) is not None else None,
             "item_type": obj.get("itemType"),
-            "rule_and_attribute_values": obj.get("ruleAndAttributeValues")
+            "rule_and_attribute_values": obj.get("ruleAndAttributeValues"),
+            "writeback_suggestions": [WritebackSuggestion.from_dict(_item) for _item in _v] if (_v := obj.get("writebackSuggestions")) is not None else None
         })
         return _obj
 

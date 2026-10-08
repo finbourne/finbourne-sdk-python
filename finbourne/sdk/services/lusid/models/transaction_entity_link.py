@@ -28,10 +28,9 @@ class TransactionEntityLink(BaseModel):
     TransactionEntityLink
     """
     entity_type:  StrictStr = Field(...,alias="entityType", description="Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, FundStructure, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction, Transfer, RecDefinition, RecResult, JournalEntry.") 
-    entity_id_name:  StrictStr = Field(...,alias="entityIdName") 
-    entity_id_value:  StrictStr = Field(...,alias="entityIdValue") 
+    entity_id: Dict[str, Optional[StrictStr]] = Field(alias="entityId")
     restrict_editing: StrictBool = Field(alias="restrictEditing")
-    __properties: ClassVar[List[str]] = ["entityType", "entityIdName", "entityIdValue", "restrictEditing"]
+    __properties: ClassVar[List[str]] = ["entityType", "entityId", "restrictEditing"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,8 +79,7 @@ class TransactionEntityLink(BaseModel):
 
         _obj = TransactionEntityLink.model_validate({
             "entity_type": obj.get("entityType"),
-            "entity_id_name": obj.get("entityIdName"),
-            "entity_id_value": obj.get("entityIdValue"),
+            "entity_id": obj.get("entityId"),
             "restrict_editing": obj.get("restrictEditing")
         })
         return _obj

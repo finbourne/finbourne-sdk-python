@@ -32,7 +32,8 @@ class BucketSetResult(BaseModel):
     is_apportionment: StrictBool = Field(description="Whether this bucket set is the apportionment set (apportioning non-class-specific P&L across share classes).", alias="isApportionment")
     nodes: List[BucketSetNode] = Field(description="The nodes making up the bucket set: the fund aggregate and one per share class.")
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the bucket set, as configured on the fund configuration.") 
-    __properties: ClassVar[List[str]] = ["bucketSetCode", "isApportionment", "nodes", "displayName"]
+    is_backfilled: Optional[StrictBool] = Field(default=None, description="Set to True if this bucket set was backfilled from fund inception at this valuation point, because the previous valuation point has no results for it. Its values then hold the whole history, and its previous cumulative values are zero. False otherwise.", alias="isBackfilled")
+    __properties: ClassVar[List[str]] = ["bucketSetCode", "isApportionment", "nodes", "displayName", "isBackfilled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +96,8 @@ class BucketSetResult(BaseModel):
             "bucket_set_code": obj.get("bucketSetCode"),
             "is_apportionment": obj.get("isApportionment"),
             "nodes": [BucketSetNode.from_dict(_item) for _item in _v] if (_v := obj.get("nodes")) is not None else None,
-            "display_name": obj.get("displayName")
+            "display_name": obj.get("displayName"),
+            "is_backfilled": obj.get("isBackfilled")
         })
         return _obj
 

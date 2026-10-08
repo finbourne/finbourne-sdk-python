@@ -5,7 +5,7 @@ A rec result of a different rec type in the same rec instance whose items share 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | **str** | Required | The id of the linked result, as carried in that result&#39;s own id field. |
+| **id** | **str** | Required | The id of the linked result within the same run, as carried in that result&#39;s own id field, e.g. &#39;break-3&#39;. With recType, names the result uniquely. |
 | **rec_type** | **str** | Required | The rec type of the linked result. Always differs from this result&#39;s rec type. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. |
 | **linked_by** | [RecLinkedBy](RecLinkedBy.md) | Required | *No description available.* |
 
@@ -18,7 +18,7 @@ A rec result of a different rec type in the same rec instance whose items share 
 from finbourne.sdk.services.lusid.models.RecLinkedResult import RecLinkedResult
 
 instance = RecLinkedResult(
-    id="...",  # required — The id of the linked result, as carried in that result&#39;s own id field.
+    id="...",  # required — The id of the linked result within the same run, as carried in that result&#39;s own id field, e.g. &#39;break-3&#39;. With recType, names the result uniquely.
     rec_type="...",  # required — The rec type of the linked result. Always differs from this result&#39;s rec type. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity.
     linked_by=RecLinkedBy(...)  # required
 )

@@ -5,7 +5,9 @@ An individual reconciliation result — the aggregate result for a set of core r
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | **str** | Required | The system-generated identifier for the rec result. Comprises the rec definition id, the instance id, the rec type and the core rule values. |
+| **id** | **str** | Required | The id of the result within its run: its result type and result number, e.g. &#39;break-3&#39;. Unique within one run of one rec type of an instance; the same id in another run of the instance names the same result, for as long as it keeps its result type. |
+| **result_number** | **int** | Required | The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned. |
+| **first_run_seen** | **int** | Required | The run in which the result was first assigned its id. |
 | **rec_type** | **str** | Required | The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. |
 | **instance_id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
 | **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
@@ -39,7 +41,9 @@ An individual reconciliation result — the aggregate result for a set of core r
 from finbourne.sdk.services.lusid.models.RecResult import RecResult
 
 instance = RecResult(
-    id="...",  # required — The system-generated identifier for the rec result. Comprises the rec definition id, the instance id, the rec type and the core rule values.
+    id="...",  # required — The id of the result within its run: its result type and result number, e.g. &#39;break-3&#39;. Unique within one run of one rec type of an instance; the same id in another run of the instance names the same result, for as long as it keeps its result type.
+    result_number=0,  # required — The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned.
+    first_run_seen=0,  # required — The run in which the result was first assigned its id.
     rec_type="...",  # required — The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity.
     instance_id=RecInstanceId(...),  # required
     rec_definition_id=ResourceId(...),  # required

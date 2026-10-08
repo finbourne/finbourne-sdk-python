@@ -27,7 +27,7 @@ class LauncherSummaries(BaseModel):
     """
     Sentences that say what a Launcher does, meant to be shown to a person.              These are rendered on read from the stored Launcher details. They are never stored and never accepted on a write, so the same Launcher always reads back the same summaries  # noqa: E501
     """
-    schedule:  Optional[StrictStr] = Field(default=None,alias="schedule", description="A sentence that says when the Launcher starts a run, for example \"At 09:00 every weekday, London time\".              Null for an Event Launcher, which has no schedule") 
+    schedule:  Optional[StrictStr] = Field(default=None,alias="schedule", description="A sentence that says when the Launcher starts a run, for example \"Weekly on Mon at 09:00, rolled forward to the next business day\".              Null for an Event Launcher, which has no schedule") 
     fields: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="A sentence for each field of the root task the Launcher fills, keyed by the field name on the root task definition. Empty when the Launcher fills no fields")
     __properties: ClassVar[List[str]] = ["schedule", "fields"]
 

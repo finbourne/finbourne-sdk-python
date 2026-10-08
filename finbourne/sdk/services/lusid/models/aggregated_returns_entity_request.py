@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.aggregated_returns_entity_id import AggregatedReturnsEntityId
+from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.returns_metric import ReturnsMetric
 
 
@@ -30,14 +31,14 @@ class AggregatedReturnsEntityRequest(BaseModel):
     The request body for the aggregated-returns (TWR) endpoint: the entity to calculate returns for, the  Returns entity that configures the calculation, the effective window, the metrics to calculate and the  period grid granularity. Supports a single `Portfolio` entity, the period `Return` metric and  a `Daily` grid.  # noqa: E501
     """
     entity: AggregatedReturnsEntityId
-    returns_scope:  StrictStr = Field(...,alias="returnsScope") 
-    returns_code:  StrictStr = Field(...,alias="returnsCode") 
+    returns_id: ResourceId = Field(alias="returnsId")
     metrics: List[ReturnsMetric]
     period:  Optional[StrictStr] = Field(default=None,alias="period", description="Available values: Daily, Monthly.") 
     from_effective_at:  Optional[StrictStr] = Field(default=None,alias="fromEffectiveAt") 
     to_effective_at:  Optional[StrictStr] = Field(default=None,alias="toEffectiveAt") 
     as_at: Optional[datetime] = Field(default=None, alias="asAt")
-    __properties: ClassVar[List[str]] = ["entity", "returnsScope", "returnsCode", "metrics", "period", "fromEffectiveAt", "toEffectiveAt", "asAt"]
+    currency:  Optional[StrictStr] = Field(default=None,alias="currency") 
+    __properties: ClassVar[List[str]] = ["entity", "returnsId", "metrics", "period", "fromEffectiveAt", "toEffectiveAt", "asAt", "currency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +77,9 @@ class AggregatedReturnsEntityRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of entity
         if self.entity:
             _dict['entity'] = self.entity.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of returns_id
+        if self.returns_id:
+            _dict['returnsId'] = self.returns_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in metrics (list)
         _items = []
         if self.metrics:
@@ -103,6 +107,11 @@ class AggregatedReturnsEntityRequest(BaseModel):
         if self.as_at is None and "as_at" in self.model_fields_set:
             _dict['asAt'] = None
 
+        # set to None if currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.currency is None and "currency" in self.model_fields_set:
+            _dict['currency'] = None
+
         return _dict
 
     @classmethod
@@ -116,13 +125,13 @@ class AggregatedReturnsEntityRequest(BaseModel):
 
         _obj = AggregatedReturnsEntityRequest.model_validate({
             "entity": AggregatedReturnsEntityId.from_dict(_v) if (_v := obj.get("entity")) is not None else None,
-            "returns_scope": obj.get("returnsScope"),
-            "returns_code": obj.get("returnsCode"),
+            "returns_id": ResourceId.from_dict(_v) if (_v := obj.get("returnsId")) is not None else None,
             "metrics": [ReturnsMetric.from_dict(_item) for _item in _v] if (_v := obj.get("metrics")) is not None else None,
             "period": obj.get("period"),
             "from_effective_at": obj.get("fromEffectiveAt"),
             "to_effective_at": obj.get("toEffectiveAt"),
-            "as_at": obj.get("asAt")
+            "as_at": obj.get("asAt"),
+            "currency": obj.get("currency")
         })
         return _obj
 

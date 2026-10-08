@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.swing_pricing_decision import SwingPricingDecision
 
 
 class FundDetails(BaseModel):
@@ -28,7 +29,9 @@ class FundDetails(BaseModel):
     The details of a Fund.  # noqa: E501
     """
     currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="The currency of the fund which is the same as the base currency of all the portfolios of the fund's Abor.") 
-    __properties: ClassVar[List[str]] = ["currency"]
+    pricing_basis:  Optional[StrictStr] = Field(default=None,alias="pricingBasis", description="The side of the quote the NAV type valued the fund on: Mid, Bid or Ask. Absent when the NAV type defers to the valuation recipe's own pricing basis. When the NAV type has a swing pricing rule this is the basis the rule applied.") 
+    swing_pricing: Optional[SwingPricingDecision] = Field(default=None, alias="swingPricing")
+    __properties: ClassVar[List[str]] = ["currency", "pricingBasis", "swingPricing"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,10 +67,18 @@ class FundDetails(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of swing_pricing
+        if self.swing_pricing:
+            _dict['swingPricing'] = self.swing_pricing.to_dict(by_alias=by_alias)
         # set to None if currency (nullable) is None
         # and model_fields_set contains the field
         if self.currency is None and "currency" in self.model_fields_set:
             _dict['currency'] = None
+
+        # set to None if pricing_basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.pricing_basis is None and "pricing_basis" in self.model_fields_set:
+            _dict['pricingBasis'] = None
 
         return _dict
 
@@ -81,7 +92,9 @@ class FundDetails(BaseModel):
             return FundDetails.model_validate(obj)
 
         _obj = FundDetails.model_validate({
-            "currency": obj.get("currency")
+            "currency": obj.get("currency"),
+            "pricing_basis": obj.get("pricingBasis"),
+            "swing_pricing": SwingPricingDecision.from_dict(_v) if (_v := obj.get("swingPricing")) is not None else None
         })
         return _obj
 

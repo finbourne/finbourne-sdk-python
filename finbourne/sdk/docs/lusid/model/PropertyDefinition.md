@@ -28,6 +28,7 @@ A list of property definitions.
 | **is_filterable** | **bool** | Optional | Bool indicating whether the values of this property are fitlerable, this is true for all non-derived property defintions.  For a derived definition this must be set true to enable filtering. |
 | **custom_entity_types** | **List[str]** | Optional | The custom entity types that properties relating to this property definition can be applied to. |
 | **value_format** | **str** | Optional | The format in which values for this property definition should be represented. |
+| **qualifier_definitions** | [List[QualifierDefinition]](QualifierDefinition.md) | Optional | The qualifiers declared against this property definition, each with its value type resolved from its data type. Absent where the definition declares no qualifiers. Qualifiers are supported only on single-value properties. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -62,6 +63,7 @@ instance = PropertyDefinition(
     is_filterable=True,  # optional — Bool indicating whether the values of this property are fitlerable, this is true for all non-derived property defintions.  For a derived definition this must be set true to enable filtering.
     custom_entity_types=,  # optional — The custom entity types that properties relating to this property definition can be applied to.
     value_format="...",  # optional — The format in which values for this property definition should be represented.
+    qualifier_definitions=[],  # optional — The qualifiers declared against this property definition, each with its value type resolved from its data type. Absent where the definition declares no qualifiers. Qualifiers are supported only on single-value properties.
     links=[]  # optional
 )
 ```
@@ -70,6 +72,7 @@ instance = PropertyDefinition(
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [Version](Version.md)
 - [StagedModificationsInfo](StagedModificationsInfo.md)
+- [QualifierDefinition](QualifierDefinition.md) — used in `qualifier_definitions`
 - [Link](Link.md)
 
 

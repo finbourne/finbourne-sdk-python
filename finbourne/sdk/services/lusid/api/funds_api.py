@@ -51,6 +51,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_
 from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
 from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment_response import ResourceListOfNavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
+from finbourne.sdk.services.lusid.models.revert_valuation_point_response import RevertValuationPointResponse
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
 from finbourne.sdk.services.lusid.models.set_share_class_instruments_request import SetShareClassInstrumentsRequest
 from finbourne.sdk.services.lusid.models.single_valuation_point_query_parameters import SingleValuationPointQueryParameters
@@ -4864,7 +4865,7 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
+    def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
         """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
         Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
@@ -4884,6 +4885,8 @@ class FundsApi:
         :type property_keys: List[str]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
+        :param filter: Expression to filter the result set.
+        :type filter: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -4894,11 +4897,11 @@ class FundsApi:
             message = "Error! Please call the get_valuation_point_unsettled_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_valuation_point_unsettled_transactions_with_http_info(scope, code, single_valuation_point_query_parameters, as_at, limit, page, property_keys, nav_type_code, **kwargs)
+        response = self.get_valuation_point_unsettled_transactions_with_http_info(scope, code, single_valuation_point_query_parameters, as_at, limit, page, property_keys, nav_type_code, filter, **kwargs)
         return response.data
 
     @validate_call
-    def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
+    def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
         """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
         Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
@@ -4918,6 +4921,8 @@ class FundsApi:
         :type property_keys: List[str]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
+        :param filter: Expression to filter the result set.
+        :type filter: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -4948,7 +4953,8 @@ class FundsApi:
             'limit',
             'page',
             'property_keys',
-            'nav_type_code'
+            'nav_type_code',
+            'filter'
         ]
         _all_params.extend(
             [
@@ -5003,6 +5009,9 @@ class FundsApi:
 
         if _params.get('nav_type_code') is not None:  # noqa: E501
             _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -7217,10 +7226,10 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def revert_valuation_point_to_estimate(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
+    def revert_valuation_point_to_estimate(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> RevertValuationPointResponse:
         """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
-        Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
+        Moves a 'Final' status Valuation Point to status 'Estimate'.  Returns the reverted Valuation Point alongside every variant that  finalising it had rejected.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -7233,7 +7242,7 @@ class FundsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: ValuationPointDataResponse
+        :rtype: RevertValuationPointResponse
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the revert_valuation_point_to_estimate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -7243,10 +7252,10 @@ class FundsApi:
         return response.data
 
     @validate_call
-    def revert_valuation_point_to_estimate_with_http_info(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
+    def revert_valuation_point_to_estimate_with_http_info(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[RevertValuationPointResponse]:
         """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
-        Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
+        Moves a 'Final' status Valuation Point to status 'Estimate'.  Returns the reverted Valuation Point alongside every variant that  finalising it had rejected.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -7272,7 +7281,7 @@ class FundsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(ValuationPointDataResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(RevertValuationPointResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -7346,7 +7355,7 @@ class FundsApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "ValuationPointDataResponse",
+            '200': "RevertValuationPointResponse",
             '400': "LusidValidationProblemDetails",
         }
 
@@ -13224,7 +13233,7 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
+    async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
             """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
             Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
             
@@ -13244,6 +13253,8 @@ class FundsApi:
             :type property_keys: List[str]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
+            :param filter: Expression to filter the result set.
+            :type filter: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -13254,11 +13265,11 @@ class FundsApi:
                 message = "Error! Please call the get_valuation_point_unsettled_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_valuation_point_unsettled_transactions_with_http_info_async(scope, code, single_valuation_point_query_parameters, as_at, limit, page, property_keys, nav_type_code, **kwargs)
+            response = await self.get_valuation_point_unsettled_transactions_with_http_info_async(scope, code, single_valuation_point_query_parameters, as_at, limit, page, property_keys, nav_type_code, filter, **kwargs)
             return response.data
 
     @validate_call
-    async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
+    async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
             """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
             Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
@@ -13279,6 +13290,8 @@ class FundsApi:
             :type property_keys: List[str]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
+            :param filter: Expression to filter the result set.
+            :type filter: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -13309,7 +13322,8 @@ class FundsApi:
                 'limit',
                 'page',
                 'property_keys',
-                'nav_type_code'
+                'nav_type_code',
+                'filter'
             ]
             _all_params.extend(
                 [
@@ -13364,6 +13378,9 @@ class FundsApi:
 
             if _params.get('nav_type_code') is not None:  # noqa: E501
                 _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -15590,9 +15607,9 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def revert_valuation_point_to_estimate_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
+    async def revert_valuation_point_to_estimate_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> RevertValuationPointResponse:
             """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
-            Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
+            Moves a 'Final' status Valuation Point to status 'Estimate'.  Returns the reverted Valuation Point alongside every variant that  finalising it had rejected.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -15606,7 +15623,7 @@ class FundsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: ValuationPointDataResponse
+            :rtype: RevertValuationPointResponse
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the revert_valuation_point_to_estimate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -15616,10 +15633,10 @@ class FundsApi:
             return response.data
 
     @validate_call
-    async def revert_valuation_point_to_estimate_with_http_info_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
+    async def revert_valuation_point_to_estimate_with_http_info_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[RevertValuationPointResponse]:
             """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
-            Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
+            Moves a 'Final' status Valuation Point to status 'Estimate'.  Returns the reverted Valuation Point alongside every variant that  finalising it had rejected.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -15646,7 +15663,7 @@ class FundsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(ValuationPointDataResponse, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(RevertValuationPointResponse, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -15720,7 +15737,7 @@ class FundsApi:
             _auth_settings = ['oauth2']  # noqa: E501
 
             _response_types_map = {
-                '200': "ValuationPointDataResponse",
+                '200': "RevertValuationPointResponse",
                 '400': "LusidValidationProblemDetails",
             }
 

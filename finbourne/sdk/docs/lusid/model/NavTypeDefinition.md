@@ -22,6 +22,9 @@
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
 | **transaction_template_scope** | **str** | Required | The Transaction Template Scope used by the NavType. |
 | **transaction_exclusion_filter** | **str** | Optional | Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties. |
+| **pricing_basis** | **str** | Optional | The side of the quote this Nav Type values the fund on: Mid, Bid or Ask. Overrides the pricing basis of the valuation recipe&#39;s market options for this Nav Type only, so a bid NAV and an ask NAV can share one recipe. Omit it to value on the recipe&#39;s own pricing basis. Available values: Mid, Bid, Ask. |
+| **swing_pricing** | [SwingPricingRule](SwingPricingRule.md) | Optional | *No description available.* |
+| **notional_dealing_cost_table_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -49,7 +52,10 @@ instance = NavTypeDefinition(
     amortisation_rule_set_id=ResourceId(...),  # optional
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
     transaction_template_scope="...",  # required — The Transaction Template Scope used by the NavType.
-    transaction_exclusion_filter="..."  # optional — Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.
+    transaction_exclusion_filter="...",  # optional — Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.
+    pricing_basis="...",  # optional — The side of the quote this Nav Type values the fund on: Mid, Bid or Ask. Overrides the pricing basis of the valuation recipe&#39;s market options for this Nav Type only, so a bid NAV and an ask NAV can share one recipe. Omit it to value on the recipe&#39;s own pricing basis. Available values: Mid, Bid, Ask.
+    swing_pricing=SwingPricingRule(...),  # optional
+    notional_dealing_cost_table_id=ResourceId(...)  # optional
 )
 ```
 
@@ -57,6 +63,8 @@ instance = NavTypeDefinition(
 - [NavSettlementConfiguration](NavSettlementConfiguration.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
+- [ResourceId](ResourceId.md)
+- [SwingPricingRule](SwingPricingRule.md)
 - [ResourceId](ResourceId.md)
 
 

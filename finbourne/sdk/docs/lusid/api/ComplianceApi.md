@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_compliance_rule_result**](ComplianceApi.md#get_compliance_rule_result) | **GET** /api/api/compliance/runs/summary/{runScope}/{runCode}/{ruleScope}/{ruleCode} | [EARLY ACCESS] GetComplianceRuleResult: Get detailed results for a specific rule within a compliance run.
 [**get_compliance_template**](ComplianceApi.md#get_compliance_template) | **GET** /api/api/compliance/templates/{scope}/{code} | [EARLY ACCESS] GetComplianceTemplate: Get the requested compliance template.
 [**get_decorated_compliance_run_summary**](ComplianceApi.md#get_decorated_compliance_run_summary) | **GET** /api/api/compliance/runs/summary/{scope}/{code}/$decorate | [EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.
+[**get_filtered_decorated_compliance_run_summary**](ComplianceApi.md#get_filtered_decorated_compliance_run_summary) | **POST** /api/api/compliance/runs/summary/$decorate | [EARLY ACCESS] GetFilteredDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run, optionally restricted to a set of portfolios or portfolio groups.
 [**list_compliance_rules**](ComplianceApi.md#list_compliance_rules) | **GET** /api/api/compliance/rules | [EARLY ACCESS] ListComplianceRules: List compliance rules.
 [**list_compliance_runs**](ComplianceApi.md#list_compliance_runs) | **GET** /api/api/compliance/runs | [EARLY ACCESS] ListComplianceRuns: List historical compliance run identifiers.
 [**list_compliance_templates**](ComplianceApi.md#list_compliance_templates) | **GET** /api/api/compliance/templates | [EARLY ACCESS] ListComplianceTemplates: List compliance templates.
@@ -403,6 +404,48 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested compliance run details. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_filtered_decorated_compliance_run_summary**
+> DecoratedComplianceRunSummary getFilteredDecoratedComplianceRunSummary = get_filtered_decorated_compliance_run_summary(decorated_compliance_run_summary_request=decorated_compliance_run_summary_request)
+
+[EARLY ACCESS] GetFilteredDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run, optionally restricted to a set of portfolios or portfolio groups.
+
+Specify a run scope and code from a previously run compliance check to get an overview of result details.  Supply an optional list of portfolios and/or portfolio groups to return only the rule results affecting them;  portfolio groups are expanded to their member portfolios (including nested groups). An empty or omitted list  returns the full, unfiltered summary.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+decorated_compliance_run_summary_request = DecoratedComplianceRunSummaryRequest()
+api_response = api_instance.get_filtered_decorated_compliance_run_summary(decorated_compliance_run_summary_request=decorated_compliance_run_summary_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **decorated_compliance_run_summary_request** | [**DecoratedComplianceRunSummaryRequest**](../model/DecoratedComplianceRunSummaryRequest.md)| The run to summarise, the optional portfolio/portfolio-group filter, and the property keys to decorate. | [optional] 
+
+### Return type
+
+[**DecoratedComplianceRunSummary**](../model/DecoratedComplianceRunSummary.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details

@@ -24,6 +24,7 @@ from finbourne.sdk.services.luminesce.models.available_parameter import Availabl
 from finbourne.sdk.services.luminesce.models.background_multi_query_progress_response import BackgroundMultiQueryProgressResponse
 from finbourne.sdk.services.luminesce.models.background_multi_query_response import BackgroundMultiQueryResponse
 from finbourne.sdk.services.luminesce.models.background_query_cancel_response import BackgroundQueryCancelResponse
+from finbourne.sdk.services.luminesce.models.background_query_list_item import BackgroundQueryListItem
 from finbourne.sdk.services.luminesce.models.background_query_progress_response import BackgroundQueryProgressResponse
 from finbourne.sdk.services.luminesce.models.background_query_response import BackgroundQueryResponse
 from finbourne.sdk.services.luminesce.models.background_query_state import BackgroundQueryState
@@ -116,6 +117,7 @@ __all__ = [
     "BackgroundMultiQueryProgressResponse",
     "BackgroundMultiQueryResponse",
     "BackgroundQueryCancelResponse",
+    "BackgroundQueryListItem",
     "BackgroundQueryProgressResponse",
     "BackgroundQueryResponse",
     "BackgroundQueryState",

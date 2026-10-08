@@ -15,6 +15,7 @@
 from finbourne.sdk.services.drive.models.access_controlled_action import AccessControlledAction
 from finbourne.sdk.services.drive.models.access_controlled_resource import AccessControlledResource
 from finbourne.sdk.services.drive.models.action_id import ActionId
+from finbourne.sdk.services.drive.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.drive.models.create_folder import CreateFolder
 from finbourne.sdk.services.drive.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.drive.models.identifier_part_schema import IdentifierPartSchema
@@ -24,6 +25,7 @@ from finbourne.sdk.services.drive.models.lusid_validation_problem_details import
 from finbourne.sdk.services.drive.models.paged_resource_list_of_storage_object import PagedResourceListOfStorageObject
 from finbourne.sdk.services.drive.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne.sdk.services.drive.models.search_body import SearchBody
+from finbourne.sdk.services.drive.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.drive.models.storage_object import StorageObject
 from finbourne.sdk.services.drive.models.update_file import UpdateFile
 from finbourne.sdk.services.drive.models.update_folder import UpdateFolder
@@ -33,6 +35,7 @@ __all__ = [
     "AccessControlledAction",
     "AccessControlledResource",
     "ActionId",
+    "ApiEndpoint",
     "CreateFolder",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
@@ -42,6 +45,7 @@ __all__ = [
     "PagedResourceListOfStorageObject",
     "ResourceListOfAccessControlledResource",
     "SearchBody",
+    "ServiceApiEndpoints",
     "StorageObject",
     "UpdateFile",
     "UpdateFolder"

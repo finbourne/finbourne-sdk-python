@@ -27,11 +27,12 @@ from finbourne.sdk.services.workflow.models.workflow_structure_nodes import Work
 
 class WorkflowStructure(BaseModel):
     """
-    Describes the structure of a Workflow as a graph of Task Definitions  # noqa: E501
+    Describes the structure of a Workflow as a graph of its Task Definitions and its Launchers  # noqa: E501
     """
     nodes: Optional[WorkflowStructureNodes] = None
     edges: Optional[WorkflowStructureEdges] = None
-    __properties: ClassVar[List[str]] = ["nodes", "edges"]
+    launchers_truncated: Optional[StrictBool] = Field(default=None, description="True when the Workflow has more Launchers than were returned inline in nodes.launchers. Call ListLaunchers for the full set", alias="launchersTruncated")
+    __properties: ClassVar[List[str]] = ["nodes", "edges", "launchersTruncated"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +87,8 @@ class WorkflowStructure(BaseModel):
 
         _obj = WorkflowStructure.model_validate({
             "nodes": WorkflowStructureNodes.from_dict(_v) if (_v := obj.get("nodes")) is not None else None,
-            "edges": WorkflowStructureEdges.from_dict(_v) if (_v := obj.get("edges")) is not None else None
+            "edges": WorkflowStructureEdges.from_dict(_v) if (_v := obj.get("edges")) is not None else None,
+            "launchers_truncated": obj.get("launchersTruncated")
         })
         return _obj
 

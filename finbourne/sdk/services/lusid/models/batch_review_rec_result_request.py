@@ -22,21 +22,25 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
+from finbourne.sdk.services.lusid.models.rec_instance_id import RecInstanceId
 from finbourne.sdk.services.lusid.models.rec_result_assignment_update import RecResultAssignmentUpdate
 from finbourne.sdk.services.lusid.models.rec_result_decision_update import RecResultDecisionUpdate
 
 
 class BatchReviewRecResultRequest(BaseModel):
     """
-    One item of a batch review request: applies review content to its targeted rec result(s). Exactly  one target, except FixAsGroup/ForceMatch which require two or more.  # noqa: E501
+    One item of a batch review request: applies review content to its targeted rec result(s). Exactly  one target, except FixAsGroup/ForceMatch which require two or more. A result id identifies a result only  within one run of one rec type of one instance, so every item names the run its targets belong to — which  also makes the same-result-set rule for group decisions structural.  # noqa: E501
     """
+    instance_id: RecInstanceId = Field(alias="instanceId")
+    rec_type:  StrictStr = Field(...,alias="recType", description="The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity.") 
+    run_number: StrictInt = Field(description="The run of the instance whose results this item targets.", alias="runNumber")
     rec_result_ids: List[StrictStr] = Field(description="The rec results targeted by this batch item. Exactly one, except FixAsGroup/ForceMatch which require two or more.", alias="recResultIds")
     decision: Optional[RecResultDecisionUpdate] = None
     assigned_user: Optional[RecResultAssignmentUpdate] = Field(default=None, alias="assignedUser")
     assigned_role: Optional[RecResultAssignmentUpdate] = Field(default=None, alias="assignedRole")
     add_comment_text:  Optional[StrictStr] = Field(default=None,alias="addCommentText", description="Optional comment text to add to each targeted result.") 
     properties: Optional[List[PerpetualProperty]] = Field(default=None, description="Properties in the RecResult domain. Filterable and sortable.")
-    __properties: ClassVar[List[str]] = ["recResultIds", "decision", "assignedUser", "assignedRole", "addCommentText", "properties"]
+    __properties: ClassVar[List[str]] = ["instanceId", "recType", "runNumber", "recResultIds", "decision", "assignedUser", "assignedRole", "addCommentText", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +76,9 @@ class BatchReviewRecResultRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of instance_id
+        if self.instance_id:
+            _dict['instanceId'] = self.instance_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of decision
         if self.decision:
             _dict['decision'] = self.decision.to_dict(by_alias=by_alias)
@@ -110,6 +117,9 @@ class BatchReviewRecResultRequest(BaseModel):
             return BatchReviewRecResultRequest.model_validate(obj)
 
         _obj = BatchReviewRecResultRequest.model_validate({
+            "instance_id": RecInstanceId.from_dict(_v) if (_v := obj.get("instanceId")) is not None else None,
+            "rec_type": obj.get("recType"),
+            "run_number": obj.get("runNumber"),
             "rec_result_ids": obj.get("recResultIds"),
             "decision": RecResultDecisionUpdate.from_dict(_v) if (_v := obj.get("decision")) is not None else None,
             "assigned_user": RecResultAssignmentUpdate.from_dict(_v) if (_v := obj.get("assignedUser")) is not None else None,

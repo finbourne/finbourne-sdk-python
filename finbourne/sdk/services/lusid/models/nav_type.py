@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.nav_settlement_configuration import NavSettlementConfiguration
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.swing_pricing_rule import SwingPricingRule
 
 
 class NavType(BaseModel):
@@ -48,7 +49,10 @@ class NavType(BaseModel):
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
     transaction_template_scope:  StrictStr = Field(...,alias="transactionTemplateScope", description="The Transaction Template Scope used by the NavType.") 
     transaction_exclusion_filter:  Optional[StrictStr] = Field(default=None,alias="transactionExclusionFilter", description="Optional filter expression to exclude specific transactions from this NavType's derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.") 
-    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope", "transactionExclusionFilter"]
+    pricing_basis:  Optional[StrictStr] = Field(default=None,alias="pricingBasis", description="The side of the quote this Nav Type values the fund on: Mid, Bid or Ask. Overrides the pricing basis of the valuation recipe's market options for this Nav Type only, so a bid NAV and an ask NAV can share one recipe. Omit it to value on the recipe's own pricing basis. Available values: Mid, Bid, Ask.") 
+    swing_pricing: Optional[SwingPricingRule] = Field(default=None, alias="swingPricing")
+    notional_dealing_cost_table_id: Optional[ResourceId] = Field(default=None, alias="notionalDealingCostTableId")
+    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope", "transactionExclusionFilter", "pricingBasis", "swingPricing", "notionalDealingCostTableId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +103,12 @@ class NavType(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of amortisation_rule_set_id
         if self.amortisation_rule_set_id:
             _dict['amortisationRuleSetId'] = self.amortisation_rule_set_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of swing_pricing
+        if self.swing_pricing:
+            _dict['swingPricing'] = self.swing_pricing.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of notional_dealing_cost_table_id
+        if self.notional_dealing_cost_table_id:
+            _dict['notionalDealingCostTableId'] = self.notional_dealing_cost_table_id.to_dict(by_alias=by_alias)
         # set to None if code (nullable) is None
         # and model_fields_set contains the field
         if self.code is None and "code" in self.model_fields_set:
@@ -139,6 +149,11 @@ class NavType(BaseModel):
         if self.transaction_exclusion_filter is None and "transaction_exclusion_filter" in self.model_fields_set:
             _dict['transactionExclusionFilter'] = None
 
+        # set to None if pricing_basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.pricing_basis is None and "pricing_basis" in self.model_fields_set:
+            _dict['pricingBasis'] = None
+
         return _dict
 
     @classmethod
@@ -169,7 +184,10 @@ class NavType(BaseModel):
             "amortisation_rule_set_id": ResourceId.from_dict(_v) if (_v := obj.get("amortisationRuleSetId")) is not None else None,
             "leader_nav_type_code": obj.get("leaderNavTypeCode"),
             "transaction_template_scope": obj.get("transactionTemplateScope"),
-            "transaction_exclusion_filter": obj.get("transactionExclusionFilter")
+            "transaction_exclusion_filter": obj.get("transactionExclusionFilter"),
+            "pricing_basis": obj.get("pricingBasis"),
+            "swing_pricing": SwingPricingRule.from_dict(_v) if (_v := obj.get("swingPricing")) is not None else None,
+            "notional_dealing_cost_table_id": ResourceId.from_dict(_v) if (_v := obj.get("notionalDealingCostTableId")) is not None else None
         })
         return _obj
 

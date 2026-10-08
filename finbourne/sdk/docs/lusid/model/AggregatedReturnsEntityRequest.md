@@ -6,13 +6,13 @@ The request body for the aggregated-returns (TWR) endpoint: the entity to calcul
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **entity** | [AggregatedReturnsEntityId](AggregatedReturnsEntityId.md) | Required | *No description available.* |
-| **returns_scope** | **str** | Required | *No description available.* |
-| **returns_code** | **str** | Required | *No description available.* |
+| **returns_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **metrics** | [List[ReturnsMetric]](ReturnsMetric.md) | Required | *No description available.* |
 | **period** | **str** | Optional | Available values: Daily, Monthly. |
 | **from_effective_at** | **str** | Optional | *No description available.* |
 | **to_effective_at** | **str** | Optional | *No description available.* |
 | **as_at** | **datetime** | Optional | *No description available.* |
+| **currency** | **str** | Optional | *No description available.* |
 
 
 ## Usage
@@ -24,13 +24,13 @@ from finbourne.sdk.services.lusid.models.AggregatedReturnsEntityRequest import A
 
 instance = AggregatedReturnsEntityRequest(
     entity=AggregatedReturnsEntityId(...),  # required
-    returns_scope="...",  # required
-    returns_code="...",  # required
+    returns_id=ResourceId(...),  # required
     metrics=[],  # required
     period="...",  # optional — Available values: Daily, Monthly.
     from_effective_at="...",  # optional
     to_effective_at="...",  # optional
-    as_at=datetime.now()  # optional
+    as_at=datetime.now(),  # optional
+    currency="..."  # optional
 )
 ```
 
@@ -38,6 +38,7 @@ instance = AggregatedReturnsEntityRequest(
 ## Related Models
 
 - [AggregatedReturnsEntityId](AggregatedReturnsEntityId.md)
+- [ResourceId](ResourceId.md)
 - [ReturnsMetric](ReturnsMetric.md)
 
 

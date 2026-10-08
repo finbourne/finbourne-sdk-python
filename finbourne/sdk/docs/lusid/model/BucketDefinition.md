@@ -9,6 +9,8 @@
 | **filter_expression** | **str** | Required | *No description available.* |
 | **bucket_type** | **str** | Required | Available values: Dealing, PnL, Fees, BalanceSheet, Misc. |
 | **unitised** | **bool** | Optional | *No description available.* |
+| **cleardown_behaviour** | **str** | Optional | Available values: Clear, CarryForward. |
+| **clears_to** | **str** | Optional | *No description available.* |
 
 
 ## Usage
@@ -23,7 +25,9 @@ instance = BucketDefinition(
     display_name="...",  # required
     filter_expression="...",  # required
     bucket_type="...",  # required — Available values: Dealing, PnL, Fees, BalanceSheet, Misc.
-    unitised=True  # optional
+    unitised=True,  # optional
+    cleardown_behaviour="...",  # optional — Available values: Clear, CarryForward.
+    clears_to="..."  # optional
 )
 ```
 

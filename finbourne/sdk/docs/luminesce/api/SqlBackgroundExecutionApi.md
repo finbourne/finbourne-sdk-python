@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**fetch_query_result_xml**](SqlBackgroundExecutionApi.md#fetch_query_result_xml) | **GET** /honeycomb/api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetch the result of a query as XML
 [**get_historical_feedback**](SqlBackgroundExecutionApi.md#get_historical_feedback) | **GET** /honeycomb/api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries)
 [**get_progress_of**](SqlBackgroundExecutionApi.md#get_progress_of) | **GET** /honeycomb/api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point.
+[**list_queries**](SqlBackgroundExecutionApi.md#list_queries) | **GET** /honeycomb/api/SqlBackground | [EXPERIMENTAL] ListQueries: List the background queries available to the calling user
 [**save_query_result_to_drive**](SqlBackgroundExecutionApi.md#save_query_result_to_drive) | **GET** /honeycomb/api/SqlBackground/{executionId}/drive | [EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive
 [**start_query**](SqlBackgroundExecutionApi.md#start_query) | **PUT** /honeycomb/api/SqlBackground | StartQuery: Start to Execute Sql in the background
 
@@ -743,6 +744,46 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BackgroundQueryProgressResponse**](../model/BackgroundQueryProgressResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_queries**
+> List[BackgroundQueryListItem] listQueries = list_queries(sql_like=sql_like)
+
+[EXPERIMENTAL] ListQueries: List the background queries available to the calling user
+
+Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+sql_like = 'sql_like_example' # str (optional)
+api_response = api_instance.list_queries(sql_like=sql_like)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sql_like** | **str**| An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired). | [optional] 
+
+### Return type
+
+[**List[BackgroundQueryListItem]**](../model/BackgroundQueryListItem.md)
 
 ### HTTP request headers
 
