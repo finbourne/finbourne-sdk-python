@@ -1417,16 +1417,16 @@ class RecsApi:
     def get_rec_result(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
         """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-        Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
+        Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
         :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
         :type instance_id_type: str
         :param instance_id_value: The unique identifier of the rec instance. (required)
         :type instance_id_value: str
         :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
         :type rec_type: str
-        :param run_number: The run of the instance the result belongs to. (required)
+        :param run_number: The run of the instance whose view of the result is read. (required)
         :type run_number: int
-        :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
+        :param id: The display id of the rec result, e.g. \"break-3\". (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
@@ -1449,16 +1449,16 @@ class RecsApi:
     def get_rec_result_with_http_info(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
         """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-        Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
+        Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
         :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
         :type instance_id_type: str
         :param instance_id_value: The unique identifier of the rec instance. (required)
         :type instance_id_value: str
         :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
         :type rec_type: str
-        :param run_number: The run of the instance the result belongs to. (required)
+        :param run_number: The run of the instance whose view of the result is read. (required)
         :type run_number: int
-        :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
+        :param id: The display id of the rec result, e.g. \"break-3\". (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
@@ -2496,7 +2496,7 @@ class RecsApi:
     def list_rec_results(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRecResult:
         """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
 
-        List rec results.  # noqa: E501
+        List rec results. A result's runNumber is the run that last wrote it; a run's results as they stood are read at that run's asAt.  # noqa: E501
         :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
         :type as_at: datetime
         :param page: The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request.
@@ -2526,7 +2526,7 @@ class RecsApi:
     def list_rec_results_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecResult]:
         """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
 
-        List rec results.  # noqa: E501
+        List rec results. A result's runNumber is the run that last wrote it; a run's results as they stood are read at that run's asAt.  # noqa: E501
         :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
         :type as_at: datetime
         :param page: The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request.
@@ -4722,7 +4722,7 @@ class RecsApi:
     @validate_call
     async def get_rec_result_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
             """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
-            Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
+            Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
             
             :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
             :type instance_id_type: str
@@ -4730,9 +4730,9 @@ class RecsApi:
             :type instance_id_value: str
             :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
             :type rec_type: str
-            :param run_number: The run of the instance the result belongs to. (required)
+            :param run_number: The run of the instance whose view of the result is read. (required)
             :type run_number: int
-            :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
+            :param id: The display id of the rec result, e.g. \"break-3\". (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
@@ -4755,7 +4755,7 @@ class RecsApi:
     async def get_rec_result_with_http_info_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
             """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-            Retrieve a single rec result by the run it belongs to and its id within that run.  # noqa: E501
+            Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
 
             :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
             :type instance_id_type: str
@@ -4763,9 +4763,9 @@ class RecsApi:
             :type instance_id_value: str
             :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
             :type rec_type: str
-            :param run_number: The run of the instance the result belongs to. (required)
+            :param run_number: The run of the instance whose view of the result is read. (required)
             :type run_number: int
-            :param id: The id of the rec result within the run, e.g. \"break-3\". (required)
+            :param id: The display id of the rec result, e.g. \"break-3\". (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
@@ -5808,7 +5808,7 @@ class RecsApi:
     @validate_call
     async def list_rec_results_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRecResult:
             """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
-            List rec results.  # noqa: E501
+            List rec results. A result's runNumber is the run that last wrote it; a run's results as they stood are read at that run's asAt.  # noqa: E501
             
             :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
             :type as_at: datetime
@@ -5839,7 +5839,7 @@ class RecsApi:
     async def list_rec_results_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecResult]:
             """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
 
-            List rec results.  # noqa: E501
+            List rec results. A result's runNumber is the run that last wrote it; a run's results as they stood are read at that run's asAt.  # noqa: E501
 
             :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
             :type as_at: datetime

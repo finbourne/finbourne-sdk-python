@@ -11,6 +11,7 @@ A definition for the period you wish to close
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
 | **apply_clear_down** | **bool** | Optional | Defaults to null. Set to true if you want the closed period to have the clear down applied. |
 | **update_inclusion_date_nav_adjustments** | **bool** | Optional | Defaults to null. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities. |
+| **pricing_methodology_override** | [PricingMethodologyOverrideRequest](PricingMethodologyOverrideRequest.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -26,11 +27,13 @@ instance = UpdateValuationPointRequest(
     name="...",  # optional — Identifiable Name assigned to the Valuation Point.
     properties=ModelProperty(...),  # optional — A set of properties for the diary entry.
     apply_clear_down=True,  # optional — Defaults to null. Set to true if you want the closed period to have the clear down applied.
-    update_inclusion_date_nav_adjustments=True  # optional — Defaults to null. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities.
+    update_inclusion_date_nav_adjustments=True,  # optional — Defaults to null. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities.
+    pricing_methodology_override=PricingMethodologyOverrideRequest(...)  # optional
 )
 ```
 
 - [ModelProperty](ModelProperty.md) — used in `properties`
+- [PricingMethodologyOverrideRequest](PricingMethodologyOverrideRequest.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

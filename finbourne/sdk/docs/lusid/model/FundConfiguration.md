@@ -17,6 +17,9 @@
 | **bucket_sets** | [List[BucketSetDefinition]](BucketSetDefinition.md) | Optional | The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation. |
 | **apportionment_bucket_set** | **str** | Optional | The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection. |
 | **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
+| **partnership_accounting** | [PartnershipAccountingConfiguration](PartnershipAccountingConfiguration.md) | Optional | *No description available.* |
+| **fund_terms** | [FundTerms](FundTerms.md) | Optional | *No description available.* |
+| **closings** | [List[FundClosing]](FundClosing.md) | Optional | The register of fund closings (first close, subsequent closes, final close) for partnership funds using this configuration. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -41,6 +44,9 @@ instance = FundConfiguration(
     bucket_sets=[],  # optional — The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation.
     apportionment_bucket_set="...",  # optional — The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection.
     apportionment_method_property=ApportionmentMethodProperty(...),  # optional
+    partnership_accounting=PartnershipAccountingConfiguration(...),  # optional
+    fund_terms=FundTerms(...),  # optional
+    closings=[],  # optional — The register of fund closings (first close, subsequent closes, final close) for partnership funds using this configuration.
     links=[]  # optional
 )
 ```
@@ -54,6 +60,9 @@ instance = FundConfiguration(
 - [Version](Version.md)
 - [BucketSetDefinition](BucketSetDefinition.md) — used in `bucket_sets`
 - [ApportionmentMethodProperty](ApportionmentMethodProperty.md)
+- [PartnershipAccountingConfiguration](PartnershipAccountingConfiguration.md)
+- [FundTerms](FundTerms.md)
+- [FundClosing](FundClosing.md) — used in `closings`
 - [Link](Link.md)
 
 

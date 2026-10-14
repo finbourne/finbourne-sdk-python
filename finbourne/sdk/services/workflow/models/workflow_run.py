@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.workflow.models.launched_by import LaunchedBy
 
 
 class WorkflowRun(BaseModel):
@@ -30,7 +31,8 @@ class WorkflowRun(BaseModel):
     id: StrictInt = Field(description="The id of this run of the Workflow. Assigned once, when the run is instantiated.")
     as_at_created: datetime = Field(description="The version.asAtCreated of the root/ultimate parent Task of this run.", alias="asAtCreated")
     completion_status:  StrictStr = Field(...,alias="completionStatus", description="The completion status of the root/ultimate parent Task of this run: NotStarted, InProgress, or Completed.") 
-    __properties: ClassVar[List[str]] = ["id", "asAtCreated", "completionStatus"]
+    launched_by: Optional[LaunchedBy] = Field(default=None, alias="launchedBy")
+    __properties: ClassVar[List[str]] = ["id", "asAtCreated", "completionStatus", "launchedBy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,6 +68,9 @@ class WorkflowRun(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of launched_by
+        if self.launched_by:
+            _dict['launchedBy'] = self.launched_by.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
@@ -80,7 +85,8 @@ class WorkflowRun(BaseModel):
         _obj = WorkflowRun.model_validate({
             "id": obj.get("id"),
             "as_at_created": obj.get("asAtCreated"),
-            "completion_status": obj.get("completionStatus")
+            "completion_status": obj.get("completionStatus"),
+            "launched_by": LaunchedBy.from_dict(_v) if (_v := obj.get("launchedBy")) is not None else None
         })
         return _obj
 

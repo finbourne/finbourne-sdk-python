@@ -21,6 +21,17 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.allocation_event_basis_diagnostics import AllocationEventBasisDiagnostics
+from finbourne.sdk.services.lusid.models.allocation_event_booking_error import AllocationEventBookingError
+from finbourne.sdk.services.lusid.models.allocation_event_booking_warning import AllocationEventBookingWarning
+from finbourne.sdk.services.lusid.models.allocation_event_component import AllocationEventComponent
+from finbourne.sdk.services.lusid.models.allocation_event_deal_funding import AllocationEventDealFunding
+from finbourne.sdk.services.lusid.models.allocation_event_equalisation import AllocationEventEqualisation
+from finbourne.sdk.services.lusid.models.allocation_event_receipt import AllocationEventReceipt
+from finbourne.sdk.services.lusid.models.allocation_event_reversal import AllocationEventReversal
+from finbourne.sdk.services.lusid.models.allocation_event_rounding_residual import AllocationEventRoundingResidual
+from finbourne.sdk.services.lusid.models.allocation_event_transfer import AllocationEventTransfer
+from finbourne.sdk.services.lusid.models.allocation_event_use_of_proceeds import AllocationEventUseOfProceeds
 from finbourne.sdk.services.lusid.models.allocation_map_allocation import AllocationMapAllocation
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
@@ -35,19 +46,36 @@ class AllocationEvent(BaseModel):
     id: ResourceId
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of the Allocation Event.") 
     allocation_map_id: ResourceId = Field(alias="allocationMapId")
-    event_type:  StrictStr = Field(...,alias="eventType", description="The type of the event: CapitalCall, Distribution, FeeExpense or ValuationMove. Selects the basis rule from the map. Available values: CapitalCall, Distribution, FeeExpense, ValuationMove.") 
+    event_type:  StrictStr = Field(...,alias="eventType", description="The type of the event: CapitalCall, Distribution, FeeExpense, ValuationMove, Equalisation, RecallExpiry, Transfer, Default, Commitment or DealFunding. Selects the basis rule from the map. A recall is a CapitalCall with a Recall component. A Commitment event is not shared from a basis: its basis values are the signed commitment amounts per commitment line, and they must sum to the amount. Available values: CapitalCall, Distribution, FeeExpense, ValuationMove, Commitment, Equalisation, RecallExpiry, Transfer, Default, DealFunding.") 
     amount: Union[StrictFloat, StrictInt] = Field(description="The total amount to be shared across the participants.")
     currency:  StrictStr = Field(...,alias="currency", description="The ISO 4217 code of the currency of the amount. The amount may not be finer than the currency's minor unit: two decimal places for most currencies, none for JPY, three for KWD and BHD. A code with no defined minor unit, such as XAU or XAG, is taken to have two decimal places.") 
     event_date: datetime = Field(description="The date of the event: the point at which the map, its participants and their basis values are read.", alias="eventDate")
-    status:  StrictStr = Field(...,alias="status", description="The lifecycle status of the event: Draft until its shares are computed, Computed once they are, and Booked once posted. Available values: Draft, Computed, Booked.") 
+    status:  StrictStr = Field(...,alias="status", description="The lifecycle status of the event: Draft until its shares are computed, Computed once they are, Booking while its postings are being written, Booked once they all are, and Reversed once a booked event has been backed out. Available values: Draft, Computed, Booked, Booking, Reversed.") 
     basis_source:  Optional[StrictStr] = Field(default=None,alias="basisSource", description="Where the basis values came from when the shares were last computed.") 
     allocations: List[AllocationMapAllocation] = Field(description="The per-investor shares of the amount, as last computed.")
     booking_reference:  Optional[StrictStr] = Field(default=None,alias="bookingReference", description="The reference under which the shares were posted. Set only once the event is booked.") 
     booked_at: Optional[datetime] = Field(default=None, description="The datetime at which the event was booked.", alias="bookedAt")
     reallocation_reason:  Optional[StrictStr] = Field(default=None,alias="reallocationReason", description="The reason given when the event was last recomputed, if it has been.") 
+    components: Optional[List[AllocationEventComponent]] = Field(default=None, description="The parts the amount splits into, each shared on its own basis and booked to its own slot. The component amounts must sum to the event amount. Absent means the whole amount is one component: Investment for a CapitalCall, ROC for a Distribution.")
+    residuals: Optional[List[AllocationEventRoundingResidual]] = Field(default=None, description="The minor units left over when each component's shares were rounded to the currency, and which investor records took them.")
+    basis_diagnostics: Optional[AllocationEventBasisDiagnostics] = Field(default=None, alias="basisDiagnostics")
+    written_ids: Optional[List[StrictStr]] = Field(default=None, description="The identifiers of the postings the booking has written so far, in write order. Complete once the event is Booked.", alias="writtenIds")
+    booking_errors: Optional[List[AllocationEventBookingError]] = Field(default=None, description="The postings the booking could not write. Non-empty leaves the event in Booking; book again under the same reference to resume, or unbook to cancel what was written.", alias="bookingErrors")
+    warnings: Optional[List[AllocationEventBookingWarning]] = Field(default=None, description="The validation rules the booking was allowed to proceed through under the map's policy, for instance an OverCall on a map that warns rather than refuses. Kept for the life of the event.")
+    transfers: Optional[List[AllocationEventTransfer]] = Field(default=None, description="For a Transfer event, the legs to book: each moves a fraction of one capital interest line to another. Required for a Transfer event and not allowed on any other type. The fractions out of one line must sum to at most one; the amount of a Transfer event is zero.")
+    equalisation: Optional[AllocationEventEqualisation] = None
+    use_of_proceeds: Optional[List[AllocationEventUseOfProceeds]] = Field(default=None, description="For a CapitalCall, what the call pays for: rows of purpose, deal and amount that sum to the call amount. An Investment row names a deal the vehicle has funded and is shared under that deal's participation, with each investor's share recorded as paid in for that deal; when the deal was funded from a facility the row repays the draw. Not allowed with components or on any other event type.", alias="useOfProceeds")
+    deal_funding: Optional[AllocationEventDealFunding] = Field(default=None, alias="dealFunding")
     version: Optional[Version] = None
+    parent_allocation_event_id: Optional[ResourceId] = Field(default=None, alias="parentAllocationEventId")
+    replaces: Optional[ResourceId] = None
+    reversal: Optional[AllocationEventReversal] = None
+    notice_date: Optional[datetime] = Field(default=None, description="The date the notice went to investors.", alias="noticeDate")
+    due_date: Optional[datetime] = Field(default=None, description="The date the investors' cash is due.", alias="dueDate")
+    settlement_date: Optional[datetime] = Field(default=None, description="The date the postings settle. Defaults to the event date.", alias="settlementDate")
+    receipts: Optional[List[AllocationEventReceipt]] = Field(default=None, description="The cash received against the event, in the order it was recorded.")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "description", "allocationMapId", "eventType", "amount", "currency", "eventDate", "status", "basisSource", "allocations", "bookingReference", "bookedAt", "reallocationReason", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "description", "allocationMapId", "eventType", "amount", "currency", "eventDate", "status", "basisSource", "allocations", "bookingReference", "bookedAt", "reallocationReason", "components", "residuals", "basisDiagnostics", "writtenIds", "bookingErrors", "warnings", "transfers", "equalisation", "useOfProceeds", "dealFunding", "version", "parentAllocationEventId", "replaces", "reversal", "noticeDate", "dueDate", "settlementDate", "receipts", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,9 +124,76 @@ class AllocationEvent(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['allocations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in components (list)
+        _items = []
+        if self.components:
+            for _item in self.components:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['components'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in residuals (list)
+        _items = []
+        if self.residuals:
+            for _item in self.residuals:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['residuals'] = _items
+        # override the default output from pydantic by calling `to_dict()` of basis_diagnostics
+        if self.basis_diagnostics:
+            _dict['basisDiagnostics'] = self.basis_diagnostics.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in booking_errors (list)
+        _items = []
+        if self.booking_errors:
+            for _item in self.booking_errors:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['bookingErrors'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in warnings (list)
+        _items = []
+        if self.warnings:
+            for _item in self.warnings:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['warnings'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in transfers (list)
+        _items = []
+        if self.transfers:
+            for _item in self.transfers:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['transfers'] = _items
+        # override the default output from pydantic by calling `to_dict()` of equalisation
+        if self.equalisation:
+            _dict['equalisation'] = self.equalisation.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in use_of_proceeds (list)
+        _items = []
+        if self.use_of_proceeds:
+            for _item in self.use_of_proceeds:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['useOfProceeds'] = _items
+        # override the default output from pydantic by calling `to_dict()` of deal_funding
+        if self.deal_funding:
+            _dict['dealFunding'] = self.deal_funding.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of parent_allocation_event_id
+        if self.parent_allocation_event_id:
+            _dict['parentAllocationEventId'] = self.parent_allocation_event_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of replaces
+        if self.replaces:
+            _dict['replaces'] = self.replaces.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of reversal
+        if self.reversal:
+            _dict['reversal'] = self.reversal.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in receipts (list)
+        _items = []
+        if self.receipts:
+            for _item in self.receipts:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['receipts'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -136,6 +231,61 @@ class AllocationEvent(BaseModel):
         if self.reallocation_reason is None and "reallocation_reason" in self.model_fields_set:
             _dict['reallocationReason'] = None
 
+        # set to None if components (nullable) is None
+        # and model_fields_set contains the field
+        if self.components is None and "components" in self.model_fields_set:
+            _dict['components'] = None
+
+        # set to None if residuals (nullable) is None
+        # and model_fields_set contains the field
+        if self.residuals is None and "residuals" in self.model_fields_set:
+            _dict['residuals'] = None
+
+        # set to None if written_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.written_ids is None and "written_ids" in self.model_fields_set:
+            _dict['writtenIds'] = None
+
+        # set to None if booking_errors (nullable) is None
+        # and model_fields_set contains the field
+        if self.booking_errors is None and "booking_errors" in self.model_fields_set:
+            _dict['bookingErrors'] = None
+
+        # set to None if warnings (nullable) is None
+        # and model_fields_set contains the field
+        if self.warnings is None and "warnings" in self.model_fields_set:
+            _dict['warnings'] = None
+
+        # set to None if transfers (nullable) is None
+        # and model_fields_set contains the field
+        if self.transfers is None and "transfers" in self.model_fields_set:
+            _dict['transfers'] = None
+
+        # set to None if use_of_proceeds (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_of_proceeds is None and "use_of_proceeds" in self.model_fields_set:
+            _dict['useOfProceeds'] = None
+
+        # set to None if notice_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.notice_date is None and "notice_date" in self.model_fields_set:
+            _dict['noticeDate'] = None
+
+        # set to None if due_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.due_date is None and "due_date" in self.model_fields_set:
+            _dict['dueDate'] = None
+
+        # set to None if settlement_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.settlement_date is None and "settlement_date" in self.model_fields_set:
+            _dict['settlementDate'] = None
+
+        # set to None if receipts (nullable) is None
+        # and model_fields_set contains the field
+        if self.receipts is None and "receipts" in self.model_fields_set:
+            _dict['receipts'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -167,7 +317,24 @@ class AllocationEvent(BaseModel):
             "booking_reference": obj.get("bookingReference"),
             "booked_at": obj.get("bookedAt"),
             "reallocation_reason": obj.get("reallocationReason"),
+            "components": [AllocationEventComponent.from_dict(_item) for _item in _v] if (_v := obj.get("components")) is not None else None,
+            "residuals": [AllocationEventRoundingResidual.from_dict(_item) for _item in _v] if (_v := obj.get("residuals")) is not None else None,
+            "basis_diagnostics": AllocationEventBasisDiagnostics.from_dict(_v) if (_v := obj.get("basisDiagnostics")) is not None else None,
+            "written_ids": obj.get("writtenIds"),
+            "booking_errors": [AllocationEventBookingError.from_dict(_item) for _item in _v] if (_v := obj.get("bookingErrors")) is not None else None,
+            "warnings": [AllocationEventBookingWarning.from_dict(_item) for _item in _v] if (_v := obj.get("warnings")) is not None else None,
+            "transfers": [AllocationEventTransfer.from_dict(_item) for _item in _v] if (_v := obj.get("transfers")) is not None else None,
+            "equalisation": AllocationEventEqualisation.from_dict(_v) if (_v := obj.get("equalisation")) is not None else None,
+            "use_of_proceeds": [AllocationEventUseOfProceeds.from_dict(_item) for _item in _v] if (_v := obj.get("useOfProceeds")) is not None else None,
+            "deal_funding": AllocationEventDealFunding.from_dict(_v) if (_v := obj.get("dealFunding")) is not None else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "parent_allocation_event_id": ResourceId.from_dict(_v) if (_v := obj.get("parentAllocationEventId")) is not None else None,
+            "replaces": ResourceId.from_dict(_v) if (_v := obj.get("replaces")) is not None else None,
+            "reversal": AllocationEventReversal.from_dict(_v) if (_v := obj.get("reversal")) is not None else None,
+            "notice_date": obj.get("noticeDate"),
+            "due_date": obj.get("dueDate"),
+            "settlement_date": obj.get("settlementDate"),
+            "receipts": [AllocationEventReceipt.from_dict(_item) for _item in _v] if (_v := obj.get("receipts")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

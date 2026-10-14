@@ -18,6 +18,7 @@ Readonly information about how the worker should be executed
 * [PortfolioTransactionDataQualityCheckResponse](./PortfolioTransactionDataQualityCheckResponse.md)
 * [SchedulerJobResponse](./SchedulerJobResponse.md)
 * [SleepResponse](./SleepResponse.md)
+* [StructuredResultDataQualityCheckResponse](./StructuredResultDataQualityCheckResponse.md)
 
 ## Usage
 
@@ -47,6 +48,7 @@ instance = WorkerConfigurationResponse(fail_response_instance)
 - [PortfolioTransactionDataQualityCheckResponse](./PortfolioTransactionDataQualityCheckResponse.md)
 - [SchedulerJobResponse](./SchedulerJobResponse.md)
 - [SleepResponse](./SleepResponse.md)
+- [StructuredResultDataQualityCheckResponse](./StructuredResultDataQualityCheckResponse.md)
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
 

@@ -33,6 +33,8 @@ A request to create a transfer: the paired transaction legs that move a position
 | **properties_out** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Transaction Properties to set on the outgoing transaction leg, and on the incoming transaction leg when PropertiesIn is absent. Supplying an empty collection for PropertiesIn leaves the incoming leg with no properties. |
 | **properties_in** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Transaction Properties to set on the incoming transaction leg, replacing rather than adding to PropertiesOut. |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties to set on the transfer itself, in the Transfer domain. These are separate from PropertiesOut and PropertiesIn, which are Transaction domain and land on the legs. |
+| **transaction_to_portfolio_rate_out** | **float** | Optional | The rate from the outgoing leg&#39;s trade currency to the outgoing portfolio&#39;s base currency, applied whenever supplied. |
+| **transaction_to_portfolio_rate_in** | **float** | Optional | The rate from the incoming leg&#39;s trade currency to the incoming portfolio&#39;s base currency. Required when the two portfolios have different base currencies, and applied whenever supplied. |
 
 
 ## Usage
@@ -70,7 +72,9 @@ instance = CreateTransferRequest(
     accounting_method="...",  # optional — An accounting method to record against the transfer. Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
     properties_out=PerpetualProperty(...),  # optional — Transaction Properties to set on the outgoing transaction leg, and on the incoming transaction leg when PropertiesIn is absent. Supplying an empty collection for PropertiesIn leaves the incoming leg with no properties.
     properties_in=PerpetualProperty(...),  # optional — Transaction Properties to set on the incoming transaction leg, replacing rather than adding to PropertiesOut.
-    properties=PerpetualProperty(...)  # optional — Properties to set on the transfer itself, in the Transfer domain. These are separate from PropertiesOut and PropertiesIn, which are Transaction domain and land on the legs.
+    properties=PerpetualProperty(...),  # optional — Properties to set on the transfer itself, in the Transfer domain. These are separate from PropertiesOut and PropertiesIn, which are Transaction domain and land on the legs.
+    transaction_to_portfolio_rate_out=0.0,  # optional — The rate from the outgoing leg&#39;s trade currency to the outgoing portfolio&#39;s base currency, applied whenever supplied.
+    transaction_to_portfolio_rate_in=0.0  # optional — The rate from the incoming leg&#39;s trade currency to the incoming portfolio&#39;s base currency. Required when the two portfolios have different base currencies, and applied whenever supplied.
 )
 ```
 

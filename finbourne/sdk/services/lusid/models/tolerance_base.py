@@ -50,6 +50,9 @@ class ToleranceBase(BaseModel):
         validate_assignment=True
     )
 
+    discriminator_value_class_map: ClassVar[Dict[str, str]] = {
+    }
+
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         if args:
             if len(args) > 1:
@@ -121,6 +124,31 @@ class ToleranceBase(BaseModel):
         match = 0
         matchclass = ""
         
+
+        # use oneOf discriminator to lookup the data type
+        _data_type = json.loads(json_str).get("toleranceType")
+        if not _data_type:
+            raise ValueError("Failed to lookup data type from the field `toleranceType` in the input.")
+
+        # check if data type is `CoreAttributeOptionalityTolerance`
+        if _data_type == "CoreAttributeOptionality":
+            instance.actual_instance = CoreAttributeOptionalityTolerance.from_json(json_str)
+            return instance
+
+        # check if data type is `CoreDateTolerance`
+        if _data_type == "CoreDateTolerance":
+            instance.actual_instance = CoreDateTolerance.from_json(json_str)
+            return instance
+
+        # check if data type is `CoreStringCrossTolerance`
+        if _data_type == "CoreStringCross":
+            instance.actual_instance = CoreStringCrossTolerance.from_json(json_str)
+            return instance
+
+        # check if data type is `AggregateNumericTolerance`
+        if _data_type == "Numeric":
+            instance.actual_instance = AggregateNumericTolerance.from_json(json_str)
+            return instance
 
         # deserialize data into AggregateNumericTolerance
         try:

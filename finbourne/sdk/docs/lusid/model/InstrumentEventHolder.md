@@ -19,6 +19,7 @@ An instrument event equipped with additional metadata.
 | **participation_type** | **str** | Optional | Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary. Default: `'Mandatory'` |
 | **as_at** | **datetime** | Optional | The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert. *(read-only)* |
 | **group_code** | **str** | Optional | The group code that determines the processing order of instrument events with the same effective datetime. Available values: Tier1, Tier2, Tier3, Legacy. |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -42,7 +43,8 @@ instance = InstrumentEventHolder(
     sequence_number=0,  # optional — The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.
     participation_type="...",  # optional — Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary.
     as_at=datetime.now(),  # optional — The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert.
-    group_code="..."  # optional — The group code that determines the processing order of instrument events with the same effective datetime. Available values: Tier1, Tier2, Tier3, Legacy.
+    group_code="...",  # optional — The group code that determines the processing order of instrument events with the same effective datetime. Available values: Tier1, Tier2, Tier3, Legacy.
+    staged_modifications=StagedModificationsInfo(...)  # optional
 )
 ```
 
@@ -50,6 +52,7 @@ instance = InstrumentEventHolder(
 - [EventDateRange](EventDateRange.md)
 - [InstrumentEvent](InstrumentEvent.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

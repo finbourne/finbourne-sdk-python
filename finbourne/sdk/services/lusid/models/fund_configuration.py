@@ -25,8 +25,11 @@ from finbourne.sdk.services.lusid.models.apportionment_method_property import Ap
 from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetDefinition
 from finbourne.sdk.services.lusid.models.component_filter import ComponentFilter
 from finbourne.sdk.services.lusid.models.external_fee_component_filter import ExternalFeeComponentFilter
+from finbourne.sdk.services.lusid.models.fund_closing import FundClosing
+from finbourne.sdk.services.lusid.models.fund_terms import FundTerms
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
+from finbourne.sdk.services.lusid.models.partnership_accounting_configuration import PartnershipAccountingConfiguration
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.version import Version
 
@@ -48,8 +51,11 @@ class FundConfiguration(BaseModel):
     bucket_sets: Optional[List[BucketSetDefinition]] = Field(default=None, description="The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation.", alias="bucketSets")
     apportionment_bucket_set:  Optional[StrictStr] = Field(default=None,alias="apportionmentBucketSet", description="The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection.") 
     apportionment_method_property: Optional[ApportionmentMethodProperty] = Field(default=None, alias="apportionmentMethodProperty")
+    partnership_accounting: Optional[PartnershipAccountingConfiguration] = Field(default=None, alias="partnershipAccounting")
+    fund_terms: Optional[FundTerms] = Field(default=None, alias="fundTerms")
+    closings: Optional[List[FundClosing]] = Field(default=None, description="The register of fund closings (first close, subsequent closes, final close) for partnership funds using this configuration.")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "dealingFilters", "pnlFilters", "backOutFilters", "externalFeeFilters", "properties", "version", "bucketSets", "apportionmentBucketSet", "apportionmentMethodProperty", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "dealingFilters", "pnlFilters", "backOutFilters", "externalFeeFilters", "properties", "version", "bucketSets", "apportionmentBucketSet", "apportionmentMethodProperty", "partnershipAccounting", "fundTerms", "closings", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -136,6 +142,19 @@ class FundConfiguration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of apportionment_method_property
         if self.apportionment_method_property:
             _dict['apportionmentMethodProperty'] = self.apportionment_method_property.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of partnership_accounting
+        if self.partnership_accounting:
+            _dict['partnershipAccounting'] = self.partnership_accounting.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of fund_terms
+        if self.fund_terms:
+            _dict['fundTerms'] = self.fund_terms.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in closings (list)
+        _items = []
+        if self.closings:
+            for _item in self.closings:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['closings'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -193,6 +212,11 @@ class FundConfiguration(BaseModel):
         if self.apportionment_bucket_set is None and "apportionment_bucket_set" in self.model_fields_set:
             _dict['apportionmentBucketSet'] = None
 
+        # set to None if closings (nullable) is None
+        # and model_fields_set contains the field
+        if self.closings is None and "closings" in self.model_fields_set:
+            _dict['closings'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -228,6 +252,9 @@ class FundConfiguration(BaseModel):
             "bucket_sets": [BucketSetDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("bucketSets")) is not None else None,
             "apportionment_bucket_set": obj.get("apportionmentBucketSet"),
             "apportionment_method_property": ApportionmentMethodProperty.from_dict(_v) if (_v := obj.get("apportionmentMethodProperty")) is not None else None,
+            "partnership_accounting": PartnershipAccountingConfiguration.from_dict(_v) if (_v := obj.get("partnershipAccounting")) is not None else None,
+            "fund_terms": FundTerms.from_dict(_v) if (_v := obj.get("fundTerms")) is not None else None,
+            "closings": [FundClosing.from_dict(_item) for _item in _v] if (_v := obj.get("closings")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

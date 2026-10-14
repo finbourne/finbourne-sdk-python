@@ -17,6 +17,7 @@ Information about how the worker should be executed
 * [PortfolioTransactionDataQualityCheck](./PortfolioTransactionDataQualityCheck.md)
 * [SchedulerJob](./SchedulerJob.md)
 * [Sleep](./Sleep.md)
+* [StructuredResultDataQualityCheck](./StructuredResultDataQualityCheck.md)
 
 ## Usage
 
@@ -45,6 +46,7 @@ instance = WorkerConfiguration(fail_instance)
 - [PortfolioTransactionDataQualityCheck](./PortfolioTransactionDataQualityCheck.md)
 - [SchedulerJob](./SchedulerJob.md)
 - [Sleep](./Sleep.md)
+- [StructuredResultDataQualityCheck](./StructuredResultDataQualityCheck.md)
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
 

@@ -5,7 +5,7 @@ The default apportionment basis of a Fund Structure member.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **kind** | **str** | Optional | How the apportionment is weighted. ValueWeighted apportions pro rata to each investing member&#39;s value; PropertyWeighted apportions pro rata to the property named in &#39;property&#39;; FixedPercentage defers to factors held on an allocation map. A ValueWeighted basis is rejected where a holder of this member also holds an unrelated member, because the member could not be finalised before that sibling is valued. Available values: ValueWeighted, PropertyWeighted, FixedPercentage. |
+| **kind** | **str** | Optional | How the apportionment is weighted. ValueWeighted apportions pro rata to each investing member&#39;s value; PropertyWeighted apportions pro rata to the property named in &#39;property&#39;; FixedPercentage defers to factors held on an allocation map. A ValueWeighted basis is rejected where a holder of this member also holds an unrelated member, because the member could not be finalised before that sibling is valued. Available values: ValueWeighted, PropertyWeighted, FixedPercentage, Committed, CommittedExGP, UncalledCommitment, PaidIn, PaidInForDeal, Recallable, FeeWeightedCommitment, FixedAmount. |
 | **var_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 | **scoped_to_member** | **bool** | Optional | Whether the basis is evaluated only over amounts booked against this member rather than fund-wide. |
 
@@ -18,7 +18,7 @@ The default apportionment basis of a Fund Structure member.
 from finbourne.sdk.services.lusid.models.FundStructureAllocationBasis import FundStructureAllocationBasis
 
 instance = FundStructureAllocationBasis(
-    kind="...",  # optional — How the apportionment is weighted. ValueWeighted apportions pro rata to each investing member&#39;s value; PropertyWeighted apportions pro rata to the property named in &#39;property&#39;; FixedPercentage defers to factors held on an allocation map. A ValueWeighted basis is rejected where a holder of this member also holds an unrelated member, because the member could not be finalised before that sibling is valued. Available values: ValueWeighted, PropertyWeighted, FixedPercentage.
+    kind="...",  # optional — How the apportionment is weighted. ValueWeighted apportions pro rata to each investing member&#39;s value; PropertyWeighted apportions pro rata to the property named in &#39;property&#39;; FixedPercentage defers to factors held on an allocation map. A ValueWeighted basis is rejected where a holder of this member also holds an unrelated member, because the member could not be finalised before that sibling is valued. Available values: ValueWeighted, PropertyWeighted, FixedPercentage, Committed, CommittedExGP, UncalledCommitment, PaidIn, PaidInForDeal, Recallable, FeeWeightedCommitment, FixedAmount.
     var_property=ApportionmentMethodProperty(...),  # optional
     scoped_to_member=True  # optional — Whether the basis is evaluated only over amounts booked against this member rather than fund-wide.
 )

@@ -8,6 +8,7 @@ Information about the run of the Workflow that created this Task, inherited from
 | **id** | **int** | Required | The id of this run of the Workflow. Assigned once, when the run is instantiated. |
 | **as_at_created** | **datetime** | Required | The version.asAtCreated of the root/ultimate parent Task of this run. |
 | **completion_status** | **str** | Required | The completion status of the root/ultimate parent Task of this run: NotStarted, InProgress, or Completed. |
+| **launched_by** | [LaunchedBy](LaunchedBy.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -20,10 +21,12 @@ from finbourne.sdk.services.workflow.models.WorkflowRun import WorkflowRun
 instance = WorkflowRun(
     id=0,  # required — The id of this run of the Workflow. Assigned once, when the run is instantiated.
     as_at_created=datetime.now(),  # required — The version.asAtCreated of the root/ultimate parent Task of this run.
-    completion_status="..."  # required — The completion status of the root/ultimate parent Task of this run: NotStarted, InProgress, or Completed.
+    completion_status="...",  # required — The completion status of the root/ultimate parent Task of this run: NotStarted, InProgress, or Completed.
+    launched_by=LaunchedBy(...)  # optional
 )
 ```
 
+- [LaunchedBy](LaunchedBy.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

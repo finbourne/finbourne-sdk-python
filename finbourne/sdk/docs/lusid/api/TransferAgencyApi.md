@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_transfer_agency_orders**](TransferAgencyApi.md#delete_transfer_agency_orders) | **POST** /api/api/transferagency/orders/$delete | [EXPERIMENTAL] DeleteTransferAgencyOrders: Delete transfer agency orders
 [**estimate_transfer_agency_orders**](TransferAgencyApi.md#estimate_transfer_agency_orders) | **POST** /api/api/transferagency/orders/$estimate | [EXPERIMENTAL] EstimateTransferAgencyOrders: Estimate the values of transfer agency orders
 [**upsert_transfer_agency_orders**](TransferAgencyApi.md#upsert_transfer_agency_orders) | **POST** /api/api/transferagency/orders | [EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders
+[**upsert_transfer_agency_transactions_from_orders**](TransferAgencyApi.md#upsert_transfer_agency_transactions_from_orders) | **POST** /api/api/transferagency/transactions/$fromOrders | [EXPERIMENTAL] UpsertTransferAgencyTransactionsFromOrders: Upsert transfer agency transactions from transfer agency orders
 
 
 ### Example
@@ -166,7 +167,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders
 
-Creates a transaction and updates the relevant order for each order supplied.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.
+Creates a cash transaction and updates the relevant order for each order supplied. An order must be in  'Pending' or 'New'. An order that already has a cash transaction has that transaction amended  to the order's current amount rather than a second one created.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.
 
 ### Example
 
@@ -196,6 +197,50 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully processed orders and any failures. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_transfer_agency_transactions_from_orders**
+> UpsertTransferAgencyTransactionsFromOrdersResponse upsertTransferAgencyTransactionsFromOrders = upsert_transfer_agency_transactions_from_orders(request_body, success_mode=success_mode)
+
+[EXPERIMENTAL] UpsertTransferAgencyTransactionsFromOrders: Upsert transfer agency transactions from transfer agency orders
+
+This endpoint derives transactions from existing transfer agency orders. It does not upsert  caller-supplied ones.  Prices each order supplied, booking the security transaction into the investor's portfolio, amending the  paired cash transaction to the final settlement amount, and moving the order to 'Priced'. Only an order in  'New' can be priced, and the supplied price date must match the price date calculated when the order was  created.  The response contains both successfully priced orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransferAgencyApi)
+request_body = {"Order1":{"orderId":{"scope":"example-scope","code":"order-1"},"priceDate":"2025-06-02T00:00:00.0000000+00:00"}} # Dict[str, UpsertTransferAgencyTransactionFromOrderRequest]
+success_mode = 'Partial' # str (optional)
+api_response = api_instance.upsert_transfer_agency_transactions_from_orders(request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, UpsertTransferAgencyTransactionFromOrderRequest]**](../model/UpsertTransferAgencyTransactionFromOrderRequest.md)| The transfer agency orders to price, keyed by a unique request identifier. | [required] 
+ **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [optional] [default to &#39;Partial&#39;]
+
+### Return type
+
+[**UpsertTransferAgencyTransactionsFromOrdersResponse**](../model/UpsertTransferAgencyTransactionsFromOrdersResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully priced orders and any failures. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

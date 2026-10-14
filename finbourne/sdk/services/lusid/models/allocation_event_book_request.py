@@ -25,10 +25,11 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class AllocationEventBookRequest(BaseModel):
     """
-    The request used to book a computed Allocation Event: the reference under which its shares were posted.  # noqa: E501
+    The request used to book a computed Allocation Event: the reference under which its shares are posted, and  whether to only show what would be posted.  # noqa: E501
     """
     booking_reference:  StrictStr = Field(...,alias="bookingReference", description="The reference under which the computed shares were posted, for instance a journal entry code.") 
-    __properties: ClassVar[List[str]] = ["bookingReference"]
+    dry_run: Optional[StrictBool] = Field(default=None, description="Whether to only build and return the posting plan without writing anything. Defaults to false.", alias="dryRun")
+    __properties: ClassVar[List[str]] = ["bookingReference", "dryRun"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,7 +77,8 @@ class AllocationEventBookRequest(BaseModel):
             return AllocationEventBookRequest.model_validate(obj)
 
         _obj = AllocationEventBookRequest.model_validate({
-            "booking_reference": obj.get("bookingReference")
+            "booking_reference": obj.get("bookingReference"),
+            "dry_run": obj.get("dryRun")
         })
         return _obj
 

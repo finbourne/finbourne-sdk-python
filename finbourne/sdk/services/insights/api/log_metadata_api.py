@@ -48,7 +48,7 @@ class LogMetadataApi:
     def list_queryable_fields(self, **kwargs) -> ResourceListOfQueryableLogType:
         """[EARLY ACCESS] ListQueryableFields: List the queryable fields for every supported log type.  # noqa: E501
 
-        Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Intended to power a UI that advertises the correct comparators for a chosen field.  # noqa: E501
+        Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Where a field has a known set of values (for example the applications and operations of the platform's services) those values are also returned. Intended to power a UI that advertises the correct comparators and values for a chosen field.  # noqa: E501
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -66,7 +66,7 @@ class LogMetadataApi:
     def list_queryable_fields_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfQueryableLogType]:
         """[EARLY ACCESS] ListQueryableFields: List the queryable fields for every supported log type.  # noqa: E501
 
-        Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Intended to power a UI that advertises the correct comparators for a chosen field.  # noqa: E501
+        Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Where a field has a known set of values (for example the applications and operations of the platform's services) those values are also returned. Intended to power a UI that advertises the correct comparators and values for a chosen field.  # noqa: E501
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -162,7 +162,7 @@ class LogMetadataApi:
     @validate_call
     async def list_queryable_fields_async(self, **kwargs) -> ResourceListOfQueryableLogType:
             """[EARLY ACCESS] ListQueryableFields: List the queryable fields for every supported log type.  # noqa: E501
-            Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Intended to power a UI that advertises the correct comparators for a chosen field.  # noqa: E501
+            Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Where a field has a known set of values (for example the applications and operations of the platform's services) those values are also returned. Intended to power a UI that advertises the correct comparators and values for a chosen field.  # noqa: E501
             
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -181,7 +181,7 @@ class LogMetadataApi:
     async def list_queryable_fields_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfQueryableLogType]:
             """[EARLY ACCESS] ListQueryableFields: List the queryable fields for every supported log type.  # noqa: E501
 
-            Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Intended to power a UI that advertises the correct comparators for a chosen field.  # noqa: E501
+            Returns, for each log type, the fields that can be selected and/or filtered, their data types, and the comparator operations available for each filterable field. Where a field has a known set of values (for example the applications and operations of the platform's services) those values are also returned. Intended to power a UI that advertises the correct comparators and values for a chosen field.  # noqa: E501
 
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

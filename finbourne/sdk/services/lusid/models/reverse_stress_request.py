@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.market_data_overrides import MarketDataOverrides
 from finbourne.sdk.services.lusid.models.portfolio_entity_id import PortfolioEntityId
 from finbourne.sdk.services.lusid.models.property_filter import PropertyFilter
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
@@ -44,7 +45,8 @@ class ReverseStressRequest(BaseModel):
     ladder_points: Optional[StrictInt] = Field(default=None, description="How many factors to evaluate between zero and MaxScale. All of them are valued in  one request - the rungs share market data resolution - so a finer ladder costs far less than  its rung count suggests, and a coarse one is the main source of a missed bracket.", alias="ladderPoints")
     tolerance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="How close the achieved loss must be to the target, relative to the target's own size. Relative  rather than absolute because the same reverse stress is asked of books whose value differs by  orders of magnitude.")
     max_iterations: Optional[StrictInt] = Field(default=None, description="How many refinement rounds are allowed after the opening ladder. Each round costs one  valuation; on a near-linear P&L the first interpolation is usually already inside tolerance,  so the default exists for the mildly curved case rather than the normal one.", alias="maxIterations")
-    __properties: ClassVar[List[str]] = ["recipeId", "portfolioEntityIds", "effectiveAt", "asAt", "scenario", "targetPnl", "metric", "reportCurrency", "filters", "maxScale", "ladderPoints", "tolerance", "maxIterations"]
+    market_data_overrides: Optional[MarketDataOverrides] = Field(default=None, alias="marketDataOverrides")
+    __properties: ClassVar[List[str]] = ["recipeId", "portfolioEntityIds", "effectiveAt", "asAt", "scenario", "targetPnl", "metric", "reportCurrency", "filters", "maxScale", "ladderPoints", "tolerance", "maxIterations", "marketDataOverrides"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,6 +102,9 @@ class ReverseStressRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['filters'] = _items
+        # override the default output from pydantic by calling `to_dict()` of market_data_overrides
+        if self.market_data_overrides:
+            _dict['marketDataOverrides'] = self.market_data_overrides.to_dict(by_alias=by_alias)
         # set to None if as_at (nullable) is None
         # and model_fields_set contains the field
         if self.as_at is None and "as_at" in self.model_fields_set:
@@ -144,7 +149,8 @@ class ReverseStressRequest(BaseModel):
             "max_scale": obj.get("maxScale"),
             "ladder_points": obj.get("ladderPoints"),
             "tolerance": obj.get("tolerance"),
-            "max_iterations": obj.get("maxIterations")
+            "max_iterations": obj.get("maxIterations"),
+            "market_data_overrides": MarketDataOverrides.from_dict(_v) if (_v := obj.get("marketDataOverrides")) is not None else None
         })
         return _obj
 

@@ -23,6 +23,7 @@ from finbourne.sdk.services.insights.models.audit_entry import AuditEntry
 from finbourne.sdk.services.insights.models.audit_entry_note import AuditEntryNote
 from finbourne.sdk.services.insights.models.audit_process import AuditProcess
 from finbourne.sdk.services.insights.models.audit_process_summary import AuditProcessSummary
+from finbourne.sdk.services.insights.models.available_value import AvailableValue
 from finbourne.sdk.services.insights.models.boolean_comparator import BooleanComparator
 from finbourne.sdk.services.insights.models.bucket import Bucket
 from finbourne.sdk.services.insights.models.create_audit_entry import CreateAuditEntry
@@ -90,6 +91,7 @@ __all__ = [
     "AuditEntryNote",
     "AuditProcess",
     "AuditProcessSummary",
+    "AvailableValue",
     "BooleanComparator",
     "Bucket",
     "CreateAuditEntry",

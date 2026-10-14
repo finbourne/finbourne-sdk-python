@@ -5,7 +5,7 @@ LUSID representation of a FundShareClass.  A ShareClass represents a pool of sha
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **short_code** | **str** | Required | A short identifier, unique across a single fund, usually made up of the ShareClass components. Eg \&quot;A Accumulation Euro Hedged Class\&quot; could become \&quot;A Acc H EUR\&quot;. |
+| **short_code** | **str** | Optional | A short identifier, unique across a single fund, usually made up of the ShareClass components. Eg \&quot;A Accumulation Euro Hedged Class\&quot; could become \&quot;A Acc H EUR\&quot;. |
 | **fund_share_class_type** | **str** | Optional | The type of distribution that the ShareClass will calculate. Can be either &#39;Income&#39; or &#39;Accumulation&#39; - Income classes will pay out and Accumulation classes will retain their ShareClass attributable income. Available values: Income, Accumulation. |
 | **distribution_payment_type** | **str** | Optional | The tax treatment applied to any distributions calculated within the ShareClass. Can be either &#39;Net&#39; (Distribution Calculated net of tax) or &#39;Gross&#39; (Distribution calculated gross of tax). Available values: Invalid, Gross, Net. |
 | **distribution_type** | **str** | Optional | The type of distribution calculated for the ShareClass. Can be either &#39;Income&#39; or &#39;Accumulation&#39;. Available values: Income, Accumulation. |
@@ -26,7 +26,7 @@ LUSID representation of a FundShareClass.  A ShareClass represents a pool of sha
 from finbourne.sdk.services.lusid.models.FundShareClass import FundShareClass
 
 instance = FundShareClass(
-    short_code="...",  # required — A short identifier, unique across a single fund, usually made up of the ShareClass components. Eg \&quot;A Accumulation Euro Hedged Class\&quot; could become \&quot;A Acc H EUR\&quot;.
+    short_code="...",  # optional — A short identifier, unique across a single fund, usually made up of the ShareClass components. Eg \&quot;A Accumulation Euro Hedged Class\&quot; could become \&quot;A Acc H EUR\&quot;.
     fund_share_class_type="...",  # optional — The type of distribution that the ShareClass will calculate. Can be either &#39;Income&#39; or &#39;Accumulation&#39; - Income classes will pay out and Accumulation classes will retain their ShareClass attributable income. Available values: Income, Accumulation.
     distribution_payment_type="...",  # optional — The tax treatment applied to any distributions calculated within the ShareClass. Can be either &#39;Net&#39; (Distribution Calculated net of tax) or &#39;Gross&#39; (Distribution calculated gross of tax). Available values: Invalid, Gross, Net.
     distribution_type="...",  # optional — The type of distribution calculated for the ShareClass. Can be either &#39;Income&#39; or &#39;Accumulation&#39;. Available values: Income, Accumulation.

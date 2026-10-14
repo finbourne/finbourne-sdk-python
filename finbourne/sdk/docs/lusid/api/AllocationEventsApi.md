@@ -8,8 +8,13 @@ Method | HTTP request | Description
 [**create_allocation_event**](AllocationEventsApi.md#create_allocation_event) | **POST** /api/api/allocationevents/{scope} | [EXPERIMENTAL] CreateAllocationEvent: Create an Allocation Event.
 [**delete_allocation_event**](AllocationEventsApi.md#delete_allocation_event) | **DELETE** /api/api/allocationevents/{scope}/{code} | [EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.
 [**get_allocation_event**](AllocationEventsApi.md#get_allocation_event) | **GET** /api/api/allocationevents/{scope}/{code} | [EXPERIMENTAL] GetAllocationEvent: Get an Allocation Event.
+[**get_allocation_event_receivables**](AllocationEventsApi.md#get_allocation_event_receivables) | **GET** /api/api/allocationevents/{scope}/{code}/receivables | [EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.
 [**list_allocation_events**](AllocationEventsApi.md#list_allocation_events) | **GET** /api/api/allocationevents | [EXPERIMENTAL] ListAllocationEvents: List Allocation Events.
+[**plan_allocation_event_booking**](AllocationEventsApi.md#plan_allocation_event_booking) | **POST** /api/api/allocationevents/{scope}/{code}/plan | [EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.
 [**reallocate_allocation_event**](AllocationEventsApi.md#reallocate_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/reallocate | [EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.
+[**receive_allocation_event**](AllocationEventsApi.md#receive_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/receipts | [EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.
+[**reverse_allocation_event**](AllocationEventsApi.md#reverse_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/reverse | [EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.
+[**unbook_allocation_event**](AllocationEventsApi.md#unbook_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/unbook | [EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.
 [**upsert_allocation_event**](AllocationEventsApi.md#upsert_allocation_event) | **PUT** /api/api/allocationevents/{scope}/{code} | [EXPERIMENTAL] UpsertAllocationEvent: Upsert an Allocation Event.
 
 
@@ -224,6 +229,54 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_allocation_event_receivables**
+> AllocationReceivablesAgeing getAllocationEventReceivables = get_allocation_event_receivables(scope, code, effective_at=effective_at, as_at=as_at)
+
+[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.
+
+What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_allocation_event_receivables(scope, code, effective_at=effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label as of which to age the receivables. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the Allocation Event. Defaults to returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**AllocationReceivablesAgeing**](../model/AllocationReceivablesAgeing.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The aged receivables of the Allocation Event. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **list_allocation_events**
 > PagedResourceListOfAllocationEvent listAllocationEvents = list_allocation_events(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
 
@@ -276,6 +329,54 @@ Name | Type | Description  | Notes
 
 ---
 
+# **plan_allocation_event_booking**
+> AllocationPostingPlan planAllocationEventBooking = plan_allocation_event_booking(scope, code, allocation_event_book_request, effective_at=effective_at)
+
+[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.
+
+Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+allocation_event_book_request = AllocationEventBookRequest()
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.plan_allocation_event_booking(scope, code, allocation_event_book_request, effective_at=effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **allocation_event_book_request** | [**AllocationEventBookRequest**](../model/AllocationEventBookRequest.md)| The booking reference the plan is drawn up under. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to plan the booking. Defaults to the current LUSID system datetime if not specified. | [optional] 
+
+### Return type
+
+[**AllocationPostingPlan**](../model/AllocationPostingPlan.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The postings the booking would write. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **reallocate_allocation_event**
 > AllocationEvent reallocateAllocationEvent = reallocate_allocation_event(scope, code, allocation_event_reallocate_request, effective_at=effective_at)
 
@@ -317,6 +418,150 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The reallocated Allocation Event. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **receive_allocation_event**
+> AllocationEvent receiveAllocationEvent = receive_allocation_event(scope, code, allocation_event_receipt_request, effective_at=effective_at)
+
+[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.
+
+Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+allocation_event_receipt_request = AllocationEventReceiptRequest()
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.receive_allocation_event(scope, code, allocation_event_receipt_request, effective_at=effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **allocation_event_receipt_request** | [**AllocationEventReceiptRequest**](../model/AllocationEventReceiptRequest.md)| The investor, amount and date of the receipt. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified. | [optional] 
+
+### Return type
+
+[**AllocationEvent**](../model/AllocationEvent.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Allocation Event with the receipt recorded. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **reverse_allocation_event**
+> AllocationEvent reverseAllocationEvent = reverse_allocation_event(scope, code, allocation_event_reverse_request, effective_at=effective_at)
+
+[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.
+
+Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+allocation_event_reverse_request = AllocationEventReverseRequest()
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.reverse_allocation_event(scope, code, allocation_event_reverse_request, effective_at=effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **allocation_event_reverse_request** | [**AllocationEventReverseRequest**](../model/AllocationEventReverseRequest.md)| The reason for the reversal and, optionally, when it should take effect. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified. | [optional] 
+
+### Return type
+
+[**AllocationEvent**](../model/AllocationEvent.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The reversed Allocation Event. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **unbook_allocation_event**
+> AllocationEvent unbookAllocationEvent = unbook_allocation_event(scope, code, allocation_event_unbook_request, effective_at=effective_at)
+
+[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.
+
+Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+allocation_event_unbook_request = AllocationEventUnbookRequest()
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.unbook_allocation_event(scope, code, allocation_event_unbook_request, effective_at=effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **allocation_event_unbook_request** | [**AllocationEventUnbookRequest**](../model/AllocationEventUnbookRequest.md)| The reason the booking is being taken back. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified. | [optional] 
+
+### Return type
+
+[**AllocationEvent**](../model/AllocationEvent.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Allocation Event, back at Computed. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

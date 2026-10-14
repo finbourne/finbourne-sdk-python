@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.pricing_methodology_result import PricingMethodologyResult
 from finbourne.sdk.services.lusid.models.share_class_breakdown import ShareClassBreakdown
 from finbourne.sdk.services.lusid.models.share_class_details import ShareClassDetails
 
@@ -31,7 +32,8 @@ class ShareClassData(BaseModel):
     """
     share_class_breakdown: ShareClassBreakdown = Field(alias="shareClassBreakdown")
     share_class_details: Optional[ShareClassDetails] = Field(default=None, alias="shareClassDetails")
-    __properties: ClassVar[List[str]] = ["shareClassBreakdown", "shareClassDetails"]
+    pricing_methodology: Optional[PricingMethodologyResult] = Field(default=None, alias="pricingMethodology")
+    __properties: ClassVar[List[str]] = ["shareClassBreakdown", "shareClassDetails", "pricingMethodology"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +75,9 @@ class ShareClassData(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of share_class_details
         if self.share_class_details:
             _dict['shareClassDetails'] = self.share_class_details.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of pricing_methodology
+        if self.pricing_methodology:
+            _dict['pricingMethodology'] = self.pricing_methodology.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
@@ -86,7 +91,8 @@ class ShareClassData(BaseModel):
 
         _obj = ShareClassData.model_validate({
             "share_class_breakdown": ShareClassBreakdown.from_dict(_v) if (_v := obj.get("shareClassBreakdown")) is not None else None,
-            "share_class_details": ShareClassDetails.from_dict(_v) if (_v := obj.get("shareClassDetails")) is not None else None
+            "share_class_details": ShareClassDetails.from_dict(_v) if (_v := obj.get("shareClassDetails")) is not None else None,
+            "pricing_methodology": PricingMethodologyResult.from_dict(_v) if (_v := obj.get("pricingMethodology")) is not None else None
         })
         return _obj
 

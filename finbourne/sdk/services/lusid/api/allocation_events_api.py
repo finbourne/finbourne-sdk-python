@@ -26,7 +26,12 @@ from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.allocation_event import AllocationEvent
 from finbourne.sdk.services.lusid.models.allocation_event_book_request import AllocationEventBookRequest
 from finbourne.sdk.services.lusid.models.allocation_event_reallocate_request import AllocationEventReallocateRequest
+from finbourne.sdk.services.lusid.models.allocation_event_receipt_request import AllocationEventReceiptRequest
 from finbourne.sdk.services.lusid.models.allocation_event_request import AllocationEventRequest
+from finbourne.sdk.services.lusid.models.allocation_event_reverse_request import AllocationEventReverseRequest
+from finbourne.sdk.services.lusid.models.allocation_event_unbook_request import AllocationEventUnbookRequest
+from finbourne.sdk.services.lusid.models.allocation_posting_plan import AllocationPostingPlan
+from finbourne.sdk.services.lusid.models.allocation_receivables_ageing import AllocationReceivablesAgeing
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_allocation_event import PagedResourceListOfAllocationEvent
 from finbourne.sdk.api_client import ApiClient
@@ -623,6 +628,153 @@ class AllocationEventsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_allocation_event_receivables(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationReceivablesAgeing:
+        """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+
+        What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label as of which to age the receivables. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the Allocation Event. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: AllocationReceivablesAgeing
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_allocation_event_receivables_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_allocation_event_receivables_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_allocation_event_receivables_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationReceivablesAgeing]:
+        """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+
+        What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label as of which to age the receivables. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the Allocation Event. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(AllocationReceivablesAgeing, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'effective_at',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_allocation_event_receivables" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AllocationReceivablesAgeing",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/receivables', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def list_allocation_events(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAllocationEvent:
         """[EXPERIMENTAL] ListAllocationEvents: List Allocation Events.  # noqa: E501
 
@@ -787,6 +939,157 @@ class AllocationEventsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def plan_allocation_event_booking(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationPostingPlan:
+        """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+
+        Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_book_request: The booking reference the plan is drawn up under. (required)
+        :type allocation_event_book_request: AllocationEventBookRequest
+        :param effective_at: The effective datetime or cut label at which to plan the booking. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: AllocationPostingPlan
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the plan_allocation_event_booking_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.plan_allocation_event_booking_with_http_info(scope, code, allocation_event_book_request, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def plan_allocation_event_booking_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationPostingPlan]:
+        """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+
+        Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_book_request: The booking reference the plan is drawn up under. (required)
+        :type allocation_event_book_request: AllocationEventBookRequest
+        :param effective_at: The effective datetime or cut label at which to plan the booking. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(AllocationPostingPlan, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'allocation_event_book_request',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method plan_allocation_event_booking" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['allocation_event_book_request'] is not None:
+            _body_params = _params['allocation_event_book_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AllocationPostingPlan",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/plan', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def reallocate_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_reallocate_request: AllocationEventReallocateRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
         """[EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
 
@@ -922,6 +1225,459 @@ class AllocationEventsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/allocationevents/{scope}/{code}/reallocate', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def receive_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
+        """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+
+        Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
+        :type allocation_event_receipt_request: AllocationEventReceiptRequest
+        :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: AllocationEvent
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the receive_allocation_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.receive_allocation_event_with_http_info(scope, code, allocation_event_receipt_request, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def receive_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
+        """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+
+        Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
+        :type allocation_event_receipt_request: AllocationEventReceiptRequest
+        :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(AllocationEvent, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'allocation_event_receipt_request',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method receive_allocation_event" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['allocation_event_receipt_request'] is not None:
+            _body_params = _params['allocation_event_receipt_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AllocationEvent",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/receipts', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def reverse_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
+        """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+
+        Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
+        :type allocation_event_reverse_request: AllocationEventReverseRequest
+        :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: AllocationEvent
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the reverse_allocation_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.reverse_allocation_event_with_http_info(scope, code, allocation_event_reverse_request, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def reverse_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
+        """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+
+        Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
+        :type allocation_event_reverse_request: AllocationEventReverseRequest
+        :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(AllocationEvent, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'allocation_event_reverse_request',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method reverse_allocation_event" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['allocation_event_reverse_request'] is not None:
+            _body_params = _params['allocation_event_reverse_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AllocationEvent",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/reverse', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def unbook_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
+        """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+
+        Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
+        :type allocation_event_unbook_request: AllocationEventUnbookRequest
+        :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: AllocationEvent
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the unbook_allocation_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.unbook_allocation_event_with_http_info(scope, code, allocation_event_unbook_request, effective_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def unbook_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
+        """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+
+        Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
+        :type allocation_event_unbook_request: AllocationEventUnbookRequest
+        :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(AllocationEvent, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'allocation_event_unbook_request',
+            'effective_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method unbook_allocation_event" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['allocation_event_unbook_request'] is not None:
+            _body_params = _params['allocation_event_unbook_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AllocationEvent",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/unbook', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1658,6 +2414,154 @@ class AllocationEventsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_allocation_event_receivables_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationReceivablesAgeing:
+            """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+            What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label as of which to age the receivables. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the Allocation Event. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: AllocationReceivablesAgeing
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_allocation_event_receivables_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_allocation_event_receivables_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_allocation_event_receivables_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationReceivablesAgeing]:
+            """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+
+            What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label as of which to age the receivables. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the Allocation Event. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(AllocationReceivablesAgeing, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'effective_at',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_allocation_event_receivables" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "AllocationReceivablesAgeing",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/receivables', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def list_allocation_events_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAllocationEvent:
             """[EXPERIMENTAL] ListAllocationEvents: List Allocation Events.  # noqa: E501
             List all the Allocation Events matching a particular criteria.  # noqa: E501
@@ -1823,6 +2727,158 @@ class AllocationEventsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def plan_allocation_event_booking_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationPostingPlan:
+            """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+            Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_book_request: The booking reference the plan is drawn up under. (required)
+            :type allocation_event_book_request: AllocationEventBookRequest
+            :param effective_at: The effective datetime or cut label at which to plan the booking. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: AllocationPostingPlan
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the plan_allocation_event_booking_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.plan_allocation_event_booking_with_http_info_async(scope, code, allocation_event_book_request, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def plan_allocation_event_booking_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationPostingPlan]:
+            """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+
+            Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_book_request: The booking reference the plan is drawn up under. (required)
+            :type allocation_event_book_request: AllocationEventBookRequest
+            :param effective_at: The effective datetime or cut label at which to plan the booking. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(AllocationPostingPlan, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'allocation_event_book_request',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method plan_allocation_event_booking" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['allocation_event_book_request'] is not None:
+                _body_params = _params['allocation_event_book_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "AllocationPostingPlan",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/plan', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def reallocate_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_reallocate_request: AllocationEventReallocateRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
             """[EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
             Recompute the per-investor shares of an unbooked Allocation Event against its map, from an effective  datetime, recording the reason. Any basis values supplied replace those used before. A booked Allocation  Event cannot be reallocated.  # noqa: E501
@@ -1959,6 +3015,462 @@ class AllocationEventsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/allocationevents/{scope}/{code}/reallocate', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def receive_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
+            """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+            Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
+            :type allocation_event_receipt_request: AllocationEventReceiptRequest
+            :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: AllocationEvent
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the receive_allocation_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.receive_allocation_event_with_http_info_async(scope, code, allocation_event_receipt_request, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def receive_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
+            """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+
+            Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
+            :type allocation_event_receipt_request: AllocationEventReceiptRequest
+            :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(AllocationEvent, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'allocation_event_receipt_request',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method receive_allocation_event" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['allocation_event_receipt_request'] is not None:
+                _body_params = _params['allocation_event_receipt_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "AllocationEvent",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/receipts', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def reverse_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
+            """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+            Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
+            :type allocation_event_reverse_request: AllocationEventReverseRequest
+            :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: AllocationEvent
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the reverse_allocation_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.reverse_allocation_event_with_http_info_async(scope, code, allocation_event_reverse_request, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def reverse_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
+            """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+
+            Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
+            :type allocation_event_reverse_request: AllocationEventReverseRequest
+            :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(AllocationEvent, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'allocation_event_reverse_request',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method reverse_allocation_event" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['allocation_event_reverse_request'] is not None:
+                _body_params = _params['allocation_event_reverse_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "AllocationEvent",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/reverse', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def unbook_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
+            """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+            Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
+            :type allocation_event_unbook_request: AllocationEventUnbookRequest
+            :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: AllocationEvent
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the unbook_allocation_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.unbook_allocation_event_with_http_info_async(scope, code, allocation_event_unbook_request, effective_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def unbook_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
+            """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+
+            Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
+            :type allocation_event_unbook_request: AllocationEventUnbookRequest
+            :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(AllocationEvent, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'allocation_event_unbook_request',
+                'effective_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method unbook_allocation_event" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['allocation_event_unbook_request'] is not None:
+                _body_params = _params['allocation_event_unbook_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "AllocationEvent",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/unbook', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

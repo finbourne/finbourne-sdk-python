@@ -3042,7 +3042,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_a2_b_movements(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
+    def get_a2_b_movements(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, split_held_and_trading_returns: Optional[bool] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
         """GetA2BMovements: Get an A2B report at the movement level for the given portfolio.  # noqa: E501
 
         Get an A2B report at the movement level for the given portfolio.  # noqa: E501
@@ -3064,6 +3064,14 @@ class TransactionPortfoliosApi:
         :type property_keys: List[str]
         :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
+        :param split_held_and_trading_returns: When true, P&L is split into separate Held and Trading returns: Held returns capture              market movement on the starting position, and Trading returns capture profit from buy/sell decisions made during the period.              When false (the default), the standard combined A2B report is returned. Cannot currently be combined with the timeline              parameters (timelineScope, timelineCode, closedPeriodId).
+        :type split_held_and_trading_returns: bool
+        :param timeline_scope: The scope of the timeline to use for loading data per closed period.
+        :type timeline_scope: str
+        :param timeline_code: The code of the timeline to use for loading data per closed period.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If specified, both timelineScope and timelineCode must also be specified.              When provided, the timeline A2B is filtered to only the matching closed period. The fromEffectiveAt and toEffectiveAt              parameters still define the overall query window; the closedPeriodId restricts which closed period's data is returned within that window.
+        :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -3074,11 +3082,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the get_a2_b_movements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_a2_b_movements_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+        response = self.get_a2_b_movements_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, split_held_and_trading_returns, timeline_scope, timeline_code, closed_period_id, **kwargs)
         return response.data
 
     @validate_call
-    def get_a2_b_movements_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
+    def get_a2_b_movements_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, split_held_and_trading_returns: Optional[bool] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
         """GetA2BMovements: Get an A2B report at the movement level for the given portfolio.  # noqa: E501
 
         Get an A2B report at the movement level for the given portfolio.  # noqa: E501
@@ -3100,6 +3108,14 @@ class TransactionPortfoliosApi:
         :type property_keys: List[str]
         :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
+        :param split_held_and_trading_returns: When true, P&L is split into separate Held and Trading returns: Held returns capture              market movement on the starting position, and Trading returns capture profit from buy/sell decisions made during the period.              When false (the default), the standard combined A2B report is returned. Cannot currently be combined with the timeline              parameters (timelineScope, timelineCode, closedPeriodId).
+        :type split_held_and_trading_returns: bool
+        :param timeline_scope: The scope of the timeline to use for loading data per closed period.
+        :type timeline_scope: str
+        :param timeline_code: The code of the timeline to use for loading data per closed period.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If specified, both timelineScope and timelineCode must also be specified.              When provided, the timeline A2B is filtered to only the matching closed period. The fromEffectiveAt and toEffectiveAt              parameters still define the overall query window; the closedPeriodId restricts which closed period's data is returned within that window.
+        :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3131,7 +3147,11 @@ class TransactionPortfoliosApi:
             'recipe_id_scope',
             'recipe_id_code',
             'property_keys',
-            'filter'
+            'filter',
+            'split_held_and_trading_returns',
+            'timeline_scope',
+            'timeline_code',
+            'closed_period_id'
         ]
         _all_params.extend(
             [
@@ -3193,6 +3213,18 @@ class TransactionPortfoliosApi:
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
 
+        if _params.get('split_held_and_trading_returns') is not None:  # noqa: E501
+            _query_params.append(('splitHeldAndTradingReturns', _params['split_held_and_trading_returns']))
+
+        if _params.get('timeline_scope') is not None:  # noqa: E501
+            _query_params.append(('timelineScope', _params['timeline_scope']))
+
+        if _params.get('timeline_code') is not None:  # noqa: E501
+            _query_params.append(('timelineCode', _params['timeline_code']))
+
+        if _params.get('closed_period_id') is not None:  # noqa: E501
+            _query_params.append(('closedPeriodId', _params['closed_period_id']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -3233,7 +3265,7 @@ class TransactionPortfoliosApi:
     def get_a2_b_movements_trading_vs_holding(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
         """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
 
-        Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+        Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on the starting position) versus trading returns (profit from buy/sell decisions).    Prefer the standard GetA2BMovements endpoint with splitHeldAndTradingReturns=true, which offers the same capability (not currently combinable with the timeline parameters).  # noqa: E501
         :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
         :type scope: str
         :param code: The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. (required)
@@ -3275,7 +3307,7 @@ class TransactionPortfoliosApi:
     def get_a2_b_movements_trading_vs_holding_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
         """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
 
-        Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+        Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on the starting position) versus trading returns (profit from buy/sell decisions).    Prefer the standard GetA2BMovements endpoint with splitHeldAndTradingReturns=true, which offers the same capability (not currently combinable with the timeline parameters).  # noqa: E501
         :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
         :type scope: str
         :param code: The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. (required)
@@ -11884,7 +11916,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_a2_b_movements_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
+    async def get_a2_b_movements_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, split_held_and_trading_returns: Optional[bool] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
             """GetA2BMovements: Get an A2B report at the movement level for the given portfolio.  # noqa: E501
             Get an A2B report at the movement level for the given portfolio.  # noqa: E501
             
@@ -11906,6 +11938,14 @@ class TransactionPortfoliosApi:
             :type property_keys: List[str]
             :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
+            :param split_held_and_trading_returns: When true, P&L is split into separate Held and Trading returns: Held returns capture              market movement on the starting position, and Trading returns capture profit from buy/sell decisions made during the period.              When false (the default), the standard combined A2B report is returned. Cannot currently be combined with the timeline              parameters (timelineScope, timelineCode, closedPeriodId).
+            :type split_held_and_trading_returns: bool
+            :param timeline_scope: The scope of the timeline to use for loading data per closed period.
+            :type timeline_scope: str
+            :param timeline_code: The code of the timeline to use for loading data per closed period.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If specified, both timelineScope and timelineCode must also be specified.              When provided, the timeline A2B is filtered to only the matching closed period. The fromEffectiveAt and toEffectiveAt              parameters still define the overall query window; the closedPeriodId restricts which closed period's data is returned within that window.
+            :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -11916,11 +11956,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the get_a2_b_movements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_a2_b_movements_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+            response = await self.get_a2_b_movements_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, split_held_and_trading_returns, timeline_scope, timeline_code, closed_period_id, **kwargs)
             return response.data
 
     @validate_call
-    async def get_a2_b_movements_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
+    async def get_a2_b_movements_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, split_held_and_trading_returns: Optional[bool] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
             """GetA2BMovements: Get an A2B report at the movement level for the given portfolio.  # noqa: E501
 
             Get an A2B report at the movement level for the given portfolio.  # noqa: E501
@@ -11943,6 +11983,14 @@ class TransactionPortfoliosApi:
             :type property_keys: List[str]
             :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
+            :param split_held_and_trading_returns: When true, P&L is split into separate Held and Trading returns: Held returns capture              market movement on the starting position, and Trading returns capture profit from buy/sell decisions made during the period.              When false (the default), the standard combined A2B report is returned. Cannot currently be combined with the timeline              parameters (timelineScope, timelineCode, closedPeriodId).
+            :type split_held_and_trading_returns: bool
+            :param timeline_scope: The scope of the timeline to use for loading data per closed period.
+            :type timeline_scope: str
+            :param timeline_code: The code of the timeline to use for loading data per closed period.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If specified, both timelineScope and timelineCode must also be specified.              When provided, the timeline A2B is filtered to only the matching closed period. The fromEffectiveAt and toEffectiveAt              parameters still define the overall query window; the closedPeriodId restricts which closed period's data is returned within that window.
+            :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -11974,7 +12022,11 @@ class TransactionPortfoliosApi:
                 'recipe_id_scope',
                 'recipe_id_code',
                 'property_keys',
-                'filter'
+                'filter',
+                'split_held_and_trading_returns',
+                'timeline_scope',
+                'timeline_code',
+                'closed_period_id'
             ]
             _all_params.extend(
                 [
@@ -12036,6 +12088,18 @@ class TransactionPortfoliosApi:
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
 
+            if _params.get('split_held_and_trading_returns') is not None:  # noqa: E501
+                _query_params.append(('splitHeldAndTradingReturns', _params['split_held_and_trading_returns']))
+
+            if _params.get('timeline_scope') is not None:  # noqa: E501
+                _query_params.append(('timelineScope', _params['timeline_scope']))
+
+            if _params.get('timeline_code') is not None:  # noqa: E501
+                _query_params.append(('timelineCode', _params['timeline_code']))
+
+            if _params.get('closed_period_id') is not None:  # noqa: E501
+                _query_params.append(('closedPeriodId', _params['closed_period_id']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -12075,7 +12139,7 @@ class TransactionPortfoliosApi:
     @validate_call
     async def get_a2_b_movements_trading_vs_holding_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
             """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
-            Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+            Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on the starting position) versus trading returns (profit from buy/sell decisions).    Prefer the standard GetA2BMovements endpoint with splitHeldAndTradingReturns=true, which offers the same capability (not currently combinable with the timeline parameters).  # noqa: E501
             
             :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
             :type scope: str
@@ -12118,7 +12182,7 @@ class TransactionPortfoliosApi:
     async def get_a2_b_movements_trading_vs_holding_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
             """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
 
-            Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+            Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on the starting position) versus trading returns (profit from buy/sell decisions).    Prefer the standard GetA2BMovements endpoint with splitHeldAndTradingReturns=true, which offers the same capability (not currently combinable with the timeline parameters).  # noqa: E501
 
             :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
             :type scope: str

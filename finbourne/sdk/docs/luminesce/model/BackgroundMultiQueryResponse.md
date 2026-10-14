@@ -7,6 +7,8 @@
 | **execution_id** | **UUID** | Optional | *No description available.* *(read-only)* |
 | **progress** | [Link](Link.md) | Optional | *No description available.* |
 | **cancel** | [Link](Link.md) | Optional | *No description available.* |
+| **download** | [Link](Link.md) | Optional | *No description available.* |
+| **save_to_drive** | [Link](Link.md) | Optional | *No description available.* |
 | **fetch_json** | [List[Link]](Link.md) | Optional | Json (as a string) data request links for all of the child queries *(read-only)* |
 | **fetch_json_proper** | [List[Link]](Link.md) | Optional | Json-proper data request links for all of the child queries *(read-only)* |
 | **fetch_json_proper_with_lineage** | [List[Link]](Link.md) | Optional | Json-proper-with-lineage data request links for all of the child queries *(read-only)* |
@@ -30,6 +32,8 @@ instance = BackgroundMultiQueryResponse(
     execution_id="...",  # optional
     progress=Link(...),  # optional
     cancel=Link(...),  # optional
+    download=Link(...),  # optional
+    save_to_drive=Link(...),  # optional
     fetch_json=[],  # optional — Json (as a string) data request links for all of the child queries
     fetch_json_proper=[],  # optional — Json-proper data request links for all of the child queries
     fetch_json_proper_with_lineage=[],  # optional — Json-proper-with-lineage data request links for all of the child queries
@@ -43,6 +47,8 @@ instance = BackgroundMultiQueryResponse(
 )
 ```
 
+- [Link](Link.md)
+- [Link](Link.md)
 - [Link](Link.md)
 - [Link](Link.md)
 - [Link](Link.md) — used in `fetch_json`

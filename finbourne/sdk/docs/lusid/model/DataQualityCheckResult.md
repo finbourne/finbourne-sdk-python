@@ -23,6 +23,7 @@ Represents the result of a data quality check operation
 | **result_id** | **str** | Optional | Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType. |
 | **portfolio_holding** | [PortfolioHoldingResult](PortfolioHoldingResult.md) | Optional | *No description available.* |
 | **portfolio_transaction** | [PortfolioTransactionResult](PortfolioTransactionResult.md) | Optional | *No description available.* |
+| **structured_result_data** | [StructuredResultDataResult](StructuredResultDataResult.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -50,13 +51,15 @@ instance = DataQualityCheckResult(
     error_detail="...",  # optional — Error details (for RulesetInvalid, RuleInvalid)
     result_id="...",  # optional — Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType.
     portfolio_holding=PortfolioHoldingResult(...),  # optional
-    portfolio_transaction=PortfolioTransactionResult(...)  # optional
+    portfolio_transaction=PortfolioTransactionResult(...),  # optional
+    structured_result_data=StructuredResultDataResult(...)  # optional
 )
 ```
 
 - [LusidEntityResult](LusidEntityResult.md)
 - [PortfolioHoldingResult](PortfolioHoldingResult.md)
 - [PortfolioTransactionResult](PortfolioTransactionResult.md)
+- [StructuredResultDataResult](StructuredResultDataResult.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

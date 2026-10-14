@@ -503,7 +503,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] GetRecResult: GetRecResult
 
-Retrieve a single rec result by the run it belongs to and its id within that run.
+Retrieve a single rec result by its display id, as it stood in the run named.
 
 ### Example
 
@@ -527,8 +527,8 @@ Name | Type | Description  | Notes
  **instance_id_type** | **str**| How the instance was created: \&quot;WorkflowServiceTaskId\&quot; or \&quot;Manual\&quot;. Available values: WorkflowServiceTaskId, Manual. | [required] 
  **instance_id_value** | **str**| The unique identifier of the rec instance. | [required] 
  **rec_type** | **str**| The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. | [required] 
- **run_number** | **int**| The run of the instance the result belongs to. | [required] 
- **id** | **str**| The id of the rec result within the run, e.g. \&quot;break-3\&quot;. | [required] 
+ **run_number** | **int**| The run of the instance whose view of the result is read. | [required] 
+ **id** | **str**| The display id of the rec result, e.g. \&quot;break-3\&quot;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the result. Defaults to latest if not specified. | [optional] 
  **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto the result. | [optional] 
 
@@ -849,7 +849,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] ListRecResults: ListRecResults
 
-List rec results.
+List rec results. A result's runNumber is the run that last wrote it; a run's results as they stood are read at that run's asAt.
 
 ### Example
 

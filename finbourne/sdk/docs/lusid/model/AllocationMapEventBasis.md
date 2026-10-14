@@ -5,8 +5,9 @@ The basis an Allocation Map applies to one kind of allocation event.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **event_type** | **str** | Required | The kind of allocation event the basis applies to: CapitalCall, Distribution, FeeExpense or ValuationMove. Available values: CapitalCall, Distribution, FeeExpense, ValuationMove. |
+| **event_type** | **str** | Required | The kind of allocation event the basis applies to: CapitalCall, Distribution, FeeExpense, ValuationMove, Equalisation, RecallExpiry, Transfer, Default, Commitment or DealFunding. Available values: CapitalCall, Distribution, FeeExpense, ValuationMove, Commitment, Equalisation, RecallExpiry, Transfer, Default, DealFunding. |
 | **basis** | [AllocationMapBasis](AllocationMapBasis.md) | Required | *No description available.* |
+| **component** | **str** | Optional | The component of the event the basis applies to, for example MgmtFee or OrgCost. Absent means the entry is the default for every component of the event type without an entry of its own. |
 
 
 ## Usage
@@ -17,8 +18,9 @@ The basis an Allocation Map applies to one kind of allocation event.
 from finbourne.sdk.services.lusid.models.AllocationMapEventBasis import AllocationMapEventBasis
 
 instance = AllocationMapEventBasis(
-    event_type="...",  # required — The kind of allocation event the basis applies to: CapitalCall, Distribution, FeeExpense or ValuationMove. Available values: CapitalCall, Distribution, FeeExpense, ValuationMove.
-    basis=AllocationMapBasis(...)  # required
+    event_type="...",  # required — The kind of allocation event the basis applies to: CapitalCall, Distribution, FeeExpense, ValuationMove, Equalisation, RecallExpiry, Transfer, Default, Commitment or DealFunding. Available values: CapitalCall, Distribution, FeeExpense, ValuationMove, Commitment, Equalisation, RecallExpiry, Transfer, Default, DealFunding.
+    basis=AllocationMapBasis(...),  # required
+    component="..."  # optional — The component of the event the basis applies to, for example MgmtFee or OrgCost. Absent means the entry is the default for every component of the event type without an entry of its own.
 )
 ```
 

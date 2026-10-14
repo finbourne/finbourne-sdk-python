@@ -89,6 +89,7 @@ from finbourne.sdk.services.workflow.models.initial_state import InitialState
 from finbourne.sdk.services.workflow.models.instantiate_rec import InstantiateRec
 from finbourne.sdk.services.workflow.models.instantiate_rec_response import InstantiateRecResponse
 from finbourne.sdk.services.workflow.models.label_value_set import LabelValueSet
+from finbourne.sdk.services.workflow.models.launched_by import LaunchedBy
 from finbourne.sdk.services.workflow.models.launcher_details import LauncherDetails
 from finbourne.sdk.services.workflow.models.launcher_details_response import LauncherDetailsResponse
 from finbourne.sdk.services.workflow.models.launcher_edge import LauncherEdge
@@ -152,6 +153,8 @@ from finbourne.sdk.services.workflow.models.sleep_response import SleepResponse
 from finbourne.sdk.services.workflow.models.specific_month_regularity import SpecificMonthRegularity
 from finbourne.sdk.services.workflow.models.specified_time import SpecifiedTime
 from finbourne.sdk.services.workflow.models.stack import Stack
+from finbourne.sdk.services.workflow.models.structured_result_data_quality_check import StructuredResultDataQualityCheck
+from finbourne.sdk.services.workflow.models.structured_result_data_quality_check_response import StructuredResultDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.task import Task
 from finbourne.sdk.services.workflow.models.task_activity import TaskActivity
 from finbourne.sdk.services.workflow.models.task_activity_response import TaskActivityResponse
@@ -270,6 +273,7 @@ __all__ = [
     "InstantiateRec",
     "InstantiateRecResponse",
     "LabelValueSet",
+    "LaunchedBy",
     "LauncherDetails",
     "LauncherDetailsResponse",
     "LauncherEdge",
@@ -333,6 +337,8 @@ __all__ = [
     "SpecificMonthRegularity",
     "SpecifiedTime",
     "Stack",
+    "StructuredResultDataQualityCheck",
+    "StructuredResultDataQualityCheckResponse",
     "Task",
     "TaskActivity",
     "TaskActivityResponse",

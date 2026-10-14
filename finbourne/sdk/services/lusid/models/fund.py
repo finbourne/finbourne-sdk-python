@@ -29,6 +29,8 @@ from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.nav_type import NavType
 from finbourne.sdk.services.lusid.models.portfolio_entity_id_with_details import PortfolioEntityIdWithDetails
+from finbourne.sdk.services.lusid.models.pricing_methodology import PricingMethodology
+from finbourne.sdk.services.lusid.models.reporting_price import ReportingPrice
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.share_class import ShareClass
 from finbourne.sdk.services.lusid.models.version import Version
@@ -61,9 +63,11 @@ class Fund(BaseModel):
     allocation_groups: Optional[List[AllocationGroup]] = Field(default=None, description="An optional list of Allocation Group definitions for the Fund.", alias="allocationGroups")
     share_classes: Optional[List[ShareClass]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
     fund_instrument: Optional[FundInstrument] = Field(default=None, alias="fundInstrument")
+    pricing_methodology: Optional[PricingMethodology] = Field(default=None, alias="pricingMethodology")
+    reporting_prices: Optional[List[ReportingPrice]] = Field(default=None, description="Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.", alias="reportingPrices")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shortCode", "aborId", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "yearEndDate", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "allocationGroups", "shareClasses", "fundInstrument", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shortCode", "aborId", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "yearEndDate", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "allocationGroups", "shareClasses", "fundInstrument", "pricingMethodology", "reportingPrices", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -159,6 +163,16 @@ class Fund(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fund_instrument
         if self.fund_instrument:
             _dict['fundInstrument'] = self.fund_instrument.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of pricing_methodology
+        if self.pricing_methodology:
+            _dict['pricingMethodology'] = self.pricing_methodology.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in reporting_prices (list)
+        _items = []
+        if self.reporting_prices:
+            for _item in self.reporting_prices:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['reportingPrices'] = _items
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
@@ -239,6 +253,11 @@ class Fund(BaseModel):
         if self.share_classes is None and "share_classes" in self.model_fields_set:
             _dict['shareClasses'] = None
 
+        # set to None if reporting_prices (nullable) is None
+        # and model_fields_set contains the field
+        if self.reporting_prices is None and "reporting_prices" in self.model_fields_set:
+            _dict['reportingPrices'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -284,6 +303,8 @@ class Fund(BaseModel):
             "allocation_groups": [AllocationGroup.from_dict(_item) for _item in _v] if (_v := obj.get("allocationGroups")) is not None else None,
             "share_classes": [ShareClass.from_dict(_item) for _item in _v] if (_v := obj.get("shareClasses")) is not None else None,
             "fund_instrument": FundInstrument.from_dict(_v) if (_v := obj.get("fundInstrument")) is not None else None,
+            "pricing_methodology": PricingMethodology.from_dict(_v) if (_v := obj.get("pricingMethodology")) is not None else None,
+            "reporting_prices": [ReportingPrice.from_dict(_item) for _item in _v] if (_v := obj.get("reportingPrices")) is not None else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })

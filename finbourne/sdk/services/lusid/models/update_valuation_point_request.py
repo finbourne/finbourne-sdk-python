@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
+from finbourne.sdk.services.lusid.models.pricing_methodology_override_request import PricingMethodologyOverrideRequest
 
 
 class UpdateValuationPointRequest(BaseModel):
@@ -34,7 +35,8 @@ class UpdateValuationPointRequest(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the diary entry.")
     apply_clear_down: Optional[StrictBool] = Field(default=None, description="Defaults to null. Set to true if you want the closed period to have the clear down applied.", alias="applyClearDown")
     update_inclusion_date_nav_adjustments: Optional[StrictBool] = Field(default=None, description="Defaults to null. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities.", alias="updateInclusionDateNavAdjustments")
-    __properties: ClassVar[List[str]] = ["valuationPointCode", "variant", "name", "properties", "applyClearDown", "updateInclusionDateNavAdjustments"]
+    pricing_methodology_override: Optional[PricingMethodologyOverrideRequest] = Field(default=None, alias="pricingMethodologyOverride")
+    __properties: ClassVar[List[str]] = ["valuationPointCode", "variant", "name", "properties", "applyClearDown", "updateInclusionDateNavAdjustments", "pricingMethodologyOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,9 @@ class UpdateValuationPointRequest(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of pricing_methodology_override
+        if self.pricing_methodology_override:
+            _dict['pricingMethodologyOverride'] = self.pricing_methodology_override.to_dict(by_alias=by_alias)
         # set to None if variant (nullable) is None
         # and model_fields_set contains the field
         if self.variant is None and "variant" in self.model_fields_set:
@@ -124,7 +129,8 @@ class UpdateValuationPointRequest(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "apply_clear_down": obj.get("applyClearDown"),
-            "update_inclusion_date_nav_adjustments": obj.get("updateInclusionDateNavAdjustments")
+            "update_inclusion_date_nav_adjustments": obj.get("updateInclusionDateNavAdjustments"),
+            "pricing_methodology_override": PricingMethodologyOverrideRequest.from_dict(_v) if (_v := obj.get("pricingMethodologyOverride")) is not None else None
         })
         return _obj
 

@@ -28,6 +28,8 @@ A Fund entity.
 | **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
 | **share_classes** | [List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
 | **fund_instrument** | [FundInstrument](FundInstrument.md) | Optional | *No description available.* |
+| **pricing_methodology** | [PricingMethodology](PricingMethodology.md) | Optional | *No description available.* |
+| **reporting_prices** | [List[ReportingPrice]](ReportingPrice.md) | Optional | Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -63,6 +65,8 @@ instance = Fund(
     allocation_groups=[],  # optional — An optional list of Allocation Group definitions for the Fund.
     share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
     fund_instrument=FundInstrument(...),  # optional
+    pricing_methodology=PricingMethodology(...),  # optional
+    reporting_prices=[],  # optional — Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.
     version=Version(...),  # optional
     links=[]  # optional
 )
@@ -80,6 +84,8 @@ instance = Fund(
 - [AllocationGroup](AllocationGroup.md) — used in `allocation_groups`
 - [ShareClass](ShareClass.md) — used in `share_classes`
 - [FundInstrument](FundInstrument.md)
+- [PricingMethodology](PricingMethodology.md)
+- [ReportingPrice](ReportingPrice.md) — used in `reporting_prices`
 - [Version](Version.md)
 - [Link](Link.md)
 

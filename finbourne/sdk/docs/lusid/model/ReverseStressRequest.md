@@ -18,6 +18,7 @@ Request to solve a reverse stress test: instead of asking what a given market mo
 | **ladder_points** | **int** | Optional | How many factors to evaluate between zero and MaxScale. All of them are valued in  one request - the rungs share market data resolution - so a finer ladder costs far less than  its rung count suggests, and a coarse one is the main source of a missed bracket. |
 | **tolerance** | **float** | Optional | How close the achieved loss must be to the target, relative to the target&#39;s own size. Relative  rather than absolute because the same reverse stress is asked of books whose value differs by  orders of magnitude. |
 | **max_iterations** | **int** | Optional | How many refinement rounds are allowed after the opening ladder. Each round costs one  valuation; on a near-linear P&amp;L the first interpolation is usually already inside tolerance,  so the default exists for the mildly curved case rather than the normal one. |
+| **market_data_overrides** | [MarketDataOverrides](MarketDataOverrides.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -40,7 +41,8 @@ instance = ReverseStressRequest(
     max_scale=0.0,  # optional — The largest factor to evaluate. A target beyond the loss reached at this factor is reported as  out of reach rather than extrapolated to: extrapolating past the evaluated range is exactly  where a locally linear P&amp;L stops being linear.
     ladder_points=0,  # optional — How many factors to evaluate between zero and MaxScale. All of them are valued in  one request - the rungs share market data resolution - so a finer ladder costs far less than  its rung count suggests, and a coarse one is the main source of a missed bracket.
     tolerance=0.0,  # optional — How close the achieved loss must be to the target, relative to the target&#39;s own size. Relative  rather than absolute because the same reverse stress is asked of books whose value differs by  orders of magnitude.
-    max_iterations=0  # optional — How many refinement rounds are allowed after the opening ladder. Each round costs one  valuation; on a near-linear P&amp;L the first interpolation is usually already inside tolerance,  so the default exists for the mildly curved case rather than the normal one.
+    max_iterations=0,  # optional — How many refinement rounds are allowed after the opening ladder. Each round costs one  valuation; on a near-linear P&amp;L the first interpolation is usually already inside tolerance,  so the default exists for the mildly curved case rather than the normal one.
+    market_data_overrides=MarketDataOverrides(...)  # optional
 )
 ```
 
@@ -51,6 +53,7 @@ instance = ReverseStressRequest(
 - [PortfolioEntityId](PortfolioEntityId.md) — used in `portfolio_entity_ids`
 - [ScenarioReference](ScenarioReference.md)
 - [PropertyFilter](PropertyFilter.md) — used in `filters`
+- [MarketDataOverrides](MarketDataOverrides.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

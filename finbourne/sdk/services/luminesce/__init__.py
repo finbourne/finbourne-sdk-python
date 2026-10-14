@@ -57,6 +57,10 @@ from finbourne.sdk.services.luminesce.models.column_state_type import ColumnStat
 from finbourne.sdk.services.luminesce.models.condition_attributes import ConditionAttributes
 from finbourne.sdk.services.luminesce.models.convert_to_view_data import ConvertToViewData
 from finbourne.sdk.services.luminesce.models.cursor_position import CursorPosition
+from finbourne.sdk.services.luminesce.models.custom_multi_query_item import CustomMultiQueryItem
+from finbourne.sdk.services.luminesce.models.custom_multi_query_list_item import CustomMultiQueryListItem
+from finbourne.sdk.services.luminesce.models.custom_multi_query_list_item_query import CustomMultiQueryListItemQuery
+from finbourne.sdk.services.luminesce.models.custom_multi_query_request import CustomMultiQueryRequest
 from finbourne.sdk.services.luminesce.models.dashboard_type import DashboardType
 from finbourne.sdk.services.luminesce.models.data_type import DataType
 from finbourne.sdk.services.luminesce.models.date_parameters import DateParameters
@@ -162,6 +166,10 @@ __all__ = [
     "ConditionAttributes",
     "ConvertToViewData",
     "CursorPosition",
+    "CustomMultiQueryItem",
+    "CustomMultiQueryListItem",
+    "CustomMultiQueryListItemQuery",
+    "CustomMultiQueryRequest",
     "DashboardType",
     "DataType",
     "DateParameters",

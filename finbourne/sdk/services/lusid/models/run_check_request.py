@@ -24,6 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.lusid_entity_dataset import LusidEntityDataset
 from finbourne.sdk.services.lusid.models.portfolio_holding_dataset import PortfolioHoldingDataset
 from finbourne.sdk.services.lusid.models.portfolio_transaction_dataset import PortfolioTransactionDataset
+from finbourne.sdk.services.lusid.models.structured_result_dataset import StructuredResultDataset
 
 
 class RunCheckRequest(BaseModel):
@@ -34,7 +35,8 @@ class RunCheckRequest(BaseModel):
     limit_individual_breaches_per_rule: Optional[StrictInt] = Field(default=None, description="The maximum number of individual breaches to return per rule. Defaults to 100 if not specified.", alias="limitIndividualBreachesPerRule")
     portfolio_holding_dataset: Optional[PortfolioHoldingDataset] = Field(default=None, alias="portfolioHoldingDataset")
     portfolio_transaction_dataset: Optional[PortfolioTransactionDataset] = Field(default=None, alias="portfolioTransactionDataset")
-    __properties: ClassVar[List[str]] = ["lusidEntityDataset", "limitIndividualBreachesPerRule", "portfolioHoldingDataset", "portfolioTransactionDataset"]
+    structured_result_dataset: Optional[StructuredResultDataset] = Field(default=None, alias="structuredResultDataset")
+    __properties: ClassVar[List[str]] = ["lusidEntityDataset", "limitIndividualBreachesPerRule", "portfolioHoldingDataset", "portfolioTransactionDataset", "structuredResultDataset"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +81,9 @@ class RunCheckRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of portfolio_transaction_dataset
         if self.portfolio_transaction_dataset:
             _dict['portfolioTransactionDataset'] = self.portfolio_transaction_dataset.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of structured_result_dataset
+        if self.structured_result_dataset:
+            _dict['structuredResultDataset'] = self.structured_result_dataset.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
@@ -94,7 +99,8 @@ class RunCheckRequest(BaseModel):
             "lusid_entity_dataset": LusidEntityDataset.from_dict(_v) if (_v := obj.get("lusidEntityDataset")) is not None else None,
             "limit_individual_breaches_per_rule": obj.get("limitIndividualBreachesPerRule"),
             "portfolio_holding_dataset": PortfolioHoldingDataset.from_dict(_v) if (_v := obj.get("portfolioHoldingDataset")) is not None else None,
-            "portfolio_transaction_dataset": PortfolioTransactionDataset.from_dict(_v) if (_v := obj.get("portfolioTransactionDataset")) is not None else None
+            "portfolio_transaction_dataset": PortfolioTransactionDataset.from_dict(_v) if (_v := obj.get("portfolioTransactionDataset")) is not None else None,
+            "structured_result_dataset": StructuredResultDataset.from_dict(_v) if (_v := obj.get("structuredResultDataset")) is not None else None
         })
         return _obj
 

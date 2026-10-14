@@ -32,9 +32,10 @@ from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check
 from finbourne.sdk.services.workflow.models.portfolio_transaction_data_quality_check_response import PortfolioTransactionDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.scheduler_job_response import SchedulerJobResponse
 from finbourne.sdk.services.workflow.models.sleep_response import SleepResponse
+from finbourne.sdk.services.workflow.models.structured_result_data_quality_check_response import StructuredResultDataQualityCheckResponse
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
-WORKERCONFIGURATIONRESPONSE_ONE_OF_SCHEMAS = ["FailResponse", "GroupReconciliationResponse", "HealthCheckResponse", "HorizonIntegrationResponse", "InstantiateRecResponse", "LibraryResponse", "LuminesceViewResponse", "LusidEntityDataQualityCheckResponse", "PortfolioHoldingDataQualityCheckResponse", "PortfolioTransactionDataQualityCheckResponse", "SchedulerJobResponse", "SleepResponse"]
+WORKERCONFIGURATIONRESPONSE_ONE_OF_SCHEMAS = ["FailResponse", "GroupReconciliationResponse", "HealthCheckResponse", "HorizonIntegrationResponse", "InstantiateRecResponse", "LibraryResponse", "LuminesceViewResponse", "LusidEntityDataQualityCheckResponse", "PortfolioHoldingDataQualityCheckResponse", "PortfolioTransactionDataQualityCheckResponse", "SchedulerJobResponse", "SleepResponse", "StructuredResultDataQualityCheckResponse"]
 
 class WorkerConfigurationResponse(BaseModel):
     """
@@ -64,8 +65,10 @@ class WorkerConfigurationResponse(BaseModel):
     oneof_schema_11_validator: Optional[SchedulerJobResponse] = None
     # data type: SleepResponse
     oneof_schema_12_validator: Optional[SleepResponse] = None
+    # data type: StructuredResultDataQualityCheckResponse
+    oneof_schema_13_validator: Optional[StructuredResultDataQualityCheckResponse] = None
     if TYPE_CHECKING:
-        actual_instance: Union[FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse]
+        actual_instance: Union[FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse, StructuredResultDataQualityCheckResponse]
     else:
         actual_instance: Any
     one_of_schemas: ClassVar[List[str]] = WORKERCONFIGURATIONRESPONSE_ONE_OF_SCHEMAS
@@ -172,12 +175,18 @@ class WorkerConfigurationResponse(BaseModel):
         else:
             match += 1
             matchclass = matchclass + " SleepResponse"
+        # validate data type: StructuredResultDataQualityCheckResponse
+        if not isinstance(v, StructuredResultDataQualityCheckResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `StructuredResultDataQualityCheckResponse`")
+        else:
+            match += 1
+            matchclass = matchclass + " StructuredResultDataQualityCheckResponse"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse, StructuredResultDataQualityCheckResponse. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse, StructuredResultDataQualityCheckResponse. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -410,13 +419,31 @@ class WorkerConfigurationResponse(BaseModel):
             matchclass =matchclass + " SleepResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into StructuredResultDataQualityCheckResponse
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(StructuredResultDataQualityCheckResponse, "_StructuredResultDataQualityCheckResponse__properties", None) or getattr(StructuredResultDataQualityCheckResponse, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for StructuredResultDataQualityCheckResponse: {_extra}")
+            instance.actual_instance = StructuredResultDataQualityCheckResponse.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " StructuredResultDataQualityCheckResponse"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse, StructuredResultDataQualityCheckResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into WorkerConfigurationResponse with oneOf schemas: FailResponse, GroupReconciliationResponse, HealthCheckResponse, HorizonIntegrationResponse, InstantiateRecResponse, LibraryResponse, LuminesceViewResponse, LusidEntityDataQualityCheckResponse, PortfolioHoldingDataQualityCheckResponse, PortfolioTransactionDataQualityCheckResponse, SchedulerJobResponse, SleepResponse, StructuredResultDataQualityCheckResponse. Details: " + ", ".join(error_messages))
         else:
             return instance
 

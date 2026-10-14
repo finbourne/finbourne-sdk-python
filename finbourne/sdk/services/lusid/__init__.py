@@ -174,9 +174,28 @@ from finbourne.sdk.services.lusid.models.aggregation_type import AggregationType
 from finbourne.sdk.services.lusid.models.alias import Alias
 from finbourne.sdk.services.lusid.models.allocation import Allocation
 from finbourne.sdk.services.lusid.models.allocation_event import AllocationEvent
+from finbourne.sdk.services.lusid.models.allocation_event_basis_diagnostics import AllocationEventBasisDiagnostics
+from finbourne.sdk.services.lusid.models.allocation_event_basis_warning import AllocationEventBasisWarning
 from finbourne.sdk.services.lusid.models.allocation_event_book_request import AllocationEventBookRequest
+from finbourne.sdk.services.lusid.models.allocation_event_booking_error import AllocationEventBookingError
+from finbourne.sdk.services.lusid.models.allocation_event_booking_warning import AllocationEventBookingWarning
+from finbourne.sdk.services.lusid.models.allocation_event_component import AllocationEventComponent
+from finbourne.sdk.services.lusid.models.allocation_event_deal_funding import AllocationEventDealFunding
+from finbourne.sdk.services.lusid.models.allocation_event_equalisation import AllocationEventEqualisation
+from finbourne.sdk.services.lusid.models.allocation_event_equalisation_fee_catch_up import AllocationEventEqualisationFeeCatchUp
+from finbourne.sdk.services.lusid.models.allocation_event_equalisation_mark import AllocationEventEqualisationMark
 from finbourne.sdk.services.lusid.models.allocation_event_reallocate_request import AllocationEventReallocateRequest
+from finbourne.sdk.services.lusid.models.allocation_event_receipt import AllocationEventReceipt
+from finbourne.sdk.services.lusid.models.allocation_event_receipt_request import AllocationEventReceiptRequest
+from finbourne.sdk.services.lusid.models.allocation_event_refund import AllocationEventRefund
 from finbourne.sdk.services.lusid.models.allocation_event_request import AllocationEventRequest
+from finbourne.sdk.services.lusid.models.allocation_event_reversal import AllocationEventReversal
+from finbourne.sdk.services.lusid.models.allocation_event_reverse_request import AllocationEventReverseRequest
+from finbourne.sdk.services.lusid.models.allocation_event_rounding_residual import AllocationEventRoundingResidual
+from finbourne.sdk.services.lusid.models.allocation_event_transfer import AllocationEventTransfer
+from finbourne.sdk.services.lusid.models.allocation_event_transfer_consideration import AllocationEventTransferConsideration
+from finbourne.sdk.services.lusid.models.allocation_event_unbook_request import AllocationEventUnbookRequest
+from finbourne.sdk.services.lusid.models.allocation_event_use_of_proceeds import AllocationEventUseOfProceeds
 from finbourne.sdk.services.lusid.models.allocation_group import AllocationGroup
 from finbourne.sdk.services.lusid.models.allocation_group_class import AllocationGroupClass
 from finbourne.sdk.services.lusid.models.allocation_group_class_definition import AllocationGroupClassDefinition
@@ -188,10 +207,18 @@ from finbourne.sdk.services.lusid.models.allocation_map_basis_value import Alloc
 from finbourne.sdk.services.lusid.models.allocation_map_event_basis import AllocationMapEventBasis
 from finbourne.sdk.services.lusid.models.allocation_map_exception import AllocationMapException
 from finbourne.sdk.services.lusid.models.allocation_map_fixed_factor import AllocationMapFixedFactor
+from finbourne.sdk.services.lusid.models.allocation_map_ilpa_transaction_type import AllocationMapIlpaTransactionType
 from finbourne.sdk.services.lusid.models.allocation_map_participants import AllocationMapParticipants
 from finbourne.sdk.services.lusid.models.allocation_map_request import AllocationMapRequest
 from finbourne.sdk.services.lusid.models.allocation_map_resolution import AllocationMapResolution
 from finbourne.sdk.services.lusid.models.allocation_map_resolve_request import AllocationMapResolveRequest
+from finbourne.sdk.services.lusid.models.allocation_posting_counts import AllocationPostingCounts
+from finbourne.sdk.services.lusid.models.allocation_posting_fund_line import AllocationPostingFundLine
+from finbourne.sdk.services.lusid.models.allocation_posting_lp_line import AllocationPostingLpLine
+from finbourne.sdk.services.lusid.models.allocation_posting_plan import AllocationPostingPlan
+from finbourne.sdk.services.lusid.models.allocation_posting_roll_up import AllocationPostingRollUp
+from finbourne.sdk.services.lusid.models.allocation_receivable import AllocationReceivable
+from finbourne.sdk.services.lusid.models.allocation_receivables_ageing import AllocationReceivablesAgeing
 from finbourne.sdk.services.lusid.models.allocation_request import AllocationRequest
 from finbourne.sdk.services.lusid.models.allocation_service_run_response import AllocationServiceRunResponse
 from finbourne.sdk.services.lusid.models.allocation_set_request import AllocationSetRequest
@@ -203,6 +230,7 @@ from finbourne.sdk.services.lusid.models.amount import Amount
 from finbourne.sdk.services.lusid.models.annul_quotes_response import AnnulQuotesResponse
 from finbourne.sdk.services.lusid.models.annul_single_structured_data_response import AnnulSingleStructuredDataResponse
 from finbourne.sdk.services.lusid.models.annul_structured_data_response import AnnulStructuredDataResponse
+from finbourne.sdk.services.lusid.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.lusid.models.append_complex_market_data_request import AppendComplexMarketDataRequest
 from finbourne.sdk.services.lusid.models.append_fx_forward_curve_by_quote_reference import AppendFxForwardCurveByQuoteReference
 from finbourne.sdk.services.lusid.models.append_fx_forward_curve_data import AppendFxForwardCurveData
@@ -308,11 +336,15 @@ from finbourne.sdk.services.lusid.models.cancel_swap_event import CancelSwapEven
 from finbourne.sdk.services.lusid.models.cancelled_order_result import CancelledOrderResult
 from finbourne.sdk.services.lusid.models.cancelled_placement_result import CancelledPlacementResult
 from finbourne.sdk.services.lusid.models.cap_floor import CapFloor
+from finbourne.sdk.services.lusid.models.capability_override import CapabilityOverride
 from finbourne.sdk.services.lusid.models.capital_call_event import CapitalCallEvent
+from finbourne.sdk.services.lusid.models.capital_call_receipt_event import CapitalCallReceiptEvent
 from finbourne.sdk.services.lusid.models.capital_distribution_event import CapitalDistributionEvent
 from finbourne.sdk.services.lusid.models.capital_gains_distribution_event import CapitalGainsDistributionEvent
 from finbourne.sdk.services.lusid.models.capital_interest import CapitalInterest
+from finbourne.sdk.services.lusid.models.capital_interest_transfer_event import CapitalInterestTransferEvent
 from finbourne.sdk.services.lusid.models.caplet_floorlet_cash_flow_event import CapletFloorletCashFlowEvent
+from finbourne.sdk.services.lusid.models.carry_parameters import CarryParameters
 from finbourne.sdk.services.lusid.models.cash import Cash
 from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
 from finbourne.sdk.services.lusid.models.cash_dependency import CashDependency
@@ -556,6 +588,7 @@ from finbourne.sdk.services.lusid.models.date_time_compliance_parameter import D
 from finbourne.sdk.services.lusid.models.date_time_list_compliance_parameter import DateTimeListComplianceParameter
 from finbourne.sdk.services.lusid.models.day_month import DayMonth
 from finbourne.sdk.services.lusid.models.day_of_week import DayOfWeek
+from finbourne.sdk.services.lusid.models.dealing_flow_summary import DealingFlowSummary
 from finbourne.sdk.services.lusid.models.decimal_compliance_parameter import DecimalComplianceParameter
 from finbourne.sdk.services.lusid.models.decimal_list import DecimalList
 from finbourne.sdk.services.lusid.models.decimal_list_compliance_parameter import DecimalListComplianceParameter
@@ -590,6 +623,7 @@ from finbourne.sdk.services.lusid.models.dialect_id import DialectId
 from finbourne.sdk.services.lusid.models.dialect_schema import DialectSchema
 from finbourne.sdk.services.lusid.models.diary_entry import DiaryEntry
 from finbourne.sdk.services.lusid.models.diary_entry_request import DiaryEntryRequest
+from finbourne.sdk.services.lusid.models.direction_spreads import DirectionSpreads
 from finbourne.sdk.services.lusid.models.discount_factor_curve_data import DiscountFactorCurveData
 from finbourne.sdk.services.lusid.models.discounting_dependency import DiscountingDependency
 from finbourne.sdk.services.lusid.models.discounting_method import DiscountingMethod
@@ -598,6 +632,8 @@ from finbourne.sdk.services.lusid.models.dividend_reinvestment_event import Divi
 from finbourne.sdk.services.lusid.models.dividend_suspension_event import DividendSuspensionEvent
 from finbourne.sdk.services.lusid.models.drawdown_event import DrawdownEvent
 from finbourne.sdk.services.lusid.models.drawing_event import DrawingEvent
+from finbourne.sdk.services.lusid.models.dual_price_dealing import DualPriceDealing
+from finbourne.sdk.services.lusid.models.dual_price_derivation import DualPriceDerivation
 from finbourne.sdk.services.lusid.models.dutch_auction_event import DutchAuctionEvent
 from finbourne.sdk.services.lusid.models.early_close_out_event import EarlyCloseOutEvent
 from finbourne.sdk.services.lusid.models.early_redemption_election import EarlyRedemptionElection
@@ -613,6 +649,7 @@ from finbourne.sdk.services.lusid.models.eligibility_calculation import Eligibil
 from finbourne.sdk.services.lusid.models.empty_model_options import EmptyModelOptions
 from finbourne.sdk.services.lusid.models.entity_identifier import EntityIdentifier
 from finbourne.sdk.services.lusid.models.entity_resolver import EntityResolver
+from finbourne.sdk.services.lusid.models.equalisation_terms import EqualisationTerms
 from finbourne.sdk.services.lusid.models.equity import Equity
 from finbourne.sdk.services.lusid.models.equity_all_of_identifiers import EquityAllOfIdentifiers
 from finbourne.sdk.services.lusid.models.equity_curve_by_prices_data import EquityCurveByPricesData
@@ -640,14 +677,23 @@ from finbourne.sdk.services.lusid.models.exotic_instrument import ExoticInstrume
 from finbourne.sdk.services.lusid.models.expanded_group import ExpandedGroup
 from finbourne.sdk.services.lusid.models.expiry_event import ExpiryEvent
 from finbourne.sdk.services.lusid.models.external_fee_component_filter import ExternalFeeComponentFilter
+from finbourne.sdk.services.lusid.models.facility import Facility
+from finbourne.sdk.services.lusid.models.facility_commitment_fee_event import FacilityCommitmentFeeEvent
+from finbourne.sdk.services.lusid.models.facility_draw_event import FacilityDrawEvent
+from finbourne.sdk.services.lusid.models.facility_interest_event import FacilityInterestEvent
+from finbourne.sdk.services.lusid.models.facility_repayment_event import FacilityRepaymentEvent
+from finbourne.sdk.services.lusid.models.facility_request import FacilityRequest
 from finbourne.sdk.services.lusid.models.fee import Fee
 from finbourne.sdk.services.lusid.models.fee_accrual import FeeAccrual
 from finbourne.sdk.services.lusid.models.fee_calculation_request import FeeCalculationRequest
+from finbourne.sdk.services.lusid.models.fee_definition import FeeDefinition
 from finbourne.sdk.services.lusid.models.fee_properties import FeeProperties
 from finbourne.sdk.services.lusid.models.fee_request import FeeRequest
 from finbourne.sdk.services.lusid.models.fee_rule import FeeRule
 from finbourne.sdk.services.lusid.models.fee_rule_upsert_request import FeeRuleUpsertRequest
 from finbourne.sdk.services.lusid.models.fee_rule_upsert_response import FeeRuleUpsertResponse
+from finbourne.sdk.services.lusid.models.fee_size_tier import FeeSizeTier
+from finbourne.sdk.services.lusid.models.fee_step_down import FeeStepDown
 from finbourne.sdk.services.lusid.models.fee_transaction_template_specification import FeeTransactionTemplateSpecification
 from finbourne.sdk.services.lusid.models.fee_type import FeeType
 from finbourne.sdk.services.lusid.models.fee_type_request import FeeTypeRequest
@@ -690,6 +736,7 @@ from finbourne.sdk.services.lusid.models.fund_calendar_entry import FundCalendar
 from finbourne.sdk.services.lusid.models.fund_calendar_entry_type import FundCalendarEntryType
 from finbourne.sdk.services.lusid.models.fund_cash_statement_local_currency import FundCashStatementLocalCurrency
 from finbourne.sdk.services.lusid.models.fund_cash_statement_row import FundCashStatementRow
+from finbourne.sdk.services.lusid.models.fund_closing import FundClosing
 from finbourne.sdk.services.lusid.models.fund_configuration import FundConfiguration
 from finbourne.sdk.services.lusid.models.fund_configuration_properties import FundConfigurationProperties
 from finbourne.sdk.services.lusid.models.fund_configuration_request import FundConfigurationRequest
@@ -700,6 +747,11 @@ from finbourne.sdk.services.lusid.models.fund_estimate_valuation_point import Fu
 from finbourne.sdk.services.lusid.models.fund_id_list import FundIdList
 from finbourne.sdk.services.lusid.models.fund_instrument import FundInstrument
 from finbourne.sdk.services.lusid.models.fund_journal_entry_line import FundJournalEntryLine
+from finbourne.sdk.services.lusid.models.fund_partner import FundPartner
+from finbourne.sdk.services.lusid.models.fund_partner_balances import FundPartnerBalances
+from finbourne.sdk.services.lusid.models.fund_partner_unfunded_reconciliation import FundPartnerUnfundedReconciliation
+from finbourne.sdk.services.lusid.models.fund_partner_unfunded_reconciliation_line import FundPartnerUnfundedReconciliationLine
+from finbourne.sdk.services.lusid.models.fund_partners_totals import FundPartnersTotals
 from finbourne.sdk.services.lusid.models.fund_pnl_breakdown import FundPnlBreakdown
 from finbourne.sdk.services.lusid.models.fund_previous_nav import FundPreviousNAV
 from finbourne.sdk.services.lusid.models.fund_properties import FundProperties
@@ -713,6 +765,8 @@ from finbourne.sdk.services.lusid.models.fund_structure_edge_target import FundS
 from finbourne.sdk.services.lusid.models.fund_structure_member_request import FundStructureMemberRequest
 from finbourne.sdk.services.lusid.models.fund_structure_node import FundStructureNode
 from finbourne.sdk.services.lusid.models.fund_structure_request import FundStructureRequest
+from finbourne.sdk.services.lusid.models.fund_terms import FundTerms
+from finbourne.sdk.services.lusid.models.fund_terms_version import FundTermsVersion
 from finbourne.sdk.services.lusid.models.fund_valuation_point_data import FundValuationPointData
 from finbourne.sdk.services.lusid.models.fund_valuation_request import FundValuationRequest
 from finbourne.sdk.services.lusid.models.fund_valuation_schedule import FundValuationSchedule
@@ -1071,12 +1125,14 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_data_type_summar
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_dialect_id import PagedResourceListOfDialectId
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_diary_entry import PagedResourceListOfDiaryEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_execution import PagedResourceListOfExecution
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_facility import PagedResourceListOfFacility
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fee import PagedResourceListOfFee
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fee_type import PagedResourceListOfFeeType
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund import PagedResourceListOfFund
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entries import PagedResourceListOfFundCalendarEntries
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_configuration import PagedResourceListOfFundConfiguration
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_partner import PagedResourceListOfFundPartner
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_structure import PagedResourceListOfFundStructure
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_general_ledger_profile_response import PagedResourceListOfGeneralLedgerProfileResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_address_key_alias_response import PagedResourceListOfGetAddressKeyAliasResponse
@@ -1141,6 +1197,7 @@ from finbourne.sdk.services.lusid.models.partial_defeasance_event import Partial
 from finbourne.sdk.services.lusid.models.participation import Participation
 from finbourne.sdk.services.lusid.models.participation_request import ParticipationRequest
 from finbourne.sdk.services.lusid.models.participation_set_request import ParticipationSetRequest
+from finbourne.sdk.services.lusid.models.partnership_accounting_configuration import PartnershipAccountingConfiguration
 from finbourne.sdk.services.lusid.models.payment_details_applicable_entity import PaymentDetailsApplicableEntity
 from finbourne.sdk.services.lusid.models.payment_details_reference import PaymentDetailsReference
 from finbourne.sdk.services.lusid.models.payment_details_reference_response import PaymentDetailsReferenceResponse
@@ -1229,6 +1286,12 @@ from finbourne.sdk.services.lusid.models.previous_valuation_point import Previou
 from finbourne.sdk.services.lusid.models.price_shift_definition import PriceShiftDefinition
 from finbourne.sdk.services.lusid.models.price_shift_mode import PriceShiftMode
 from finbourne.sdk.services.lusid.models.pricing_context import PricingContext
+from finbourne.sdk.services.lusid.models.pricing_methodology import PricingMethodology
+from finbourne.sdk.services.lusid.models.pricing_methodology_audit import PricingMethodologyAudit
+from finbourne.sdk.services.lusid.models.pricing_methodology_engine_proposal import PricingMethodologyEngineProposal
+from finbourne.sdk.services.lusid.models.pricing_methodology_override import PricingMethodologyOverride
+from finbourne.sdk.services.lusid.models.pricing_methodology_override_request import PricingMethodologyOverrideRequest
+from finbourne.sdk.services.lusid.models.pricing_methodology_result import PricingMethodologyResult
 from finbourne.sdk.services.lusid.models.pricing_model import PricingModel
 from finbourne.sdk.services.lusid.models.pricing_options import PricingOptions
 from finbourne.sdk.services.lusid.models.primary_schedule import PrimarySchedule
@@ -1344,6 +1407,7 @@ from finbourne.sdk.services.lusid.models.rec_run_log_entry import RecRunLogEntry
 from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
 from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
 from finbourne.sdk.services.lusid.models.rec_user_comment import RecUserComment
+from finbourne.sdk.services.lusid.models.recallable_capital_expiry_event import RecallableCapitalExpiryEvent
 from finbourne.sdk.services.lusid.models.recipe_block import RecipeBlock
 from finbourne.sdk.services.lusid.models.recipe_composer import RecipeComposer
 from finbourne.sdk.services.lusid.models.recipe_value import RecipeValue
@@ -1365,6 +1429,7 @@ from finbourne.sdk.services.lusid.models.reconciliation_rule import Reconciliati
 from finbourne.sdk.services.lusid.models.reconciliation_rule_type import ReconciliationRuleType
 from finbourne.sdk.services.lusid.models.reconciliation_side_configuration import ReconciliationSideConfiguration
 from finbourne.sdk.services.lusid.models.reconciliation_transactions import ReconciliationTransactions
+from finbourne.sdk.services.lusid.models.recycling_terms import RecyclingTerms
 from finbourne.sdk.services.lusid.models.reference_data import ReferenceData
 from finbourne.sdk.services.lusid.models.reference_instrument import ReferenceInstrument
 from finbourne.sdk.services.lusid.models.reference_list import ReferenceList
@@ -1391,6 +1456,7 @@ from finbourne.sdk.services.lusid.models.relative_date_offset import RelativeDat
 from finbourne.sdk.services.lusid.models.repo import Repo
 from finbourne.sdk.services.lusid.models.repo_cash_flow_event import RepoCashFlowEvent
 from finbourne.sdk.services.lusid.models.repo_partial_closure_event import RepoPartialClosureEvent
+from finbourne.sdk.services.lusid.models.reporting_price import ReportingPrice
 from finbourne.sdk.services.lusid.models.repurchase_offer_event import RepurchaseOfferEvent
 from finbourne.sdk.services.lusid.models.requested_changes import RequestedChanges
 from finbourne.sdk.services.lusid.models.reset_event import ResetEvent
@@ -1541,9 +1607,11 @@ from finbourne.sdk.services.lusid.models.security_offer_election import Security
 from finbourne.sdk.services.lusid.models.security_write_off_event import SecurityWriteOffEvent
 from finbourne.sdk.services.lusid.models.sell_entitlement_election import SellEntitlementElection
 from finbourne.sdk.services.lusid.models.sequence_definition import SequenceDefinition
+from finbourne.sdk.services.lusid.models.series_configuration import SeriesConfiguration
 from finbourne.sdk.services.lusid.models.series_definition import SeriesDefinition
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
 from finbourne.sdk.services.lusid.models.series_identifier_field import SeriesIdentifierField
+from finbourne.sdk.services.lusid.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.lusid.models.set_amortisation_rules_request import SetAmortisationRulesRequest
 from finbourne.sdk.services.lusid.models.set_legal_entity_identifiers_request import SetLegalEntityIdentifiersRequest
 from finbourne.sdk.services.lusid.models.set_legal_entity_properties_request import SetLegalEntityPropertiesRequest
@@ -1585,6 +1653,7 @@ from finbourne.sdk.services.lusid.models.simple_cash_flow_loan import SimpleCash
 from finbourne.sdk.services.lusid.models.simple_instrument import SimpleInstrument
 from finbourne.sdk.services.lusid.models.simple_model_options import SimpleModelOptions
 from finbourne.sdk.services.lusid.models.simple_rounding_convention import SimpleRoundingConvention
+from finbourne.sdk.services.lusid.models.single_price_dealing import SinglePriceDealing
 from finbourne.sdk.services.lusid.models.single_valuation_point_query_parameters import SingleValuationPointQueryParameters
 from finbourne.sdk.services.lusid.models.sort_order import SortOrder
 from finbourne.sdk.services.lusid.models.specific_holding_pricing_info import SpecificHoldingPricingInfo
@@ -1613,6 +1682,8 @@ from finbourne.sdk.services.lusid.models.string_list import StringList
 from finbourne.sdk.services.lusid.models.string_list_compliance_parameter import StringListComplianceParameter
 from finbourne.sdk.services.lusid.models.structured_result_data import StructuredResultData
 from finbourne.sdk.services.lusid.models.structured_result_data_id import StructuredResultDataId
+from finbourne.sdk.services.lusid.models.structured_result_data_result import StructuredResultDataResult
+from finbourne.sdk.services.lusid.models.structured_result_dataset import StructuredResultDataset
 from finbourne.sdk.services.lusid.models.sub_holding_key_value_equals import SubHoldingKeyValueEquals
 from finbourne.sdk.services.lusid.models.submit_rec_result_set_review_request import SubmitRecResultSetReviewRequest
 from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
@@ -1624,8 +1695,16 @@ from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlo
 from finbourne.sdk.services.lusid.models.swap_principal_event import SwapPrincipalEvent
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
 from finbourne.sdk.services.lusid.models.sweep_blocks_response import SweepBlocksResponse
+from finbourne.sdk.services.lusid.models.swing_baseline import SwingBaseline
+from finbourne.sdk.services.lusid.models.swing_policy import SwingPolicy
 from finbourne.sdk.services.lusid.models.swing_pricing_decision import SwingPricingDecision
 from finbourne.sdk.services.lusid.models.swing_pricing_rule import SwingPricingRule
+from finbourne.sdk.services.lusid.models.swing_spread_applied import SwingSpreadApplied
+from finbourne.sdk.services.lusid.models.swing_spread_tier import SwingSpreadTier
+from finbourne.sdk.services.lusid.models.swing_spread_tier_bounds import SwingSpreadTierBounds
+from finbourne.sdk.services.lusid.models.swing_spreads import SwingSpreads
+from finbourne.sdk.services.lusid.models.swing_trigger import SwingTrigger
+from finbourne.sdk.services.lusid.models.swing_trigger_evaluation import SwingTriggerEvaluation
 from finbourne.sdk.services.lusid.models.target_tax_lot import TargetTaxLot
 from finbourne.sdk.services.lusid.models.target_tax_lot_request import TargetTaxLotRequest
 from finbourne.sdk.services.lusid.models.tax_rule import TaxRule
@@ -1701,6 +1780,7 @@ from finbourne.sdk.services.lusid.models.transfer_agency_order_estimate_result i
 from finbourne.sdk.services.lusid.models.transfer_agency_order_result import TransferAgencyOrderResult
 from finbourne.sdk.services.lusid.models.transfer_agency_order_to_estimate import TransferAgencyOrderToEstimate
 from finbourne.sdk.services.lusid.models.transfer_agency_orders_response import TransferAgencyOrdersResponse
+from finbourne.sdk.services.lusid.models.transfer_agency_transaction_from_order_result import TransferAgencyTransactionFromOrderResult
 from finbourne.sdk.services.lusid.models.transition_event import TransitionEvent
 from finbourne.sdk.services.lusid.models.transition_rec_instance_request import TransitionRecInstanceRequest
 from finbourne.sdk.services.lusid.models.translate_entities_inlined_request import TranslateEntitiesInlinedRequest
@@ -1823,6 +1903,8 @@ from finbourne.sdk.services.lusid.models.upsert_structured_result_data_request i
 from finbourne.sdk.services.lusid.models.upsert_subscription_request import UpsertSubscriptionRequest
 from finbourne.sdk.services.lusid.models.upsert_transaction_properties_response import UpsertTransactionPropertiesResponse
 from finbourne.sdk.services.lusid.models.upsert_transfer_agency_order_request import UpsertTransferAgencyOrderRequest
+from finbourne.sdk.services.lusid.models.upsert_transfer_agency_transaction_from_order_request import UpsertTransferAgencyTransactionFromOrderRequest
+from finbourne.sdk.services.lusid.models.upsert_transfer_agency_transactions_from_orders_response import UpsertTransferAgencyTransactionsFromOrdersResponse
 from finbourne.sdk.services.lusid.models.upsert_translation_script_request import UpsertTranslationScriptRequest
 from finbourne.sdk.services.lusid.models.upsert_valuation_point_request import UpsertValuationPointRequest
 from finbourne.sdk.services.lusid.models.upsert_virtual_transaction_override_response import UpsertVirtualTransactionOverrideResponse
@@ -2064,9 +2146,28 @@ __all__ = [
     "Alias",
     "Allocation",
     "AllocationEvent",
+    "AllocationEventBasisDiagnostics",
+    "AllocationEventBasisWarning",
     "AllocationEventBookRequest",
+    "AllocationEventBookingError",
+    "AllocationEventBookingWarning",
+    "AllocationEventComponent",
+    "AllocationEventDealFunding",
+    "AllocationEventEqualisation",
+    "AllocationEventEqualisationFeeCatchUp",
+    "AllocationEventEqualisationMark",
     "AllocationEventReallocateRequest",
+    "AllocationEventReceipt",
+    "AllocationEventReceiptRequest",
+    "AllocationEventRefund",
     "AllocationEventRequest",
+    "AllocationEventReversal",
+    "AllocationEventReverseRequest",
+    "AllocationEventRoundingResidual",
+    "AllocationEventTransfer",
+    "AllocationEventTransferConsideration",
+    "AllocationEventUnbookRequest",
+    "AllocationEventUseOfProceeds",
     "AllocationGroup",
     "AllocationGroupClass",
     "AllocationGroupClassDefinition",
@@ -2078,10 +2179,18 @@ __all__ = [
     "AllocationMapEventBasis",
     "AllocationMapException",
     "AllocationMapFixedFactor",
+    "AllocationMapIlpaTransactionType",
     "AllocationMapParticipants",
     "AllocationMapRequest",
     "AllocationMapResolution",
     "AllocationMapResolveRequest",
+    "AllocationPostingCounts",
+    "AllocationPostingFundLine",
+    "AllocationPostingLpLine",
+    "AllocationPostingPlan",
+    "AllocationPostingRollUp",
+    "AllocationReceivable",
+    "AllocationReceivablesAgeing",
     "AllocationRequest",
     "AllocationServiceRunResponse",
     "AllocationSetRequest",
@@ -2093,6 +2202,7 @@ __all__ = [
     "AnnulQuotesResponse",
     "AnnulSingleStructuredDataResponse",
     "AnnulStructuredDataResponse",
+    "ApiEndpoint",
     "AppendComplexMarketDataRequest",
     "AppendFxForwardCurveByQuoteReference",
     "AppendFxForwardCurveData",
@@ -2198,11 +2308,15 @@ __all__ = [
     "CancelledOrderResult",
     "CancelledPlacementResult",
     "CapFloor",
+    "CapabilityOverride",
     "CapitalCallEvent",
+    "CapitalCallReceiptEvent",
     "CapitalDistributionEvent",
     "CapitalGainsDistributionEvent",
     "CapitalInterest",
+    "CapitalInterestTransferEvent",
     "CapletFloorletCashFlowEvent",
+    "CarryParameters",
     "Cash",
     "CashAndSecurityOfferElection",
     "CashDependency",
@@ -2446,6 +2560,7 @@ __all__ = [
     "DateTimeListComplianceParameter",
     "DayMonth",
     "DayOfWeek",
+    "DealingFlowSummary",
     "DecimalComplianceParameter",
     "DecimalList",
     "DecimalListComplianceParameter",
@@ -2480,6 +2595,7 @@ __all__ = [
     "DialectSchema",
     "DiaryEntry",
     "DiaryEntryRequest",
+    "DirectionSpreads",
     "DiscountFactorCurveData",
     "DiscountingDependency",
     "DiscountingMethod",
@@ -2488,6 +2604,8 @@ __all__ = [
     "DividendSuspensionEvent",
     "DrawdownEvent",
     "DrawingEvent",
+    "DualPriceDealing",
+    "DualPriceDerivation",
     "DutchAuctionEvent",
     "EarlyCloseOutEvent",
     "EarlyRedemptionElection",
@@ -2503,6 +2621,7 @@ __all__ = [
     "EmptyModelOptions",
     "EntityIdentifier",
     "EntityResolver",
+    "EqualisationTerms",
     "Equity",
     "EquityAllOfIdentifiers",
     "EquityCurveByPricesData",
@@ -2530,14 +2649,23 @@ __all__ = [
     "ExpandedGroup",
     "ExpiryEvent",
     "ExternalFeeComponentFilter",
+    "Facility",
+    "FacilityCommitmentFeeEvent",
+    "FacilityDrawEvent",
+    "FacilityInterestEvent",
+    "FacilityRepaymentEvent",
+    "FacilityRequest",
     "Fee",
     "FeeAccrual",
     "FeeCalculationRequest",
+    "FeeDefinition",
     "FeeProperties",
     "FeeRequest",
     "FeeRule",
     "FeeRuleUpsertRequest",
     "FeeRuleUpsertResponse",
+    "FeeSizeTier",
+    "FeeStepDown",
     "FeeTransactionTemplateSpecification",
     "FeeType",
     "FeeTypeRequest",
@@ -2580,6 +2708,7 @@ __all__ = [
     "FundCalendarEntryType",
     "FundCashStatementLocalCurrency",
     "FundCashStatementRow",
+    "FundClosing",
     "FundConfiguration",
     "FundConfigurationProperties",
     "FundConfigurationRequest",
@@ -2590,6 +2719,11 @@ __all__ = [
     "FundIdList",
     "FundInstrument",
     "FundJournalEntryLine",
+    "FundPartner",
+    "FundPartnerBalances",
+    "FundPartnerUnfundedReconciliation",
+    "FundPartnerUnfundedReconciliationLine",
+    "FundPartnersTotals",
     "FundPnlBreakdown",
     "FundPreviousNAV",
     "FundProperties",
@@ -2603,6 +2737,8 @@ __all__ = [
     "FundStructureMemberRequest",
     "FundStructureNode",
     "FundStructureRequest",
+    "FundTerms",
+    "FundTermsVersion",
     "FundValuationPointData",
     "FundValuationRequest",
     "FundValuationSchedule",
@@ -2961,12 +3097,14 @@ __all__ = [
     "PagedResourceListOfDialectId",
     "PagedResourceListOfDiaryEntry",
     "PagedResourceListOfExecution",
+    "PagedResourceListOfFacility",
     "PagedResourceListOfFee",
     "PagedResourceListOfFeeType",
     "PagedResourceListOfFund",
     "PagedResourceListOfFundCalendarEntries",
     "PagedResourceListOfFundCalendarEntry",
     "PagedResourceListOfFundConfiguration",
+    "PagedResourceListOfFundPartner",
     "PagedResourceListOfFundStructure",
     "PagedResourceListOfGeneralLedgerProfileResponse",
     "PagedResourceListOfGetAddressKeyAliasResponse",
@@ -3031,6 +3169,7 @@ __all__ = [
     "Participation",
     "ParticipationRequest",
     "ParticipationSetRequest",
+    "PartnershipAccountingConfiguration",
     "PaymentDetailsApplicableEntity",
     "PaymentDetailsReference",
     "PaymentDetailsReferenceResponse",
@@ -3119,6 +3258,12 @@ __all__ = [
     "PriceShiftDefinition",
     "PriceShiftMode",
     "PricingContext",
+    "PricingMethodology",
+    "PricingMethodologyAudit",
+    "PricingMethodologyEngineProposal",
+    "PricingMethodologyOverride",
+    "PricingMethodologyOverrideRequest",
+    "PricingMethodologyResult",
     "PricingModel",
     "PricingOptions",
     "PrimarySchedule",
@@ -3234,6 +3379,7 @@ __all__ = [
     "RecSubmission",
     "RecSupersededRun",
     "RecUserComment",
+    "RecallableCapitalExpiryEvent",
     "RecipeBlock",
     "RecipeComposer",
     "RecipeValue",
@@ -3255,6 +3401,7 @@ __all__ = [
     "ReconciliationRuleType",
     "ReconciliationSideConfiguration",
     "ReconciliationTransactions",
+    "RecyclingTerms",
     "ReferenceData",
     "ReferenceInstrument",
     "ReferenceList",
@@ -3281,6 +3428,7 @@ __all__ = [
     "Repo",
     "RepoCashFlowEvent",
     "RepoPartialClosureEvent",
+    "ReportingPrice",
     "RepurchaseOfferEvent",
     "RequestedChanges",
     "ResetEvent",
@@ -3431,9 +3579,11 @@ __all__ = [
     "SecurityWriteOffEvent",
     "SellEntitlementElection",
     "SequenceDefinition",
+    "SeriesConfiguration",
     "SeriesDefinition",
     "SeriesDefinitionRequest",
     "SeriesIdentifierField",
+    "ServiceApiEndpoints",
     "SetAmortisationRulesRequest",
     "SetLegalEntityIdentifiersRequest",
     "SetLegalEntityPropertiesRequest",
@@ -3475,6 +3625,7 @@ __all__ = [
     "SimpleInstrument",
     "SimpleModelOptions",
     "SimpleRoundingConvention",
+    "SinglePriceDealing",
     "SingleValuationPointQueryParameters",
     "SortOrder",
     "SpecificHoldingPricingInfo",
@@ -3503,6 +3654,8 @@ __all__ = [
     "StringListComplianceParameter",
     "StructuredResultData",
     "StructuredResultDataId",
+    "StructuredResultDataResult",
+    "StructuredResultDataset",
     "SubHoldingKeyValueEquals",
     "SubmitRecResultSetReviewRequest",
     "SubscribeElection",
@@ -3514,8 +3667,16 @@ __all__ = [
     "SwapPrincipalEvent",
     "SweepBlocksRequest",
     "SweepBlocksResponse",
+    "SwingBaseline",
+    "SwingPolicy",
     "SwingPricingDecision",
     "SwingPricingRule",
+    "SwingSpreadApplied",
+    "SwingSpreadTier",
+    "SwingSpreadTierBounds",
+    "SwingSpreads",
+    "SwingTrigger",
+    "SwingTriggerEvaluation",
     "TargetTaxLot",
     "TargetTaxLotRequest",
     "TaxRule",
@@ -3591,6 +3752,7 @@ __all__ = [
     "TransferAgencyOrderResult",
     "TransferAgencyOrderToEstimate",
     "TransferAgencyOrdersResponse",
+    "TransferAgencyTransactionFromOrderResult",
     "TransitionEvent",
     "TransitionRecInstanceRequest",
     "TranslateEntitiesInlinedRequest",
@@ -3713,6 +3875,8 @@ __all__ = [
     "UpsertSubscriptionRequest",
     "UpsertTransactionPropertiesResponse",
     "UpsertTransferAgencyOrderRequest",
+    "UpsertTransferAgencyTransactionFromOrderRequest",
+    "UpsertTransferAgencyTransactionsFromOrdersResponse",
     "UpsertTranslationScriptRequest",
     "UpsertValuationPointRequest",
     "UpsertVirtualTransactionOverrideResponse",

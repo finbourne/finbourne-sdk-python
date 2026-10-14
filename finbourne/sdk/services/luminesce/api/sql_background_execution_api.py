@@ -2322,7 +2322,7 @@ class SqlBackgroundExecutionApi:
     def list_queries(self, sql_like: Optional[StrictStr] = None, **kwargs) -> List[BackgroundQueryListItem]:
         """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
 
-        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
         :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
         :type sql_like: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -2342,7 +2342,7 @@ class SqlBackgroundExecutionApi:
     def list_queries_with_http_info(self, sql_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[BackgroundQueryListItem]]:
         """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
 
-        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
         :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
         :type sql_like: str
         :param _preload_content: if False, the ApiResponse.data will
@@ -5123,7 +5123,7 @@ class SqlBackgroundExecutionApi:
     @validate_call
     async def list_queries_async(self, sql_like: Optional[StrictStr] = None, **kwargs) -> List[BackgroundQueryListItem]:
             """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
-            Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+            Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
             
             :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
             :type sql_like: str
@@ -5144,7 +5144,7 @@ class SqlBackgroundExecutionApi:
     async def list_queries_with_http_info_async(self, sql_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[BackgroundQueryListItem]]:
             """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
 
-            Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
+            Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
 
             :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
             :type sql_like: str

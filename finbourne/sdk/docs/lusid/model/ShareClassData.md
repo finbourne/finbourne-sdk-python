@@ -7,6 +7,7 @@ The data for a Share Class. Includes Valuation Point Data and instrument informa
 |------|------|----------|-------------|
 | **share_class_breakdown** | [ShareClassBreakdown](ShareClassBreakdown.md) | Required | *No description available.* |
 | **share_class_details** | [ShareClassDetails](ShareClassDetails.md) | Optional | *No description available.* |
+| **pricing_methodology** | [PricingMethodologyResult](PricingMethodologyResult.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.lusid.models.ShareClassData import ShareClassData
 
 instance = ShareClassData(
     share_class_breakdown=ShareClassBreakdown(...),  # required
-    share_class_details=ShareClassDetails(...)  # optional
+    share_class_details=ShareClassDetails(...),  # optional
+    pricing_methodology=PricingMethodologyResult(...)  # optional
 )
 ```
 
@@ -27,6 +29,7 @@ instance = ShareClassData(
 
 - [ShareClassBreakdown](ShareClassBreakdown.md)
 - [ShareClassDetails](ShareClassDetails.md)
+- [PricingMethodologyResult](PricingMethodologyResult.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
