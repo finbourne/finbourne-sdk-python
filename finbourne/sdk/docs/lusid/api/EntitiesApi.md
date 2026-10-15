@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_data_type_by_entity_unique_id**](EntitiesApi.md#get_data_type_by_entity_unique_id) | **GET** /api/api/entities/datatypes/{entityUniqueId} | GetDataTypeByEntityUniqueId: Get DataType by EntityUniqueId
 [**get_entity_history**](EntitiesApi.md#get_entity_history) | **GET** /api/api/entities/{entityType}/{entityUniqueId}/history | GetEntityHistory: List an entity&#39;s history information
 [**get_instrument_by_entity_unique_id**](EntitiesApi.md#get_instrument_by_entity_unique_id) | **GET** /api/api/entities/instruments/{entityUniqueId} | GetInstrumentByEntityUniqueId: Get instrument by EntityUniqueId
+[**get_instrument_event_by_entity_unique_id**](EntitiesApi.md#get_instrument_event_by_entity_unique_id) | **GET** /api/api/entities/instrumentevents/{entityUniqueId} | [EARLY ACCESS] GetInstrumentEventByEntityUniqueId: Get instrument event by EntityUniqueId
 [**get_portfolio_by_entity_unique_id**](EntitiesApi.md#get_portfolio_by_entity_unique_id) | **GET** /api/api/entities/portfolios/{entityUniqueId} | GetPortfolioByEntityUniqueId: Get portfolio by EntityUniqueId
 [**get_portfolio_changes**](EntitiesApi.md#get_portfolio_changes) | **GET** /api/api/entities/changes/portfolios | GetPortfolioChanges: Get the next change to each portfolio in a scope.
 [**get_property_definition_by_entity_unique_id**](EntitiesApi.md#get_property_definition_by_entity_unique_id) | **GET** /api/api/entities/propertydefinitions/{entityUniqueId} | GetPropertyDefinitionByEntityUniqueId: Get property definition by EntityUniqueId
@@ -421,6 +422,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested instrument entity |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument_event_by_entity_unique_id**
+> InstrumentEventEntity getInstrumentEventByEntityUniqueId = get_instrument_event_by_entity_unique_id(entity_unique_id, as_at=as_at, previews=previews)
+
+[EARLY ACCESS] GetInstrumentEventByEntityUniqueId: Get instrument event by EntityUniqueId
+
+Retrieve a particular instrument event by its entity unique identifier.    If the instrument event or its corporate action source is deleted, this will return the state of the instrument event immediately prior to deletion.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(EntitiesApi)
+entity_unique_id = 'entity_unique_id_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+previews = ['previews_example'] # List[str] (optional)
+api_response = api_instance.get_instrument_event_by_entity_unique_id(entity_unique_id, as_at=as_at, previews=previews)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_unique_id** | **str**| The entity unique identifier of the instrument event. The expected format is &#39;{corporateActionSourceEntityUniqueId}_{instrumentEventId}&#39;. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument event. Defaults to returning the latest version of the instrument event if not specified. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response, applied in the order given. | [optional] 
+
+### Return type
+
+[**InstrumentEventEntity**](../model/InstrumentEventEntity.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested instrument event entity |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

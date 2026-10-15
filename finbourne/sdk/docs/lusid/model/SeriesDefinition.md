@@ -10,6 +10,8 @@
 | **launch_price_type** | **str** | Required | The type of launch price for the Series. Available values: Manual, Calculated. |
 | **dom_ccy** | **str** | Required | The denomination currency of the Series. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund. |
+| **launch_price** | **float** | Optional | The launch price of the Series. Required when LaunchPriceType is Manual; ignored when it is Calculated. |
+| **status** | **str** | Optional | The lifecycle status of the Series: Open, Closed or Rolled. Defaults to Open. Available values: Open, Closed, Rolled. |
 
 
 ## Usage
@@ -25,7 +27,9 @@ instance = SeriesDefinition(
     launch_date=datetime.now(),  # required — The date on which the Series was launched.
     launch_price_type="...",  # required — The type of launch price for the Series. Available values: Manual, Calculated.
     dom_ccy="...",  # required — The denomination currency of the Series.
-    properties=ModelProperty(...)  # optional — An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund.
+    properties=ModelProperty(...),  # optional — An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund.
+    launch_price=0.0,  # optional — The launch price of the Series. Required when LaunchPriceType is Manual; ignored when it is Calculated.
+    status="..."  # optional — The lifecycle status of the Series: Open, Closed or Rolled. Defaults to Open. Available values: Open, Closed, Rolled.
 )
 ```
 

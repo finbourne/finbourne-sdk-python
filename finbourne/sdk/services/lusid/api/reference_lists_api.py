@@ -180,7 +180,7 @@ class ReferenceListsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_reference_list(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ReferenceListResponse:
+    def get_reference_list(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ReferenceListResponse:
         """GetReferenceList: Get Reference List  # noqa: E501
 
         Retrieve a Reference List instance at a point in AsAt time.  # noqa: E501
@@ -190,6 +190,8 @@ class ReferenceListsApi:
         :type code: str
         :param as_at: The asAt datetime at which to retrieve the Reference List. Defaults to return the latest version of the Reference List if not specified.
         :type as_at: datetime
+        :param filter: Expression to filter the values of the Reference List by its underlying type:              fund lists filter on the fund (for example \"id.Code eq 'FundCode'\"), id lists on Scope and Code,              property lists on Key and Value, and scalar lists on Value. Defaults to returning all values if not specified.
+        :type filter: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -200,11 +202,11 @@ class ReferenceListsApi:
             message = "Error! Please call the get_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_reference_list_with_http_info(scope, code, as_at, **kwargs)
+        response = self.get_reference_list_with_http_info(scope, code, as_at, filter, **kwargs)
         return response.data
 
     @validate_call
-    def get_reference_list_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
+    def get_reference_list_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
         """GetReferenceList: Get Reference List  # noqa: E501
 
         Retrieve a Reference List instance at a point in AsAt time.  # noqa: E501
@@ -214,6 +216,8 @@ class ReferenceListsApi:
         :type code: str
         :param as_at: The asAt datetime at which to retrieve the Reference List. Defaults to return the latest version of the Reference List if not specified.
         :type as_at: datetime
+        :param filter: Expression to filter the values of the Reference List by its underlying type:              fund lists filter on the fund (for example \"id.Code eq 'FundCode'\"), id lists on Scope and Code,              property lists on Key and Value, and scalar lists on Value. Defaults to returning all values if not specified.
+        :type filter: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -239,7 +243,8 @@ class ReferenceListsApi:
         _all_params = [
             'scope',
             'code',
-            'as_at'
+            'as_at',
+            'filter'
         ]
         _all_params.extend(
             [
@@ -281,6 +286,9 @@ class ReferenceListsApi:
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
             else:
                 _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -726,7 +734,7 @@ class ReferenceListsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_reference_list_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ReferenceListResponse:
+    async def get_reference_list_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ReferenceListResponse:
             """GetReferenceList: Get Reference List  # noqa: E501
             Retrieve a Reference List instance at a point in AsAt time.  # noqa: E501
             
@@ -736,6 +744,8 @@ class ReferenceListsApi:
             :type code: str
             :param as_at: The asAt datetime at which to retrieve the Reference List. Defaults to return the latest version of the Reference List if not specified.
             :type as_at: datetime
+            :param filter: Expression to filter the values of the Reference List by its underlying type:              fund lists filter on the fund (for example \"id.Code eq 'FundCode'\"), id lists on Scope and Code,              property lists on Key and Value, and scalar lists on Value. Defaults to returning all values if not specified.
+            :type filter: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -746,11 +756,11 @@ class ReferenceListsApi:
                 message = "Error! Please call the get_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_reference_list_with_http_info_async(scope, code, as_at, **kwargs)
+            response = await self.get_reference_list_with_http_info_async(scope, code, as_at, filter, **kwargs)
             return response.data
 
     @validate_call
-    async def get_reference_list_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
+    async def get_reference_list_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
             """GetReferenceList: Get Reference List  # noqa: E501
 
             Retrieve a Reference List instance at a point in AsAt time.  # noqa: E501
@@ -761,6 +771,8 @@ class ReferenceListsApi:
             :type code: str
             :param as_at: The asAt datetime at which to retrieve the Reference List. Defaults to return the latest version of the Reference List if not specified.
             :type as_at: datetime
+            :param filter: Expression to filter the values of the Reference List by its underlying type:              fund lists filter on the fund (for example \"id.Code eq 'FundCode'\"), id lists on Scope and Code,              property lists on Key and Value, and scalar lists on Value. Defaults to returning all values if not specified.
+            :type filter: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -786,7 +798,8 @@ class ReferenceListsApi:
             _all_params = [
                 'scope',
                 'code',
-                'as_at'
+                'as_at',
+                'filter'
             ]
             _all_params.extend(
                 [
@@ -828,6 +841,9 @@ class ReferenceListsApi:
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
                 else:
                     _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

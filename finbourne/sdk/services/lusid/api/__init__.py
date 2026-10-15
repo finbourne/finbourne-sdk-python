@@ -16,6 +16,7 @@ from finbourne.sdk.services.lusid.api.blocks_api import BlocksApi
 from finbourne.sdk.services.lusid.api.calendars_api import CalendarsApi
 from finbourne.sdk.services.lusid.api.chart_of_accounts_api import ChartOfAccountsApi
 from finbourne.sdk.services.lusid.api.check_definitions_api import CheckDefinitionsApi
+from finbourne.sdk.services.lusid.api.collateral_agreements_api import CollateralAgreementsApi
 from finbourne.sdk.services.lusid.api.complex_market_data_api import ComplexMarketDataApi
 from finbourne.sdk.services.lusid.api.compliance_api import ComplianceApi
 from finbourne.sdk.services.lusid.api.configuration_recipe_api import ConfigurationRecipeApi
@@ -30,6 +31,7 @@ from finbourne.sdk.services.lusid.api.custom_entity_types_api import CustomEntit
 from finbourne.sdk.services.lusid.api.cut_label_definitions_api import CutLabelDefinitionsApi
 from finbourne.sdk.services.lusid.api.data_types_api import DataTypesApi
 from finbourne.sdk.services.lusid.api.derived_transaction_portfolios_api import DerivedTransactionPortfoliosApi
+from finbourne.sdk.services.lusid.api.eligible_collateral_schedules_api import EligibleCollateralSchedulesApi
 from finbourne.sdk.services.lusid.api.entities_api import EntitiesApi
 from finbourne.sdk.services.lusid.api.entity_resolvers_api import EntityResolversApi
 from finbourne.sdk.services.lusid.api.executions_api import ExecutionsApi
@@ -58,6 +60,7 @@ from finbourne.sdk.services.lusid.api.persons_api import PersonsApi
 from finbourne.sdk.services.lusid.api.placements_api import PlacementsApi
 from finbourne.sdk.services.lusid.api.portfolio_groups_api import PortfolioGroupsApi
 from finbourne.sdk.services.lusid.api.portfolios_api import PortfoliosApi
+from finbourne.sdk.services.lusid.api.processing_group_api import ProcessingGroupApi
 from finbourne.sdk.services.lusid.api.property_definitions_api import PropertyDefinitionsApi
 from finbourne.sdk.services.lusid.api.queryable_keys_api import QueryableKeysApi
 from finbourne.sdk.services.lusid.api.quotes_api import QuotesApi
@@ -114,6 +117,7 @@ __all__ = [
     "CalendarsApi",
     "ChartOfAccountsApi",
     "CheckDefinitionsApi",
+    "CollateralAgreementsApi",
     "ComplexMarketDataApi",
     "ComplianceApi",
     "ConfigurationRecipeApi",
@@ -128,6 +132,7 @@ __all__ = [
     "CutLabelDefinitionsApi",
     "DataTypesApi",
     "DerivedTransactionPortfoliosApi",
+    "EligibleCollateralSchedulesApi",
     "EntitiesApi",
     "EntityResolversApi",
     "ExecutionsApi",
@@ -156,6 +161,7 @@ __all__ = [
     "PlacementsApi",
     "PortfolioGroupsApi",
     "PortfoliosApi",
+    "ProcessingGroupApi",
     "PropertyDefinitionsApi",
     "QueryableKeysApi",
     "QuotesApi",

@@ -335,7 +335,7 @@ class AggregationApi:
 
     @validate_call
     def get_queryable_keys_for_metrics(self, queryable_keys_for_metrics_request: Optional[QueryableKeysForMetricsRequest] = None, **kwargs) -> QueryableKeysForMetricsResponse:
-        """[EXPERIMENTAL] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
+        """[EARLY ACCESS] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
 
         Describes what a valuation would return for each of the supplied metrics, so that a caller can  prepare for the response, and render it, without having to ask for the valuation first. The  metrics are given exactly as they would be supplied to the metrics of a valuation request.                Each metric is reported on individually, keyed by its normalised address key: those that resolve  appear under metrics with their queryable key definition, and the rest appear under failed with the  reason. A metric that does not exist, or that you are not entitled to read, is reported as failed;  the two cases are not distinguished from one another.  # noqa: E501
         :param queryable_keys_for_metrics_request: The set of metrics whose queryable keys are to be described
@@ -355,7 +355,7 @@ class AggregationApi:
 
     @validate_call
     def get_queryable_keys_for_metrics_with_http_info(self, queryable_keys_for_metrics_request: Optional[QueryableKeysForMetricsRequest] = None, **kwargs) -> ApiResponse[QueryableKeysForMetricsResponse]:
-        """[EXPERIMENTAL] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
+        """[EARLY ACCESS] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
 
         Describes what a valuation would return for each of the supplied metrics, so that a caller can  prepare for the response, and render it, without having to ask for the valuation first. The  metrics are given exactly as they would be supplied to the metrics of a valuation request.                Each metric is reported on individually, keyed by its normalised address key: those that resolve  appear under metrics with their queryable key definition, and the rest appear under failed with the  reason. A metric that does not exist, or that you are not entitled to read, is reported as failed;  the two cases are not distinguished from one another.  # noqa: E501
         :param queryable_keys_for_metrics_request: The set of metrics whose queryable keys are to be described
@@ -1001,7 +1001,7 @@ class AggregationApi:
 
     @validate_call
     async def get_queryable_keys_for_metrics_async(self, queryable_keys_for_metrics_request: Optional[QueryableKeysForMetricsRequest] = None, **kwargs) -> QueryableKeysForMetricsResponse:
-            """[EXPERIMENTAL] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
+            """[EARLY ACCESS] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
             Describes what a valuation would return for each of the supplied metrics, so that a caller can  prepare for the response, and render it, without having to ask for the valuation first. The  metrics are given exactly as they would be supplied to the metrics of a valuation request.                Each metric is reported on individually, keyed by its normalised address key: those that resolve  appear under metrics with their queryable key definition, and the rest appear under failed with the  reason. A metric that does not exist, or that you are not entitled to read, is reported as failed;  the two cases are not distinguished from one another.  # noqa: E501
             
             :param queryable_keys_for_metrics_request: The set of metrics whose queryable keys are to be described
@@ -1021,7 +1021,7 @@ class AggregationApi:
 
     @validate_call
     async def get_queryable_keys_for_metrics_with_http_info_async(self, queryable_keys_for_metrics_request: Optional[QueryableKeysForMetricsRequest] = None, **kwargs) -> ApiResponse[QueryableKeysForMetricsResponse]:
-            """[EXPERIMENTAL] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
+            """[EARLY ACCESS] GetQueryableKeysForMetrics: Query the queryable keys behind a given set of valuation metrics.  # noqa: E501
 
             Describes what a valuation would return for each of the supplied metrics, so that a caller can  prepare for the response, and render it, without having to ask for the valuation first. The  metrics are given exactly as they would be supplied to the metrics of a valuation request.                Each metric is reported on individually, keyed by its normalised address key: those that resolve  appear under metrics with their queryable key definition, and the rest appear under failed with the  reason. A metric that does not exist, or that you are not entitled to read, is reported as failed;  the two cases are not distinguished from one another.  # noqa: E501
 

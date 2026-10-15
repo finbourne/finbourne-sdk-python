@@ -31,6 +31,7 @@ A Fund entity.
 | **pricing_methodology** | [PricingMethodology](PricingMethodology.md) | Optional | *No description available.* |
 | **reporting_prices** | [List[ReportingPrice]](ReportingPrice.md) | Optional | Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **wht_parameters** | [WhtParameters](WhtParameters.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -68,6 +69,7 @@ instance = Fund(
     pricing_methodology=PricingMethodology(...),  # optional
     reporting_prices=[],  # optional — Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.
     version=Version(...),  # optional
+    wht_parameters=WhtParameters(...),  # optional
     links=[]  # optional
 )
 ```
@@ -87,6 +89,7 @@ instance = Fund(
 - [PricingMethodology](PricingMethodology.md)
 - [ReportingPrice](ReportingPrice.md) — used in `reporting_prices`
 - [Version](Version.md)
+- [WhtParameters](WhtParameters.md)
 - [Link](Link.md)
 
 

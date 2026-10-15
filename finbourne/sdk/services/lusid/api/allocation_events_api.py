@@ -20,7 +20,7 @@ from typing_extensions import Annotated
 
 import finbourne.sdk.services.lusid.models as packageModels
 from datetime import datetime
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.allocation_event import AllocationEvent
@@ -30,10 +30,14 @@ from finbourne.sdk.services.lusid.models.allocation_event_receipt_request import
 from finbourne.sdk.services.lusid.models.allocation_event_request import AllocationEventRequest
 from finbourne.sdk.services.lusid.models.allocation_event_reverse_request import AllocationEventReverseRequest
 from finbourne.sdk.services.lusid.models.allocation_event_unbook_request import AllocationEventUnbookRequest
+from finbourne.sdk.services.lusid.models.allocation_payment_hold import AllocationPaymentHold
+from finbourne.sdk.services.lusid.models.allocation_payment_hold_request import AllocationPaymentHoldRequest
 from finbourne.sdk.services.lusid.models.allocation_posting_plan import AllocationPostingPlan
 from finbourne.sdk.services.lusid.models.allocation_receivables_ageing import AllocationReceivablesAgeing
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_allocation_event import PagedResourceListOfAllocationEvent
+from finbourne.sdk.services.lusid.models.resource_list_of_allocation_event_notice import ResourceListOfAllocationEventNotice
+from finbourne.sdk.services.lusid.models.resource_list_of_allocation_payment_hold import ResourceListOfAllocationPaymentHold
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -628,6 +632,161 @@ class AllocationEventsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_allocation_event_notices(self, scope: StrictStr, code: StrictStr, investor_record_id: Optional[StrictStr] = None, include_zero: Optional[bool] = None, as_at: Optional[datetime] = None, **kwargs) -> ResourceListOfAllocationEventNotice:
+        """[EARLY ACCESS] GetAllocationEventNotices: [EARLY ACCESS] GetAllocationEventNotices: Get the notices an allocation event issues to its partners.  # noqa: E501
+
+        One notice per partner allocation, listing the ILPA transaction lines, the net amount due, the partner's  unfunded commitment reconciliation across the event and their cumulative position alongside the general  partner's. Notices carry a DRAFT watermark until the event is booked.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param investor_record_id: Restrict the notices to this partner's investor record.
+        :type investor_record_id: str
+        :param include_zero: Whether to include notices whose every line is zero. Defaults to false.
+        :type include_zero: bool
+        :param as_at: The asAt datetime at which to read the event. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResourceListOfAllocationEventNotice
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_allocation_event_notices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_allocation_event_notices_with_http_info(scope, code, investor_record_id, include_zero, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_allocation_event_notices_with_http_info(self, scope: StrictStr, code: StrictStr, investor_record_id: Optional[StrictStr] = None, include_zero: Optional[bool] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAllocationEventNotice]:
+        """[EARLY ACCESS] GetAllocationEventNotices: [EARLY ACCESS] GetAllocationEventNotices: Get the notices an allocation event issues to its partners.  # noqa: E501
+
+        One notice per partner allocation, listing the ILPA transaction lines, the net amount due, the partner's  unfunded commitment reconciliation across the event and their cumulative position alongside the general  partner's. Notices carry a DRAFT watermark until the event is booked.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param investor_record_id: Restrict the notices to this partner's investor record.
+        :type investor_record_id: str
+        :param include_zero: Whether to include notices whose every line is zero. Defaults to false.
+        :type include_zero: bool
+        :param as_at: The asAt datetime at which to read the event. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResourceListOfAllocationEventNotice, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'investor_record_id',
+            'include_zero',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_allocation_event_notices" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('investor_record_id') is not None:  # noqa: E501
+            _query_params.append(('investorRecordId', _params['investor_record_id']))
+
+        if _params.get('include_zero') is not None:  # noqa: E501
+            _query_params.append(('includeZero', _params['include_zero']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResourceListOfAllocationEventNotice",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/notices', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def get_allocation_event_receivables(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationReceivablesAgeing:
         """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
 
@@ -939,6 +1098,142 @@ class AllocationEventsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def list_allocation_payment_holds(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, **kwargs) -> ResourceListOfAllocationPaymentHold:
+        """[EARLY ACCESS] ListAllocationPaymentHolds: [EARLY ACCESS] ListAllocationPaymentHolds: List the holds placed on a partner's payment.  # noqa: E501
+
+        Every hold placed on the partner's payment against the event, newest first, including released ones.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param investor_record_id: The investor record of the partner whose holds are listed. (required)
+        :type investor_record_id: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResourceListOfAllocationPaymentHold
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_allocation_payment_holds_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_allocation_payment_holds_with_http_info(scope, code, investor_record_id, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_allocation_payment_holds_with_http_info(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, **kwargs) -> ApiResponse[ResourceListOfAllocationPaymentHold]:
+        """[EARLY ACCESS] ListAllocationPaymentHolds: [EARLY ACCESS] ListAllocationPaymentHolds: List the holds placed on a partner's payment.  # noqa: E501
+
+        Every hold placed on the partner's payment against the event, newest first, including released ones.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param investor_record_id: The investor record of the partner whose holds are listed. (required)
+        :type investor_record_id: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResourceListOfAllocationPaymentHold, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'investor_record_id'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_allocation_payment_holds" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+        if _params['investor_record_id'] is not None:
+            _path_params['investorRecordId'] = _params['investor_record_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResourceListOfAllocationPaymentHold",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/allocations/{investorRecordId}/holds', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def plan_allocation_event_booking(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationPostingPlan:
         """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
 
@@ -1074,6 +1369,157 @@ class AllocationEventsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/allocationevents/{scope}/{code}/plan', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def put_allocation_payment_hold(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, allocation_payment_hold_request: AllocationPaymentHoldRequest, **kwargs) -> AllocationPaymentHold:
+        """[EARLY ACCESS] PutAllocationPaymentHold: [EARLY ACCESS] PutAllocationPaymentHold: Place, move or release a hold on a partner's payment.  # noqa: E501
+
+        A Blocked or Escrow hold stops the partner's allocation being received against the event until it is  Released. A hold may only be released by a user other than the one who placed it.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param investor_record_id: The investor record of the partner whose payment is held. (required)
+        :type investor_record_id: str
+        :param allocation_payment_hold_request: The hold to record: its status, and optionally a reason and an external reference. (required)
+        :type allocation_payment_hold_request: AllocationPaymentHoldRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: AllocationPaymentHold
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the put_allocation_payment_hold_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.put_allocation_payment_hold_with_http_info(scope, code, investor_record_id, allocation_payment_hold_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def put_allocation_payment_hold_with_http_info(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, allocation_payment_hold_request: AllocationPaymentHoldRequest, **kwargs) -> ApiResponse[AllocationPaymentHold]:
+        """[EARLY ACCESS] PutAllocationPaymentHold: [EARLY ACCESS] PutAllocationPaymentHold: Place, move or release a hold on a partner's payment.  # noqa: E501
+
+        A Blocked or Escrow hold stops the partner's allocation being received against the event until it is  Released. A hold may only be released by a user other than the one who placed it.  # noqa: E501
+        :param scope: The scope of the Allocation Event. (required)
+        :type scope: str
+        :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+        :type code: str
+        :param investor_record_id: The investor record of the partner whose payment is held. (required)
+        :type investor_record_id: str
+        :param allocation_payment_hold_request: The hold to record: its status, and optionally a reason and an external reference. (required)
+        :type allocation_payment_hold_request: AllocationPaymentHoldRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(AllocationPaymentHold, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'investor_record_id',
+            'allocation_payment_hold_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method put_allocation_payment_hold" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+        if _params['investor_record_id'] is not None:
+            _path_params['investorRecordId'] = _params['investor_record_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['allocation_payment_hold_request'] is not None:
+            _body_params = _params['allocation_payment_hold_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "AllocationPaymentHold",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/allocationevents/{scope}/{code}/allocations/{investorRecordId}/hold', 'PUT',
             _path_params,
             _query_params,
             _header_params,
@@ -2414,6 +2860,162 @@ class AllocationEventsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_allocation_event_notices_async(self, scope: StrictStr, code: StrictStr, investor_record_id: Optional[StrictStr] = None, include_zero: Optional[bool] = None, as_at: Optional[datetime] = None, **kwargs) -> ResourceListOfAllocationEventNotice:
+            """[EARLY ACCESS] GetAllocationEventNotices: [EARLY ACCESS] GetAllocationEventNotices: Get the notices an allocation event issues to its partners.  # noqa: E501
+            One notice per partner allocation, listing the ILPA transaction lines, the net amount due, the partner's  unfunded commitment reconciliation across the event and their cumulative position alongside the general  partner's. Notices carry a DRAFT watermark until the event is booked.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param investor_record_id: Restrict the notices to this partner's investor record.
+            :type investor_record_id: str
+            :param include_zero: Whether to include notices whose every line is zero. Defaults to false.
+            :type include_zero: bool
+            :param as_at: The asAt datetime at which to read the event. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResourceListOfAllocationEventNotice
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_allocation_event_notices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_allocation_event_notices_with_http_info_async(scope, code, investor_record_id, include_zero, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_allocation_event_notices_with_http_info_async(self, scope: StrictStr, code: StrictStr, investor_record_id: Optional[StrictStr] = None, include_zero: Optional[bool] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAllocationEventNotice]:
+            """[EARLY ACCESS] GetAllocationEventNotices: [EARLY ACCESS] GetAllocationEventNotices: Get the notices an allocation event issues to its partners.  # noqa: E501
+
+            One notice per partner allocation, listing the ILPA transaction lines, the net amount due, the partner's  unfunded commitment reconciliation across the event and their cumulative position alongside the general  partner's. Notices carry a DRAFT watermark until the event is booked.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param investor_record_id: Restrict the notices to this partner's investor record.
+            :type investor_record_id: str
+            :param include_zero: Whether to include notices whose every line is zero. Defaults to false.
+            :type include_zero: bool
+            :param as_at: The asAt datetime at which to read the event. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResourceListOfAllocationEventNotice, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'investor_record_id',
+                'include_zero',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_allocation_event_notices" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('investor_record_id') is not None:  # noqa: E501
+                _query_params.append(('investorRecordId', _params['investor_record_id']))
+
+            if _params.get('include_zero') is not None:  # noqa: E501
+                _query_params.append(('includeZero', _params['include_zero']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResourceListOfAllocationEventNotice",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/notices', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_allocation_event_receivables_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationReceivablesAgeing:
             """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
             What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
@@ -2727,6 +3329,143 @@ class AllocationEventsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def list_allocation_payment_holds_async(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, **kwargs) -> ResourceListOfAllocationPaymentHold:
+            """[EARLY ACCESS] ListAllocationPaymentHolds: [EARLY ACCESS] ListAllocationPaymentHolds: List the holds placed on a partner's payment.  # noqa: E501
+            Every hold placed on the partner's payment against the event, newest first, including released ones.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param investor_record_id: The investor record of the partner whose holds are listed. (required)
+            :type investor_record_id: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResourceListOfAllocationPaymentHold
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_allocation_payment_holds_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_allocation_payment_holds_with_http_info_async(scope, code, investor_record_id, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_allocation_payment_holds_with_http_info_async(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, **kwargs) -> ApiResponse[ResourceListOfAllocationPaymentHold]:
+            """[EARLY ACCESS] ListAllocationPaymentHolds: [EARLY ACCESS] ListAllocationPaymentHolds: List the holds placed on a partner's payment.  # noqa: E501
+
+            Every hold placed on the partner's payment against the event, newest first, including released ones.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param investor_record_id: The investor record of the partner whose holds are listed. (required)
+            :type investor_record_id: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResourceListOfAllocationPaymentHold, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'investor_record_id'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_allocation_payment_holds" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+            if _params['investor_record_id'] is not None:
+                _path_params['investorRecordId'] = _params['investor_record_id']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResourceListOfAllocationPaymentHold",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/allocations/{investorRecordId}/holds', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def plan_allocation_event_booking_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationPostingPlan:
             """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
             Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
@@ -2863,6 +3602,158 @@ class AllocationEventsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/allocationevents/{scope}/{code}/plan', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def put_allocation_payment_hold_async(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, allocation_payment_hold_request: AllocationPaymentHoldRequest, **kwargs) -> AllocationPaymentHold:
+            """[EARLY ACCESS] PutAllocationPaymentHold: [EARLY ACCESS] PutAllocationPaymentHold: Place, move or release a hold on a partner's payment.  # noqa: E501
+            A Blocked or Escrow hold stops the partner's allocation being received against the event until it is  Released. A hold may only be released by a user other than the one who placed it.  # noqa: E501
+            
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param investor_record_id: The investor record of the partner whose payment is held. (required)
+            :type investor_record_id: str
+            :param allocation_payment_hold_request: The hold to record: its status, and optionally a reason and an external reference. (required)
+            :type allocation_payment_hold_request: AllocationPaymentHoldRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: AllocationPaymentHold
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the put_allocation_payment_hold_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.put_allocation_payment_hold_with_http_info_async(scope, code, investor_record_id, allocation_payment_hold_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def put_allocation_payment_hold_with_http_info_async(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, allocation_payment_hold_request: AllocationPaymentHoldRequest, **kwargs) -> ApiResponse[AllocationPaymentHold]:
+            """[EARLY ACCESS] PutAllocationPaymentHold: [EARLY ACCESS] PutAllocationPaymentHold: Place, move or release a hold on a partner's payment.  # noqa: E501
+
+            A Blocked or Escrow hold stops the partner's allocation being received against the event until it is  Released. A hold may only be released by a user other than the one who placed it.  # noqa: E501
+
+            :param scope: The scope of the Allocation Event. (required)
+            :type scope: str
+            :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
+            :type code: str
+            :param investor_record_id: The investor record of the partner whose payment is held. (required)
+            :type investor_record_id: str
+            :param allocation_payment_hold_request: The hold to record: its status, and optionally a reason and an external reference. (required)
+            :type allocation_payment_hold_request: AllocationPaymentHoldRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(AllocationPaymentHold, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'investor_record_id',
+                'allocation_payment_hold_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method put_allocation_payment_hold" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+            if _params['investor_record_id'] is not None:
+                _path_params['investorRecordId'] = _params['investor_record_id']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['allocation_payment_hold_request'] is not None:
+                _body_params = _params['allocation_payment_hold_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "AllocationPaymentHold",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/allocationevents/{scope}/{code}/allocations/{investorRecordId}/hold', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

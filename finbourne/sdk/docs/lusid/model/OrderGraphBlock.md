@@ -14,6 +14,7 @@
 | **derived_compliance_state** | **str** | Required | The overall compliance state of a block, derived from the block&#39;s orders. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning. |
 | **derived_approval_state** | **str** | Required | The overall approval state of a block, derived from approval of the block&#39;s orders. Available values: Pending, Rejected, Approved, Placed. |
 | **derived_direction** | **int** | Optional | The overall direction of a block, derived from its orders&#39; transaction types: 1 the block increases the position (longer), -1 it decreases it (shorter), 0 its orders net flat, null when no direction could be resolved (including unsolicited blocks). |
+| **latest_activity_date** | **datetime** | Optional | The most recent AsAt at which the block, or any of its orders, placements, executions or allocations, was modified. |
 
 
 ## Usage
@@ -33,7 +34,8 @@ instance = OrderGraphBlock(
     derived_state="...",  # required — A simple description of the overall state of a block.
     derived_compliance_state="...",  # required — The overall compliance state of a block, derived from the block&#39;s orders. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning.
     derived_approval_state="...",  # required — The overall approval state of a block, derived from approval of the block&#39;s orders. Available values: Pending, Rejected, Approved, Placed.
-    derived_direction=0  # optional — The overall direction of a block, derived from its orders&#39; transaction types: 1 the block increases the position (longer), -1 it decreases it (shorter), 0 its orders net flat, null when no direction could be resolved (including unsolicited blocks).
+    derived_direction=0,  # optional — The overall direction of a block, derived from its orders&#39; transaction types: 1 the block increases the position (longer), -1 it decreases it (shorter), 0 its orders net flat, null when no direction could be resolved (including unsolicited blocks).
+    latest_activity_date=datetime.now()  # optional — The most recent AsAt at which the block, or any of its orders, placements, executions or allocations, was modified.
 )
 ```
 

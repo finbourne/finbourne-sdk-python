@@ -5,6 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Optional | Unique instrument identifiers |
+| **series** | [List[Series]](Series.md) | Optional | The series that belong to this Share Class - only relevant if InvestorType is Series. |
 | **name** | **str** | Required | The display name of the Share Class. |
 | **description** | **str** | Optional | An optional description for the Share Class. |
 | **share_class_short_code** | **str** | Required | A short code that uniquely identifies the share class within the Fund. |
@@ -20,6 +21,7 @@
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **distribution_payment_type** | **str** | Optional | The tax treatment applied to distributions. Available values: Invalid, Gross, Net. |
 | **hedging** | **str** | Optional | Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging. |
+| **wht_parameters** | [WhtParameters](WhtParameters.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -31,6 +33,7 @@ from finbourne.sdk.services.lusid.models.ShareClass import ShareClass
 
 instance = ShareClass(
     instrument_identifiers=,  # optional — Unique instrument identifiers
+    series=[],  # optional — The series that belong to this Share Class - only relevant if InvestorType is Series.
     name="...",  # required — The display name of the Share Class.
     description="...",  # optional — An optional description for the Share Class.
     share_class_short_code="...",  # required — A short code that uniquely identifies the share class within the Fund.
@@ -45,15 +48,18 @@ instance = ShareClass(
     rounding_conventions_units=[],  # optional — Rounding conventions used for the ShareClass units.
     time_zone_conventions=TimeZoneConventions(...),  # optional
     distribution_payment_type="...",  # optional — The tax treatment applied to distributions. Available values: Invalid, Gross, Net.
-    hedging="..."  # optional — Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.
+    hedging="...",  # optional — Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.
+    wht_parameters=WhtParameters(...)  # optional
 )
 ```
 
+- [Series](Series.md) — used in `series`
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [TradingConventions](TradingConventions.md)
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_price`
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_units`
 - [TimeZoneConventions](TimeZoneConventions.md)
+- [WhtParameters](WhtParameters.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

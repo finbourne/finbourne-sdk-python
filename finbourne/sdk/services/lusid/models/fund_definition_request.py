@@ -29,6 +29,7 @@ from finbourne.sdk.services.lusid.models.pricing_methodology import PricingMetho
 from finbourne.sdk.services.lusid.models.reporting_price import ReportingPrice
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.share_class_definition import ShareClassDefinition
+from finbourne.sdk.services.lusid.models.wht_parameters import WhtParameters
 
 
 class FundDefinitionRequest(BaseModel):
@@ -56,7 +57,8 @@ class FundDefinitionRequest(BaseModel):
     share_classes: Optional[List[ShareClassDefinition]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
     pricing_methodology: Optional[PricingMethodology] = Field(default=None, alias="pricingMethodology")
     reporting_prices: Optional[List[ReportingPrice]] = Field(default=None, description="Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.", alias="reportingPrices")
-    __properties: ClassVar[List[str]] = ["code", "shortCode", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "shareClasses", "pricingMethodology", "reportingPrices"]
+    wht_parameters: Optional[WhtParameters] = Field(default=None, alias="whtParameters")
+    __properties: ClassVar[List[str]] = ["code", "shortCode", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "shareClasses", "pricingMethodology", "reportingPrices", "whtParameters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -143,6 +145,9 @@ class FundDefinitionRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['reportingPrices'] = _items
+        # override the default output from pydantic by calling `to_dict()` of wht_parameters
+        if self.wht_parameters:
+            _dict['whtParameters'] = self.wht_parameters.to_dict(by_alias=by_alias)
         # set to None if short_code (nullable) is None
         # and model_fields_set contains the field
         if self.short_code is None and "short_code" in self.model_fields_set:
@@ -240,7 +245,8 @@ class FundDefinitionRequest(BaseModel):
             "create_instrument": obj.get("createInstrument"),
             "share_classes": [ShareClassDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("shareClasses")) is not None else None,
             "pricing_methodology": PricingMethodology.from_dict(_v) if (_v := obj.get("pricingMethodology")) is not None else None,
-            "reporting_prices": [ReportingPrice.from_dict(_item) for _item in _v] if (_v := obj.get("reportingPrices")) is not None else None
+            "reporting_prices": [ReportingPrice.from_dict(_item) for _item in _v] if (_v := obj.get("reportingPrices")) is not None else None,
+            "wht_parameters": WhtParameters.from_dict(_v) if (_v := obj.get("whtParameters")) is not None else None
         })
         return _obj
 

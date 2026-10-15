@@ -18,6 +18,7 @@ from finbourne.sdk.services.luminesce.models.access_controlled_resource_identifi
 from finbourne.sdk.services.luminesce.models.action_id import ActionId
 from finbourne.sdk.services.luminesce.models.aggregate_function import AggregateFunction
 from finbourne.sdk.services.luminesce.models.aggregation import Aggregation
+from finbourne.sdk.services.luminesce.models.api_endpoint import ApiEndpoint
 from finbourne.sdk.services.luminesce.models.auto_detect_type import AutoDetectType
 from finbourne.sdk.services.luminesce.models.available_field import AvailableField
 from finbourne.sdk.services.luminesce.models.available_parameter import AvailableParameter
@@ -95,6 +96,7 @@ from finbourne.sdk.services.luminesce.models.query_designer_version import Query
 from finbourne.sdk.services.luminesce.models.resource_id import ResourceId
 from finbourne.sdk.services.luminesce.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne.sdk.services.luminesce.models.scalar_parameter import ScalarParameter
+from finbourne.sdk.services.luminesce.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.luminesce.models.source import Source
 from finbourne.sdk.services.luminesce.models.source_type import SourceType
 from finbourne.sdk.services.luminesce.models.sql_execution_flags import SqlExecutionFlags
@@ -115,6 +117,7 @@ __all__ = [
     "ActionId",
     "AggregateFunction",
     "Aggregation",
+    "ApiEndpoint",
     "AutoDetectType",
     "AvailableField",
     "AvailableParameter",
@@ -192,6 +195,7 @@ __all__ = [
     "ResourceId",
     "ResourceListOfAccessControlledResource",
     "ScalarParameter",
+    "ServiceApiEndpoints",
     "Source",
     "SourceType",
     "SqlExecutionFlags",

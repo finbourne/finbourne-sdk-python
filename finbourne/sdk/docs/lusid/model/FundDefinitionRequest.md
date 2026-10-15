@@ -26,6 +26,7 @@ The request used to create a Fund.
 | **share_classes** | [List[ShareClassDefinition]](ShareClassDefinition.md) | Optional | An optional list of Share Class definitions for the Fund. |
 | **pricing_methodology** | [PricingMethodology](PricingMethodology.md) | Optional | *No description available.* |
 | **reporting_prices** | [List[ReportingPrice]](ReportingPrice.md) | Optional | Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices. |
+| **wht_parameters** | [WhtParameters](WhtParameters.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -56,7 +57,8 @@ instance = FundDefinitionRequest(
     create_instrument=True,  # optional — Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false.
     share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
     pricing_methodology=PricingMethodology(...),  # optional
-    reporting_prices=[]  # optional — Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.
+    reporting_prices=[],  # optional — Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.
+    wht_parameters=WhtParameters(...)  # optional
 )
 ```
 
@@ -69,6 +71,7 @@ instance = FundDefinitionRequest(
 - [ShareClassDefinition](ShareClassDefinition.md) — used in `share_classes`
 - [PricingMethodology](PricingMethodology.md)
 - [ReportingPrice](ReportingPrice.md) — used in `reporting_prices`
+- [WhtParameters](WhtParameters.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

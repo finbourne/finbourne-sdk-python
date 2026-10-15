@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_reference_list**
-> ReferenceListResponse getReferenceList = get_reference_list(scope, code, as_at=as_at)
+> ReferenceListResponse getReferenceList = get_reference_list(scope, code, as_at=as_at, filter=filter)
 
 GetReferenceList: Get Reference List
 
@@ -93,7 +93,8 @@ api_instance = api_client_factory.build(ReferenceListsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_reference_list(scope, code, as_at=as_at)
+filter = 'filter_example' # str (optional)
+api_response = api_instance.get_reference_list(scope, code, as_at=as_at, filter=filter)
 pprint(api_response)
 ```
 
@@ -104,6 +105,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope to which the Reference List belongs. | [required] 
  **code** | **str**| The Reference List&#39;s unique identifier. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Reference List. Defaults to return the latest version of the Reference List if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the values of the Reference List by its underlying type:              fund lists filter on the fund (for example \&quot;id.Code eq &#39;FundCode&#39;\&quot;), id lists on Scope and Code,              property lists on Key and Value, and scalar lists on Value. Defaults to returning all values if not specified. | [optional] 
 
 ### Return type
 

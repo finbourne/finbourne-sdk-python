@@ -1422,7 +1422,7 @@ class RecsApi:
         :type instance_id_type: str
         :param instance_id_value: The unique identifier of the rec instance. (required)
         :type instance_id_value: str
-        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. (required)
         :type rec_type: str
         :param run_number: The run of the instance whose view of the result is read. (required)
         :type run_number: int
@@ -1454,7 +1454,7 @@ class RecsApi:
         :type instance_id_type: str
         :param instance_id_value: The unique identifier of the rec instance. (required)
         :type instance_id_value: str
-        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. (required)
         :type rec_type: str
         :param run_number: The run of the instance whose view of the result is read. (required)
         :type run_number: int
@@ -4728,7 +4728,7 @@ class RecsApi:
             :type instance_id_type: str
             :param instance_id_value: The unique identifier of the rec instance. (required)
             :type instance_id_value: str
-            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. (required)
             :type rec_type: str
             :param run_number: The run of the instance whose view of the result is read. (required)
             :type run_number: int
@@ -4761,7 +4761,7 @@ class RecsApi:
             :type instance_id_type: str
             :param instance_id_value: The unique identifier of the rec instance. (required)
             :type instance_id_value: str
-            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. (required)
+            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. (required)
             :type rec_type: str
             :param run_number: The run of the instance whose view of the result is read. (required)
             :type run_number: int

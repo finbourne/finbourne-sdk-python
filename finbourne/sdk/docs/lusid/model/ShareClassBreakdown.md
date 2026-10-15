@@ -16,6 +16,7 @@ The Valuation Point Data for a Share Class on a specified date.
 | **share_class_to_fund_fx_rate** | **float** | Required | The fx rate from the Share Class currency to the fund currency at this valuation point. |
 | **capital_ratio** | **float** | Required | The proportion of the fund&#39;s non-class-specific P&amp;L apportioned to this share class. Sums to 1 across the fund&#39;s share classes. |
 | **previous_share_class_breakdown** | [PreviousShareClassBreakdown](PreviousShareClassBreakdown.md) | Required | *No description available.* |
+| **series_breakdowns** | [List[SeriesBreakdown]](SeriesBreakdown.md) | Optional | The share class NAV split across the series within the share class, one entry per series. Empty for a share class without series. |
 
 
 ## Usage
@@ -36,7 +37,8 @@ instance = ShareClassBreakdown(
     miscellaneous=ShareClassAmount(...),  # optional — Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations).
     share_class_to_fund_fx_rate=0.0,  # required — The fx rate from the Share Class currency to the fund currency at this valuation point.
     capital_ratio=0.0,  # required — The proportion of the fund&#39;s non-class-specific P&amp;L apportioned to this share class. Sums to 1 across the fund&#39;s share classes.
-    previous_share_class_breakdown=PreviousShareClassBreakdown(...)  # required
+    previous_share_class_breakdown=PreviousShareClassBreakdown(...),  # required
+    series_breakdowns=[]  # optional — The share class NAV split across the series within the share class, one entry per series. Empty for a share class without series.
 )
 ```
 
@@ -52,6 +54,7 @@ instance = ShareClassBreakdown(
 - [UnitisationData](UnitisationData.md)
 - [ShareClassAmount](ShareClassAmount.md) — used in `miscellaneous`
 - [PreviousShareClassBreakdown](PreviousShareClassBreakdown.md)
+- [SeriesBreakdown](SeriesBreakdown.md) — used in `series_breakdowns`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

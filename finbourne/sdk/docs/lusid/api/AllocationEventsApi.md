@@ -8,9 +8,12 @@ Method | HTTP request | Description
 [**create_allocation_event**](AllocationEventsApi.md#create_allocation_event) | **POST** /api/api/allocationevents/{scope} | [EXPERIMENTAL] CreateAllocationEvent: Create an Allocation Event.
 [**delete_allocation_event**](AllocationEventsApi.md#delete_allocation_event) | **DELETE** /api/api/allocationevents/{scope}/{code} | [EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.
 [**get_allocation_event**](AllocationEventsApi.md#get_allocation_event) | **GET** /api/api/allocationevents/{scope}/{code} | [EXPERIMENTAL] GetAllocationEvent: Get an Allocation Event.
+[**get_allocation_event_notices**](AllocationEventsApi.md#get_allocation_event_notices) | **GET** /api/api/allocationevents/{scope}/{code}/notices | [EARLY ACCESS] GetAllocationEventNotices: [EARLY ACCESS] GetAllocationEventNotices: Get the notices an allocation event issues to its partners.
 [**get_allocation_event_receivables**](AllocationEventsApi.md#get_allocation_event_receivables) | **GET** /api/api/allocationevents/{scope}/{code}/receivables | [EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.
 [**list_allocation_events**](AllocationEventsApi.md#list_allocation_events) | **GET** /api/api/allocationevents | [EXPERIMENTAL] ListAllocationEvents: List Allocation Events.
+[**list_allocation_payment_holds**](AllocationEventsApi.md#list_allocation_payment_holds) | **GET** /api/api/allocationevents/{scope}/{code}/allocations/{investorRecordId}/holds | [EARLY ACCESS] ListAllocationPaymentHolds: [EARLY ACCESS] ListAllocationPaymentHolds: List the holds placed on a partner&#39;s payment.
 [**plan_allocation_event_booking**](AllocationEventsApi.md#plan_allocation_event_booking) | **POST** /api/api/allocationevents/{scope}/{code}/plan | [EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.
+[**put_allocation_payment_hold**](AllocationEventsApi.md#put_allocation_payment_hold) | **PUT** /api/api/allocationevents/{scope}/{code}/allocations/{investorRecordId}/hold | [EARLY ACCESS] PutAllocationPaymentHold: [EARLY ACCESS] PutAllocationPaymentHold: Place, move or release a hold on a partner&#39;s payment.
 [**reallocate_allocation_event**](AllocationEventsApi.md#reallocate_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/reallocate | [EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.
 [**receive_allocation_event**](AllocationEventsApi.md#receive_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/receipts | [EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.
 [**reverse_allocation_event**](AllocationEventsApi.md#reverse_allocation_event) | **POST** /api/api/allocationevents/{scope}/{code}/reverse | [EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.
@@ -229,6 +232,56 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_allocation_event_notices**
+> ResourceListOfAllocationEventNotice getAllocationEventNotices = get_allocation_event_notices(scope, code, investor_record_id=investor_record_id, include_zero=include_zero, as_at=as_at)
+
+[EARLY ACCESS] GetAllocationEventNotices: [EARLY ACCESS] GetAllocationEventNotices: Get the notices an allocation event issues to its partners.
+
+One notice per partner allocation, listing the ILPA transaction lines, the net amount due, the partner's  unfunded commitment reconciliation across the event and their cumulative position alongside the general  partner's. Notices carry a DRAFT watermark until the event is booked.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+investor_record_id = 'investor_record_id_example' # str (optional)
+include_zero = False # bool (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_allocation_event_notices(scope, code, investor_record_id=investor_record_id, include_zero=include_zero, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **investor_record_id** | **str**| Restrict the notices to this partner&#39;s investor record. | [optional] 
+ **include_zero** | **bool**| Whether to include notices whose every line is zero. Defaults to false. | [optional] [default to False]
+ **as_at** | **datetime**| The asAt datetime at which to read the event. Defaults to returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**ResourceListOfAllocationEventNotice**](../model/ResourceListOfAllocationEventNotice.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The notices the allocation event issues. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **get_allocation_event_receivables**
 > AllocationReceivablesAgeing getAllocationEventReceivables = get_allocation_event_receivables(scope, code, effective_at=effective_at, as_at=as_at)
 
@@ -329,6 +382,52 @@ Name | Type | Description  | Notes
 
 ---
 
+# **list_allocation_payment_holds**
+> ResourceListOfAllocationPaymentHold listAllocationPaymentHolds = list_allocation_payment_holds(scope, code, investor_record_id)
+
+[EARLY ACCESS] ListAllocationPaymentHolds: [EARLY ACCESS] ListAllocationPaymentHolds: List the holds placed on a partner's payment.
+
+Every hold placed on the partner's payment against the event, newest first, including released ones.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+investor_record_id = 'investor_record_id_example' # str
+api_response = api_instance.list_allocation_payment_holds(scope, code, investor_record_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **investor_record_id** | **str**| The investor record of the partner whose holds are listed. | [required] 
+
+### Return type
+
+[**ResourceListOfAllocationPaymentHold**](../model/ResourceListOfAllocationPaymentHold.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The holds placed on the partner&#39;s payment. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **plan_allocation_event_booking**
 > AllocationPostingPlan planAllocationEventBooking = plan_allocation_event_booking(scope, code, allocation_event_book_request, effective_at=effective_at)
 
@@ -370,6 +469,54 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The postings the booking would write. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_allocation_payment_hold**
+> AllocationPaymentHold putAllocationPaymentHold = put_allocation_payment_hold(scope, code, investor_record_id, allocation_payment_hold_request)
+
+[EARLY ACCESS] PutAllocationPaymentHold: [EARLY ACCESS] PutAllocationPaymentHold: Place, move or release a hold on a partner's payment.
+
+A Blocked or Escrow hold stops the partner's allocation being received against the event until it is  Released. A hold may only be released by a user other than the one who placed it.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AllocationEventsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+investor_record_id = 'investor_record_id_example' # str
+allocation_payment_hold_request = AllocationPaymentHoldRequest()
+api_response = api_instance.put_allocation_payment_hold(scope, code, investor_record_id, allocation_payment_hold_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Allocation Event. | [required] 
+ **code** | **str**| The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. | [required] 
+ **investor_record_id** | **str**| The investor record of the partner whose payment is held. | [required] 
+ **allocation_payment_hold_request** | [**AllocationPaymentHoldRequest**](../model/AllocationPaymentHoldRequest.md)| The hold to record: its status, and optionally a reason and an external reference. | [required] 
+
+### Return type
+
+[**AllocationPaymentHold**](../model/AllocationPaymentHold.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The hold as recorded. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

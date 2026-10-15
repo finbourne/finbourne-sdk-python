@@ -29,7 +29,8 @@ class AllocationGroupClass(BaseModel):
     """
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund and is attached to the transaction.") 
     apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.", alias="apportionmentFactor")
-    __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor"]
+    share_class_series_code:  Optional[StrictStr] = Field(default=None,alias="shareClassSeriesCode", description="The series of the share class the member refers to. Not yet supported: an allocation group is apportioned by share class, so a member that names a series is rejected.") 
+    __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor", "shareClassSeriesCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +71,11 @@ class AllocationGroupClass(BaseModel):
         if self.apportionment_factor is None and "apportionment_factor" in self.model_fields_set:
             _dict['apportionmentFactor'] = None
 
+        # set to None if share_class_series_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.share_class_series_code is None and "share_class_series_code" in self.model_fields_set:
+            _dict['shareClassSeriesCode'] = None
+
         return _dict
 
     @classmethod
@@ -83,7 +89,8 @@ class AllocationGroupClass(BaseModel):
 
         _obj = AllocationGroupClass.model_validate({
             "share_class_short_code": obj.get("shareClassShortCode"),
-            "apportionment_factor": obj.get("apportionmentFactor")
+            "apportionment_factor": obj.get("apportionmentFactor"),
+            "share_class_series_code": obj.get("shareClassSeriesCode")
         })
         return _obj
 

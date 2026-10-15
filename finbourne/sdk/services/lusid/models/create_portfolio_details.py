@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.fractional_units_true_up_configuration import FractionalUnitsTrueUpConfiguration
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.wht_parameters import WhtParameters
 
 
 class CreatePortfolioDetails(BaseModel):
@@ -33,7 +34,8 @@ class CreatePortfolioDetails(BaseModel):
     tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. If not supplied, the portfolio's current value is left unchanged; supply Default to reset it. A reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.") 
     fractional_units_true_up_configuration: Optional[FractionalUnitsTrueUpConfiguration] = Field(default=None, alias="fractionalUnitsTrueUpConfiguration")
     holdings_fungibility:  Optional[StrictStr] = Field(default=None,alias="holdingsFungibility", description="Whether the portfolio's holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. If not supplied, the portfolio's current value is left unchanged; supply Default to reset it. A reset or never-configured flag reads back as absent. Available values: Default, Enabled.") 
-    __properties: ClassVar[List[str]] = ["corporateActionSourceId", "taxLotSelectionCostBasis", "fractionalUnitsTrueUpConfiguration", "holdingsFungibility"]
+    wht_parameters: Optional[WhtParameters] = Field(default=None, alias="whtParameters")
+    __properties: ClassVar[List[str]] = ["corporateActionSourceId", "taxLotSelectionCostBasis", "fractionalUnitsTrueUpConfiguration", "holdingsFungibility", "whtParameters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +77,9 @@ class CreatePortfolioDetails(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fractional_units_true_up_configuration
         if self.fractional_units_true_up_configuration:
             _dict['fractionalUnitsTrueUpConfiguration'] = self.fractional_units_true_up_configuration.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of wht_parameters
+        if self.wht_parameters:
+            _dict['whtParameters'] = self.wht_parameters.to_dict(by_alias=by_alias)
         # set to None if tax_lot_selection_cost_basis (nullable) is None
         # and model_fields_set contains the field
         if self.tax_lot_selection_cost_basis is None and "tax_lot_selection_cost_basis" in self.model_fields_set:
@@ -100,7 +105,8 @@ class CreatePortfolioDetails(BaseModel):
             "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None,
             "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis"),
             "fractional_units_true_up_configuration": FractionalUnitsTrueUpConfiguration.from_dict(_v) if (_v := obj.get("fractionalUnitsTrueUpConfiguration")) is not None else None,
-            "holdings_fungibility": obj.get("holdingsFungibility")
+            "holdings_fungibility": obj.get("holdingsFungibility"),
+            "wht_parameters": WhtParameters.from_dict(_v) if (_v := obj.get("whtParameters")) is not None else None
         })
         return _obj
 

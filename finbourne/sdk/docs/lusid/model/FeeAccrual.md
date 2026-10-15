@@ -12,6 +12,9 @@
 | **previous_accrual** | **float** | Optional | The previous valuation point&#39;s total accrual. |
 | **previous_total_accrual** | **float** | Optional | The previous valuation point&#39;s total accrual. |
 | **total_accrual** | **float** | Optional | The sum of the PreviousAccrual and Amount. |
+| **cap_period_accrual** | **float** | Optional | The amount accrued so far in the current fee year (from the fee&#39;s AnchorDate), in the fund currency, against which an annual FeeCap is assessed. |
+| **fee_cap_applied** | **bool** | Optional | Whether the FeeCap reduced the amount accrued at this valuation point. |
+| **fee_floor_applied** | **bool** | Optional | Whether the FeeFloor raised the amount accrued at this valuation point. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -31,6 +34,9 @@ instance = FeeAccrual(
     previous_accrual=0.0,  # optional — The previous valuation point&#39;s total accrual.
     previous_total_accrual=0.0,  # optional — The previous valuation point&#39;s total accrual.
     total_accrual=0.0,  # optional — The sum of the PreviousAccrual and Amount.
+    cap_period_accrual=0.0,  # optional — The amount accrued so far in the current fee year (from the fee&#39;s AnchorDate), in the fund currency, against which an annual FeeCap is assessed.
+    fee_cap_applied=True,  # optional — Whether the FeeCap reduced the amount accrued at this valuation point.
+    fee_floor_applied=True,  # optional — Whether the FeeFloor raised the amount accrued at this valuation point.
     links=[]  # optional
 )
 ```

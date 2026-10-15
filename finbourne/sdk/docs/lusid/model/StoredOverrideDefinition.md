@@ -18,6 +18,7 @@ A single replacement transaction definition as it was persisted against a virtua
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The transaction properties stored for the replacement transaction. |
 | **counterparty_id** | **str** | Optional | The identifier for the counterparty of the replacement transaction. |
 | **source** | **str** | Optional | The source of the replacement transaction. |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -40,13 +41,15 @@ instance = StoredOverrideDefinition(
     trade_currency="...",  # optional — The trade currency of the replacement transaction.
     properties=PerpetualProperty(...),  # optional — The transaction properties stored for the replacement transaction.
     counterparty_id="...",  # optional — The identifier for the counterparty of the replacement transaction.
-    source="..."  # optional — The source of the replacement transaction.
+    source="...",  # optional — The source of the replacement transaction.
+    custodian_account_id=ResourceId(...)  # optional
 )
 ```
 
 - [TransactionPrice](TransactionPrice.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
+- [ResourceId](ResourceId.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

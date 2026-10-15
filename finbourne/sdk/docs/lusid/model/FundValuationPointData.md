@@ -13,6 +13,7 @@ The Valuation Point Data for a Fund on a specified date.
 | **nav** | **float** | Required | The Net Asset Value of the Fund or Share Class at the Valuation Point. This represents the GAV with any fees applied in the period. |
 | **miscellaneous** | [Dict[str, FundAmount]](FundAmount.md) | Optional | Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations). |
 | **previous_valuation_point_data** | [PreviousFundValuationPointData](PreviousFundValuationPointData.md) | Optional | *No description available.* |
+| **partnership_accounting** | [PartnershipAccountingValuationPointData](PartnershipAccountingValuationPointData.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = FundValuationPointData(
     fees=FeeAccrual(...),  # required — Bucket of detail for any &#39;Fees&#39; that have been charged in the selected period.
     nav=0.0,  # required — The Net Asset Value of the Fund or Share Class at the Valuation Point. This represents the GAV with any fees applied in the period.
     miscellaneous=FundAmount(...),  # optional — Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations).
-    previous_valuation_point_data=PreviousFundValuationPointData(...)  # optional
+    previous_valuation_point_data=PreviousFundValuationPointData(...),  # optional
+    partnership_accounting=PartnershipAccountingValuationPointData(...)  # optional
 )
 ```
 
@@ -43,6 +45,7 @@ instance = FundValuationPointData(
 - [FeeAccrual](FeeAccrual.md) — used in `fees`
 - [FundAmount](FundAmount.md) — used in `miscellaneous`
 - [PreviousFundValuationPointData](PreviousFundValuationPointData.md)
+- [PartnershipAccountingValuationPointData](PartnershipAccountingValuationPointData.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_amortisation_ruleset**](AmortisationRuleSetsApi.md#delete_amortisation_ruleset) | **DELETE** /api/api/amortisation/rulesets/{scope}/{code} | [EXPERIMENTAL] DeleteAmortisationRuleset: Delete an amortisation rule set.
 [**get_amortisation_rule_set**](AmortisationRuleSetsApi.md#get_amortisation_rule_set) | **GET** /api/api/amortisation/rulesets/{scope}/{code} | [EXPERIMENTAL] GetAmortisationRuleSet: Retrieve the definition of a single amortisation rule set
 [**list_amortisation_rule_sets**](AmortisationRuleSetsApi.md#list_amortisation_rule_sets) | **GET** /api/api/amortisation/rulesets | [EXPERIMENTAL] ListAmortisationRuleSets: List amortisation rule sets.
+[**list_amortisation_rules_intervals**](AmortisationRuleSetsApi.md#list_amortisation_rules_intervals) | **GET** /api/api/amortisation/rulesets/{scope}/{code}/rulesIntervals | ListAmortisationRulesIntervals: List the rules intervals of an amortisation rule set.
 [**set_amortisation_rules**](AmortisationRuleSetsApi.md#set_amortisation_rules) | **PUT** /api/api/amortisation/rulesets/{scope}/{code}/rules | [EXPERIMENTAL] SetAmortisationRules: Set Amortisation Rules on an existing Amortisation Rule Set.
 [**update_amortisation_rule_set_details**](AmortisationRuleSetsApi.md#update_amortisation_rule_set_details) | **PUT** /api/api/amortisation/rulesets/{scope}/{code}/details | [EXPERIMENTAL] UpdateAmortisationRuleSetDetails: Update an amortisation rule set.
 
@@ -218,6 +219,56 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of rule sets available. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_amortisation_rules_intervals**
+> ResourceListOfRulesInterval listAmortisationRulesIntervals = list_amortisation_rules_intervals(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at)
+
+ListAmortisationRulesIntervals: List the rules intervals of an amortisation rule set.
+
+Lists the rules intervals of the rule set, ordered by from date. Each interval applies from its from date  until the next interval starts. The last interval has no until date.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AmortisationRuleSetsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+from_effective_at = 'from_effective_at_example' # str (optional)
+to_effective_at = 'to_effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.list_amortisation_rules_intervals(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The rule set scope. | [required] 
+ **code** | **str**| The rule set code. | [required] 
+ **from_effective_at** | **str**| Return only the intervals that overlap the effective range starting at this datetime or cut label.  There is no lower bound if not specified. | [optional] 
+ **to_effective_at** | **str**| Return only the intervals that overlap the effective range ending at this datetime or cut label.  There is no upper bound if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the rules intervals. Defaults to returning the latest version if not  specified. | [optional] 
+
+### Return type
+
+[**ResourceListOfRulesInterval**](../model/ResourceListOfRulesInterval.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The rules intervals of the rule set. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

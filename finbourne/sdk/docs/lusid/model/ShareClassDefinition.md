@@ -20,6 +20,7 @@
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **distribution_payment_type** | **str** | Optional | The tax treatment applied to distributions. Available values: Invalid, Gross, Net. |
 | **hedging** | **str** | Optional | Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging. |
+| **wht_parameters** | [WhtParameters](WhtParameters.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -45,7 +46,8 @@ instance = ShareClassDefinition(
     rounding_conventions_units=[],  # optional — Rounding conventions used for the ShareClass units.
     time_zone_conventions=TimeZoneConventions(...),  # optional
     distribution_payment_type="...",  # optional — The tax treatment applied to distributions. Available values: Invalid, Gross, Net.
-    hedging="..."  # optional — Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.
+    hedging="...",  # optional — Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.
+    wht_parameters=WhtParameters(...)  # optional
 )
 ```
 
@@ -54,6 +56,7 @@ instance = ShareClassDefinition(
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_price`
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_units`
 - [TimeZoneConventions](TimeZoneConventions.md)
+- [WhtParameters](WhtParameters.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

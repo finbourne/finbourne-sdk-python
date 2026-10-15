@@ -42,7 +42,8 @@ class QueryBucketCashFlowDrillDownRequest(BaseModel):
     exclude_unsettled_trades: Optional[StrictBool] = Field(default=None, description="If set to true, unsettled trades are excluded from the result set. Set this to match the value used on the bucketed cash flow query being drilled into, so the individual cash flows reconcile with the bucket. Note that the drill-down returns the complete resolved stream including transaction-sourced cashflows; if the bucketed query used the (default) InstrumentCashFlow representation, also exclude rows with a sourceType of 'Transaction' when reconciling.", alias="excludeUnsettledTrades")
     haircut_rules: Optional[List[CashFlowHaircutRule]] = Field(default=None, description="Optional ordered haircut rules applied to cashflow inflows; the first matching rule wins and a rule with no criteria acts as a catch-all. When supplied, each returned cashflow carries its gross amount, haircut fraction, net amount and the rule that was applied; with no rules those fields are omitted and the results are unchanged.", alias="haircutRules")
     cash_type:  Optional[StrictStr] = Field(default=None,alias="cashType", description="Which date basis buckets cash flows: TradeDate uses each cash flow's transaction date, SettleDate (default) uses its payment date. The response's CashFlowDetail.PaymentDate reflects whichever basis was used. Available values: TradeDate, SettleDate.") 
-    __properties: ClassVar[List[str]] = ["asAt", "bucketStart", "bucketEnd", "startInclusive", "endInclusive", "portfolioEntityIds", "effectiveAt", "recipeId", "reportCurrency", "excludeUnsettledTrades", "haircutRules", "cashType"]
+    fx_rate_type:  Optional[StrictStr] = Field(default=None,alias="fxRateType", description="Which FX rate converts each cashflow into the ReportCurrency. FxSpot (default) uses the spot rate. FxForward uses the forward rate for the cashflow's payment date, read from the FX forward curve the recipe resolves for the currency pair as at the valuation (EffectiveAt) date; a cashflow with no such forward rate reports an Error and has no converted amount. ForwardThenSpot uses the forward rate where the recipe resolves one and the spot rate where it does not. FxForward and ForwardThenSpot require a ReportCurrency. A cashflow paid after the last point of the recipe's forward curve takes the last point's forward rate when the curve's back extrapolation is Flat (the default), and reports an Error when it is None. Where ForwardThenSpot falls back, the spot rate is the one FxSpot uses: read on the cashflow's own transaction date, not the valuation date. The response's CashFlowDetail.FxRateTypeApplied says which rate each cashflow received. Available values: FxSpot, FxForward, ForwardThenSpot.") 
+    __properties: ClassVar[List[str]] = ["asAt", "bucketStart", "bucketEnd", "startInclusive", "endInclusive", "portfolioEntityIds", "effectiveAt", "recipeId", "reportCurrency", "excludeUnsettledTrades", "haircutRules", "cashType", "fxRateType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,6 +116,11 @@ class QueryBucketCashFlowDrillDownRequest(BaseModel):
         if self.cash_type is None and "cash_type" in self.model_fields_set:
             _dict['cashType'] = None
 
+        # set to None if fx_rate_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.fx_rate_type is None and "fx_rate_type" in self.model_fields_set:
+            _dict['fxRateType'] = None
+
         return _dict
 
     @classmethod
@@ -138,7 +144,8 @@ class QueryBucketCashFlowDrillDownRequest(BaseModel):
             "report_currency": obj.get("reportCurrency"),
             "exclude_unsettled_trades": obj.get("excludeUnsettledTrades"),
             "haircut_rules": [CashFlowHaircutRule.from_dict(_item) for _item in _v] if (_v := obj.get("haircutRules")) is not None else None,
-            "cash_type": obj.get("cashType")
+            "cash_type": obj.get("cashType"),
+            "fx_rate_type": obj.get("fxRateType")
         })
         return _obj
 

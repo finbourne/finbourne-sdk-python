@@ -30,9 +30,10 @@ class FundIdList(ReferenceList):
     FundIdList
     """
     values: List[ResourceId]
+    nav_type_codes_hint: Optional[List[StrictStr]] = Field(default=None, description="The NAV type codes this list nominates, in priority order; entries may contain '*' wildcards.  For each fund the first matching code the fund defines is picked, falling back to the fund's  primary (official) NAV type when the list is empty or nothing matches. Optional.", alias="navTypeCodesHint")
     reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["referenceListType", "values"]
+    __properties: ClassVar[List[str]] = ["referenceListType", "values", "navTypeCodesHint"]
 
     @field_validator('reference_list_type')
     def reference_list_type_validate_enum(cls, value):
@@ -98,6 +99,11 @@ class FundIdList(ReferenceList):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if nav_type_codes_hint (nullable) is None
+        # and model_fields_set contains the field
+        if self.nav_type_codes_hint is None and "nav_type_codes_hint" in self.model_fields_set:
+            _dict['navTypeCodesHint'] = None
+
         return _dict
 
     @classmethod
@@ -111,7 +117,8 @@ class FundIdList(ReferenceList):
 
         _obj = FundIdList.model_validate({
             "reference_list_type": obj.get("referenceListType"),
-            "values": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None
+            "values": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+            "nav_type_codes_hint": obj.get("navTypeCodesHint")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

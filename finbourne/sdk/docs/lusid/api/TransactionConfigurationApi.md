@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_side_definition**
-> SideDefinition getSideDefinition = get_side_definition(side, scope=scope, as_at=as_at)
+> SideDefinition getSideDefinition = get_side_definition(side, scope=scope, as_at=as_at, include_system_types=include_system_types)
 
 GetSideDefinition: Get the side definition for a given side name( or label)
 
@@ -190,7 +190,8 @@ api_instance = api_client_factory.build(TransactionConfigurationApi)
 side = 'side_example' # str
 scope = 'default' # str (optional)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_side_definition(side, scope=scope, as_at=as_at)
+include_system_types = False # bool (optional)
+api_response = api_instance.get_side_definition(side, scope=scope, as_at=as_at, include_system_types=include_system_types)
 pprint(api_response)
 ```
 
@@ -201,6 +202,7 @@ Name | Type | Description  | Notes
  **side** | **str**| The label to uniquely identify the side. | [required] 
  **scope** | **str**| The scope in which the side exists. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
  **as_at** | **datetime**| The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified. | [optional] 
+ **include_system_types** | **bool**| Whether the default definitions of the sides that LUSID&#39;s own transaction              types reference, which LUSID provides to every scope that lacks them, may be returned. Defaults to false,              so a side is found only if the scope stored it itself. | [optional] [default to False]
 
 ### Return type
 
@@ -223,7 +225,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_transaction_type**
-> TransactionType getTransactionType = get_transaction_type(source, type, as_at=as_at, scope=scope)
+> TransactionType getTransactionType = get_transaction_type(source, type, as_at=as_at, scope=scope, include_system_types=include_system_types)
 
 GetTransactionType: Get a single transaction configuration type
 
@@ -237,7 +239,8 @@ source = 'source_example' # str
 type = 'type_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 scope = 'default' # str (optional)
-api_response = api_instance.get_transaction_type(source, type, as_at=as_at, scope=scope)
+include_system_types = False # bool (optional)
+api_response = api_instance.get_transaction_type(source, type, as_at=as_at, scope=scope, include_system_types=include_system_types)
 pprint(api_response)
 ```
 
@@ -249,6 +252,7 @@ Name | Type | Description  | Notes
  **type** | **str**| One of the type&#39;s aliases | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the transaction configuration.              Defaults to returning the latest version of the transaction configuration type if not specified | [optional] 
  **scope** | **str**| The scope in which the transaction types exists. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **include_system_types** | **bool**| Whether the transaction types LUSID provides to every scope under the              &#39;pa-system&#39; source may be returned. Defaults to false, so a type in that source is found only if the scope              stored it there itself. | [optional] [default to False]
 
 ### Return type
 
@@ -271,7 +275,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_side_definitions**
-> ResourceListOfSideDefinition listSideDefinitions = list_side_definitions(as_at=as_at, scope=scope)
+> ResourceListOfSideDefinition listSideDefinitions = list_side_definitions(as_at=as_at, scope=scope, include_system_types=include_system_types)
 
 ListSideDefinitions: List the side definitions
 
@@ -283,7 +287,8 @@ List all the side definitions in the given scope, or across all scopes when scop
 api_instance = api_client_factory.build(TransactionConfigurationApi)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 scope = 'default' # str (optional)
-api_response = api_instance.list_side_definitions(as_at=as_at, scope=scope)
+include_system_types = False # bool (optional)
+api_response = api_instance.list_side_definitions(as_at=as_at, scope=scope, include_system_types=include_system_types)
 pprint(api_response)
 ```
 
@@ -293,6 +298,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified. | [optional] 
  **scope** | **str**| The scope in which the side exists. When not supplied the scope is &#39;default&#39;. Use &#39;*&#39; to list across all scopes. | [optional] [default to &#39;default&#39;]
+ **include_system_types** | **bool**| Whether the default definitions of the sides that LUSID&#39;s own transaction              types reference, which LUSID provides to every scope that lacks them, are listed. Defaults to false, so              only the sides the scope stored itself are listed. | [optional] [default to False]
 
 ### Return type
 
@@ -315,7 +321,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_transaction_types**
-> Dict[str, List[TransactionType]] listTransactionTypes = list_transaction_types(as_at=as_at, scope=scope)
+> Dict[str, List[TransactionType]] listTransactionTypes = list_transaction_types(as_at=as_at, scope=scope, include_system_types=include_system_types)
 
 ListTransactionTypes: List transaction types
 
@@ -327,7 +333,8 @@ Get the list of current transaction types. For information on the default transa
 api_instance = api_client_factory.build(TransactionConfigurationApi)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 scope = 'default' # str (optional)
-api_response = api_instance.list_transaction_types(as_at=as_at, scope=scope)
+include_system_types = False # bool (optional)
+api_response = api_instance.list_transaction_types(as_at=as_at, scope=scope, include_system_types=include_system_types)
 pprint(api_response)
 ```
 
@@ -337,6 +344,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified. | [optional] 
  **scope** | **str**| The scope in which the transaction types exist. When not supplied the scope is &#39;default&#39;. Use &#39;*&#39; to list across all scopes. | [optional] [default to &#39;default&#39;]
+ **include_system_types** | **bool**| Whether to include the transaction types LUSID provides to every scope under              the &#39;pa-system&#39; source, which portfolios in the scope can book with. Defaults to false, so that source shows              only what the scope stored there itself. | [optional] [default to False]
 
 ### Return type
 

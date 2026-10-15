@@ -20,7 +20,7 @@ from typing_extensions import Annotated
 
 import finbourne.sdk.services.lusid.models as packageModels
 from datetime import datetime
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import Dict, List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
@@ -448,7 +448,7 @@ class TransactionConfigurationApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_side_definition(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> SideDefinition:
+    def get_side_definition(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_system_types: Optional[bool] = None, **kwargs) -> SideDefinition:
         """GetSideDefinition: Get the side definition for a given side name( or label)  # noqa: E501
 
         Get the side definition user requested.  # noqa: E501
@@ -458,6 +458,8 @@ class TransactionConfigurationApi:
         :type scope: str
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
         :type as_at: datetime
+        :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, may be returned. Defaults to false,              so a side is found only if the scope stored it itself.
+        :type include_system_types: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -468,11 +470,11 @@ class TransactionConfigurationApi:
             message = "Error! Please call the get_side_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_side_definition_with_http_info(side, scope, as_at, **kwargs)
+        response = self.get_side_definition_with_http_info(side, scope, as_at, include_system_types, **kwargs)
         return response.data
 
     @validate_call
-    def get_side_definition_with_http_info(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[SideDefinition]:
+    def get_side_definition_with_http_info(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[SideDefinition]:
         """GetSideDefinition: Get the side definition for a given side name( or label)  # noqa: E501
 
         Get the side definition user requested.  # noqa: E501
@@ -482,6 +484,8 @@ class TransactionConfigurationApi:
         :type scope: str
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
         :type as_at: datetime
+        :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, may be returned. Defaults to false,              so a side is found only if the scope stored it itself.
+        :type include_system_types: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -507,7 +511,8 @@ class TransactionConfigurationApi:
         _all_params = [
             'side',
             'scope',
-            'as_at'
+            'as_at',
+            'include_system_types'
         ]
         _all_params.extend(
             [
@@ -550,6 +555,9 @@ class TransactionConfigurationApi:
             else:
                 _query_params.append(('asAt', _params['as_at']))
 
+        if _params.get('include_system_types') is not None:  # noqa: E501
+            _query_params.append(('includeSystemTypes', _params['include_system_types']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -587,7 +595,7 @@ class TransactionConfigurationApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_transaction_type(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> TransactionType:
+    def get_transaction_type(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> TransactionType:
         """GetTransactionType: Get a single transaction configuration type  # noqa: E501
 
         Get a single transaction type. Returns failure if not found  # noqa: E501
@@ -599,6 +607,8 @@ class TransactionConfigurationApi:
         :type as_at: datetime
         :param scope: The scope in which the transaction types exists. When not supplied the scope is 'default'.
         :type scope: str
+        :param include_system_types: Whether the transaction types LUSID provides to every scope under the              'pa-system' source may be returned. Defaults to false, so a type in that source is found only if the scope              stored it there itself.
+        :type include_system_types: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -609,11 +619,11 @@ class TransactionConfigurationApi:
             message = "Error! Please call the get_transaction_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_transaction_type_with_http_info(source, type, as_at, scope, **kwargs)
+        response = self.get_transaction_type_with_http_info(source, type, as_at, scope, include_system_types, **kwargs)
         return response.data
 
     @validate_call
-    def get_transaction_type_with_http_info(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TransactionType]:
+    def get_transaction_type_with_http_info(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[TransactionType]:
         """GetTransactionType: Get a single transaction configuration type  # noqa: E501
 
         Get a single transaction type. Returns failure if not found  # noqa: E501
@@ -625,6 +635,8 @@ class TransactionConfigurationApi:
         :type as_at: datetime
         :param scope: The scope in which the transaction types exists. When not supplied the scope is 'default'.
         :type scope: str
+        :param include_system_types: Whether the transaction types LUSID provides to every scope under the              'pa-system' source may be returned. Defaults to false, so a type in that source is found only if the scope              stored it there itself.
+        :type include_system_types: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -651,7 +663,8 @@ class TransactionConfigurationApi:
             'source',
             'type',
             'as_at',
-            'scope'
+            'scope',
+            'include_system_types'
         ]
         _all_params.extend(
             [
@@ -697,6 +710,9 @@ class TransactionConfigurationApi:
         if _params.get('scope') is not None:  # noqa: E501
             _query_params.append(('scope', _params['scope']))
 
+        if _params.get('include_system_types') is not None:  # noqa: E501
+            _query_params.append(('includeSystemTypes', _params['include_system_types']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -734,7 +750,7 @@ class TransactionConfigurationApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_side_definitions(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSideDefinition:
+    def list_side_definitions(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ResourceListOfSideDefinition:
         """ListSideDefinitions: List the side definitions  # noqa: E501
 
         List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
@@ -742,6 +758,8 @@ class TransactionConfigurationApi:
         :type as_at: datetime
         :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
+        :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, are listed. Defaults to false, so              only the sides the scope stored itself are listed.
+        :type include_system_types: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -752,11 +770,11 @@ class TransactionConfigurationApi:
             message = "Error! Please call the list_side_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_side_definitions_with_http_info(as_at, scope, **kwargs)
+        response = self.list_side_definitions_with_http_info(as_at, scope, include_system_types, **kwargs)
         return response.data
 
     @validate_call
-    def list_side_definitions_with_http_info(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
+    def list_side_definitions_with_http_info(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
         """ListSideDefinitions: List the side definitions  # noqa: E501
 
         List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
@@ -764,6 +782,8 @@ class TransactionConfigurationApi:
         :type as_at: datetime
         :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
+        :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, are listed. Defaults to false, so              only the sides the scope stored itself are listed.
+        :type include_system_types: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -788,7 +808,8 @@ class TransactionConfigurationApi:
 
         _all_params = [
             'as_at',
-            'scope'
+            'scope',
+            'include_system_types'
         ]
         _all_params.extend(
             [
@@ -828,6 +849,9 @@ class TransactionConfigurationApi:
         if _params.get('scope') is not None:  # noqa: E501
             _query_params.append(('scope', _params['scope']))
 
+        if _params.get('include_system_types') is not None:  # noqa: E501
+            _query_params.append(('includeSystemTypes', _params['include_system_types']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -865,7 +889,7 @@ class TransactionConfigurationApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_transaction_types(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> Dict[str, List[TransactionType]]:
+    def list_transaction_types(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> Dict[str, List[TransactionType]]:
         """ListTransactionTypes: List transaction types  # noqa: E501
 
         Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
@@ -873,6 +897,8 @@ class TransactionConfigurationApi:
         :type as_at: datetime
         :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
+        :param include_system_types: Whether to include the transaction types LUSID provides to every scope under              the 'pa-system' source, which portfolios in the scope can book with. Defaults to false, so that source shows              only what the scope stored there itself.
+        :type include_system_types: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -883,11 +909,11 @@ class TransactionConfigurationApi:
             message = "Error! Please call the list_transaction_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_transaction_types_with_http_info(as_at, scope, **kwargs)
+        response = self.list_transaction_types_with_http_info(as_at, scope, include_system_types, **kwargs)
         return response.data
 
     @validate_call
-    def list_transaction_types_with_http_info(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, List[TransactionType]]]:
+    def list_transaction_types_with_http_info(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[Dict[str, List[TransactionType]]]:
         """ListTransactionTypes: List transaction types  # noqa: E501
 
         Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
@@ -895,6 +921,8 @@ class TransactionConfigurationApi:
         :type as_at: datetime
         :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
+        :param include_system_types: Whether to include the transaction types LUSID provides to every scope under              the 'pa-system' source, which portfolios in the scope can book with. Defaults to false, so that source shows              only what the scope stored there itself.
+        :type include_system_types: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -919,7 +947,8 @@ class TransactionConfigurationApi:
 
         _all_params = [
             'as_at',
-            'scope'
+            'scope',
+            'include_system_types'
         ]
         _all_params.extend(
             [
@@ -958,6 +987,9 @@ class TransactionConfigurationApi:
 
         if _params.get('scope') is not None:  # noqa: E501
             _query_params.append(('scope', _params['scope']))
+
+        if _params.get('include_system_types') is not None:  # noqa: E501
+            _query_params.append(('includeSystemTypes', _params['include_system_types']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1967,7 +1999,7 @@ class TransactionConfigurationApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_side_definition_async(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> SideDefinition:
+    async def get_side_definition_async(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_system_types: Optional[bool] = None, **kwargs) -> SideDefinition:
             """GetSideDefinition: Get the side definition for a given side name( or label)  # noqa: E501
             Get the side definition user requested.  # noqa: E501
             
@@ -1977,6 +2009,8 @@ class TransactionConfigurationApi:
             :type scope: str
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
             :type as_at: datetime
+            :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, may be returned. Defaults to false,              so a side is found only if the scope stored it itself.
+            :type include_system_types: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1987,11 +2021,11 @@ class TransactionConfigurationApi:
                 message = "Error! Please call the get_side_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_side_definition_with_http_info_async(side, scope, as_at, **kwargs)
+            response = await self.get_side_definition_with_http_info_async(side, scope, as_at, include_system_types, **kwargs)
             return response.data
 
     @validate_call
-    async def get_side_definition_with_http_info_async(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[SideDefinition]:
+    async def get_side_definition_with_http_info_async(self, side: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[SideDefinition]:
             """GetSideDefinition: Get the side definition for a given side name( or label)  # noqa: E501
 
             Get the side definition user requested.  # noqa: E501
@@ -2002,6 +2036,8 @@ class TransactionConfigurationApi:
             :type scope: str
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
             :type as_at: datetime
+            :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, may be returned. Defaults to false,              so a side is found only if the scope stored it itself.
+            :type include_system_types: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2027,7 +2063,8 @@ class TransactionConfigurationApi:
             _all_params = [
                 'side',
                 'scope',
-                'as_at'
+                'as_at',
+                'include_system_types'
             ]
             _all_params.extend(
                 [
@@ -2070,6 +2107,9 @@ class TransactionConfigurationApi:
                 else:
                     _query_params.append(('asAt', _params['as_at']))
 
+            if _params.get('include_system_types') is not None:  # noqa: E501
+                _query_params.append(('includeSystemTypes', _params['include_system_types']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2107,7 +2147,7 @@ class TransactionConfigurationApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_transaction_type_async(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> TransactionType:
+    async def get_transaction_type_async(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> TransactionType:
             """GetTransactionType: Get a single transaction configuration type  # noqa: E501
             Get a single transaction type. Returns failure if not found  # noqa: E501
             
@@ -2119,6 +2159,8 @@ class TransactionConfigurationApi:
             :type as_at: datetime
             :param scope: The scope in which the transaction types exists. When not supplied the scope is 'default'.
             :type scope: str
+            :param include_system_types: Whether the transaction types LUSID provides to every scope under the              'pa-system' source may be returned. Defaults to false, so a type in that source is found only if the scope              stored it there itself.
+            :type include_system_types: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2129,11 +2171,11 @@ class TransactionConfigurationApi:
                 message = "Error! Please call the get_transaction_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_transaction_type_with_http_info_async(source, type, as_at, scope, **kwargs)
+            response = await self.get_transaction_type_with_http_info_async(source, type, as_at, scope, include_system_types, **kwargs)
             return response.data
 
     @validate_call
-    async def get_transaction_type_with_http_info_async(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TransactionType]:
+    async def get_transaction_type_with_http_info_async(self, source: StrictStr, type: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[TransactionType]:
             """GetTransactionType: Get a single transaction configuration type  # noqa: E501
 
             Get a single transaction type. Returns failure if not found  # noqa: E501
@@ -2146,6 +2188,8 @@ class TransactionConfigurationApi:
             :type as_at: datetime
             :param scope: The scope in which the transaction types exists. When not supplied the scope is 'default'.
             :type scope: str
+            :param include_system_types: Whether the transaction types LUSID provides to every scope under the              'pa-system' source may be returned. Defaults to false, so a type in that source is found only if the scope              stored it there itself.
+            :type include_system_types: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2172,7 +2216,8 @@ class TransactionConfigurationApi:
                 'source',
                 'type',
                 'as_at',
-                'scope'
+                'scope',
+                'include_system_types'
             ]
             _all_params.extend(
                 [
@@ -2218,6 +2263,9 @@ class TransactionConfigurationApi:
             if _params.get('scope') is not None:  # noqa: E501
                 _query_params.append(('scope', _params['scope']))
 
+            if _params.get('include_system_types') is not None:  # noqa: E501
+                _query_params.append(('includeSystemTypes', _params['include_system_types']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2255,7 +2303,7 @@ class TransactionConfigurationApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_side_definitions_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSideDefinition:
+    async def list_side_definitions_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ResourceListOfSideDefinition:
             """ListSideDefinitions: List the side definitions  # noqa: E501
             List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
             
@@ -2263,6 +2311,8 @@ class TransactionConfigurationApi:
             :type as_at: datetime
             :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
+            :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, are listed. Defaults to false, so              only the sides the scope stored itself are listed.
+            :type include_system_types: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2273,11 +2323,11 @@ class TransactionConfigurationApi:
                 message = "Error! Please call the list_side_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_side_definitions_with_http_info_async(as_at, scope, **kwargs)
+            response = await self.list_side_definitions_with_http_info_async(as_at, scope, include_system_types, **kwargs)
             return response.data
 
     @validate_call
-    async def list_side_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
+    async def list_side_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
             """ListSideDefinitions: List the side definitions  # noqa: E501
 
             List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
@@ -2286,6 +2336,8 @@ class TransactionConfigurationApi:
             :type as_at: datetime
             :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
+            :param include_system_types: Whether the default definitions of the sides that LUSID's own transaction              types reference, which LUSID provides to every scope that lacks them, are listed. Defaults to false, so              only the sides the scope stored itself are listed.
+            :type include_system_types: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2310,7 +2362,8 @@ class TransactionConfigurationApi:
 
             _all_params = [
                 'as_at',
-                'scope'
+                'scope',
+                'include_system_types'
             ]
             _all_params.extend(
                 [
@@ -2350,6 +2403,9 @@ class TransactionConfigurationApi:
             if _params.get('scope') is not None:  # noqa: E501
                 _query_params.append(('scope', _params['scope']))
 
+            if _params.get('include_system_types') is not None:  # noqa: E501
+                _query_params.append(('includeSystemTypes', _params['include_system_types']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2387,7 +2443,7 @@ class TransactionConfigurationApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_transaction_types_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> Dict[str, List[TransactionType]]:
+    async def list_transaction_types_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> Dict[str, List[TransactionType]]:
             """ListTransactionTypes: List transaction types  # noqa: E501
             Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
             
@@ -2395,6 +2451,8 @@ class TransactionConfigurationApi:
             :type as_at: datetime
             :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
+            :param include_system_types: Whether to include the transaction types LUSID provides to every scope under              the 'pa-system' source, which portfolios in the scope can book with. Defaults to false, so that source shows              only what the scope stored there itself.
+            :type include_system_types: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2405,11 +2463,11 @@ class TransactionConfigurationApi:
                 message = "Error! Please call the list_transaction_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_transaction_types_with_http_info_async(as_at, scope, **kwargs)
+            response = await self.list_transaction_types_with_http_info_async(as_at, scope, include_system_types, **kwargs)
             return response.data
 
     @validate_call
-    async def list_transaction_types_with_http_info_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, List[TransactionType]]]:
+    async def list_transaction_types_with_http_info_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, include_system_types: Optional[bool] = None, **kwargs) -> ApiResponse[Dict[str, List[TransactionType]]]:
             """ListTransactionTypes: List transaction types  # noqa: E501
 
             Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
@@ -2418,6 +2476,8 @@ class TransactionConfigurationApi:
             :type as_at: datetime
             :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
+            :param include_system_types: Whether to include the transaction types LUSID provides to every scope under              the 'pa-system' source, which portfolios in the scope can book with. Defaults to false, so that source shows              only what the scope stored there itself.
+            :type include_system_types: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2442,7 +2502,8 @@ class TransactionConfigurationApi:
 
             _all_params = [
                 'as_at',
-                'scope'
+                'scope',
+                'include_system_types'
             ]
             _all_params.extend(
                 [
@@ -2481,6 +2542,9 @@ class TransactionConfigurationApi:
 
             if _params.get('scope') is not None:  # noqa: E501
                 _query_params.append(('scope', _params['scope']))
+
+            if _params.get('include_system_types') is not None:  # noqa: E501
+                _query_params.append(('includeSystemTypes', _params['include_system_types']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

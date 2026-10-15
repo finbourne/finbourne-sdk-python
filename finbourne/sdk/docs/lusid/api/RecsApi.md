@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id_type** | **str**| How the instance was created: \&quot;WorkflowServiceTaskId\&quot; or \&quot;Manual\&quot;. Available values: WorkflowServiceTaskId, Manual. | [required] 
  **instance_id_value** | **str**| The unique identifier of the rec instance. | [required] 
- **rec_type** | **str**| The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. | [required] 
+ **rec_type** | **str**| The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. | [required] 
  **run_number** | **int**| The run of the instance whose view of the result is read. | [required] 
  **id** | **str**| The display id of the rec result, e.g. \&quot;break-3\&quot;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the result. Defaults to latest if not specified. | [optional] 

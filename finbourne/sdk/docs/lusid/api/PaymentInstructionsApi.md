@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_payment_instruction**](PaymentInstructionsApi.md#get_payment_instruction) | **GET** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] GetPaymentInstruction: Get Payment Instruction
 [**get_payment_instructions_by_payment_record_ids**](PaymentInstructionsApi.md#get_payment_instructions_by_payment_record_ids) | **POST** /api/api/paymentinstructions/$getByPaymentRecordIds | [EXPERIMENTAL] GetPaymentInstructionsByPaymentRecordIds: Get Payment Instructions by Payment Record Ids
 [**list_payment_instructions**](PaymentInstructionsApi.md#list_payment_instructions) | **GET** /api/api/paymentinstructions | [EXPERIMENTAL] ListPaymentInstructions: List Payment Instructions
+[**transition_payment_instruction_statuses**](PaymentInstructionsApi.md#transition_payment_instruction_statuses) | **POST** /api/api/paymentinstructions/$transitionStatuses | [EXPERIMENTAL] TransitionPaymentInstructionStatuses: Transition Payment Instruction Statuses
 [**upsert_payment_instructions**](PaymentInstructionsApi.md#upsert_payment_instructions) | **POST** /api/api/paymentinstructions | [EXPERIMENTAL] UpsertPaymentInstructions: Upsert Payment Instructions
 
 
@@ -225,6 +226,50 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The payment instructions matching the given criteria |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **transition_payment_instruction_statuses**
+> TransitionPaymentInstructionsResponse transitionPaymentInstructionStatuses = transition_payment_instruction_statuses(request_body, property_keys=property_keys)
+
+[EXPERIMENTAL] TransitionPaymentInstructionStatuses: Transition Payment Instruction Statuses
+
+Move a collection of Payment Instructions to new statuses. A Payment Instruction's status is not settable on  the upsert endpoint; this endpoint is the state machine that controls its lifecycle, which runs  Created, Staged, Released, Instructed, Sent, with Cancelled reachable before the instruction is Instructed and  Failed reachable once it has been. Each requested transition is validated against the instruction's current  status on its own, and those that are permitted are applied together.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PaymentInstructionsApi)
+request_body = {"paymentInstruction1":{"id":{"scope":"myScope","code":"paymentInstruction1"},"status":"Staged"}} # Dict[str, PaymentInstructionStatusTransitionRequest]
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.transition_payment_instruction_statuses(request_body, property_keys=property_keys)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, PaymentInstructionStatusTransitionRequest]**](../model/PaymentInstructionStatusTransitionRequest.md)| A collection of requests to transition the status of Payment Instructions. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;PaymentInstruction\&quot; domain to decorate onto each              transitioned payment instruction. These take the format {domain}/{scope}/{code} e.g. \&quot;PaymentInstruction/myScope/myProperty\&quot;. | [optional] 
+
+### Return type
+
+[**TransitionPaymentInstructionsResponse**](../model/TransitionPaymentInstructionsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The successfully transitioned payment instructions at their new status, along with any failures |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

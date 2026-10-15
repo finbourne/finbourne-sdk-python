@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
+from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.transaction_price import TransactionPrice
 
 
@@ -43,7 +44,8 @@ class OverrideDefinitionRequest(BaseModel):
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="A list of unique transaction properties and associated values to store for the replacement transaction. Each property must be from the 'Transaction' domain.")
     counterparty_id:  Optional[StrictStr] = Field(default=None,alias="counterpartyId", description="The identifier for the counterparty of the replacement transaction.") 
     source:  Optional[StrictStr] = Field(default=None,alias="source", description="The source of the replacement transaction. This is used to look up the appropriate transaction group set in the transaction type configuration.") 
-    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "tradeDate", "settlementDate", "units", "tradePrice", "totalConsideration", "exchangeRate", "tradeCurrency", "properties", "counterpartyId", "source"]
+    custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "tradeDate", "settlementDate", "units", "tradePrice", "totalConsideration", "exchangeRate", "tradeCurrency", "properties", "counterpartyId", "source", "custodianAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,6 +94,9 @@ class OverrideDefinitionRequest(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of custodian_account_id
+        if self.custodian_account_id:
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if exchange_rate (nullable) is None
         # and model_fields_set contains the field
         if self.exchange_rate is None and "exchange_rate" in self.model_fields_set:
@@ -146,7 +151,8 @@ class OverrideDefinitionRequest(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "counterparty_id": obj.get("counterpartyId"),
-            "source": obj.get("source")
+            "source": obj.get("source"),
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None
         })
         return _obj
 
