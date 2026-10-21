@@ -127,6 +127,7 @@ class PropertyDomain(str, Enum):  # type: ignore[misc]
     JOURNALENTRY = 'JournalEntry'
     COLLATERALAGREEMENT = 'CollateralAgreement'
     ELIGIBLECOLLATERALSCHEDULE = 'EligibleCollateralSchedule'
+    RELATIONALDATASETDEFINITION = 'RelationalDatasetDefinition'
 
     @classmethod
     def from_json(cls, json_str: str) -> PropertyDomain:

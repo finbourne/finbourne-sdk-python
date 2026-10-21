@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_item**](WorkspaceApi.md#create_item) | **POST** /api/api/workspaces/{visibility}/{workspaceName}/items | [EXPERIMENTAL] CreateItem: Create a new item in a workspace.
-[**create_workspace**](WorkspaceApi.md#create_workspace) | **POST** /api/api/workspaces/{visibility} | [EXPERIMENTAL] CreateWorkspace: Create a new workspace.
-[**delete_item**](WorkspaceApi.md#delete_item) | **DELETE** /api/api/workspaces/{visibility}/{workspaceName}/items/{groupName}/{itemName} | [EXPERIMENTAL] DeleteItem: Delete an item from a workspace.
-[**delete_workspace**](WorkspaceApi.md#delete_workspace) | **DELETE** /api/api/workspaces/{visibility}/{workspaceName} | [EXPERIMENTAL] DeleteWorkspace: Delete a workspace.
-[**get_item**](WorkspaceApi.md#get_item) | **GET** /api/api/workspaces/{visibility}/{workspaceName}/items/{groupName}/{itemName} | [EXPERIMENTAL] GetItem: Get a single workspace item.
-[**get_workspace**](WorkspaceApi.md#get_workspace) | **GET** /api/api/workspaces/{visibility}/{workspaceName} | [EXPERIMENTAL] GetWorkspace: Get a workspace.
-[**list_items**](WorkspaceApi.md#list_items) | **GET** /api/api/workspaces/{visibility}/{workspaceName}/items | [EXPERIMENTAL] ListItems: List the items in a workspace.
-[**list_workspaces**](WorkspaceApi.md#list_workspaces) | **GET** /api/api/workspaces/{visibility} | [EXPERIMENTAL] ListWorkspaces: List workspaces.
-[**search_items**](WorkspaceApi.md#search_items) | **GET** /api/api/workspaces/{visibility}/items | [EXPERIMENTAL] SearchItems: List items across all workspaces.
-[**update_item**](WorkspaceApi.md#update_item) | **PUT** /api/api/workspaces/{visibility}/{workspaceName}/items/{groupName}/{itemName} | [EXPERIMENTAL] UpdateItem: Update an item in a workspace.
-[**update_workspace**](WorkspaceApi.md#update_workspace) | **PUT** /api/api/workspaces/{visibility}/{workspaceName} | [EXPERIMENTAL] UpdateWorkspace: Update a workspace.
+[**create_item**](WorkspaceApi.md#create_item) | **POST** /api/api/workspaces/{visibility}/{workspaceName}/items | CreateItem: Create a new item in a workspace.
+[**create_workspace**](WorkspaceApi.md#create_workspace) | **POST** /api/api/workspaces/{visibility} | CreateWorkspace: Create a new workspace.
+[**delete_item**](WorkspaceApi.md#delete_item) | **DELETE** /api/api/workspaces/{visibility}/{workspaceName}/items/{groupName}/{itemName} | DeleteItem: Delete an item from a workspace.
+[**delete_workspace**](WorkspaceApi.md#delete_workspace) | **DELETE** /api/api/workspaces/{visibility}/{workspaceName} | DeleteWorkspace: Delete a workspace.
+[**get_item**](WorkspaceApi.md#get_item) | **GET** /api/api/workspaces/{visibility}/{workspaceName}/items/{groupName}/{itemName} | GetItem: Get a single workspace item.
+[**get_workspace**](WorkspaceApi.md#get_workspace) | **GET** /api/api/workspaces/{visibility}/{workspaceName} | GetWorkspace: Get a workspace.
+[**list_items**](WorkspaceApi.md#list_items) | **GET** /api/api/workspaces/{visibility}/{workspaceName}/items | ListItems: List the items in a workspace.
+[**list_workspaces**](WorkspaceApi.md#list_workspaces) | **GET** /api/api/workspaces/{visibility} | ListWorkspaces: List workspaces.
+[**search_items**](WorkspaceApi.md#search_items) | **GET** /api/api/workspaces/{visibility}/items | SearchItems: List items across all workspaces.
+[**update_item**](WorkspaceApi.md#update_item) | **PUT** /api/api/workspaces/{visibility}/{workspaceName}/items/{groupName}/{itemName} | UpdateItem: Update an item in a workspace.
+[**update_workspace**](WorkspaceApi.md#update_workspace) | **PUT** /api/api/workspaces/{visibility}/{workspaceName} | UpdateWorkspace: Update a workspace.
 
 
 ### Example
@@ -45,7 +45,7 @@ api_instance = api_client_factory.build(WorkspaceApi)
 # **create_item**
 > WorkspaceItem createItem = create_item(visibility, workspace_name, workspace_item_creation_request=workspace_item_creation_request)
 
-[EXPERIMENTAL] CreateItem: Create a new item in a workspace.
+CreateItem: Create a new item in a workspace.
 
 Create a new item in a workspace.
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 # **create_workspace**
 > Workspace createWorkspace = create_workspace(visibility, workspace_creation_request, include_item_access=include_item_access)
 
-[EXPERIMENTAL] CreateWorkspace: Create a new workspace.
+CreateWorkspace: Create a new workspace.
 
 Create a new workspace.
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 # **delete_item**
 > DeletedEntityResponse deleteItem = delete_item(visibility, workspace_name, group_name, item_name)
 
-[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.
+DeleteItem: Delete an item from a workspace.
 
 Delete an item from a workspace.
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 # **delete_workspace**
 > DeletedEntityResponse deleteWorkspace = delete_workspace(visibility, workspace_name, recurse=recurse)
 
-[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.
+DeleteWorkspace: Delete a workspace.
 
 Delete a workspace.
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 # **get_item**
 > WorkspaceItem getItem = get_item(visibility, workspace_name, group_name, item_name, as_at=as_at)
 
-[EXPERIMENTAL] GetItem: Get a single workspace item.
+GetItem: Get a single workspace item.
 
 Get a single workspace item.
 
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 # **get_workspace**
 > Workspace getWorkspace = get_workspace(visibility, workspace_name, as_at=as_at, include_item_access=include_item_access)
 
-[EXPERIMENTAL] GetWorkspace: Get a workspace.
+GetWorkspace: Get a workspace.
 
 Get a workspace.
 
@@ -329,7 +329,7 @@ Name | Type | Description  | Notes
 # **list_items**
 > PagedResourceListOfWorkspaceItem listItems = list_items(visibility, workspace_name, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
 
-[EXPERIMENTAL] ListItems: List the items in a workspace.
+ListItems: List the items in a workspace.
 
 List the items in a workspace.
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 # **list_workspaces**
 > PagedResourceListOfWorkspace listWorkspaces = list_workspaces(visibility, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, include_item_access=include_item_access)
 
-[EXPERIMENTAL] ListWorkspaces: List workspaces.
+ListWorkspaces: List workspaces.
 
 List workspaces.
 
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 # **search_items**
 > PagedResourceListOfItemAndWorkspace searchItems = search_items(visibility, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
 
-[EXPERIMENTAL] SearchItems: List items across all workspaces.
+SearchItems: List items across all workspaces.
 
 List items across all workspaces.
 
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
 # **update_item**
 > WorkspaceItem updateItem = update_item(visibility, workspace_name, group_name, item_name, workspace_item_update_request=workspace_item_update_request)
 
-[EXPERIMENTAL] UpdateItem: Update an item in a workspace.
+UpdateItem: Update an item in a workspace.
 
 Update an item in a workspace.
 
@@ -539,7 +539,7 @@ Name | Type | Description  | Notes
 # **update_workspace**
 > Workspace updateWorkspace = update_workspace(visibility, workspace_name, workspace_update_request, include_item_access=include_item_access)
 
-[EXPERIMENTAL] UpdateWorkspace: Update a workspace.
+UpdateWorkspace: Update a workspace.
 
 Update a workspace.
 

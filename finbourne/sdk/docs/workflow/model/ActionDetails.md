@@ -9,6 +9,7 @@ Abstracts the kinds of Actions available
 * [CreateChildTasksAction](./CreateChildTasksAction.md)
 * [RunWorkerAction](./RunWorkerAction.md)
 * [TriggerChildTasksAction](./TriggerChildTasksAction.md)
+* [TriggerNextTaskAction](./TriggerNextTaskAction.md)
 * [TriggerParentTaskAction](./TriggerParentTaskAction.md)
 
 ## Usage
@@ -33,7 +34,8 @@ create_child_tasks_action_instance = workflow.models.create_child_tasks_action.C
                                         map_from = '', 
                                         set_to = null, )
                                     }, 
-                                map_stacking_key_from = '', )
+                                map_stacking_key_from = '', 
+                                display_name = ' Aa6w77ikCX*cKCmv|`K/V', )
                             ], )
 
 instance = ActionDetails(create_child_tasks_action_instance)
@@ -44,6 +46,7 @@ instance = ActionDetails(create_child_tasks_action_instance)
 - [CreateChildTasksAction](./CreateChildTasksAction.md)
 - [RunWorkerAction](./RunWorkerAction.md)
 - [TriggerChildTasksAction](./TriggerChildTasksAction.md)
+- [TriggerNextTaskAction](./TriggerNextTaskAction.md)
 - [TriggerParentTaskAction](./TriggerParentTaskAction.md)
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

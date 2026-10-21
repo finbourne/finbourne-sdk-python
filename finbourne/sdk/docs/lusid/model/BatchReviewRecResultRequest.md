@@ -6,7 +6,7 @@ One item of a batch review request: applies review content to its targeted rec r
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instance_id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
-| **rec_type** | **str** | Required | The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. |
+| **rec_type** | **str** | Required | The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. |
 | **run_number** | **int** | Required | The run of the instance whose results this item targets. |
 | **rec_result_ids** | **List[str]** | Required | The rec results targeted by this batch item. Exactly one, except FixAsGroup/ForceMatch which require two or more. |
 | **decision** | [RecResultDecisionUpdate](RecResultDecisionUpdate.md) | Optional | *No description available.* |
@@ -25,7 +25,7 @@ from finbourne.sdk.services.lusid.models.BatchReviewRecResultRequest import Batc
 
 instance = BatchReviewRecResultRequest(
     instance_id=RecInstanceId(...),  # required
-    rec_type="...",  # required — The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External.
+    rec_type="...",  # required — The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.
     run_number=0,  # required — The run of the instance whose results this item targets.
     rec_result_ids=,  # required — The rec results targeted by this batch item. Exactly one, except FixAsGroup/ForceMatch which require two or more.
     decision=RecResultDecisionUpdate(...),  # optional

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | **str** | Required | The currency used on the left side of the reconciliation. |
-| **right** | **str** | Required | The currency used on the right side of the reconciliation. |
+| **left** | **str** | Optional | The currency used on the left side of the reconciliation. Required when the left side has portfolio sources; must be null when it draws on relational data. |
+| **right** | **str** | Optional | The currency used on the right side of the reconciliation. Required when the right side has portfolio sources; must be null when it draws on relational data. |
 
 
 ## Usage
@@ -16,8 +16,8 @@
 from finbourne.sdk.services.lusid.models.RecDefCurrencies import RecDefCurrencies
 
 instance = RecDefCurrencies(
-    left="...",  # required — The currency used on the left side of the reconciliation.
-    right="..."  # required — The currency used on the right side of the reconciliation.
+    left="...",  # optional — The currency used on the left side of the reconciliation. Required when the left side has portfolio sources; must be null when it draws on relational data.
+    right="..."  # optional — The currency used on the right side of the reconciliation. Required when the right side has portfolio sources; must be null when it draws on relational data.
 )
 ```
 

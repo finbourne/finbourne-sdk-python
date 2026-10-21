@@ -9,6 +9,7 @@ Abstracts the kinds of Actions available in a read-only form
 * [CreateChildTasksActionResponse](./CreateChildTasksActionResponse.md)
 * [RunWorkerActionResponse](./RunWorkerActionResponse.md)
 * [TriggerChildTasksActionResponse](./TriggerChildTasksActionResponse.md)
+* [TriggerNextTaskActionResponse](./TriggerNextTaskActionResponse.md)
 * [TriggerParentTaskActionResponse](./TriggerParentTaskActionResponse.md)
 
 ## Usage
@@ -33,7 +34,8 @@ create_child_tasks_action_response_instance = workflow.models.create_child_tasks
                                         map_from = '', 
                                         set_to = null, )
                                     }, 
-                                map_stacking_key_from = '', )
+                                map_stacking_key_from = '', 
+                                display_name = ' Aa6w77ikCX*cKCmv|`K/V', )
                             ], )
 
 instance = ActionDetailsResponse(create_child_tasks_action_response_instance)
@@ -44,6 +46,7 @@ instance = ActionDetailsResponse(create_child_tasks_action_response_instance)
 - [CreateChildTasksActionResponse](./CreateChildTasksActionResponse.md)
 - [RunWorkerActionResponse](./RunWorkerActionResponse.md)
 - [TriggerChildTasksActionResponse](./TriggerChildTasksActionResponse.md)
+- [TriggerNextTaskActionResponse](./TriggerNextTaskActionResponse.md)
 - [TriggerParentTaskActionResponse](./TriggerParentTaskActionResponse.md)
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

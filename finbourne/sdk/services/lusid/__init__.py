@@ -30,6 +30,7 @@ from finbourne.sdk.services.lusid.api.blocks_api import BlocksApi
 from finbourne.sdk.services.lusid.api.calendars_api import CalendarsApi
 from finbourne.sdk.services.lusid.api.chart_of_accounts_api import ChartOfAccountsApi
 from finbourne.sdk.services.lusid.api.check_definitions_api import CheckDefinitionsApi
+from finbourne.sdk.services.lusid.api.collateral_api import CollateralApi
 from finbourne.sdk.services.lusid.api.collateral_agreements_api import CollateralAgreementsApi
 from finbourne.sdk.services.lusid.api.complex_market_data_api import ComplexMarketDataApi
 from finbourne.sdk.services.lusid.api.compliance_api import ComplianceApi
@@ -127,6 +128,7 @@ from finbourne.sdk.services.lusid.models.abor_properties import AborProperties
 from finbourne.sdk.services.lusid.models.abor_request import AborRequest
 from finbourne.sdk.services.lusid.models.abstain_election import AbstainElection
 from finbourne.sdk.services.lusid.models.accept_estimate_valuation_point_response import AcceptEstimateValuationPointResponse
+from finbourne.sdk.services.lusid.models.accept_margin_call_request import AcceptMarginCallRequest
 from finbourne.sdk.services.lusid.models.access_controlled_action import AccessControlledAction
 from finbourne.sdk.services.lusid.models.access_controlled_resource import AccessControlledResource
 from finbourne.sdk.services.lusid.models.access_metadata_operation import AccessMetadataOperation
@@ -265,6 +267,8 @@ from finbourne.sdk.services.lusid.models.bankruptcy_event import BankruptcyEvent
 from finbourne.sdk.services.lusid.models.barrier import Barrier
 from finbourne.sdk.services.lusid.models.basket import Basket
 from finbourne.sdk.services.lusid.models.basket_identifier import BasketIdentifier
+from finbourne.sdk.services.lusid.models.batch_accept_margin_calls_request import BatchAcceptMarginCallsRequest
+from finbourne.sdk.services.lusid.models.batch_accept_margin_calls_response import BatchAcceptMarginCallsResponse
 from finbourne.sdk.services.lusid.models.batch_adjust_holdings_response import BatchAdjustHoldingsResponse
 from finbourne.sdk.services.lusid.models.batch_amend_custom_data_model_membership_response import BatchAmendCustomDataModelMembershipResponse
 from finbourne.sdk.services.lusid.models.batch_amend_transaction_settlement_instruction_response import BatchAmendTransactionSettlementInstructionResponse
@@ -634,6 +638,7 @@ from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedE
 from finbourne.sdk.services.lusid.models.delisting_event import DelistingEvent
 from finbourne.sdk.services.lusid.models.dependency_source_filter import DependencySourceFilter
 from finbourne.sdk.services.lusid.models.deposit_close_event import DepositCloseEvent
+from finbourne.sdk.services.lusid.models.deposit_interest_capitalisation_event import DepositInterestCapitalisationEvent
 from finbourne.sdk.services.lusid.models.deposit_interest_payment_event import DepositInterestPaymentEvent
 from finbourne.sdk.services.lusid.models.deposit_roll_event import DepositRollEvent
 from finbourne.sdk.services.lusid.models.deposit_sweep_event import DepositSweepEvent
@@ -649,6 +654,7 @@ from finbourne.sdk.services.lusid.models.direction_spreads import DirectionSprea
 from finbourne.sdk.services.lusid.models.discount_factor_curve_data import DiscountFactorCurveData
 from finbourne.sdk.services.lusid.models.discounting_dependency import DiscountingDependency
 from finbourne.sdk.services.lusid.models.discounting_method import DiscountingMethod
+from finbourne.sdk.services.lusid.models.dispute_margin_call_request import DisputeMarginCallRequest
 from finbourne.sdk.services.lusid.models.dividend_option_event import DividendOptionEvent
 from finbourne.sdk.services.lusid.models.dividend_reinvestment_event import DividendReinvestmentEvent
 from finbourne.sdk.services.lusid.models.dividend_suspension_event import DividendSuspensionEvent
@@ -706,6 +712,7 @@ from finbourne.sdk.services.lusid.models.exotic_instrument import ExoticInstrume
 from finbourne.sdk.services.lusid.models.expanded_group import ExpandedGroup
 from finbourne.sdk.services.lusid.models.expiry_event import ExpiryEvent
 from finbourne.sdk.services.lusid.models.external_fee_component_filter import ExternalFeeComponentFilter
+from finbourne.sdk.services.lusid.models.external_rec_definition_details import ExternalRecDefinitionDetails
 from finbourne.sdk.services.lusid.models.external_rec_type import ExternalRecType
 from finbourne.sdk.services.lusid.models.facility import Facility
 from finbourne.sdk.services.lusid.models.facility_commitment_fee_event import FacilityCommitmentFeeEvent
@@ -945,6 +952,7 @@ from finbourne.sdk.services.lusid.models.instrument_event_configuration import I
 from finbourne.sdk.services.lusid.models.instrument_event_entity import InstrumentEventEntity
 from finbourne.sdk.services.lusid.models.instrument_event_holder import InstrumentEventHolder
 from finbourne.sdk.services.lusid.models.instrument_event_instruction import InstrumentEventInstruction
+from finbourne.sdk.services.lusid.models.instrument_event_instruction_entity import InstrumentEventInstructionEntity
 from finbourne.sdk.services.lusid.models.instrument_event_instruction_request import InstrumentEventInstructionRequest
 from finbourne.sdk.services.lusid.models.instrument_event_instructions_response import InstrumentEventInstructionsResponse
 from finbourne.sdk.services.lusid.models.instrument_event_type import InstrumentEventType
@@ -1022,9 +1030,18 @@ from finbourne.sdk.services.lusid.models.management_fee_totals import Management
 from finbourne.sdk.services.lusid.models.mapped_string import MappedString
 from finbourne.sdk.services.lusid.models.mapping import Mapping
 from finbourne.sdk.services.lusid.models.mapping_rule import MappingRule
+from finbourne.sdk.services.lusid.models.margin_accounts import MarginAccounts
 from finbourne.sdk.services.lusid.models.margin_calculation import MarginCalculation
+from finbourne.sdk.services.lusid.models.margin_call import MarginCall
+from finbourne.sdk.services.lusid.models.margin_call_key import MarginCallKey
+from finbourne.sdk.services.lusid.models.margin_call_reference import MarginCallReference
 from finbourne.sdk.services.lusid.models.margin_item import MarginItem
+from finbourne.sdk.services.lusid.models.margin_line import MarginLine
 from finbourne.sdk.services.lusid.models.margin_rounding import MarginRounding
+from finbourne.sdk.services.lusid.models.margin_run import MarginRun
+from finbourne.sdk.services.lusid.models.margin_run_issue import MarginRunIssue
+from finbourne.sdk.services.lusid.models.margin_run_request import MarginRunRequest
+from finbourne.sdk.services.lusid.models.margin_run_shard import MarginRunShard
 from finbourne.sdk.services.lusid.models.margin_settlement_lag import MarginSettlementLag
 from finbourne.sdk.services.lusid.models.mark_to_market_conventions import MarkToMarketConventions
 from finbourne.sdk.services.lusid.models.market_context import MarketContext
@@ -1199,6 +1216,9 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_instrument_event
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_instrument_event_instruction import PagedResourceListOfInstrumentEventInstruction
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_item_and_workspace import PagedResourceListOfItemAndWorkspace
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_legal_entity import PagedResourceListOfLegalEntity
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_margin_call import PagedResourceListOfMarginCall
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_margin_line import PagedResourceListOfMarginLine
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_margin_run import PagedResourceListOfMarginRun
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_matching_ruleset import PagedResourceListOfMatchingRuleset
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_order import PagedResourceListOfOrder
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_order_breach_history import PagedResourceListOfOrderBreachHistory
@@ -1303,9 +1323,11 @@ from finbourne.sdk.services.lusid.models.placement_request import PlacementReque
 from finbourne.sdk.services.lusid.models.placement_set_request import PlacementSetRequest
 from finbourne.sdk.services.lusid.models.placement_update_request import PlacementUpdateRequest
 from finbourne.sdk.services.lusid.models.pnl_journal_entry_line import PnlJournalEntryLine
+from finbourne.sdk.services.lusid.models.populate_result_property import PopulateResultProperty
 from finbourne.sdk.services.lusid.models.portfolio import Portfolio
 from finbourne.sdk.services.lusid.models.portfolio_cash_flow import PortfolioCashFlow
 from finbourne.sdk.services.lusid.models.portfolio_cash_ladder import PortfolioCashLadder
+from finbourne.sdk.services.lusid.models.portfolio_contents_rec_definition_details import PortfolioContentsRecDefinitionDetails
 from finbourne.sdk.services.lusid.models.portfolio_details import PortfolioDetails
 from finbourne.sdk.services.lusid.models.portfolio_entity import PortfolioEntity
 from finbourne.sdk.services.lusid.models.portfolio_entity_id import PortfolioEntityId
@@ -1445,6 +1467,7 @@ from finbourne.sdk.services.lusid.models.rec_def_ruleset import RecDefRuleset
 from finbourne.sdk.services.lusid.models.rec_def_side_names import RecDefSideNames
 from finbourne.sdk.services.lusid.models.rec_def_source import RecDefSource
 from finbourne.sdk.services.lusid.models.rec_definition import RecDefinition
+from finbourne.sdk.services.lusid.models.rec_definition_details import RecDefinitionDetails
 from finbourne.sdk.services.lusid.models.rec_exception_count_by_closure_type import RecExceptionCountByClosureType
 from finbourne.sdk.services.lusid.models.rec_exception_count_by_result_type import RecExceptionCountByResultType
 from finbourne.sdk.services.lusid.models.rec_execution import RecExecution
@@ -1470,6 +1493,7 @@ from finbourne.sdk.services.lusid.models.rec_result_holding_item import RecResul
 from finbourne.sdk.services.lusid.models.rec_result_item import RecResultItem
 from finbourne.sdk.services.lusid.models.rec_result_item_details import RecResultItemDetails
 from finbourne.sdk.services.lusid.models.rec_result_link_key import RecResultLinkKey
+from finbourne.sdk.services.lusid.models.rec_result_relational_data_item import RecResultRelationalDataItem
 from finbourne.sdk.services.lusid.models.rec_result_review import RecResultReview
 from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
 from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
@@ -1507,6 +1531,7 @@ from finbourne.sdk.services.lusid.models.reconciliation_rule import Reconciliati
 from finbourne.sdk.services.lusid.models.reconciliation_rule_type import ReconciliationRuleType
 from finbourne.sdk.services.lusid.models.reconciliation_side_configuration import ReconciliationSideConfiguration
 from finbourne.sdk.services.lusid.models.reconciliation_transactions import ReconciliationTransactions
+from finbourne.sdk.services.lusid.models.record_counterparty_demand_request import RecordCounterpartyDemandRequest
 from finbourne.sdk.services.lusid.models.recycling_terms import RecyclingTerms
 from finbourne.sdk.services.lusid.models.reference_data import ReferenceData
 from finbourne.sdk.services.lusid.models.reference_instrument import ReferenceInstrument
@@ -1541,6 +1566,7 @@ from finbourne.sdk.services.lusid.models.reset_event import ResetEvent
 from finbourne.sdk.services.lusid.models.reset_schedule import ResetSchedule
 from finbourne.sdk.services.lusid.models.resolve_tenors_request import ResolveTenorsRequest
 from finbourne.sdk.services.lusid.models.resolve_tenors_response import ResolveTenorsResponse
+from finbourne.sdk.services.lusid.models.resolve_withholding_tax_request import ResolveWithholdingTaxRequest
 from finbourne.sdk.services.lusid.models.resolved_custodian_account import ResolvedCustodianAccount
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
@@ -2057,10 +2083,18 @@ from finbourne.sdk.services.lusid.models.weighted_instrument_in_line_lookup_iden
 from finbourne.sdk.services.lusid.models.weighted_instruments import WeightedInstruments
 from finbourne.sdk.services.lusid.models.whole_loan_facility import WholeLoanFacility
 from finbourne.sdk.services.lusid.models.wht_parameters import WhtParameters
+from finbourne.sdk.services.lusid.models.withholding_tax_alternative_match import WithholdingTaxAlternativeMatch
 from finbourne.sdk.services.lusid.models.withholding_tax_configuration import WithholdingTaxConfiguration
 from finbourne.sdk.services.lusid.models.withholding_tax_dataset import WithholdingTaxDataset
 from finbourne.sdk.services.lusid.models.withholding_tax_dataset_definitions import WithholdingTaxDatasetDefinitions
+from finbourne.sdk.services.lusid.models.withholding_tax_matched_rule import WithholdingTaxMatchedRule
 from finbourne.sdk.services.lusid.models.withholding_tax_rate_response import WithholdingTaxRateResponse
+from finbourne.sdk.services.lusid.models.withholding_tax_rate_split import WithholdingTaxRateSplit
+from finbourne.sdk.services.lusid.models.withholding_tax_rate_tiers import WithholdingTaxRateTiers
+from finbourne.sdk.services.lusid.models.withholding_tax_relief_at_source_flags import WithholdingTaxReliefAtSourceFlags
+from finbourne.sdk.services.lusid.models.withholding_tax_resolution import WithholdingTaxResolution
+from finbourne.sdk.services.lusid.models.withholding_tax_resolution_provenance import WithholdingTaxResolutionProvenance
+from finbourne.sdk.services.lusid.models.withholding_tax_unresolved_dimension import WithholdingTaxUnresolvedDimension
 from finbourne.sdk.services.lusid.models.withholding_tax_value_source import WithholdingTaxValueSource
 from finbourne.sdk.services.lusid.models.workspace import Workspace
 from finbourne.sdk.services.lusid.models.workspace_creation_request import WorkspaceCreationRequest
@@ -2095,6 +2129,7 @@ __all__ = [
     "CalendarsApi",
     "ChartOfAccountsApi",
     "CheckDefinitionsApi",
+    "CollateralApi",
     "CollateralAgreementsApi",
     "ComplexMarketDataApi",
     "ComplianceApi",
@@ -2190,6 +2225,7 @@ __all__ = [
     "AborRequest",
     "AbstainElection",
     "AcceptEstimateValuationPointResponse",
+    "AcceptMarginCallRequest",
     "AccessControlledAction",
     "AccessControlledResource",
     "AccessMetadataOperation",
@@ -2328,6 +2364,8 @@ __all__ = [
     "Barrier",
     "Basket",
     "BasketIdentifier",
+    "BatchAcceptMarginCallsRequest",
+    "BatchAcceptMarginCallsResponse",
     "BatchAdjustHoldingsResponse",
     "BatchAmendCustomDataModelMembershipResponse",
     "BatchAmendTransactionSettlementInstructionResponse",
@@ -2697,6 +2735,7 @@ __all__ = [
     "DelistingEvent",
     "DependencySourceFilter",
     "DepositCloseEvent",
+    "DepositInterestCapitalisationEvent",
     "DepositInterestPaymentEvent",
     "DepositRollEvent",
     "DepositSweepEvent",
@@ -2712,6 +2751,7 @@ __all__ = [
     "DiscountFactorCurveData",
     "DiscountingDependency",
     "DiscountingMethod",
+    "DisputeMarginCallRequest",
     "DividendOptionEvent",
     "DividendReinvestmentEvent",
     "DividendSuspensionEvent",
@@ -2769,6 +2809,7 @@ __all__ = [
     "ExpandedGroup",
     "ExpiryEvent",
     "ExternalFeeComponentFilter",
+    "ExternalRecDefinitionDetails",
     "ExternalRecType",
     "Facility",
     "FacilityCommitmentFeeEvent",
@@ -3008,6 +3049,7 @@ __all__ = [
     "InstrumentEventEntity",
     "InstrumentEventHolder",
     "InstrumentEventInstruction",
+    "InstrumentEventInstructionEntity",
     "InstrumentEventInstructionRequest",
     "InstrumentEventInstructionsResponse",
     "InstrumentEventType",
@@ -3085,9 +3127,18 @@ __all__ = [
     "MappedString",
     "Mapping",
     "MappingRule",
+    "MarginAccounts",
     "MarginCalculation",
+    "MarginCall",
+    "MarginCallKey",
+    "MarginCallReference",
     "MarginItem",
+    "MarginLine",
     "MarginRounding",
+    "MarginRun",
+    "MarginRunIssue",
+    "MarginRunRequest",
+    "MarginRunShard",
     "MarginSettlementLag",
     "MarkToMarketConventions",
     "MarketContext",
@@ -3262,6 +3313,9 @@ __all__ = [
     "PagedResourceListOfInstrumentEventInstruction",
     "PagedResourceListOfItemAndWorkspace",
     "PagedResourceListOfLegalEntity",
+    "PagedResourceListOfMarginCall",
+    "PagedResourceListOfMarginLine",
+    "PagedResourceListOfMarginRun",
     "PagedResourceListOfMatchingRuleset",
     "PagedResourceListOfOrder",
     "PagedResourceListOfOrderBreachHistory",
@@ -3366,9 +3420,11 @@ __all__ = [
     "PlacementSetRequest",
     "PlacementUpdateRequest",
     "PnlJournalEntryLine",
+    "PopulateResultProperty",
     "Portfolio",
     "PortfolioCashFlow",
     "PortfolioCashLadder",
+    "PortfolioContentsRecDefinitionDetails",
     "PortfolioDetails",
     "PortfolioEntity",
     "PortfolioEntityId",
@@ -3508,6 +3564,7 @@ __all__ = [
     "RecDefSideNames",
     "RecDefSource",
     "RecDefinition",
+    "RecDefinitionDetails",
     "RecExceptionCountByClosureType",
     "RecExceptionCountByResultType",
     "RecExecution",
@@ -3533,6 +3590,7 @@ __all__ = [
     "RecResultItem",
     "RecResultItemDetails",
     "RecResultLinkKey",
+    "RecResultRelationalDataItem",
     "RecResultReview",
     "RecResultSet",
     "RecResultSetApprovalDecisionRequest",
@@ -3570,6 +3628,7 @@ __all__ = [
     "ReconciliationRuleType",
     "ReconciliationSideConfiguration",
     "ReconciliationTransactions",
+    "RecordCounterpartyDemandRequest",
     "RecyclingTerms",
     "ReferenceData",
     "ReferenceInstrument",
@@ -3604,6 +3663,7 @@ __all__ = [
     "ResetSchedule",
     "ResolveTenorsRequest",
     "ResolveTenorsResponse",
+    "ResolveWithholdingTaxRequest",
     "ResolvedCustodianAccount",
     "ResourceId",
     "ResourceListOfAccessControlledResource",
@@ -4120,10 +4180,18 @@ __all__ = [
     "WeightedInstruments",
     "WholeLoanFacility",
     "WhtParameters",
+    "WithholdingTaxAlternativeMatch",
     "WithholdingTaxConfiguration",
     "WithholdingTaxDataset",
     "WithholdingTaxDatasetDefinitions",
+    "WithholdingTaxMatchedRule",
     "WithholdingTaxRateResponse",
+    "WithholdingTaxRateSplit",
+    "WithholdingTaxRateTiers",
+    "WithholdingTaxReliefAtSourceFlags",
+    "WithholdingTaxResolution",
+    "WithholdingTaxResolutionProvenance",
+    "WithholdingTaxUnresolvedDimension",
     "WithholdingTaxValueSource",
     "Workspace",
     "WorkspaceCreationRequest",

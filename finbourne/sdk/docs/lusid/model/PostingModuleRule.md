@@ -8,6 +8,8 @@ A Posting rule
 | **rule_id** | **str** | Required | The identifier for the Posting Rule. |
 | **general_ledger_account_code** | **str** | Required | The general ledger account to post the Activity credit or debit to. |
 | **rule_filter** | **str** | Required | The filter syntax for the Posting Rule. See https://support.lusid.com/docs/assigning-economic-activity-to-general-ledger-accounts-using-posting-rules for more information on filter syntax. |
+| **effective_from** | **datetime** | Optional | The inclusive accounting date from which the Posting Rule applies. If not set, the rule applies from the beginning of time. |
+| **effective_until** | **datetime** | Optional | The exclusive accounting date until which the Posting Rule applies. If not set, the rule applies until the end of time. |
 
 
 ## Usage
@@ -20,7 +22,9 @@ from finbourne.sdk.services.lusid.models.PostingModuleRule import PostingModuleR
 instance = PostingModuleRule(
     rule_id="...",  # required — The identifier for the Posting Rule.
     general_ledger_account_code="...",  # required — The general ledger account to post the Activity credit or debit to.
-    rule_filter="..."  # required — The filter syntax for the Posting Rule. See https://support.lusid.com/docs/assigning-economic-activity-to-general-ledger-accounts-using-posting-rules for more information on filter syntax.
+    rule_filter="...",  # required — The filter syntax for the Posting Rule. See https://support.lusid.com/docs/assigning-economic-activity-to-general-ledger-accounts-using-posting-rules for more information on filter syntax.
+    effective_from=datetime.now(),  # optional — The inclusive accounting date from which the Posting Rule applies. If not set, the rule applies from the beginning of time.
+    effective_until=datetime.now()  # optional — The exclusive accounting date until which the Posting Rule applies. If not set, the rule applies until the end of time.
 )
 ```
 

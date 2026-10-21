@@ -158,6 +158,10 @@ from finbourne.sdk.services.workflow.models.time_of_day import TimeOfDay
 from finbourne.sdk.services.workflow.models.transition_trigger_definition import TransitionTriggerDefinition
 from finbourne.sdk.services.workflow.models.trigger_child_tasks_action import TriggerChildTasksAction
 from finbourne.sdk.services.workflow.models.trigger_child_tasks_action_response import TriggerChildTasksActionResponse
+from finbourne.sdk.services.workflow.models.trigger_next_task_action import TriggerNextTaskAction
+from finbourne.sdk.services.workflow.models.trigger_next_task_action_response import TriggerNextTaskActionResponse
+from finbourne.sdk.services.workflow.models.trigger_next_task_fallback_actions import TriggerNextTaskFallbackActions
+from finbourne.sdk.services.workflow.models.trigger_next_task_fallback_actions_response import TriggerNextTaskFallbackActionsResponse
 from finbourne.sdk.services.workflow.models.trigger_parent_task_action import TriggerParentTaskAction
 from finbourne.sdk.services.workflow.models.trigger_parent_task_action_response import TriggerParentTaskActionResponse
 from finbourne.sdk.services.workflow.models.trigger_schema import TriggerSchema
@@ -333,6 +337,10 @@ __all__ = [
     "TransitionTriggerDefinition",
     "TriggerChildTasksAction",
     "TriggerChildTasksActionResponse",
+    "TriggerNextTaskAction",
+    "TriggerNextTaskActionResponse",
+    "TriggerNextTaskFallbackActions",
+    "TriggerNextTaskFallbackActionsResponse",
     "TriggerParentTaskAction",
     "TriggerParentTaskActionResponse",
     "TriggerSchema",

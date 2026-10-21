@@ -19,6 +19,8 @@
 | **tax_lot_id** | **str** | Optional | The identifier of the tax lot with which this gain or loss is associated. |
 | **realised_amortisation** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **trade_date_to_settlement_date_realised_currency** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **transaction_type** | **str** | Optional | The transaction type resolved for the allocation slice that realised this record, which can differ from the output transaction&#39;s type when a slice resolves against the opposite side of the book (for example a Buy whose slice covers a short). |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding key properties of the holding this record was realised against, identifying the allocation slice it belongs to. |
 
 
 ## Usage
@@ -43,7 +45,9 @@ instance = RealisedGainLoss(
     realised_currency=CurrencyAndAmount(...),  # optional
     tax_lot_id="...",  # optional — The identifier of the tax lot with which this gain or loss is associated.
     realised_amortisation=CurrencyAndAmount(...),  # optional
-    trade_date_to_settlement_date_realised_currency=CurrencyAndAmount(...)  # optional
+    trade_date_to_settlement_date_realised_currency=CurrencyAndAmount(...),  # optional
+    transaction_type="...",  # optional — The transaction type resolved for the allocation slice that realised this record, which can differ from the output transaction&#39;s type when a slice resolves against the opposite side of the book (for example a Buy whose slice covers a short).
+    properties=PerpetualProperty(...)  # optional — The sub-holding key properties of the holding this record was realised against, identifying the allocation slice it belongs to.
 )
 ```
 
@@ -55,6 +59,7 @@ instance = RealisedGainLoss(
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
+- [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

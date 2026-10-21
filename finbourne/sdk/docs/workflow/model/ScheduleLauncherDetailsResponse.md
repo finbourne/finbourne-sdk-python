@@ -7,7 +7,7 @@ A Schedule Launcher, which starts a run of its Workflow at the times a recurrenc
 |------|------|----------|-------------|
 | **launcher_type** | **str** | Optional | *No description available.* |
 | **schedule** | [LauncherSchedule](LauncherSchedule.md) | Optional | *No description available.* |
-| **calendar_contexts** | [List[CalendarContext]](CalendarContext.md) | Optional | The named time zones and holiday calendars this Launcher works in.              Only a Schedule Launcher works in a calendar context |
+| **calendar_contexts** | [List[CalendarContext]](CalendarContext.md) | Optional | The named time zones and holiday calendars this Launcher works in |
 | **map_task_fields** | [Dict[str, ScheduleTaskFieldMapping]](ScheduleTaskFieldMapping.md) | Optional | Fields of the root task filled from the instant the schedule fired, keyed by the field name on the root task definition |
 | **run_as_user_id** | [LauncherMapping](LauncherMapping.md) | Optional | *No description available.* |
 | **set_task_fields** | **Dict[str, Optional[object]]** | Optional | Fields of the root task set to a fixed value, keyed by the field name on the root task definition |
@@ -25,7 +25,7 @@ from finbourne.sdk.services.workflow.models.ScheduleLauncherDetailsResponse impo
 instance = ScheduleLauncherDetailsResponse(
     launcher_type="...",  # optional
     schedule=LauncherSchedule(...),  # optional
-    calendar_contexts=[],  # optional — The named time zones and holiday calendars this Launcher works in.              Only a Schedule Launcher works in a calendar context
+    calendar_contexts=[],  # optional — The named time zones and holiday calendars this Launcher works in
     map_task_fields=ScheduleTaskFieldMapping(...),  # optional — Fields of the root task filled from the instant the schedule fired, keyed by the field name on the root task definition
     run_as_user_id=LauncherMapping(...),  # optional
     set_task_fields=,  # optional — Fields of the root task set to a fixed value, keyed by the field name on the root task definition

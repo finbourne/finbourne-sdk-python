@@ -11,6 +11,7 @@ Child Task Configuration
 | **initial_trigger** | **str** | Optional | The Initial Trigger for automatic start |
 | **child_task_fields** | [Dict[str, FieldMapping]](FieldMapping.md) | Required | Field Mappings |
 | **map_stacking_key_from** | **str** | Optional | The field to be mapped as the ChildTasks Stacking Key |
+| **display_name** | **str** | Optional | An optional display name, to tell apart child task configurations that use the same Task Definition |
 
 
 ## Usage
@@ -26,7 +27,8 @@ instance = ResultantChildTaskConfiguration(
     task_definition_as_at=datetime.now(),  # optional — TaskDefinition AsAt timestamp
     initial_trigger="...",  # optional — The Initial Trigger for automatic start
     child_task_fields=FieldMapping(...),  # required — Field Mappings
-    map_stacking_key_from="..."  # optional — The field to be mapped as the ChildTasks Stacking Key
+    map_stacking_key_from="...",  # optional — The field to be mapped as the ChildTasks Stacking Key
+    display_name="..."  # optional — An optional display name, to tell apart child task configurations that use the same Task Definition
 )
 ```
 

@@ -26,6 +26,7 @@ from finbourne.sdk.services.lusid.models.core_matching_rule import CoreMatchingR
 from finbourne.sdk.services.lusid.models.external_rec_type import ExternalRecType
 from finbourne.sdk.services.lusid.models.group_reconciliation_filters import GroupReconciliationFilters
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.populate_result_property import PopulateResultProperty
 from finbourne.sdk.services.lusid.models.rec_dataset_schemas import RecDatasetSchemas
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.supplemental_attribute import SupplementalAttribute
@@ -40,7 +41,7 @@ class MatchingRuleset(BaseModel):
     """
     id: ResourceId
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the matching ruleset.") 
-    rec_type:  StrictStr = Field(...,alias="recType", description="The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External.") 
+    rec_type:  StrictStr = Field(...,alias="recType", description="The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.") 
     external_rec_type: Optional[ExternalRecType] = Field(default=None, alias="externalRecType")
     dataset_schemas: RecDatasetSchemas = Field(alias="datasetSchemas")
     filters: Optional[GroupReconciliationFilters] = None
@@ -51,10 +52,11 @@ class MatchingRuleset(BaseModel):
     allow_partial_matching: Optional[StrictBool] = Field(default=None, description="Whether to permit partial matches when applying rules. Optional, defaults to true if a value is not provided.", alias="allowPartialMatching")
     supplemental_attributes: Optional[List[SupplementalAttribute]] = Field(default=None, description="Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself.", alias="supplementalAttributes")
     writeback_configurations: Optional[List[WritebackConfiguration]] = Field(default=None, description="The writeback suggestions generated against this ruleset's results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty.", alias="writebackConfigurations")
+    populate_result_properties: Optional[List[PopulateResultProperty]] = Field(default=None, description="The RecResult properties to populate on this ruleset's results, each from a formula over the result. Optional, and may be empty; at most 20.", alias="populateResultProperties")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "displayName", "recType", "externalRecType", "datasetSchemas", "filters", "coreRules", "aggregateRules", "coreTolerances", "aggregateTolerances", "allowPartialMatching", "supplementalAttributes", "writebackConfigurations", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "recType", "externalRecType", "datasetSchemas", "filters", "coreRules", "aggregateRules", "coreTolerances", "aggregateTolerances", "allowPartialMatching", "supplementalAttributes", "writebackConfigurations", "populateResultProperties", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -144,6 +146,13 @@ class MatchingRuleset(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['writebackConfigurations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in populate_result_properties (list)
+        _items = []
+        if self.populate_result_properties:
+            for _item in self.populate_result_properties:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['populateResultProperties'] = _items
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
@@ -173,6 +182,11 @@ class MatchingRuleset(BaseModel):
         # and model_fields_set contains the field
         if self.writeback_configurations is None and "writeback_configurations" in self.model_fields_set:
             _dict['writebackConfigurations'] = None
+
+        # set to None if populate_result_properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.populate_result_properties is None and "populate_result_properties" in self.model_fields_set:
+            _dict['populateResultProperties'] = None
 
         # set to None if href (nullable) is None
         # and model_fields_set contains the field
@@ -209,6 +223,7 @@ class MatchingRuleset(BaseModel):
             "allow_partial_matching": obj.get("allowPartialMatching"),
             "supplemental_attributes": [SupplementalAttribute.from_dict(_item) for _item in _v] if (_v := obj.get("supplementalAttributes")) is not None else None,
             "writeback_configurations": [WritebackConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("writebackConfigurations")) is not None else None,
+            "populate_result_properties": [PopulateResultProperty.from_dict(_item) for _item in _v] if (_v := obj.get("populateResultProperties")) is not None else None,
             "href": obj.get("href"),
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None

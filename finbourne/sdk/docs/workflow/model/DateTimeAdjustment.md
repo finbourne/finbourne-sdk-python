@@ -5,7 +5,7 @@ A change applied to the date and the time of a source value, in a named calendar
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **calendar_context** | **str** | Optional | The name of the calendar context this change happens in, which must be one the Launcher declares. When it is left out a Schedule Launcher uses the context of its schedule |
+| **calendar_context** | **str** | Optional | The name of the calendar context this change happens in, which must be one the Launcher declares. It is required on an Event Launcher. When it is left out a Schedule Launcher uses the context of its schedule |
 | **date_adjustment** | [DateAdjustment](DateAdjustment.md) | Optional | *No description available.* |
 | **time_adjustment** | [TimeAdjustment](TimeAdjustment.md) | Optional | *No description available.* |
 
@@ -18,7 +18,7 @@ A change applied to the date and the time of a source value, in a named calendar
 from finbourne.sdk.services.workflow.models.DateTimeAdjustment import DateTimeAdjustment
 
 instance = DateTimeAdjustment(
-    calendar_context="...",  # optional — The name of the calendar context this change happens in, which must be one the Launcher declares. When it is left out a Schedule Launcher uses the context of its schedule
+    calendar_context="...",  # optional — The name of the calendar context this change happens in, which must be one the Launcher declares. It is required on an Event Launcher. When it is left out a Schedule Launcher uses the context of its schedule
     date_adjustment=DateAdjustment(...),  # optional
     time_adjustment=TimeAdjustment(...)  # optional
 )

@@ -44,7 +44,8 @@ class RecResult(BaseModel):
     id:  StrictStr = Field(...,alias="id", description="The id of the result within its run: its result type and result number, e.g. 'break-3'. Unique within one run of one rec type of an instance; the same id in another run of the instance names the same result, for as long as it keeps its result type.") 
     result_number: StrictInt = Field(description="The result's number within its result type. Kept across runs while the result keeps its type; never reused once assigned.", alias="resultNumber")
     first_run_seen: StrictInt = Field(description="The run in which the result was first assigned its id.", alias="firstRunSeen")
-    rec_type:  StrictStr = Field(...,alias="recType", description="The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External.") 
+    rec_type:  StrictStr = Field(...,alias="recType", description="The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.") 
+    external_rec_type_name:  Optional[StrictStr] = Field(default=None,alias="externalRecTypeName", description="The client's name for an External rec type, as stamped from the matching ruleset's externalRecType when the run executed. Null for native rec types. Filterable.") 
     instance_id: RecInstanceId = Field(alias="instanceId")
     rec_definition_id: ResourceId = Field(alias="recDefinitionId")
     run_number: StrictInt = Field(description="The run number within the instance. Increments with each re-run.", alias="runNumber")
@@ -67,7 +68,7 @@ class RecResult(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "resultNumber", "firstRunSeen", "recType", "instanceId", "recDefinitionId", "runNumber", "runAsAt", "datesReconciled", "resultType", "resultCardinality", "resultLifeCycle", "exception", "review", "coreRules", "aggregateRules", "supplementalAttributes", "items", "linkedResults", "comments", "properties", "assignedUser", "assignedRole", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "resultNumber", "firstRunSeen", "recType", "externalRecTypeName", "instanceId", "recDefinitionId", "runNumber", "runAsAt", "datesReconciled", "resultType", "resultCardinality", "resultLifeCycle", "exception", "review", "coreRules", "aggregateRules", "supplementalAttributes", "items", "linkedResults", "comments", "properties", "assignedUser", "assignedRole", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -173,6 +174,11 @@ class RecResult(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
+        # set to None if external_rec_type_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.external_rec_type_name is None and "external_rec_type_name" in self.model_fields_set:
+            _dict['externalRecTypeName'] = None
+
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -214,6 +220,7 @@ class RecResult(BaseModel):
             "result_number": obj.get("resultNumber"),
             "first_run_seen": obj.get("firstRunSeen"),
             "rec_type": obj.get("recType"),
+            "external_rec_type_name": obj.get("externalRecTypeName"),
             "instance_id": RecInstanceId.from_dict(_v) if (_v := obj.get("instanceId")) is not None else None,
             "rec_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("recDefinitionId")) is not None else None,
             "run_number": obj.get("runNumber"),

@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
+from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 
 
 class RealisedGainLoss(BaseModel):
@@ -43,7 +44,9 @@ class RealisedGainLoss(BaseModel):
     tax_lot_id:  Optional[StrictStr] = Field(default=None,alias="taxLotId", description="The identifier of the tax lot with which this gain or loss is associated.") 
     realised_amortisation: Optional[CurrencyAndAmount] = Field(default=None, alias="realisedAmortisation")
     trade_date_to_settlement_date_realised_currency: Optional[CurrencyAndAmount] = Field(default=None, alias="tradeDateToSettlementDateRealisedCurrency")
-    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "units", "purchaseTradeDate", "purchaseSettlementDate", "purchasePrice", "costTradeCcy", "costPortfolioCcy", "realisedTradeCcy", "realisedTotal", "realisedMarket", "realisedCurrency", "taxLotId", "realisedAmortisation", "tradeDateToSettlementDateRealisedCurrency"]
+    transaction_type:  Optional[StrictStr] = Field(default=None,alias="transactionType", description="The transaction type resolved for the allocation slice that realised this record, which can differ from the output transaction's type when a slice resolves against the opposite side of the book (for example a Buy whose slice covers a short).") 
+    properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The sub-holding key properties of the holding this record was realised against, identifying the allocation slice it belongs to.")
+    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "units", "purchaseTradeDate", "purchaseSettlementDate", "purchasePrice", "costTradeCcy", "costPortfolioCcy", "realisedTradeCcy", "realisedTotal", "realisedMarket", "realisedCurrency", "taxLotId", "realisedAmortisation", "tradeDateToSettlementDateRealisedCurrency", "transactionType", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,6 +108,13 @@ class RealisedGainLoss(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of trade_date_to_settlement_date_realised_currency
         if self.trade_date_to_settlement_date_realised_currency:
             _dict['tradeDateToSettlementDateRealisedCurrency'] = self.trade_date_to_settlement_date_realised_currency.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        _field_dict = {}
+        if self.properties:
+            for _key in self.properties:
+                if self.properties[_key]:
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
+            _dict['properties'] = _field_dict
         # set to None if instrument_scope (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_scope is None and "instrument_scope" in self.model_fields_set:
@@ -129,6 +139,16 @@ class RealisedGainLoss(BaseModel):
         # and model_fields_set contains the field
         if self.tax_lot_id is None and "tax_lot_id" in self.model_fields_set:
             _dict['taxLotId'] = None
+
+        # set to None if transaction_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_type is None and "transaction_type" in self.model_fields_set:
+            _dict['transactionType'] = None
+
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
 
         return _dict
 
@@ -156,7 +176,14 @@ class RealisedGainLoss(BaseModel):
             "realised_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedCurrency")) is not None else None,
             "tax_lot_id": obj.get("taxLotId"),
             "realised_amortisation": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedAmortisation")) is not None else None,
-            "trade_date_to_settlement_date_realised_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("tradeDateToSettlementDateRealisedCurrency")) is not None else None
+            "trade_date_to_settlement_date_realised_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("tradeDateToSettlementDateRealisedCurrency")) is not None else None,
+            "transaction_type": obj.get("transactionType"),
+            "properties": dict(
+                (_k, PerpetualProperty.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("properties")) is not None
+            else None
         })
         return _obj
 

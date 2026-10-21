@@ -7,13 +7,8 @@
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the rec definition. |
 | **description** | **str** | Optional | A description of the rec definition. |
-| **definition_type** | **str** | Required | What this definition reconciles, naming the kind of dataset that must be present on at least one side. Only PortfolioContents is currently supported. Available values: PortfolioContents, LusidEntity, RelationalData. |
 | **side_names** | [RecDefSideNames](RecDefSideNames.md) | Optional | *No description available.* |
-| **left_portfolio_sources** | [List[RecDefSource]](RecDefSource.md) | Optional | The portfolios, portfolio groups and funds contributing to the left side. Empty when the left side draws on relational data instead, which requires every ruleset to declare relational data for that side. Both sides cannot be empty. |
-| **right_portfolio_sources** | [List[RecDefSource]](RecDefSource.md) | Optional | The portfolios, portfolio groups and funds contributing to the right side. Empty when the right side draws on relational data instead, which requires every ruleset to declare relational data for that side. Both sides cannot be empty. |
-| **valuation_recipes** | [RecDefRecipeIds](RecDefRecipeIds.md) | Optional | *No description available.* |
-| **currencies** | [RecDefCurrencies](RecDefCurrencies.md) | Optional | *No description available.* |
-| **rulesets** | [List[RecDefRuleset]](RecDefRuleset.md) | Required | The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once. |
+| **details** | [RecDefinitionDetails](RecDefinitionDetails.md) | Required | *No description available.* |
 | **review_configuration** | [RecReviewConfiguration](RecReviewConfiguration.md) | Optional | *No description available.* |
 | **date_policy** | [RecDatePolicy](RecDatePolicy.md) | Optional | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecDefinition domain. On update, a property with a null value is deleted and omitted properties are left unchanged. Filterable and sortable. |
@@ -30,13 +25,8 @@ instance = CreateRecDefinitionRequest(
     id=ResourceId(...),  # required
     display_name="...",  # required — The name of the rec definition.
     description="...",  # optional — A description of the rec definition.
-    definition_type="...",  # required — What this definition reconciles, naming the kind of dataset that must be present on at least one side. Only PortfolioContents is currently supported. Available values: PortfolioContents, LusidEntity, RelationalData.
     side_names=RecDefSideNames(...),  # optional
-    left_portfolio_sources=[],  # optional — The portfolios, portfolio groups and funds contributing to the left side. Empty when the left side draws on relational data instead, which requires every ruleset to declare relational data for that side. Both sides cannot be empty.
-    right_portfolio_sources=[],  # optional — The portfolios, portfolio groups and funds contributing to the right side. Empty when the right side draws on relational data instead, which requires every ruleset to declare relational data for that side. Both sides cannot be empty.
-    valuation_recipes=RecDefRecipeIds(...),  # optional
-    currencies=RecDefCurrencies(...),  # optional
-    rulesets=[],  # required — The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.
+    details=RecDefinitionDetails(...),  # required
     review_configuration=RecReviewConfiguration(...),  # optional
     date_policy=RecDatePolicy(...),  # optional
     properties=PerpetualProperty(...)  # optional — Properties in the RecDefinition domain. On update, a property with a null value is deleted and omitted properties are left unchanged. Filterable and sortable.
@@ -48,11 +38,7 @@ instance = CreateRecDefinitionRequest(
 
 - [ResourceId](ResourceId.md)
 - [RecDefSideNames](RecDefSideNames.md)
-- [RecDefSource](RecDefSource.md) — used in `left_portfolio_sources`
-- [RecDefSource](RecDefSource.md) — used in `right_portfolio_sources`
-- [RecDefRecipeIds](RecDefRecipeIds.md)
-- [RecDefCurrencies](RecDefCurrencies.md)
-- [RecDefRuleset](RecDefRuleset.md) — used in `rulesets`
+- [RecDefinitionDetails](RecDefinitionDetails.md)
 - [RecReviewConfiguration](RecReviewConfiguration.md)
 - [RecDatePolicy](RecDatePolicy.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`

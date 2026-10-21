@@ -7,6 +7,7 @@ A Launcher that starts a run of its Workflow when a matching platform event arri
 |------|------|----------|-------------|
 | **launcher_type** | **str** | Required | *No description available.* |
 | **event_matching_pattern** | [LauncherEventMatchingPattern](LauncherEventMatchingPattern.md) | Required | *No description available.* |
+| **calendar_contexts** | [List[CalendarContext]](CalendarContext.md) | Optional | The named time zones and holiday calendars the date time adjustments of this Launcher work in.              Required when any mapped field has a dateTimeAdjustment |
 | **map_task_fields** | [Dict[str, EventTaskFieldMapping]](EventTaskFieldMapping.md) | Optional | Fields of the root task filled from the event, keyed by the field name on the root task definition |
 | **map_correlation_ids** | [List[CorrelationIdMapping]](CorrelationIdMapping.md) | Optional | Correlation IDs of the root task filled from the event |
 | **run_as_user_id** | [LauncherMapping](LauncherMapping.md) | Required | *No description available.* |
@@ -25,6 +26,7 @@ from finbourne.sdk.services.workflow.models.EventLauncherDetails import EventLau
 instance = EventLauncherDetails(
     launcher_type="...",  # required
     event_matching_pattern=LauncherEventMatchingPattern(...),  # required
+    calendar_contexts=[],  # optional — The named time zones and holiday calendars the date time adjustments of this Launcher work in.              Required when any mapped field has a dateTimeAdjustment
     map_task_fields=EventTaskFieldMapping(...),  # optional — Fields of the root task filled from the event, keyed by the field name on the root task definition
     map_correlation_ids=[],  # optional — Correlation IDs of the root task filled from the event
     run_as_user_id=LauncherMapping(...),  # required
@@ -35,6 +37,7 @@ instance = EventLauncherDetails(
 ```
 
 - [LauncherEventMatchingPattern](LauncherEventMatchingPattern.md)
+- [CalendarContext](CalendarContext.md) — used in `calendar_contexts`
 - [EventTaskFieldMapping](EventTaskFieldMapping.md) — used in `map_task_fields`
 - [CorrelationIdMapping](CorrelationIdMapping.md) — used in `map_correlation_ids`
 - [LauncherMapping](LauncherMapping.md)

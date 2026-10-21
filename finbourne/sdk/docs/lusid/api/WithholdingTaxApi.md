@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**list_withholding_tax_configurations**](WithholdingTaxApi.md#list_withholding_tax_configurations) | **GET** /api/api/withholdingtax/configurations | [EARLY ACCESS] ListWithholdingTaxConfigurations: List Withholding Tax Configurations.
 [**list_withholding_tax_dataset_definitions**](WithholdingTaxApi.md#list_withholding_tax_dataset_definitions) | **GET** /api/api/withholdingtax/datasetdefinitions | [EARLY ACCESS] ListWithholdingTaxDatasetDefinitions: List Withholding Tax dataset definitions.
 [**patch_withholding_tax_dataset_definition**](WithholdingTaxApi.md#patch_withholding_tax_dataset_definition) | **PATCH** /api/api/withholdingtax/datasetdefinitions/{scope}/{code} | [EARLY ACCESS] PatchWithholdingTaxDatasetDefinition: Patch a Withholding Tax dataset definition.
+[**resolve_withholding_tax**](WithholdingTaxApi.md#resolve_withholding_tax) | **POST** /api/api/withholdingtax/$resolve | [EARLY ACCESS] ResolveWithholdingTax: Resolve the Withholding Tax rate that booking would apply.
 [**upsert_withholding_tax_configuration**](WithholdingTaxApi.md#upsert_withholding_tax_configuration) | **POST** /api/api/withholdingtax/configurations/{scope}/{code} | [EARLY ACCESS] UpsertWithholdingTaxConfiguration: Upsert a Withholding Tax Configuration.
 
 
@@ -43,7 +44,7 @@ api_instance = api_client_factory.build(WithholdingTaxApi)
 ---
 
 # **batch_delete_withholding_tax_rates**
-> BatchDeleteRelationalDataResponse batchDeleteWithholdingTaxRates = batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+> BatchDeleteRelationalDataResponse batchDeleteWithholdingTaxRates = batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode, rule_source=rule_source)
 
 [EARLY ACCESS] BatchDeleteWithholdingTaxRates: Batch delete Withholding Tax rate rows from a rate dataset.
 
@@ -57,7 +58,8 @@ scope = 'scope_example' # str
 code = 'code_example' # str
 request_body = {"gb-treaty-us":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"US"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00"}} # Dict[str, DeleteWithholdingTaxRateRequest]
 success_mode = 'Atomic' # str (optional)
-api_response = api_instance.batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+rule_source = 'rule_source_example' # str (optional)
+api_response = api_instance.batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode, rule_source=rule_source)
 pprint(api_response)
 ```
 
@@ -69,6 +71,7 @@ Name | Type | Description  | Notes
  **code** | **str**| The Code of the rate dataset&#39;s relational dataset definition. | [required] 
  **request_body** | [**Dict[str, DeleteWithholdingTaxRateRequest]**](../model/DeleteWithholdingTaxRateRequest.md)| The rate rows to delete, keyed by a correlation id echoed back in the response. | [required] 
  **success_mode** | **str**| Atomic or Partial; defaults to Atomic. In Partial mode failures are returned              in the response body with a 200 status. | [optional] [default to &#39;Atomic&#39;]
+ **rule_source** | **str**| The source of the rows to delete, since it is part of each row&#39;s identity. Omit it              to delete rows that apply at every source; a source&#39;s rows are only deleted when it is given. A row may not              carry ruleSource in its own series identifiers. | [optional] 
 
 ### Return type
 
@@ -91,11 +94,11 @@ Name | Type | Description  | Notes
 ---
 
 # **batch_upsert_withholding_tax_rates**
-> BatchUpsertWithholdingTaxRatesResponse batchUpsertWithholdingTaxRates = batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+> BatchUpsertWithholdingTaxRatesResponse batchUpsertWithholdingTaxRates = batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode, rule_source=rule_source)
 
 [EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.
 
-Row identity is the matching dimensions plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same dimensions.
+Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls.
 
 ### Example
 
@@ -105,7 +108,8 @@ scope = 'scope_example' # str
 code = 'code_example' # str
 request_body = {"gb-treaty-us":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"US"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.3,"treatyRate":0.15,"treatyRAS":true}},"gb-treaty-fr":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"FR"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.25,"treatyRate":0.15,"treatyRAS":false}}} # Dict[str, UpsertWithholdingTaxRateRequest]
 success_mode = 'Atomic' # str (optional)
-api_response = api_instance.batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode)
+rule_source = 'rule_source_example' # str (optional)
+api_response = api_instance.batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode, rule_source=rule_source)
 pprint(api_response)
 ```
 
@@ -117,6 +121,7 @@ Name | Type | Description  | Notes
  **code** | **str**| The Code of the rate dataset&#39;s relational dataset definition. | [required] 
  **request_body** | [**Dict[str, UpsertWithholdingTaxRateRequest]**](../model/UpsertWithholdingTaxRateRequest.md)| The rate rows to upsert, keyed by a correlation id echoed back in the response. | [required] 
  **success_mode** | **str**| Atomic or Partial; defaults to Atomic, because a partly loaded feed silently              under-withholds. In Partial mode failures are returned in the response body with a 200 status. | [optional] [default to &#39;Atomic&#39;]
+ **rule_source** | **str**| The source every row in the batch is attributed to, compared against the              configuration&#39;s source priority. Omit it for rows that apply at every source. A row may not carry ruleSource              in its own series identifiers. | [optional] 
 
 ### Return type
 
@@ -437,7 +442,7 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to list the dataset definitions. Defaults to returning the latest version of each definition if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing dataset definitions; this value is returned              from the previous call. If a pagination token is provided, the filter and asAt fields must not have changed              since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
- **filter** | **str**| Expression to filter the results. For example, to filter on the scope, specify              \&quot;scope eq &#39;WithholdingTax&#39;\&quot;, and to filter on the code, specify \&quot;code eq &#39;wht-main-rates&#39;\&quot;. For more              information about filtering results, see              https://support.lusid.com/docs/filtering-information-retrieved-from-lusid. | [optional] 
+ **filter** | **str**| Expression to filter the results. For example, to filter on the scope, specify              \&quot;scope eq &#39;WithholdingTax&#39;\&quot;, to filter on the code, specify \&quot;code eq &#39;wht-main-rates&#39;\&quot;, and to filter on the              dataset type, specify \&quot;datasetType eq &#39;Anomaly&#39;\&quot;. For more information about filtering results, see              https://support.lusid.com/docs/filtering-information-retrieved-from-lusid. | [optional] 
  **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
 
 ### Return type
@@ -499,6 +504,54 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The amended Withholding Tax dataset. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **resolve_withholding_tax**
+> WithholdingTaxResolution resolveWithholdingTax = resolve_withholding_tax(resolve_withholding_tax_request, effective_at=effective_at, as_at=as_at, limit=limit)
+
+[EARLY ACCESS] ResolveWithholdingTax: Resolve the Withholding Tax rate that booking would apply.
+
+A read-only lookup that runs the same resolution as booking, without a transaction: it works down the source  priority and, at each source, checks the anomaly dataset before the main dataset. Nothing is booked, and only  rates are returned. Supply a Withholding Tax Configuration to predict what booking will post; replace its  datasets or source priority to ask what would resolve instead. Supply the dimension values directly, or name an  instrument so that the configuration's value sources read them from it, as booking reads a transaction's instrument.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WithholdingTaxApi)
+resolve_withholding_tax_request = ResolveWithholdingTaxRequest()
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+limit = 100 # int (optional)
+api_response = api_instance.resolve_withholding_tax(resolve_withholding_tax_request, effective_at=effective_at, as_at=as_at, limit=limit)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resolve_withholding_tax_request** | [**ResolveWithholdingTaxRequest**](../model/ResolveWithholdingTaxRequest.md)| The tax identity, the dimension values or the instrument, and the configuration or datasets to resolve against. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to resolve, in place of the transaction&#39;s trade              date. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the configuration and the rates. Defaults to the latest version              if not specified. | [optional] 
+ **limit** | **int**| The most combinations of values that couldAlsoMatch tries, fewest values first. | [optional] [default to 100]
+
+### Return type
+
+[**WithholdingTaxResolution**](../model/WithholdingTaxResolution.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Withholding Tax rate that booking would apply. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **right** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **left** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **right** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -16,8 +16,8 @@
 from finbourne.sdk.services.lusid.models.RecDefRecipeIds import RecDefRecipeIds
 
 instance = RecDefRecipeIds(
-    left=ResourceId(...),  # required
-    right=ResourceId(...)  # required
+    left=ResourceId(...),  # optional
+    right=ResourceId(...)  # optional
 )
 ```
 

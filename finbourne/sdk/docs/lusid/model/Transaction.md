@@ -34,7 +34,7 @@ A list of transactions.
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
-| **entity_links** | [List[TransactionEntityLink]](TransactionEntityLink.md) | Optional | Links to the entities related to this transaction. |
+| **entity_links** | [List[TransactionEntityLink]](TransactionEntityLink.md) | Optional | Links to the entities that manage this transaction. |
 
 
 ## Usage
@@ -74,7 +74,7 @@ instance = Transaction(
     version=Version(...),  # optional
     staged_modifications=StagedModificationsInfo(...),  # optional
     custodian_entries=[],  # optional — A list of Custodian Entries associated with the transaction.
-    entity_links=[]  # optional — Links to the entities related to this transaction.
+    entity_links=[]  # optional — Links to the entities that manage this transaction.
 )
 ```
 

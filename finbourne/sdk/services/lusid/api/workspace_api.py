@@ -59,7 +59,7 @@ class WorkspaceApi:
 
     @validate_call
     def create_item(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> WorkspaceItem:
-        """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
+        """CreateItem: Create a new item in a workspace.  # noqa: E501
 
         Create a new item in a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -83,7 +83,7 @@ class WorkspaceApi:
 
     @validate_call
     def create_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
-        """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
+        """CreateItem: Create a new item in a workspace.  # noqa: E501
 
         Create a new item in a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -202,7 +202,7 @@ class WorkspaceApi:
 
     @validate_call
     def create_workspace(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
-        """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
+        """CreateWorkspace: Create a new workspace.  # noqa: E501
 
         Create a new workspace.  # noqa: E501
         :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
@@ -226,7 +226,7 @@ class WorkspaceApi:
 
     @validate_call
     def create_workspace_with_http_info(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
-        """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
+        """CreateWorkspace: Create a new workspace.  # noqa: E501
 
         Create a new workspace.  # noqa: E501
         :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
@@ -345,7 +345,7 @@ class WorkspaceApi:
 
     @validate_call
     def delete_item(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
+        """DeleteItem: Delete an item from a workspace.  # noqa: E501
 
         Delete an item from a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -371,7 +371,7 @@ class WorkspaceApi:
 
     @validate_call
     def delete_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
+        """DeleteItem: Delete an item from a workspace.  # noqa: E501
 
         Delete an item from a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -489,7 +489,7 @@ class WorkspaceApi:
 
     @validate_call
     def delete_workspace(self, visibility: StrictStr, workspace_name: StrictStr, recurse: Optional[bool] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
+        """DeleteWorkspace: Delete a workspace.  # noqa: E501
 
         Delete a workspace.  # noqa: E501
         :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -513,7 +513,7 @@ class WorkspaceApi:
 
     @validate_call
     def delete_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, recurse: Optional[bool] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
+        """DeleteWorkspace: Delete a workspace.  # noqa: E501
 
         Delete a workspace.  # noqa: E501
         :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -625,7 +625,7 @@ class WorkspaceApi:
 
     @validate_call
     def get_item(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> WorkspaceItem:
-        """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
+        """GetItem: Get a single workspace item.  # noqa: E501
 
         Get a single workspace item.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -653,7 +653,7 @@ class WorkspaceApi:
 
     @validate_call
     def get_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
-        """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
+        """GetItem: Get a single workspace item.  # noqa: E501
 
         Get a single workspace item.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -780,7 +780,7 @@ class WorkspaceApi:
 
     @validate_call
     def get_workspace(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
-        """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
+        """GetWorkspace: Get a workspace.  # noqa: E501
 
         Get a workspace.  # noqa: E501
         :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -806,7 +806,7 @@ class WorkspaceApi:
 
     @validate_call
     def get_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
-        """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
+        """GetWorkspace: Get a workspace.  # noqa: E501
 
         Get a workspace.  # noqa: E501
         :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -927,7 +927,7 @@ class WorkspaceApi:
 
     @validate_call
     def list_items(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfWorkspaceItem:
-        """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
+        """ListItems: List the items in a workspace.  # noqa: E501
 
         List the items in a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -959,7 +959,7 @@ class WorkspaceApi:
 
     @validate_call
     def list_items_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspaceItem]:
-        """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
+        """ListItems: List the items in a workspace.  # noqa: E501
 
         List the items in a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -1099,7 +1099,7 @@ class WorkspaceApi:
 
     @validate_call
     def list_workspaces(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> PagedResourceListOfWorkspace:
-        """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
+        """ListWorkspaces: List workspaces.  # noqa: E501
 
         List workspaces.  # noqa: E501
         :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
@@ -1131,7 +1131,7 @@ class WorkspaceApi:
 
     @validate_call
     def list_workspaces_with_http_info(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
-        """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
+        """ListWorkspaces: List workspaces.  # noqa: E501
 
         List workspaces.  # noqa: E501
         :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
@@ -1271,7 +1271,7 @@ class WorkspaceApi:
 
     @validate_call
     def search_items(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfItemAndWorkspace:
-        """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
+        """SearchItems: List items across all workspaces.  # noqa: E501
 
         List items across all workspaces.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -1301,7 +1301,7 @@ class WorkspaceApi:
 
     @validate_call
     def search_items_with_http_info(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfItemAndWorkspace]:
-        """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
+        """SearchItems: List items across all workspaces.  # noqa: E501
 
         List items across all workspaces.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -1435,7 +1435,7 @@ class WorkspaceApi:
 
     @validate_call
     def update_item(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, workspace_item_update_request: Optional[WorkspaceItemUpdateRequest] = None, **kwargs) -> WorkspaceItem:
-        """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
+        """UpdateItem: Update an item in a workspace.  # noqa: E501
 
         Update an item in a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -1463,7 +1463,7 @@ class WorkspaceApi:
 
     @validate_call
     def update_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, workspace_item_update_request: Optional[WorkspaceItemUpdateRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
-        """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
+        """UpdateItem: Update an item in a workspace.  # noqa: E501
 
         Update an item in a workspace.  # noqa: E501
         :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -1594,7 +1594,7 @@ class WorkspaceApi:
 
     @validate_call
     def update_workspace(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
-        """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
+        """UpdateWorkspace: Update a workspace.  # noqa: E501
 
         Update a workspace.  # noqa: E501
         :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -1620,7 +1620,7 @@ class WorkspaceApi:
 
     @validate_call
     def update_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
-        """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
+        """UpdateWorkspace: Update a workspace.  # noqa: E501
 
         Update a workspace.  # noqa: E501
         :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -1749,7 +1749,7 @@ class WorkspaceApi:
 
     @validate_call
     async def create_item_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> WorkspaceItem:
-            """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
+            """CreateItem: Create a new item in a workspace.  # noqa: E501
             Create a new item in a workspace.  # noqa: E501
             
             :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -1773,7 +1773,7 @@ class WorkspaceApi:
 
     @validate_call
     async def create_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
-            """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
+            """CreateItem: Create a new item in a workspace.  # noqa: E501
 
             Create a new item in a workspace.  # noqa: E501
 
@@ -1893,7 +1893,7 @@ class WorkspaceApi:
 
     @validate_call
     async def create_workspace_async(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
-            """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
+            """CreateWorkspace: Create a new workspace.  # noqa: E501
             Create a new workspace.  # noqa: E501
             
             :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
@@ -1917,7 +1917,7 @@ class WorkspaceApi:
 
     @validate_call
     async def create_workspace_with_http_info_async(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
-            """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
+            """CreateWorkspace: Create a new workspace.  # noqa: E501
 
             Create a new workspace.  # noqa: E501
 
@@ -2037,7 +2037,7 @@ class WorkspaceApi:
 
     @validate_call
     async def delete_item_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
+            """DeleteItem: Delete an item from a workspace.  # noqa: E501
             Delete an item from a workspace.  # noqa: E501
             
             :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -2063,7 +2063,7 @@ class WorkspaceApi:
 
     @validate_call
     async def delete_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
+            """DeleteItem: Delete an item from a workspace.  # noqa: E501
 
             Delete an item from a workspace.  # noqa: E501
 
@@ -2182,7 +2182,7 @@ class WorkspaceApi:
 
     @validate_call
     async def delete_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, recurse: Optional[bool] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
+            """DeleteWorkspace: Delete a workspace.  # noqa: E501
             Delete a workspace.  # noqa: E501
             
             :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -2206,7 +2206,7 @@ class WorkspaceApi:
 
     @validate_call
     async def delete_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, recurse: Optional[bool] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
+            """DeleteWorkspace: Delete a workspace.  # noqa: E501
 
             Delete a workspace.  # noqa: E501
 
@@ -2319,7 +2319,7 @@ class WorkspaceApi:
 
     @validate_call
     async def get_item_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> WorkspaceItem:
-            """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
+            """GetItem: Get a single workspace item.  # noqa: E501
             Get a single workspace item.  # noqa: E501
             
             :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -2347,7 +2347,7 @@ class WorkspaceApi:
 
     @validate_call
     async def get_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
-            """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
+            """GetItem: Get a single workspace item.  # noqa: E501
 
             Get a single workspace item.  # noqa: E501
 
@@ -2475,7 +2475,7 @@ class WorkspaceApi:
 
     @validate_call
     async def get_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
-            """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
+            """GetWorkspace: Get a workspace.  # noqa: E501
             Get a workspace.  # noqa: E501
             
             :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -2501,7 +2501,7 @@ class WorkspaceApi:
 
     @validate_call
     async def get_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
-            """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
+            """GetWorkspace: Get a workspace.  # noqa: E501
 
             Get a workspace.  # noqa: E501
 
@@ -2623,7 +2623,7 @@ class WorkspaceApi:
 
     @validate_call
     async def list_items_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfWorkspaceItem:
-            """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
+            """ListItems: List the items in a workspace.  # noqa: E501
             List the items in a workspace.  # noqa: E501
             
             :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -2655,7 +2655,7 @@ class WorkspaceApi:
 
     @validate_call
     async def list_items_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspaceItem]:
-            """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
+            """ListItems: List the items in a workspace.  # noqa: E501
 
             List the items in a workspace.  # noqa: E501
 
@@ -2796,7 +2796,7 @@ class WorkspaceApi:
 
     @validate_call
     async def list_workspaces_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> PagedResourceListOfWorkspace:
-            """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
+            """ListWorkspaces: List workspaces.  # noqa: E501
             List workspaces.  # noqa: E501
             
             :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
@@ -2828,7 +2828,7 @@ class WorkspaceApi:
 
     @validate_call
     async def list_workspaces_with_http_info_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
-            """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
+            """ListWorkspaces: List workspaces.  # noqa: E501
 
             List workspaces.  # noqa: E501
 
@@ -2969,7 +2969,7 @@ class WorkspaceApi:
 
     @validate_call
     async def search_items_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfItemAndWorkspace:
-            """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
+            """SearchItems: List items across all workspaces.  # noqa: E501
             List items across all workspaces.  # noqa: E501
             
             :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -2999,7 +2999,7 @@ class WorkspaceApi:
 
     @validate_call
     async def search_items_with_http_info_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfItemAndWorkspace]:
-            """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
+            """SearchItems: List items across all workspaces.  # noqa: E501
 
             List items across all workspaces.  # noqa: E501
 
@@ -3134,7 +3134,7 @@ class WorkspaceApi:
 
     @validate_call
     async def update_item_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, workspace_item_update_request: Optional[WorkspaceItemUpdateRequest] = None, **kwargs) -> WorkspaceItem:
-            """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
+            """UpdateItem: Update an item in a workspace.  # noqa: E501
             Update an item in a workspace.  # noqa: E501
             
             :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
@@ -3162,7 +3162,7 @@ class WorkspaceApi:
 
     @validate_call
     async def update_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, workspace_item_update_request: Optional[WorkspaceItemUpdateRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
-            """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
+            """UpdateItem: Update an item in a workspace.  # noqa: E501
 
             Update an item in a workspace.  # noqa: E501
 
@@ -3294,7 +3294,7 @@ class WorkspaceApi:
 
     @validate_call
     async def update_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
-            """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
+            """UpdateWorkspace: Update a workspace.  # noqa: E501
             Update a workspace.  # noqa: E501
             
             :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
@@ -3320,7 +3320,7 @@ class WorkspaceApi:
 
     @validate_call
     async def update_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
-            """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
+            """UpdateWorkspace: Update a workspace.  # noqa: E501
 
             Update a workspace.  # noqa: E501
 

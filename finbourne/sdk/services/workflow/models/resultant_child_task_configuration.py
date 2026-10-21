@@ -36,7 +36,8 @@ class ResultantChildTaskConfiguration(BaseModel):
     initial_trigger:  Optional[StrictStr] = Field(default=None,alias="initialTrigger", description="The Initial Trigger for automatic start") 
     child_task_fields: Dict[str, FieldMapping] = Field(description="Field Mappings", alias="childTaskFields")
     map_stacking_key_from:  Optional[StrictStr] = Field(default=None,alias="mapStackingKeyFrom", description="The field to be mapped as the ChildTasks Stacking Key") 
-    __properties: ClassVar[List[str]] = ["resultMatchingPattern", "taskDefinitionId", "taskDefinitionAsAt", "initialTrigger", "childTaskFields", "mapStackingKeyFrom"]
+    display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="An optional display name, to tell apart child task configurations that use the same Task Definition") 
+    __properties: ClassVar[List[str]] = ["resultMatchingPattern", "taskDefinitionId", "taskDefinitionAsAt", "initialTrigger", "childTaskFields", "mapStackingKeyFrom", "displayName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,6 +101,11 @@ class ResultantChildTaskConfiguration(BaseModel):
         if self.map_stacking_key_from is None and "map_stacking_key_from" in self.model_fields_set:
             _dict['mapStackingKeyFrom'] = None
 
+        # set to None if display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.display_name is None and "display_name" in self.model_fields_set:
+            _dict['displayName'] = None
+
         return _dict
 
     @classmethod
@@ -122,7 +128,8 @@ class ResultantChildTaskConfiguration(BaseModel):
             )
             if (_val := obj.get("childTaskFields")) is not None
             else None,
-            "map_stacking_key_from": obj.get("mapStackingKeyFrom")
+            "map_stacking_key_from": obj.get("mapStackingKeyFrom"),
+            "display_name": obj.get("displayName")
         })
         return _obj
 

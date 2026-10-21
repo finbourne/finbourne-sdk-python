@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**get_provider_template_for_export**](SqlDesignApi.md#get_provider_template_for_export) | **GET** /honeycomb/api/Sql/providertemplateforexport | GetProviderTemplateForExport: Makes a fields template for file importing via a writer
 [**put_case_statement_design_sql_to_design**](SqlDesignApi.md#put_case_statement_design_sql_to_design) | **PUT** /honeycomb/api/Sql/tocasestatementdesign | PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object
 [**put_case_statement_design_to_sql**](SqlDesignApi.md#put_case_statement_design_to_sql) | **PUT** /honeycomb/api/Sql/fromcasestatementdesign | PutCaseStatementDesignToSql: Convert a case statement design object to SQL
+[**put_custom_queries_to_extract_scalar_parameters**](SqlDesignApi.md#put_custom_queries_to_extract_scalar_parameters) | **PUT** /honeycomb/api/Sql/extractscalarparameters/custom | PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
 [**put_file_read_design_to_sql**](SqlDesignApi.md#put_file_read_design_to_sql) | **PUT** /honeycomb/api/Sql/fromfilereaddesign | PutFileReadDesignToSql: Make file read SQL from a design object
 [**put_inlined_properties_design_sql_to_design**](SqlDesignApi.md#put_inlined_properties_design_sql_to_design) | **PUT** /honeycomb/api/Sql/toinlinedpropertiesdesign | PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL
 [**put_inlined_properties_design_to_sql**](SqlDesignApi.md#put_inlined_properties_design_to_sql) | **PUT** /honeycomb/api/Sql/frominlinedpropertiesdesign | PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object
@@ -164,6 +165,48 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_custom_queries_to_extract_scalar_parameters**
+> List[ScalarParameter] putCustomQueriesToExtractScalarParameters = put_custom_queries_to_extract_scalar_parameters(custom_multi_query_request)
+
+PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
+
+ Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+custom_multi_query_request = CustomMultiQueryRequest()
+api_response = api_instance.put_custom_queries_to_extract_scalar_parameters(custom_multi_query_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **custom_multi_query_request** | [**CustomMultiQueryRequest**](../model/CustomMultiQueryRequest.md)| The same set of queries as would be given to start them via &#x60;api/MultiQueryBackground/custom&#x60; | [required] 
+
+### Return type
+
+[**List[ScalarParameter]**](../model/ScalarParameter.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details

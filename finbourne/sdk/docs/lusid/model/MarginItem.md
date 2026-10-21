@@ -13,6 +13,7 @@ One margin arrangement under an agreement, either variation or initial.
 | **they_post** | [PartyTerms](PartyTerms.md) | Required | *No description available.* |
 | **eligible_collateral** | [EligibleCollateralReferences](EligibleCollateralReferences.md) | Optional | *No description available.* |
 | **calculation** | [MarginCalculation](MarginCalculation.md) | Required | *No description available.* |
+| **margin_accounts** | [MarginAccounts](MarginAccounts.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = MarginItem(
     we_post=PartyTerms(...),  # required
     they_post=PartyTerms(...),  # required
     eligible_collateral=EligibleCollateralReferences(...),  # optional
-    calculation=MarginCalculation(...)  # required
+    calculation=MarginCalculation(...),  # required
+    margin_accounts=MarginAccounts(...)  # optional
 )
 ```
 
@@ -38,6 +40,7 @@ instance = MarginItem(
 - [PartyTerms](PartyTerms.md)
 - [EligibleCollateralReferences](EligibleCollateralReferences.md)
 - [MarginCalculation](MarginCalculation.md)
+- [MarginAccounts](MarginAccounts.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

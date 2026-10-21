@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the matching ruleset. |
-| **rec_type** | **str** | Required | The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External. |
+| **rec_type** | **str** | Required | The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. |
 | **external_rec_type** | [ExternalRecType](ExternalRecType.md) | Optional | *No description available.* |
 | **dataset_schemas** | [RecDatasetSchemas](RecDatasetSchemas.md) | Required | *No description available.* |
 | **filters** | [GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
@@ -17,6 +17,7 @@
 | **allow_partial_matching** | **bool** | Optional | Whether to permit partial matches when applying rules. Optional, defaults to true if a value is not provided. |
 | **supplemental_attributes** | [List[SupplementalAttribute]](SupplementalAttribute.md) | Optional | Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself. |
 | **writeback_configurations** | [List[WritebackConfiguration]](WritebackConfiguration.md) | Optional | The writeback suggestions generated against this ruleset&#39;s results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty. |
+| **populate_result_properties** | [List[PopulateResultProperty]](PopulateResultProperty.md) | Optional | The RecResult properties to populate on this ruleset&#39;s results, each from a formula over the result. Optional, and may be empty; at most 20. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
@@ -32,7 +33,7 @@ from finbourne.sdk.services.lusid.models.MatchingRuleset import MatchingRuleset
 instance = MatchingRuleset(
     id=ResourceId(...),  # required
     display_name="...",  # required — The name of the matching ruleset.
-    rec_type="...",  # required — The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External.
+    rec_type="...",  # required — The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.
     external_rec_type=ExternalRecType(...),  # optional
     dataset_schemas=RecDatasetSchemas(...),  # required
     filters=GroupReconciliationFilters(...),  # optional
@@ -43,6 +44,7 @@ instance = MatchingRuleset(
     allow_partial_matching=True,  # optional — Whether to permit partial matches when applying rules. Optional, defaults to true if a value is not provided.
     supplemental_attributes=[],  # optional — Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself.
     writeback_configurations=[],  # optional — The writeback suggestions generated against this ruleset&#39;s results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty.
+    populate_result_properties=[],  # optional — The RecResult properties to populate on this ruleset&#39;s results, each from a formula over the result. Optional, and may be empty; at most 20.
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.
     version=Version(...),  # optional
     links=[]  # optional
@@ -62,6 +64,7 @@ instance = MatchingRuleset(
 - [ToleranceBase](ToleranceBase.md) — used in `aggregate_tolerances`
 - [SupplementalAttribute](SupplementalAttribute.md) — used in `supplemental_attributes`
 - [WritebackConfiguration](WritebackConfiguration.md) — used in `writeback_configurations`
+- [PopulateResultProperty](PopulateResultProperty.md) — used in `populate_result_properties`
 - [Version](Version.md)
 - [Link](Link.md)
 

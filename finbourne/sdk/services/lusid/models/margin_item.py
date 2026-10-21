@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.eligible_collateral_references import EligibleCollateralReferences
+from finbourne.sdk.services.lusid.models.margin_accounts import MarginAccounts
 from finbourne.sdk.services.lusid.models.margin_calculation import MarginCalculation
 from finbourne.sdk.services.lusid.models.party_terms import PartyTerms
 
@@ -38,7 +39,8 @@ class MarginItem(BaseModel):
     they_post: PartyTerms = Field(alias="theyPost")
     eligible_collateral: Optional[EligibleCollateralReferences] = Field(default=None, alias="eligibleCollateral")
     calculation: MarginCalculation
-    __properties: ClassVar[List[str]] = ["code", "tradeFilter", "settlement", "legalMechanism", "wePost", "theyPost", "eligibleCollateral", "calculation"]
+    margin_accounts: Optional[MarginAccounts] = Field(default=None, alias="marginAccounts")
+    __properties: ClassVar[List[str]] = ["code", "tradeFilter", "settlement", "legalMechanism", "wePost", "theyPost", "eligibleCollateral", "calculation", "marginAccounts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +88,9 @@ class MarginItem(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of calculation
         if self.calculation:
             _dict['calculation'] = self.calculation.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of margin_accounts
+        if self.margin_accounts:
+            _dict['marginAccounts'] = self.margin_accounts.to_dict(by_alias=by_alias)
         # set to None if trade_filter (nullable) is None
         # and model_fields_set contains the field
         if self.trade_filter is None and "trade_filter" in self.model_fields_set:
@@ -120,7 +125,8 @@ class MarginItem(BaseModel):
             "we_post": PartyTerms.from_dict(_v) if (_v := obj.get("wePost")) is not None else None,
             "they_post": PartyTerms.from_dict(_v) if (_v := obj.get("theyPost")) is not None else None,
             "eligible_collateral": EligibleCollateralReferences.from_dict(_v) if (_v := obj.get("eligibleCollateral")) is not None else None,
-            "calculation": MarginCalculation.from_dict(_v) if (_v := obj.get("calculation")) is not None else None
+            "calculation": MarginCalculation.from_dict(_v) if (_v := obj.get("calculation")) is not None else None,
+            "margin_accounts": MarginAccounts.from_dict(_v) if (_v := obj.get("marginAccounts")) is not None else None
         })
         return _obj
 

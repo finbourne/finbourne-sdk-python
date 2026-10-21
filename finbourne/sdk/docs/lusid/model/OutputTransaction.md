@@ -49,6 +49,7 @@ A list of output transactions.
 | **resolved_custodian_accounts** | [List[ResolvedCustodianAccount]](ResolvedCustodianAccount.md) | Optional | Set of Custodian Accounts resolved from each movement on the Transaction. |
 | **unresolved_custodian_accounts** | [List[CustodianEntry]](CustodianEntry.md) | Optional | Set of Custodian Entries on the Transaction that no movement was booked against, i.e. those which did not match a movement&#39;s account type and selector. |
 | **is_excluded** | **bool** | Optional | Whether the transaction was excluded from the portfolio&#39;s holdings by the portfolio&#39;s transaction exclusion filter. |
+| **entity_links** | [List[TransactionEntityLink]](TransactionEntityLink.md) | Optional | Links to the entities that manage this transaction. |
 
 
 ## Usage
@@ -102,7 +103,8 @@ instance = OutputTransaction(
     custodian_entries=[],  # optional — Set of of Custodian Entries associated with the transaction.
     resolved_custodian_accounts=[],  # optional — Set of Custodian Accounts resolved from each movement on the Transaction.
     unresolved_custodian_accounts=[],  # optional — Set of Custodian Entries on the Transaction that no movement was booked against, i.e. those which did not match a movement&#39;s account type and selector.
-    is_excluded=True  # optional — Whether the transaction was excluded from the portfolio&#39;s holdings by the portfolio&#39;s transaction exclusion filter.
+    is_excluded=True,  # optional — Whether the transaction was excluded from the portfolio&#39;s holdings by the portfolio&#39;s transaction exclusion filter.
+    entity_links=[]  # optional — Links to the entities that manage this transaction.
 )
 ```
 
@@ -123,6 +125,7 @@ instance = OutputTransaction(
 - [CustodianEntry](CustodianEntry.md) — used in `custodian_entries`
 - [ResolvedCustodianAccount](ResolvedCustodianAccount.md) — used in `resolved_custodian_accounts`
 - [CustodianEntry](CustodianEntry.md) — used in `unresolved_custodian_accounts`
+- [TransactionEntityLink](TransactionEntityLink.md) — used in `entity_links`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

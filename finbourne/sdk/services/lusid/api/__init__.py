@@ -16,6 +16,7 @@ from finbourne.sdk.services.lusid.api.blocks_api import BlocksApi
 from finbourne.sdk.services.lusid.api.calendars_api import CalendarsApi
 from finbourne.sdk.services.lusid.api.chart_of_accounts_api import ChartOfAccountsApi
 from finbourne.sdk.services.lusid.api.check_definitions_api import CheckDefinitionsApi
+from finbourne.sdk.services.lusid.api.collateral_api import CollateralApi
 from finbourne.sdk.services.lusid.api.collateral_agreements_api import CollateralAgreementsApi
 from finbourne.sdk.services.lusid.api.complex_market_data_api import ComplexMarketDataApi
 from finbourne.sdk.services.lusid.api.compliance_api import ComplianceApi
@@ -117,6 +118,7 @@ __all__ = [
     "CalendarsApi",
     "ChartOfAccountsApi",
     "CheckDefinitionsApi",
+    "CollateralApi",
     "CollateralAgreementsApi",
     "ComplexMarketDataApi",
     "ComplianceApi",

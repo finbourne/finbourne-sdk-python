@@ -10,6 +10,7 @@ The outcome of a carry accrual: the movement in each partner's carry against wha
 | **source** | **str** | Required | The waterfall or model the carry amounts came from. |
 | **lines** | [List[CarryAccrualLine]](CarryAccrualLine.md) | Required | The accrual movement per partner. |
 | **booked_transaction_ids** | **List[str]** | Required | The identifiers of the transactions booked, if any. |
+| **later_run_ids** | **List[str]** | Required | The run identifiers of carry accruals already on the ledger with an effective date after this period end. Restating an earlier period moves the to-date balance those runs were accrued against; re-run them to roll the restatement forward. |
 
 
 ## Usage
@@ -24,7 +25,8 @@ instance = CarryAccrualResult(
     period_end=datetime.now(),  # required — The date carry is accrued to.
     source="...",  # required — The waterfall or model the carry amounts came from.
     lines=[],  # required — The accrual movement per partner.
-    booked_transaction_ids=  # required — The identifiers of the transactions booked, if any.
+    booked_transaction_ids=,  # required — The identifiers of the transactions booked, if any.
+    later_run_ids=  # required — The run identifiers of carry accruals already on the ledger with an effective date after this period end. Restating an earlier period moves the to-date balance those runs were accrued against; re-run them to roll the restatement forward.
 )
 ```
 

@@ -11,7 +11,7 @@
 | **share_class_short_code** | **str** | Required | A short code that uniquely identifies the share class within the Fund. |
 | **launch_price** | **float** | Optional | The launch price set when a shareclass is added to the fund. Defaults to 1. |
 | **launch_date** | **datetime** | Optional | The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties for the Share Class. These must be from the &#39;Instrument&#39; domain. |
 | **investor_type** | **str** | Required | The Type of Share Class. Available values: Unitised. |
 | **distribution_type** | **str** | Optional | The type of distribution the ShareClass will calculate. Available values: Income, Accumulation. |
 | **dom_ccy** | **str** | Required | The domestic currency of the ShareClass instrument. |
@@ -39,7 +39,7 @@ instance = ShareClass(
     share_class_short_code="...",  # required — A short code that uniquely identifies the share class within the Fund.
     launch_price=0.0,  # optional — The launch price set when a shareclass is added to the fund. Defaults to 1.
     launch_date=datetime.now(),  # optional — The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.
-    properties=ModelProperty(...),  # optional — An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.
+    properties=ModelProperty(...),  # optional — An optional set of properties for the Share Class. These must be from the &#39;Instrument&#39; domain.
     investor_type="...",  # required — The Type of Share Class. Available values: Unitised.
     distribution_type="...",  # optional — The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.
     dom_ccy="...",  # required — The domestic currency of the ShareClass instrument.

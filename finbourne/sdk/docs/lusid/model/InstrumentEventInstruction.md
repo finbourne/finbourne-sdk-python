@@ -17,6 +17,7 @@ An instruction for an instrument event
 | **quantity_instructed** | [QuantityInstructed](QuantityInstructed.md) | Optional | *No description available.* |
 | **tax_lot_id** | **str** | Optional | For loan facility holding instructions, the tax lot id of the holding for which the instruction will apply |
 | **ignore_cost_impact** | **bool** | Optional | For loan facility holding instructions, set this flag to &#39;true&#39; if you want the event to not impact cost. If you want to use this option, do not add multiple instructions to the same tax lot or you will get undefined behaviour. |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -40,6 +41,7 @@ instance = InstrumentEventInstruction(
     quantity_instructed=QuantityInstructed(...),  # optional
     tax_lot_id="...",  # optional — For loan facility holding instructions, the tax lot id of the holding for which the instruction will apply
     ignore_cost_impact=True,  # optional — For loan facility holding instructions, set this flag to &#39;true&#39; if you want the event to not impact cost. If you want to use this option, do not add multiple instructions to the same tax lot or you will get undefined behaviour.
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -47,6 +49,7 @@ instance = InstrumentEventInstruction(
 - [ResourceId](ResourceId.md)
 - [Version](Version.md)
 - [QuantityInstructed](QuantityInstructed.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 

@@ -1,6 +1,6 @@
 [project]
 name = "finbourne-sdk"
-version = "0.1.145"
+version = "0.1.148"
 description = "This is the Python SDK for all of FINBOURNE's APIs"
 authors = [
     {name = "Finbourne Technology LTD", email = "info@finbourne.com"}
@@ -14,9 +14,9 @@ dependencies = [
     "urllib3>=2.6.0,<3.0.0",
     "python-dateutil==2.9.0.post0",
     "requests==2.34.2",
-    "aiohttp==3.14.3",
+    "aiohttp>=3.14.3",
     "pydantic>=2.8.2,<3.0.0",
-    "aenum==3.1.17",
+    "aenum>=3.1.17",
     "typing_extensions>=4.6.0",
 ]
 

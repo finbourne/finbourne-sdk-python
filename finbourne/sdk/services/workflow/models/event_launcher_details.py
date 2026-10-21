@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.workflow.models.calendar_context import CalendarContext
 from finbourne.sdk.services.workflow.models.correlation_id_mapping import CorrelationIdMapping
 from finbourne.sdk.services.workflow.models.event_task_field_mapping import EventTaskFieldMapping
 from finbourne.sdk.services.workflow.models.launcher_event_matching_pattern import LauncherEventMatchingPattern
@@ -33,13 +34,14 @@ class EventLauncherDetails(BaseModel):
     """
     launcher_type:  StrictStr = Field(...,alias="launcherType") 
     event_matching_pattern: LauncherEventMatchingPattern = Field(alias="eventMatchingPattern")
+    calendar_contexts: Optional[List[CalendarContext]] = Field(default=None, description="The named time zones and holiday calendars the date time adjustments of this Launcher work in.              Required when any mapped field has a dateTimeAdjustment", alias="calendarContexts")
     map_task_fields: Optional[Dict[str, EventTaskFieldMapping]] = Field(default=None, description="Fields of the root task filled from the event, keyed by the field name on the root task definition", alias="mapTaskFields")
     map_correlation_ids: Optional[List[CorrelationIdMapping]] = Field(default=None, description="Correlation IDs of the root task filled from the event", alias="mapCorrelationIds")
     run_as_user_id: LauncherMapping = Field(alias="runAsUserId")
     set_task_fields: Optional[Dict[str, Any]] = Field(default=None, description="Fields of the root task set to a fixed value, keyed by the field name on the root task definition", alias="setTaskFields")
     set_correlation_ids: Optional[List[StrictStr]] = Field(default=None, description="Correlation IDs put on the root task as given", alias="setCorrelationIds")
     initial_trigger:  Optional[StrictStr] = Field(default=None,alias="initialTrigger", description="The trigger given to the root task once it is made and all of its fields are filled. When it is left out the root task is left in its initial state") 
-    __properties: ClassVar[List[str]] = ["launcherType", "eventMatchingPattern", "mapTaskFields", "mapCorrelationIds", "runAsUserId", "setTaskFields", "setCorrelationIds", "initialTrigger"]
+    __properties: ClassVar[List[str]] = ["launcherType", "eventMatchingPattern", "calendarContexts", "mapTaskFields", "mapCorrelationIds", "runAsUserId", "setTaskFields", "setCorrelationIds", "initialTrigger"]
 
     @field_validator('launcher_type')
     def launcher_type_validate_enum(cls, value):
@@ -95,6 +97,13 @@ class EventLauncherDetails(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of event_matching_pattern
         if self.event_matching_pattern:
             _dict['eventMatchingPattern'] = self.event_matching_pattern.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in calendar_contexts (list)
+        _items = []
+        if self.calendar_contexts:
+            for _item in self.calendar_contexts:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['calendarContexts'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in map_task_fields (dict)
         _field_dict = {}
         if self.map_task_fields:
@@ -112,6 +121,11 @@ class EventLauncherDetails(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of run_as_user_id
         if self.run_as_user_id:
             _dict['runAsUserId'] = self.run_as_user_id.to_dict(by_alias=by_alias)
+        # set to None if calendar_contexts (nullable) is None
+        # and model_fields_set contains the field
+        if self.calendar_contexts is None and "calendar_contexts" in self.model_fields_set:
+            _dict['calendarContexts'] = None
+
         # set to None if map_task_fields (nullable) is None
         # and model_fields_set contains the field
         if self.map_task_fields is None and "map_task_fields" in self.model_fields_set:
@@ -151,6 +165,7 @@ class EventLauncherDetails(BaseModel):
         _obj = EventLauncherDetails.model_validate({
             "launcher_type": obj.get("launcherType"),
             "event_matching_pattern": LauncherEventMatchingPattern.from_dict(_v) if (_v := obj.get("eventMatchingPattern")) is not None else None,
+            "calendar_contexts": [CalendarContext.from_dict(_item) for _item in _v] if (_v := obj.get("calendarContexts")) is not None else None,
             "map_task_fields": dict(
                 (_k, EventTaskFieldMapping.from_dict(_v))
                 for _k, _v in _val.items()

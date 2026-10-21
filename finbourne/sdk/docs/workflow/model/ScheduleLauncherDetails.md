@@ -7,7 +7,7 @@ A Launcher that starts a run of its Workflow at the times a recurrence pattern g
 |------|------|----------|-------------|
 | **launcher_type** | **str** | Required | *No description available.* |
 | **schedule** | [LauncherSchedule](LauncherSchedule.md) | Required | *No description available.* |
-| **calendar_contexts** | [List[CalendarContext]](CalendarContext.md) | Optional | The named time zones and holiday calendars this Launcher works in.              Only a Schedule Launcher works in a calendar context |
+| **calendar_contexts** | [List[CalendarContext]](CalendarContext.md) | Optional | The named time zones and holiday calendars this Launcher works in |
 | **map_task_fields** | [Dict[str, ScheduleTaskFieldMapping]](ScheduleTaskFieldMapping.md) | Optional | Fields of the root task filled from the instant the schedule fired, keyed by the field name on the root task definition |
 | **run_as_user_id** | [LauncherMapping](LauncherMapping.md) | Required | *No description available.* |
 | **set_task_fields** | **Dict[str, Optional[object]]** | Optional | Fields of the root task set to a fixed value, keyed by the field name on the root task definition |
@@ -25,7 +25,7 @@ from finbourne.sdk.services.workflow.models.ScheduleLauncherDetails import Sched
 instance = ScheduleLauncherDetails(
     launcher_type="...",  # required
     schedule=LauncherSchedule(...),  # required
-    calendar_contexts=[],  # optional — The named time zones and holiday calendars this Launcher works in.              Only a Schedule Launcher works in a calendar context
+    calendar_contexts=[],  # optional — The named time zones and holiday calendars this Launcher works in
     map_task_fields=ScheduleTaskFieldMapping(...),  # optional — Fields of the root task filled from the instant the schedule fired, keyed by the field name on the root task definition
     run_as_user_id=LauncherMapping(...),  # required
     set_task_fields=,  # optional — Fields of the root task set to a fixed value, keyed by the field name on the root task definition

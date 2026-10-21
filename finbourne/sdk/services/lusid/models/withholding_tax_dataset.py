@@ -32,11 +32,12 @@ class WithholdingTaxDataset(BaseModel):
     """
     scope:  StrictStr = Field(...,alias="scope", description="The scope of the relational dataset definition.") 
     code:  StrictStr = Field(...,alias="code", description="The code of the relational dataset definition. Together with the scope this uniquely identifies the definition.") 
+    dataset_type:  Optional[StrictStr] = Field(default=None,alias="datasetType", description="Which of the two rate tables this dataset is: Anomaly or Main. Set when the dataset is created through the withholding tax dataset definitions endpoint and never changed afterwards. Available values: Anomaly, Main.") 
     dimensions: List[SeriesIdentifierField] = Field(description="The dimensions created on this dataset as series identifiers, as stored. The mandatory core is not returned here; read the full field schema from the relational dataset definition at Href.")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uri of the relational dataset definition.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["scope", "code", "dimensions", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "datasetType", "dimensions", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +90,11 @@ class WithholdingTaxDataset(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
+        # set to None if dataset_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.dataset_type is None and "dataset_type" in self.model_fields_set:
+            _dict['datasetType'] = None
+
         # set to None if href (nullable) is None
         # and model_fields_set contains the field
         if self.href is None and "href" in self.model_fields_set:
@@ -113,6 +119,7 @@ class WithholdingTaxDataset(BaseModel):
         _obj = WithholdingTaxDataset.model_validate({
             "scope": obj.get("scope"),
             "code": obj.get("code"),
+            "dataset_type": obj.get("datasetType"),
             "dimensions": [SeriesIdentifierField.from_dict(_item) for _item in _v] if (_v := obj.get("dimensions")) is not None else None,
             "href": obj.get("href"),
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,

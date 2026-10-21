@@ -22,6 +22,16 @@ event_launcher_details_response_instance = workflow.models.event_launcher_detail
                         event_matching_pattern = workflow.models.launcher_event_matching_pattern.LauncherEventMatchingPattern(
                             event_type = 'EiOTgswWMEJTcMoSLlNYUL', 
                             filter = '', ), 
+                        calendar_contexts = [
+                            workflow.models.calendar_context.CalendarContext(
+                                name = 'z', 
+                                time_zone = '', 
+                                holiday_calendars = [
+                                    workflow.models.calendar_reference.CalendarReference(
+                                        scope = 'z', 
+                                        code = 'z', )
+                                    ], )
+                            ], 
                         map_task_fields = {
                             'key' : workflow.models.event_task_field_mapping.EventTaskFieldMapping(
                                 map_from = '', 
@@ -41,6 +51,7 @@ event_launcher_details_response_instance = workflow.models.event_launcher_detail
                                 map_from = '', )
                             ], 
                         run_as_user_id = workflow.models.launcher_mapping.LauncherMapping(
+                            set_to = '', 
                             map_from = '', ), 
                         set_task_fields = {
                             'key' : null
