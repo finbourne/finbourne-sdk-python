@@ -34,8 +34,9 @@ class MarginRunShard(BaseModel):
     status:  StrictStr = Field(...,alias="status", description="The status of the shard. One of Pending, Running, Completed or Failed.") 
     call_count: StrictInt = Field(description="The number of margin calls the shard published.", alias="callCount")
     line_count: StrictInt = Field(description="The number of margin lines the shard published.", alias="lineCount")
-    detail:  Optional[StrictStr] = Field(default=None,alias="detail", description="Why the shard failed, when it did.") 
-    __properties: ClassVar[List[str]] = ["id", "recipeId", "agreements", "status", "callCount", "lineCount", "detail"]
+    detail:  Optional[StrictStr] = Field(default=None,alias="detail", description="Why the shard failed, or which of its netting sets it completed without figures and why.") 
+    as_at: Optional[datetime] = Field(default=None, description="When the shard was valued: the run's as-at, or the time of the retry that valued it. Null until the shard has finished.", alias="asAt")
+    __properties: ClassVar[List[str]] = ["id", "recipeId", "agreements", "status", "callCount", "lineCount", "detail", "asAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class MarginRunShard(BaseModel):
         if self.detail is None and "detail" in self.model_fields_set:
             _dict['detail'] = None
 
+        # set to None if as_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.as_at is None and "as_at" in self.model_fields_set:
+            _dict['asAt'] = None
+
         return _dict
 
     @classmethod
@@ -104,7 +110,8 @@ class MarginRunShard(BaseModel):
             "status": obj.get("status"),
             "call_count": obj.get("callCount"),
             "line_count": obj.get("lineCount"),
-            "detail": obj.get("detail")
+            "detail": obj.get("detail"),
+            "as_at": obj.get("asAt")
         })
         return _obj
 

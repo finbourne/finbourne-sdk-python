@@ -184,8 +184,8 @@ class AggregatedReturnsApi:
     def get_aggregated_returns(self, aggregated_returns_entity_request: AggregatedReturnsEntityRequest, **kwargs) -> AggregatedReturnsResponse:
         """[EXPERIMENTAL] GetAggregatedReturns: Calculate aggregated returns for an entity.  # noqa: E501
 
-        Calculate time-weighted returns for the entity specified in the request body over the              effective window. Currently, supports a single entity of type Portfolio and calculates a daily              return grid. The recipe, fee handling, and flow-discrepancy handling are taken from the persisted              Returns entity identified by the supplied returns id; the request fails if no such entity exists.  # noqa: E501
-        :param aggregated_returns_entity_request: The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. (required)
+        Report daily returns for the entity specified in the request body over the effective window.              Currently, supports a single entity of type Portfolio and a daily return grid. Returns upserted to the              Returns store under the supplied returns id take precedence: if any exist in the window they are              reported as-is and nothing is calculated. Otherwise time-weighted returns are calculated using the              recipe, fee handling and flow-discrepancy handling of the persisted Returns entity identified by the              returns id, and the request fails if no such entity exists. When a reporting currency is requested the              Returns entity is also required, as its recipe supplies the FX rates.  # noqa: E501
+        :param aggregated_returns_entity_request: The entity to report returns for, the returns id under which upserted returns              are stored and the Returns entity that configures a calculation, the effective window and the metrics              to report. (required)
         :type aggregated_returns_entity_request: AggregatedReturnsEntityRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -204,8 +204,8 @@ class AggregatedReturnsApi:
     def get_aggregated_returns_with_http_info(self, aggregated_returns_entity_request: AggregatedReturnsEntityRequest, **kwargs) -> ApiResponse[AggregatedReturnsResponse]:
         """[EXPERIMENTAL] GetAggregatedReturns: Calculate aggregated returns for an entity.  # noqa: E501
 
-        Calculate time-weighted returns for the entity specified in the request body over the              effective window. Currently, supports a single entity of type Portfolio and calculates a daily              return grid. The recipe, fee handling, and flow-discrepancy handling are taken from the persisted              Returns entity identified by the supplied returns id; the request fails if no such entity exists.  # noqa: E501
-        :param aggregated_returns_entity_request: The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. (required)
+        Report daily returns for the entity specified in the request body over the effective window.              Currently, supports a single entity of type Portfolio and a daily return grid. Returns upserted to the              Returns store under the supplied returns id take precedence: if any exist in the window they are              reported as-is and nothing is calculated. Otherwise time-weighted returns are calculated using the              recipe, fee handling and flow-discrepancy handling of the persisted Returns entity identified by the              returns id, and the request fails if no such entity exists. When a reporting currency is requested the              Returns entity is also required, as its recipe supplies the FX rates.  # noqa: E501
+        :param aggregated_returns_entity_request: The entity to report returns for, the returns id under which upserted returns              are stored and the Returns entity that configures a calculation, the effective window and the metrics              to report. (required)
         :type aggregated_returns_entity_request: AggregatedReturnsEntityRequest
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -832,9 +832,9 @@ class AggregatedReturnsApi:
     @validate_call
     async def get_aggregated_returns_async(self, aggregated_returns_entity_request: AggregatedReturnsEntityRequest, **kwargs) -> AggregatedReturnsResponse:
             """[EXPERIMENTAL] GetAggregatedReturns: Calculate aggregated returns for an entity.  # noqa: E501
-            Calculate time-weighted returns for the entity specified in the request body over the              effective window. Currently, supports a single entity of type Portfolio and calculates a daily              return grid. The recipe, fee handling, and flow-discrepancy handling are taken from the persisted              Returns entity identified by the supplied returns id; the request fails if no such entity exists.  # noqa: E501
+            Report daily returns for the entity specified in the request body over the effective window.              Currently, supports a single entity of type Portfolio and a daily return grid. Returns upserted to the              Returns store under the supplied returns id take precedence: if any exist in the window they are              reported as-is and nothing is calculated. Otherwise time-weighted returns are calculated using the              recipe, fee handling and flow-discrepancy handling of the persisted Returns entity identified by the              returns id, and the request fails if no such entity exists. When a reporting currency is requested the              Returns entity is also required, as its recipe supplies the FX rates.  # noqa: E501
             
-            :param aggregated_returns_entity_request: The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. (required)
+            :param aggregated_returns_entity_request: The entity to report returns for, the returns id under which upserted returns              are stored and the Returns entity that configures a calculation, the effective window and the metrics              to report. (required)
             :type aggregated_returns_entity_request: AggregatedReturnsEntityRequest
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -853,9 +853,9 @@ class AggregatedReturnsApi:
     async def get_aggregated_returns_with_http_info_async(self, aggregated_returns_entity_request: AggregatedReturnsEntityRequest, **kwargs) -> ApiResponse[AggregatedReturnsResponse]:
             """[EXPERIMENTAL] GetAggregatedReturns: Calculate aggregated returns for an entity.  # noqa: E501
 
-            Calculate time-weighted returns for the entity specified in the request body over the              effective window. Currently, supports a single entity of type Portfolio and calculates a daily              return grid. The recipe, fee handling, and flow-discrepancy handling are taken from the persisted              Returns entity identified by the supplied returns id; the request fails if no such entity exists.  # noqa: E501
+            Report daily returns for the entity specified in the request body over the effective window.              Currently, supports a single entity of type Portfolio and a daily return grid. Returns upserted to the              Returns store under the supplied returns id take precedence: if any exist in the window they are              reported as-is and nothing is calculated. Otherwise time-weighted returns are calculated using the              recipe, fee handling and flow-discrepancy handling of the persisted Returns entity identified by the              returns id, and the request fails if no such entity exists. When a reporting currency is requested the              Returns entity is also required, as its recipe supplies the FX rates.  # noqa: E501
 
-            :param aggregated_returns_entity_request: The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. (required)
+            :param aggregated_returns_entity_request: The entity to report returns for, the returns id under which upserted returns              are stored and the Returns entity that configures a calculation, the effective window and the metrics              to report. (required)
             :type aggregated_returns_entity_request: AggregatedReturnsEntityRequest
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

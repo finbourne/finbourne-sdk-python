@@ -27,7 +27,7 @@ A margin call a run produced under a collateral agreement: our figure, the count
 | **statement_reference** | **str** | Optional | A reference to the counterparty&#39;s statement, such as a Drive path. |
 | **demand_note** | **str** | Optional | A note recorded with the counterparty&#39;s demand. |
 | **agreed_amount** | **float** | Optional | The amount agreed to move, once the call is accepted or disputed. |
-| **disputed_amount** | **float** | Optional | The part of the counterparty&#39;s demand left in dispute. |
+| **disputed_amount** | **float** | Optional | The part of the larger of our call and the counterparty&#39;s demand left in dispute. |
 | **dispute_reason** | **str** | Optional | Why the call is disputed. |
 | **dispute_owner** | **str** | Optional | Who owns the dispute. |
 | **state** | **str** | Required | Where the call is in its lifecycle. One of Calculated, Accepted or Disputed. Filterable. |
@@ -67,7 +67,7 @@ instance = MarginCall(
     statement_reference="...",  # optional — A reference to the counterparty&#39;s statement, such as a Drive path.
     demand_note="...",  # optional — A note recorded with the counterparty&#39;s demand.
     agreed_amount=0.0,  # optional — The amount agreed to move, once the call is accepted or disputed.
-    disputed_amount=0.0,  # optional — The part of the counterparty&#39;s demand left in dispute.
+    disputed_amount=0.0,  # optional — The part of the larger of our call and the counterparty&#39;s demand left in dispute.
     dispute_reason="...",  # optional — Why the call is disputed.
     dispute_owner="...",  # optional — Who owns the dispute.
     state="...",  # required — Where the call is in its lifecycle. One of Calculated, Accepted or Disputed. Filterable.

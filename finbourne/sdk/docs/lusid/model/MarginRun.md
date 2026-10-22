@@ -16,7 +16,7 @@ A margin run: the valuation of the collateral agreements for a business date, pl
 | **shard_count** | **int** | Required | The number of valuation shards the run was planned as. |
 | **completed_shards** | **int** | Required | The number of shards that have completed. |
 | **failed_shards** | **int** | Required | The number of shards that failed to value. |
-| **issues** | [List[MarginRunIssue]](MarginRunIssue.md) | Required | Agreements the run could not value, or the caller may not calculate margin for, with the reason. |
+| **issues** | [List[MarginRunIssue]](MarginRunIssue.md) | Required | Agreements the run could not value or roll up into a call, or the caller may not calculate margin for, with the reason. |
 | **shards** | [List[MarginRunShard]](MarginRunShard.md) | Required | The valuation shards the run is planned as, with their progress. |
 
 
@@ -39,7 +39,7 @@ instance = MarginRun(
     shard_count=0,  # required — The number of valuation shards the run was planned as.
     completed_shards=0,  # required — The number of shards that have completed.
     failed_shards=0,  # required — The number of shards that failed to value.
-    issues=[],  # required — Agreements the run could not value, or the caller may not calculate margin for, with the reason.
+    issues=[],  # required — Agreements the run could not value or roll up into a call, or the caller may not calculate margin for, with the reason.
     shards=[]  # required — The valuation shards the run is planned as, with their progress.
 )
 ```

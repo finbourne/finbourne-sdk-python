@@ -189,7 +189,7 @@ Starts execution of an instance, returning its execution identifier. The user mu
 ```python
 api_instance = api_client_factory.build(IntegrationsApi)
 instance_id = 'instance_id_example' # str
-request_body = {"para1":"val1","para2":"val2"} # Dict[str, str]
+request_body = {"Ingest-1:batchSize":"500","requestId":"6f1c2d3e-9d1a-4b7e-8c21-0f3a5d6e7b89","filePath":"/inbound/settlements/SSI_20261020.txt","sourceInfo":{"useCaseId":"SETTLEMENT","channelId":"SWIFT","sourceId":"CUSTODY"}} # Dict[str, object]
 api_response = api_instance.execute_instance_with_params(instance_id, request_body)
 pprint(api_response)
 ```
@@ -199,7 +199,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Instance identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
- **request_body** | [**Dict[str, str]**](../model/str.md)| Dictionary(string,string) of runtime parameters passed to the integration instance | [required] 
+ **request_body** | [**Dict[str, object]**](../model/object.md)| JSON object of runtime parameters passed to the integration instance. A processorName:configPath key overrides one processor config value for this run; any other key is a named run parameter. Nested objects are flattened to dotted keys. | [required] 
 
 ### Return type
 

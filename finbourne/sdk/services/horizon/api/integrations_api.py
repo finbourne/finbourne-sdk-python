@@ -20,7 +20,7 @@ from typing_extensions import Annotated
 
 import finbourne.sdk.services.horizon.models as packageModels
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.horizon.models.create_instance_request import CreateInstanceRequest
 from finbourne.sdk.services.horizon.models.execute_instance_response import ExecuteInstanceResponse
@@ -429,14 +429,14 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def execute_instance_with_params(self, instance_id: StrictStr, request_body: Dict[str, str], **kwargs) -> ExecuteInstanceResponse:
+    def execute_instance_with_params(self, instance_id: StrictStr, request_body: Dict[str, object], **kwargs) -> ExecuteInstanceResponse:
         """[EXPERIMENTAL] ExecuteInstanceWithParams: Execute an integration instance with runtime parameters  # noqa: E501
 
         Starts execution of an instance, returning its execution identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
         :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
         :type instance_id: str
-        :param request_body: Dictionary(string,string) of runtime parameters passed to the integration instance (required)
-        :type request_body: Dict[str, str]
+        :param request_body: JSON object of runtime parameters passed to the integration instance. A processorName:configPath key overrides one processor config value for this run; any other key is a named run parameter. Nested objects are flattened to dotted keys. (required)
+        :type request_body: Dict[str, object]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -451,14 +451,14 @@ class IntegrationsApi:
         return response.data
 
     @validate_call
-    def execute_instance_with_params_with_http_info(self, instance_id: StrictStr, request_body: Dict[str, str], **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
+    def execute_instance_with_params_with_http_info(self, instance_id: StrictStr, request_body: Dict[str, object], **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
         """[EXPERIMENTAL] ExecuteInstanceWithParams: Execute an integration instance with runtime parameters  # noqa: E501
 
         Starts execution of an instance, returning its execution identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
         :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
         :type instance_id: str
-        :param request_body: Dictionary(string,string) of runtime parameters passed to the integration instance (required)
-        :type request_body: Dict[str, str]
+        :param request_body: JSON object of runtime parameters passed to the integration instance. A processorName:configPath key overrides one processor config value for this run; any other key is a named run parameter. Nested objects are flattened to dotted keys. (required)
+        :type request_body: Dict[str, object]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2738,14 +2738,14 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def execute_instance_with_params_async(self, instance_id: StrictStr, request_body: Dict[str, str], **kwargs) -> ExecuteInstanceResponse:
+    async def execute_instance_with_params_async(self, instance_id: StrictStr, request_body: Dict[str, object], **kwargs) -> ExecuteInstanceResponse:
             """[EXPERIMENTAL] ExecuteInstanceWithParams: Execute an integration instance with runtime parameters  # noqa: E501
             Starts execution of an instance, returning its execution identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
             
             :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
             :type instance_id: str
-            :param request_body: Dictionary(string,string) of runtime parameters passed to the integration instance (required)
-            :type request_body: Dict[str, str]
+            :param request_body: JSON object of runtime parameters passed to the integration instance. A processorName:configPath key overrides one processor config value for this run; any other key is a named run parameter. Nested objects are flattened to dotted keys. (required)
+            :type request_body: Dict[str, object]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2760,15 +2760,15 @@ class IntegrationsApi:
             return response.data
 
     @validate_call
-    async def execute_instance_with_params_with_http_info_async(self, instance_id: StrictStr, request_body: Dict[str, str], **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
+    async def execute_instance_with_params_with_http_info_async(self, instance_id: StrictStr, request_body: Dict[str, object], **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
             """[EXPERIMENTAL] ExecuteInstanceWithParams: Execute an integration instance with runtime parameters  # noqa: E501
 
             Starts execution of an instance, returning its execution identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
 
             :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
             :type instance_id: str
-            :param request_body: Dictionary(string,string) of runtime parameters passed to the integration instance (required)
-            :type request_body: Dict[str, str]
+            :param request_body: JSON object of runtime parameters passed to the integration instance. A processorName:configPath key overrides one processor config value for this run; any other key is a named run parameter. Nested objects are flattened to dotted keys. (required)
+            :type request_body: Dict[str, object]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.

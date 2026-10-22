@@ -6,6 +6,7 @@ Model options for instruments of type flexibleDeposit and flexibleLoan when used
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **set_clean_pvto_zero** | **bool** | Required | If set to true the CleanPV will be set to zero in valuations and PV will effectively just be the Accrual. |
+| **use_price_quote_for_clean_pv** | **bool** | Optional | If set to true the CleanPV calculation will be looking for a price quote (no default price is assumed). CleanPV will be calculated as Holding/Balance * priceQuote / quoteScaleFactor |
 | **model_options_type** | **str** | Required | Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions, BondForwardModelOptions, SimpleModelOptions. |
 
 
@@ -18,6 +19,7 @@ from finbourne.sdk.services.lusid.models.FlexibleLoanPricerOptions import Flexib
 
 instance = FlexibleLoanPricerOptions(
     set_clean_pvto_zero=True,  # required — If set to true the CleanPV will be set to zero in valuations and PV will effectively just be the Accrual.
+    use_price_quote_for_clean_pv=True,  # optional — If set to true the CleanPV calculation will be looking for a price quote (no default price is assumed). CleanPV will be calculated as Holding/Balance * priceQuote / quoteScaleFactor
     model_options_type="..."  # required — Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions, BondForwardModelOptions, SimpleModelOptions.
 )
 ```

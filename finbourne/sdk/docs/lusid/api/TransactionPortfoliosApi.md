@@ -2522,7 +2522,7 @@ Create or update Custodian Accounts in the Transaction Portfolios. A Custodian A
 api_instance = api_client_factory.build(TransactionPortfoliosApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-custodian_account_request = [{"scope":"ScopeA","code":"Account1","status":"Active","accountNumber":"10003786BGBP","accountName":"Account1 Sterling","accountingMethod":"FirstInFirstOut","currency":"GBP","properties":{},"custodianIdentifier":{"idTypeScope":"ScopeA","idTypeCode":"LegalEntityCode1","code":"LegalEntityValue1"},"accountType":"Cash"},{"scope":"ScopeB","code":"Account2","status":"Active","accountNumber":"10003786BEUR","accountName":"Account2 Euro","accountingMethod":"FirstInFirstOut","currency":"EUR","properties":{},"custodianIdentifier":{"idTypeScope":"ScopeA","idTypeCode":"LegalEntityCode2","code":"LegalEntityValue2"},"accountType":"Swap"}] # List[CustodianAccountRequest]
+custodian_account_request = [{"scope":"ScopeA","code":"Account1","status":"Active","accountNumber":"10003786BGBP","accountName":"Account1 Sterling","accountingMethod":"FirstInFirstOut","currency":"GBP","properties":{},"custodianIdentifier":{"idTypeScope":"ScopeA","idTypeCode":"LegalEntityCode1","code":"LegalEntityValue1"},"accountType":"Cash"},{"scope":"ScopeB","code":"Account2","status":"Active","accountNumber":"10003786B","accountName":"Account2","accountingMethod":"FirstInFirstOut","properties":{},"custodianIdentifier":{"idTypeScope":"ScopeA","idTypeCode":"LegalEntityCode2","code":"LegalEntityValue2"},"accountType":"Swap"}] # List[CustodianAccountRequest]
 api_response = api_instance.upsert_custodian_accounts(scope, code, custodian_account_request)
 pprint(api_response)
 ```
