@@ -1430,7 +1430,7 @@ class RecsApi:
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
-        :param property_keys: The property keys to decorate onto the result.
+        :param property_keys: The property keys to decorate onto the result. The keys its matching ruleset populates always come back, so list only others here.
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1462,7 +1462,7 @@ class RecsApi:
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
-        :param property_keys: The property keys to decorate onto the result.
+        :param property_keys: The property keys to decorate onto the result. The keys its matching ruleset populates always come back, so list only others here.
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2507,7 +2507,7 @@ class RecsApi:
         :type filter: str
         :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
-        :param property_keys: The property keys to decorate onto each result.
+        :param property_keys: The property keys to decorate onto each result. The keys its matching ruleset populates always come back, so list only others here.
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -2537,7 +2537,7 @@ class RecsApi:
         :type filter: str
         :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
-        :param property_keys: The property keys to decorate onto each result.
+        :param property_keys: The property keys to decorate onto each result. The keys its matching ruleset populates always come back, so list only others here.
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -4736,7 +4736,7 @@ class RecsApi:
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
-            :param property_keys: The property keys to decorate onto the result.
+            :param property_keys: The property keys to decorate onto the result. The keys its matching ruleset populates always come back, so list only others here.
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4769,7 +4769,7 @@ class RecsApi:
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
-            :param property_keys: The property keys to decorate onto the result.
+            :param property_keys: The property keys to decorate onto the result. The keys its matching ruleset populates always come back, so list only others here.
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -5820,7 +5820,7 @@ class RecsApi:
             :type filter: str
             :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
-            :param property_keys: The property keys to decorate onto each result.
+            :param property_keys: The property keys to decorate onto each result. The keys its matching ruleset populates always come back, so list only others here.
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -5851,7 +5851,7 @@ class RecsApi:
             :type filter: str
             :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
-            :param property_keys: The property keys to decorate onto each result.
+            :param property_keys: The property keys to decorate onto each result. The keys its matching ruleset populates always come back, so list only others here.
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

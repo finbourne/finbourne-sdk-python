@@ -18,6 +18,7 @@ A Journal Entry line entity specifically for fund valuation point lines.
 | **units** | **float** | Required | Units held for the Journal Entry Line. |
 | **posting_module_code** | **str** | Optional | The code of the posting module where the posting rules derived the Journal Entry lines. |
 | **posting_rule** | **str** | Required | The rule generating the Journal Entry Line. |
+| **posting_rule_version** | **int** | Optional | The version of the rule generating the Journal Entry Line. Null where no rule matched the line. |
 | **as_at_date** | **datetime** | Required | The corresponding input date and time of the Transaction generating the Journal Entry Line. |
 | **activities_description** | **str** | Optional | This would be the description of the business activities this Journal Entry Line is for. |
 | **source_type** | **str** | Required | The type of source for the Journal Entry Line. Available values: LusidTransaction, LusidValuation, Manual, External. |
@@ -63,6 +64,7 @@ instance = FundJournalEntryLine(
     units=0.0,  # required — Units held for the Journal Entry Line.
     posting_module_code="...",  # optional — The code of the posting module where the posting rules derived the Journal Entry lines.
     posting_rule="...",  # required — The rule generating the Journal Entry Line.
+    posting_rule_version=0,  # optional — The version of the rule generating the Journal Entry Line. Null where no rule matched the line.
     as_at_date=datetime.now(),  # required — The corresponding input date and time of the Transaction generating the Journal Entry Line.
     activities_description="...",  # optional — This would be the description of the business activities this Journal Entry Line is for.
     source_type="...",  # required — The type of source for the Journal Entry Line. Available values: LusidTransaction, LusidValuation, Manual, External.

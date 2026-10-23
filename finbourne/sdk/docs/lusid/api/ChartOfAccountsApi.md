@@ -35,6 +35,7 @@ Method | HTTP request | Description
 [**set_general_ledger_profile_mappings**](ChartOfAccountsApi.md#set_general_ledger_profile_mappings) | **PUT** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode}/mappings | [EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.
 [**set_posting_module_details**](ChartOfAccountsApi.md#set_posting_module_details) | **PUT** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module
 [**set_posting_module_rules**](ChartOfAccountsApi.md#set_posting_module_rules) | **PUT** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules | [EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module
+[**supersede_posting_module_rule**](ChartOfAccountsApi.md#supersede_posting_module_rule) | **POST** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules/{ruleId}/$supersede | [EARLY ACCESS] SupersedePostingModuleRule: Supersede a rule of a Posting Module
 [**upsert_account_properties**](ChartOfAccountsApi.md#upsert_account_properties) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode}/properties/$upsert | [EARLY ACCESS] UpsertAccountProperties: Upsert account properties
 [**upsert_accounts**](ChartOfAccountsApi.md#upsert_accounts) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts | [EARLY ACCESS] UpsertAccounts: Upsert Accounts
 [**upsert_chart_of_accounts_properties**](ChartOfAccountsApi.md#upsert_chart_of_accounts_properties) | **POST** /api/api/chartofaccounts/{scope}/{code}/properties/$upsert | [EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties
@@ -1094,7 +1095,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_posting_module_rules**
-> PagedResourceListOfPostingModuleRule listPostingModuleRules = list_posting_module_rules(scope, code, posting_module_code, as_at=as_at, page=page, limit=limit, filter=filter)
+> PagedResourceListOfPostingModuleRuleResponse listPostingModuleRules = list_posting_module_rules(scope, code, posting_module_code, as_at=as_at, page=page, limit=limit, filter=filter)
 
 [EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules
 
@@ -1129,7 +1130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfPostingModuleRule**](../model/PagedResourceListOfPostingModuleRule.md)
+[**PagedResourceListOfPostingModuleRuleResponse**](../model/PagedResourceListOfPostingModuleRuleResponse.md)
 
 ### HTTP request headers
 
@@ -1562,6 +1563,56 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **posting_module_code** | **str**| The code of the Posting Module to be updated. | [required] 
  **posting_module_rule** | [**List[PostingModuleRule]**](../model/PostingModuleRule.md)| The new rule set for the Posting Module. | [required] 
+
+### Return type
+
+[**PostingModuleRulesUpdatedResponse**](../model/PostingModuleRulesUpdatedResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Posting Module with updated rules. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **supersede_posting_module_rule**
+> PostingModuleRulesUpdatedResponse supersedePostingModuleRule = supersede_posting_module_rule(scope, code, posting_module_code, rule_id, supersede_posting_module_rule_request)
+
+[EARLY ACCESS] SupersedePostingModuleRule: Supersede a rule of a Posting Module
+
+Supersede a Posting Rule by one or more rules in a single write. Every rule in the request records the superseded  ruleId as its originalRuleId. At most one of them may have the superseded ruleId: it becomes the rule's next  version, and the rule's latest version stops applying from its effectiveFrom, unless it already ends by then; it  is never extended. Any other rule is new and must not have the ruleId of an existing rule. The rules take the  latest version's place in the rule list, in the order given.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ChartOfAccountsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+posting_module_code = 'posting_module_code_example' # str
+rule_id = 'rule_id_example' # str
+supersede_posting_module_rule_request = [{"ruleId":"income","effectiveFrom":"2026-02-01T00:00:00.0000000+00:00","generalLedgerAccountCode":"100002355","ruleFilter":"EconomicBucket eq 'NA_Income'"}] # List[SupersedePostingModuleRuleRequest]
+api_response = api_instance.supersede_posting_module_rule(scope, code, posting_module_code, rule_id, supersede_posting_module_rule_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Chart of Accounts. | [required] 
+ **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
+ **posting_module_code** | **str**| The code of the Posting Module to be updated. | [required] 
+ **rule_id** | **str**| The identifier of the Posting Rule to supersede. Its latest version is closed. | [required] 
+ **supersede_posting_module_rule_request** | [**List[SupersedePostingModuleRuleRequest]**](../model/SupersedePostingModuleRuleRequest.md)| The rules that take over from the superseded rule. | [required] 
 
 ### Return type
 

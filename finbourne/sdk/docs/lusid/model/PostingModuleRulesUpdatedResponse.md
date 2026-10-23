@@ -5,7 +5,7 @@ A Posting Module rules update response
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rules** | [List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
+| **rules** | [List[PostingModuleRuleResponse]](PostingModuleRuleResponse.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
@@ -29,7 +29,7 @@ instance = PostingModuleRulesUpdatedResponse(
 
 ## Related Models
 
-- [PostingModuleRule](PostingModuleRule.md) — used in `rules`
+- [PostingModuleRuleResponse](PostingModuleRuleResponse.md) — used in `rules`
 - [Version](Version.md)
 - [Link](Link.md)
 

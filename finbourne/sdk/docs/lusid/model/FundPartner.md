@@ -14,7 +14,7 @@ A register line of a partnership fund: one partner's commitment and its capital 
 | **partner_role** | **str** | Required | The role of the register line. Available values: GPRegister, LPInvestment. |
 | **commitment_currency** | **str** | Required | The currency of the partner&#39;s commitment. |
 | **balances** | [FundPartnerBalances](FundPartnerBalances.md) | Required | *No description available.* |
-| **share_of_commitments** | **float** | Required | The partner&#39;s committed capital as a decimal fraction of the fund&#39;s total commitments. |
+| **share_of_commitments** | **float** | Required | The partner&#39;s committed capital as a decimal fraction of the fund&#39;s total commitments in the same commitment currency. |
 | **admitted_on** | **datetime** | Optional | The date the partner was admitted, being the date of their first commitment. |
 | **totals** | [FundPartnersTotals](FundPartnersTotals.md) | Required | *No description available.* |
 
@@ -36,7 +36,7 @@ instance = FundPartner(
     partner_role="...",  # required — The role of the register line. Available values: GPRegister, LPInvestment.
     commitment_currency="...",  # required — The currency of the partner&#39;s commitment.
     balances=FundPartnerBalances(...),  # required
-    share_of_commitments=0.0,  # required — The partner&#39;s committed capital as a decimal fraction of the fund&#39;s total commitments.
+    share_of_commitments=0.0,  # required — The partner&#39;s committed capital as a decimal fraction of the fund&#39;s total commitments in the same commitment currency.
     admitted_on=datetime.now(),  # optional — The date the partner was admitted, being the date of their first commitment.
     totals=FundPartnersTotals(...)  # required
 )

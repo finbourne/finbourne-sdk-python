@@ -13,7 +13,7 @@ Defines a read-only Run Worker Action
 | **child_task_configurations** | [List[ResultantChildTaskConfiguration]](ResultantChildTaskConfiguration.md) | Optional | Tasks can be generated from run worker results; this is the configuration |
 | **re_run_configurations** | [List[ReRunConfiguration]](ReRunConfiguration.md) | Optional | Configuration governing how re-run results are reconciled against existing child tasks from a previous run of this action against the same parent Task instance |
 | **worker_timeout** | **int** | Optional | Worker timeout in seconds |
-| **ordering** | **str** | Optional | How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries |
+| **ordering** | **str** | Optional | How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries. In Series and ParallelSeries only the first child task of each chain is started; each later one is started by its predecessor&#39;s TriggerNextTask action, or by another trigger such as a TriggerChildTasks filter on previousTask. Without one, the chain stops after its first child. |
 
 
 ## Usage
@@ -32,7 +32,7 @@ instance = RunWorkerActionResponse(
     child_task_configurations=[],  # optional — Tasks can be generated from run worker results; this is the configuration
     re_run_configurations=[],  # optional — Configuration governing how re-run results are reconciled against existing child tasks from a previous run of this action against the same parent Task instance
     worker_timeout=0,  # optional — Worker timeout in seconds
-    ordering="..."  # optional — How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries
+    ordering="..."  # optional — How the created child tasks are ordered for execution: Parallel (default), Series, or ParallelSeries. In Series and ParallelSeries only the first child task of each chain is started; each later one is started by its predecessor&#39;s TriggerNextTask action, or by another trigger such as a TriggerChildTasks filter on previousTask. Without one, the chain stops after its first child.
 )
 ```
 

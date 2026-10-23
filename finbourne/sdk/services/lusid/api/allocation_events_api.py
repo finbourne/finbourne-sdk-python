@@ -73,7 +73,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_book_request: The booking reference to freeze the event under. (required)
         :type allocation_event_book_request: AllocationEventBookRequest
-        :param effective_at: The effective datetime or cut label from which the booking applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event to book. The booking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -99,7 +99,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_book_request: The booking reference to freeze the event under. (required)
         :type allocation_event_book_request: AllocationEventBookRequest
-        :param effective_at: The effective datetime or cut label from which the booking applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event to book. The booking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -352,12 +352,12 @@ class AllocationEventsApi:
     def delete_allocation_event(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
         """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
-        Delete an Allocation Event from an effective datetime. The Allocation Event remains retrievable at earlier  effective datetimes.  # noqa: E501
+        Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
         :type scope: str
         :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
         :type code: str
-        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -376,12 +376,12 @@ class AllocationEventsApi:
     def delete_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
-        Delete an Allocation Event from an effective datetime. The Allocation Event remains retrievable at earlier  effective datetimes.  # noqa: E501
+        Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
         :type scope: str
         :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
         :type code: str
-        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1546,7 +1546,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_reallocate_request: The reason for the reallocation and any basis values to use. (required)
         :type allocation_event_reallocate_request: AllocationEventReallocateRequest
-        :param effective_at: The effective datetime or cut label from which the reallocation applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label from which the reallocation applies. If not specified, the version in force now is recomputed in place from its own effective date.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1572,7 +1572,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_reallocate_request: The reason for the reallocation and any basis values to use. (required)
         :type allocation_event_reallocate_request: AllocationEventReallocateRequest
-        :param effective_at: The effective datetime or cut label from which the reallocation applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label from which the reallocation applies. If not specified, the version in force now is recomputed in place from its own effective date.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1697,7 +1697,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
         :type allocation_event_receipt_request: AllocationEventReceiptRequest
-        :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event receiving cash. The receipt is recorded on the version in force at that time, from that version's own effective date; the receipt postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1723,7 +1723,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
         :type allocation_event_receipt_request: AllocationEventReceiptRequest
-        :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event receiving cash. The receipt is recorded on the version in force at that time, from that version's own effective date; the receipt postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1848,7 +1848,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
         :type allocation_event_reverse_request: AllocationEventReverseRequest
-        :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event to reverse. The reversed status is recorded on the version in force at that time, from that version's own effective date; the mirror postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1874,7 +1874,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
         :type allocation_event_reverse_request: AllocationEventReverseRequest
-        :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event to reverse. The reversed status is recorded on the version in force at that time, from that version's own effective date; the mirror postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1999,7 +1999,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
         :type allocation_event_unbook_request: AllocationEventUnbookRequest
-        :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event to unbook. The unbooking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -2025,7 +2025,7 @@ class AllocationEventsApi:
         :type code: str
         :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
         :type allocation_event_unbook_request: AllocationEventUnbookRequest
-        :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+        :param effective_at: The effective datetime or cut label at which to read the Allocation Event to unbook. The unbooking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2297,7 +2297,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_book_request: The booking reference to freeze the event under. (required)
             :type allocation_event_book_request: AllocationEventBookRequest
-            :param effective_at: The effective datetime or cut label from which the booking applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event to book. The booking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2324,7 +2324,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_book_request: The booking reference to freeze the event under. (required)
             :type allocation_event_book_request: AllocationEventBookRequest
-            :param effective_at: The effective datetime or cut label from which the booking applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event to book. The booking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -2577,13 +2577,13 @@ class AllocationEventsApi:
     @validate_call
     async def delete_allocation_event_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
             """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
-            Delete an Allocation Event from an effective datetime. The Allocation Event remains retrievable at earlier  effective datetimes.  # noqa: E501
+            Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
             :type scope: str
             :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
             :type code: str
-            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2602,13 +2602,13 @@ class AllocationEventsApi:
     async def delete_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
             """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
-            Delete an Allocation Event from an effective datetime. The Allocation Event remains retrievable at earlier  effective datetimes.  # noqa: E501
+            Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
 
             :param scope: The scope of the Allocation Event. (required)
             :type scope: str
             :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
             :type code: str
-            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -3780,7 +3780,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_reallocate_request: The reason for the reallocation and any basis values to use. (required)
             :type allocation_event_reallocate_request: AllocationEventReallocateRequest
-            :param effective_at: The effective datetime or cut label from which the reallocation applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label from which the reallocation applies. If not specified, the version in force now is recomputed in place from its own effective date.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -3807,7 +3807,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_reallocate_request: The reason for the reallocation and any basis values to use. (required)
             :type allocation_event_reallocate_request: AllocationEventReallocateRequest
-            :param effective_at: The effective datetime or cut label from which the reallocation applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label from which the reallocation applies. If not specified, the version in force now is recomputed in place from its own effective date.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -3932,7 +3932,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
             :type allocation_event_receipt_request: AllocationEventReceiptRequest
-            :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event receiving cash. The receipt is recorded on the version in force at that time, from that version's own effective date; the receipt postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -3959,7 +3959,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_receipt_request: The investor, amount and date of the receipt. (required)
             :type allocation_event_receipt_request: AllocationEventReceiptRequest
-            :param effective_at: The effective datetime or cut label from which the receipt applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event receiving cash. The receipt is recorded on the version in force at that time, from that version's own effective date; the receipt postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -4084,7 +4084,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
             :type allocation_event_reverse_request: AllocationEventReverseRequest
-            :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event to reverse. The reversed status is recorded on the version in force at that time, from that version's own effective date; the mirror postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4111,7 +4111,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_reverse_request: The reason for the reversal and, optionally, when it should take effect. (required)
             :type allocation_event_reverse_request: AllocationEventReverseRequest
-            :param effective_at: The effective datetime or cut label from which the reversal applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event to reverse. The reversed status is recorded on the version in force at that time, from that version's own effective date; the mirror postings are dated by the request. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -4236,7 +4236,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
             :type allocation_event_unbook_request: AllocationEventUnbookRequest
-            :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event to unbook. The unbooking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4263,7 +4263,7 @@ class AllocationEventsApi:
             :type code: str
             :param allocation_event_unbook_request: The reason the booking is being taken back. (required)
             :type allocation_event_unbook_request: AllocationEventUnbookRequest
-            :param effective_at: The effective datetime or cut label from which the unbooking applies. Defaults to the current LUSID system datetime if not specified.
+            :param effective_at: The effective datetime or cut label at which to read the Allocation Event to unbook. The unbooking is recorded on the version in force at that time, from that version's own effective date. Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

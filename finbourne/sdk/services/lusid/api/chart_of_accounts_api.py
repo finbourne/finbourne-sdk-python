@@ -47,12 +47,13 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_cleardown_module
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_cleardown_module_rule import PagedResourceListOfCleardownModuleRule
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_general_ledger_profile_response import PagedResourceListOfGeneralLedgerProfileResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_response import PagedResourceListOfPostingModuleResponse
-from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_rule import PagedResourceListOfPostingModuleRule
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_rule_response import PagedResourceListOfPostingModuleRuleResponse
 from finbourne.sdk.services.lusid.models.posting_module_details import PostingModuleDetails
 from finbourne.sdk.services.lusid.models.posting_module_request import PostingModuleRequest
 from finbourne.sdk.services.lusid.models.posting_module_response import PostingModuleResponse
 from finbourne.sdk.services.lusid.models.posting_module_rule import PostingModuleRule
 from finbourne.sdk.services.lusid.models.posting_module_rules_updated_response import PostingModuleRulesUpdatedResponse
+from finbourne.sdk.services.lusid.models.supersede_posting_module_rule_request import SupersedePostingModuleRuleRequest
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -3260,7 +3261,7 @@ class ChartOfAccountsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_posting_module_rules(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRule:
+    def list_posting_module_rules(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRuleResponse:
         """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
         List the Rules in a Posting Module  # noqa: E501
@@ -3282,7 +3283,7 @@ class ChartOfAccountsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: PagedResourceListOfPostingModuleRule
+        :rtype: PagedResourceListOfPostingModuleRuleResponse
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -3292,7 +3293,7 @@ class ChartOfAccountsApi:
         return response.data
 
     @validate_call
-    def list_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRule]:
+    def list_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRuleResponse]:
         """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
         List the Rules in a Posting Module  # noqa: E501
@@ -3327,7 +3328,7 @@ class ChartOfAccountsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(PagedResourceListOfPostingModuleRule, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PagedResourceListOfPostingModuleRuleResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -3409,7 +3410,7 @@ class ChartOfAccountsApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "PagedResourceListOfPostingModuleRule",
+            '200': "PagedResourceListOfPostingModuleRuleResponse",
             '400': "LusidValidationProblemDetails",
         }
 
@@ -4787,6 +4788,165 @@ class ChartOfAccountsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def supersede_posting_module_rule(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, rule_id: StrictStr, supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest], **kwargs) -> PostingModuleRulesUpdatedResponse:
+        """[EARLY ACCESS] SupersedePostingModuleRule: Supersede a rule of a Posting Module  # noqa: E501
+
+        Supersede a Posting Rule by one or more rules in a single write. Every rule in the request records the superseded  ruleId as its originalRuleId. At most one of them may have the superseded ruleId: it becomes the rule's next  version, and the rule's latest version stops applying from its effectiveFrom, unless it already ends by then; it  is never extended. Any other rule is new and must not have the ruleId of an existing rule. The rules take the  latest version's place in the rule list, in the order given.  # noqa: E501
+        :param scope: The scope of the Chart of Accounts. (required)
+        :type scope: str
+        :param code: The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. (required)
+        :type code: str
+        :param posting_module_code: The code of the Posting Module to be updated. (required)
+        :type posting_module_code: str
+        :param rule_id: The identifier of the Posting Rule to supersede. Its latest version is closed. (required)
+        :type rule_id: str
+        :param supersede_posting_module_rule_request: The rules that take over from the superseded rule. (required)
+        :type supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PostingModuleRulesUpdatedResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the supersede_posting_module_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.supersede_posting_module_rule_with_http_info(scope, code, posting_module_code, rule_id, supersede_posting_module_rule_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def supersede_posting_module_rule_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, rule_id: StrictStr, supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest], **kwargs) -> ApiResponse[PostingModuleRulesUpdatedResponse]:
+        """[EARLY ACCESS] SupersedePostingModuleRule: Supersede a rule of a Posting Module  # noqa: E501
+
+        Supersede a Posting Rule by one or more rules in a single write. Every rule in the request records the superseded  ruleId as its originalRuleId. At most one of them may have the superseded ruleId: it becomes the rule's next  version, and the rule's latest version stops applying from its effectiveFrom, unless it already ends by then; it  is never extended. Any other rule is new and must not have the ruleId of an existing rule. The rules take the  latest version's place in the rule list, in the order given.  # noqa: E501
+        :param scope: The scope of the Chart of Accounts. (required)
+        :type scope: str
+        :param code: The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. (required)
+        :type code: str
+        :param posting_module_code: The code of the Posting Module to be updated. (required)
+        :type posting_module_code: str
+        :param rule_id: The identifier of the Posting Rule to supersede. Its latest version is closed. (required)
+        :type rule_id: str
+        :param supersede_posting_module_rule_request: The rules that take over from the superseded rule. (required)
+        :type supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PostingModuleRulesUpdatedResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'posting_module_code',
+            'rule_id',
+            'supersede_posting_module_rule_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method supersede_posting_module_rule" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+        if _params['posting_module_code'] is not None:
+            _path_params['postingModuleCode'] = _params['posting_module_code']
+
+        if _params['rule_id'] is not None:
+            _path_params['ruleId'] = _params['rule_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['supersede_posting_module_rule_request'] is not None:
+            _body_params = _params['supersede_posting_module_rule_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PostingModuleRulesUpdatedResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules/{ruleId}/$supersede', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -8447,7 +8607,7 @@ class ChartOfAccountsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_posting_module_rules_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRule:
+    async def list_posting_module_rules_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRuleResponse:
             """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
             List the Rules in a Posting Module  # noqa: E501
             
@@ -8469,7 +8629,7 @@ class ChartOfAccountsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: PagedResourceListOfPostingModuleRule
+            :rtype: PagedResourceListOfPostingModuleRuleResponse
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -8479,7 +8639,7 @@ class ChartOfAccountsApi:
             return response.data
 
     @validate_call
-    async def list_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRule]:
+    async def list_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRuleResponse]:
             """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
             List the Rules in a Posting Module  # noqa: E501
@@ -8515,7 +8675,7 @@ class ChartOfAccountsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(PagedResourceListOfPostingModuleRule, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(PagedResourceListOfPostingModuleRuleResponse, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -8597,7 +8757,7 @@ class ChartOfAccountsApi:
             _auth_settings = ['oauth2']  # noqa: E501
 
             _response_types_map = {
-                '200': "PagedResourceListOfPostingModuleRule",
+                '200': "PagedResourceListOfPostingModuleRuleResponse",
                 '400': "LusidValidationProblemDetails",
             }
 
@@ -9984,6 +10144,166 @@ class ChartOfAccountsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules', 'PUT',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def supersede_posting_module_rule_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, rule_id: StrictStr, supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest], **kwargs) -> PostingModuleRulesUpdatedResponse:
+            """[EARLY ACCESS] SupersedePostingModuleRule: Supersede a rule of a Posting Module  # noqa: E501
+            Supersede a Posting Rule by one or more rules in a single write. Every rule in the request records the superseded  ruleId as its originalRuleId. At most one of them may have the superseded ruleId: it becomes the rule's next  version, and the rule's latest version stops applying from its effectiveFrom, unless it already ends by then; it  is never extended. Any other rule is new and must not have the ruleId of an existing rule. The rules take the  latest version's place in the rule list, in the order given.  # noqa: E501
+            
+            :param scope: The scope of the Chart of Accounts. (required)
+            :type scope: str
+            :param code: The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. (required)
+            :type code: str
+            :param posting_module_code: The code of the Posting Module to be updated. (required)
+            :type posting_module_code: str
+            :param rule_id: The identifier of the Posting Rule to supersede. Its latest version is closed. (required)
+            :type rule_id: str
+            :param supersede_posting_module_rule_request: The rules that take over from the superseded rule. (required)
+            :type supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PostingModuleRulesUpdatedResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the supersede_posting_module_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.supersede_posting_module_rule_with_http_info_async(scope, code, posting_module_code, rule_id, supersede_posting_module_rule_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def supersede_posting_module_rule_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, rule_id: StrictStr, supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest], **kwargs) -> ApiResponse[PostingModuleRulesUpdatedResponse]:
+            """[EARLY ACCESS] SupersedePostingModuleRule: Supersede a rule of a Posting Module  # noqa: E501
+
+            Supersede a Posting Rule by one or more rules in a single write. Every rule in the request records the superseded  ruleId as its originalRuleId. At most one of them may have the superseded ruleId: it becomes the rule's next  version, and the rule's latest version stops applying from its effectiveFrom, unless it already ends by then; it  is never extended. Any other rule is new and must not have the ruleId of an existing rule. The rules take the  latest version's place in the rule list, in the order given.  # noqa: E501
+
+            :param scope: The scope of the Chart of Accounts. (required)
+            :type scope: str
+            :param code: The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. (required)
+            :type code: str
+            :param posting_module_code: The code of the Posting Module to be updated. (required)
+            :type posting_module_code: str
+            :param rule_id: The identifier of the Posting Rule to supersede. Its latest version is closed. (required)
+            :type rule_id: str
+            :param supersede_posting_module_rule_request: The rules that take over from the superseded rule. (required)
+            :type supersede_posting_module_rule_request: List[SupersedePostingModuleRuleRequest]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PostingModuleRulesUpdatedResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'posting_module_code',
+                'rule_id',
+                'supersede_posting_module_rule_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method supersede_posting_module_rule" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+            if _params['posting_module_code'] is not None:
+                _path_params['postingModuleCode'] = _params['posting_module_code']
+
+            if _params['rule_id'] is not None:
+                _path_params['ruleId'] = _params['rule_id']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['supersede_posting_module_rule_request'] is not None:
+                _body_params = _params['supersede_posting_module_rule_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PostingModuleRulesUpdatedResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules/{ruleId}/$supersede', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

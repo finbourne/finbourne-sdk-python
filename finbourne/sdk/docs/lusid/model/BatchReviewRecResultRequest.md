@@ -13,7 +13,7 @@ One item of a batch review request: applies review content to its targeted rec r
 | **assigned_user** | [RecResultAssignmentUpdate](RecResultAssignmentUpdate.md) | Optional | *No description available.* |
 | **assigned_role** | [RecResultAssignmentUpdate](RecResultAssignmentUpdate.md) | Optional | *No description available.* |
 | **add_comment_text** | **str** | Optional | Optional comment text to add to each targeted result. |
-| **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecResult domain. Filterable and sortable. |
+| **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecResult domain. Filterable and sortable. Always includes the properties the matching ruleset populates, with a null value where the result holds none yet. |
 
 
 ## Usage
@@ -32,7 +32,7 @@ instance = BatchReviewRecResultRequest(
     assigned_user=RecResultAssignmentUpdate(...),  # optional
     assigned_role=RecResultAssignmentUpdate(...),  # optional
     add_comment_text="...",  # optional — Optional comment text to add to each targeted result.
-    properties=[]  # optional — Properties in the RecResult domain. Filterable and sortable.
+    properties=[]  # optional — Properties in the RecResult domain. Filterable and sortable. Always includes the properties the matching ruleset populates, with a null value where the result holds none yet.
 )
 ```
 

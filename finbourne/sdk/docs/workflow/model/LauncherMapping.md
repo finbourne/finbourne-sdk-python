@@ -6,7 +6,7 @@ A value a Launcher either gives as it is or takes from somewhere.              E
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **set_to** | **str** | Optional | The value to use, given as it is |
-| **map_from** | **str** | Optional | The path the value is taken from, for example header.userId |
+| **map_from** | **str** | Optional | The path the value is taken from. A runAsUserId can only be taken from header.userId, and not for an event type whose header has no user ID |
 
 
 ## Usage
@@ -18,7 +18,7 @@ from finbourne.sdk.services.workflow.models.LauncherMapping import LauncherMappi
 
 instance = LauncherMapping(
     set_to="...",  # optional — The value to use, given as it is
-    map_from="..."  # optional — The path the value is taken from, for example header.userId
+    map_from="..."  # optional — The path the value is taken from. A runAsUserId can only be taken from header.userId, and not for an event type whose header has no user ID
 )
 ```
 

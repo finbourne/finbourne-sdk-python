@@ -7,6 +7,7 @@ Defines a read-only Create Child Tasks Action
 |------|------|----------|-------------|
 | **type** | **str** | Optional | Type name for this Action |
 | **child_task_configurations** | [List[CreateChildTaskConfiguration]](CreateChildTaskConfiguration.md) | Optional | The Child Task Configurations |
+| **ordering** | **str** | Optional | How the created child tasks are ordered for execution: Parallel (default) or Series. In Series the child tasks form a chain and only the first is started; each later one is started by its predecessor&#39;s TriggerNextTask action, or by another trigger such as a TriggerChildTasks filter on previousTask. Without one, the chain stops after the first child. |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.workflow.models.CreateChildTasksActionResponse impor
 
 instance = CreateChildTasksActionResponse(
     type="...",  # optional — Type name for this Action
-    child_task_configurations=[]  # optional — The Child Task Configurations
+    child_task_configurations=[],  # optional — The Child Task Configurations
+    ordering="..."  # optional — How the created child tasks are ordered for execution: Parallel (default) or Series. In Series the child tasks form a chain and only the first is started; each later one is started by its predecessor&#39;s TriggerNextTask action, or by another trigger such as a TriggerChildTasks filter on previousTask. Without one, the chain stops after the first child.
 )
 ```
 

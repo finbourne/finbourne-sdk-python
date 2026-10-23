@@ -11,6 +11,7 @@ Create Child Task Configuration
 | **child_task_fields** | [Dict[str, FieldMapping]](FieldMapping.md) | Optional | Field Mappings |
 | **map_stacking_key_from** | **str** | Optional | If present, the value of this field on the parent task will be the Stacking Key on any created child tasks |
 | **display_name** | **str** | Optional | An optional display name, to tell apart child task configurations that use the same Task Definition |
+| **condition** | **str** | Optional | A filter expression over the parent Task, in the same form as a transition Guard. If present, the child Task is only created when it evaluates to true, after the field changes of the update that made the transition |
 
 
 ## Usage
@@ -26,7 +27,8 @@ instance = CreateChildTaskConfiguration(
     initial_trigger="...",  # optional — The Initial Trigger for automatic start
     child_task_fields=FieldMapping(...),  # optional — Field Mappings
     map_stacking_key_from="...",  # optional — If present, the value of this field on the parent task will be the Stacking Key on any created child tasks
-    display_name="..."  # optional — An optional display name, to tell apart child task configurations that use the same Task Definition
+    display_name="...",  # optional — An optional display name, to tell apart child task configurations that use the same Task Definition
+    condition="..."  # optional — A filter expression over the parent Task, in the same form as a transition Guard. If present, the child Task is only created when it evaluates to true, after the field changes of the update that made the transition
 )
 ```
 

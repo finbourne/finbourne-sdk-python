@@ -30,7 +30,8 @@ class CreateChildTasksActionResponse(BaseModel):
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="Type name for this Action") 
     child_task_configurations: Optional[List[CreateChildTaskConfiguration]] = Field(default=None, description="The Child Task Configurations", alias="childTaskConfigurations")
-    __properties: ClassVar[List[str]] = ["type", "childTaskConfigurations"]
+    ordering:  Optional[StrictStr] = Field(default=None,alias="ordering", description="How the created child tasks are ordered for execution: Parallel (default) or Series. In Series the child tasks form a chain and only the first is started; each later one is started by its predecessor's TriggerNextTask action, or by another trigger such as a TriggerChildTasks filter on previousTask. Without one, the chain stops after the first child.") 
+    __properties: ClassVar[List[str]] = ["type", "childTaskConfigurations", "ordering"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -103,6 +104,11 @@ class CreateChildTasksActionResponse(BaseModel):
         if self.child_task_configurations is None and "child_task_configurations" in self.model_fields_set:
             _dict['childTaskConfigurations'] = None
 
+        # set to None if ordering (nullable) is None
+        # and model_fields_set contains the field
+        if self.ordering is None and "ordering" in self.model_fields_set:
+            _dict['ordering'] = None
+
         return _dict
 
     @classmethod
@@ -116,7 +122,8 @@ class CreateChildTasksActionResponse(BaseModel):
 
         _obj = CreateChildTasksActionResponse.model_validate({
             "type": obj.get("type"),
-            "child_task_configurations": [CreateChildTaskConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskConfigurations")) is not None else None
+            "child_task_configurations": [CreateChildTaskConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskConfigurations")) is not None else None,
+            "ordering": obj.get("ordering")
         })
         return _obj
 

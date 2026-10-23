@@ -5242,7 +5242,7 @@ class FundsApi:
     def get_partners(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_closed: Optional[bool] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> PagedResourceListOfFundPartner:
         """[EARLY ACCESS] GetPartners: [EARLY ACCESS] GetPartners: Get the partners of a partnership fund.  # noqa: E501
 
-        Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register.  # noqa: E501
+        Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register. Committed capital is totalled per  commitment currency, and each line's share of commitments is of the total in its own currency; amounts in  different currencies are never added together.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -5274,7 +5274,7 @@ class FundsApi:
     def get_partners_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_closed: Optional[bool] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundPartner]:
         """[EARLY ACCESS] GetPartners: [EARLY ACCESS] GetPartners: Get the partners of a partnership fund.  # noqa: E501
 
-        Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register.  # noqa: E501
+        Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register. Committed capital is totalled per  commitment currency, and each line's share of commitments is of the total in its own currency; amounts in  different currencies are never added together.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -16599,7 +16599,7 @@ class FundsApi:
     @validate_call
     async def get_partners_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_closed: Optional[bool] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> PagedResourceListOfFundPartner:
             """[EARLY ACCESS] GetPartners: [EARLY ACCESS] GetPartners: Get the partners of a partnership fund.  # noqa: E501
-            Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register.  # noqa: E501
+            Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register. Committed capital is totalled per  commitment currency, and each line's share of commitments is of the total in its own currency; amounts in  different currencies are never added together.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -16632,7 +16632,7 @@ class FundsApi:
     async def get_partners_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, include_closed: Optional[bool] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundPartner]:
             """[EARLY ACCESS] GetPartners: [EARLY ACCESS] GetPartners: Get the partners of a partnership fund.  # noqa: E501
 
-            Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register.  # noqa: E501
+            Lists the register lines of a partnership-accounting fund with each partner's capital balances at the  requested effective date, together with totals across the whole register. Committed capital is totalled per  commitment currency, and each line's share of commitments is of the total in its own currency; amounts in  different currencies are never added together.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str

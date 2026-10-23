@@ -10,7 +10,7 @@ A Posting Module definition
 | **chart_of_accounts_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Posting Module. |
 | **description** | **str** | Optional | A description for the Posting Module. |
-| **rules** | [List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
+| **rules** | [List[PostingModuleRuleResponse]](PostingModuleRuleResponse.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
 | **status** | **str** | Required | The Posting Module status. Default value: Active. Available values: Active, Inactive, Deleted. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
@@ -37,7 +37,7 @@ instance = PostingModuleResponse(
 ```
 
 - [ResourceId](ResourceId.md)
-- [PostingModuleRule](PostingModuleRule.md) — used in `rules`
+- [PostingModuleRuleResponse](PostingModuleRuleResponse.md) — used in `rules`
 - [Version](Version.md)
 - [Link](Link.md)
 

@@ -1235,7 +1235,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_portfolio_group 
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_portfolio_group_search_result import PagedResourceListOfPortfolioGroupSearchResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_portfolio_search_result import PagedResourceListOfPortfolioSearchResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_response import PagedResourceListOfPostingModuleResponse
-from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_rule import PagedResourceListOfPostingModuleRule
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_rule_response import PagedResourceListOfPostingModuleRuleResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_processing_group import PagedResourceListOfProcessingGroup
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition import PagedResourceListOfPropertyDefinition
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition_search_result import PagedResourceListOfPropertyDefinitionSearchResult
@@ -1368,6 +1368,7 @@ from finbourne.sdk.services.lusid.models.posting_module_details import PostingMo
 from finbourne.sdk.services.lusid.models.posting_module_request import PostingModuleRequest
 from finbourne.sdk.services.lusid.models.posting_module_response import PostingModuleResponse
 from finbourne.sdk.services.lusid.models.posting_module_rule import PostingModuleRule
+from finbourne.sdk.services.lusid.models.posting_module_rule_response import PostingModuleRuleResponse
 from finbourne.sdk.services.lusid.models.posting_module_rules_updated_response import PostingModuleRulesUpdatedResponse
 from finbourne.sdk.services.lusid.models.pre_trade_configuration import PreTradeConfiguration
 from finbourne.sdk.services.lusid.models.preferred_share import PreferredShare
@@ -1799,6 +1800,7 @@ from finbourne.sdk.services.lusid.models.sub_holding_key_value_equals import Sub
 from finbourne.sdk.services.lusid.models.submit_rec_result_set_review_request import SubmitRecResultSetReviewRequest
 from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
 from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
+from finbourne.sdk.services.lusid.models.supersede_posting_module_rule_request import SupersedePostingModuleRuleRequest
 from finbourne.sdk.services.lusid.models.supplemental_attribute import SupplementalAttribute
 from finbourne.sdk.services.lusid.models.supplemental_attribute_values import SupplementalAttributeValues
 from finbourne.sdk.services.lusid.models.suppression_entry_response import SuppressionEntryResponse
@@ -3332,7 +3334,7 @@ __all__ = [
     "PagedResourceListOfPortfolioGroupSearchResult",
     "PagedResourceListOfPortfolioSearchResult",
     "PagedResourceListOfPostingModuleResponse",
-    "PagedResourceListOfPostingModuleRule",
+    "PagedResourceListOfPostingModuleRuleResponse",
     "PagedResourceListOfProcessingGroup",
     "PagedResourceListOfPropertyDefinition",
     "PagedResourceListOfPropertyDefinitionSearchResult",
@@ -3465,6 +3467,7 @@ __all__ = [
     "PostingModuleRequest",
     "PostingModuleResponse",
     "PostingModuleRule",
+    "PostingModuleRuleResponse",
     "PostingModuleRulesUpdatedResponse",
     "PreTradeConfiguration",
     "PreferredShare",
@@ -3896,6 +3899,7 @@ __all__ = [
     "SubmitRecResultSetReviewRequest",
     "SubscribeElection",
     "SubscriptionDefinition",
+    "SupersedePostingModuleRuleRequest",
     "SupplementalAttribute",
     "SupplementalAttributeValues",
     "SuppressionEntryResponse",

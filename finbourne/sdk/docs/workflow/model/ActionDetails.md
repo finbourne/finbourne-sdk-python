@@ -35,8 +35,10 @@ create_child_tasks_action_instance = workflow.models.create_child_tasks_action.C
                                         set_to = null, )
                                     }, 
                                 map_stacking_key_from = '', 
-                                display_name = ' Aa6w77ikCX*cKCmv|`K/V', )
-                            ], )
+                                display_name = ' Aa6w77ikCX*cKCmv|`K/V', 
+                                condition = ' Aa6w77ikCX*cKCmv|`K/V', )
+                            ], 
+                        ordering = '', )
 
 instance = ActionDetails(create_child_tasks_action_instance)
 ```

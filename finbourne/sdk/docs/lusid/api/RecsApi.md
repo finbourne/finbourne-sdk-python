@@ -530,7 +530,7 @@ Name | Type | Description  | Notes
  **run_number** | **int**| The run of the instance whose view of the result is read. | [required] 
  **id** | **str**| The display id of the rec result, e.g. \&quot;break-3\&quot;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the result. Defaults to latest if not specified. | [optional] 
- **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto the result. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto the result. The keys its matching ruleset populates always come back, so list only others here. | [optional] 
 
 ### Return type
 
@@ -874,7 +874,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **sort_by** | [**List[str]**](../model/str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto each result. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto each result. The keys its matching ruleset populates always come back, so list only others here. | [optional] 
 
 ### Return type
 

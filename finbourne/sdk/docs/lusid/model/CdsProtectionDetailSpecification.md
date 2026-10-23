@@ -7,7 +7,7 @@ CDSs generally conform to fairly standard definitions, but can be tweaked in a n
 |------|------|----------|-------------|
 | **seniority** | **str** | Optional | The seniority level of the CDS. Default value: SUB. Available values: Unknown, SNR, SUB, JRSUBUT2, PREFT1, SECDOM, SNRFOR, SUBLT2. Default: `'SUB'` |
 | **restructuring_type** | **str** | Optional | The restructuring clause. Default value: MM. Available values: Unknown, CR, MR, MM, XR, XR14, CR14, MR14, MM14. Default: `'MM'` |
-| **protect_start_day** | **bool** | Optional | Does the protection leg pay out in the case of default on the start date. Defaults to true if not set. Default: `True` |
+| **protect_start_day** | **bool** | Optional | Does the protection leg pay out in the case of default on the start date. Defaults to false if not set.  If true, the trade date is not included in the accrued interest that a transaction pays or receives. Default: `False` |
 | **pay_accrued_interest_on_default** | **bool** | Optional | Should accrued interest on the premium leg be paid if a credit event occurs. Defaults to true if not set. Default: `True` |
 
 
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.CdsProtectionDetailSpecification import
 instance = CdsProtectionDetailSpecification(
     seniority="...",  # optional — The seniority level of the CDS. Default value: SUB. Available values: Unknown, SNR, SUB, JRSUBUT2, PREFT1, SECDOM, SNRFOR, SUBLT2.
     restructuring_type="...",  # optional — The restructuring clause. Default value: MM. Available values: Unknown, CR, MR, MM, XR, XR14, CR14, MR14, MM14.
-    protect_start_day=True,  # optional — Does the protection leg pay out in the case of default on the start date. Defaults to true if not set.
+    protect_start_day=True,  # optional — Does the protection leg pay out in the case of default on the start date. Defaults to false if not set.  If true, the trade date is not included in the accrued interest that a transaction pays or receives.
     pay_accrued_interest_on_default=True  # optional — Should accrued interest on the premium leg be paid if a credit event occurs. Defaults to true if not set.
 )
 ```

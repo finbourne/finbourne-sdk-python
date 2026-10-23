@@ -35,7 +35,8 @@ class CreateChildTaskConfiguration(BaseModel):
     child_task_fields: Optional[Dict[str, FieldMapping]] = Field(default=None, description="Field Mappings", alias="childTaskFields")
     map_stacking_key_from:  Optional[StrictStr] = Field(default=None,alias="mapStackingKeyFrom", description="If present, the value of this field on the parent task will be the Stacking Key on any created child tasks") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="An optional display name, to tell apart child task configurations that use the same Task Definition") 
-    __properties: ClassVar[List[str]] = ["taskDefinitionId", "taskDefinitionAsAt", "initialTrigger", "childTaskFields", "mapStackingKeyFrom", "displayName"]
+    condition:  Optional[StrictStr] = Field(default=None,alias="condition", description="A filter expression over the parent Task, in the same form as a transition Guard. If present, the child Task is only created when it evaluates to true, after the field changes of the update that made the transition") 
+    __properties: ClassVar[List[str]] = ["taskDefinitionId", "taskDefinitionAsAt", "initialTrigger", "childTaskFields", "mapStackingKeyFrom", "displayName", "condition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +107,11 @@ class CreateChildTaskConfiguration(BaseModel):
         if self.display_name is None and "display_name" in self.model_fields_set:
             _dict['displayName'] = None
 
+        # set to None if condition (nullable) is None
+        # and model_fields_set contains the field
+        if self.condition is None and "condition" in self.model_fields_set:
+            _dict['condition'] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +134,8 @@ class CreateChildTaskConfiguration(BaseModel):
             if (_val := obj.get("childTaskFields")) is not None
             else None,
             "map_stacking_key_from": obj.get("mapStackingKeyFrom"),
-            "display_name": obj.get("displayName")
+            "display_name": obj.get("displayName"),
+            "condition": obj.get("condition")
         })
         return _obj
 

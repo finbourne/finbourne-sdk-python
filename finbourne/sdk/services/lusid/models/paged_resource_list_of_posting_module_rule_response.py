@@ -22,16 +22,16 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.link import Link
-from finbourne.sdk.services.lusid.models.posting_module_rule import PostingModuleRule
+from finbourne.sdk.services.lusid.models.posting_module_rule_response import PostingModuleRuleResponse
 
 
-class PagedResourceListOfPostingModuleRule(BaseModel):
+class PagedResourceListOfPostingModuleRuleResponse(BaseModel):
     """
-    PagedResourceListOfPostingModuleRule
+    PagedResourceListOfPostingModuleRuleResponse
     """
     next_page:  Optional[StrictStr] = Field(default=None,alias="nextPage") 
     previous_page:  Optional[StrictStr] = Field(default=None,alias="previousPage") 
-    values: List[PostingModuleRule]
+    values: List[PostingModuleRuleResponse]
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     links: Optional[List[Link]] = None
     __properties: ClassVar[List[str]] = ["nextPage", "previousPage", "values", "href", "links"]
@@ -59,8 +59,8 @@ class PagedResourceListOfPostingModuleRule(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PagedResourceListOfPostingModuleRule:
-        """Create an instance of PagedResourceListOfPostingModuleRule from a JSON string"""
+    def from_json(cls, json_str: str) -> PagedResourceListOfPostingModuleRuleResponse:
+        """Create an instance of PagedResourceListOfPostingModuleRuleResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -107,22 +107,22 @@ class PagedResourceListOfPostingModuleRule(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PagedResourceListOfPostingModuleRule:
-        """Create an instance of PagedResourceListOfPostingModuleRule from a dict"""
+    def from_dict(cls, obj: dict) -> PagedResourceListOfPostingModuleRuleResponse:
+        """Create an instance of PagedResourceListOfPostingModuleRuleResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PagedResourceListOfPostingModuleRule.model_validate(obj)
+            return PagedResourceListOfPostingModuleRuleResponse.model_validate(obj)
 
-        _obj = PagedResourceListOfPostingModuleRule.model_validate({
+        _obj = PagedResourceListOfPostingModuleRuleResponse.model_validate({
             "next_page": obj.get("nextPage"),
             "previous_page": obj.get("previousPage"),
-            "values": [PostingModuleRule.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+            "values": [PostingModuleRuleResponse.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 
-PagedResourceListOfPostingModuleRule.model_rebuild()
+PagedResourceListOfPostingModuleRuleResponse.model_rebuild()
 

@@ -1,4 +1,4 @@
-# PagedResourceListOfPostingModuleRule
+# PagedResourceListOfPostingModuleRuleResponse
 
 ## Properties
 
@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **next_page** | **str** | Optional | *No description available.* |
 | **previous_page** | **str** | Optional | *No description available.* |
-| **values** | [List[PostingModuleRule]](PostingModuleRule.md) | Required | *No description available.* |
+| **values** | [List[PostingModuleRuleResponse]](PostingModuleRuleResponse.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -16,9 +16,9 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.PagedResourceListOfPostingModuleRule import PagedResourceListOfPostingModuleRule
+from finbourne.sdk.services.lusid.models.PagedResourceListOfPostingModuleRuleResponse import PagedResourceListOfPostingModuleRuleResponse
 
-instance = PagedResourceListOfPostingModuleRule(
+instance = PagedResourceListOfPostingModuleRuleResponse(
     next_page="...",  # optional
     previous_page="...",  # optional
     values=[],  # required
@@ -27,7 +27,7 @@ instance = PagedResourceListOfPostingModuleRule(
 )
 ```
 
-- [PostingModuleRule](PostingModuleRule.md)
+- [PostingModuleRuleResponse](PostingModuleRuleResponse.md)
 - [Link](Link.md)
 
 

@@ -26,7 +26,7 @@ An individual reconciliation result — the aggregate result for a set of core r
 | **items** | [RecResultItemDetails](RecResultItemDetails.md) | Required | *No description available.* |
 | **linked_results** | [List[RecLinkedResult]](RecLinkedResult.md) | Required | Results of other rec types in the same rec instance run whose items share an identifier with this result&#39;s items. Only exceptions link, and only to exceptions; symmetric. Set by the linking pass once every rec type of the run has completed, so empty until then. |
 | **comments** | [List[RecUserComment]](RecUserComment.md) | Required | User-authored comments attached to the result. Carried forward across runs. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecResult domain. Filterable and sortable. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecResult domain. Filterable and sortable. Always includes the properties the matching ruleset populates, with a null value where the result holds none yet. |
 | **assigned_user** | **str** | Optional | The LUSID user id assigned to the result. |
 | **assigned_role** | **str** | Optional | The LUSID IAM role id assigned to the result. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
@@ -63,7 +63,7 @@ instance = RecResult(
     items=RecResultItemDetails(...),  # required
     linked_results=[],  # required — Results of other rec types in the same rec instance run whose items share an identifier with this result&#39;s items. Only exceptions link, and only to exceptions; symmetric. Set by the linking pass once every rec type of the run has completed, so empty until then.
     comments=[],  # required — User-authored comments attached to the result. Carried forward across runs.
-    properties=PerpetualProperty(...),  # optional — Properties in the RecResult domain. Filterable and sortable.
+    properties=PerpetualProperty(...),  # optional — Properties in the RecResult domain. Filterable and sortable. Always includes the properties the matching ruleset populates, with a null value where the result holds none yet.
     assigned_user="...",  # optional — The LUSID user id assigned to the result.
     assigned_role="...",  # optional — The LUSID IAM role id assigned to the result.
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.
