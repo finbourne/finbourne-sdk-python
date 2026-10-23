@@ -13,6 +13,7 @@ A request to update an existing integration instance.
 | **triggers** | [List[Trigger]](Trigger.md) | Required | *No description available.* |
 | **details** | **object** | Required | Base DTO type of an integration configuration specific to the integration type.              N.B. ASP.NET Core model validation is normally applied automatically when [ApiController] is added to a controller, however it doesn&#39;t work here with the polymorphic integration subtypes of this class (see https://github.com/dotnet/aspnetcore/issues/27882). The workaround here is to implement the IValidatableObject interface and each subtype must call Validate() or ValidateContents() on its properties (the validation is not recursive).  Located in Horizon.Integrations.Web so both specific integration projects and Horizon.WebApi can reference it. |
 | **post_process_tasks** | [List[PostProcessTask]](PostProcessTask.md) | Required | *No description available.* |
+| **alert_rules** | [List[AlertRule]](AlertRule.md) | Optional | Alert rules for the instance. On update the stored rules are replaced by this set when it is present, an empty set clears them, and omitting the field leaves them unchanged. |
 
 
 ## Usage
@@ -30,12 +31,14 @@ instance = UpdateInstanceRequest(
     enabled=True,  # required
     triggers=[],  # required
     details=,  # required — Base DTO type of an integration configuration specific to the integration type.              N.B. ASP.NET Core model validation is normally applied automatically when [ApiController] is added to a controller, however it doesn&#39;t work here with the polymorphic integration subtypes of this class (see https://github.com/dotnet/aspnetcore/issues/27882). The workaround here is to implement the IValidatableObject interface and each subtype must call Validate() or ValidateContents() on its properties (the validation is not recursive).  Located in Horizon.Integrations.Web so both specific integration projects and Horizon.WebApi can reference it.
-    post_process_tasks=[]  # required
+    post_process_tasks=[],  # required
+    alert_rules=[]  # optional — Alert rules for the instance. On update the stored rules are replaced by this set when it is present, an empty set clears them, and omitting the field leaves them unchanged.
 )
 ```
 
 - [Trigger](Trigger.md)
 - [PostProcessTask](PostProcessTask.md)
+- [AlertRule](AlertRule.md) — used in `alert_rules`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

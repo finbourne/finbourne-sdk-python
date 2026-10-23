@@ -25,6 +25,7 @@ from finbourne.sdk.services.horizon.api.vendor_api import VendorApi
 from finbourne.sdk.services.horizon.api.versioned_configurations_api import VersionedConfigurationsApi
 
 # import models into sdk package
+from finbourne.sdk.services.horizon.models.alert_rule import AlertRule
 from finbourne.sdk.services.horizon.models.allowed_parameter_value import AllowedParameterValue
 from finbourne.sdk.services.horizon.models.audit_complete_request import AuditCompleteRequest
 from finbourne.sdk.services.horizon.models.audit_complete_response import AuditCompleteResponse
@@ -156,6 +157,7 @@ __all__ = [
     "TradePublicationFrameworkApi",
     "VendorApi",
     "VersionedConfigurationsApi",
+    "AlertRule",
     "AllowedParameterValue",
     "AuditCompleteRequest",
     "AuditCompleteResponse",

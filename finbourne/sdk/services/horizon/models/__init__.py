@@ -12,6 +12,7 @@
 """
 
 # import models into model package
+from finbourne.sdk.services.horizon.models.alert_rule import AlertRule
 from finbourne.sdk.services.horizon.models.allowed_parameter_value import AllowedParameterValue
 from finbourne.sdk.services.horizon.models.audit_complete_request import AuditCompleteRequest
 from finbourne.sdk.services.horizon.models.audit_complete_response import AuditCompleteResponse
@@ -134,6 +135,7 @@ from finbourne.sdk.services.horizon.models.workflow_run_results_response import 
 
 
 __all__ = [
+    "AlertRule",
     "AllowedParameterValue",
     "AuditCompleteRequest",
     "AuditCompleteResponse",

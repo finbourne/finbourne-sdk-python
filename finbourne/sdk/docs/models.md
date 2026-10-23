@@ -125,6 +125,7 @@
 * [UpdateFile](drive/model/UpdateFile.md)
 * [UpdateFolder](drive/model/UpdateFolder.md)
 ## Horizon
+* [AlertRule](horizon/model/AlertRule.md)
 * [AllowedParameterValue](horizon/model/AllowedParameterValue.md)
 * [AuditCompleteRequest](horizon/model/AuditCompleteRequest.md)
 * [AuditCompleteResponse](horizon/model/AuditCompleteResponse.md)

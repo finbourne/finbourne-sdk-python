@@ -910,17 +910,21 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_run_files(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfRunFileResponse:
+    def list_run_files(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRunFileResponse:
         """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
 
-        :param instance_id: (required)
+        :param instance_id: Integration instance ID. (required)
         :type instance_id: str
-        :param run_id: (required)
+        :param run_id: Run ID within the instance. (required)
         :type run_id: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
-        :param page_size:
+        :param page_size: Number of results per page.
         :type page_size: int
+        :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+        :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
+        :type sort_by: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -931,21 +935,25 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the list_run_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_run_files_with_http_info(instance_id, run_id, page, page_size, **kwargs)
+        response = self.list_run_files_with_http_info(instance_id, run_id, page, page_size, filter, sort_by, **kwargs)
         return response.data
 
     @validate_call
-    def list_run_files_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfRunFileResponse]:
+    def list_run_files_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRunFileResponse]:
         """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
 
-        :param instance_id: (required)
+        :param instance_id: Integration instance ID. (required)
         :type instance_id: str
-        :param run_id: (required)
+        :param run_id: Run ID within the instance. (required)
         :type run_id: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
-        :param page_size:
+        :param page_size: Number of results per page.
         :type page_size: int
+        :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+        :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
+        :type sort_by: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -972,7 +980,9 @@ class TradePublicationFrameworkApi:
             'instance_id',
             'run_id',
             'page',
-            'page_size'
+            'page_size',
+            'filter',
+            'sort_by'
         ]
         _all_params.extend(
             [
@@ -1015,6 +1025,13 @@ class TradePublicationFrameworkApi:
         if _params.get('page_size') is not None:  # noqa: E501
             _query_params.append(('pageSize', _params['page_size']))
 
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1053,19 +1070,23 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_run_transactions(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
+    def list_run_transactions(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
         """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
 
-        :param instance_id: (required)
+        :param instance_id: Integration instance ID. (required)
         :type instance_id: str
-        :param run_id: (required)
+        :param run_id: Run ID within the instance. (required)
         :type run_id: str
-        :param status:
+        :param status: Filter by publication status (Sent, Skipped, Failed). This is the publication outcome, not the batched-transaction status.
         :type status: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
-        :param page_size:
+        :param page_size: Number of results per page.
         :type page_size: int
+        :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+        :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
+        :type sort_by: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1076,23 +1097,27 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the list_run_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_run_transactions_with_http_info(instance_id, run_id, status, page, page_size, **kwargs)
+        response = self.list_run_transactions_with_http_info(instance_id, run_id, status, page, page_size, filter, sort_by, **kwargs)
         return response.data
 
     @validate_call
-    def list_run_transactions_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
+    def list_run_transactions_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
         """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
 
-        :param instance_id: (required)
+        :param instance_id: Integration instance ID. (required)
         :type instance_id: str
-        :param run_id: (required)
+        :param run_id: Run ID within the instance. (required)
         :type run_id: str
-        :param status:
+        :param status: Filter by publication status (Sent, Skipped, Failed). This is the publication outcome, not the batched-transaction status.
         :type status: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
-        :param page_size:
+        :param page_size: Number of results per page.
         :type page_size: int
+        :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+        :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
+        :type sort_by: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1120,7 +1145,9 @@ class TradePublicationFrameworkApi:
             'run_id',
             'status',
             'page',
-            'page_size'
+            'page_size',
+            'filter',
+            'sort_by'
         ]
         _all_params.extend(
             [
@@ -1165,6 +1192,13 @@ class TradePublicationFrameworkApi:
 
         if _params.get('page_size') is not None:  # noqa: E501
             _query_params.append(('pageSize', _params['page_size']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -2600,17 +2634,21 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_run_files_async(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfRunFileResponse:
+    async def list_run_files_async(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRunFileResponse:
             """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
             
-            :param instance_id: (required)
+            :param instance_id: Integration instance ID. (required)
             :type instance_id: str
-            :param run_id: (required)
+            :param run_id: Run ID within the instance. (required)
             :type run_id: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
-            :param page_size:
+            :param page_size: Number of results per page.
             :type page_size: int
+            :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+            :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
+            :type sort_by: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2621,22 +2659,26 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the list_run_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_run_files_with_http_info_async(instance_id, run_id, page, page_size, **kwargs)
+            response = await self.list_run_files_with_http_info_async(instance_id, run_id, page, page_size, filter, sort_by, **kwargs)
             return response.data
 
     @validate_call
-    async def list_run_files_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfRunFileResponse]:
+    async def list_run_files_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRunFileResponse]:
             """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
 
 
-            :param instance_id: (required)
+            :param instance_id: Integration instance ID. (required)
             :type instance_id: str
-            :param run_id: (required)
+            :param run_id: Run ID within the instance. (required)
             :type run_id: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
-            :param page_size:
+            :param page_size: Number of results per page.
             :type page_size: int
+            :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+            :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
+            :type sort_by: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2663,7 +2705,9 @@ class TradePublicationFrameworkApi:
                 'instance_id',
                 'run_id',
                 'page',
-                'page_size'
+                'page_size',
+                'filter',
+                'sort_by'
             ]
             _all_params.extend(
                 [
@@ -2706,6 +2750,13 @@ class TradePublicationFrameworkApi:
             if _params.get('page_size') is not None:  # noqa: E501
                 _query_params.append(('pageSize', _params['page_size']))
 
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2744,19 +2795,23 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_run_transactions_async(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
+    async def list_run_transactions_async(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
             """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
             
-            :param instance_id: (required)
+            :param instance_id: Integration instance ID. (required)
             :type instance_id: str
-            :param run_id: (required)
+            :param run_id: Run ID within the instance. (required)
             :type run_id: str
-            :param status:
+            :param status: Filter by publication status (Sent, Skipped, Failed). This is the publication outcome, not the batched-transaction status.
             :type status: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
-            :param page_size:
+            :param page_size: Number of results per page.
             :type page_size: int
+            :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+            :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
+            :type sort_by: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2767,24 +2822,28 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the list_run_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_run_transactions_with_http_info_async(instance_id, run_id, status, page, page_size, **kwargs)
+            response = await self.list_run_transactions_with_http_info_async(instance_id, run_id, status, page, page_size, filter, sort_by, **kwargs)
             return response.data
 
     @validate_call
-    async def list_run_transactions_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
+    async def list_run_transactions_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
             """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
 
 
-            :param instance_id: (required)
+            :param instance_id: Integration instance ID. (required)
             :type instance_id: str
-            :param run_id: (required)
+            :param run_id: Run ID within the instance. (required)
             :type run_id: str
-            :param status:
+            :param status: Filter by publication status (Sent, Skipped, Failed). This is the publication outcome, not the batched-transaction status.
             :type status: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
-            :param page_size:
+            :param page_size: Number of results per page.
             :type page_size: int
+            :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+            :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
+            :type sort_by: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2812,7 +2871,9 @@ class TradePublicationFrameworkApi:
                 'run_id',
                 'status',
                 'page',
-                'page_size'
+                'page_size',
+                'filter',
+                'sort_by'
             ]
             _all_params.extend(
                 [
@@ -2857,6 +2918,13 @@ class TradePublicationFrameworkApi:
 
             if _params.get('page_size') is not None:  # noqa: E501
                 _query_params.append(('pageSize', _params['page_size']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

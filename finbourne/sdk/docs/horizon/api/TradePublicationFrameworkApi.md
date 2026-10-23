@@ -315,7 +315,7 @@ This endpoint does not need any parameter.
 ---
 
 # **list_run_files**
-> PagedResourceListOfRunFileResponse listRunFiles = list_run_files(instance_id, run_id, page=page, page_size=page_size)
+> PagedResourceListOfRunFileResponse listRunFiles = list_run_files(instance_id, run_id, page=page, page_size=page_size, filter=filter, sort_by=sort_by)
 
 [EXPERIMENTAL] ListRunFiles: List Files in a run
 
@@ -327,7 +327,9 @@ instance_id = 'instance_id_example' # str
 run_id = 'run_id_example' # str
 page = '' # str (optional)
 page_size = 100 # int (optional)
-api_response = api_instance.list_run_files(instance_id, run_id, page=page, page_size=page_size)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+api_response = api_instance.list_run_files(instance_id, run_id, page=page, page_size=page_size, filter=filter, sort_by=sort_by)
 pprint(api_response)
 ```
 
@@ -335,10 +337,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance_id** | **str**|  | [required] 
- **run_id** | **str**|  | [required] 
- **page** | **str**|  | [optional] [default to &#39;&#39;]
- **page_size** | **int**|  | [optional] [default to 100]
+ **instance_id** | **str**| Integration instance ID. | [required] 
+ **run_id** | **str**| Run ID within the instance. | [required] 
+ **page** | **str**| The pagination token from the previous response; &lt;i&gt;filter&lt;/i&gt; and &lt;i&gt;sortBy&lt;/i&gt; must be unchanged. | [optional] [default to &#39;&#39;]
+ **page_size** | **int**| Number of results per page. | [optional] [default to 100]
+ **filter** | **str**| A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Up to two filterable fields, each suffixed \&quot; ASC\&quot; or \&quot; DESC\&quot;. Defaults to newest first (GeneratedAt DESC, Id DESC). | [optional] 
 
 ### Return type
 
@@ -362,7 +366,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_run_transactions**
-> PagedResourceListOfTransactionResponse listRunTransactions = list_run_transactions(instance_id, run_id, status=status, page=page, page_size=page_size)
+> PagedResourceListOfTransactionResponse listRunTransactions = list_run_transactions(instance_id, run_id, status=status, page=page, page_size=page_size, filter=filter, sort_by=sort_by)
 
 [EXPERIMENTAL] ListRunTransactions: List Transactions in a run.
 
@@ -375,7 +379,9 @@ run_id = 'run_id_example' # str
 status = 'status_example' # str (optional)
 page = '' # str (optional)
 page_size = 100 # int (optional)
-api_response = api_instance.list_run_transactions(instance_id, run_id, status=status, page=page, page_size=page_size)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+api_response = api_instance.list_run_transactions(instance_id, run_id, status=status, page=page, page_size=page_size, filter=filter, sort_by=sort_by)
 pprint(api_response)
 ```
 
@@ -383,11 +389,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance_id** | **str**|  | [required] 
- **run_id** | **str**|  | [required] 
- **status** | **str**|  | [optional] 
- **page** | **str**|  | [optional] [default to &#39;&#39;]
- **page_size** | **int**|  | [optional] [default to 100]
+ **instance_id** | **str**| Integration instance ID. | [required] 
+ **run_id** | **str**| Run ID within the instance. | [required] 
+ **status** | **str**| Filter by publication status (Sent, Skipped, Failed). This is the publication outcome, not the batched-transaction status. | [optional] 
+ **page** | **str**| The pagination token from the previous response; &lt;i&gt;filter&lt;/i&gt; and &lt;i&gt;sortBy&lt;/i&gt; must be unchanged. | [optional] [default to &#39;&#39;]
+ **page_size** | **int**| Number of results per page. | [optional] [default to 100]
+ **filter** | **str**| A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status&#x3D; query parameter for that. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Up to two filterable fields, each suffixed \&quot; ASC\&quot; or \&quot; DESC\&quot;. Defaults to Id ASC. | [optional] 
 
 ### Return type
 

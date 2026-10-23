@@ -13,6 +13,7 @@ Response representing an integration instance.
 | **triggers** | [List[Trigger]](Trigger.md) | Required | The triggers associated with the integration instance. |
 | **details** | **object** | Required | Base DTO type of an integration configuration specific to the integration type.              N.B. ASP.NET Core model validation is normally applied automatically when [ApiController] is added to a controller, however it doesn&#39;t work here with the polymorphic integration subtypes of this class (see https://github.com/dotnet/aspnetcore/issues/27882). The workaround here is to implement the IValidatableObject interface and each subtype must call Validate() or ValidateContents() on its properties (the validation is not recursive).  Located in Horizon.Integrations.Web so both specific integration projects and Horizon.WebApi can reference it. |
 | **post_process_tasks** | [List[PostProcessTask]](PostProcessTask.md) | Required | The post process tasks associated with the integration instance. |
+| **alert_rules** | [List[AlertRule]](AlertRule.md) | Required | The alert rules configured on the integration instance. |
 
 
 ## Usage
@@ -30,12 +31,14 @@ instance = IntegrationInstanceResponse(
     enabled=True,  # required — Whether the integration instance is enabled.
     triggers=[],  # required — The triggers associated with the integration instance.
     details=,  # required — Base DTO type of an integration configuration specific to the integration type.              N.B. ASP.NET Core model validation is normally applied automatically when [ApiController] is added to a controller, however it doesn&#39;t work here with the polymorphic integration subtypes of this class (see https://github.com/dotnet/aspnetcore/issues/27882). The workaround here is to implement the IValidatableObject interface and each subtype must call Validate() or ValidateContents() on its properties (the validation is not recursive).  Located in Horizon.Integrations.Web so both specific integration projects and Horizon.WebApi can reference it.
-    post_process_tasks=[]  # required — The post process tasks associated with the integration instance.
+    post_process_tasks=[],  # required — The post process tasks associated with the integration instance.
+    alert_rules=[]  # required — The alert rules configured on the integration instance.
 )
 ```
 
 - [Trigger](Trigger.md) — used in `triggers`
 - [PostProcessTask](PostProcessTask.md) — used in `post_process_tasks`
+- [AlertRule](AlertRule.md) — used in `alert_rules`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
