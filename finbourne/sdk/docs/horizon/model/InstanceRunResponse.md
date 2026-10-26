@@ -1,6 +1,6 @@
 # InstanceRunResponse
 
-Response containing details of a single run for an instance.
+Response containing details of a single run for an instance. The transaction and file figures describe the batch as it stands now, so they are reported on the latest attempt only and are null on earlier attempts of a retried run. Message explains a failed attempt and what will happen or must be done next; it is null for completed, running and queued attempts.
 ## Properties
 
 | Name | Type | Required | Description |
@@ -13,11 +13,12 @@ Response containing details of a single run for an instance.
 | **duration** | **str** | Optional | *No description available.* |
 | **status** | **str** | Required | *No description available.* |
 | **triggered_by** | **str** | Optional | *No description available.* |
-| **total** | **int** | Required | *No description available.* |
-| **sent_count** | **int** | Required | *No description available.* |
-| **skipped_count** | **int** | Required | *No description available.* |
-| **failed_count** | **int** | Required | *No description available.* |
-| **failed_files** | **int** | Required | *No description available.* |
+| **total** | **int** | Optional | *No description available.* |
+| **sent_count** | **int** | Optional | *No description available.* |
+| **skipped_count** | **int** | Optional | *No description available.* |
+| **failed_count** | **int** | Optional | *No description available.* |
+| **failed_files** | **int** | Optional | *No description available.* |
+| **message** | **str** | Optional | *No description available.* |
 
 
 ## Usage
@@ -36,11 +37,12 @@ instance = InstanceRunResponse(
     duration="...",  # optional
     status="...",  # required
     triggered_by="...",  # optional
-    total=0,  # required
-    sent_count=0,  # required
-    skipped_count=0,  # required
-    failed_count=0,  # required
-    failed_files=0  # required
+    total=0,  # optional
+    sent_count=0,  # optional
+    skipped_count=0,  # optional
+    failed_count=0,  # optional
+    failed_files=0,  # optional
+    message="..."  # optional
 )
 ```
 

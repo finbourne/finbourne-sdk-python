@@ -32,9 +32,10 @@ class TpfRetrySftpResponse(BaseModel):
     message:  StrictStr = Field(...,alias="message", description="Status message describing the result") 
     new_file_delivery_uuid:  Optional[StrictStr] = Field(default=None,alias="newFileDeliveryUuid", description="UUID of the new file delivery record created for this retry (if successful)") 
     retried_at: Optional[datetime] = Field(default=None, description="Timestamp when the retry was executed", alias="retriedAt")
+    resend_run_id:  Optional[StrictStr] = Field(default=None,alias="resendRunId", description="The run queued to resend the file; it appears in run history as a further attempt of the original run") 
     original_file: Optional[TpfFileDeliveryInfo] = Field(default=None, alias="originalFile")
     duplicate_file: Optional[TpfFileDeliveryInfo] = Field(default=None, alias="duplicateFile")
-    __properties: ClassVar[List[str]] = ["success", "message", "newFileDeliveryUuid", "retriedAt", "originalFile", "duplicateFile"]
+    __properties: ClassVar[List[str]] = ["success", "message", "newFileDeliveryUuid", "retriedAt", "resendRunId", "originalFile", "duplicateFile"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class TpfRetrySftpResponse(BaseModel):
         if self.retried_at is None and "retried_at" in self.model_fields_set:
             _dict['retriedAt'] = None
 
+        # set to None if resend_run_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.resend_run_id is None and "resend_run_id" in self.model_fields_set:
+            _dict['resendRunId'] = None
+
         return _dict
 
     @classmethod
@@ -102,6 +108,7 @@ class TpfRetrySftpResponse(BaseModel):
             "message": obj.get("message"),
             "new_file_delivery_uuid": obj.get("newFileDeliveryUuid"),
             "retried_at": obj.get("retriedAt"),
+            "resend_run_id": obj.get("resendRunId"),
             "original_file": TpfFileDeliveryInfo.from_dict(_v) if (_v := obj.get("originalFile")) is not None else None,
             "duplicate_file": TpfFileDeliveryInfo.from_dict(_v) if (_v := obj.get("duplicateFile")) is not None else None
         })

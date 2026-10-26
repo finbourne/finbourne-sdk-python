@@ -13,6 +13,7 @@
 | **series** | [SeriesConfiguration](SeriesConfiguration.md) | Optional | *No description available.* |
 | **effective_capabilities** | **Dict[str, Optional[str]]** | Optional | Derived on the way out; ignored on the way in. |
 | **presentation** | [PresentationConfiguration](PresentationConfiguration.md) | Optional | *No description available.* |
+| **allocation_bases** | [List[AllocationBasisRule]](AllocationBasisRule.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -31,7 +32,8 @@ instance = PartnershipAccountingConfiguration(
     capability_overrides=[],  # optional
     series=SeriesConfiguration(...),  # optional
     effective_capabilities=,  # optional — Derived on the way out; ignored on the way in.
-    presentation=PresentationConfiguration(...)  # optional
+    presentation=PresentationConfiguration(...),  # optional
+    allocation_bases=[]  # optional
 )
 ```
 
@@ -40,6 +42,7 @@ instance = PartnershipAccountingConfiguration(
 - [CapabilityOverride](CapabilityOverride.md)
 - [SeriesConfiguration](SeriesConfiguration.md)
 - [PresentationConfiguration](PresentationConfiguration.md)
+- [AllocationBasisRule](AllocationBasisRule.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

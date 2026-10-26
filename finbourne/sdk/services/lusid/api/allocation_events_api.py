@@ -352,12 +352,12 @@ class AllocationEventsApi:
     def delete_allocation_event(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
         """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
-        Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
+        Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
         :type scope: str
         :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
         :type code: str
-        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
+        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time, dated versions upserted since included; any other is deleted from the current LUSID system datetime.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -376,12 +376,12 @@ class AllocationEventsApi:
     def delete_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
-        Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
+        Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
         :type scope: str
         :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
         :type code: str
-        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
+        :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time, dated versions upserted since included; any other is deleted from the current LUSID system datetime.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2577,13 +2577,13 @@ class AllocationEventsApi:
     @validate_call
     async def delete_allocation_event_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
             """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
-            Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
+            Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
             :type scope: str
             :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
             :type code: str
-            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
+            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time, dated versions upserted since included; any other is deleted from the current LUSID system datetime.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2602,13 +2602,13 @@ class AllocationEventsApi:
     async def delete_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
             """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
-            Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  otherwise it is deleted from the current LUSID system datetime. Only an Allocation Event that has not been  booked can be deleted.  # noqa: E501
+            Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
 
             :param scope: The scope of the Allocation Event. (required)
             :type scope: str
             :param code: The code of the Allocation Event. Together with the scope this uniquely identifies the Allocation Event. (required)
             :type code: str
-            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time; any other is deleted from the current LUSID system datetime.
+            :param effective_at: The effective datetime or cut label from which to delete the Allocation Event. If not specified, an Allocation Event created without an effective datetime is removed from the beginning of time, dated versions upserted since included; any other is deleted from the current LUSID system datetime.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

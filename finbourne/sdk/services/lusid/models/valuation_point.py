@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.bucket_set_seed import BucketSetSeed
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.previous_valuation_point import PreviousValuationPoint
@@ -46,8 +47,9 @@ class ValuationPoint(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The Valuation Point properties. These are from the 'DiaryEntry' domain.")
     version: Optional[Version] = None
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
+    bucket_set_seeds: Optional[List[BucketSetSeed]] = Field(default=None, description="The bucket set seeds set on this variant of the Valuation Point. Null when it has none.", alias="bucketSetSeeds")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "valuationPointCode", "variant", "name", "status", "applyClearDown", "effectiveAt", "queryAsAt", "holdingsAsAt", "valuationAsAt", "previous", "properties", "version", "stagedModifications", "links"]
+    __properties: ClassVar[List[str]] = ["href", "valuationPointCode", "variant", "name", "status", "applyClearDown", "effectiveAt", "queryAsAt", "holdingsAsAt", "valuationAsAt", "previous", "properties", "version", "stagedModifications", "bucketSetSeeds", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +101,13 @@ class ValuationPoint(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of staged_modifications
         if self.staged_modifications:
             _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in bucket_set_seeds (list)
+        _items = []
+        if self.bucket_set_seeds:
+            for _item in self.bucket_set_seeds:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['bucketSetSeeds'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -130,6 +139,11 @@ class ValuationPoint(BaseModel):
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
+
+        # set to None if bucket_set_seeds (nullable) is None
+        # and model_fields_set contains the field
+        if self.bucket_set_seeds is None and "bucket_set_seeds" in self.model_fields_set:
+            _dict['bucketSetSeeds'] = None
 
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
@@ -167,6 +181,7 @@ class ValuationPoint(BaseModel):
             else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
+            "bucket_set_seeds": [BucketSetSeed.from_dict(_item) for _item in _v] if (_v := obj.get("bucketSetSeeds")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

@@ -9,6 +9,7 @@ Response from retrying SFTP file delivery
 | **message** | **str** | Required | Status message describing the result |
 | **new_file_delivery_uuid** | **UUID** | Optional | UUID of the new file delivery record created for this retry (if successful) |
 | **retried_at** | **datetime** | Optional | Timestamp when the retry was executed |
+| **resend_run_id** | **UUID** | Optional | The run queued to resend the file; it appears in run history as a further attempt of the original run |
 | **original_file** | [TpfFileDeliveryInfo](TpfFileDeliveryInfo.md) | Optional | *No description available.* |
 | **duplicate_file** | [TpfFileDeliveryInfo](TpfFileDeliveryInfo.md) | Optional | *No description available.* |
 
@@ -25,6 +26,7 @@ instance = TpfRetrySftpResponse(
     message="...",  # required — Status message describing the result
     new_file_delivery_uuid="...",  # optional — UUID of the new file delivery record created for this retry (if successful)
     retried_at=datetime.now(),  # optional — Timestamp when the retry was executed
+    resend_run_id="...",  # optional — The run queued to resend the file; it appears in run history as a further attempt of the original run
     original_file=TpfFileDeliveryInfo(...),  # optional
     duplicate_file=TpfFileDeliveryInfo(...)  # optional
 )

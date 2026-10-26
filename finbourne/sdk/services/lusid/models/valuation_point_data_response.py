@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.apportionment_breakdown import ApportionmentBreakdown
 from finbourne.sdk.services.lusid.models.bucket_set_result import BucketSetResult
+from finbourne.sdk.services.lusid.models.bucket_set_seed import BucketSetSeed
 from finbourne.sdk.services.lusid.models.fund_details import FundDetails
 from finbourne.sdk.services.lusid.models.fund_valuation_point_data import FundValuationPointData
 from finbourne.sdk.services.lusid.models.link import Link
@@ -49,8 +50,9 @@ class ValuationPointDataResponse(BaseModel):
     is_backfilled: Optional[StrictBool] = Field(default=None, description="Set to True if the Valuation Point has backfilled bucket set results, False otherwise.", alias="isBackfilled")
     apply_clear_down: Optional[StrictBool] = Field(default=None, description="Set to True if the Valuation Point applies a clear down, False otherwise. The Valuation Point shows its bucket values before the clear down, and the next Valuation Point opens from the balances after it.", alias="applyClearDown")
     diagnostics: Optional[List[ValuationPointDiagnostic]] = Field(default=None, description="Findings made while striking the valuation point that did not stop it but should be looked at, such as a fund structure holder whose declared sharing percentage in a member has drifted from the share its contributions make of that member's capital. Absent when there are none.")
+    bucket_set_seeds: Optional[List[BucketSetSeed]] = Field(default=None, description="The bucket set seeds set on the Valuation Point, when the request resolved to the Valuation Point itself. Null when it has none.", alias="bucketSetSeeds")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "type", "status", "fundDetails", "fundValuationPointData", "shareClassData", "valuationPointCode", "previousValuationPointCode", "apportionmentResults", "bucketSetResults", "stagedModifications", "isBackfilled", "applyClearDown", "diagnostics", "links"]
+    __properties: ClassVar[List[str]] = ["href", "type", "status", "fundDetails", "fundValuationPointData", "shareClassData", "valuationPointCode", "previousValuationPointCode", "apportionmentResults", "bucketSetResults", "stagedModifications", "isBackfilled", "applyClearDown", "diagnostics", "bucketSetSeeds", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +125,13 @@ class ValuationPointDataResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['diagnostics'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in bucket_set_seeds (list)
+        _items = []
+        if self.bucket_set_seeds:
+            for _item in self.bucket_set_seeds:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['bucketSetSeeds'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -160,6 +169,11 @@ class ValuationPointDataResponse(BaseModel):
         if self.diagnostics is None and "diagnostics" in self.model_fields_set:
             _dict['diagnostics'] = None
 
+        # set to None if bucket_set_seeds (nullable) is None
+        # and model_fields_set contains the field
+        if self.bucket_set_seeds is None and "bucket_set_seeds" in self.model_fields_set:
+            _dict['bucketSetSeeds'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -191,6 +205,7 @@ class ValuationPointDataResponse(BaseModel):
             "is_backfilled": obj.get("isBackfilled"),
             "apply_clear_down": obj.get("applyClearDown"),
             "diagnostics": [ValuationPointDiagnostic.from_dict(_item) for _item in _v] if (_v := obj.get("diagnostics")) is not None else None,
+            "bucket_set_seeds": [BucketSetSeed.from_dict(_item) for _item in _v] if (_v := obj.get("bucketSetSeeds")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

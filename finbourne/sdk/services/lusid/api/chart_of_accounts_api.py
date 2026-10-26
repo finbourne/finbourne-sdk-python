@@ -3261,7 +3261,7 @@ class ChartOfAccountsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_posting_module_rules(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRuleResponse:
+    def list_posting_module_rules(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRuleResponse:
         """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
         List the Rules in a Posting Module  # noqa: E501
@@ -3273,12 +3273,14 @@ class ChartOfAccountsApi:
         :type posting_module_code: str
         :param as_at: The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified.
         :type as_at: datetime
-        :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter              and asAt fields must not have changed since the original request.
+        :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
         :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
+        :param effective_at: The effective datetime or cut label at which to list the rules. If specified, only              the rules whose effective window contains this date are returned. Defaults to returning all rules if not specified.
+        :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -3289,11 +3291,11 @@ class ChartOfAccountsApi:
             message = "Error! Please call the list_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_posting_module_rules_with_http_info(scope, code, posting_module_code, as_at, page, limit, filter, **kwargs)
+        response = self.list_posting_module_rules_with_http_info(scope, code, posting_module_code, as_at, page, limit, filter, effective_at, **kwargs)
         return response.data
 
     @validate_call
-    def list_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRuleResponse]:
+    def list_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRuleResponse]:
         """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
         List the Rules in a Posting Module  # noqa: E501
@@ -3305,12 +3307,14 @@ class ChartOfAccountsApi:
         :type posting_module_code: str
         :param as_at: The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified.
         :type as_at: datetime
-        :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter              and asAt fields must not have changed since the original request.
+        :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
         :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
+        :param effective_at: The effective datetime or cut label at which to list the rules. If specified, only              the rules whose effective window contains this date are returned. Defaults to returning all rules if not specified.
+        :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3340,7 +3344,8 @@ class ChartOfAccountsApi:
             'as_at',
             'page',
             'limit',
-            'filter'
+            'filter',
+            'effective_at'
         ]
         _all_params.extend(
             [
@@ -3394,6 +3399,9 @@ class ChartOfAccountsApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -8607,7 +8615,7 @@ class ChartOfAccountsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_posting_module_rules_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRuleResponse:
+    async def list_posting_module_rules_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRuleResponse:
             """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
             List the Rules in a Posting Module  # noqa: E501
             
@@ -8619,12 +8627,14 @@ class ChartOfAccountsApi:
             :type posting_module_code: str
             :param as_at: The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified.
             :type as_at: datetime
-            :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter              and asAt fields must not have changed since the original request.
+            :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
             :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
+            :param effective_at: The effective datetime or cut label at which to list the rules. If specified, only              the rules whose effective window contains this date are returned. Defaults to returning all rules if not specified.
+            :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -8635,11 +8645,11 @@ class ChartOfAccountsApi:
                 message = "Error! Please call the list_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_posting_module_rules_with_http_info_async(scope, code, posting_module_code, as_at, page, limit, filter, **kwargs)
+            response = await self.list_posting_module_rules_with_http_info_async(scope, code, posting_module_code, as_at, page, limit, filter, effective_at, **kwargs)
             return response.data
 
     @validate_call
-    async def list_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRuleResponse]:
+    async def list_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRuleResponse]:
             """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
             List the Rules in a Posting Module  # noqa: E501
@@ -8652,12 +8662,14 @@ class ChartOfAccountsApi:
             :type posting_module_code: str
             :param as_at: The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified.
             :type as_at: datetime
-            :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter              and asAt fields must not have changed since the original request.
+            :param page: The pagination token to use to continue listing posting module rules; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
             :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
+            :param effective_at: The effective datetime or cut label at which to list the rules. If specified, only              the rules whose effective window contains this date are returned. Defaults to returning all rules if not specified.
+            :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -8687,7 +8699,8 @@ class ChartOfAccountsApi:
                 'as_at',
                 'page',
                 'limit',
-                'filter'
+                'filter',
+                'effective_at'
             ]
             _all_params.extend(
                 [
@@ -8741,6 +8754,9 @@ class ChartOfAccountsApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

@@ -10,7 +10,7 @@ A node in a Fund Structure, representing a Fund and its role within the structur
 | **fund_code** | **str** | Required | The code of the Fund referenced by this node. |
 | **role** | **str** | Required | The role of this node within the structure. Must be one of the acceptable values of the structure&#39;s role data type. |
 | **allocation_basis** | [FundStructureAllocationBasis](FundStructureAllocationBasis.md) | Optional | *No description available.* |
-| **pnl_flow_mode** | **str** | Optional | How profit and loss reaches this member from the members it holds. EquityPickup (the default) revalues the position in each held member; BucketFlowThrough receives one line per economic bucket, tagged with its origin; TransactionFlowThrough receives every line, tagged with its origin and path. Available values: EquityPickup, BucketFlowThrough, TransactionFlowThrough. |
+| **pnl_flow_mode** | **str** | Optional | How this member&#39;s profit and loss reaches the member that holds it. Set on the held member, not on the holder: it has no effect on a member no edge holds. EquityPickup (the default) leaves the holder revaluing its position in this member; BucketFlowThrough passes the holder one line per economic bucket, tagged with its origin; TransactionFlowThrough passes the holder every line, tagged with its origin and path. Available values: EquityPickup, BucketFlowThrough, TransactionFlowThrough. |
 | **allocation_map_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **drift_materiality** | [FundStructureDriftMateriality](FundStructureDriftMateriality.md) | Optional | *No description available.* |
 
@@ -28,7 +28,7 @@ instance = FundStructureNode(
     fund_code="...",  # required — The code of the Fund referenced by this node.
     role="...",  # required — The role of this node within the structure. Must be one of the acceptable values of the structure&#39;s role data type.
     allocation_basis=FundStructureAllocationBasis(...),  # optional
-    pnl_flow_mode="...",  # optional — How profit and loss reaches this member from the members it holds. EquityPickup (the default) revalues the position in each held member; BucketFlowThrough receives one line per economic bucket, tagged with its origin; TransactionFlowThrough receives every line, tagged with its origin and path. Available values: EquityPickup, BucketFlowThrough, TransactionFlowThrough.
+    pnl_flow_mode="...",  # optional — How this member&#39;s profit and loss reaches the member that holds it. Set on the held member, not on the holder: it has no effect on a member no edge holds. EquityPickup (the default) leaves the holder revaluing its position in this member; BucketFlowThrough passes the holder one line per economic bucket, tagged with its origin; TransactionFlowThrough passes the holder every line, tagged with its origin and path. Available values: EquityPickup, BucketFlowThrough, TransactionFlowThrough.
     allocation_map_id=ResourceId(...),  # optional
     drift_materiality=FundStructureDriftMateriality(...)  # optional
 )

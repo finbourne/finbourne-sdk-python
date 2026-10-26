@@ -10,7 +10,7 @@ A definition reconciling the contents of LUSID portfolios on at least one side, 
 | **valuation_recipes** | [RecDefRecipeIds](RecDefRecipeIds.md) | Optional | *No description available.* |
 | **currencies** | [RecDefCurrencies](RecDefCurrencies.md) | Optional | *No description available.* |
 | **rulesets** | [List[RecDefRuleset]](RecDefRuleset.md) | Required | The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once. |
-| **definition_type** | **str** | Required | What this definition reconciles, and so which shape of details it carries. PortfolioContents and External are supported; LusidEntity is not yet. Available values: PortfolioContents, LusidEntity, External. |
+| **definition_type** | **str** | Required | What this definition reconciles, and so which shape of details it carries. Available values: PortfolioContents, LusidEntity, External. |
 
 
 ## Usage
@@ -26,7 +26,7 @@ instance = PortfolioContentsRecDefinitionDetails(
     valuation_recipes=RecDefRecipeIds(...),  # optional
     currencies=RecDefCurrencies(...),  # optional
     rulesets=[],  # required — The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.
-    definition_type="..."  # required — What this definition reconciles, and so which shape of details it carries. PortfolioContents and External are supported; LusidEntity is not yet. Available values: PortfolioContents, LusidEntity, External.
+    definition_type="..."  # required — What this definition reconciles, and so which shape of details it carries. Available values: PortfolioContents, LusidEntity, External.
 )
 ```
 

@@ -31,7 +31,7 @@ class MarginRun(BaseModel):
     A margin run: the valuation of the collateral agreements for a business date, planned as shards that report  their progress, and the margin calls and lines it has published so far.  # noqa: E501
     """
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The URI of this margin run.") 
-    id:  StrictStr = Field(...,alias="id", description="The identifier of the run: the effective date and the asAt it was valued at. Filterable.") 
+    id:  StrictStr = Field(...,alias="id", description="The identifier of the run: the effective date and the asAt it was valued at, with a suffix naming the scenario for a stress run. Filterable.") 
     effective_at: datetime = Field(description="The business date the run values collateral agreements for. Filterable.", alias="effectiveAt")
     as_at: datetime = Field(description="The asAt datetime the run reads agreements, portfolios and market data at. Filterable.", alias="asAt")
     status:  StrictStr = Field(...,alias="status", description="The status of the run. One of Pending, Running, Completed or CompletedWithIssues. Filterable.") 
@@ -43,7 +43,8 @@ class MarginRun(BaseModel):
     failed_shards: StrictInt = Field(description="The number of shards that failed to value.", alias="failedShards")
     issues: List[MarginRunIssue] = Field(description="Agreements the run could not value or roll up into a call, or the caller may not calculate margin for, with the reason.")
     shards: List[MarginRunShard] = Field(description="The valuation shards the run is planned as, with their progress.")
-    __properties: ClassVar[List[str]] = ["href", "id", "effectiveAt", "asAt", "status", "agreements", "callCount", "lineCount", "shardCount", "completedShards", "failedShards", "issues", "shards"]
+    scenario: Optional[ResourceId] = None
+    __properties: ClassVar[List[str]] = ["href", "id", "effectiveAt", "asAt", "status", "agreements", "callCount", "lineCount", "shardCount", "completedShards", "failedShards", "issues", "shards", "scenario"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,6 +101,9 @@ class MarginRun(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['shards'] = _items
+        # override the default output from pydantic by calling `to_dict()` of scenario
+        if self.scenario:
+            _dict['scenario'] = self.scenario.to_dict(by_alias=by_alias)
         # set to None if href (nullable) is None
         # and model_fields_set contains the field
         if self.href is None and "href" in self.model_fields_set:
@@ -129,7 +133,8 @@ class MarginRun(BaseModel):
             "completed_shards": obj.get("completedShards"),
             "failed_shards": obj.get("failedShards"),
             "issues": [MarginRunIssue.from_dict(_item) for _item in _v] if (_v := obj.get("issues")) is not None else None,
-            "shards": [MarginRunShard.from_dict(_item) for _item in _v] if (_v := obj.get("shards")) is not None else None
+            "shards": [MarginRunShard.from_dict(_item) for _item in _v] if (_v := obj.get("shards")) is not None else None,
+            "scenario": ResourceId.from_dict(_v) if (_v := obj.get("scenario")) is not None else None
         })
         return _obj
 

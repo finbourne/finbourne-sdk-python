@@ -23,13 +23,13 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class TpfRetryElementResult(BaseModel):
+class AllocationBasisRule(BaseModel):
     """
-    Result for a single batch element retry attempt  # noqa: E501
+    AllocationBasisRule
     """
-    batch_element_reference_id:  StrictStr = Field(...,alias="batchElementReferenceId", description="Batch element reference identifier") 
-    status:  StrictStr = Field(...,alias="status", description="Status of the retry attempt (e.g., \"Retrying\", \"NotFound\")") 
-    __properties: ClassVar[List[str]] = ["batchElementReferenceId", "status"]
+    character:  StrictStr = Field(...,alias="character") 
+    basis:  StrictStr = Field(...,alias="basis", description="Available values: CommittedCapital, PaidInCapital, DealPaidIn.") 
+    __properties: ClassVar[List[str]] = ["character", "basis"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,8 +54,8 @@ class TpfRetryElementResult(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TpfRetryElementResult:
-        """Create an instance of TpfRetryElementResult from a JSON string"""
+    def from_json(cls, json_str: str) -> AllocationBasisRule:
+        """Create an instance of AllocationBasisRule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -68,19 +68,19 @@ class TpfRetryElementResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TpfRetryElementResult:
-        """Create an instance of TpfRetryElementResult from a dict"""
+    def from_dict(cls, obj: dict) -> AllocationBasisRule:
+        """Create an instance of AllocationBasisRule from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TpfRetryElementResult.model_validate(obj)
+            return AllocationBasisRule.model_validate(obj)
 
-        _obj = TpfRetryElementResult.model_validate({
-            "batch_element_reference_id": obj.get("batchElementReferenceId"),
-            "status": obj.get("status")
+        _obj = AllocationBasisRule.model_validate({
+            "character": obj.get("character"),
+            "basis": obj.get("basis")
         })
         return _obj
 
-TpfRetryElementResult.model_rebuild()
+AllocationBasisRule.model_rebuild()
 

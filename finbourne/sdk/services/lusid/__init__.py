@@ -178,6 +178,7 @@ from finbourne.sdk.services.lusid.models.aggregation_query import AggregationQue
 from finbourne.sdk.services.lusid.models.aggregation_type import AggregationType
 from finbourne.sdk.services.lusid.models.alias import Alias
 from finbourne.sdk.services.lusid.models.allocation import Allocation
+from finbourne.sdk.services.lusid.models.allocation_basis_rule import AllocationBasisRule
 from finbourne.sdk.services.lusid.models.allocation_event import AllocationEvent
 from finbourne.sdk.services.lusid.models.allocation_event_basis_diagnostics import AllocationEventBasisDiagnostics
 from finbourne.sdk.services.lusid.models.allocation_event_basis_warning import AllocationEventBasisWarning
@@ -326,10 +327,16 @@ from finbourne.sdk.services.lusid.models.bucket import Bucket
 from finbourne.sdk.services.lusid.models.bucket_border_configuration import BucketBorderConfiguration
 from finbourne.sdk.services.lusid.models.bucket_definition import BucketDefinition
 from finbourne.sdk.services.lusid.models.bucket_membership import BucketMembership
+from finbourne.sdk.services.lusid.models.bucket_seed_value import BucketSeedValue
+from finbourne.sdk.services.lusid.models.bucket_seed_value_request import BucketSeedValueRequest
+from finbourne.sdk.services.lusid.models.bucket_set_class_seed import BucketSetClassSeed
+from finbourne.sdk.services.lusid.models.bucket_set_class_seed_request import BucketSetClassSeedRequest
 from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetDefinition
 from finbourne.sdk.services.lusid.models.bucket_set_node import BucketSetNode
 from finbourne.sdk.services.lusid.models.bucket_set_result import BucketSetResult
 from finbourne.sdk.services.lusid.models.bucket_set_result_bucket import BucketSetResultBucket
+from finbourne.sdk.services.lusid.models.bucket_set_seed import BucketSetSeed
+from finbourne.sdk.services.lusid.models.bucket_set_seed_request import BucketSetSeedRequest
 from finbourne.sdk.services.lusid.models.bucket_set_share_class_details import BucketSetShareClassDetails
 from finbourne.sdk.services.lusid.models.bucketed_cash_flow_request import BucketedCashFlowRequest
 from finbourne.sdk.services.lusid.models.bucketed_cash_flow_response import BucketedCashFlowResponse
@@ -1016,6 +1023,7 @@ from finbourne.sdk.services.lusid.models.loan_period import LoanPeriod
 from finbourne.sdk.services.lusid.models.loan_principal_repayment_event import LoanPrincipalRepaymentEvent
 from finbourne.sdk.services.lusid.models.lock_period_diary_entry_request import LockPeriodDiaryEntryRequest
 from finbourne.sdk.services.lusid.models.lusid_entity_dataset import LusidEntityDataset
+from finbourne.sdk.services.lusid.models.lusid_entity_rec_definition_details import LusidEntityRecDefinitionDetails
 from finbourne.sdk.services.lusid.models.lusid_entity_result import LusidEntityResult
 from finbourne.sdk.services.lusid.models.lusid_instrument import LusidInstrument
 from finbourne.sdk.services.lusid.models.lusid_problem_details import LusidProblemDetails
@@ -2277,6 +2285,7 @@ __all__ = [
     "AggregationType",
     "Alias",
     "Allocation",
+    "AllocationBasisRule",
     "AllocationEvent",
     "AllocationEventBasisDiagnostics",
     "AllocationEventBasisWarning",
@@ -2425,10 +2434,16 @@ __all__ = [
     "BucketBorderConfiguration",
     "BucketDefinition",
     "BucketMembership",
+    "BucketSeedValue",
+    "BucketSeedValueRequest",
+    "BucketSetClassSeed",
+    "BucketSetClassSeedRequest",
     "BucketSetDefinition",
     "BucketSetNode",
     "BucketSetResult",
     "BucketSetResultBucket",
+    "BucketSetSeed",
+    "BucketSetSeedRequest",
     "BucketSetShareClassDetails",
     "BucketedCashFlowRequest",
     "BucketedCashFlowResponse",
@@ -3115,6 +3130,7 @@ __all__ = [
     "LoanPrincipalRepaymentEvent",
     "LockPeriodDiaryEntryRequest",
     "LusidEntityDataset",
+    "LusidEntityRecDefinitionDetails",
     "LusidEntityResult",
     "LusidInstrument",
     "LusidProblemDetails",

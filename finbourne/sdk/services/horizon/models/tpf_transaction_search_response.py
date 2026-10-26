@@ -31,6 +31,7 @@ class TpfTransactionSearchResponse(BaseModel):
     instance_id:  StrictStr = Field(...,alias="instanceId", description="Integration instance ID where the transaction was processed") 
     instance_name:  StrictStr = Field(...,alias="instanceName", description="Integration instance name") 
     batch_id:  StrictStr = Field(...,alias="batchId", description="Unique identifier of the batch") 
+    run_id:  StrictStr = Field(...,alias="runId", description="The run that processed the transaction for this instance, as shown in run monitoring") 
     run_start_time: datetime = Field(description="Timestamp when the batch/run started", alias="runStartTime")
     publication_status:  StrictStr = Field(...,alias="publicationStatus", description="Publication status of the transaction (Sent | Skipped | Failed)") 
     instrument_name:  StrictStr = Field(...,alias="instrumentName", description="Instrument name") 
@@ -43,8 +44,10 @@ class TpfTransactionSearchResponse(BaseModel):
     portfolio_code:  Optional[StrictStr] = Field(default=None,alias="portfolioCode", description="PortfolioCode showing portfolio code") 
     portfolio_scope:  Optional[StrictStr] = Field(default=None,alias="portfolioScope", description="PortfolioScope displaying portfolio scope") 
     failure_reason:  Optional[StrictStr] = Field(default=None,alias="failureReason", description="FailureReason to show failure reason") 
+    failure_stage:  Optional[StrictStr] = Field(default=None,alias="failureStage", description="Stage at which a failed transaction failed: Build or Delivery") 
+    sent_at: Optional[datetime] = Field(default=None, description="When the transaction was sent, which is when its file reached a destination. Empty for Skipped and Failed rows", alias="sentAt")
     instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId", description="InstrumentId showing instrument id of transaction") 
-    __properties: ClassVar[List[str]] = ["transactionId", "instanceId", "instanceName", "batchId", "runStartTime", "publicationStatus", "instrumentName", "instrumentType", "tradeDate", "settlementDate", "skipReason", "fileName", "destinations", "portfolioCode", "portfolioScope", "failureReason", "instrumentId"]
+    __properties: ClassVar[List[str]] = ["transactionId", "instanceId", "instanceName", "batchId", "runId", "runStartTime", "publicationStatus", "instrumentName", "instrumentType", "tradeDate", "settlementDate", "skipReason", "fileName", "destinations", "portfolioCode", "portfolioScope", "failureReason", "failureStage", "sentAt", "instrumentId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,6 +118,16 @@ class TpfTransactionSearchResponse(BaseModel):
         if self.failure_reason is None and "failure_reason" in self.model_fields_set:
             _dict['failureReason'] = None
 
+        # set to None if failure_stage (nullable) is None
+        # and model_fields_set contains the field
+        if self.failure_stage is None and "failure_stage" in self.model_fields_set:
+            _dict['failureStage'] = None
+
+        # set to None if sent_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sent_at is None and "sent_at" in self.model_fields_set:
+            _dict['sentAt'] = None
+
         # set to None if instrument_id (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_id is None and "instrument_id" in self.model_fields_set:
@@ -136,6 +149,7 @@ class TpfTransactionSearchResponse(BaseModel):
             "instance_id": obj.get("instanceId"),
             "instance_name": obj.get("instanceName"),
             "batch_id": obj.get("batchId"),
+            "run_id": obj.get("runId"),
             "run_start_time": obj.get("runStartTime"),
             "publication_status": obj.get("publicationStatus"),
             "instrument_name": obj.get("instrumentName"),
@@ -148,6 +162,8 @@ class TpfTransactionSearchResponse(BaseModel):
             "portfolio_code": obj.get("portfolioCode"),
             "portfolio_scope": obj.get("portfolioScope"),
             "failure_reason": obj.get("failureReason"),
+            "failure_stage": obj.get("failureStage"),
+            "sent_at": obj.get("sentAt"),
             "instrument_id": obj.get("instrumentId")
         })
         return _obj

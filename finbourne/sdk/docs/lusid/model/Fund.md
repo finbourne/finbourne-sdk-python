@@ -25,6 +25,7 @@ A Fund entity.
 | **additional_nav_types** | [List[NavType]](NavType.md) | Optional | The definitions for any additional NAVs on the Fund. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
 | **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
+| **instrument_scope** | **str** | Optional | The scope in which the instruments are created when CreateInstrument is true. Defaults to the default instrument scope. Legacy share class instruments are resolved in ShareClassInstrumentScopes instead. |
 | **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
 | **share_classes** | [List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
 | **fund_instrument** | [FundInstrument](FundInstrument.md) | Optional | *No description available.* |
@@ -63,6 +64,7 @@ instance = Fund(
     additional_nav_types=[],  # optional — The definitions for any additional NAVs on the Fund.
     properties=ModelProperty(...),  # optional — A set of properties for the Fund.
     create_instrument=True,  # optional — Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false.
+    instrument_scope="...",  # optional — The scope in which the instruments are created when CreateInstrument is true. Defaults to the default instrument scope. Legacy share class instruments are resolved in ShareClassInstrumentScopes instead.
     allocation_groups=[],  # optional — An optional list of Allocation Group definitions for the Fund.
     share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
     fund_instrument=FundInstrument(...),  # optional

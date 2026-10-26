@@ -11,7 +11,8 @@ A register line of a partnership fund: one partner's commitment and its capital 
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument identifier of the register line&#39;s capital-interest instrument. |
 | **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **is_vehicle** | **bool** | Required | Whether the partner is a vehicle (for example a feeder or parallel fund) rather than an end investor. |
-| **partner_role** | **str** | Required | The role of the register line. Available values: GPRegister, LPInvestment. |
+| **partner_role** | **str** | Required | The role the partner plays in the partnership. Available values: LimitedPartner (the default), GeneralPartner, GPAffiliate, Employee, CarryVehicle. |
+| **register_role** | **str** | Required | The role of the register line. Available values: GPRegister, LPInvestment (the default). |
 | **commitment_currency** | **str** | Required | The currency of the partner&#39;s commitment. |
 | **balances** | [FundPartnerBalances](FundPartnerBalances.md) | Required | *No description available.* |
 | **share_of_commitments** | **float** | Required | The partner&#39;s committed capital as a decimal fraction of the fund&#39;s total commitments in the same commitment currency. |
@@ -33,7 +34,8 @@ instance = FundPartner(
     lusid_instrument_id="...",  # required — The LUSID instrument identifier of the register line&#39;s capital-interest instrument.
     portfolio_id=ResourceId(...),  # required
     is_vehicle=True,  # required — Whether the partner is a vehicle (for example a feeder or parallel fund) rather than an end investor.
-    partner_role="...",  # required — The role of the register line. Available values: GPRegister, LPInvestment.
+    partner_role="...",  # required — The role the partner plays in the partnership. Available values: LimitedPartner (the default), GeneralPartner, GPAffiliate, Employee, CarryVehicle.
+    register_role="...",  # required — The role of the register line. Available values: GPRegister, LPInvestment (the default).
     commitment_currency="...",  # required — The currency of the partner&#39;s commitment.
     balances=FundPartnerBalances(...),  # required
     share_of_commitments=0.0,  # required — The partner&#39;s committed capital as a decimal fraction of the fund&#39;s total commitments in the same commitment currency.

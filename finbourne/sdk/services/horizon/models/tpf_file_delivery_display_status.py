@@ -20,20 +20,20 @@ from aenum import Enum, no_arg
 
 
 
-class FileDeliveryStatus(str, Enum):  # type: ignore[misc]
+class TpfFileDeliveryDisplayStatus(str, Enum):  # type: ignore[misc]
     """
-    FileDeliveryStatus
+    TpfFileDeliveryDisplayStatus
     """
 
     """
     allowed enum values
     """
-    COMPLETED = 'Completed'
+    DELIVERED = 'Delivered'
     PENDING = 'Pending'
-    ERROR = 'Error'
+    FAILED = 'Failed'
 
     @classmethod
-    def from_json(cls, json_str: str) -> FileDeliveryStatus:
-        """Create an instance of FileDeliveryStatus from a JSON string"""
-        return FileDeliveryStatus(json.loads(json_str))
+    def from_json(cls, json_str: str) -> TpfFileDeliveryDisplayStatus:
+        """Create an instance of TpfFileDeliveryDisplayStatus from a JSON string"""
+        return TpfFileDeliveryDisplayStatus(json.loads(json_str))
 

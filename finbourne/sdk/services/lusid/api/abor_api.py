@@ -1235,7 +1235,7 @@ class AborApi:
     def get_trial_balance(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTrialBalance:
         """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
 
-        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
+        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Rows are returned ordered by General Ledger Account Code (ordinal, with rows no posting rule mapped first) and then by Levels, so the order is stable across pages.                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
         :param scope: The scope of the Abor. (required)
         :type scope: str
         :param code: The code of the Abor. Together with the scope this uniquely identifies the Abor. (required)
@@ -1267,7 +1267,7 @@ class AborApi:
     def get_trial_balance_with_http_info(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTrialBalance]:
         """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
 
-        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
+        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Rows are returned ordered by General Ledger Account Code (ordinal, with rows no posting rule mapped first) and then by Levels, so the order is stable across pages.                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
         :param scope: The scope of the Abor. (required)
         :type scope: str
         :param code: The code of the Abor. Together with the scope this uniquely identifies the Abor. (required)
@@ -3524,7 +3524,7 @@ class AborApi:
     @validate_call
     async def get_trial_balance_async(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTrialBalance:
             """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
-            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
+            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Rows are returned ordered by General Ledger Account Code (ordinal, with rows no posting rule mapped first) and then by Levels, so the order is stable across pages.                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
             :type scope: str
@@ -3557,7 +3557,7 @@ class AborApi:
     async def get_trial_balance_with_http_info_async(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTrialBalance]:
             """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
 
-            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
+            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Rows are returned ordered by General Ledger Account Code (ordinal, with rows no posting rule mapped first) and then by Levels, so the order is stable across pages.                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
 
             :param scope: The scope of the Abor. (required)
             :type scope: str

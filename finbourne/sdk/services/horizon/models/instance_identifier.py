@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.horizon.models.validation_notice_response import ValidationNoticeResponse
 
 
 class InstanceIdentifier(BaseModel):
@@ -28,7 +29,8 @@ class InstanceIdentifier(BaseModel):
     Identifies a single instance of an integration.  # noqa: E501
     """
     id:  StrictStr = Field(...,alias="id", description="Instance identifier.") 
-    __properties: ClassVar[List[str]] = ["id"]
+    warnings: Optional[List[ValidationNoticeResponse]] = Field(default=None, description="Non-blocking findings about the saved configuration. Empty when there are none.")
+    __properties: ClassVar[List[str]] = ["id", "warnings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,6 +66,18 @@ class InstanceIdentifier(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in warnings (list)
+        _items = []
+        if self.warnings:
+            for _item in self.warnings:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['warnings'] = _items
+        # set to None if warnings (nullable) is None
+        # and model_fields_set contains the field
+        if self.warnings is None and "warnings" in self.model_fields_set:
+            _dict['warnings'] = None
+
         return _dict
 
     @classmethod
@@ -76,7 +90,8 @@ class InstanceIdentifier(BaseModel):
             return InstanceIdentifier.model_validate(obj)
 
         _obj = InstanceIdentifier.model_validate({
-            "id": obj.get("id")
+            "id": obj.get("id"),
+            "warnings": [ValidationNoticeResponse.from_dict(_item) for _item in _v] if (_v := obj.get("warnings")) is not None else None
         })
         return _obj
 

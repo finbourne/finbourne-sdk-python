@@ -21,14 +21,16 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.bucket_set_class_seed import BucketSetClassSeed
 
 
-class TpfRetryFailedDeliveryRequest(BaseModel):
+class BucketSetSeed(BaseModel):
     """
-    Request to retry failed deliveries for multiple batch elements. The integration instance identifier is supplied via the route, not the body.  # noqa: E501
+    The closing balances seeded for a bucket set on a valuation point.  # noqa: E501
     """
-    batch_element_reference_ids: List[StrictStr] = Field(description="Batch element reference identifiers to retry. No regex pattern is required as batch element IDs are vendor-defined strings with varying formats.", alias="batchElementReferenceIds")
-    __properties: ClassVar[List[str]] = ["batchElementReferenceIds"]
+    bucket_set_code:  StrictStr = Field(...,alias="bucketSetCode", description="The code of the seeded bucket set on the fund configuration.") 
+    class_seeds: List[BucketSetClassSeed] = Field(description="The bucket set's seeded closing balances at the valuation point, per share class. They replace everything the bucket set holds up to and including the valuation point. A share class or bucket not listed is zero.", alias="classSeeds")
+    __properties: ClassVar[List[str]] = ["bucketSetCode", "classSeeds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,8 +55,8 @@ class TpfRetryFailedDeliveryRequest(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TpfRetryFailedDeliveryRequest:
-        """Create an instance of TpfRetryFailedDeliveryRequest from a JSON string"""
+    def from_json(cls, json_str: str) -> BucketSetSeed:
+        """Create an instance of BucketSetSeed from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -64,21 +66,29 @@ class TpfRetryFailedDeliveryRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in class_seeds (list)
+        _items = []
+        if self.class_seeds:
+            for _item in self.class_seeds:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['classSeeds'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TpfRetryFailedDeliveryRequest:
-        """Create an instance of TpfRetryFailedDeliveryRequest from a dict"""
+    def from_dict(cls, obj: dict) -> BucketSetSeed:
+        """Create an instance of BucketSetSeed from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TpfRetryFailedDeliveryRequest.model_validate(obj)
+            return BucketSetSeed.model_validate(obj)
 
-        _obj = TpfRetryFailedDeliveryRequest.model_validate({
-            "batch_element_reference_ids": obj.get("batchElementReferenceIds")
+        _obj = BucketSetSeed.model_validate({
+            "bucket_set_code": obj.get("bucketSetCode"),
+            "class_seeds": [BucketSetClassSeed.from_dict(_item) for _item in _v] if (_v := obj.get("classSeeds")) is not None else None
         })
         return _obj
 
-TpfRetryFailedDeliveryRequest.model_rebuild()
+BucketSetSeed.model_rebuild()
 

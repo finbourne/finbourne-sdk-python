@@ -39,7 +39,8 @@ class TpfFileDeliveryResponse(BaseModel):
     destination_error:  Optional[StrictStr] = Field(default=None,alias="destinationError") 
     destination_name:  Optional[StrictStr] = Field(default=None,alias="destinationName") 
     file_uuid:  StrictStr = Field(...,alias="fileUuid") 
-    __properties: ClassVar[List[str]] = ["runId", "runStartTime", "fileName", "generatedAt", "rowCount", "fileHash", "destinationType", "destinationPath", "destinationStatus", "destinationError", "destinationName", "fileUuid"]
+    can_resend: StrictBool = Field(description="Whether the data the file is rebuilt from is still retained, so a resend can be requested.", alias="canResend")
+    __properties: ClassVar[List[str]] = ["runId", "runStartTime", "fileName", "generatedAt", "rowCount", "fileHash", "destinationType", "destinationPath", "destinationStatus", "destinationError", "destinationName", "fileUuid", "canResend"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,7 +129,8 @@ class TpfFileDeliveryResponse(BaseModel):
             "destination_status": obj.get("destinationStatus"),
             "destination_error": obj.get("destinationError"),
             "destination_name": obj.get("destinationName"),
-            "file_uuid": obj.get("fileUuid")
+            "file_uuid": obj.get("fileUuid"),
+            "can_resend": obj.get("canResend")
         })
         return _obj
 

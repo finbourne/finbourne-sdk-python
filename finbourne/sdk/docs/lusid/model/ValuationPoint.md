@@ -18,6 +18,7 @@
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Valuation Point properties. These are from the &#39;DiaryEntry&#39; domain. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **bucket_set_seeds** | [List[BucketSetSeed]](BucketSetSeed.md) | Optional | The bucket set seeds set on this variant of the Valuation Point. Null when it has none. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -43,6 +44,7 @@ instance = ValuationPoint(
     properties=ModelProperty(...),  # optional — The Valuation Point properties. These are from the &#39;DiaryEntry&#39; domain.
     version=Version(...),  # optional
     staged_modifications=StagedModificationsInfo(...),  # optional
+    bucket_set_seeds=[],  # optional — The bucket set seeds set on this variant of the Valuation Point. Null when it has none.
     links=[]  # optional
 )
 ```
@@ -51,6 +53,7 @@ instance = ValuationPoint(
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [Version](Version.md)
 - [StagedModificationsInfo](StagedModificationsInfo.md)
+- [BucketSetSeed](BucketSetSeed.md) — used in `bucket_set_seeds`
 - [Link](Link.md)
 
 

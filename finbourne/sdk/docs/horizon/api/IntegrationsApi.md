@@ -797,7 +797,7 @@ Name | Type | Description  | Notes
 ---
 
 # **update_instance**
-> updateInstance = update_instance(instance_id, update_instance_request)
+> UpdateInstanceResponse updateInstance = update_instance(instance_id, update_instance_request)
 
 [EXPERIMENTAL] UpdateInstance: Update a single integration instance.
 
@@ -809,7 +809,8 @@ Updates an existing instance of an integration, returning its identifier. The us
 api_instance = api_client_factory.build(IntegrationsApi)
 instance_id = 'instance_id_example' # str
 update_instance_request = UpdateInstanceRequest()
-api_instance.update_instance(instance_id, update_instance_request)
+api_response = api_instance.update_instance(instance_id, update_instance_request)
+pprint(api_response)
 ```
 
 ### Parameters
@@ -821,7 +822,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**UpdateInstanceResponse**](../model/UpdateInstanceResponse.md)
 
 ### HTTP request headers
 
@@ -831,7 +832,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | No Content |  -  |
+**200** | The instance was updated. Warnings describe non-blocking findings about the saved configuration. |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The instance does not exist. |  -  |
 **0** | Error response |  -  |

@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.component_transaction import ComponentTransaction
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.warning import Warning
 
 
 class TransactionTemplate(BaseModel):
@@ -34,8 +35,9 @@ class TransactionTemplate(BaseModel):
     description:  StrictStr = Field(...,alias="description", description="The description of the transaction template.") 
     scope:  StrictStr = Field(...,alias="scope", description="The scope in which the transaction template resides.") 
     component_transactions: List[ComponentTransaction] = Field(description="A set of component transactions that relate to the template to be created.", alias="componentTransactions")
+    warnings: Optional[List[Warning]] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["instrumentType", "instrumentEventType", "description", "scope", "componentTransactions", "links"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "instrumentEventType", "description", "scope", "componentTransactions", "warnings", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,13 @@ class TransactionTemplate(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['componentTransactions'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in warnings (list)
+        _items = []
+        if self.warnings:
+            for _item in self.warnings:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['warnings'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -85,6 +94,11 @@ class TransactionTemplate(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
+        # set to None if warnings (nullable) is None
+        # and model_fields_set contains the field
+        if self.warnings is None and "warnings" in self.model_fields_set:
+            _dict['warnings'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -107,6 +121,7 @@ class TransactionTemplate(BaseModel):
             "description": obj.get("description"),
             "scope": obj.get("scope"),
             "component_transactions": [ComponentTransaction.from_dict(_item) for _item in _v] if (_v := obj.get("componentTransactions")) is not None else None,
+            "warnings": [Warning.from_dict(_item) for _item in _v] if (_v := obj.get("warnings")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

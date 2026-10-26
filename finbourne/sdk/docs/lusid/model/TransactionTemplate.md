@@ -9,6 +9,7 @@
 | **description** | **str** | Required | The description of the transaction template. |
 | **scope** | **str** | Required | The scope in which the transaction template resides. |
 | **component_transactions** | [List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the template to be created. |
+| **warnings** | [List[Warning]](Warning.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -25,11 +26,13 @@ instance = TransactionTemplate(
     description="...",  # required — The description of the transaction template.
     scope="...",  # required — The scope in which the transaction template resides.
     component_transactions=[],  # required — A set of component transactions that relate to the template to be created.
+    warnings=[],  # optional
     links=[]  # optional
 )
 ```
 
 - [ComponentTransaction](ComponentTransaction.md) — used in `component_transactions`
+- [Warning](Warning.md)
 - [Link](Link.md)
 
 

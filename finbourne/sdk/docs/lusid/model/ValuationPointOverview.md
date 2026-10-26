@@ -17,6 +17,7 @@
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
 | **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Fee properties. These will be from the &#39;Fee&#39; domain. |
+| **bucket_set_seeds** | [List[BucketSetSeed]](BucketSetSeed.md) | Optional | The bucket set seeds set on this variant of the Valuation Point. Null when it has none. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -41,11 +42,13 @@ instance = ValuationPointOverview(
     holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.
     valuations_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.
     properties=ModelProperty(...),  # optional — The Fee properties. These will be from the &#39;Fee&#39; domain.
+    bucket_set_seeds=[],  # optional — The bucket set seeds set on this variant of the Valuation Point. Null when it has none.
     links=[]  # optional
 )
 ```
 
 - [ModelProperty](ModelProperty.md) — used in `properties`
+- [BucketSetSeed](BucketSetSeed.md) — used in `bucket_set_seeds`
 - [Link](Link.md)
 
 

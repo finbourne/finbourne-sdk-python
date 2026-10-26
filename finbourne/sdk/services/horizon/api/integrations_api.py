@@ -37,6 +37,7 @@ from finbourne.sdk.services.horizon.models.processor_description import Processo
 from finbourne.sdk.services.horizon.models.processor_schema_response import ProcessorSchemaResponse
 from finbourne.sdk.services.horizon.models.set_instance_optional_property_mapping_response import SetInstanceOptionalPropertyMappingResponse
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
+from finbourne.sdk.services.horizon.models.update_instance_response import UpdateInstanceResponse
 from finbourne.sdk.services.horizon.models.workflow_result_fields_response import WorkflowResultFieldsResponse
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
@@ -2233,7 +2234,7 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def update_instance(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
+    def update_instance(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> UpdateInstanceResponse:
         """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
         Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -2245,7 +2246,7 @@ class IntegrationsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: None
+        :rtype: UpdateInstanceResponse
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -2255,7 +2256,7 @@ class IntegrationsApi:
         return response.data
 
     @validate_call
-    def update_instance_with_http_info(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> ApiResponse[None]:
+    def update_instance_with_http_info(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> ApiResponse[UpdateInstanceResponse]:
         """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
         Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -2280,7 +2281,7 @@ class IntegrationsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: None
+        :rtype: tuple(UpdateInstanceResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2345,7 +2346,11 @@ class IntegrationsApi:
         # authentication setting
         _auth_settings = ['oauth2']  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            '200': "UpdateInstanceResponse",
+            '400': "LusidValidationProblemDetails",
+            '404': None,
+        }
 
         return self.sync_api_client.call_api(
             '/horizon/api/integrations/instances/{instanceId}', 'PUT',
@@ -4556,7 +4561,7 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def update_instance_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
+    async def update_instance_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> UpdateInstanceResponse:
             """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
             Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
             
@@ -4568,7 +4573,7 @@ class IntegrationsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: None
+            :rtype: UpdateInstanceResponse
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -4578,7 +4583,7 @@ class IntegrationsApi:
             return response.data
 
     @validate_call
-    async def update_instance_with_http_info_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> ApiResponse[None]:
+    async def update_instance_with_http_info_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> ApiResponse[UpdateInstanceResponse]:
             """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
             Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -4604,7 +4609,7 @@ class IntegrationsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: None
+            :rtype: tuple(UpdateInstanceResponse, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -4669,7 +4674,11 @@ class IntegrationsApi:
             # authentication setting
             _auth_settings = ['oauth2']  # noqa: E501
 
-            _response_types_map = {}
+            _response_types_map = {
+                '200': "UpdateInstanceResponse",
+                '400': "LusidValidationProblemDetails",
+                '404': None,
+            }
 
             return await self.api_client.call_api_async(
                 '/horizon/api/integrations/instances/{instanceId}', 'PUT',

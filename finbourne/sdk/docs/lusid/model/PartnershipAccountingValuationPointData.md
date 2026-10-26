@@ -5,7 +5,7 @@ The partnership accounting view of a valuation point: what is left on the income
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **unallocated_income_summary** | **float** | Required | The balance on the income summary account over the valuation point&#39;s period that has not yet been allocated to the partners. Must be zero before the valuation point can be finalised. |
+| **unallocated_income_summary** | **float** | Required | The profit and loss of the valuation point&#39;s period that has not yet been allocated to the partners: what the period&#39;s income, gain and expense lines would pool, less what the partner allocation has posted for the period. Must be zero before the valuation point can be finalised. |
 | **config_pack_scope** | **str** | Required | The scope of the configuration pack. |
 | **config_pack_code** | **str** | Required | The code of the configuration pack. |
 
@@ -18,7 +18,7 @@ The partnership accounting view of a valuation point: what is left on the income
 from finbourne.sdk.services.lusid.models.PartnershipAccountingValuationPointData import PartnershipAccountingValuationPointData
 
 instance = PartnershipAccountingValuationPointData(
-    unallocated_income_summary=0.0,  # required — The balance on the income summary account over the valuation point&#39;s period that has not yet been allocated to the partners. Must be zero before the valuation point can be finalised.
+    unallocated_income_summary=0.0,  # required — The profit and loss of the valuation point&#39;s period that has not yet been allocated to the partners: what the period&#39;s income, gain and expense lines would pool, less what the partner allocation has posted for the period. Must be zero before the valuation point can be finalised.
     config_pack_scope="...",  # required — The scope of the configuration pack.
     config_pack_code="..."  # required — The code of the configuration pack.
 )

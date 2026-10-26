@@ -30,9 +30,8 @@ class ReplayTransactionsRequest(BaseModel):
     """
     transaction_ids: List[StrictStr] = Field(description="List of transaction IDs to replay.", alias="transactionIds")
     mode:  StrictStr = Field(...,alias="mode", description="Replay mode - DryRun (preview only) or Committed (real send).") 
-    destinations: Optional[List[StrictStr]] = Field(default=None, description="Target destinations for Committed mode. Required for Committed, forbidden for DryRun. Valid values: Drive, Sftp, S3, Local")
     options: Optional[ReplayOptions] = None
-    __properties: ClassVar[List[str]] = ["transactionIds", "mode", "destinations", "options"]
+    __properties: ClassVar[List[str]] = ["transactionIds", "mode", "options"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,11 +70,6 @@ class ReplayTransactionsRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
             _dict['options'] = self.options.to_dict(by_alias=by_alias)
-        # set to None if destinations (nullable) is None
-        # and model_fields_set contains the field
-        if self.destinations is None and "destinations" in self.model_fields_set:
-            _dict['destinations'] = None
-
         return _dict
 
     @classmethod
@@ -90,7 +84,6 @@ class ReplayTransactionsRequest(BaseModel):
         _obj = ReplayTransactionsRequest.model_validate({
             "transaction_ids": obj.get("transactionIds"),
             "mode": obj.get("mode"),
-            "destinations": obj.get("destinations"),
             "options": ReplayOptions.from_dict(_v) if (_v := obj.get("options")) is not None else None
         })
         return _obj

@@ -21,16 +21,16 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.horizon.models.tpf_retry_element_result import TpfRetryElementResult
 
 
-class TpfFailedDeliveryResponse(BaseModel):
+class ValidationNoticeResponse(BaseModel):
     """
-    Response for bulk retry operation of failed deliveries  # noqa: E501
+    A non-blocking finding raised when an instance was saved. The save succeeded regardless.  # noqa: E501
     """
-    submitted: StrictInt = Field(description="Number of batch elements submitted for retry")
-    results: List[TpfRetryElementResult] = Field(description="Per-element retry results")
-    __properties: ClassVar[List[str]] = ["submitted", "results"]
+    severity:  StrictStr = Field(...,alias="severity", description="\"Warning\" or \"Information\".") 
+    var_field:  StrictStr = Field(...,alias="field", description="The configuration field the finding relates to.") 
+    message:  StrictStr = Field(...,alias="message", description="What was found.") 
+    __properties: ClassVar[List[str]] = ["severity", "field", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,8 +55,8 @@ class TpfFailedDeliveryResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TpfFailedDeliveryResponse:
-        """Create an instance of TpfFailedDeliveryResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> ValidationNoticeResponse:
+        """Create an instance of ValidationNoticeResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -66,29 +66,23 @@ class TpfFailedDeliveryResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
-        _items = []
-        if self.results:
-            for _item in self.results:
-                if _item:
-                    _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['results'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TpfFailedDeliveryResponse:
-        """Create an instance of TpfFailedDeliveryResponse from a dict"""
+    def from_dict(cls, obj: dict) -> ValidationNoticeResponse:
+        """Create an instance of ValidationNoticeResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TpfFailedDeliveryResponse.model_validate(obj)
+            return ValidationNoticeResponse.model_validate(obj)
 
-        _obj = TpfFailedDeliveryResponse.model_validate({
-            "submitted": obj.get("submitted"),
-            "results": [TpfRetryElementResult.from_dict(_item) for _item in _v] if (_v := obj.get("results")) is not None else None
+        _obj = ValidationNoticeResponse.model_validate({
+            "severity": obj.get("severity"),
+            "var_field": obj.get("field"),
+            "message": obj.get("message")
         })
         return _obj
 
-TpfFailedDeliveryResponse.model_rebuild()
+ValidationNoticeResponse.model_rebuild()
 

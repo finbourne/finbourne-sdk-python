@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
 class MarginRunRequest(BaseModel):
@@ -30,7 +31,8 @@ class MarginRunRequest(BaseModel):
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The business date, datetime or cut label to value the agreements at.") 
     as_at: Optional[datetime] = Field(default=None, description="The asAt datetime to read agreements, portfolios and market data at. Defaults to the current LUSID system datetime if not specified.", alias="asAt")
     agreement_filter:  Optional[StrictStr] = Field(default=None,alias="agreementFilter", description="An expression selecting the collateral agreements to run, in the same syntax as listing collateral agreements. Every agreement the caller may calculate margin for is run if not specified.") 
-    __properties: ClassVar[List[str]] = ["effectiveAt", "asAt", "agreementFilter"]
+    scenario: Optional[ResourceId] = None
+    __properties: ClassVar[List[str]] = ["effectiveAt", "asAt", "agreementFilter", "scenario"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,6 +68,9 @@ class MarginRunRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of scenario
+        if self.scenario:
+            _dict['scenario'] = self.scenario.to_dict(by_alias=by_alias)
         # set to None if as_at (nullable) is None
         # and model_fields_set contains the field
         if self.as_at is None and "as_at" in self.model_fields_set:
@@ -90,7 +95,8 @@ class MarginRunRequest(BaseModel):
         _obj = MarginRunRequest.model_validate({
             "effective_at": obj.get("effectiveAt"),
             "as_at": obj.get("asAt"),
-            "agreement_filter": obj.get("agreementFilter")
+            "agreement_filter": obj.get("agreementFilter"),
+            "scenario": ResourceId.from_dict(_v) if (_v := obj.get("scenario")) is not None else None
         })
         return _obj
 

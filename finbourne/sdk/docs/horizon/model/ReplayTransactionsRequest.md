@@ -7,7 +7,6 @@ Request to replay one or more transactions through a TPF instance. The instance 
 |------|------|----------|-------------|
 | **transaction_ids** | **List[str]** | Required | List of transaction IDs to replay. |
 | **mode** | **str** | Required | Replay mode - DryRun (preview only) or Committed (real send). |
-| **destinations** | **List[str]** | Optional | Target destinations for Committed mode. Required for Committed, forbidden for DryRun. Valid values: Drive, Sftp, S3, Local |
 | **options** | [ReplayOptions](ReplayOptions.md) | Optional | *No description available.* |
 
 
@@ -21,7 +20,6 @@ from finbourne.sdk.services.horizon.models.ReplayTransactionsRequest import Repl
 instance = ReplayTransactionsRequest(
     transaction_ids=,  # required — List of transaction IDs to replay.
     mode="...",  # required — Replay mode - DryRun (preview only) or Committed (real send).
-    destinations=,  # optional — Target destinations for Committed mode. Required for Committed, forbidden for DryRun. Valid values: Drive, Sftp, S3, Local
     options=ReplayOptions(...)  # optional
 )
 ```

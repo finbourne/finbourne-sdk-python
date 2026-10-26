@@ -19,6 +19,7 @@ The Valuation Point Data Response for the Fund and specified date.
 | **is_backfilled** | **bool** | Optional | Set to True if the Valuation Point has backfilled bucket set results, False otherwise. |
 | **apply_clear_down** | **bool** | Optional | Set to True if the Valuation Point applies a clear down, False otherwise. The Valuation Point shows its bucket values before the clear down, and the next Valuation Point opens from the balances after it. |
 | **diagnostics** | [List[ValuationPointDiagnostic]](ValuationPointDiagnostic.md) | Optional | Findings made while striking the valuation point that did not stop it but should be looked at, such as a fund structure holder whose declared sharing percentage in a member has drifted from the share its contributions make of that member&#39;s capital. Absent when there are none. |
+| **bucket_set_seeds** | [List[BucketSetSeed]](BucketSetSeed.md) | Optional | The bucket set seeds set on the Valuation Point, when the request resolved to the Valuation Point itself. Null when it has none. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -44,6 +45,7 @@ instance = ValuationPointDataResponse(
     is_backfilled=True,  # optional — Set to True if the Valuation Point has backfilled bucket set results, False otherwise.
     apply_clear_down=True,  # optional — Set to True if the Valuation Point applies a clear down, False otherwise. The Valuation Point shows its bucket values before the clear down, and the next Valuation Point opens from the balances after it.
     diagnostics=[],  # optional — Findings made while striking the valuation point that did not stop it but should be looked at, such as a fund structure holder whose declared sharing percentage in a member has drifted from the share its contributions make of that member&#39;s capital. Absent when there are none.
+    bucket_set_seeds=[],  # optional — The bucket set seeds set on the Valuation Point, when the request resolved to the Valuation Point itself. Null when it has none.
     links=[]  # optional
 )
 ```
@@ -55,6 +57,7 @@ instance = ValuationPointDataResponse(
 - [BucketSetResult](BucketSetResult.md) — used in `bucket_set_results`
 - [StagedModificationsInfo](StagedModificationsInfo.md)
 - [ValuationPointDiagnostic](ValuationPointDiagnostic.md) — used in `diagnostics`
+- [BucketSetSeed](BucketSetSeed.md) — used in `bucket_set_seeds`
 - [Link](Link.md)
 
 

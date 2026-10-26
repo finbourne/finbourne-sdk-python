@@ -17,6 +17,7 @@ Response model for TPF file delivery search results
 | **destination_error** | **str** | Optional | *No description available.* |
 | **destination_name** | **str** | Optional | *No description available.* |
 | **file_uuid** | **UUID** | Required | *No description available.* |
+| **can_resend** | **bool** | Required | Whether the data the file is rebuilt from is still retained, so a resend can be requested. |
 
 
 ## Usage
@@ -38,7 +39,8 @@ instance = TpfFileDeliveryResponse(
     destination_status="...",  # required
     destination_error="...",  # optional
     destination_name="...",  # optional
-    file_uuid="..."  # required
+    file_uuid="...",  # required
+    can_resend=True  # required — Whether the data the file is rebuilt from is still retained, so a resend can be requested.
 )
 ```
 

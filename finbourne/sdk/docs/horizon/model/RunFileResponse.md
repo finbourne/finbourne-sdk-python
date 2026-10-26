@@ -14,6 +14,7 @@ record containing details of a single file for a run.
 | **transaction_ids** | **List[str]** | Required | *No description available.* |
 | **file_uuid** | **UUID** | Required | *No description available.* |
 | **failed_transaction_ids** | **List[str]** | Required | *No description available.* |
+| **can_resend** | **bool** | Required | Whether the data the file is rebuilt from is still retained, so a resend can be requested. |
 
 
 ## Usage
@@ -32,7 +33,8 @@ instance = RunFileResponse(
     destinations=[],  # required
     transaction_ids=,  # required
     file_uuid="...",  # required
-    failed_transaction_ids=  # required
+    failed_transaction_ids=,  # required
+    can_resend=True  # required — Whether the data the file is rebuilt from is still retained, so a resend can be requested.
 )
 ```
 

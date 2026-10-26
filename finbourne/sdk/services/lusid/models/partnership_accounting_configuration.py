@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.allocation_basis_rule import AllocationBasisRule
 from finbourne.sdk.services.lusid.models.capability_override import CapabilityOverride
 from finbourne.sdk.services.lusid.models.presentation_configuration import PresentationConfiguration
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
@@ -40,7 +41,8 @@ class PartnershipAccountingConfiguration(BaseModel):
     series: Optional[SeriesConfiguration] = None
     effective_capabilities: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Derived on the way out; ignored on the way in.", alias="effectiveCapabilities")
     presentation: Optional[PresentationConfiguration] = None
-    __properties: ClassVar[List[str]] = ["enabled", "configPack", "commitmentCurrencyPolicy", "registerPortfolioGroup", "capitalModel", "capabilityOverrides", "series", "effectiveCapabilities", "presentation"]
+    allocation_bases: Optional[List[AllocationBasisRule]] = Field(default=None, alias="allocationBases")
+    __properties: ClassVar[List[str]] = ["enabled", "configPack", "commitmentCurrencyPolicy", "registerPortfolioGroup", "capitalModel", "capabilityOverrides", "series", "effectiveCapabilities", "presentation", "allocationBases"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +97,13 @@ class PartnershipAccountingConfiguration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of presentation
         if self.presentation:
             _dict['presentation'] = self.presentation.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in allocation_bases (list)
+        _items = []
+        if self.allocation_bases:
+            for _item in self.allocation_bases:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['allocationBases'] = _items
         # set to None if commitment_currency_policy (nullable) is None
         # and model_fields_set contains the field
         if self.commitment_currency_policy is None and "commitment_currency_policy" in self.model_fields_set:
@@ -114,6 +123,11 @@ class PartnershipAccountingConfiguration(BaseModel):
         # and model_fields_set contains the field
         if self.effective_capabilities is None and "effective_capabilities" in self.model_fields_set:
             _dict['effectiveCapabilities'] = None
+
+        # set to None if allocation_bases (nullable) is None
+        # and model_fields_set contains the field
+        if self.allocation_bases is None and "allocation_bases" in self.model_fields_set:
+            _dict['allocationBases'] = None
 
         return _dict
 
@@ -135,7 +149,8 @@ class PartnershipAccountingConfiguration(BaseModel):
             "capability_overrides": [CapabilityOverride.from_dict(_item) for _item in _v] if (_v := obj.get("capabilityOverrides")) is not None else None,
             "series": SeriesConfiguration.from_dict(_v) if (_v := obj.get("series")) is not None else None,
             "effective_capabilities": obj.get("effectiveCapabilities"),
-            "presentation": PresentationConfiguration.from_dict(_v) if (_v := obj.get("presentation")) is not None else None
+            "presentation": PresentationConfiguration.from_dict(_v) if (_v := obj.get("presentation")) is not None else None,
+            "allocation_bases": [AllocationBasisRule.from_dict(_item) for _item in _v] if (_v := obj.get("allocationBases")) is not None else None
         })
         return _obj
 

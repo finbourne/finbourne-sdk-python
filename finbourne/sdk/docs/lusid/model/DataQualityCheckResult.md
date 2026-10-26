@@ -20,7 +20,7 @@ Represents the result of a data quality check operation
 | **lusid_entity** | [LusidEntityResult](LusidEntityResult.md) | Optional | *No description available.* |
 | **count_rule_breaches** | **int** | Optional | The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit) |
 | **error_detail** | **str** | Optional | Error details (for RulesetInvalid, RuleInvalid) |
-| **result_id** | **str** | Optional | Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType. |
+| **result_id** | **str** | Optional | Unique, stable identifier for this result, scoped to the check definition, result type, ruleset, rule and  breaching entity. Treat as opaque — composition varies by entityType. |
 | **portfolio_holding** | [PortfolioHoldingResult](PortfolioHoldingResult.md) | Optional | *No description available.* |
 | **portfolio_transaction** | [PortfolioTransactionResult](PortfolioTransactionResult.md) | Optional | *No description available.* |
 | **structured_result_data** | [StructuredResultDataResult](StructuredResultDataResult.md) | Optional | *No description available.* |
@@ -49,7 +49,7 @@ instance = DataQualityCheckResult(
     lusid_entity=LusidEntityResult(...),  # optional
     count_rule_breaches=0,  # optional — The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit)
     error_detail="...",  # optional — Error details (for RulesetInvalid, RuleInvalid)
-    result_id="...",  # optional — Unique, stable identifier for this result, scoped to the check definition, ruleset, rule and breaching  entity. Treat as opaque — composition varies by entityType.
+    result_id="...",  # optional — Unique, stable identifier for this result, scoped to the check definition, result type, ruleset, rule and  breaching entity. Treat as opaque — composition varies by entityType.
     portfolio_holding=PortfolioHoldingResult(...),  # optional
     portfolio_transaction=PortfolioTransactionResult(...),  # optional
     structured_result_data=StructuredResultDataResult(...)  # optional

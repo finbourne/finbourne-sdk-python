@@ -21,10 +21,11 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
 from finbourne.sdk.services.lusid.models.external_rec_definition_details import ExternalRecDefinitionDetails
+from finbourne.sdk.services.lusid.models.lusid_entity_rec_definition_details import LusidEntityRecDefinitionDetails
 from finbourne.sdk.services.lusid.models.portfolio_contents_rec_definition_details import PortfolioContentsRecDefinitionDetails
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
-RECDEFINITIONDETAILS_ONE_OF_SCHEMAS = ["ExternalRecDefinitionDetails", "PortfolioContentsRecDefinitionDetails"]
+RECDEFINITIONDETAILS_ONE_OF_SCHEMAS = ["ExternalRecDefinitionDetails", "LusidEntityRecDefinitionDetails", "PortfolioContentsRecDefinitionDetails"]
 
 class RecDefinitionDetails(BaseModel):
     """
@@ -32,10 +33,12 @@ class RecDefinitionDetails(BaseModel):
     """
     # data type: ExternalRecDefinitionDetails
     oneof_schema_1_validator: Optional[ExternalRecDefinitionDetails] = None
+    # data type: LusidEntityRecDefinitionDetails
+    oneof_schema_2_validator: Optional[LusidEntityRecDefinitionDetails] = None
     # data type: PortfolioContentsRecDefinitionDetails
-    oneof_schema_2_validator: Optional[PortfolioContentsRecDefinitionDetails] = None
+    oneof_schema_3_validator: Optional[PortfolioContentsRecDefinitionDetails] = None
     if TYPE_CHECKING:
-        actual_instance: Union[ExternalRecDefinitionDetails, PortfolioContentsRecDefinitionDetails]
+        actual_instance: Union[ExternalRecDefinitionDetails, LusidEntityRecDefinitionDetails, PortfolioContentsRecDefinitionDetails]
     else:
         actual_instance: Any
     one_of_schemas: ClassVar[List[str]] = RECDEFINITIONDETAILS_ONE_OF_SCHEMAS
@@ -79,6 +82,12 @@ class RecDefinitionDetails(BaseModel):
         else:
             match += 1
             matchclass = matchclass + " ExternalRecDefinitionDetails"
+        # validate data type: LusidEntityRecDefinitionDetails
+        if not isinstance(v, LusidEntityRecDefinitionDetails):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LusidEntityRecDefinitionDetails`")
+        else:
+            match += 1
+            matchclass = matchclass + " LusidEntityRecDefinitionDetails"
         # validate data type: PortfolioContentsRecDefinitionDetails
         if not isinstance(v, PortfolioContentsRecDefinitionDetails):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PortfolioContentsRecDefinitionDetails`")
@@ -87,10 +96,10 @@ class RecDefinitionDetails(BaseModel):
             matchclass = matchclass + " PortfolioContentsRecDefinitionDetails"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, LusidEntityRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, LusidEntityRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -117,6 +126,11 @@ class RecDefinitionDetails(BaseModel):
             instance.actual_instance = ExternalRecDefinitionDetails.from_json(json_str)
             return instance
 
+        # check if data type is `LusidEntityRecDefinitionDetails`
+        if _data_type == "LusidEntity":
+            instance.actual_instance = LusidEntityRecDefinitionDetails.from_json(json_str)
+            return instance
+
         # check if data type is `PortfolioContentsRecDefinitionDetails`
         if _data_type == "PortfolioContents":
             instance.actual_instance = PortfolioContentsRecDefinitionDetails.from_json(json_str)
@@ -140,6 +154,24 @@ class RecDefinitionDetails(BaseModel):
             matchclass =matchclass + " ExternalRecDefinitionDetails"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into LusidEntityRecDefinitionDetails
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(LusidEntityRecDefinitionDetails, "_LusidEntityRecDefinitionDetails__properties", None) or getattr(LusidEntityRecDefinitionDetails, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for LusidEntityRecDefinitionDetails: {_extra}")
+            instance.actual_instance = LusidEntityRecDefinitionDetails.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " LusidEntityRecDefinitionDetails"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into PortfolioContentsRecDefinitionDetails
         try:
             # Enforce additionalProperties: false at the oneOf level so
@@ -161,10 +193,10 @@ class RecDefinitionDetails(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, LusidEntityRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into RecDefinitionDetails with oneOf schemas: ExternalRecDefinitionDetails, LusidEntityRecDefinitionDetails, PortfolioContentsRecDefinitionDetails. Details: " + ", ".join(error_messages))
         else:
             return instance
 

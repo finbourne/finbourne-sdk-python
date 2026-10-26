@@ -10,6 +10,7 @@ A valuation point's results for one bucket set: whether the set is the apportion
 | **nodes** | [List[BucketSetNode]](BucketSetNode.md) | Required | The nodes making up the bucket set: the fund aggregate and one per share class. |
 | **display_name** | **str** | Optional | The display name of the bucket set, as configured on the fund configuration. |
 | **is_backfilled** | **bool** | Optional | Set to True if this bucket set was backfilled from fund inception at this valuation point, because the previous valuation point has no results for it. Its values then hold the whole history, and its previous cumulative values are zero. False otherwise. |
+| **is_seeded** | **bool** | Optional | Set to True if this bucket set&#39;s flow bucket values at this valuation point are the seed set on this variant of the valuation point rather than its journal entry lines. The next valuation point opens from them. False otherwise. |
 
 
 ## Usage
@@ -24,7 +25,8 @@ instance = BucketSetResult(
     is_apportionment=True,  # required — Whether this bucket set is the apportionment set (apportioning non-class-specific P&amp;L across share classes).
     nodes=[],  # required — The nodes making up the bucket set: the fund aggregate and one per share class.
     display_name="...",  # optional — The display name of the bucket set, as configured on the fund configuration.
-    is_backfilled=True  # optional — Set to True if this bucket set was backfilled from fund inception at this valuation point, because the previous valuation point has no results for it. Its values then hold the whole history, and its previous cumulative values are zero. False otherwise.
+    is_backfilled=True,  # optional — Set to True if this bucket set was backfilled from fund inception at this valuation point, because the previous valuation point has no results for it. Its values then hold the whole history, and its previous cumulative values are zero. False otherwise.
+    is_seeded=True  # optional — Set to True if this bucket set&#39;s flow bucket values at this valuation point are the seed set on this variant of the valuation point rather than its journal entry lines. The next valuation point opens from them. False otherwise.
 )
 ```
 

@@ -25,7 +25,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class InstanceRunResponse(BaseModel):
     """
-    Response containing details of a single run for an instance.  # noqa: E501
+    Response containing details of a single run for an instance. The transaction and file figures describe the batch as it stands now, so they are reported on the latest attempt only and are null on earlier attempts of a retried run. Message explains a failed attempt and what will happen or must be done next; it is null for completed, running and queued attempts.  # noqa: E501
     """
     run_id:  StrictStr = Field(...,alias="runId") 
     reference_id:  StrictStr = Field(...,alias="referenceId") 
@@ -35,12 +35,13 @@ class InstanceRunResponse(BaseModel):
     duration:  Optional[StrictStr] = Field(default=None,alias="duration") 
     status:  StrictStr = Field(...,alias="status") 
     triggered_by:  Optional[StrictStr] = Field(default=None,alias="triggeredBy") 
-    total: StrictInt
-    sent_count: StrictInt = Field(alias="sentCount")
-    skipped_count: StrictInt = Field(alias="skippedCount")
-    failed_count: StrictInt = Field(alias="failedCount")
-    failed_files: StrictInt = Field(alias="failedFiles")
-    __properties: ClassVar[List[str]] = ["runId", "referenceId", "attempt", "startTime", "endTime", "duration", "status", "triggeredBy", "total", "sentCount", "skippedCount", "failedCount", "failedFiles"]
+    total: Optional[StrictInt] = None
+    sent_count: Optional[StrictInt] = Field(default=None, alias="sentCount")
+    skipped_count: Optional[StrictInt] = Field(default=None, alias="skippedCount")
+    failed_count: Optional[StrictInt] = Field(default=None, alias="failedCount")
+    failed_files: Optional[StrictInt] = Field(default=None, alias="failedFiles")
+    message:  Optional[StrictStr] = Field(default=None,alias="message") 
+    __properties: ClassVar[List[str]] = ["runId", "referenceId", "attempt", "startTime", "endTime", "duration", "status", "triggeredBy", "total", "sentCount", "skippedCount", "failedCount", "failedFiles", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +97,36 @@ class InstanceRunResponse(BaseModel):
         if self.triggered_by is None and "triggered_by" in self.model_fields_set:
             _dict['triggeredBy'] = None
 
+        # set to None if total (nullable) is None
+        # and model_fields_set contains the field
+        if self.total is None and "total" in self.model_fields_set:
+            _dict['total'] = None
+
+        # set to None if sent_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.sent_count is None and "sent_count" in self.model_fields_set:
+            _dict['sentCount'] = None
+
+        # set to None if skipped_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.skipped_count is None and "skipped_count" in self.model_fields_set:
+            _dict['skippedCount'] = None
+
+        # set to None if failed_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.failed_count is None and "failed_count" in self.model_fields_set:
+            _dict['failedCount'] = None
+
+        # set to None if failed_files (nullable) is None
+        # and model_fields_set contains the field
+        if self.failed_files is None and "failed_files" in self.model_fields_set:
+            _dict['failedFiles'] = None
+
+        # set to None if message (nullable) is None
+        # and model_fields_set contains the field
+        if self.message is None and "message" in self.model_fields_set:
+            _dict['message'] = None
+
         return _dict
 
     @classmethod
@@ -120,7 +151,8 @@ class InstanceRunResponse(BaseModel):
             "sent_count": obj.get("sentCount"),
             "skipped_count": obj.get("skippedCount"),
             "failed_count": obj.get("failedCount"),
-            "failed_files": obj.get("failedFiles")
+            "failed_files": obj.get("failedFiles"),
+            "message": obj.get("message")
         })
         return _obj
 

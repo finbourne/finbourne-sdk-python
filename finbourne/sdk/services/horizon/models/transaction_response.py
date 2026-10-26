@@ -26,10 +26,10 @@ from finbourne.sdk.services.horizon.models.destination_response import Destinati
 
 class TransactionResponse(BaseModel):
     """
-    Response containing details of a single transaction for a run.  # noqa: E501
+    Response containing details of a single transaction for a run. A transaction built twice in one batch appears once per build. FailureStage says whether a failed transaction failed while being built (Build) or while its file was being delivered (Delivery).  # noqa: E501
     """
     transaction_id:  StrictStr = Field(...,alias="transactionId") 
-    publication_status:  StrictStr = Field(...,alias="publicationStatus") 
+    publication_status:  StrictStr = Field(...,alias="publicationStatus", description="The outcome the screens show for this row: Sent, Skipped or Failed.") 
     portfolio_scope:  Optional[StrictStr] = Field(default=None,alias="portfolioScope") 
     portfolio_code:  Optional[StrictStr] = Field(default=None,alias="portfolioCode") 
     instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId") 
@@ -37,13 +37,14 @@ class TransactionResponse(BaseModel):
     instrument_name:  Optional[StrictStr] = Field(default=None,alias="instrumentName") 
     trade_date: Optional[datetime] = Field(default=None, alias="tradeDate")
     settlement_date: Optional[datetime] = Field(default=None, alias="settlementDate")
-    status:  StrictStr = Field(...,alias="status") 
+    status:  StrictStr = Field(...,alias="status", description="The batch element's processing state as the worker left it, not the outcome; read PublicationStatus for that.") 
     skip_reason:  Optional[StrictStr] = Field(default=None,alias="skipReason") 
     failure_reason:  Optional[StrictStr] = Field(default=None,alias="failureReason") 
     output_file_name:  Optional[StrictStr] = Field(default=None,alias="outputFileName") 
     sent_at: Optional[datetime] = Field(default=None, alias="sentAt")
     destinations: List[DestinationResponse]
-    __properties: ClassVar[List[str]] = ["transactionId", "publicationStatus", "portfolioScope", "portfolioCode", "instrumentId", "instrumentType", "instrumentName", "tradeDate", "settlementDate", "status", "skipReason", "failureReason", "outputFileName", "sentAt", "destinations"]
+    failure_stage:  Optional[StrictStr] = Field(default=None,alias="failureStage") 
+    __properties: ClassVar[List[str]] = ["transactionId", "publicationStatus", "portfolioScope", "portfolioCode", "instrumentId", "instrumentType", "instrumentName", "tradeDate", "settlementDate", "status", "skipReason", "failureReason", "outputFileName", "sentAt", "destinations", "failureStage"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -141,6 +142,11 @@ class TransactionResponse(BaseModel):
         if self.sent_at is None and "sent_at" in self.model_fields_set:
             _dict['sentAt'] = None
 
+        # set to None if failure_stage (nullable) is None
+        # and model_fields_set contains the field
+        if self.failure_stage is None and "failure_stage" in self.model_fields_set:
+            _dict['failureStage'] = None
+
         return _dict
 
     @classmethod
@@ -167,7 +173,8 @@ class TransactionResponse(BaseModel):
             "failure_reason": obj.get("failureReason"),
             "output_file_name": obj.get("outputFileName"),
             "sent_at": obj.get("sentAt"),
-            "destinations": [DestinationResponse.from_dict(_item) for _item in _v] if (_v := obj.get("destinations")) is not None else None
+            "destinations": [DestinationResponse.from_dict(_item) for _item in _v] if (_v := obj.get("destinations")) is not None else None,
+            "failure_stage": obj.get("failureStage")
         })
         return _obj
 
