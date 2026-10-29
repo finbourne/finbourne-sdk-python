@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_multi_query**](MultiQueryExecutionApi.md#cancel_multi_query) | **DELETE** /honeycomb/api/MultiQueryBackground/{executionId} | CancelMultiQuery: Cancel / Clear a previously started query-set
-[**download_multi_query_results**](MultiQueryExecutionApi.md#download_multi_query_results) | **GET** /honeycomb/api/MultiQueryBackground/{executionId}/download | [EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
+[**download_multi_query_results**](MultiQueryExecutionApi.md#download_multi_query_results) | **GET** /honeycomb/api/MultiQueryBackground/{executionId}/download | DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
 [**get_progress_of_multi_query**](MultiQueryExecutionApi.md#get_progress_of_multi_query) | **GET** /honeycomb/api/MultiQueryBackground/{executionId} | GetProgressOfMultiQuery: View progress of the entire query-set load
-[**list_custom_queries**](MultiQueryExecutionApi.md#list_custom_queries) | **GET** /honeycomb/api/MultiQueryBackground | [EXPERIMENTAL] ListCustomQueries: List the custom query-sets available to the calling user
-[**save_multi_query_results_to_drive**](MultiQueryExecutionApi.md#save_multi_query_results_to_drive) | **GET** /honeycomb/api/MultiQueryBackground/{executionId}/drive | [EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
-[**start_custom_queries**](MultiQueryExecutionApi.md#start_custom_queries) | **PUT** /honeycomb/api/MultiQueryBackground/custom | [EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql queries in the background
+[**list_custom_queries**](MultiQueryExecutionApi.md#list_custom_queries) | **GET** /honeycomb/api/MultiQueryBackground | ListCustomQueries: List the custom query-sets available to the calling user
+[**save_multi_query_results_to_drive**](MultiQueryExecutionApi.md#save_multi_query_results_to_drive) | **GET** /honeycomb/api/MultiQueryBackground/{executionId}/drive | SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
+[**start_custom_queries**](MultiQueryExecutionApi.md#start_custom_queries) | **PUT** /honeycomb/api/MultiQueryBackground/custom | StartCustomQueries: Run a caller-supplied set of Sql queries in the background
 [**start_queries**](MultiQueryExecutionApi.md#start_queries) | **PUT** /honeycomb/api/MultiQueryBackground | StartQueries: Run a given set of Sql queries in the background
 
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 # **download_multi_query_results**
 > bytes downloadMultiQueryResults = download_multi_query_results(execution_id, format=format, file_name=file_name, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
 
-[EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
+DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
 
 Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file. Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query-set doesn't exist, isn't a custom one, or the calling user did not run it. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 # **list_custom_queries**
 > List[CustomMultiQueryListItem] listCustomQueries = list_custom_queries(sql_like=sql_like)
 
-[EXPERIMENTAL] ListCustomQueries: List the custom query-sets available to the calling user
+ListCustomQueries: List the custom query-sets available to the calling user
 
 Lists the custom query-sets (started by the calling user via `custom`) that have finished with at least one result which may be fetched,  and which have not yet passed their `keepForSeconds` time, most recent first.  Each lists its queries that are external results, and which of those have results. Those that errored are included, as some of their queries may still have succeeded.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 # **save_multi_query_results_to_drive**
 > str saveMultiQueryResultsToDrive = save_multi_query_results_to_drive(execution_id, drive_location_and_file_name, may_overwrite=may_overwrite, format=format, drive_template_location=drive_template_location, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
 
-[EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
+SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
 
 Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file. Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query-set doesn't exist, isn't a custom one, or the calling user did not run it. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -265,9 +265,9 @@ Name | Type | Description  | Notes
 # **start_custom_queries**
 > BackgroundMultiQueryResponse startCustomQueries = start_custom_queries(custom_multi_query_request)
 
-[EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql queries in the background
+StartCustomQueries: Run a caller-supplied set of Sql queries in the background
 
- Starts a caller-supplied set of named queries in the background, getting back an immediate response with how to - fetch the data of each (external) query in various formats, view progress information and cancel / clear them, as for any multi-query - download, or save to Drive, the results of all the (external) queries that succeeded as one file  The queries are started in the order given, at most `maxInParallel` at a time (1 by default, null for as many as possible). A query may use the results of an earlier one as a table variable of its name, e.g. `select * from @Holdings`, and is then only started once that has succeeded (and is skipped if it does not).  The scalar parameters are given to every query.  The multi-query as a whole is reported as failed if any of its queries fails or is skipped.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden 
+ Starts a caller-supplied set of named queries in the background, getting back an immediate response with how to - fetch the data of each (external) query in various formats, view progress information and cancel / clear them, as for any multi-query - download, or save to Drive, the results of all the (external) queries that succeeded as one file  The queries are started in the order given, at most `maxInParallel` at a time (1 by default, null for as many as possible). A query may use the results of an earlier one as a table variable of its name, e.g. `select * from @Holdings`, and is then only started once that has succeeded (and is skipped if it does not).  The scalar parameters are given to every query.  The multi-query as a whole is reported as failed if any of its queries fails or is skipped.  Rather than giving the `queries`, `queriesFromWorkspace` may name a custom multi-query saved in the Workspaces API to take them from, e.g. `shared/SomeWorkspace/items/sets/SomeSet`. It is read when the request is made, so it runs as it is saved at that time. Whichever of `maxInParallel`, `timeoutSeconds`, `keepForSeconds` and `queryName` the request does not give are taken from it, as are the scalar parameter values saved with it for any the request does not give.  Given an `export`, the results of the (external) queries are saved to Drive as one file once they are done, as by `{executionId}/drive`, before the multi-query is reported as done: the progress's `export.savedTo` is then the Drive path of the file (or `export.error` why it was not saved). By default nothing is saved if any query did not succeed, unless `export.whenSomeFail` is set (the multi-query is reported as failed either way), and the multi-query is reported as failed if the file could not be saved. Its results may still be saved via `{executionId}/drive` too, as often as wanted. With `queriesFromWorkspace`, whatever the `export` leaves unspecified is taken from the export settings saved with it.  An explicit `executionId` already in use (by a multi-query of the caller's that is running, or whose results are still kept) is a conflict, rather than it being started again: so a caller may rejoin one it started by its `executionId`, e.g. after it was itself restarted.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden - 409 Conflict - the `executionId` given is already in use (not a Problem Detail report) 
 
 ### Example
 
@@ -299,6 +299,7 @@ Name | Type | Description  | Notes
 **202** | Accepted |  -  |
 **400** | Bad Request |  -  |
 **403** | Forbidden |  -  |
+**409** | Conflict |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 

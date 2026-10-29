@@ -24,6 +24,7 @@ from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
 from finbourne.sdk.services.luminesce.models.case_statement_design import CaseStatementDesign
 from finbourne.sdk.services.luminesce.models.convert_to_view_data import ConvertToViewData
+from finbourne.sdk.services.luminesce.models.custom_multi_query_item import CustomMultiQueryItem
 from finbourne.sdk.services.luminesce.models.custom_multi_query_request import CustomMultiQueryRequest
 from finbourne.sdk.services.luminesce.models.error_highlight_request import ErrorHighlightRequest
 from finbourne.sdk.services.luminesce.models.error_highlight_response import ErrorHighlightResponse
@@ -450,7 +451,7 @@ class SqlDesignApi:
     def put_custom_queries_to_extract_scalar_parameters(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> List[ScalarParameter]:
         """PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query  # noqa: E501
 
-         Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+         Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  Given `queriesFromWorkspace` rather than `queries`, the queries are those of the custom multi-query saved there, and the `value` of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
         :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
         :type custom_multi_query_request: CustomMultiQueryRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -470,7 +471,7 @@ class SqlDesignApi:
     def put_custom_queries_to_extract_scalar_parameters_with_http_info(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> ApiResponse[List[ScalarParameter]]:
         """PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query  # noqa: E501
 
-         Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+         Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  Given `queriesFromWorkspace` rather than `queries`, the queries are those of the custom multi-query saved there, and the `value` of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
         :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
         :type custom_multi_query_request: CustomMultiQueryRequest
         :param _preload_content: if False, the ApiResponse.data will
@@ -559,6 +560,133 @@ class SqlDesignApi:
 
         return self.sync_api_client.call_api(
             '/honeycomb/api/Sql/extractscalarparameters/custom', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def put_custom_queries_to_text(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> str:
+        """PutCustomQueriesToText: Convert the queries of a custom multi-query into its text  # noqa: E501
+
+         Converts the queries of a custom multi-query into its text, which `api/Sql/customqueries/fromtext` reads back as the same queries. Only the request's `queries` are used (or those of the custom multi-query saved at its `queriesFromWorkspace`): its other properties (e.g. `scalarParameters`) are ignored.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text   (its SQL holds a line that would itself start a query, `--- @...`, or a `\\` line) - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+        :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
+        :type custom_multi_query_request: CustomMultiQueryRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: str
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the put_custom_queries_to_text_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.put_custom_queries_to_text_with_http_info(custom_multi_query_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def put_custom_queries_to_text_with_http_info(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> ApiResponse[str]:
+        """PutCustomQueriesToText: Convert the queries of a custom multi-query into its text  # noqa: E501
+
+         Converts the queries of a custom multi-query into its text, which `api/Sql/customqueries/fromtext` reads back as the same queries. Only the request's `queries` are used (or those of the custom multi-query saved at its `queriesFromWorkspace`): its other properties (e.g. `scalarParameters`) are ignored.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text   (its SQL holds a line that would itself start a query, `--- @...`, or a `\\` line) - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+        :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
+        :type custom_multi_query_request: CustomMultiQueryRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'custom_multi_query_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method put_custom_queries_to_text" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['custom_multi_query_request'] is not None:
+            _body_params = _params['custom_multi_query_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "LusidProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/honeycomb/api/Sql/customqueries/totext', 'PUT',
             _path_params,
             _query_params,
             _header_params,
@@ -2383,6 +2511,133 @@ class SqlDesignApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def put_text_to_custom_queries(self, body: StrictStr, **kwargs) -> List[CustomMultiQueryItem]:
+        """PutTextToCustomQueries: Convert the text of a custom multi-query into its queries  # noqa: E501
+
+         Converts the text of a custom multi-query into the queries to give to `api/MultiQueryBackground/custom` (or `api/Sql/extractscalarparameters/custom`). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query's result is not.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: `errorDetails` then has one entry per problem, giving its (1-based) `line` and `message` - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+        :param body: The text of the queries, each started by a `--- @Name` line (required)
+        :type body: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: List[CustomMultiQueryItem]
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the put_text_to_custom_queries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.put_text_to_custom_queries_with_http_info(body, **kwargs)
+        return response.data
+
+    @validate_call
+    def put_text_to_custom_queries_with_http_info(self, body: StrictStr, **kwargs) -> ApiResponse[List[CustomMultiQueryItem]]:
+        """PutTextToCustomQueries: Convert the text of a custom multi-query into its queries  # noqa: E501
+
+         Converts the text of a custom multi-query into the queries to give to `api/MultiQueryBackground/custom` (or `api/Sql/extractscalarparameters/custom`). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query's result is not.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: `errorDetails` then has one entry per problem, giving its (1-based) `line` and `message` - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+        :param body: The text of the queries, each started by a `--- @Name` line (required)
+        :type body: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(List[CustomMultiQueryItem], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'body'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method put_text_to_custom_queries" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['body'] is not None:
+            _body_params = _params['body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['text/plain']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[CustomMultiQueryItem]",
+            '400': "LusidProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/honeycomb/api/Sql/customqueries/fromtext', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def put_view_design_to_sql(self, convert_to_view_data: ConvertToViewData, **kwargs) -> str:
         """PutViewDesignToSql: Make view creation sql from a view-design  # noqa: E501
 
@@ -3033,7 +3288,7 @@ class SqlDesignApi:
     @validate_call
     async def put_custom_queries_to_extract_scalar_parameters_async(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> List[ScalarParameter]:
             """PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query  # noqa: E501
-             Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+             Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  Given `queriesFromWorkspace` rather than `queries`, the queries are those of the custom multi-query saved there, and the `value` of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
             
             :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
             :type custom_multi_query_request: CustomMultiQueryRequest
@@ -3054,7 +3309,7 @@ class SqlDesignApi:
     async def put_custom_queries_to_extract_scalar_parameters_with_http_info_async(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> ApiResponse[List[ScalarParameter]]:
             """PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query  # noqa: E501
 
-             Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+             Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  Given `queriesFromWorkspace` rather than `queries`, the queries are those of the custom multi-query saved there, and the `value` of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
 
             :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
             :type custom_multi_query_request: CustomMultiQueryRequest
@@ -3144,6 +3399,134 @@ class SqlDesignApi:
 
             return await self.api_client.call_api_async(
                 '/honeycomb/api/Sql/extractscalarparameters/custom', 'PUT',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def put_custom_queries_to_text_async(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> str:
+            """PutCustomQueriesToText: Convert the queries of a custom multi-query into its text  # noqa: E501
+             Converts the queries of a custom multi-query into its text, which `api/Sql/customqueries/fromtext` reads back as the same queries. Only the request's `queries` are used (or those of the custom multi-query saved at its `queriesFromWorkspace`): its other properties (e.g. `scalarParameters`) are ignored.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text   (its SQL holds a line that would itself start a query, `--- @...`, or a `\\` line) - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+            
+            :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
+            :type custom_multi_query_request: CustomMultiQueryRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: str
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the put_custom_queries_to_text_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.put_custom_queries_to_text_with_http_info_async(custom_multi_query_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def put_custom_queries_to_text_with_http_info_async(self, custom_multi_query_request: CustomMultiQueryRequest, **kwargs) -> ApiResponse[str]:
+            """PutCustomQueriesToText: Convert the queries of a custom multi-query into its text  # noqa: E501
+
+             Converts the queries of a custom multi-query into its text, which `api/Sql/customqueries/fromtext` reads back as the same queries. Only the request's `queries` are used (or those of the custom multi-query saved at its `queriesFromWorkspace`): its other properties (e.g. `scalarParameters`) are ignored.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text   (its SQL holds a line that would itself start a query, `--- @...`, or a `\\` line) - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+
+            :param custom_multi_query_request: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom` (required)
+            :type custom_multi_query_request: CustomMultiQueryRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'custom_multi_query_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method put_custom_queries_to_text" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['custom_multi_query_request'] is not None:
+                _body_params = _params['custom_multi_query_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "str",
+                '400': "LusidProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/honeycomb/api/Sql/customqueries/totext', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -4965,6 +5348,134 @@ class SqlDesignApi:
 
             return await self.api_client.call_api_async(
                 '/honeycomb/api/Sql/towriterdesign', 'PUT',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def put_text_to_custom_queries_async(self, body: StrictStr, **kwargs) -> List[CustomMultiQueryItem]:
+            """PutTextToCustomQueries: Convert the text of a custom multi-query into its queries  # noqa: E501
+             Converts the text of a custom multi-query into the queries to give to `api/MultiQueryBackground/custom` (or `api/Sql/extractscalarparameters/custom`). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query's result is not.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: `errorDetails` then has one entry per problem, giving its (1-based) `line` and `message` - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+            
+            :param body: The text of the queries, each started by a `--- @Name` line (required)
+            :type body: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: List[CustomMultiQueryItem]
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the put_text_to_custom_queries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.put_text_to_custom_queries_with_http_info_async(body, **kwargs)
+            return response.data
+
+    @validate_call
+    async def put_text_to_custom_queries_with_http_info_async(self, body: StrictStr, **kwargs) -> ApiResponse[List[CustomMultiQueryItem]]:
+            """PutTextToCustomQueries: Convert the text of a custom multi-query into its queries  # noqa: E501
+
+             Converts the text of a custom multi-query into the queries to give to `api/MultiQueryBackground/custom` (or `api/Sql/extractscalarparameters/custom`). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query's result is not.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: `errorDetails` then has one entry per problem, giving its (1-based) `line` and `message` - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice.   # noqa: E501
+
+            :param body: The text of the queries, each started by a `--- @Name` line (required)
+            :type body: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(List[CustomMultiQueryItem], status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'body'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method put_text_to_custom_queries" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['body'] is not None:
+                _body_params = _params['body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['text/plain']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "List[CustomMultiQueryItem]",
+                '400': "LusidProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/honeycomb/api/Sql/customqueries/fromtext', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

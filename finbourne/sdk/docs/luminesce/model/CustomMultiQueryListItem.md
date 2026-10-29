@@ -11,6 +11,7 @@ A custom multi-query the calling user currently has results of available to them
 | **started_at** | **datetime** | Optional | When it was started (UTC) |
 | **when** | **datetime** | Optional | When the state of it was last updated (UTC) |
 | **expires_at** | **datetime** | Optional | When it (and the data of its queries) may be removed (UTC) |
+| **exported_to** | **str** | Optional | The Drive path its results were saved to once done, if it was started with an &#x60;export&#x60; and they were |
 | **queries** | [List[CustomMultiQueryListItemQuery]](CustomMultiQueryListItemQuery.md) | Optional | Its queries whose results may be fetched (those that are external results), in request order |
 
 
@@ -28,6 +29,7 @@ instance = CustomMultiQueryListItem(
     started_at=datetime.now(),  # optional — When it was started (UTC)
     when=datetime.now(),  # optional — When the state of it was last updated (UTC)
     expires_at=datetime.now(),  # optional — When it (and the data of its queries) may be removed (UTC)
+    exported_to="...",  # optional — The Drive path its results were saved to once done, if it was started with an &#x60;export&#x60; and they were
     queries=[]  # optional — Its queries whose results may be fetched (those that are external results), in request order
 )
 ```

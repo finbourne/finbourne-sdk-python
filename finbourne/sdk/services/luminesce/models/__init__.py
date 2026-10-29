@@ -42,6 +42,7 @@ from finbourne.sdk.services.luminesce.models.column_state_type import ColumnStat
 from finbourne.sdk.services.luminesce.models.condition_attributes import ConditionAttributes
 from finbourne.sdk.services.luminesce.models.convert_to_view_data import ConvertToViewData
 from finbourne.sdk.services.luminesce.models.cursor_position import CursorPosition
+from finbourne.sdk.services.luminesce.models.custom_multi_query_export import CustomMultiQueryExport
 from finbourne.sdk.services.luminesce.models.custom_multi_query_item import CustomMultiQueryItem
 from finbourne.sdk.services.luminesce.models.custom_multi_query_list_item import CustomMultiQueryListItem
 from finbourne.sdk.services.luminesce.models.custom_multi_query_list_item_query import CustomMultiQueryListItemQuery
@@ -82,6 +83,7 @@ from finbourne.sdk.services.luminesce.models.lusid_problem_details import LusidP
 from finbourne.sdk.services.luminesce.models.mappable_field import MappableField
 from finbourne.sdk.services.luminesce.models.mapping_flags import MappingFlags
 from finbourne.sdk.services.luminesce.models.multi_query_definition_type import MultiQueryDefinitionType
+from finbourne.sdk.services.luminesce.models.multi_query_export_state import MultiQueryExportState
 from finbourne.sdk.services.luminesce.models.on_clause_term_design import OnClauseTermDesign
 from finbourne.sdk.services.luminesce.models.options_csv import OptionsCsv
 from finbourne.sdk.services.luminesce.models.options_excel import OptionsExcel
@@ -141,6 +143,7 @@ __all__ = [
     "ConditionAttributes",
     "ConvertToViewData",
     "CursorPosition",
+    "CustomMultiQueryExport",
     "CustomMultiQueryItem",
     "CustomMultiQueryListItem",
     "CustomMultiQueryListItemQuery",
@@ -181,6 +184,7 @@ __all__ = [
     "MappableField",
     "MappingFlags",
     "MultiQueryDefinitionType",
+    "MultiQueryExportState",
     "OnClauseTermDesign",
     "OptionsCsv",
     "OptionsExcel",

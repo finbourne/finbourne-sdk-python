@@ -35,8 +35,9 @@ class CustomMultiQueryListItem(BaseModel):
     started_at: Optional[datetime] = Field(default=None, description="When it was started (UTC)", alias="startedAt")
     when: Optional[datetime] = Field(default=None, description="When the state of it was last updated (UTC)")
     expires_at: Optional[datetime] = Field(default=None, description="When it (and the data of its queries) may be removed (UTC)", alias="expiresAt")
+    exported_to:  Optional[StrictStr] = Field(default=None,alias="exportedTo", description="The Drive path its results were saved to once done, if it was started with an `export` and they were") 
     queries: Optional[List[CustomMultiQueryListItemQuery]] = Field(default=None, description="Its queries whose results may be fetched (those that are external results), in request order")
-    __properties: ClassVar[List[str]] = ["executionId", "queryName", "state", "startedAt", "when", "expiresAt", "queries"]
+    __properties: ClassVar[List[str]] = ["executionId", "queryName", "state", "startedAt", "when", "expiresAt", "exportedTo", "queries"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,6 +95,11 @@ class CustomMultiQueryListItem(BaseModel):
         if self.started_at is None and "started_at" in self.model_fields_set:
             _dict['startedAt'] = None
 
+        # set to None if exported_to (nullable) is None
+        # and model_fields_set contains the field
+        if self.exported_to is None and "exported_to" in self.model_fields_set:
+            _dict['exportedTo'] = None
+
         # set to None if queries (nullable) is None
         # and model_fields_set contains the field
         if self.queries is None and "queries" in self.model_fields_set:
@@ -117,6 +123,7 @@ class CustomMultiQueryListItem(BaseModel):
             "started_at": obj.get("startedAt"),
             "when": obj.get("when"),
             "expires_at": obj.get("expiresAt"),
+            "exported_to": obj.get("exportedTo"),
             "queries": [CustomMultiQueryListItemQuery.from_dict(_item) for _item in _v] if (_v := obj.get("queries")) is not None else None
         })
         return _obj

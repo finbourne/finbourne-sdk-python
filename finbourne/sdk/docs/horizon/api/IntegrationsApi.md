@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_integration_configuration_fields**](IntegrationsApi.md#get_integration_configuration_fields) | **GET** /horizon/api/integrations/configuration/{integration}/fields | [EXPERIMENTAL] GetIntegrationConfigurationFields: Get the Field Mapping configuration for a given integration
 [**get_integration_configuration_properties**](IntegrationsApi.md#get_integration_configuration_properties) | **GET** /horizon/api/integrations/configuration/{integration}/properties | [EXPERIMENTAL] GetIntegrationConfigurationProperties: Get the Property Mapping configuration for a given integration
 [**get_schema**](IntegrationsApi.md#get_schema) | **GET** /horizon/api/integrations/schema/{integration} | [EXPERIMENTAL] GetSchema: Get the JSON schema for the details section of an integration instance.
+[**get_workflow_execute_parameters**](IntegrationsApi.md#get_workflow_execute_parameters) | **GET** /horizon/api/integrations/instances/{instanceId}/workflow/executeparameters | [EXPERIMENTAL] GetWorkflowExecuteParameters: Get the execute parameters a Workflow-driven integration instance accepts
 [**get_workflow_result_fields**](IntegrationsApi.md#get_workflow_result_fields) | **GET** /horizon/api/integrations/instances/{instanceId}/workflow/resultfields | [EXPERIMENTAL] GetWorkflowResultFields: Get the Workflow result fields an integration instance returns
 [**list_dataflow_processors**](IntegrationsApi.md#list_dataflow_processors) | **GET** /horizon/api/integrations/dataflow/processors | [EXPERIMENTAL] ListDataflowProcessors: List processor types.
 [**list_instances**](IntegrationsApi.md#list_instances) | **GET** /horizon/api/integrations/instances | [EXPERIMENTAL] ListInstances: List instances across all integrations.
@@ -580,6 +581,49 @@ Name | Type | Description  | Notes
 **200** | The system defined JSON schema for the details of a specified integration. |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The integration type does not exist or is not enabled. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_workflow_execute_parameters**
+> WorkflowExecuteParametersResponse getWorkflowExecuteParameters = get_workflow_execute_parameters(instance_id)
+
+[EXPERIMENTAL] GetWorkflowExecuteParameters: Get the execute parameters a Workflow-driven integration instance accepts
+
+Returns the parameters the instance's integration accepts on `executewithparams`: which are always required, which stages each is required for, the values a closed-set parameter admits, and the steps that run for each stage. Only integrations driven by Workflow declare parameters; an instance of any other integration is a bad request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(IntegrationsApi)
+instance_id = 'instance_id_example' # str
+api_response = api_instance.get_workflow_execute_parameters(instance_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**| Instance identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+
+### Return type
+
+[**WorkflowExecuteParametersResponse**](../model/WorkflowExecuteParametersResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The declared execute parameters |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The integration instance does not exist |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

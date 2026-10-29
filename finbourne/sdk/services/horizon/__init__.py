@@ -139,6 +139,9 @@ from finbourne.sdk.services.horizon.models.vendor_field import VendorField
 from finbourne.sdk.services.horizon.models.vendor_product import VendorProduct
 from finbourne.sdk.services.horizon.models.versioned_configuration_response import VersionedConfigurationResponse
 from finbourne.sdk.services.horizon.models.versioned_configuration_type_response import VersionedConfigurationTypeResponse
+from finbourne.sdk.services.horizon.models.workflow_execute_parameter_response import WorkflowExecuteParameterResponse
+from finbourne.sdk.services.horizon.models.workflow_execute_parameters_response import WorkflowExecuteParametersResponse
+from finbourne.sdk.services.horizon.models.workflow_execute_stage_response import WorkflowExecuteStageResponse
 from finbourne.sdk.services.horizon.models.workflow_result_field_response import WorkflowResultFieldResponse
 from finbourne.sdk.services.horizon.models.workflow_result_fields_response import WorkflowResultFieldsResponse
 from finbourne.sdk.services.horizon.models.workflow_result_fields_task_response import WorkflowResultFieldsTaskResponse
@@ -270,6 +273,9 @@ __all__ = [
     "VendorProduct",
     "VersionedConfigurationResponse",
     "VersionedConfigurationTypeResponse",
+    "WorkflowExecuteParameterResponse",
+    "WorkflowExecuteParametersResponse",
+    "WorkflowExecuteStageResponse",
     "WorkflowResultFieldResponse",
     "WorkflowResultFieldsResponse",
     "WorkflowResultFieldsTaskResponse",

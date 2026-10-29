@@ -2320,7 +2320,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     def list_queries(self, sql_like: Optional[StrictStr] = None, **kwargs) -> List[BackgroundQueryListItem]:
-        """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+        """ListQueries: List the background queries available to the calling user  # noqa: E501
 
         Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
         :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
@@ -2340,7 +2340,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     def list_queries_with_http_info(self, sql_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[BackgroundQueryListItem]]:
-        """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+        """ListQueries: List the background queries available to the calling user  # noqa: E501
 
         Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
         :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
@@ -2439,7 +2439,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     def save_query_result_to_drive(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
-        """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+        """SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
 
         Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
         :param execution_id: ExecutionId returned when starting the query (required)
@@ -2483,7 +2483,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     def save_query_result_to_drive_with_http_info(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
-        """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+        """SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
 
         Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
         :param execution_id: ExecutionId returned when starting the query (required)
@@ -5122,7 +5122,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     async def list_queries_async(self, sql_like: Optional[StrictStr] = None, **kwargs) -> List[BackgroundQueryListItem]:
-            """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+            """ListQueries: List the background queries available to the calling user  # noqa: E501
             Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
             
             :param sql_like: An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired).
@@ -5142,7 +5142,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     async def list_queries_with_http_info_async(self, sql_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[BackgroundQueryListItem]]:
-            """[EXPERIMENTAL] ListQueries: List the background queries available to the calling user  # noqa: E501
+            """ListQueries: List the background queries available to the calling user  # noqa: E501
 
             Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized  # noqa: E501
 
@@ -5242,7 +5242,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     async def save_query_result_to_drive_async(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
-            """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+            """SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
             Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
             :param execution_id: ExecutionId returned when starting the query (required)
@@ -5286,7 +5286,7 @@ class SqlBackgroundExecutionApi:
 
     @validate_call
     async def save_query_result_to_drive_with_http_info_async(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
-            """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+            """SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
 
             Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
 

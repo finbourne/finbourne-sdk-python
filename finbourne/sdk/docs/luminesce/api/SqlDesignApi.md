@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**put_case_statement_design_sql_to_design**](SqlDesignApi.md#put_case_statement_design_sql_to_design) | **PUT** /honeycomb/api/Sql/tocasestatementdesign | PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object
 [**put_case_statement_design_to_sql**](SqlDesignApi.md#put_case_statement_design_to_sql) | **PUT** /honeycomb/api/Sql/fromcasestatementdesign | PutCaseStatementDesignToSql: Convert a case statement design object to SQL
 [**put_custom_queries_to_extract_scalar_parameters**](SqlDesignApi.md#put_custom_queries_to_extract_scalar_parameters) | **PUT** /honeycomb/api/Sql/extractscalarparameters/custom | PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
+[**put_custom_queries_to_text**](SqlDesignApi.md#put_custom_queries_to_text) | **PUT** /honeycomb/api/Sql/customqueries/totext | PutCustomQueriesToText: Convert the queries of a custom multi-query into its text
 [**put_file_read_design_to_sql**](SqlDesignApi.md#put_file_read_design_to_sql) | **PUT** /honeycomb/api/Sql/fromfilereaddesign | PutFileReadDesignToSql: Make file read SQL from a design object
 [**put_inlined_properties_design_sql_to_design**](SqlDesignApi.md#put_inlined_properties_design_sql_to_design) | **PUT** /honeycomb/api/Sql/toinlinedpropertiesdesign | PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL
 [**put_inlined_properties_design_to_sql**](SqlDesignApi.md#put_inlined_properties_design_to_sql) | **PUT** /honeycomb/api/Sql/frominlinedpropertiesdesign | PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object
@@ -21,6 +22,7 @@ Method | HTTP request | Description
 [**put_sql_to_query_design**](SqlDesignApi.md#put_sql_to_query_design) | **PUT** /honeycomb/api/Sql/todesign | PutSqlToQueryDesign: Make a SQL-design object from SQL if possible
 [**put_sql_to_view_design**](SqlDesignApi.md#put_sql_to_view_design) | **PUT** /honeycomb/api/Sql/toviewdesign | PutSqlToViewDesign: Make a view-design from view creation SQL
 [**put_sql_to_writer_design**](SqlDesignApi.md#put_sql_to_writer_design) | **PUT** /honeycomb/api/Sql/towriterdesign | PutSqlToWriterDesign: Make a SQL-writer-design object from SQL
+[**put_text_to_custom_queries**](SqlDesignApi.md#put_text_to_custom_queries) | **PUT** /honeycomb/api/Sql/customqueries/fromtext | PutTextToCustomQueries: Convert the text of a custom multi-query into its queries
 [**put_view_design_to_sql**](SqlDesignApi.md#put_view_design_to_sql) | **PUT** /honeycomb/api/Sql/fromviewdesign | PutViewDesignToSql: Make view creation sql from a view-design
 [**put_writer_design_to_sql**](SqlDesignApi.md#put_writer_design_to_sql) | **PUT** /honeycomb/api/Sql/fromwriterdesign | PutWriterDesignToSql: Make writer SQL from a writer-design object
 
@@ -183,7 +185,7 @@ Name | Type | Description  | Notes
 
 PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
 
- Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+ Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request's own `scalarParameters` are ignored.  Given `queriesFromWorkspace` rather than `queries`, the queries are those of the custom multi-query saved there, and the `value` of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
 ### Example
 
@@ -215,6 +217,47 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_custom_queries_to_text**
+> str putCustomQueriesToText = put_custom_queries_to_text(custom_multi_query_request)
+
+PutCustomQueriesToText: Convert the queries of a custom multi-query into its text
+
+ Converts the queries of a custom multi-query into its text, which `api/Sql/customqueries/fromtext` reads back as the same queries. Only the request's `queries` are used (or those of the custom multi-query saved at its `queriesFromWorkspace`): its other properties (e.g. `scalarParameters`) are ignored.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text   (its SQL holds a line that would itself start a query, `--- @...`, or a `\\` line) - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+custom_multi_query_request = CustomMultiQueryRequest()
+api_response = api_instance.put_custom_queries_to_text(custom_multi_query_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **custom_multi_query_request** | [**CustomMultiQueryRequest**](../model/CustomMultiQueryRequest.md)| The same set of queries as would be given to start them via &#x60;api/MultiQueryBackground/custom&#x60; | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
@@ -797,6 +840,47 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_text_to_custom_queries**
+> List[CustomMultiQueryItem] putTextToCustomQueries = put_text_to_custom_queries(body)
+
+PutTextToCustomQueries: Convert the text of a custom multi-query into its queries
+
+ Converts the text of a custom multi-query into the queries to give to `api/MultiQueryBackground/custom` (or `api/Sql/extractscalarparameters/custom`). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query's result is not.  The text of a custom multi-query starts each query with a `--- @Name` line, which may be followed by `(internal)` (its result only feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing under it). A query reads the result of one above it as `@Name`. e.g. ```sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select * from @Ten where [Int] % 2 = 0 ```  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: `errorDetails` then has one entry per problem, giving its (1-based) `line` and `message` - 401 Unauthorized   > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = 'body_example' # str
+api_response = api_instance.put_text_to_custom_queries(body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| The text of the queries, each started by a &#x60;--- @Name&#x60; line | [required] 
+
+### Return type
+
+[**List[CustomMultiQueryItem]**](../model/CustomMultiQueryItem.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
