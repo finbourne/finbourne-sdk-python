@@ -47,7 +47,8 @@ class TpfTransactionSearchResponse(BaseModel):
     failure_stage:  Optional[StrictStr] = Field(default=None,alias="failureStage", description="Stage at which a failed transaction failed: Build or Delivery") 
     sent_at: Optional[datetime] = Field(default=None, description="When the transaction was sent, which is when its file reached a destination. Empty for Skipped and Failed rows", alias="sentAt")
     instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId", description="InstrumentId showing instrument id of transaction") 
-    __properties: ClassVar[List[str]] = ["transactionId", "instanceId", "instanceName", "batchId", "runId", "runStartTime", "publicationStatus", "instrumentName", "instrumentType", "tradeDate", "settlementDate", "skipReason", "fileName", "destinations", "portfolioCode", "portfolioScope", "failureReason", "failureStage", "sentAt", "instrumentId"]
+    instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope the build resolved the instrument in; null for rows built before it was recorded") 
+    __properties: ClassVar[List[str]] = ["transactionId", "instanceId", "instanceName", "batchId", "runId", "runStartTime", "publicationStatus", "instrumentName", "instrumentType", "tradeDate", "settlementDate", "skipReason", "fileName", "destinations", "portfolioCode", "portfolioScope", "failureReason", "failureStage", "sentAt", "instrumentId", "instrumentScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -133,6 +134,11 @@ class TpfTransactionSearchResponse(BaseModel):
         if self.instrument_id is None and "instrument_id" in self.model_fields_set:
             _dict['instrumentId'] = None
 
+        # set to None if instrument_scope (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_scope is None and "instrument_scope" in self.model_fields_set:
+            _dict['instrumentScope'] = None
+
         return _dict
 
     @classmethod
@@ -164,7 +170,8 @@ class TpfTransactionSearchResponse(BaseModel):
             "failure_reason": obj.get("failureReason"),
             "failure_stage": obj.get("failureStage"),
             "sent_at": obj.get("sentAt"),
-            "instrument_id": obj.get("instrumentId")
+            "instrument_id": obj.get("instrumentId"),
+            "instrument_scope": obj.get("instrumentScope")
         })
         return _obj
 

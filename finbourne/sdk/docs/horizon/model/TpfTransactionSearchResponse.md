@@ -25,6 +25,7 @@ TPF send history record
 | **failure_stage** | **str** | Optional | Stage at which a failed transaction failed: Build or Delivery |
 | **sent_at** | **datetime** | Optional | When the transaction was sent, which is when its file reached a destination. Empty for Skipped and Failed rows |
 | **instrument_id** | **str** | Optional | InstrumentId showing instrument id of transaction |
+| **instrument_scope** | **str** | Optional | The scope the build resolved the instrument in; null for rows built before it was recorded |
 
 
 ## Usage
@@ -54,7 +55,8 @@ instance = TpfTransactionSearchResponse(
     failure_reason="...",  # optional — FailureReason to show failure reason
     failure_stage="...",  # optional — Stage at which a failed transaction failed: Build or Delivery
     sent_at=datetime.now(),  # optional — When the transaction was sent, which is when its file reached a destination. Empty for Skipped and Failed rows
-    instrument_id="..."  # optional — InstrumentId showing instrument id of transaction
+    instrument_id="...",  # optional — InstrumentId showing instrument id of transaction
+    instrument_scope="..."  # optional — The scope the build resolved the instrument in; null for rows built before it was recorded
 )
 ```
 

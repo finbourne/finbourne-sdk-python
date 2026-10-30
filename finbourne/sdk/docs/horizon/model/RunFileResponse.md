@@ -1,12 +1,12 @@
 # RunFileResponse
 
-record containing details of a single file for a run.
+One delivery of a file to one destination within a run, keyed by FileUuid. A file sent to two destinations appears as two rows, so Destinations always holds exactly one element.
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **file_name** | **str** | Required | *No description available.* |
-| **generated_at** | **datetime** | Required | *No description available.* |
+| **generated_at** | **datetime** | Required | When the file was built, or when the attempt failed before a file was built. |
 | **row_count** | **int** | Required | *No description available.* |
 | **file_hash** | **str** | Required | *No description available.* |
 | **encrypted** | **bool** | Required | *No description available.* |
@@ -26,7 +26,7 @@ from finbourne.sdk.services.horizon.models.RunFileResponse import RunFileRespons
 
 instance = RunFileResponse(
     file_name="...",  # required
-    generated_at=datetime.now(),  # required
+    generated_at=datetime.now(),  # required — When the file was built, or when the attempt failed before a file was built.
     row_count=0,  # required
     file_hash="...",  # required
     encrypted=True,  # required

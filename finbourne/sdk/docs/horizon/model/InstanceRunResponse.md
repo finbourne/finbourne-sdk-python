@@ -19,6 +19,7 @@ Response containing details of a single run for an instance. The transaction and
 | **failed_count** | **int** | Optional | *No description available.* |
 | **failed_files** | **int** | Optional | *No description available.* |
 | **message** | **str** | Optional | *No description available.* |
+| **file_count** | **int** | Optional | The number of rows ListRunFiles returns for the run, every delivery attempt included; latest attempt only. |
 
 
 ## Usage
@@ -42,7 +43,8 @@ instance = InstanceRunResponse(
     skipped_count=0,  # optional
     failed_count=0,  # optional
     failed_files=0,  # optional
-    message="..."  # optional
+    message="...",  # optional
+    file_count=0  # optional — The number of rows ListRunFiles returns for the run, every delivery attempt included; latest attempt only.
 )
 ```
 

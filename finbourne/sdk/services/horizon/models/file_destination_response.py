@@ -25,14 +25,16 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class FileDestinationResponse(BaseModel):
     """
-    record containing details of a single file destination for a run.  # noqa: E501
+    The destination a file delivery row describes. A Failed row carries the per-transaction FailureReason when one was recorded, falling back to the raw Error text.  # noqa: E501
     """
     type:  StrictStr = Field(...,alias="type") 
     path:  StrictStr = Field(...,alias="path") 
     status:  StrictStr = Field(...,alias="status") 
     error:  Optional[StrictStr] = Field(default=None,alias="error") 
     failure_reason:  Optional[StrictStr] = Field(default=None,alias="failureReason") 
-    __properties: ClassVar[List[str]] = ["type", "path", "status", "error", "failureReason"]
+    name:  Optional[StrictStr] = Field(default=None,alias="name", description="The configured destination name, such as the SFTP host, when one was recorded.") 
+    delivered_at: Optional[datetime] = Field(default=None, description="When the file reached the destination; null for a Failed or Pending row.", alias="deliveredAt")
+    __properties: ClassVar[List[str]] = ["type", "path", "status", "error", "failureReason", "name", "deliveredAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,16 @@ class FileDestinationResponse(BaseModel):
         if self.failure_reason is None and "failure_reason" in self.model_fields_set:
             _dict['failureReason'] = None
 
+        # set to None if name (nullable) is None
+        # and model_fields_set contains the field
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
+
+        # set to None if delivered_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.delivered_at is None and "delivered_at" in self.model_fields_set:
+            _dict['deliveredAt'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +106,9 @@ class FileDestinationResponse(BaseModel):
             "path": obj.get("path"),
             "status": obj.get("status"),
             "error": obj.get("error"),
-            "failure_reason": obj.get("failureReason")
+            "failure_reason": obj.get("failureReason"),
+            "name": obj.get("name"),
+            "delivered_at": obj.get("deliveredAt")
         })
         return _obj
 

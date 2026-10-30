@@ -21,6 +21,7 @@ Response containing details of a single transaction for a run. A transaction bui
 | **sent_at** | **datetime** | Optional | *No description available.* |
 | **destinations** | [List[DestinationResponse]](DestinationResponse.md) | Required | *No description available.* |
 | **failure_stage** | **str** | Optional | *No description available.* |
+| **instrument_scope** | **str** | Optional | The scope the build resolved the instrument in; null for rows built before it was recorded. |
 
 
 ## Usage
@@ -46,7 +47,8 @@ instance = TransactionResponse(
     output_file_name="...",  # optional
     sent_at=datetime.now(),  # optional
     destinations=[],  # required
-    failure_stage="..."  # optional
+    failure_stage="...",  # optional
+    instrument_scope="..."  # optional — The scope the build resolved the instrument in; null for rows built before it was recorded.
 )
 ```
 

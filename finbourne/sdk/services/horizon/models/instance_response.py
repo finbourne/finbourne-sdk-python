@@ -40,7 +40,8 @@ class InstanceResponse(BaseModel):
     last_run_status:  Optional[StrictStr] = Field(default=None,alias="lastRunStatus") 
     latest_runs_in24_hours: Optional[LatestRunsResponse] = Field(default=None, alias="latestRunsIn24Hours")
     destinations: List[InstanceDestinations]
-    __properties: ClassVar[List[str]] = ["id", "name", "enabled", "portfolios", "schedule", "scheduleTimezone", "lastRunAt", "lastRunStatus", "latestRunsIn24Hours", "destinations"]
+    output_format:  Optional[StrictStr] = Field(default=None,alias="outputFormat") 
+    __properties: ClassVar[List[str]] = ["id", "name", "enabled", "portfolios", "schedule", "scheduleTimezone", "lastRunAt", "lastRunStatus", "latestRunsIn24Hours", "destinations", "outputFormat"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,6 +114,11 @@ class InstanceResponse(BaseModel):
         if self.last_run_status is None and "last_run_status" in self.model_fields_set:
             _dict['lastRunStatus'] = None
 
+        # set to None if output_format (nullable) is None
+        # and model_fields_set contains the field
+        if self.output_format is None and "output_format" in self.model_fields_set:
+            _dict['outputFormat'] = None
+
         return _dict
 
     @classmethod
@@ -134,7 +140,8 @@ class InstanceResponse(BaseModel):
             "last_run_at": obj.get("lastRunAt"),
             "last_run_status": obj.get("lastRunStatus"),
             "latest_runs_in24_hours": LatestRunsResponse.from_dict(_v) if (_v := obj.get("latestRunsIn24Hours")) is not None else None,
-            "destinations": [InstanceDestinations.from_dict(_item) for _item in _v] if (_v := obj.get("destinations")) is not None else None
+            "destinations": [InstanceDestinations.from_dict(_item) for _item in _v] if (_v := obj.get("destinations")) is not None else None,
+            "output_format": obj.get("outputFormat")
         })
         return _obj
 

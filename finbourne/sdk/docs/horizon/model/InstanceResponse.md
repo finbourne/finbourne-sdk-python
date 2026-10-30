@@ -15,6 +15,7 @@ record containing details of a single instance.
 | **last_run_status** | **str** | Optional | *No description available.* |
 | **latest_runs_in24_hours** | [LatestRunsResponse](LatestRunsResponse.md) | Optional | *No description available.* |
 | **destinations** | [List[InstanceDestinations]](InstanceDestinations.md) | Required | *No description available.* |
+| **output_format** | **str** | Optional | *No description available.* |
 
 
 ## Usage
@@ -34,7 +35,8 @@ instance = InstanceResponse(
     last_run_at=datetime.now(),  # optional
     last_run_status="...",  # optional
     latest_runs_in24_hours=LatestRunsResponse(...),  # optional
-    destinations=[]  # required
+    destinations=[],  # required
+    output_format="..."  # optional
 )
 ```
 

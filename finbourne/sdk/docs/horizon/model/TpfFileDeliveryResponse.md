@@ -8,7 +8,7 @@ Response model for TPF file delivery search results
 | **run_id** | **str** | Optional | *No description available.* |
 | **run_start_time** | **datetime** | Optional | *No description available.* |
 | **file_name** | **str** | Required | *No description available.* |
-| **generated_at** | **datetime** | Required | *No description available.* |
+| **generated_at** | **datetime** | Required | When the file was built, or when the attempt failed before a file was built. |
 | **row_count** | **int** | Required | *No description available.* |
 | **file_hash** | **str** | Optional | *No description available.* |
 | **destination_type** | **str** | Required | *No description available.* |
@@ -18,6 +18,7 @@ Response model for TPF file delivery search results
 | **destination_name** | **str** | Optional | *No description available.* |
 | **file_uuid** | **UUID** | Required | *No description available.* |
 | **can_resend** | **bool** | Required | Whether the data the file is rebuilt from is still retained, so a resend can be requested. |
+| **delivered_at** | **datetime** | Optional | When the file reached the destination; null for a Failed or Pending row. |
 
 
 ## Usage
@@ -31,7 +32,7 @@ instance = TpfFileDeliveryResponse(
     run_id="...",  # optional
     run_start_time=datetime.now(),  # optional
     file_name="...",  # required
-    generated_at=datetime.now(),  # required
+    generated_at=datetime.now(),  # required — When the file was built, or when the attempt failed before a file was built.
     row_count=0,  # required
     file_hash="...",  # optional
     destination_type="...",  # required
@@ -40,7 +41,8 @@ instance = TpfFileDeliveryResponse(
     destination_error="...",  # optional
     destination_name="...",  # optional
     file_uuid="...",  # required
-    can_resend=True  # required — Whether the data the file is rebuilt from is still retained, so a resend can be requested.
+    can_resend=True,  # required — Whether the data the file is rebuilt from is still retained, so a resend can be requested.
+    delivered_at=datetime.now()  # optional — When the file reached the destination; null for a Failed or Pending row.
 )
 ```
 

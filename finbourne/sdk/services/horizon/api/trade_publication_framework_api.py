@@ -20,8 +20,8 @@ from typing_extensions import Annotated
 
 import finbourne.sdk.services.horizon.models as packageModels
 from datetime import datetime
-from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import List, Optional
+from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
+from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
 from finbourne.sdk.services.horizon.models.instances_response import InstancesResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_failed_delivery_response import PagedResourceListOfFailedDeliveryResponse
@@ -61,6 +61,144 @@ class TradePublicationFrameworkApi:
             self.api_client = api_client
         else:
             self.sync_api_client = SyncApiClient.get_default()
+
+    @validate_call
+    def get_run_file_content(self, instance_id: StrictStr, run_id: StrictStr, file_uuid: StrictStr, **kwargs) -> bytes:
+        """[EXPERIMENTAL] GetRunFileContent: Download a file a run delivered, rebuilt from the run's retained build rows in the instance's output format  # noqa: E501
+
+        Returns the file exactly as the instance built it, so it can be pushed by hand when Horizon cannot. The content is rebuilt the way a resend rebuilds it, so it is only available while the build rows are retained and the response is 410 once retention has purged them. An encrypted instance's file is returned as plaintext.  # noqa: E501
+        :param instance_id: Integration instance ID. (required)
+        :type instance_id: str
+        :param run_id: Run ID within the instance, or any retry attempt of it. (required)
+        :type run_id: str
+        :param file_uuid: File delivery UUID, as returned by the run-files listing. (required)
+        :type file_uuid: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: bytes
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_run_file_content_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_run_file_content_with_http_info(instance_id, run_id, file_uuid, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_run_file_content_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, file_uuid: StrictStr, **kwargs) -> ApiResponse[bytes]:
+        """[EXPERIMENTAL] GetRunFileContent: Download a file a run delivered, rebuilt from the run's retained build rows in the instance's output format  # noqa: E501
+
+        Returns the file exactly as the instance built it, so it can be pushed by hand when Horizon cannot. The content is rebuilt the way a resend rebuilds it, so it is only available while the build rows are retained and the response is 410 once retention has purged them. An encrypted instance's file is returned as plaintext.  # noqa: E501
+        :param instance_id: Integration instance ID. (required)
+        :type instance_id: str
+        :param run_id: Run ID within the instance, or any retry attempt of it. (required)
+        :type run_id: str
+        :param file_uuid: File delivery UUID, as returned by the run-files listing. (required)
+        :type file_uuid: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(bytes, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'instance_id',
+            'run_id',
+            'file_uuid'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_run_file_content" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['instance_id'] is not None:
+            _path_params['instanceId'] = _params['instance_id']
+
+        if _params['run_id'] is not None:
+            _path_params['runId'] = _params['run_id']
+
+        if _params['file_uuid'] is not None:
+            _path_params['fileUuid'] = _params['file_uuid']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/csv', 'application/xml', 'application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "bytes",
+            '400': "LusidValidationProblemDetails",
+            '404': "LusidProblemDetails",
+            '410': "LusidProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/files/{fileUuid}/content', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     def get_tpf_file_deliveries(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
@@ -230,9 +368,9 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     def get_tpf_transaction_history_search(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
-        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
+        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, publication status, and a Finbourne Filtering expression. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters). Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker.  # noqa: E501
 
-        :param tpf_transaction_search_request: Search filters and pagination options.
+        :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
         :type tpf_transaction_search_request: TpfTransactionSearchRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -249,9 +387,9 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     def get_tpf_transaction_history_search_with_http_info(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
-        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
+        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, publication status, and a Finbourne Filtering expression. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters). Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker.  # noqa: E501
 
-        :param tpf_transaction_search_request: Search filters and pagination options.
+        :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
         :type tpf_transaction_search_request: TpfTransactionSearchRequest
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -354,19 +492,23 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_transaction_payload(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionPayload:
+    def get_transaction_payload(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTransactionPayload:
         """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
 
-        :param instance_id: (required)
+        :param instance_id: Integration instance ID. (required)
         :type instance_id: str
-        :param run_id: (required)
+        :param run_id: Run ID within the instance. (required)
         :type run_id: str
-        :param transaction_id:
+        :param transaction_id: Return only this transaction's payload. Applied together with <i>filter</i>.
         :type transaction_id: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
-        :param page_size:
+        :param page_size: Number of results per page.
         :type page_size: int
+        :param filter: A Finbourne filter on: transactionId, publicationStatus (Sent, Failed) and the instance's own output columns, e.g. SIDE eq 'B'. Values are compared as text, range operators included, so QTY gt '50' is a text comparison, and null is not accepted. Only output columns named with letters, digits and underscores can be filtered on; the rest can still be sorted. An unknown field is rejected with the fields the run accepts.
+        :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Output columns order nulls, then numbers by value, then the rest as text. Defaults to transactionId ASC.
+        :type sort_by: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -377,23 +519,27 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the get_transaction_payload_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_transaction_payload_with_http_info(instance_id, run_id, transaction_id, page, page_size, **kwargs)
+        response = self.get_transaction_payload_with_http_info(instance_id, run_id, transaction_id, page, page_size, filter, sort_by, **kwargs)
         return response.data
 
     @validate_call
-    def get_transaction_payload_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionPayload]:
+    def get_transaction_payload_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionPayload]:
         """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
 
-        :param instance_id: (required)
+        :param instance_id: Integration instance ID. (required)
         :type instance_id: str
-        :param run_id: (required)
+        :param run_id: Run ID within the instance. (required)
         :type run_id: str
-        :param transaction_id:
+        :param transaction_id: Return only this transaction's payload. Applied together with <i>filter</i>.
         :type transaction_id: str
-        :param page:
+        :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
         :type page: str
-        :param page_size:
+        :param page_size: Number of results per page.
         :type page_size: int
+        :param filter: A Finbourne filter on: transactionId, publicationStatus (Sent, Failed) and the instance's own output columns, e.g. SIDE eq 'B'. Values are compared as text, range operators included, so QTY gt '50' is a text comparison, and null is not accepted. Only output columns named with letters, digits and underscores can be filtered on; the rest can still be sorted. An unknown field is rejected with the fields the run accepts.
+        :type filter: str
+        :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Output columns order nulls, then numbers by value, then the rest as text. Defaults to transactionId ASC.
+        :type sort_by: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -421,7 +567,9 @@ class TradePublicationFrameworkApi:
             'run_id',
             'transaction_id',
             'page',
-            'page_size'
+            'page_size',
+            'filter',
+            'sort_by'
         ]
         _all_params.extend(
             [
@@ -466,6 +614,13 @@ class TradePublicationFrameworkApi:
 
         if _params.get('page_size') is not None:  # noqa: E501
             _query_params.append(('pageSize', _params['page_size']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -909,7 +1064,7 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     def list_run_files(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRunFileResponse:
-        """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
+        """[EXPERIMENTAL] ListRunFiles: List the file deliveries of a run, one row per file and destination. Each row's destinations list holds exactly one element; key rows on fileUuid.  # noqa: E501
 
         :param instance_id: Integration instance ID. (required)
         :type instance_id: str
@@ -919,7 +1074,7 @@ class TradePublicationFrameworkApi:
         :type page: str
         :param page_size: Number of results per page.
         :type page_size: int
-        :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+        :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, destinationName, status, fileUuid, deliveredAt.
         :type filter: str
         :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
         :type sort_by: List[str]
@@ -938,7 +1093,7 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     def list_run_files_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRunFileResponse]:
-        """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
+        """[EXPERIMENTAL] ListRunFiles: List the file deliveries of a run, one row per file and destination. Each row's destinations list holds exactly one element; key rows on fileUuid.  # noqa: E501
 
         :param instance_id: Integration instance ID. (required)
         :type instance_id: str
@@ -948,7 +1103,7 @@ class TradePublicationFrameworkApi:
         :type page: str
         :param page_size: Number of results per page.
         :type page_size: int
-        :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+        :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, destinationName, status, fileUuid, deliveredAt.
         :type filter: str
         :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
         :type sort_by: List[str]
@@ -1653,6 +1808,145 @@ class TradePublicationFrameworkApi:
 
 
     @validate_call
+    async def get_run_file_content_async(self, instance_id: StrictStr, run_id: StrictStr, file_uuid: StrictStr, **kwargs) -> bytes:
+            """[EXPERIMENTAL] GetRunFileContent: Download a file a run delivered, rebuilt from the run's retained build rows in the instance's output format  # noqa: E501
+            Returns the file exactly as the instance built it, so it can be pushed by hand when Horizon cannot. The content is rebuilt the way a resend rebuilds it, so it is only available while the build rows are retained and the response is 410 once retention has purged them. An encrypted instance's file is returned as plaintext.  # noqa: E501
+            
+            :param instance_id: Integration instance ID. (required)
+            :type instance_id: str
+            :param run_id: Run ID within the instance, or any retry attempt of it. (required)
+            :type run_id: str
+            :param file_uuid: File delivery UUID, as returned by the run-files listing. (required)
+            :type file_uuid: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: bytes
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_run_file_content_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_run_file_content_with_http_info_async(instance_id, run_id, file_uuid, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_run_file_content_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, file_uuid: StrictStr, **kwargs) -> ApiResponse[bytes]:
+            """[EXPERIMENTAL] GetRunFileContent: Download a file a run delivered, rebuilt from the run's retained build rows in the instance's output format  # noqa: E501
+
+            Returns the file exactly as the instance built it, so it can be pushed by hand when Horizon cannot. The content is rebuilt the way a resend rebuilds it, so it is only available while the build rows are retained and the response is 410 once retention has purged them. An encrypted instance's file is returned as plaintext.  # noqa: E501
+
+            :param instance_id: Integration instance ID. (required)
+            :type instance_id: str
+            :param run_id: Run ID within the instance, or any retry attempt of it. (required)
+            :type run_id: str
+            :param file_uuid: File delivery UUID, as returned by the run-files listing. (required)
+            :type file_uuid: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(bytes, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'instance_id',
+                'run_id',
+                'file_uuid'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_run_file_content" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['instance_id'] is not None:
+                _path_params['instanceId'] = _params['instance_id']
+
+            if _params['run_id'] is not None:
+                _path_params['runId'] = _params['run_id']
+
+            if _params['file_uuid'] is not None:
+                _path_params['fileUuid'] = _params['file_uuid']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/csv', 'application/xml', 'application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "bytes",
+                '400': "LusidValidationProblemDetails",
+                '404': "LusidProblemDetails",
+                '410': "LusidProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/files/{fileUuid}/content', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_tpf_file_deliveries_async(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
             """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
             Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
@@ -1821,9 +2115,9 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     async def get_tpf_transaction_history_search_async(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
-            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
+            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, publication status, and a Finbourne Filtering expression. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters). Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker.  # noqa: E501
             
-            :param tpf_transaction_search_request: Search filters and pagination options.
+            :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
             :type tpf_transaction_search_request: TpfTransactionSearchRequest
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -1840,10 +2134,10 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     async def get_tpf_transaction_history_search_with_http_info_async(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
-            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
+            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, publication status, and a Finbourne Filtering expression. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters). Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker.  # noqa: E501
 
 
-            :param tpf_transaction_search_request: Search filters and pagination options.
+            :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
             :type tpf_transaction_search_request: TpfTransactionSearchRequest
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -1946,19 +2240,23 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_transaction_payload_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionPayload:
+    async def get_transaction_payload_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTransactionPayload:
             """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
             
-            :param instance_id: (required)
+            :param instance_id: Integration instance ID. (required)
             :type instance_id: str
-            :param run_id: (required)
+            :param run_id: Run ID within the instance. (required)
             :type run_id: str
-            :param transaction_id:
+            :param transaction_id: Return only this transaction's payload. Applied together with <i>filter</i>.
             :type transaction_id: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
-            :param page_size:
+            :param page_size: Number of results per page.
             :type page_size: int
+            :param filter: A Finbourne filter on: transactionId, publicationStatus (Sent, Failed) and the instance's own output columns, e.g. SIDE eq 'B'. Values are compared as text, range operators included, so QTY gt '50' is a text comparison, and null is not accepted. Only output columns named with letters, digits and underscores can be filtered on; the rest can still be sorted. An unknown field is rejected with the fields the run accepts.
+            :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Output columns order nulls, then numbers by value, then the rest as text. Defaults to transactionId ASC.
+            :type sort_by: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1969,24 +2267,28 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the get_transaction_payload_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_transaction_payload_with_http_info_async(instance_id, run_id, transaction_id, page, page_size, **kwargs)
+            response = await self.get_transaction_payload_with_http_info_async(instance_id, run_id, transaction_id, page, page_size, filter, sort_by, **kwargs)
             return response.data
 
     @validate_call
-    async def get_transaction_payload_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionPayload]:
+    async def get_transaction_payload_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionPayload]:
             """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
 
 
-            :param instance_id: (required)
+            :param instance_id: Integration instance ID. (required)
             :type instance_id: str
-            :param run_id: (required)
+            :param run_id: Run ID within the instance. (required)
             :type run_id: str
-            :param transaction_id:
+            :param transaction_id: Return only this transaction's payload. Applied together with <i>filter</i>.
             :type transaction_id: str
-            :param page:
+            :param page: The pagination token from the previous response; <i>filter</i> and <i>sortBy</i> must be unchanged.
             :type page: str
-            :param page_size:
+            :param page_size: Number of results per page.
             :type page_size: int
+            :param filter: A Finbourne filter on: transactionId, publicationStatus (Sent, Failed) and the instance's own output columns, e.g. SIDE eq 'B'. Values are compared as text, range operators included, so QTY gt '50' is a text comparison, and null is not accepted. Only output columns named with letters, digits and underscores can be filtered on; the rest can still be sorted. An unknown field is rejected with the fields the run accepts.
+            :type filter: str
+            :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Output columns order nulls, then numbers by value, then the rest as text. Defaults to transactionId ASC.
+            :type sort_by: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2014,7 +2316,9 @@ class TradePublicationFrameworkApi:
                 'run_id',
                 'transaction_id',
                 'page',
-                'page_size'
+                'page_size',
+                'filter',
+                'sort_by'
             ]
             _all_params.extend(
                 [
@@ -2059,6 +2363,13 @@ class TradePublicationFrameworkApi:
 
             if _params.get('page_size') is not None:  # noqa: E501
                 _query_params.append(('pageSize', _params['page_size']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -2505,7 +2816,7 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     async def list_run_files_async(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRunFileResponse:
-            """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
+            """[EXPERIMENTAL] ListRunFiles: List the file deliveries of a run, one row per file and destination. Each row's destinations list holds exactly one element; key rows on fileUuid.  # noqa: E501
             
             :param instance_id: Integration instance ID. (required)
             :type instance_id: str
@@ -2515,7 +2826,7 @@ class TradePublicationFrameworkApi:
             :type page: str
             :param page_size: Number of results per page.
             :type page_size: int
-            :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+            :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, destinationName, status, fileUuid, deliveredAt.
             :type filter: str
             :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
             :type sort_by: List[str]
@@ -2534,7 +2845,7 @@ class TradePublicationFrameworkApi:
 
     @validate_call
     async def list_run_files_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRunFileResponse]:
-            """[EXPERIMENTAL] ListRunFiles: List Files in a run  # noqa: E501
+            """[EXPERIMENTAL] ListRunFiles: List the file deliveries of a run, one row per file and destination. Each row's destinations list holds exactly one element; key rows on fileUuid.  # noqa: E501
 
 
             :param instance_id: Integration instance ID. (required)
@@ -2545,7 +2856,7 @@ class TradePublicationFrameworkApi:
             :type page: str
             :param page_size: Number of results per page.
             :type page_size: int
-            :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, status, fileUuid.
+            :param filter: A Finbourne filter on: fileName, generatedAt, rowCount, fileHash, encrypted, destinationType, destinationPath, destinationName, status, fileUuid, deliveredAt.
             :type filter: str
             :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to newest first (GeneratedAt DESC, Id DESC).
             :type sort_by: List[str]
