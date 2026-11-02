@@ -5,7 +5,7 @@ Request body for the POST transaction-search endpoint. Multiple values in Transa
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction_ids** | **List[str]** | Optional | One or more LUSID transaction IDs to search for (max 50). Values are OR&#39;d. |
+| **transaction_ids** | **List[str]** | Optional | One or more LUSID transaction IDs to search for (max 50, each 1 to 256 characters). Values are OR&#39;d. An empty ID, or one with leading or trailing whitespace, is rejected with 400, as LUSID never stores one. |
 | **instrument_identifiers** | **List[str]** | Optional | One or more instrument identifiers to search for (max 50). Values are OR&#39;d. Accepts LusidInstrumentId, Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values. Every value is matched exactly against the stored instrument id; non-LUID values are also resolved against LUSID instruments in the default scope, whose own matching rules (including case) apply. |
 | **instance_id** | **str** | Optional | Instance ID to filter by. Omit or leave null to search all instances the caller has access to. |
 | **var_from** | **datetime** | Optional | Start of the date range (inclusive). Defaults to 30 days ago if neither From nor To is provided. |
@@ -25,7 +25,7 @@ Request body for the POST transaction-search endpoint. Multiple values in Transa
 from finbourne.sdk.services.horizon.models.TpfTransactionSearchRequest import TpfTransactionSearchRequest
 
 instance = TpfTransactionSearchRequest(
-    transaction_ids=,  # optional — One or more LUSID transaction IDs to search for (max 50). Values are OR&#39;d.
+    transaction_ids=,  # optional — One or more LUSID transaction IDs to search for (max 50, each 1 to 256 characters). Values are OR&#39;d. An empty ID, or one with leading or trailing whitespace, is rejected with 400, as LUSID never stores one.
     instrument_identifiers=,  # optional — One or more instrument identifiers to search for (max 50). Values are OR&#39;d. Accepts LusidInstrumentId, Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values. Every value is matched exactly against the stored instrument id; non-LUID values are also resolved against LUSID instruments in the default scope, whose own matching rules (including case) apply.
     instance_id="...",  # optional — Instance ID to filter by. Omit or leave null to search all instances the caller has access to.
     var_from=datetime.now(),  # optional — Start of the date range (inclusive). Defaults to 30 days ago if neither From nor To is provided.
