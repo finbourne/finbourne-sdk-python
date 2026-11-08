@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_query**](SqlBackgroundExecutionApi.md#cancel_query) | **DELETE** /honeycomb/api/SqlBackground/{executionId} | CancelQuery: Cancel / Clear data from a previously run query
+[**download_query_result**](SqlBackgroundExecutionApi.md#download_query_result) | **PUT** /honeycomb/api/SqlBackground/{executionId}/download | [EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them
 [**fetch_query_result_csv**](SqlBackgroundExecutionApi.md#fetch_query_result_csv) | **GET** /honeycomb/api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetch the result of a query as CSV
 [**fetch_query_result_excel**](SqlBackgroundExecutionApi.md#fetch_query_result_excel) | **GET** /honeycomb/api/SqlBackground/{executionId}/excel | FetchQueryResultExcel: Fetch the result of a query as an Excel file
 [**fetch_query_result_histogram**](SqlBackgroundExecutionApi.md#fetch_query_result_histogram) | **GET** /honeycomb/api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Construct a histogram of the result of a query
@@ -18,6 +19,7 @@ Method | HTTP request | Description
 [**get_historical_feedback**](SqlBackgroundExecutionApi.md#get_historical_feedback) | **GET** /honeycomb/api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries)
 [**get_progress_of**](SqlBackgroundExecutionApi.md#get_progress_of) | **GET** /honeycomb/api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point.
 [**list_queries**](SqlBackgroundExecutionApi.md#list_queries) | **GET** /honeycomb/api/SqlBackground | ListQueries: List the background queries available to the calling user
+[**save_formatted_query_result_to_drive**](SqlBackgroundExecutionApi.md#save_formatted_query_result_to_drive) | **PUT** /honeycomb/api/SqlBackground/{executionId}/drive | [EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body
 [**save_query_result_to_drive**](SqlBackgroundExecutionApi.md#save_query_result_to_drive) | **GET** /honeycomb/api/SqlBackground/{executionId}/drive | SaveQueryResultToDrive: Saves the query results directly to Drive
 [**start_query**](SqlBackgroundExecutionApi.md#start_query) | **PUT** /honeycomb/api/SqlBackground | StartQuery: Start to Execute Sql in the background
 
@@ -82,6 +84,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **download_query_result**
+> str downloadQueryResult = download_query_result(execution_id, download_query_result_request, download=download)
+
+[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them
+
+Downloads the results as a file in the requested format, as the endpoint of that format (e.g. `{executionId}/csv`) does, but specified by a JSON body rather than query parameters. Given `?download=false`, the data is returned in the response-body instead.  Given `formatting`, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so `grouping` is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+download_query_result_request = DownloadQueryResultRequest()
+download = True # bool (optional)
+api_response = api_instance.download_query_result(execution_id, download_query_result_request, download=download)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **download_query_result_request** | [**DownloadQueryResultRequest**](../model/DownloadQueryResultRequest.md)| The format to download in, which of the results, and how they are to be formatted | [required] 
+ **download** | **bool**| Makes this a file-download request (the default), or else returns the data in the response-body (as &#x60;{executionId}/csv&#x60; does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded. | [optional] [default to True]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
@@ -794,6 +842,50 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **save_formatted_query_result_to_drive**
+> str saveFormattedQueryResultToDrive = save_formatted_query_result_to_drive(execution_id, save_query_result_to_drive_request)
+
+[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body
+
+Saves the results directly to Drive, as `GET {executionId}/drive` does, but specified by a JSON body rather than query parameters.  Given `formatting`, the results are saved as the grid shows them, as `PUT {executionId}/download` downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+save_query_result_to_drive_request = SaveQueryResultToDriveRequest()
+api_response = api_instance.save_formatted_query_result_to_drive(execution_id, save_query_result_to_drive_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **save_query_result_to_drive_request** | [**SaveQueryResultToDriveRequest**](../model/SaveQueryResultToDriveRequest.md)| Where (and how) to save the results, as the query parameters of &#x60;GET {executionId}/drive&#x60; | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 

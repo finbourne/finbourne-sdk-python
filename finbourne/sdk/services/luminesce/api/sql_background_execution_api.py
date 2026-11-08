@@ -27,8 +27,10 @@ from finbourne.sdk.services.luminesce.models.background_query_cancel_response im
 from finbourne.sdk.services.luminesce.models.background_query_list_item import BackgroundQueryListItem
 from finbourne.sdk.services.luminesce.models.background_query_progress_response import BackgroundQueryProgressResponse
 from finbourne.sdk.services.luminesce.models.background_query_response import BackgroundQueryResponse
+from finbourne.sdk.services.luminesce.models.download_query_result_request import DownloadQueryResultRequest
 from finbourne.sdk.services.luminesce.models.export_type import ExportType
 from finbourne.sdk.services.luminesce.models.external_query_source import ExternalQuerySource
+from finbourne.sdk.services.luminesce.models.save_query_result_to_drive_request import SaveQueryResultToDriveRequest
 from finbourne.sdk.services.luminesce.models.sql_execution_flags import SqlExecutionFlags
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
@@ -158,6 +160,150 @@ class SqlBackgroundExecutionApi:
 
         return self.sync_api_client.call_api(
             '/honeycomb/api/SqlBackground/{executionId}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def download_query_result(self, execution_id: StrictStr, download_query_result_request: DownloadQueryResultRequest, download: Optional[bool] = None, **kwargs) -> str:
+        """[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them  # noqa: E501
+
+        Downloads the results as a file in the requested format, as the endpoint of that format (e.g. `{executionId}/csv`) does, but specified by a JSON body rather than query parameters. Given `?download=false`, the data is returned in the response-body instead.  Given `formatting`, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so `grouping` is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+        :param execution_id: ExecutionId returned when starting the query (required)
+        :type execution_id: str
+        :param download_query_result_request: The format to download in, which of the results, and how they are to be formatted (required)
+        :type download_query_result_request: DownloadQueryResultRequest
+        :param download: Makes this a file-download request (the default), or else returns the data in the response-body (as `{executionId}/csv` does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded.
+        :type download: bool
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: str
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the download_query_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.download_query_result_with_http_info(execution_id, download_query_result_request, download, **kwargs)
+        return response.data
+
+    @validate_call
+    def download_query_result_with_http_info(self, execution_id: StrictStr, download_query_result_request: DownloadQueryResultRequest, download: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
+        """[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them  # noqa: E501
+
+        Downloads the results as a file in the requested format, as the endpoint of that format (e.g. `{executionId}/csv`) does, but specified by a JSON body rather than query parameters. Given `?download=false`, the data is returned in the response-body instead.  Given `formatting`, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so `grouping` is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+        :param execution_id: ExecutionId returned when starting the query (required)
+        :type execution_id: str
+        :param download_query_result_request: The format to download in, which of the results, and how they are to be formatted (required)
+        :type download_query_result_request: DownloadQueryResultRequest
+        :param download: Makes this a file-download request (the default), or else returns the data in the response-body (as `{executionId}/csv` does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded.
+        :type download: bool
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'execution_id',
+            'download_query_result_request',
+            'download'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method download_query_result" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['execution_id'] is not None:
+            _path_params['executionId'] = _params['execution_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('download') is not None:  # noqa: E501
+            _query_params.append(('download', _params['download']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['download_query_result_request'] is not None:
+            _body_params = _params['download_query_result_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "LusidProblemDetails",
+            '403': "LusidProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/honeycomb/api/SqlBackground/{executionId}/download', 'PUT',
             _path_params,
             _query_params,
             _header_params,
@@ -2438,6 +2584,142 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def save_formatted_query_result_to_drive(self, execution_id: StrictStr, save_query_result_to_drive_request: SaveQueryResultToDriveRequest, **kwargs) -> str:
+        """[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body  # noqa: E501
+
+        Saves the results directly to Drive, as `GET {executionId}/drive` does, but specified by a JSON body rather than query parameters.  Given `formatting`, the results are saved as the grid shows them, as `PUT {executionId}/download` downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+        :param execution_id: ExecutionId returned when starting the query (required)
+        :type execution_id: str
+        :param save_query_result_to_drive_request: Where (and how) to save the results, as the query parameters of `GET {executionId}/drive` (required)
+        :type save_query_result_to_drive_request: SaveQueryResultToDriveRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: str
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the save_formatted_query_result_to_drive_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.save_formatted_query_result_to_drive_with_http_info(execution_id, save_query_result_to_drive_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def save_formatted_query_result_to_drive_with_http_info(self, execution_id: StrictStr, save_query_result_to_drive_request: SaveQueryResultToDriveRequest, **kwargs) -> ApiResponse[str]:
+        """[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body  # noqa: E501
+
+        Saves the results directly to Drive, as `GET {executionId}/drive` does, but specified by a JSON body rather than query parameters.  Given `formatting`, the results are saved as the grid shows them, as `PUT {executionId}/download` downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+        :param execution_id: ExecutionId returned when starting the query (required)
+        :type execution_id: str
+        :param save_query_result_to_drive_request: Where (and how) to save the results, as the query parameters of `GET {executionId}/drive` (required)
+        :type save_query_result_to_drive_request: SaveQueryResultToDriveRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'execution_id',
+            'save_query_result_to_drive_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method save_formatted_query_result_to_drive" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['execution_id'] is not None:
+            _path_params['executionId'] = _params['execution_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['save_query_result_to_drive_request'] is not None:
+            _body_params = _params['save_query_result_to_drive_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "LusidProblemDetails",
+            '403': "LusidProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/honeycomb/api/SqlBackground/{executionId}/drive', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def save_query_result_to_drive(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
 
@@ -2948,6 +3230,151 @@ class SqlBackgroundExecutionApi:
 
             return await self.api_client.call_api_async(
                 '/honeycomb/api/SqlBackground/{executionId}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def download_query_result_async(self, execution_id: StrictStr, download_query_result_request: DownloadQueryResultRequest, download: Optional[bool] = None, **kwargs) -> str:
+            """[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them  # noqa: E501
+            Downloads the results as a file in the requested format, as the endpoint of that format (e.g. `{executionId}/csv`) does, but specified by a JSON body rather than query parameters. Given `?download=false`, the data is returned in the response-body instead.  Given `formatting`, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so `grouping` is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+            
+            :param execution_id: ExecutionId returned when starting the query (required)
+            :type execution_id: str
+            :param download_query_result_request: The format to download in, which of the results, and how they are to be formatted (required)
+            :type download_query_result_request: DownloadQueryResultRequest
+            :param download: Makes this a file-download request (the default), or else returns the data in the response-body (as `{executionId}/csv` does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded.
+            :type download: bool
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: str
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the download_query_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.download_query_result_with_http_info_async(execution_id, download_query_result_request, download, **kwargs)
+            return response.data
+
+    @validate_call
+    async def download_query_result_with_http_info_async(self, execution_id: StrictStr, download_query_result_request: DownloadQueryResultRequest, download: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
+            """[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them  # noqa: E501
+
+            Downloads the results as a file in the requested format, as the endpoint of that format (e.g. `{executionId}/csv`) does, but specified by a JSON body rather than query parameters. Given `?download=false`, the data is returned in the response-body instead.  Given `formatting`, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so `grouping` is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+
+            :param execution_id: ExecutionId returned when starting the query (required)
+            :type execution_id: str
+            :param download_query_result_request: The format to download in, which of the results, and how they are to be formatted (required)
+            :type download_query_result_request: DownloadQueryResultRequest
+            :param download: Makes this a file-download request (the default), or else returns the data in the response-body (as `{executionId}/csv` does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded.
+            :type download: bool
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'execution_id',
+                'download_query_result_request',
+                'download'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method download_query_result" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['execution_id'] is not None:
+                _path_params['executionId'] = _params['execution_id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('download') is not None:  # noqa: E501
+                _query_params.append(('download', _params['download']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['download_query_result_request'] is not None:
+                _body_params = _params['download_query_result_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "str",
+                '400': "LusidProblemDetails",
+                '403': "LusidProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/honeycomb/api/SqlBackground/{executionId}/download', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -5225,6 +5652,143 @@ class SqlBackgroundExecutionApi:
 
             return await self.api_client.call_api_async(
                 '/honeycomb/api/SqlBackground', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def save_formatted_query_result_to_drive_async(self, execution_id: StrictStr, save_query_result_to_drive_request: SaveQueryResultToDriveRequest, **kwargs) -> str:
+            """[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body  # noqa: E501
+            Saves the results directly to Drive, as `GET {executionId}/drive` does, but specified by a JSON body rather than query parameters.  Given `formatting`, the results are saved as the grid shows them, as `PUT {executionId}/download` downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+            
+            :param execution_id: ExecutionId returned when starting the query (required)
+            :type execution_id: str
+            :param save_query_result_to_drive_request: Where (and how) to save the results, as the query parameters of `GET {executionId}/drive` (required)
+            :type save_query_result_to_drive_request: SaveQueryResultToDriveRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: str
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the save_formatted_query_result_to_drive_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.save_formatted_query_result_to_drive_with_http_info_async(execution_id, save_query_result_to_drive_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def save_formatted_query_result_to_drive_with_http_info_async(self, execution_id: StrictStr, save_query_result_to_drive_request: SaveQueryResultToDriveRequest, **kwargs) -> ApiResponse[str]:
+            """[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body  # noqa: E501
+
+            Saves the results directly to Drive, as `GET {executionId}/drive` does, but specified by a JSON body rather than query parameters.  Given `formatting`, the results are saved as the grid shows them, as `PUT {executionId}/download` downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+
+            :param execution_id: ExecutionId returned when starting the query (required)
+            :type execution_id: str
+            :param save_query_result_to_drive_request: Where (and how) to save the results, as the query parameters of `GET {executionId}/drive` (required)
+            :type save_query_result_to_drive_request: SaveQueryResultToDriveRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'execution_id',
+                'save_query_result_to_drive_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method save_formatted_query_result_to_drive" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['execution_id'] is not None:
+                _path_params['executionId'] = _params['execution_id']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['save_query_result_to_drive_request'] is not None:
+                _body_params = _params['save_query_result_to_drive_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "str",
+                '400': "LusidProblemDetails",
+                '403': "LusidProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/honeycomb/api/SqlBackground/{executionId}/drive', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

@@ -51,9 +51,25 @@ from finbourne.sdk.services.luminesce.models.dashboard_type import DashboardType
 from finbourne.sdk.services.luminesce.models.data_type import DataType
 from finbourne.sdk.services.luminesce.models.date_parameters import DateParameters
 from finbourne.sdk.services.luminesce.models.design_join_type import DesignJoinType
+from finbourne.sdk.services.luminesce.models.download_query_result_request import DownloadQueryResultRequest
 from finbourne.sdk.services.luminesce.models.error_highlight_item import ErrorHighlightItem
 from finbourne.sdk.services.luminesce.models.error_highlight_request import ErrorHighlightRequest
 from finbourne.sdk.services.luminesce.models.error_highlight_response import ErrorHighlightResponse
+from finbourne.sdk.services.luminesce.models.export_aggregation import ExportAggregation
+from finbourne.sdk.services.luminesce.models.export_aggregation_function import ExportAggregationFunction
+from finbourne.sdk.services.luminesce.models.export_aggregation_placement import ExportAggregationPlacement
+from finbourne.sdk.services.luminesce.models.export_column import ExportColumn
+from finbourne.sdk.services.luminesce.models.export_column_color import ExportColumnColor
+from finbourne.sdk.services.luminesce.models.export_column_data_type import ExportColumnDataType
+from finbourne.sdk.services.luminesce.models.export_conditional_rule import ExportConditionalRule
+from finbourne.sdk.services.luminesce.models.export_date_format import ExportDateFormat
+from finbourne.sdk.services.luminesce.models.export_formatting import ExportFormatting
+from finbourne.sdk.services.luminesce.models.export_grouping import ExportGrouping
+from finbourne.sdk.services.luminesce.models.export_negative_number_format import ExportNegativeNumberFormat
+from finbourne.sdk.services.luminesce.models.export_number_format import ExportNumberFormat
+from finbourne.sdk.services.luminesce.models.export_rule_color import ExportRuleColor
+from finbourne.sdk.services.luminesce.models.export_rule_effect import ExportRuleEffect
+from finbourne.sdk.services.luminesce.models.export_rule_operator import ExportRuleOperator
 from finbourne.sdk.services.luminesce.models.export_type import ExportType
 from finbourne.sdk.services.luminesce.models.expression_with_alias import ExpressionWithAlias
 from finbourne.sdk.services.luminesce.models.external_query_source import ExternalQuerySource
@@ -97,11 +113,13 @@ from finbourne.sdk.services.luminesce.models.query_designer_binary_operator impo
 from finbourne.sdk.services.luminesce.models.query_designer_version import QueryDesignerVersion
 from finbourne.sdk.services.luminesce.models.resource_id import ResourceId
 from finbourne.sdk.services.luminesce.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
+from finbourne.sdk.services.luminesce.models.save_query_result_to_drive_request import SaveQueryResultToDriveRequest
 from finbourne.sdk.services.luminesce.models.scalar_parameter import ScalarParameter
 from finbourne.sdk.services.luminesce.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne.sdk.services.luminesce.models.source import Source
 from finbourne.sdk.services.luminesce.models.source_type import SourceType
 from finbourne.sdk.services.luminesce.models.sql_execution_flags import SqlExecutionFlags
+from finbourne.sdk.services.luminesce.models.table_export import TableExport
 from finbourne.sdk.services.luminesce.models.table_lineage import TableLineage
 from finbourne.sdk.services.luminesce.models.table_meta import TableMeta
 from finbourne.sdk.services.luminesce.models.table_view import TableView
@@ -152,9 +170,25 @@ __all__ = [
     "DataType",
     "DateParameters",
     "DesignJoinType",
+    "DownloadQueryResultRequest",
     "ErrorHighlightItem",
     "ErrorHighlightRequest",
     "ErrorHighlightResponse",
+    "ExportAggregation",
+    "ExportAggregationFunction",
+    "ExportAggregationPlacement",
+    "ExportColumn",
+    "ExportColumnColor",
+    "ExportColumnDataType",
+    "ExportConditionalRule",
+    "ExportDateFormat",
+    "ExportFormatting",
+    "ExportGrouping",
+    "ExportNegativeNumberFormat",
+    "ExportNumberFormat",
+    "ExportRuleColor",
+    "ExportRuleEffect",
+    "ExportRuleOperator",
     "ExportType",
     "ExpressionWithAlias",
     "ExternalQuerySource",
@@ -198,11 +232,13 @@ __all__ = [
     "QueryDesignerVersion",
     "ResourceId",
     "ResourceListOfAccessControlledResource",
+    "SaveQueryResultToDriveRequest",
     "ScalarParameter",
     "ServiceApiEndpoints",
     "Source",
     "SourceType",
     "SqlExecutionFlags",
+    "TableExport",
     "TableLineage",
     "TableMeta",
     "TableView",
