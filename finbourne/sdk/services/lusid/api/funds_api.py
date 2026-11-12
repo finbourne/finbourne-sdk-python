@@ -7481,7 +7481,7 @@ class FundsApi:
     def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
         """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
-        Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+        Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.                Rows are returned ordered by portfolio (scope then code, ordinal), then by trade date, entry time, transaction id (ordinal) and sub-holding keys, so the order is total and stable across pages.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -7494,7 +7494,7 @@ class FundsApi:
         :type limit: int
         :param page: The pagination token to use to continue listing from a previous call.
         :type page: str
-        :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+        :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'               domain to decorate onto the transactions.
         :type property_keys: List[str]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
@@ -7517,7 +7517,7 @@ class FundsApi:
     def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
         """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
-        Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+        Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.                Rows are returned ordered by portfolio (scope then code, ordinal), then by trade date, entry time, transaction id (ordinal) and sub-holding keys, so the order is total and stable across pages.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -7530,7 +7530,7 @@ class FundsApi:
         :type limit: int
         :param page: The pagination token to use to continue listing from a previous call.
         :type page: str
-        :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+        :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'               domain to decorate onto the transactions.
         :type property_keys: List[str]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
@@ -20026,7 +20026,7 @@ class FundsApi:
     @validate_call
     async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
             """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
-            Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+            Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.                Rows are returned ordered by portfolio (scope then code, ordinal), then by trade date, entry time, transaction id (ordinal) and sub-holding keys, so the order is total and stable across pages.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -20040,7 +20040,7 @@ class FundsApi:
             :type limit: int
             :param page: The pagination token to use to continue listing from a previous call.
             :type page: str
-            :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+            :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'               domain to decorate onto the transactions.
             :type property_keys: List[str]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
@@ -20063,7 +20063,7 @@ class FundsApi:
     async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
             """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
-            Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+            Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.                Rows are returned ordered by portfolio (scope then code, ordinal), then by trade date, entry time, transaction id (ordinal) and sub-holding keys, so the order is total and stable across pages.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -20077,7 +20077,7 @@ class FundsApi:
             :type limit: int
             :param page: The pagination token to use to continue listing from a previous call.
             :type page: str
-            :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+            :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'               domain to decorate onto the transactions.
             :type property_keys: List[str]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str

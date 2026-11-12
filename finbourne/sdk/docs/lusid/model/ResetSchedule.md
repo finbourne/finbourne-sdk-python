@@ -8,6 +8,7 @@ The schedule on which the price return of the asset leg of a total return swap i
 | **conventions** | [FlowConventions](FlowConventions.md) | Optional | *No description available.* |
 | **first_reset_date** | **datetime** | Optional | The date of the first price reset. Optional; when absent the reset dates are rolled forward from the swap start date. |
 | **frequency** | **str** | Required | The frequency at which the asset price is reset and the price return is exchanged, e.g. 3M. |
+| **funding_start_lag** | [RelativeDateOffset](RelativeDateOffset.md) | Optional | *No description available.* |
 | **last_reset_date** | **datetime** | Optional | The date of the last price reset. Optional; when absent the reset dates are rolled forward until the swap maturity date. |
 
 
@@ -22,6 +23,7 @@ instance = ResetSchedule(
     conventions=FlowConventions(...),  # optional
     first_reset_date=datetime.now(),  # optional — The date of the first price reset. Optional; when absent the reset dates are rolled forward from the swap start date.
     frequency="...",  # required — The frequency at which the asset price is reset and the price return is exchanged, e.g. 3M.
+    funding_start_lag=RelativeDateOffset(...),  # optional
     last_reset_date=datetime.now()  # optional — The date of the last price reset. Optional; when absent the reset dates are rolled forward until the swap maturity date.
 )
 ```
@@ -30,6 +32,7 @@ instance = ResetSchedule(
 ## Related Models
 
 - [FlowConventions](FlowConventions.md)
+- [RelativeDateOffset](RelativeDateOffset.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

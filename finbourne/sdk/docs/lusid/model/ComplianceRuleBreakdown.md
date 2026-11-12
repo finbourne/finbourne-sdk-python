@@ -4,6 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
+| **group_id** | **int** | Required | A stable identifier for this group within the rule, the same across the rule-result and breakdown endpoints,  so a group can be correlated between the two. |
 | **group_status** | **str** | Required | The status of this subset of results. |
 | **results_used** | **Dict[str, float]** | Required | Dictionary of AddressKey (as string) and their corresponding decimal values, that were used in this rule. |
 | **formula_values** | **Dict[str, float]** | Optional | The value each formula within the check criterion evaluated to for this group. Empty where the criterion  compares a single value or is not numerical, since the operand values already recorded describe those. |
@@ -20,6 +21,7 @@
 from finbourne.sdk.services.lusid.models.ComplianceRuleBreakdown import ComplianceRuleBreakdown
 
 instance = ComplianceRuleBreakdown(
+    group_id=0,  # required — A stable identifier for this group within the rule, the same across the rule-result and breakdown endpoints,  so a group can be correlated between the two.
     group_status="...",  # required — The status of this subset of results.
     results_used=,  # required — Dictionary of AddressKey (as string) and their corresponding decimal values, that were used in this rule.
     formula_values=,  # optional — The value each formula within the check criterion evaluated to for this group. Empty where the criterion  compares a single value or is not numerical, since the operand values already recorded describe those.

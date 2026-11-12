@@ -1094,7 +1094,7 @@ class AllocationMapsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def upsert_allocation_map(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> AllocationMap:
+    def upsert_allocation_map(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationMap:
         """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
 
         Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
@@ -1104,6 +1104,8 @@ class AllocationMapsApi:
         :type code: str
         :param allocation_map_request: The definition of the Allocation Map. (required)
         :type allocation_map_request: AllocationMapRequest
+        :param effective_at: The effective datetime or cut label from which the definition applies, when the request body does not give one. Required to update an existing Allocation Map; a new one created without it applies from the beginning of time.
+        :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1114,11 +1116,11 @@ class AllocationMapsApi:
             message = "Error! Please call the upsert_allocation_map_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.upsert_allocation_map_with_http_info(scope, code, allocation_map_request, **kwargs)
+        response = self.upsert_allocation_map_with_http_info(scope, code, allocation_map_request, effective_at, **kwargs)
         return response.data
 
     @validate_call
-    def upsert_allocation_map_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> ApiResponse[AllocationMap]:
+    def upsert_allocation_map_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationMap]:
         """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
 
         Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
@@ -1128,6 +1130,8 @@ class AllocationMapsApi:
         :type code: str
         :param allocation_map_request: The definition of the Allocation Map. (required)
         :type allocation_map_request: AllocationMapRequest
+        :param effective_at: The effective datetime or cut label from which the definition applies, when the request body does not give one. Required to update an existing Allocation Map; a new one created without it applies from the beginning of time.
+        :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1153,7 +1157,8 @@ class AllocationMapsApi:
         _all_params = [
             'scope',
             'code',
-            'allocation_map_request'
+            'allocation_map_request',
+            'effective_at'
         ]
         _all_params.extend(
             [
@@ -1190,6 +1195,9 @@ class AllocationMapsApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -2287,7 +2295,7 @@ class AllocationMapsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def upsert_allocation_map_async(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> AllocationMap:
+    async def upsert_allocation_map_async(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationMap:
             """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
             Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
             
@@ -2297,6 +2305,8 @@ class AllocationMapsApi:
             :type code: str
             :param allocation_map_request: The definition of the Allocation Map. (required)
             :type allocation_map_request: AllocationMapRequest
+            :param effective_at: The effective datetime or cut label from which the definition applies, when the request body does not give one. Required to update an existing Allocation Map; a new one created without it applies from the beginning of time.
+            :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2307,11 +2317,11 @@ class AllocationMapsApi:
                 message = "Error! Please call the upsert_allocation_map_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.upsert_allocation_map_with_http_info_async(scope, code, allocation_map_request, **kwargs)
+            response = await self.upsert_allocation_map_with_http_info_async(scope, code, allocation_map_request, effective_at, **kwargs)
             return response.data
 
     @validate_call
-    async def upsert_allocation_map_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> ApiResponse[AllocationMap]:
+    async def upsert_allocation_map_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationMap]:
             """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
 
             Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
@@ -2322,6 +2332,8 @@ class AllocationMapsApi:
             :type code: str
             :param allocation_map_request: The definition of the Allocation Map. (required)
             :type allocation_map_request: AllocationMapRequest
+            :param effective_at: The effective datetime or cut label from which the definition applies, when the request body does not give one. Required to update an existing Allocation Map; a new one created without it applies from the beginning of time.
+            :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2347,7 +2359,8 @@ class AllocationMapsApi:
             _all_params = [
                 'scope',
                 'code',
-                'allocation_map_request'
+                'allocation_map_request',
+                'effective_at'
             ]
             _all_params.extend(
                 [
@@ -2384,6 +2397,9 @@ class AllocationMapsApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters

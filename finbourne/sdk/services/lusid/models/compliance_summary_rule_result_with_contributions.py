@@ -31,15 +31,13 @@ class ComplianceSummaryRuleResultWithContributions(BaseModel):
     ComplianceSummaryRuleResultWithContributions
     """
     rule_id: ResourceId = Field(alias="ruleId")
-    template_id: ResourceId = Field(alias="templateId")
-    variation:  StrictStr = Field(...,alias="variation") 
-    rule_status:  StrictStr = Field(...,alias="ruleStatus") 
+    status:  StrictStr = Field(...,alias="status") 
+    check_type:  Optional[StrictStr] = Field(default=None,alias="checkType", description="The kind of check the rule applied across its groups: \"PercentCheck\" or \"Check\". Static per rule. Absent for a  rule no check reached.") 
     affected_portfolios: List[ResourceId] = Field(alias="affectedPortfolios")
-    affected_orders: List[ResourceId] = Field(alias="affectedOrders")
-    parameters_used: Dict[str, Optional[StrictStr]] = Field(alias="parametersUsed")
-    rule_breakdown: List[ComplianceRuleBreakdownWithContributions] = Field(alias="ruleBreakdown")
-    other_positions_considered: List[ComplianceRuleContribution] = Field(description="The rest of the basis the rule was measured against but did not directly evaluate — the positions in  the referenced/denominator (or initial) group that are not in the RuleBreakdown's  contributions. Together with those contributions this forms the whole basis, with no overlap, so a  breach can be explained against the full picture (e.g. the non-equity remainder behind an equity limit).  Empty when the rule evaluated everything it considered.", alias="otherPositionsConsidered")
-    __properties: ClassVar[List[str]] = ["ruleId", "templateId", "variation", "ruleStatus", "affectedPortfolios", "affectedOrders", "parametersUsed", "ruleBreakdown", "otherPositionsConsidered"]
+    affected_orders: Optional[List[ResourceId]] = Field(default=None, description="The orders the rule affected. Omitted for a holdings-based run.", alias="affectedOrders")
+    groups: List[ComplianceRuleBreakdownWithContributions]
+    other_positions_considered: Optional[List[ComplianceRuleContribution]] = Field(default=None, description="The rest of the basis the rule was measured against but did not directly evaluate — the positions in  the referenced/denominator (or initial) group that are not in a group's contributions. Together with those  contributions this forms the whole basis, with no overlap, so a breach can be explained against the full picture  (e.g. the non-equity remainder behind an equity limit). Omitted when the rule evaluated everything it considered.", alias="otherPositionsConsidered")
+    __properties: ClassVar[List[str]] = ["ruleId", "status", "checkType", "affectedPortfolios", "affectedOrders", "groups", "otherPositionsConsidered"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,9 +76,6 @@ class ComplianceSummaryRuleResultWithContributions(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of rule_id
         if self.rule_id:
             _dict['ruleId'] = self.rule_id.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of template_id
-        if self.template_id:
-            _dict['templateId'] = self.template_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in affected_portfolios (list)
         _items = []
         if self.affected_portfolios:
@@ -95,13 +90,13 @@ class ComplianceSummaryRuleResultWithContributions(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['affectedOrders'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in rule_breakdown (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in groups (list)
         _items = []
-        if self.rule_breakdown:
-            for _item in self.rule_breakdown:
+        if self.groups:
+            for _item in self.groups:
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['ruleBreakdown'] = _items
+            _dict['groups'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in other_positions_considered (list)
         _items = []
         if self.other_positions_considered:
@@ -109,6 +104,21 @@ class ComplianceSummaryRuleResultWithContributions(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['otherPositionsConsidered'] = _items
+        # set to None if check_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.check_type is None and "check_type" in self.model_fields_set:
+            _dict['checkType'] = None
+
+        # set to None if affected_orders (nullable) is None
+        # and model_fields_set contains the field
+        if self.affected_orders is None and "affected_orders" in self.model_fields_set:
+            _dict['affectedOrders'] = None
+
+        # set to None if other_positions_considered (nullable) is None
+        # and model_fields_set contains the field
+        if self.other_positions_considered is None and "other_positions_considered" in self.model_fields_set:
+            _dict['otherPositionsConsidered'] = None
+
         return _dict
 
     @classmethod
@@ -122,13 +132,11 @@ class ComplianceSummaryRuleResultWithContributions(BaseModel):
 
         _obj = ComplianceSummaryRuleResultWithContributions.model_validate({
             "rule_id": ResourceId.from_dict(_v) if (_v := obj.get("ruleId")) is not None else None,
-            "template_id": ResourceId.from_dict(_v) if (_v := obj.get("templateId")) is not None else None,
-            "variation": obj.get("variation"),
-            "rule_status": obj.get("ruleStatus"),
+            "status": obj.get("status"),
+            "check_type": obj.get("checkType"),
             "affected_portfolios": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("affectedPortfolios")) is not None else None,
             "affected_orders": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("affectedOrders")) is not None else None,
-            "parameters_used": obj.get("parametersUsed"),
-            "rule_breakdown": [ComplianceRuleBreakdownWithContributions.from_dict(_item) for _item in _v] if (_v := obj.get("ruleBreakdown")) is not None else None,
+            "groups": [ComplianceRuleBreakdownWithContributions.from_dict(_item) for _item in _v] if (_v := obj.get("groups")) is not None else None,
             "other_positions_considered": [ComplianceRuleContribution.from_dict(_item) for _item in _v] if (_v := obj.get("otherPositionsConsidered")) is not None else None
         })
         return _obj

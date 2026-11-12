@@ -21,8 +21,9 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.compliance_comparison import ComplianceComparison
+from finbourne.sdk.services.lusid.models.compliance_group_key import ComplianceGroupKey
 from finbourne.sdk.services.lusid.models.compliance_rule_contribution import ComplianceRuleContribution
-from finbourne.sdk.services.lusid.models.lineage_member import LineageMember
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 
 
@@ -30,13 +31,19 @@ class ComplianceRuleBreakdownWithContributions(BaseModel):
     """
     ComplianceRuleBreakdownWithContributions
     """
-    group_status:  StrictStr = Field(...,alias="groupStatus", description="The status of this subset of results.") 
-    results_used: Dict[str, Union[StrictFloat, StrictInt]] = Field(description="Dictionary of AddressKey (as string) and their corresponding decimal values, that were used in this rule.", alias="resultsUsed")
-    properties_used: Dict[str, Optional[List[ModelProperty]]] = Field(description="Dictionary of PropertyKey (as string) and their corresponding Properties, that were used in this rule", alias="propertiesUsed")
-    missing_data_information: List[StrictStr] = Field(description="List of string information detailing data that was missing from contributions processed in this rule", alias="missingDataInformation")
-    lineage: List[LineageMember]
+    group_id: StrictInt = Field(description="A stable identifier for this group within the rule, matching the same group in the rule-result endpoint.", alias="groupId")
+    status:  StrictStr = Field(...,alias="status", description="The status of this subset of results.") 
+    group_key: Optional[ComplianceGroupKey] = Field(default=None, alias="groupKey")
+    nav: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The portfolio net asset value the group sits within. Absent where no contribution carried it.")
+    results: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="The valuation result totals the group aggregated. Omitted when empty.")
+    comparisons: Optional[List[ComplianceComparison]] = Field(default=None, description="Every leaf comparison the check criterion made for this group, drawn from both the hard and the soft limit.  Omitted for a group no check reached.")
+    properties: Optional[Dict[str, Optional[List[ModelProperty]]]] = Field(default=None, description="The property values the group aggregated. Omitted when empty.")
+    formula_values: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="The value each formula within the check criterion evaluated to for this group. Omitted when empty.", alias="formulaValues")
     contributions: List[ComplianceRuleContribution] = Field(description="The per-position contributions aggregated into this rule breakdown group. Empty when the run  genuinely produced no contributions; a run with no recorded breakdown (e.g. one that predates  this feature) returns a 404 rather than this response.")
-    __properties: ClassVar[List[str]] = ["groupStatus", "resultsUsed", "propertiesUsed", "missingDataInformation", "lineage", "contributions"]
+    missing_data_information: Optional[List[StrictStr]] = Field(default=None, description="List of string information detailing data that was missing from contributions processed in this rule. Omitted when empty.", alias="missingDataInformation")
+    contribution_count: StrictInt = Field(description="The number of contributions aggregated into this group, before any cap.", alias="contributionCount")
+    contributions_truncated: StrictBool = Field(description="Whether the reported contributions were capped below ContributionCount. Always false today.", alias="contributionsTruncated")
+    __properties: ClassVar[List[str]] = ["groupId", "status", "groupKey", "nav", "results", "comparisons", "properties", "formulaValues", "contributions", "missingDataInformation", "contributionCount", "contributionsTruncated"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,22 +79,25 @@ class ComplianceRuleBreakdownWithContributions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each value in properties_used (dict of array)
+        # override the default output from pydantic by calling `to_dict()` of group_key
+        if self.group_key:
+            _dict['groupKey'] = self.group_key.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in comparisons (list)
+        _items = []
+        if self.comparisons:
+            for _item in self.comparisons:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['comparisons'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict of array)
         _field_dict_of_array = {}
-        if self.properties_used:
-            for _key in self.properties_used:
-                if (_items_for_key := self.properties_used[_key]):
+        if self.properties:
+            for _key in self.properties:
+                if (_items_for_key := self.properties[_key]):
                     _field_dict_of_array[_key] = [
                         _item.to_dict(by_alias=by_alias) for _item in _items_for_key
                     ]
-            _dict['propertiesUsed'] = _field_dict_of_array
-        # override the default output from pydantic by calling `to_dict()` of each item in lineage (list)
-        _items = []
-        if self.lineage:
-            for _item in self.lineage:
-                if _item:
-                    _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['lineage'] = _items
+            _dict['properties'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in contributions (list)
         _items = []
         if self.contributions:
@@ -95,6 +105,36 @@ class ComplianceRuleBreakdownWithContributions(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['contributions'] = _items
+        # set to None if nav (nullable) is None
+        # and model_fields_set contains the field
+        if self.nav is None and "nav" in self.model_fields_set:
+            _dict['nav'] = None
+
+        # set to None if results (nullable) is None
+        # and model_fields_set contains the field
+        if self.results is None and "results" in self.model_fields_set:
+            _dict['results'] = None
+
+        # set to None if comparisons (nullable) is None
+        # and model_fields_set contains the field
+        if self.comparisons is None and "comparisons" in self.model_fields_set:
+            _dict['comparisons'] = None
+
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
+
+        # set to None if formula_values (nullable) is None
+        # and model_fields_set contains the field
+        if self.formula_values is None and "formula_values" in self.model_fields_set:
+            _dict['formulaValues'] = None
+
+        # set to None if missing_data_information (nullable) is None
+        # and model_fields_set contains the field
+        if self.missing_data_information is None and "missing_data_information" in self.model_fields_set:
+            _dict['missingDataInformation'] = None
+
         return _dict
 
     @classmethod
@@ -107,9 +147,13 @@ class ComplianceRuleBreakdownWithContributions(BaseModel):
             return ComplianceRuleBreakdownWithContributions.model_validate(obj)
 
         _obj = ComplianceRuleBreakdownWithContributions.model_validate({
-            "group_status": obj.get("groupStatus"),
-            "results_used": obj.get("resultsUsed"),
-            "properties_used": dict(
+            "group_id": obj.get("groupId"),
+            "status": obj.get("status"),
+            "group_key": ComplianceGroupKey.from_dict(_v) if (_v := obj.get("groupKey")) is not None else None,
+            "nav": obj.get("nav"),
+            "results": obj.get("results"),
+            "comparisons": [ComplianceComparison.from_dict(_item) for _item in _v] if (_v := obj.get("comparisons")) is not None else None,
+            "properties": dict(
                 (_k,
                         [ModelProperty.from_dict(_item) for _item in _v]
                         if _v is not None
@@ -117,11 +161,13 @@ class ComplianceRuleBreakdownWithContributions(BaseModel):
                 )
                 for _k, _v in _val.items()
             )
-            if (_val := obj.get("propertiesUsed")) is not None
+            if (_val := obj.get("properties")) is not None
             else None,
+            "formula_values": obj.get("formulaValues"),
+            "contributions": [ComplianceRuleContribution.from_dict(_item) for _item in _v] if (_v := obj.get("contributions")) is not None else None,
             "missing_data_information": obj.get("missingDataInformation"),
-            "lineage": [LineageMember.from_dict(_item) for _item in _v] if (_v := obj.get("lineage")) is not None else None,
-            "contributions": [ComplianceRuleContribution.from_dict(_item) for _item in _v] if (_v := obj.get("contributions")) is not None else None
+            "contribution_count": obj.get("contributionCount"),
+            "contributions_truncated": obj.get("contributionsTruncated")
         })
         return _obj
 

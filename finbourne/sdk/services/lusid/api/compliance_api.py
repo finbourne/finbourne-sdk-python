@@ -595,7 +595,7 @@ class ComplianceApi:
     def describe_compliance_rule_v3(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ComplianceRuleV3DescribeResponse:
         """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
 
-        Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+        Use this endpoint to retrieve a plain-English description of a V3 compliance rule as a single  sentence. The sentence is empty for a rule the generator cannot fully express.  # noqa: E501
         :param scope: The compliance rule's scope. (required)
         :type scope: str
         :param code: The compliance rule's code. (required)
@@ -619,7 +619,7 @@ class ComplianceApi:
     def describe_compliance_rule_v3_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRuleV3DescribeResponse]:
         """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
 
-        Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+        Use this endpoint to retrieve a plain-English description of a V3 compliance rule as a single  sentence. The sentence is empty for a rule the generator cannot fully express.  # noqa: E501
         :param scope: The compliance rule's scope. (required)
         :type scope: str
         :param code: The compliance rule's code. (required)
@@ -4225,7 +4225,7 @@ class ComplianceApi:
     @validate_call
     async def describe_compliance_rule_v3_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ComplianceRuleV3DescribeResponse:
             """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
-            Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+            Use this endpoint to retrieve a plain-English description of a V3 compliance rule as a single  sentence. The sentence is empty for a rule the generator cannot fully express.  # noqa: E501
             
             :param scope: The compliance rule's scope. (required)
             :type scope: str
@@ -4250,7 +4250,7 @@ class ComplianceApi:
     async def describe_compliance_rule_v3_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRuleV3DescribeResponse]:
             """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
 
-            Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+            Use this endpoint to retrieve a plain-English description of a V3 compliance rule as a single  sentence. The sentence is empty for a rule the generator cannot fully express.  # noqa: E501
 
             :param scope: The compliance rule's scope. (required)
             :type scope: str

@@ -12,7 +12,7 @@ The capital balances of one register line, in the commitment currency.
 | **recallable** | **float** | Required | The returned capital that may be recalled. |
 | **unfunded** | **float** | Required | The unfunded capital. |
 | **funded** | **float** | Required | The funded capital. |
-| **outstanding_calls** | **float** | Optional | Capital called but not yet paid in. Omitted on a register line that has had returned capital marked recallable, since recalled capital is not yet tracked as a balance and the figure would exclude it. |
+| **outstanding_calls** | **float** | Optional | Capital called but not yet paid in, counting capital that was returned as recallable and has since been recalled. Omitted while a line that has had returned capital marked recallable has not been rebuilt with recalled capital as a balance, since the figure could then miss an unpaid recall. |
 
 
 ## Usage
@@ -30,7 +30,7 @@ instance = FundPartnerBalances(
     recallable=0.0,  # required — The returned capital that may be recalled.
     unfunded=0.0,  # required — The unfunded capital.
     funded=0.0,  # required — The funded capital.
-    outstanding_calls=0.0  # optional — Capital called but not yet paid in. Omitted on a register line that has had returned capital marked recallable, since recalled capital is not yet tracked as a balance and the figure would exclude it.
+    outstanding_calls=0.0  # optional — Capital called but not yet paid in, counting capital that was returned as recallable and has since been recalled. Omitted while a line that has had returned capital marked recallable has not been rebuilt with recalled capital as a balance, since the figure could then miss an unpaid recall.
 )
 ```
 

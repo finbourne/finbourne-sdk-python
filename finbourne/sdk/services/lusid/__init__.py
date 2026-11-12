@@ -469,6 +469,10 @@ from finbourne.sdk.services.lusid.models.complex_market_data_activity import Com
 from finbourne.sdk.services.lusid.models.complex_market_data_activity_adjustment import ComplexMarketDataActivityAdjustment
 from finbourne.sdk.services.lusid.models.complex_market_data_id import ComplexMarketDataId
 from finbourne.sdk.services.lusid.models.compliance_breached_order_info import ComplianceBreachedOrderInfo
+from finbourne.sdk.services.lusid.models.compliance_comparison import ComplianceComparison
+from finbourne.sdk.services.lusid.models.compliance_comparison_operand import ComplianceComparisonOperand
+from finbourne.sdk.services.lusid.models.compliance_group_key import ComplianceGroupKey
+from finbourne.sdk.services.lusid.models.compliance_key_used import ComplianceKeyUsed
 from finbourne.sdk.services.lusid.models.compliance_parameter import ComplianceParameter
 from finbourne.sdk.services.lusid.models.compliance_parameter_type import ComplianceParameterType
 from finbourne.sdk.services.lusid.models.compliance_rule import ComplianceRule
@@ -720,6 +724,7 @@ from finbourne.sdk.services.lusid.models.economics import Economics
 from finbourne.sdk.services.lusid.models.edit_transfer_request import EditTransferRequest
 from finbourne.sdk.services.lusid.models.edit_transfer_response import EditTransferResponse
 from finbourne.sdk.services.lusid.models.effective_range import EffectiveRange
+from finbourne.sdk.services.lusid.models.election_proration_rate import ElectionProrationRate
 from finbourne.sdk.services.lusid.models.election_specification import ElectionSpecification
 from finbourne.sdk.services.lusid.models.eligibility_calculation import EligibilityCalculation
 from finbourne.sdk.services.lusid.models.eligible_collateral_asset_selector import EligibleCollateralAssetSelector
@@ -2691,6 +2696,10 @@ __all__ = [
     "ComplexMarketDataActivityAdjustment",
     "ComplexMarketDataId",
     "ComplianceBreachedOrderInfo",
+    "ComplianceComparison",
+    "ComplianceComparisonOperand",
+    "ComplianceGroupKey",
+    "ComplianceKeyUsed",
     "ComplianceParameter",
     "ComplianceParameterType",
     "ComplianceRule",
@@ -2942,6 +2951,7 @@ __all__ = [
     "EditTransferRequest",
     "EditTransferResponse",
     "EffectiveRange",
+    "ElectionProrationRate",
     "ElectionSpecification",
     "EligibilityCalculation",
     "EligibleCollateralAssetSelector",

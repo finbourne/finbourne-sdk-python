@@ -1,13 +1,13 @@
 # ComplianceRuleV3DescribeResponse
 
-A plain-English description of a V3 compliance rule. This is a minimal placeholder shape: the plain-English  generator is delivered separately, so the Lines property is currently empty and only the rule's identity  and subject are populated.
+A plain-English description of a V3 compliance rule: its identity, the kind of entity it examines, and a  single sentence describing what it checks. The sentence is empty for a rule the generator cannot fully  express.
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **subject** | **str** | Optional | Available values: Holdings, Orders. |
-| **lines** | **List[str]** | Optional | *No description available.* |
+| **plain_english** | **str** | Optional | *No description available.* |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.ComplianceRuleV3DescribeResponse import
 instance = ComplianceRuleV3DescribeResponse(
     id=ResourceId(...),  # optional
     subject="...",  # optional — Available values: Holdings, Orders.
-    lines=  # optional
+    plain_english="..."  # optional
 )
 ```
 

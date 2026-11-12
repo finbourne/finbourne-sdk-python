@@ -15,6 +15,7 @@ The rules that say which investor records share in the economics of a member of 
 | **basis_by_event_type** | [List[AllocationMapEventBasis]](AllocationMapEventBasis.md) | Required | The basis on which each kind of allocation event is shared between the participants. At most one entry per event type and component; an entry without a component is the default for the event type. |
 | **rounding_partner_line** | **str** | Optional | The investor record that takes every minor unit left over when the shares of an event are rounded. Absent means the leftover is spread one minor unit at a time over the largest remainders. |
 | **ilpa_transaction_types** | [List[AllocationMapIlpaTransactionType]](AllocationMapIlpaTransactionType.md) | Optional | The ILPA transaction types the map reports particular kinds of allocation event under, where they differ from the default for the event type and component. At most one entry per event type and component; an entry without a component is the default for the event type. Every value must be one the system IlpaTransactionType data type lists. |
+| **excuse_cap_multiple** | **float** | Optional | How far above its pro-rata share of a call a line may be taken when other participants are excused, as a multiple of that share: the LPA&#39;s over-call cap. At least 1. Absent means the platform default of 1.25. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -37,6 +38,7 @@ instance = AllocationMap(
     basis_by_event_type=[],  # required — The basis on which each kind of allocation event is shared between the participants. At most one entry per event type and component; an entry without a component is the default for the event type.
     rounding_partner_line="...",  # optional — The investor record that takes every minor unit left over when the shares of an event are rounded. Absent means the leftover is spread one minor unit at a time over the largest remainders.
     ilpa_transaction_types=[],  # optional — The ILPA transaction types the map reports particular kinds of allocation event under, where they differ from the default for the event type and component. At most one entry per event type and component; an entry without a component is the default for the event type. Every value must be one the system IlpaTransactionType data type lists.
+    excuse_cap_multiple=0.0,  # optional — How far above its pro-rata share of a call a line may be taken when other participants are excused, as a multiple of that share: the LPA&#39;s over-call cap. At least 1. Absent means the platform default of 1.25.
     version=Version(...),  # optional
     links=[]  # optional
 )

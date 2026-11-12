@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.flow_conventions import FlowConventions
+from finbourne.sdk.services.lusid.models.relative_date_offset import RelativeDateOffset
 
 
 class ResetSchedule(BaseModel):
@@ -31,8 +32,9 @@ class ResetSchedule(BaseModel):
     conventions: Optional[FlowConventions] = None
     first_reset_date: Optional[datetime] = Field(default=None, description="The date of the first price reset. Optional; when absent the reset dates are rolled forward from the swap start date.", alias="firstResetDate")
     frequency:  StrictStr = Field(...,alias="frequency", description="The frequency at which the asset price is reset and the price return is exchanged, e.g. 3M.") 
+    funding_start_lag: Optional[RelativeDateOffset] = Field(default=None, alias="fundingStartLag")
     last_reset_date: Optional[datetime] = Field(default=None, description="The date of the last price reset. Optional; when absent the reset dates are rolled forward until the swap maturity date.", alias="lastResetDate")
-    __properties: ClassVar[List[str]] = ["conventions", "firstResetDate", "frequency", "lastResetDate"]
+    __properties: ClassVar[List[str]] = ["conventions", "firstResetDate", "frequency", "fundingStartLag", "lastResetDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +73,9 @@ class ResetSchedule(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of conventions
         if self.conventions:
             _dict['conventions'] = self.conventions.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of funding_start_lag
+        if self.funding_start_lag:
+            _dict['fundingStartLag'] = self.funding_start_lag.to_dict(by_alias=by_alias)
         # set to None if first_reset_date (nullable) is None
         # and model_fields_set contains the field
         if self.first_reset_date is None and "first_reset_date" in self.model_fields_set:
@@ -96,6 +101,7 @@ class ResetSchedule(BaseModel):
             "conventions": FlowConventions.from_dict(_v) if (_v := obj.get("conventions")) is not None else None,
             "first_reset_date": obj.get("firstResetDate"),
             "frequency": obj.get("frequency"),
+            "funding_start_lag": RelativeDateOffset.from_dict(_v) if (_v := obj.get("fundingStartLag")) is not None else None,
             "last_reset_date": obj.get("lastResetDate")
         })
         return _obj

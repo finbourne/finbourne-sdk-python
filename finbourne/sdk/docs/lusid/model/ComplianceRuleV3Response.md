@@ -16,6 +16,7 @@ A V3 compliance rule as returned by the API: its identity and administrative fie
 | **check** | [ComplianceRuleV3Check](ComplianceRuleV3Check.md) | Optional | *No description available.* |
 | **computed_filter** | [ComplianceRuleV3ComputedFilter](ComplianceRuleV3ComputedFilter.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **plain_english** | **str** | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -38,6 +39,7 @@ instance = ComplianceRuleV3Response(
     check=ComplianceRuleV3Check(...),  # optional
     computed_filter=ComplianceRuleV3ComputedFilter(...),  # optional
     version=Version(...),  # optional
+    plain_english="...",  # optional
     links=[]  # optional
 )
 ```

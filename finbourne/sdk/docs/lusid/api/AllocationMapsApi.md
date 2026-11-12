@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 ---
 
 # **upsert_allocation_map**
-> AllocationMap upsertAllocationMap = upsert_allocation_map(scope, code, allocation_map_request)
+> AllocationMap upsertAllocationMap = upsert_allocation_map(scope, code, allocation_map_request, effective_at=effective_at)
 
 [EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.
 
@@ -389,7 +389,8 @@ api_instance = api_client_factory.build(AllocationMapsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 allocation_map_request = AllocationMapRequest()
-api_response = api_instance.upsert_allocation_map(scope, code, allocation_map_request)
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.upsert_allocation_map(scope, code, allocation_map_request, effective_at=effective_at)
 pprint(api_response)
 ```
 
@@ -400,6 +401,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Allocation Map. | [required] 
  **code** | **str**| The code of the Allocation Map. Together with the scope this uniquely identifies the Allocation Map. | [required] 
  **allocation_map_request** | [**AllocationMapRequest**](../model/AllocationMapRequest.md)| The definition of the Allocation Map. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label from which the definition applies, when the request body does not give one. Required to update an existing Allocation Map; a new one created without it applies from the beginning of time. | [optional] 
 
 ### Return type
 

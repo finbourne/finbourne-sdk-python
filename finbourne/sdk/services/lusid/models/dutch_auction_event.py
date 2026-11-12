@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
+from finbourne.sdk.services.lusid.models.election_proration_rate import ElectionProrationRate
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
 from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
 from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
@@ -55,9 +56,13 @@ class DutchAuctionEvent(InstrumentEvent):
     fractional_units_cash_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Cash-in-lieu price per fractional unit on the SECU and CASE paths.  Null indicates round-down disposition of fractional remainders.  Distinct from the CASE path's main cash settlement (which lives on CashAndSecurityOfferElection).", alias="fractionalUnitsCashPrice")
     fractional_units_cash_currency:  Optional[StrictStr] = Field(default=None,alias="fractionalUnitsCashCurrency", description="Currency of the cash-in-lieu paid on fractional remainders on the SECU and CASE paths.  Required when FractionalUnitsCashPrice is non-null.") 
     bid_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Per-holder bid price submitted at instruction time. Audit-only; no calculation impact.", alias="bidPrice")
+    election_proration_rates: Optional[List[ElectionProrationRate]] = Field(default=None, description="Optional proration rate per option, keyed by election key. An entry overrides ProrationRate for that  election; an option without an entry uses ProrationRate. Each key must name a TenderOffer, SecurityOffer,  CashAndSecurityOffer or MixedLotConstituents election of this event, once, with a rate in (0, 1].", alias="electionProrationRates")
+    min_piece_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional minimum tradable piece of the accepted quantity, in face for a bond and in units otherwise.  Must be strictly positive when set. With AcceptedQuantityRounding RoundDown, an accepted quantity below it  is rounded to zero.", alias="minPieceSize")
+    min_increment: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional tradable increment above MinPieceSize, in the same unit. When set, MinPieceSize must also be set.  Must be strictly positive. With AcceptedQuantityRounding RoundDown, the accepted quantity is rounded down to  MinPieceSize plus a whole number of increments.", alias="minIncrement")
+    accepted_quantity_rounding:  Optional[StrictStr] = Field(default=None,alias="acceptedQuantityRounding", description="How a prorated accepted quantity that is not a whole tradable lot is disposed of. RoundDown rounds it down  to the tradable lot, or to a whole unit when no lot size is given, and the remainder stays in the holding.  CashInLieu accepts the unrounded quantity. When omitted the accepted quantity is not rounded. Available values: RoundDown, CashInLieu.") 
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, ChangeEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent, CommodityCalendarSwapCashFlowEvent, DepositSweepEvent, BondForwardCashSettlementEvent, BondForwardTerminationEvent, AmendCommitmentEvent, CapitalCallEvent, FundDistributionEvent, NavReportEvent, DividendSuspensionEvent, LoanInterestCapitalisationEvent, TotalReturnSwapCashFlowEvent, GlobalLoanFacilityReinitialisationEvent, InvestorLoanFacilityReinitialisationEvent, CapitalCallReceiptEvent, RecallableCapitalExpiryEvent, CapitalInterestTransferEvent, FacilityDrawEvent, FacilityRepaymentEvent, FacilityInterestEvent, FacilityCommitmentFeeEvent, InstalmentCallEvent, DepositInterestCapitalisationEvent, PartialRedemptionWithoutReductionOfNominalValueEvent, StripBondCashflowEvent, CapitalisationEvent, SharesPremiumDividendEvent, CashDistributionFromNonEligibleSecuritiesSalesEvent, InflationIndexationEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "marketDeadlineDate", "currency", "tenderOfferElections", "securityOfferElections", "cashAndSecurityOfferElections", "lapseElections", "mixedLotConstituentsElections", "unknownProceedsElections", "responseDeadlineDate", "earlyResponseDeadline", "exDate", "recordDate", "announcementDate", "targetQuantity", "prorationRate", "newInstrument", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "bidPrice"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "marketDeadlineDate", "currency", "tenderOfferElections", "securityOfferElections", "cashAndSecurityOfferElections", "lapseElections", "mixedLotConstituentsElections", "unknownProceedsElections", "responseDeadlineDate", "earlyResponseDeadline", "exDate", "recordDate", "announcementDate", "targetQuantity", "prorationRate", "newInstrument", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "bidPrice", "electionProrationRates", "minPieceSize", "minIncrement", "acceptedQuantityRounding"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -156,6 +161,13 @@ class DutchAuctionEvent(InstrumentEvent):
         # override the default output from pydantic by calling `to_dict()` of new_instrument
         if self.new_instrument:
             _dict['newInstrument'] = self.new_instrument.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in election_proration_rates (list)
+        _items = []
+        if self.election_proration_rates:
+            for _item in self.election_proration_rates:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['electionProrationRates'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -241,6 +253,26 @@ class DutchAuctionEvent(InstrumentEvent):
         if self.bid_price is None and "bid_price" in self.model_fields_set:
             _dict['bidPrice'] = None
 
+        # set to None if election_proration_rates (nullable) is None
+        # and model_fields_set contains the field
+        if self.election_proration_rates is None and "election_proration_rates" in self.model_fields_set:
+            _dict['electionProrationRates'] = None
+
+        # set to None if min_piece_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_piece_size is None and "min_piece_size" in self.model_fields_set:
+            _dict['minPieceSize'] = None
+
+        # set to None if min_increment (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_increment is None and "min_increment" in self.model_fields_set:
+            _dict['minIncrement'] = None
+
+        # set to None if accepted_quantity_rounding (nullable) is None
+        # and model_fields_set contains the field
+        if self.accepted_quantity_rounding is None and "accepted_quantity_rounding" in self.model_fields_set:
+            _dict['acceptedQuantityRounding'] = None
+
         return _dict
 
     @classmethod
@@ -273,7 +305,11 @@ class DutchAuctionEvent(InstrumentEvent):
             "new_instrument": NewInstrument.from_dict(_v) if (_v := obj.get("newInstrument")) is not None else None,
             "fractional_units_cash_price": obj.get("fractionalUnitsCashPrice"),
             "fractional_units_cash_currency": obj.get("fractionalUnitsCashCurrency"),
-            "bid_price": obj.get("bidPrice")
+            "bid_price": obj.get("bidPrice"),
+            "election_proration_rates": [ElectionProrationRate.from_dict(_item) for _item in _v] if (_v := obj.get("electionProrationRates")) is not None else None,
+            "min_piece_size": obj.get("minPieceSize"),
+            "min_increment": obj.get("minIncrement"),
+            "accepted_quantity_rounding": obj.get("acceptedQuantityRounding")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

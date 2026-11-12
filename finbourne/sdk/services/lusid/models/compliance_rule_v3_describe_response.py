@@ -26,12 +26,12 @@ from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 class ComplianceRuleV3DescribeResponse(BaseModel):
     """
-    A plain-English description of a V3 compliance rule. This is a minimal placeholder shape: the plain-English  generator is delivered separately, so the Lines property is currently empty and only the rule's identity  and subject are populated.  # noqa: E501
+    A plain-English description of a V3 compliance rule: its identity, the kind of entity it examines, and a  single sentence describing what it checks. The sentence is empty for a rule the generator cannot fully  express.  # noqa: E501
     """
     id: Optional[ResourceId] = None
     subject:  Optional[StrictStr] = Field(default=None,alias="subject", description="Available values: Holdings, Orders.") 
-    lines: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["id", "subject", "lines"]
+    plain_english:  Optional[StrictStr] = Field(default=None,alias="plainEnglish") 
+    __properties: ClassVar[List[str]] = ["id", "subject", "plainEnglish"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,10 +75,10 @@ class ComplianceRuleV3DescribeResponse(BaseModel):
         if self.subject is None and "subject" in self.model_fields_set:
             _dict['subject'] = None
 
-        # set to None if lines (nullable) is None
+        # set to None if plain_english (nullable) is None
         # and model_fields_set contains the field
-        if self.lines is None and "lines" in self.model_fields_set:
-            _dict['lines'] = None
+        if self.plain_english is None and "plain_english" in self.model_fields_set:
+            _dict['plainEnglish'] = None
 
         return _dict
 
@@ -94,7 +94,7 @@ class ComplianceRuleV3DescribeResponse(BaseModel):
         _obj = ComplianceRuleV3DescribeResponse.model_validate({
             "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "subject": obj.get("subject"),
-            "lines": obj.get("lines")
+            "plain_english": obj.get("plainEnglish")
         })
         return _obj
 
