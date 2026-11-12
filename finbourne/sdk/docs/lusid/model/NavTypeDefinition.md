@@ -21,10 +21,12 @@
 | **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
 | **transaction_template_scope** | **str** | Required | The Transaction Template Scope used by the NavType. |
-| **transaction_exclusion_filter** | **str** | Optional | Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties. |
+| **transaction_exclusion_filter** | **str** | Optional | Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties. The filter can be changed by patching the NavType, which propagates it to the NavType&#39;s derived portfolios. A NavType never inherits the filter of the Fund&#39;s portfolios: omitting the filter, or setting it to an empty string, means no filter. A transaction amended across a Final valuation point so that it newly matches the filter is reversed in the next valuation point, and one amended so that it stops matching is posted in the next valuation point as a true-up. |
 | **pricing_basis** | **str** | Optional | The side of the quote this Nav Type values the fund on: Mid, Bid or Ask. Overrides the pricing basis of the valuation recipe&#39;s market options for this Nav Type only, so a bid NAV and an ask NAV can share one recipe. Omit it to value on the recipe&#39;s own pricing basis. Available values: Mid, Bid, Ask. |
 | **swing_pricing** | [SwingPricingRule](SwingPricingRule.md) | Optional | *No description available.* |
 | **notional_dealing_cost_table_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **valuation_template_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **chargeable_gains_regime** | **str** | Optional | The chargeable gains regime the Nav Type&#39;s derived portfolio is elected into. This can be: Default or UkChargeableGains. Omit it, or supply Default, to leave the derived portfolio inheriting its parent portfolio&#39;s regime. Under UkChargeableGains, in-scope holdings in the derived portfolio are depleted under the UK chargeable gains rules regardless of the Nav Type&#39;s accounting method; it requires the Fund&#39;s base currency to be GBP. Available values: Default, UkChargeableGains. |
 
 
 ## Usage
@@ -52,10 +54,12 @@ instance = NavTypeDefinition(
     amortisation_rule_set_id=ResourceId(...),  # optional
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
     transaction_template_scope="...",  # required — The Transaction Template Scope used by the NavType.
-    transaction_exclusion_filter="...",  # optional — Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.
+    transaction_exclusion_filter="...",  # optional — Optional filter expression to exclude specific transactions from this NavType&#39;s derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties. The filter can be changed by patching the NavType, which propagates it to the NavType&#39;s derived portfolios. A NavType never inherits the filter of the Fund&#39;s portfolios: omitting the filter, or setting it to an empty string, means no filter. A transaction amended across a Final valuation point so that it newly matches the filter is reversed in the next valuation point, and one amended so that it stops matching is posted in the next valuation point as a true-up.
     pricing_basis="...",  # optional — The side of the quote this Nav Type values the fund on: Mid, Bid or Ask. Overrides the pricing basis of the valuation recipe&#39;s market options for this Nav Type only, so a bid NAV and an ask NAV can share one recipe. Omit it to value on the recipe&#39;s own pricing basis. Available values: Mid, Bid, Ask.
     swing_pricing=SwingPricingRule(...),  # optional
-    notional_dealing_cost_table_id=ResourceId(...)  # optional
+    notional_dealing_cost_table_id=ResourceId(...),  # optional
+    valuation_template_id=ResourceId(...),  # optional
+    chargeable_gains_regime="..."  # optional — The chargeable gains regime the Nav Type&#39;s derived portfolio is elected into. This can be: Default or UkChargeableGains. Omit it, or supply Default, to leave the derived portfolio inheriting its parent portfolio&#39;s regime. Under UkChargeableGains, in-scope holdings in the derived portfolio are depleted under the UK chargeable gains rules regardless of the Nav Type&#39;s accounting method; it requires the Fund&#39;s base currency to be GBP. Available values: Default, UkChargeableGains.
 )
 ```
 
@@ -65,6 +69,7 @@ instance = NavTypeDefinition(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [SwingPricingRule](SwingPricingRule.md)
+- [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 
 

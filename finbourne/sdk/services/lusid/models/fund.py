@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.allocation_group import AllocationGroup
 from finbourne.sdk.services.lusid.models.day_month import DayMonth
+from finbourne.sdk.services.lusid.models.dealing_estimates import DealingEstimates
 from finbourne.sdk.services.lusid.models.fund_instrument import FundInstrument
 from finbourne.sdk.services.lusid.models.instrument_resolution_detail import InstrumentResolutionDetail
 from finbourne.sdk.services.lusid.models.link import Link
@@ -60,17 +61,19 @@ class Fund(BaseModel):
     primary_nav_type: Optional[NavType] = Field(default=None, alias="primaryNavType")
     additional_nav_types: Optional[List[NavType]] = Field(default=None, description="The definitions for any additional NAVs on the Fund.", alias="additionalNavTypes")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Fund.")
-    create_instrument: Optional[StrictBool] = Field(default=None, description="Whether to create instruments for the Fund's share classes, series, or partner classes upon creation. Defaults to false.", alias="createInstrument")
-    instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which the instruments are created when CreateInstrument is true. Defaults to the default instrument scope. Legacy share class instruments are resolved in ShareClassInstrumentScopes instead.") 
+    create_instrument: Optional[StrictBool] = Field(default=None, description="Whether to master an instrument upon fund creation. For unitised funds (Classes, Series, or Partners), an instrument is mastered per share class. For non-unitised funds, a single instrument is mastered for the fund itself, with a ClientInternal identifier of {FundScope}:{Code}. Defaults to false.", alias="createInstrument")
+    instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which instruments are mastered when CreateInstrument is true. For non-unitised funds the fund scope also forms part of the fund instrument's ClientInternal identifier: {FundScope}:{Code}. Defaults to the default instrument scope. Legacy share class instruments are resolved via ShareClassInstrumentScopes instead.") 
     allocation_groups: Optional[List[AllocationGroup]] = Field(default=None, description="An optional list of Allocation Group definitions for the Fund.", alias="allocationGroups")
     share_classes: Optional[List[ShareClass]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
     fund_instrument: Optional[FundInstrument] = Field(default=None, alias="fundInstrument")
     pricing_methodology: Optional[PricingMethodology] = Field(default=None, alias="pricingMethodology")
     reporting_prices: Optional[List[ReportingPrice]] = Field(default=None, description="Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.", alias="reportingPrices")
+    dealing_estimates: Optional[DealingEstimates] = Field(default=None, alias="dealingEstimates")
     version: Optional[Version] = None
     wht_parameters: Optional[WhtParameters] = Field(default=None, alias="whtParameters")
+    valuation_template_id: Optional[ResourceId] = Field(default=None, alias="valuationTemplateId")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shortCode", "aborId", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "yearEndDate", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "instrumentScope", "allocationGroups", "shareClasses", "fundInstrument", "pricingMethodology", "reportingPrices", "version", "whtParameters", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shortCode", "aborId", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "yearEndDate", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "instrumentScope", "allocationGroups", "shareClasses", "fundInstrument", "pricingMethodology", "reportingPrices", "dealingEstimates", "version", "whtParameters", "valuationTemplateId", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -176,12 +179,18 @@ class Fund(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['reportingPrices'] = _items
+        # override the default output from pydantic by calling `to_dict()` of dealing_estimates
+        if self.dealing_estimates:
+            _dict['dealingEstimates'] = self.dealing_estimates.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of wht_parameters
         if self.wht_parameters:
             _dict['whtParameters'] = self.wht_parameters.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of valuation_template_id
+        if self.valuation_template_id:
+            _dict['valuationTemplateId'] = self.valuation_template_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -317,8 +326,10 @@ class Fund(BaseModel):
             "fund_instrument": FundInstrument.from_dict(_v) if (_v := obj.get("fundInstrument")) is not None else None,
             "pricing_methodology": PricingMethodology.from_dict(_v) if (_v := obj.get("pricingMethodology")) is not None else None,
             "reporting_prices": [ReportingPrice.from_dict(_item) for _item in _v] if (_v := obj.get("reportingPrices")) is not None else None,
+            "dealing_estimates": DealingEstimates.from_dict(_v) if (_v := obj.get("dealingEstimates")) is not None else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "wht_parameters": WhtParameters.from_dict(_v) if (_v := obj.get("whtParameters")) is not None else None,
+            "valuation_template_id": ResourceId.from_dict(_v) if (_v := obj.get("valuationTemplateId")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

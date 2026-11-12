@@ -35,11 +35,13 @@ from finbourne.sdk.services.lusid.models.move_orders_to_different_blocks_request
 from finbourne.sdk.services.lusid.models.order_update_request import OrderUpdateRequest
 from finbourne.sdk.services.lusid.models.place_blocks_request import PlaceBlocksRequest
 from finbourne.sdk.services.lusid.models.placement_update_request import PlacementUpdateRequest
+from finbourne.sdk.services.lusid.models.preview_blocks_request import PreviewBlocksRequest
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.resource_list_of_block_and_orders import ResourceListOfBlockAndOrders
 from finbourne.sdk.services.lusid.models.resource_list_of_change_interval_with_order_management_detail import ResourceListOfChangeIntervalWithOrderManagementDetail
 from finbourne.sdk.services.lusid.models.resource_list_of_moved_order_to_different_block_response import ResourceListOfMovedOrderToDifferentBlockResponse
 from finbourne.sdk.services.lusid.models.resource_list_of_placement import ResourceListOfPlacement
+from finbourne.sdk.services.lusid.models.resource_list_of_proposed_block_and_orders import ResourceListOfProposedBlockAndOrders
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
 from finbourne.sdk.services.lusid.models.sweep_blocks_response import SweepBlocksResponse
 from finbourne.sdk.services.lusid.models.update_orders_response import UpdateOrdersResponse
@@ -1115,7 +1117,134 @@ class OrderManagementApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def run_allocation_service(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> AllocationServiceRunResponse:
+    def preview_blocks(self, preview_blocks_request: PreviewBlocksRequest, **kwargs) -> ResourceListOfProposedBlockAndOrders:
+        """PreviewBlocks: Preview the blocks a set of orders would form  # noqa: E501
+
+        Groups a set of orders into blocks according to the requested grouping mode, with each block's side and  net size derived from its orders. Nothing is created: the result is a set of block and order requests, in  the shape accepted by CreateOrders, which may be posted there as they are.  # noqa: E501
+        :param preview_blocks_request: The orders to group and how to group them. (required)
+        :type preview_blocks_request: PreviewBlocksRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResourceListOfProposedBlockAndOrders
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the preview_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.preview_blocks_with_http_info(preview_blocks_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def preview_blocks_with_http_info(self, preview_blocks_request: PreviewBlocksRequest, **kwargs) -> ApiResponse[ResourceListOfProposedBlockAndOrders]:
+        """PreviewBlocks: Preview the blocks a set of orders would form  # noqa: E501
+
+        Groups a set of orders into blocks according to the requested grouping mode, with each block's side and  net size derived from its orders. Nothing is created: the result is a set of block and order requests, in  the shape accepted by CreateOrders, which may be posted there as they are.  # noqa: E501
+        :param preview_blocks_request: The orders to group and how to group them. (required)
+        :type preview_blocks_request: PreviewBlocksRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResourceListOfProposedBlockAndOrders, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'preview_blocks_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method preview_blocks" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['preview_blocks_request'] is not None:
+            _body_params = _params['preview_blocks_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResourceListOfProposedBlockAndOrders",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/ordermanagement/$previewblocks', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def run_allocation_service(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> AllocationServiceRunResponse:
         """RunAllocationService: Runs the Allocation Service  # noqa: E501
 
         Allocates Executions for a given list of placements back to their originating orders using one of the LUSID algorithms, creating Allocations to record the results.  # noqa: E501
@@ -1123,6 +1252,8 @@ class OrderManagementApi:
         :type resource_id: List[ResourceId]
         :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-FIFO\".  This defaults to \"PR-FIFO\".
         :type allocation_algorithm: str
+        :param cancel_and_correct: Whether to re-allocate allocations that already have booked transactions or to skip them.  The transactions booked against the re-allocated allocations are cancelled, and a subsequent call to  BookTransactions books corrected ones.  Defaults to false, which leaves allocations with booked transactions untouched.
+        :type cancel_and_correct: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1133,11 +1264,11 @@ class OrderManagementApi:
             message = "Error! Please call the run_allocation_service_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.run_allocation_service_with_http_info(resource_id, allocation_algorithm, **kwargs)
+        response = self.run_allocation_service_with_http_info(resource_id, allocation_algorithm, cancel_and_correct, **kwargs)
         return response.data
 
     @validate_call
-    def run_allocation_service_with_http_info(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
+    def run_allocation_service_with_http_info(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
         """RunAllocationService: Runs the Allocation Service  # noqa: E501
 
         Allocates Executions for a given list of placements back to their originating orders using one of the LUSID algorithms, creating Allocations to record the results.  # noqa: E501
@@ -1145,6 +1276,8 @@ class OrderManagementApi:
         :type resource_id: List[ResourceId]
         :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-FIFO\".  This defaults to \"PR-FIFO\".
         :type allocation_algorithm: str
+        :param cancel_and_correct: Whether to re-allocate allocations that already have booked transactions or to skip them.  The transactions booked against the re-allocated allocations are cancelled, and a subsequent call to  BookTransactions books corrected ones.  Defaults to false, which leaves allocations with booked transactions untouched.
+        :type cancel_and_correct: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1169,7 +1302,8 @@ class OrderManagementApi:
 
         _all_params = [
             'resource_id',
-            'allocation_algorithm'
+            'allocation_algorithm',
+            'cancel_and_correct'
         ]
         _all_params.extend(
             [
@@ -1202,6 +1336,9 @@ class OrderManagementApi:
         _query_params = []
         if _params.get('allocation_algorithm') is not None:  # noqa: E501
             _query_params.append(('allocationAlgorithm', _params['allocation_algorithm']))
+
+        if _params.get('cancel_and_correct') is not None:  # noqa: E501
+            _query_params.append(('cancelAndCorrect', _params['cancel_and_correct']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1250,7 +1387,7 @@ class OrderManagementApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def run_allocation_service_with_weights(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> AllocationServiceRunResponse:
+    def run_allocation_service_with_weights(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> AllocationServiceRunResponse:
         """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
 
         Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
@@ -1258,6 +1395,8 @@ class OrderManagementApi:
         :type weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest
         :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-LF\".  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \"PR-LF\". Valid values are \"PR-LF\", \"PR-SF\", \"LF\", \"SF\".
         :type allocation_algorithm: str
+        :param cancel_and_correct: Whether to cancel the transactions booked against this placement's allocations once the run has re-split the  full executed quantity by the weights. A subsequent call to BookTransactions then books corrected ones.  Defaults to true. Set to false to leave the booked transactions in place.
+        :type cancel_and_correct: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1268,11 +1407,11 @@ class OrderManagementApi:
             message = "Error! Please call the run_allocation_service_with_weights_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.run_allocation_service_with_weights_with_http_info(weighted_allocation_service_run_request, allocation_algorithm, **kwargs)
+        response = self.run_allocation_service_with_weights_with_http_info(weighted_allocation_service_run_request, allocation_algorithm, cancel_and_correct, **kwargs)
         return response.data
 
     @validate_call
-    def run_allocation_service_with_weights_with_http_info(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
+    def run_allocation_service_with_weights_with_http_info(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
         """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
 
         Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
@@ -1280,6 +1419,8 @@ class OrderManagementApi:
         :type weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest
         :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-LF\".  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \"PR-LF\". Valid values are \"PR-LF\", \"PR-SF\", \"LF\", \"SF\".
         :type allocation_algorithm: str
+        :param cancel_and_correct: Whether to cancel the transactions booked against this placement's allocations once the run has re-split the  full executed quantity by the weights. A subsequent call to BookTransactions then books corrected ones.  Defaults to true. Set to false to leave the booked transactions in place.
+        :type cancel_and_correct: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1304,7 +1445,8 @@ class OrderManagementApi:
 
         _all_params = [
             'weighted_allocation_service_run_request',
-            'allocation_algorithm'
+            'allocation_algorithm',
+            'cancel_and_correct'
         ]
         _all_params.extend(
             [
@@ -1337,6 +1479,9 @@ class OrderManagementApi:
         _query_params = []
         if _params.get('allocation_algorithm') is not None:  # noqa: E501
             _query_params.append(('allocationAlgorithm', _params['allocation_algorithm']))
+
+        if _params.get('cancel_and_correct') is not None:  # noqa: E501
+            _query_params.append(('cancelAndCorrect', _params['cancel_and_correct']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -2823,7 +2968,135 @@ class OrderManagementApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def run_allocation_service_async(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> AllocationServiceRunResponse:
+    async def preview_blocks_async(self, preview_blocks_request: PreviewBlocksRequest, **kwargs) -> ResourceListOfProposedBlockAndOrders:
+            """PreviewBlocks: Preview the blocks a set of orders would form  # noqa: E501
+            Groups a set of orders into blocks according to the requested grouping mode, with each block's side and  net size derived from its orders. Nothing is created: the result is a set of block and order requests, in  the shape accepted by CreateOrders, which may be posted there as they are.  # noqa: E501
+            
+            :param preview_blocks_request: The orders to group and how to group them. (required)
+            :type preview_blocks_request: PreviewBlocksRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResourceListOfProposedBlockAndOrders
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the preview_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.preview_blocks_with_http_info_async(preview_blocks_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def preview_blocks_with_http_info_async(self, preview_blocks_request: PreviewBlocksRequest, **kwargs) -> ApiResponse[ResourceListOfProposedBlockAndOrders]:
+            """PreviewBlocks: Preview the blocks a set of orders would form  # noqa: E501
+
+            Groups a set of orders into blocks according to the requested grouping mode, with each block's side and  net size derived from its orders. Nothing is created: the result is a set of block and order requests, in  the shape accepted by CreateOrders, which may be posted there as they are.  # noqa: E501
+
+            :param preview_blocks_request: The orders to group and how to group them. (required)
+            :type preview_blocks_request: PreviewBlocksRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResourceListOfProposedBlockAndOrders, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'preview_blocks_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method preview_blocks" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['preview_blocks_request'] is not None:
+                _body_params = _params['preview_blocks_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResourceListOfProposedBlockAndOrders",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/ordermanagement/$previewblocks', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def run_allocation_service_async(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> AllocationServiceRunResponse:
             """RunAllocationService: Runs the Allocation Service  # noqa: E501
             Allocates Executions for a given list of placements back to their originating orders using one of the LUSID algorithms, creating Allocations to record the results.  # noqa: E501
             
@@ -2831,6 +3104,8 @@ class OrderManagementApi:
             :type resource_id: List[ResourceId]
             :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-FIFO\".  This defaults to \"PR-FIFO\".
             :type allocation_algorithm: str
+            :param cancel_and_correct: Whether to re-allocate allocations that already have booked transactions or to skip them.  The transactions booked against the re-allocated allocations are cancelled, and a subsequent call to  BookTransactions books corrected ones.  Defaults to false, which leaves allocations with booked transactions untouched.
+            :type cancel_and_correct: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2841,11 +3116,11 @@ class OrderManagementApi:
                 message = "Error! Please call the run_allocation_service_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.run_allocation_service_with_http_info_async(resource_id, allocation_algorithm, **kwargs)
+            response = await self.run_allocation_service_with_http_info_async(resource_id, allocation_algorithm, cancel_and_correct, **kwargs)
             return response.data
 
     @validate_call
-    async def run_allocation_service_with_http_info_async(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
+    async def run_allocation_service_with_http_info_async(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
             """RunAllocationService: Runs the Allocation Service  # noqa: E501
 
             Allocates Executions for a given list of placements back to their originating orders using one of the LUSID algorithms, creating Allocations to record the results.  # noqa: E501
@@ -2854,6 +3129,8 @@ class OrderManagementApi:
             :type resource_id: List[ResourceId]
             :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-FIFO\".  This defaults to \"PR-FIFO\".
             :type allocation_algorithm: str
+            :param cancel_and_correct: Whether to re-allocate allocations that already have booked transactions or to skip them.  The transactions booked against the re-allocated allocations are cancelled, and a subsequent call to  BookTransactions books corrected ones.  Defaults to false, which leaves allocations with booked transactions untouched.
+            :type cancel_and_correct: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2878,7 +3155,8 @@ class OrderManagementApi:
 
             _all_params = [
                 'resource_id',
-                'allocation_algorithm'
+                'allocation_algorithm',
+                'cancel_and_correct'
             ]
             _all_params.extend(
                 [
@@ -2911,6 +3189,9 @@ class OrderManagementApi:
             _query_params = []
             if _params.get('allocation_algorithm') is not None:  # noqa: E501
                 _query_params.append(('allocationAlgorithm', _params['allocation_algorithm']))
+
+            if _params.get('cancel_and_correct') is not None:  # noqa: E501
+                _query_params.append(('cancelAndCorrect', _params['cancel_and_correct']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -2959,7 +3240,7 @@ class OrderManagementApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def run_allocation_service_with_weights_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> AllocationServiceRunResponse:
+    async def run_allocation_service_with_weights_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> AllocationServiceRunResponse:
             """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
             Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
             
@@ -2967,6 +3248,8 @@ class OrderManagementApi:
             :type weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest
             :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-LF\".  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \"PR-LF\". Valid values are \"PR-LF\", \"PR-SF\", \"LF\", \"SF\".
             :type allocation_algorithm: str
+            :param cancel_and_correct: Whether to cancel the transactions booked against this placement's allocations once the run has re-split the  full executed quantity by the weights. A subsequent call to BookTransactions then books corrected ones.  Defaults to true. Set to false to leave the booked transactions in place.
+            :type cancel_and_correct: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2977,11 +3260,11 @@ class OrderManagementApi:
                 message = "Error! Please call the run_allocation_service_with_weights_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.run_allocation_service_with_weights_with_http_info_async(weighted_allocation_service_run_request, allocation_algorithm, **kwargs)
+            response = await self.run_allocation_service_with_weights_with_http_info_async(weighted_allocation_service_run_request, allocation_algorithm, cancel_and_correct, **kwargs)
             return response.data
 
     @validate_call
-    async def run_allocation_service_with_weights_with_http_info_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
+    async def run_allocation_service_with_weights_with_http_info_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
             """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
 
             Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
@@ -2990,6 +3273,8 @@ class OrderManagementApi:
             :type weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest
             :param allocation_algorithm: A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \"PR-LF\".  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \"PR-LF\". Valid values are \"PR-LF\", \"PR-SF\", \"LF\", \"SF\".
             :type allocation_algorithm: str
+            :param cancel_and_correct: Whether to cancel the transactions booked against this placement's allocations once the run has re-split the  full executed quantity by the weights. A subsequent call to BookTransactions then books corrected ones.  Defaults to true. Set to false to leave the booked transactions in place.
+            :type cancel_and_correct: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3014,7 +3299,8 @@ class OrderManagementApi:
 
             _all_params = [
                 'weighted_allocation_service_run_request',
-                'allocation_algorithm'
+                'allocation_algorithm',
+                'cancel_and_correct'
             ]
             _all_params.extend(
                 [
@@ -3047,6 +3333,9 @@ class OrderManagementApi:
             _query_params = []
             if _params.get('allocation_algorithm') is not None:  # noqa: E501
                 _query_params.append(('allocationAlgorithm', _params['allocation_algorithm']))
+
+            if _params.get('cancel_and_correct') is not None:  # noqa: E501
+                _query_params.append(('cancelAndCorrect', _params['cancel_and_correct']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

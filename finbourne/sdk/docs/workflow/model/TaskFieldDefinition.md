@@ -11,8 +11,9 @@ Defines a Task Definition Field
 | **value_constraints** | [ValueConstraints](ValueConstraints.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | Display name for field definition |
 | **description** | **str** | Optional | Description for field definition |
-| **category** | **str** | Optional | Category for field definition |
+| **category** | **str** | Optional | Display group for the field. Fields sharing a category are presented together in the UI |
 | **contains_url** | **bool** | Optional | Field contains url |
+| **multiline** | **bool** | Optional | Whether the field should be rendered as a multi-line text area |
 
 
 ## Usage
@@ -29,8 +30,9 @@ instance = TaskFieldDefinition(
     value_constraints=ValueConstraints(...),  # optional
     display_name="...",  # optional — Display name for field definition
     description="...",  # optional — Description for field definition
-    category="...",  # optional — Category for field definition
-    contains_url=True  # optional — Field contains url
+    category="...",  # optional — Display group for the field. Fields sharing a category are presented together in the UI
+    contains_url=True,  # optional — Field contains url
+    multiline=True  # optional — Whether the field should be rendered as a multi-line text area
 )
 ```
 

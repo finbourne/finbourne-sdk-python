@@ -39,6 +39,7 @@ from finbourne.sdk.services.lusid.api.executions_api import ExecutionsApi
 from finbourne.sdk.services.lusid.api.fee_types_api import FeeTypesApi
 from finbourne.sdk.services.lusid.api.fund_configuration_api import FundConfigurationApi
 from finbourne.sdk.services.lusid.api.fund_structures_api import FundStructuresApi
+from finbourne.sdk.services.lusid.api.fund_valuation_templates_api import FundValuationTemplatesApi
 from finbourne.sdk.services.lusid.api.funds_api import FundsApi
 from finbourne.sdk.services.lusid.api.group_reconciliations_api import GroupReconciliationsApi
 from finbourne.sdk.services.lusid.api.identifier_definitions_api import IdentifierDefinitionsApi
@@ -89,6 +90,7 @@ from finbourne.sdk.services.lusid.api.staging_rule_set_api import StagingRuleSet
 from finbourne.sdk.services.lusid.api.structured_result_data_api import StructuredResultDataApi
 from finbourne.sdk.services.lusid.api.subscriptions_api import SubscriptionsApi
 from finbourne.sdk.services.lusid.api.system_configuration_api import SystemConfigurationApi
+from finbourne.sdk.services.lusid.api.tax_classifications_api import TaxClassificationsApi
 from finbourne.sdk.services.lusid.api.tax_rule_sets_api import TaxRuleSetsApi
 from finbourne.sdk.services.lusid.api.timelines_api import TimelinesApi
 from finbourne.sdk.services.lusid.api.transaction_configuration_api import TransactionConfigurationApi
@@ -141,6 +143,7 @@ __all__ = [
     "FeeTypesApi",
     "FundConfigurationApi",
     "FundStructuresApi",
+    "FundValuationTemplatesApi",
     "FundsApi",
     "GroupReconciliationsApi",
     "IdentifierDefinitionsApi",
@@ -191,6 +194,7 @@ __all__ = [
     "StructuredResultDataApi",
     "SubscriptionsApi",
     "SystemConfigurationApi",
+    "TaxClassificationsApi",
     "TaxRuleSetsApi",
     "TimelinesApi",
     "TransactionConfigurationApi",

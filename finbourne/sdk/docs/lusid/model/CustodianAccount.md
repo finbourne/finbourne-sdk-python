@@ -14,6 +14,7 @@
 | **custodian** | [LegalEntity](LegalEntity.md) | Required | *No description available.* |
 | **account_type** | **str** | Optional | The type of the Custodian Account. This is a free-text field that accepts any value. Optional, with no default. |
 | **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for disposals from this account. This can be: Cost or AmortisedCost. If not specified or reset with Default, resolution falls through to the transaction type and then the portfolio&#39;s default. Available values: Default, Cost, AmortisedCost. |
+| **inactive_from** | **datetime** | Optional | The date from which the account is inactive. Transactions with a trade date before this date still resolve to the account; those on or after it leave the account unresolved. Absent when the account is active. |
 
 
 ## Usage
@@ -33,7 +34,8 @@ instance = CustodianAccount(
     properties=ModelProperty(...),  # optional — Set of unique Custodian Account properties and associated values to store with the Custodian Account. Each property must be from the &#39;CustodianAccount&#39; domain.
     custodian=LegalEntity(...),  # required
     account_type="...",  # optional — The type of the Custodian Account. This is a free-text field that accepts any value. Optional, with no default.
-    tax_lot_selection_cost_basis="..."  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for disposals from this account. This can be: Cost or AmortisedCost. If not specified or reset with Default, resolution falls through to the transaction type and then the portfolio&#39;s default. Available values: Default, Cost, AmortisedCost.
+    tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for disposals from this account. This can be: Cost or AmortisedCost. If not specified or reset with Default, resolution falls through to the transaction type and then the portfolio&#39;s default. Available values: Default, Cost, AmortisedCost.
+    inactive_from=datetime.now()  # optional — The date from which the account is inactive. Transactions with a trade date before this date still resolve to the account; those on or after it leave the account unresolved. Absent when the account is active.
 )
 ```
 

@@ -21,20 +21,20 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.cash_flow_detail import CashFlowDetail
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.tax_cost_record import TaxCostRecord
 
 
-class ResourceListOfCashFlowDetail(BaseModel):
+class PagedResourceListOfTaxCostRecord(BaseModel):
     """
-    ResourceListOfCashFlowDetail
+    PagedResourceListOfTaxCostRecord
     """
-    values: List[CashFlowDetail]
-    href:  Optional[StrictStr] = Field(default=None,alias="href") 
-    links: Optional[List[Link]] = None
     next_page:  Optional[StrictStr] = Field(default=None,alias="nextPage") 
     previous_page:  Optional[StrictStr] = Field(default=None,alias="previousPage") 
-    __properties: ClassVar[List[str]] = ["values", "href", "links", "nextPage", "previousPage"]
+    values: List[TaxCostRecord]
+    href:  Optional[StrictStr] = Field(default=None,alias="href") 
+    links: Optional[List[Link]] = None
+    __properties: ClassVar[List[str]] = ["nextPage", "previousPage", "values", "href", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,8 +59,8 @@ class ResourceListOfCashFlowDetail(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ResourceListOfCashFlowDetail:
-        """Create an instance of ResourceListOfCashFlowDetail from a JSON string"""
+    def from_json(cls, json_str: str) -> PagedResourceListOfTaxCostRecord:
+        """Create an instance of PagedResourceListOfTaxCostRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -84,16 +84,6 @@ class ResourceListOfCashFlowDetail(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
-        # set to None if href (nullable) is None
-        # and model_fields_set contains the field
-        if self.href is None and "href" in self.model_fields_set:
-            _dict['href'] = None
-
-        # set to None if links (nullable) is None
-        # and model_fields_set contains the field
-        if self.links is None and "links" in self.model_fields_set:
-            _dict['links'] = None
-
         # set to None if next_page (nullable) is None
         # and model_fields_set contains the field
         if self.next_page is None and "next_page" in self.model_fields_set:
@@ -104,25 +94,35 @@ class ResourceListOfCashFlowDetail(BaseModel):
         if self.previous_page is None and "previous_page" in self.model_fields_set:
             _dict['previousPage'] = None
 
+        # set to None if href (nullable) is None
+        # and model_fields_set contains the field
+        if self.href is None and "href" in self.model_fields_set:
+            _dict['href'] = None
+
+        # set to None if links (nullable) is None
+        # and model_fields_set contains the field
+        if self.links is None and "links" in self.model_fields_set:
+            _dict['links'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ResourceListOfCashFlowDetail:
-        """Create an instance of ResourceListOfCashFlowDetail from a dict"""
+    def from_dict(cls, obj: dict) -> PagedResourceListOfTaxCostRecord:
+        """Create an instance of PagedResourceListOfTaxCostRecord from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ResourceListOfCashFlowDetail.model_validate(obj)
+            return PagedResourceListOfTaxCostRecord.model_validate(obj)
 
-        _obj = ResourceListOfCashFlowDetail.model_validate({
-            "values": [CashFlowDetail.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
-            "href": obj.get("href"),
-            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None,
+        _obj = PagedResourceListOfTaxCostRecord.model_validate({
             "next_page": obj.get("nextPage"),
-            "previous_page": obj.get("previousPage")
+            "previous_page": obj.get("previousPage"),
+            "values": [TaxCostRecord.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+            "href": obj.get("href"),
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 
-ResourceListOfCashFlowDetail.model_rebuild()
+PagedResourceListOfTaxCostRecord.model_rebuild()
 

@@ -24,6 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.lusid_instrument import LusidInstrument
 from finbourne.sdk.services.lusid.models.schedule import Schedule
 from finbourne.sdk.services.lusid.models.time_zone_conventions import TimeZoneConventions
+from finbourne.sdk.services.lusid.models.trading_conventions import TradingConventions
 
 
 class FlexibleLoan(LusidInstrument):
@@ -37,9 +38,11 @@ class FlexibleLoan(LusidInstrument):
     parent_facility_details: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The details of the parent loan facility of this loan if this loan is a contract on a facility.", alias="parentFacilityDetails")
     schedules: List[Schedule] = Field(description="Repayment schedules for the loan.")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest, WholeLoanFacility.") 
+    trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
+    original_issue_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The price the loan was issued at. This is to be entered as a percentage of par, for example a value of 98.5 would represent 98.5%.", alias="originalIssuePrice")
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest, WholeLoanFacility, StripBond.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "domCcy", "parentFacility", "parentFacilityDetails", "schedules", "timeZoneConventions"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "domCcy", "parentFacility", "parentFacilityDetails", "schedules", "timeZoneConventions", "tradingConventions", "originalIssuePrice"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -51,7 +54,7 @@ class FlexibleLoan(LusidInstrument):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest', 'WholeLoanFacility']
+        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest', 'WholeLoanFacility', 'StripBond']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -105,6 +108,9 @@ class FlexibleLoan(LusidInstrument):
         # override the default output from pydantic by calling `to_dict()` of time_zone_conventions
         if self.time_zone_conventions:
             _dict['timeZoneConventions'] = self.time_zone_conventions.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of trading_conventions
+        if self.trading_conventions:
+            _dict['tradingConventions'] = self.trading_conventions.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -119,6 +125,11 @@ class FlexibleLoan(LusidInstrument):
         # and model_fields_set contains the field
         if self.parent_facility_details is None and "parent_facility_details" in self.model_fields_set:
             _dict['parentFacilityDetails'] = None
+
+        # set to None if original_issue_price (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_issue_price is None and "original_issue_price" in self.model_fields_set:
+            _dict['originalIssuePrice'] = None
 
         return _dict
 
@@ -139,7 +150,9 @@ class FlexibleLoan(LusidInstrument):
             "parent_facility": obj.get("parentFacility"),
             "parent_facility_details": obj.get("parentFacilityDetails"),
             "schedules": [Schedule.from_dict(_item) for _item in _v] if (_v := obj.get("schedules")) is not None else None,
-            "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None
+            "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None,
+            "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None,
+            "original_issue_price": obj.get("originalIssuePrice")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

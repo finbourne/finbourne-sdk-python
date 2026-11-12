@@ -25,11 +25,11 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class AggregatedReturnsEntityId(BaseModel):
     """
-    Identifies an entity whose aggregated (time-weighted) returns are calculated: its scope, code and  type. Mirrors the valuation endpoint's entity identifier. Currently, supports only the  `Portfolio` entity type.  # noqa: E501
+    Identifies an entity whose aggregated (time-weighted) returns are calculated: its scope, code and  type. Mirrors the valuation endpoint's entity identifier. Supports the `Portfolio` and  `PortfolioGroup` entity types.  # noqa: E501
     """
     scope:  StrictStr = Field(...,alias="scope") 
     code:  StrictStr = Field(...,alias="code") 
-    entity_type:  StrictStr = Field(...,alias="entityType", description="Available values: Portfolio.") 
+    entity_type:  StrictStr = Field(...,alias="entityType", description="Available values: Portfolio, PortfolioGroup.") 
     __properties: ClassVar[List[str]] = ["scope", "code", "entityType"]
 
     model_config = ConfigDict(

@@ -5,7 +5,7 @@ Contains required info to delete Tasks
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **task_ids** | **List[str]** | Optional | The Ids of the Tasks to delete |
+| **task_ids** | **List[str]** | Required | The Ids of the Tasks to delete |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Contains required info to delete Tasks
 from finbourne.sdk.services.workflow.models.DeleteTasksRequest import DeleteTasksRequest
 
 instance = DeleteTasksRequest(
-    task_ids=  # optional — The Ids of the Tasks to delete
+    task_ids=  # required — The Ids of the Tasks to delete
 )
 ```
 

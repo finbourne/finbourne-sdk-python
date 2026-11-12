@@ -29,7 +29,8 @@ ENVIRONMENT_CONFIG_KEYS = {
     "total_timeout_ms": "FBN_TOTAL_TIMEOUT_MS",
     "connect_timeout_ms": "FBN_CONNECT_TIMEOUT_MS",
     "read_timeout_ms": "FBN_READ_TIMEOUT_MS",
-    "rate_limit_retries": "FBN_RATE_LIMIT_RETRIES"
+    "rate_limit_retries": "FBN_RATE_LIMIT_RETRIES",
+    "number_of_retries": "FBN_NUMBER_OF_RETRIES"
 }
 
 SECRETS_FILE_CONFIG_KEYS = {
@@ -49,6 +50,7 @@ SECRETS_FILE_CONFIG_KEYS = {
     "connect_timeout_ms": "connectTimeoutMs",
     "read_timeout_ms": "readTimeoutMs",
     "rate_limit_retries": "rateLimitRetries",
+    "number_of_retries": "numberOfRetries",
     "profile_name":"profileName"
 }
 
@@ -128,7 +130,7 @@ class EnvironmentVariablesConfigurationLoader:
         }
         if not populated_api_config_values["api_url"]:
             raise ValueError("api_url must be set in environment variables")
-        for key in ["total_timeout_ms", "connect_timeout_ms", "read_timeout_ms", "rate_limit_retries"]:
+        for key in ["total_timeout_ms", "connect_timeout_ms", "read_timeout_ms", "rate_limit_retries", "number_of_retries"]:
             if populated_api_config_values[key]:
                 try:
                     populated_api_config_values[key] = int(str(populated_api_config_values[key]))
@@ -165,6 +167,7 @@ class ArgsConfigurationLoader:
         connect_timeout_ms:Optional[int]=None,
         read_timeout_ms:Optional[int]=None,
         rate_limit_retries:Optional[int]=None,
+        number_of_retries:Optional[int]=None,
         ):
         self.__token_url = token_url
         self.__api_url = api_url
@@ -182,6 +185,7 @@ class ArgsConfigurationLoader:
         self.__connect_timeout_ms = connect_timeout_ms
         self.__read_timeout_ms = read_timeout_ms
         self.__rate_limit_retries = rate_limit_retries
+        self.__number_of_retries = number_of_retries
 
     def load_config(self) -> Dict[str, object]:
         logger.debug("loading config from arguments passed to ArgsConfigurationLoader")
@@ -202,6 +206,7 @@ class ArgsConfigurationLoader:
             "connect_timeout_ms" : self.__connect_timeout_ms,
             "read_timeout_ms" : self.__read_timeout_ms,
             "rate_limit_retries" : self.__rate_limit_retries,
+            "number_of_retries" : self.__number_of_retries,
         }
 
 

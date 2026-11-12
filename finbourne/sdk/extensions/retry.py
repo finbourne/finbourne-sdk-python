@@ -1,11 +1,18 @@
 import time
 import random
-from typing import Optional
 
 import asyncio
 
 from finbourne.sdk.configuration import Configuration
 from finbourne.sdk.exceptions import ApiException
+
+
+def _is_retryable_status(status) -> bool:
+    """Errors worth retrying without a Retry-After header: conflicts (409), rate limiting (429) and server errors (5xx).
+    409 is retried for parity with the C# SDK, as LUSID uses it for concurrency conflicts.
+    Other client errors (4xx) will fail the same way again, so they are raised straight away.
+    """
+    return isinstance(status, int) and (status in (409, 429) or 500 <= status <= 599)
 
 
 class RetryingRestWrapper:
@@ -60,6 +67,10 @@ class RetryingRestWrapper:
                     opts,
                 )
             except ApiException as ex:
+                retry_after = ex.headers.get("Retry-After") if ex.headers else None
+
+                if retry_after is None and not _is_retryable_status(ex.status):
+                    raise
 
                 if ex.status == 429 and ((opts is not None and opts.rate_limit_retries is not None) or self.rate_limit_retries is not None):
                     # check for limit of rate limit retries
@@ -69,11 +80,10 @@ class RetryingRestWrapper:
                     rate_limit_retries_count += 1
                 else:
                     # check for limit of all other retries
-                    if retries_count >= self.retries:
+                    limit = opts.number_of_retries if (opts is not None and opts.number_of_retries is not None) else self.retries
+                    if retries_count >= limit:
                         raise
                     retries_count += 1
-
-                retry_after = ex.headers.get("Retry-After") if ex.headers else None
 
                 # try after delay
                 if retry_after is not None:
@@ -225,7 +235,12 @@ class RetryingRestWrapperAsync:
     Which retries on failure
     And waits the amount of time specified in the Retry After header.
     """
-    def __init__(self, rest_object, retries: int = 3, rate_limit_retries: Optional[int] = Configuration.DEFAULT_RATE_LIMIT_RETRIES):
+    def __init__(
+        self,
+        rest_object,
+        retries: int = Configuration.DEFAULT_RETRIES,
+        rate_limit_retries: int = Configuration.DEFAULT_RATE_LIMIT_RETRIES
+    ):
         if not isinstance(retries, int):
             raise TypeError(f"retries should be an int, found {type(retries)}")
         if retries < 0:
@@ -235,7 +250,7 @@ class RetryingRestWrapperAsync:
         if rate_limit_retries < 0:
             raise ValueError(f"rate_limit_retries should be greater than or equal to zero but was '{rate_limit_retries}'")
         self.retries: int = retries
-        self.rate_limit_retries: Optional[int] = rate_limit_retries
+        self.rate_limit_retries: int = rate_limit_retries
         self.rest_object = rest_object
 
     async def close(self):
@@ -270,6 +285,10 @@ class RetryingRestWrapperAsync:
                     opts
                 )
             except ApiException as ex:
+                retry_after = ex.headers.get("Retry-After") if ex.headers else None
+
+                if retry_after is None and not _is_retryable_status(ex.status):
+                    raise
 
                 if ex.status == 429 and ((opts is not None and opts.rate_limit_retries is not None) or self.rate_limit_retries is not None):
                     # check for limit of rate limit retries
@@ -279,11 +298,10 @@ class RetryingRestWrapperAsync:
                     rate_limit_retries_count += 1
                 else:
                     # check for limit of all other retries
-                    if retries_count >= self.retries:
+                    limit = opts.number_of_retries if (opts is not None and opts.number_of_retries is not None) else self.retries
+                    if retries_count >= limit:
                         raise
                     retries_count += 1
-
-                retry_after = ex.headers.get("Retry-After") if ex.headers else None
 
                 # try after delay
                 if retry_after is not None:

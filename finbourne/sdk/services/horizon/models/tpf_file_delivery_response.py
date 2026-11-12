@@ -27,8 +27,8 @@ class TpfFileDeliveryResponse(BaseModel):
     """
     Response model for TPF file delivery search results  # noqa: E501
     """
-    run_id:  Optional[StrictStr] = Field(default=None,alias="runId") 
-    run_start_time: Optional[datetime] = Field(default=None, alias="runStartTime")
+    run_id:  Optional[StrictStr] = Field(default=None,alias="runId", description="The run id of the latest execution attempt in this row's run chain (the root run, its automatic retries and resends); equals referenceId when the chain has a single attempt or no recorded execution.") 
+    run_start_time: Optional[datetime] = Field(default=None, description="When the row's root run started (the batch start), not the latest attempt's start.", alias="runStartTime")
     file_name:  StrictStr = Field(...,alias="fileName") 
     generated_at: datetime = Field(description="When the file was built, or when the attempt failed before a file was built.", alias="generatedAt")
     row_count: StrictInt = Field(alias="rowCount")
@@ -41,7 +41,9 @@ class TpfFileDeliveryResponse(BaseModel):
     file_uuid:  StrictStr = Field(...,alias="fileUuid") 
     can_resend: StrictBool = Field(description="Whether the data the file is rebuilt from is still retained, so a resend can be requested.", alias="canResend")
     delivered_at: Optional[datetime] = Field(default=None, description="When the file reached the destination; null for a Failed or Pending row.", alias="deliveredAt")
-    __properties: ClassVar[List[str]] = ["runId", "runStartTime", "fileName", "generatedAt", "rowCount", "fileHash", "destinationType", "destinationPath", "destinationStatus", "destinationError", "destinationName", "fileUuid", "canResend", "deliveredAt"]
+    attempt: Optional[StrictInt] = Field(default=None, description="The highest attempt number (1-based) made for this delivery's run, including automatic retries and resends.")
+    reference_id:  Optional[StrictStr] = Field(default=None,alias="referenceId", description="The root run id of this row's run chain, the same value run history reports as referenceId.") 
+    __properties: ClassVar[List[str]] = ["runId", "runStartTime", "fileName", "generatedAt", "rowCount", "fileHash", "destinationType", "destinationPath", "destinationStatus", "destinationError", "destinationName", "fileUuid", "canResend", "deliveredAt", "attempt", "referenceId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,6 +114,16 @@ class TpfFileDeliveryResponse(BaseModel):
         if self.delivered_at is None and "delivered_at" in self.model_fields_set:
             _dict['deliveredAt'] = None
 
+        # set to None if attempt (nullable) is None
+        # and model_fields_set contains the field
+        if self.attempt is None and "attempt" in self.model_fields_set:
+            _dict['attempt'] = None
+
+        # set to None if reference_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reference_id is None and "reference_id" in self.model_fields_set:
+            _dict['referenceId'] = None
+
         return _dict
 
     @classmethod
@@ -137,7 +149,9 @@ class TpfFileDeliveryResponse(BaseModel):
             "destination_name": obj.get("destinationName"),
             "file_uuid": obj.get("fileUuid"),
             "can_resend": obj.get("canResend"),
-            "delivered_at": obj.get("deliveredAt")
+            "delivered_at": obj.get("deliveredAt"),
+            "attempt": obj.get("attempt"),
+            "reference_id": obj.get("referenceId")
         })
         return _obj
 

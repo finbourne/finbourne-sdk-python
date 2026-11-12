@@ -8,7 +8,7 @@
 | **orders** | [List[BlockedOrderRequest]](BlockedOrderRequest.md) | Required | An order which belongs to a block. Fields common to both entities (such as instrument) should be derived from the block. |
 | **block_properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this block. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
-| **side** | **str** | Optional | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc). BlockedOrders in the request which do not specify a side will have their side populated with this value. |
+| **side** | **str** | Optional | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc). Optional: the stored side is derived from the block&#39;s orders, netted by direction, and a supplied value is replaced by the derived one. BlockedOrders in the request which do not specify a side will have their side populated with this value. |
 | **type** | **str** | Optional | The block order&#39;s type (examples: Limit, Market, ...) |
 | **time_in_force** | **str** | Optional | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
 | **var_date** | **datetime** | Optional | The date on which the block was made |
@@ -28,7 +28,7 @@ instance = BlockAndOrdersRequest(
     orders=[],  # required — An order which belongs to a block. Fields common to both entities (such as instrument) should be derived from the block.
     block_properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this block.
     instrument_identifiers=,  # required — The instrument ordered.
-    side="...",  # optional — The client&#39;s representation of the block&#39;s side (buy, sell, short, etc). BlockedOrders in the request which do not specify a side will have their side populated with this value.
+    side="...",  # optional — The client&#39;s representation of the block&#39;s side (buy, sell, short, etc). Optional: the stored side is derived from the block&#39;s orders, netted by direction, and a supplied value is replaced by the derived one. BlockedOrders in the request which do not specify a side will have their side populated with this value.
     type="...",  # optional — The block order&#39;s type (examples: Limit, Market, ...)
     time_in_force="...",  # optional — The block orders&#39; time in force (examples: Day, GoodTilCancel, ...)
     var_date=datetime.now(),  # optional — The date on which the block was made

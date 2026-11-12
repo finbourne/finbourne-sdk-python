@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.dealing_estimates import DealingEstimates
 from finbourne.sdk.services.lusid.models.instrument_resolution_detail import InstrumentResolutionDetail
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.nav_type_definition import NavTypeDefinition
@@ -53,13 +54,15 @@ class FundDefinitionRequest(BaseModel):
     primary_nav_type: NavTypeDefinition = Field(alias="primaryNavType")
     additional_nav_types: Optional[List[NavTypeDefinition]] = Field(default=None, description="The definitions for any additional NAVs on the Fund.", alias="additionalNavTypes")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Fund.")
-    create_instrument: Optional[StrictBool] = Field(default=None, description="Whether to create instruments for the Fund's share classes, series, or partner classes upon creation. Defaults to false.", alias="createInstrument")
-    instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which the instruments are created when CreateInstrument is true. Defaults to the default instrument scope. Legacy share class instruments are resolved in ShareClassInstrumentScopes instead.") 
+    create_instrument: Optional[StrictBool] = Field(default=None, description="Whether to master an instrument upon fund creation. For unitised funds (Classes, Series, or Partners), an instrument is mastered per share class. For non-unitised funds, a single instrument is mastered for the fund itself, with a ClientInternal identifier of {FundScope}:{Code}. Defaults to false.", alias="createInstrument")
+    instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which instruments are mastered when CreateInstrument is true. For non-unitised funds the fund scope also forms part of the fund instrument's ClientInternal identifier: {FundScope}:{Code}. Defaults to the default instrument scope. Legacy share class instruments are resolved via ShareClassInstrumentScopes instead.") 
     share_classes: Optional[List[ShareClassDefinition]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
     pricing_methodology: Optional[PricingMethodology] = Field(default=None, alias="pricingMethodology")
     reporting_prices: Optional[List[ReportingPrice]] = Field(default=None, description="Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.", alias="reportingPrices")
+    dealing_estimates: Optional[DealingEstimates] = Field(default=None, alias="dealingEstimates")
     wht_parameters: Optional[WhtParameters] = Field(default=None, alias="whtParameters")
-    __properties: ClassVar[List[str]] = ["code", "shortCode", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "instrumentScope", "shareClasses", "pricingMethodology", "reportingPrices", "whtParameters"]
+    valuation_template_id: Optional[ResourceId] = Field(default=None, alias="valuationTemplateId")
+    __properties: ClassVar[List[str]] = ["code", "shortCode", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "taxTransparency", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "instrumentScope", "shareClasses", "pricingMethodology", "reportingPrices", "dealingEstimates", "whtParameters", "valuationTemplateId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -146,9 +149,15 @@ class FundDefinitionRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['reportingPrices'] = _items
+        # override the default output from pydantic by calling `to_dict()` of dealing_estimates
+        if self.dealing_estimates:
+            _dict['dealingEstimates'] = self.dealing_estimates.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of wht_parameters
         if self.wht_parameters:
             _dict['whtParameters'] = self.wht_parameters.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of valuation_template_id
+        if self.valuation_template_id:
+            _dict['valuationTemplateId'] = self.valuation_template_id.to_dict(by_alias=by_alias)
         # set to None if short_code (nullable) is None
         # and model_fields_set contains the field
         if self.short_code is None and "short_code" in self.model_fields_set:
@@ -253,7 +262,9 @@ class FundDefinitionRequest(BaseModel):
             "share_classes": [ShareClassDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("shareClasses")) is not None else None,
             "pricing_methodology": PricingMethodology.from_dict(_v) if (_v := obj.get("pricingMethodology")) is not None else None,
             "reporting_prices": [ReportingPrice.from_dict(_item) for _item in _v] if (_v := obj.get("reportingPrices")) is not None else None,
-            "wht_parameters": WhtParameters.from_dict(_v) if (_v := obj.get("whtParameters")) is not None else None
+            "dealing_estimates": DealingEstimates.from_dict(_v) if (_v := obj.get("dealingEstimates")) is not None else None,
+            "wht_parameters": WhtParameters.from_dict(_v) if (_v := obj.get("whtParameters")) is not None else None,
+            "valuation_template_id": ResourceId.from_dict(_v) if (_v := obj.get("valuationTemplateId")) is not None else None
         })
         return _obj
 

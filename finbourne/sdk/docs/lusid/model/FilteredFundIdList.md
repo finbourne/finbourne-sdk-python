@@ -9,7 +9,7 @@
 | **nav_type_codes_hint** | **List[str]** | Optional |  |
 | **nav_type_selection** | **str** | Optional | Available values: First, All. |
 | **resolved_fund_nav_type_codes** | [List[FundNavTypeCodes]](FundNavTypeCodes.md) | Optional |  *(read-only)* |
-| **reference_list_type** | **str** | Required | The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList. |
+| **reference_list_type** | **str** | Required | The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList, FilteredPortfolioIdList. |
 
 
 ## Usage
@@ -25,7 +25,7 @@ instance = FilteredFundIdList(
     nav_type_codes_hint=,  # optional — 
     nav_type_selection="...",  # optional — Available values: First, All.
     resolved_fund_nav_type_codes=[],  # optional — 
-    reference_list_type="..."  # required — The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList.
+    reference_list_type="..."  # required — The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList, FilteredPortfolioIdList.
 )
 ```
 

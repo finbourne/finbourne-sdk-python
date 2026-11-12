@@ -35,6 +35,7 @@ class VendorLibrary(str, Enum):  # type: ignore[misc]
     ISDACDS = 'IsdaCds'
     YIELDBOOK = 'YieldBook'
     LUSIDCALC = 'LusidCalc'
+    CLIENT = 'Client'
 
     @classmethod
     def from_json(cls, json_str: str) -> VendorLibrary:

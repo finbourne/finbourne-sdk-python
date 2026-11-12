@@ -5,10 +5,10 @@ A definition that reconciles one type of LUSID entity. A filter selects the popu
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **entity_type** | **str** | Required | The type of LUSID entity to reconcile, which is also the rec type of the results. Supported types: Instrument. Must equal the reconciliationType of the matching ruleset. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. |
+| **entity_type** | **str** | Required | The type of LUSID entity to reconcile, which is also the rec type of the results. Supported types: Instrument, LegalEntity, Portfolio. Must equal the reconciliationType of the matching ruleset. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
 | **matching_ruleset_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **left_filter** | **str** | Optional | Optional filter that selects the population of the left side, e.g. \&quot;scope eq &#39;default&#39;\&quot;. It resolves against the left side entity fields. Null reads the whole population of the side. |
-| **right_filter** | **str** | Optional | Optional filter that selects the population of the right side. It resolves against the right side entity fields. Null reads the whole population of the side. |
+| **left_filter** | **str** | Optional | Optional filter that selects the population of the left side. It uses the filter syntax of the list endpoint of the entity type. Null reads the whole population of the side. |
+| **right_filter** | **str** | Optional | Optional filter that selects the population of the right side. It uses the filter syntax of the list endpoint of the entity type. Null reads the whole population of the side. |
 | **definition_type** | **str** | Required | What this definition reconciles, and so which shape of details it carries. Available values: PortfolioContents, LusidEntity, External. |
 
 
@@ -20,10 +20,10 @@ A definition that reconciles one type of LUSID entity. A filter selects the popu
 from finbourne.sdk.services.lusid.models.LusidEntityRecDefinitionDetails import LusidEntityRecDefinitionDetails
 
 instance = LusidEntityRecDefinitionDetails(
-    entity_type="...",  # required — The type of LUSID entity to reconcile, which is also the rec type of the results. Supported types: Instrument. Must equal the reconciliationType of the matching ruleset. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.
+    entity_type="...",  # required — The type of LUSID entity to reconcile, which is also the rec type of the results. Supported types: Instrument, LegalEntity, Portfolio. Must equal the reconciliationType of the matching ruleset. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
     matching_ruleset_id=ResourceId(...),  # required
-    left_filter="...",  # optional — Optional filter that selects the population of the left side, e.g. \&quot;scope eq &#39;default&#39;\&quot;. It resolves against the left side entity fields. Null reads the whole population of the side.
-    right_filter="...",  # optional — Optional filter that selects the population of the right side. It resolves against the right side entity fields. Null reads the whole population of the side.
+    left_filter="...",  # optional — Optional filter that selects the population of the left side. It uses the filter syntax of the list endpoint of the entity type. Null reads the whole population of the side.
+    right_filter="...",  # optional — Optional filter that selects the population of the right side. It uses the filter syntax of the list endpoint of the entity type. Null reads the whole population of the side.
     definition_type="..."  # required — What this definition reconciles, and so which shape of details it carries. Available values: PortfolioContents, LusidEntity, External.
 )
 ```

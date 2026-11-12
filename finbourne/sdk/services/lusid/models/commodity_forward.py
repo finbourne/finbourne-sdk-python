@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.lusid_instrument import LusidInstrument
+from finbourne.sdk.services.lusid.models.trading_conventions import TradingConventions
 
 
 class CommodityForward(LusidInstrument):
@@ -34,9 +35,10 @@ class CommodityForward(LusidInstrument):
     strike: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Agreed forward price at trade inception. Reference only — not used in the market value calculation,  which consumes the pre-netted price from the quote store.")
     delivery_type:  StrictStr = Field(...,alias="deliveryType", description="Whether the forward settles in cash or through physical delivery of the underlying.                Supported string (enumeration) values are: [Cash, Physical]. Available values: Cash, Physical.") 
     underlying: Optional[LusidInstrument] = None
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest, WholeLoanFacility.") 
+    trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap, BondForward, PreferredShare, CapitalInterest, WholeLoanFacility, StripBond.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "domCcy", "strike", "deliveryType", "underlying"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "domCcy", "strike", "deliveryType", "underlying", "tradingConventions"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -48,7 +50,7 @@ class CommodityForward(LusidInstrument):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest', 'WholeLoanFacility']
+        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap', 'BondForward', 'PreferredShare', 'CapitalInterest', 'WholeLoanFacility', 'StripBond']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -93,6 +95,9 @@ class CommodityForward(LusidInstrument):
         # override the default output from pydantic by calling `to_dict()` of underlying
         if self.underlying:
             _dict['underlying'] = self.underlying.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of trading_conventions
+        if self.trading_conventions:
+            _dict['tradingConventions'] = self.trading_conventions.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -121,7 +126,8 @@ class CommodityForward(LusidInstrument):
             "dom_ccy": obj.get("domCcy"),
             "strike": obj.get("strike"),
             "delivery_type": obj.get("deliveryType"),
-            "underlying": LusidInstrument.from_dict(_v) if (_v := obj.get("underlying")) is not None else None
+            "underlying": LusidInstrument.from_dict(_v) if (_v := obj.get("underlying")) is not None else None,
+            "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

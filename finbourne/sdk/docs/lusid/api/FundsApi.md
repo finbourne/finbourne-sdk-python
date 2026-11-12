@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**delete_fund**](FundsApi.md#delete_fund) | **DELETE** /api/api/funds/{scope}/{code} | [EARLY ACCESS] DeleteFund: Delete a Fund.
 [**delete_nav_activity_adjustments**](FundsApi.md#delete_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment/$delete | [EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
 [**delete_series**](FundsApi.md#delete_series) | **DELETE** /api/api/funds/{scope}/{code}/shareclasses/{shareClassCode}/series/{seriesIdentifier} | [EARLY ACCESS] DeleteSeries: [EARLY ACCESS] DeleteSeries: Remove a Series from a Share Class of a Fund.
+[**delete_tax_cost_record**](FundsApi.md#delete_tax_cost_record) | **DELETE** /api/api/funds/{scope}/{code}/taxcostrecords/{taxCostRecordCode} | [EXPERIMENTAL] DeleteTaxCostRecord: [EXPERIMENTAL] DeleteTaxCostRecord: Delete a Tax Cost Record.
 [**delete_valuation_point**](FundsApi.md#delete_valuation_point) | **DELETE** /api/api/funds/{scope}/{code}/valuationpoints/{diaryEntryCode} | [EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.
 [**diff_partner_statement**](FundsApi.md#diff_partner_statement) | **GET** /api/api/funds/{scope}/{code}/partners/{investorRecordId}/statements/{statementId}/$diff | [EARLY ACCESS] DiffPartnerStatement: [EXPERIMENTAL] DiffPartnerStatement: Compare two of a partner&#39;s statements.
 [**finalise_candidate_valuation_point**](FundsApi.md#finalise_candidate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$finalisecandidate | [EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.
@@ -32,6 +33,7 @@ Method | HTTP request | Description
 [**get_fund**](FundsApi.md#get_fund) | **GET** /api/api/funds/{scope}/{code} | [EARLY ACCESS] GetFund: Get a Fund.
 [**get_fund_performance**](FundsApi.md#get_fund_performance) | **GET** /api/api/funds/{scope}/{code}/performance | [EARLY ACCESS] GetFundPerformance: [EARLY ACCESS] GetFundPerformance: Get a fund&#39;s performance measures over all its partners.
 [**get_fund_properties**](FundsApi.md#get_fund_properties) | **GET** /api/api/funds/{scope}/{code}/properties | [EARLY ACCESS] GetFundProperties: Get Fund properties.
+[**get_fund_tax_scope**](FundsApi.md#get_fund_tax_scope) | **GET** /api/api/funds/{scope}/{code}/tax/scope | [EARLY ACCESS] GetFundTaxScope: [EARLY ACCESS] GetFundTaxScope: Get the UK chargeable-gains tax scope of a fund.
 [**get_holding_contributors_for_fund**](FundsApi.md#get_holding_contributors_for_fund) | **POST** /api/api/funds/{scope}/{code}/holdings/{holdingId}/contributors | [EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.
 [**get_holdings_for_fund**](FundsApi.md#get_holdings_for_fund) | **POST** /api/api/funds/{scope}/{code}/$holdings | [EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.
 [**get_partner_capital_account**](FundsApi.md#get_partner_capital_account) | **GET** /api/api/funds/{scope}/{code}/partners/{irScope}/{irCode}/capitalaccount | [EARLY ACCESS] GetPartnerCapitalAccount: [EARLY ACCESS] GetPartnerCapitalAccount: Get a partner&#39;s capital account statement.
@@ -40,6 +42,7 @@ Method | HTTP request | Description
 [**get_partners**](FundsApi.md#get_partners) | **GET** /api/api/funds/{scope}/{code}/partners | [EARLY ACCESS] GetPartners: [EARLY ACCESS] GetPartners: Get the partners of a partnership fund.
 [**get_partnership_config_pack**](FundsApi.md#get_partnership_config_pack) | **GET** /api/api/funds/{scope}/{code}/partnershipaccounting/configpack | [EARLY ACCESS] GetPartnershipConfigPack: [EXPERIMENTAL] GetPartnershipConfigPack: Get the partnership configuration pack of a Fund.
 [**get_series**](FundsApi.md#get_series) | **GET** /api/api/funds/{scope}/{code}/series | [EARLY ACCESS] GetSeries: [EARLY ACCESS] GetSeries: List the Series of a Fund.
+[**get_tax_sync_status**](FundsApi.md#get_tax_sync_status) | **GET** /api/api/funds/{scope}/{code}/tax/sync | [EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.
 [**get_valuation_for_fund**](FundsApi.md#get_valuation_for_fund) | **POST** /api/api/funds/{scope}/{code}/$valuation | [EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.
 [**get_valuation_point_data**](FundsApi.md#get_valuation_point_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$query | [EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.
 [**get_valuation_point_journal_entry_lines**](FundsApi.md#get_valuation_point_journal_entry_lines) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/journalentrylines/$query | [EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.
@@ -56,6 +59,9 @@ Method | HTTP request | Description
 [**list_nav_activity_adjustments**](FundsApi.md#list_nav_activity_adjustments) | **GET** /api/api/funds/{scope}/{code}/navAdjustment | [EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
 [**list_partner_capital_accounts**](FundsApi.md#list_partner_capital_accounts) | **GET** /api/api/funds/{scope}/{code}/capitalaccounts | [EARLY ACCESS] ListPartnerCapitalAccounts: [EARLY ACCESS] ListPartnerCapitalAccounts: List the capital account statements of a fund&#39;s partners.
 [**list_partner_statements**](FundsApi.md#list_partner_statements) | **GET** /api/api/funds/{scope}/{code}/partners/{investorRecordId}/statements | [EARLY ACCESS] ListPartnerStatements: [EXPERIMENTAL] ListPartnerStatements: List the statements produced for a partner.
+[**list_tax_cost_records**](FundsApi.md#list_tax_cost_records) | **GET** /api/api/funds/{scope}/{code}/taxcostrecords | [EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.
+[**list_tax_exceptions**](FundsApi.md#list_tax_exceptions) | **GET** /api/api/funds/{scope}/{code}/tax/exceptions | [EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.
+[**list_tax_exceptions_across_funds**](FundsApi.md#list_tax_exceptions_across_funds) | **GET** /api/api/tax/exceptions | [EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.
 [**list_valuation_point_complex_market_data**](FundsApi.md#list_valuation_point_complex_market_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/complexmarketdata/$query | [EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
 [**list_valuation_point_instruments**](FundsApi.md#list_valuation_point_instruments) | **GET** /api/api/funds/{scope}/{code}/valuationpoints/instruments/$query | [EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point
 [**list_valuation_point_overview**](FundsApi.md#list_valuation_point_overview) | **GET** /api/api/funds/{scope}/{code}/valuationPointOverview | [EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
@@ -70,9 +76,11 @@ Method | HTTP request | Description
 [**update_valuation_point**](FundsApi.md#update_valuation_point) | **PUT** /api/api/funds/{scope}/{code}/valuationpoints | [EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.
 [**upsert_bookmark**](FundsApi.md#upsert_bookmark) | **POST** /api/api/funds/{scope}/{code}/bookmarks | [EARLY ACCESS] UpsertBookmark: Upsert a bookmark.
 [**upsert_diary_entry_type_valuation_point**](FundsApi.md#upsert_diary_entry_type_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints | [EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
+[**upsert_external_dealing_estimates**](FundsApi.md#upsert_external_dealing_estimates) | **POST** /api/api/funds/{scope}/{code}/dealingestimates/$external | [EARLY ACCESS] UpsertExternalDealingEstimates: Load dealing estimates sent by an external transfer agent
 [**upsert_fee_properties**](FundsApi.md#upsert_fee_properties) | **POST** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties/$upsert | [EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.
 [**upsert_fund_properties**](FundsApi.md#upsert_fund_properties) | **POST** /api/api/funds/{scope}/{code}/properties/$upsert | [EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.
 [**upsert_nav_activity_adjustments**](FundsApi.md#upsert_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment | [EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point
+[**upsert_tax_cost_records**](FundsApi.md#upsert_tax_cost_records) | **POST** /api/api/funds/{scope}/{code}/taxcostrecords | [EXPERIMENTAL] UpsertTaxCostRecords: [EXPERIMENTAL] UpsertTaxCostRecords: Upsert Tax Cost Records for a specified Fund.
 
 
 ### Example
@@ -812,7 +820,7 @@ api_instance = api_client_factory.build(FundsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 valuation_point_code = 'valuation_point_code_example' # str
-nav_activity_adjustment_response = [{"navActivityAdjustmentSource":"Undefined","asAt":"2024-01-01T00:00:00.0000000+00:00","portfolioScope":"portfolioScope1","portfolioCode":"portfolioCode1","transactionId":"transactionId1","navActivityAdjustmentType":"PortfolioTransactionAdjustment"}] # List[NavActivityAdjustmentResponse]
+nav_activity_adjustment_response = [{"navActivityAdjustmentSource":"Undefined","asAt":"2024-01-01T00:00:00.0000000+00:00","portfolioScope":"portfolioScope1","portfolioCode":"portfolioCode1","transactionId":"transactionId1","navActivityAdjustmentType":"PortfolioTransactionAdjustment"},{"navActivityAdjustmentSource":"Undefined","asAt":"2024-01-01T00:00:00.0000000+00:00","corporateActionSourceScope":"corporateActionSourceScope1","corporateActionSourceCode":"corporateActionSourceCode1","instrumentEventId":"instrumentEventId1","navActivityAdjustmentType":"InstrumentEventActivityAdjustment"}] # List[NavActivityAdjustmentResponse]
 nav_type_code = 'nav_type_code_example' # str (optional)
 valuation_point_code_variant = 'valuation_point_code_variant_example' # str (optional)
 api_response = api_instance.delete_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment_response, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
@@ -891,6 +899,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The datetime that the Series was removed. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_tax_cost_record**
+> DeletedEntityResponse deleteTaxCostRecord = delete_tax_cost_record(scope, code, tax_cost_record_code)
+
+[EXPERIMENTAL] DeleteTaxCostRecord: [EXPERIMENTAL] DeleteTaxCostRecord: Delete a Tax Cost Record.
+
+Delete the given Tax Cost Record.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+tax_cost_record_code = 'tax_cost_record_code_example' # str
+api_response = api_instance.delete_tax_cost_record(scope, code, tax_cost_record_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **tax_cost_record_code** | **str**| The code of the Tax Cost Record to be deleted. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The datetime that the Tax Cost Record was deleted |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -1452,6 +1506,54 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_fund_tax_scope**
+> FundTaxScope getFundTaxScope = get_fund_tax_scope(scope, code, effective_at=effective_at, as_at=as_at)
+
+[EARLY ACCESS] GetFundTaxScope: [EARLY ACCESS] GetFundTaxScope: Get the UK chargeable-gains tax scope of a fund.
+
+Returns the fund's portfolios within the UK chargeable-gains regime and the exclusions the regime's figures  apply. A fund portfolio is in scope when its own details elect the regime. A NAV type that elects the regime  puts its derived portfolio for each fund portfolio in scope, since that is where the fund accounts for the  holdings under the election.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_fund_tax_scope(scope, code, effective_at=effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to read the tax scope. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the tax scope. Defaults to returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**FundTaxScope**](../model/FundTaxScope.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tax scope of the requested Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **get_holding_contributors_for_fund**
 > VersionedResourceListOfHoldingContributor getHoldingContributorsForFund = get_holding_contributors_for_fund(scope, code, holding_id, valuation_point_data_query_parameters, nav_type_code=nav_type_code, include_historic=include_historic, tax_lot_id=tax_lot_id, include_unsettled_movements=include_unsettled_movements, limit=limit, as_at=as_at, page=page)
 
@@ -1726,6 +1828,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The partner&#39;s unfunded commitment statement over the period. |  -  |
 **400** | The details of the input related failure |  -  |
+**404** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -1875,6 +1978,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The Series of the requested Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_sync_status**
+> TaxSyncStatus getTaxSyncStatus = get_tax_sync_status(scope, code, as_at=as_at)
+
+[EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.
+
+For each portfolio in the Fund, compares the asAt the tax engine last processed the Fund (its latest valuation  point) with the asAt of the latest transaction booked to the portfolio, and says whether the tax position has  caught up.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_tax_sync_status(scope, code, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**TaxSyncStatus**](../model/TaxSyncStatus.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tax sync position of each portfolio in the requested Fund. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -2200,7 +2349,7 @@ Name | Type | Description  | Notes
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
  **show_cancelled_transactions** | **bool**| Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified. | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
- **return_excluded_transactions** | **bool**| Option to specify whether or not to include transactions excluded by the              NavType&#39;s TransactionExclusionFilter. Defaults to False if not specified. | [optional] 
+ **return_excluded_transactions** | **bool**| Option to specify whether or not to include transactions excluded by the              NavType&#39;s TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of              a transaction that has since been amended to be excluded is returned regardless of this option.              Defaults to False if not specified. | [optional] 
 
 ### Return type
 
@@ -2782,6 +2931,156 @@ Name | Type | Description  | Notes
 
 ---
 
+# **list_tax_cost_records**
+> PagedResourceListOfTaxCostRecord listTaxCostRecords = list_tax_cost_records(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
+
+[EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.
+
+List all the Tax Cost Records matching a particular criteria.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+api_response = api_instance.list_tax_cost_records(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list the Tax Cost Records. Defaults to the current LUSID              system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the Tax Cost Records. Defaults to returning the latest version of each record if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing Tax Cost Records; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the results.              For example, to filter on the portfolio code, specify \&quot;portfolioCode eq &#39;MyPortfolio&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+
+### Return type
+
+[**PagedResourceListOfTaxCostRecord**](../model/PagedResourceListOfTaxCostRecord.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested Tax Cost Records. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_tax_exceptions**
+> ResourceListOfTaxExceptionItem listTaxExceptions = list_tax_exceptions(scope, code, effective_at=effective_at, as_at=as_at)
+
+[EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.
+
+Lists the conditions blocking, or casting doubt on, the Fund's tax computation at the given effective and asAt  datetimes, ordered by tax at stake descending with unknown amounts last. A Fund outside the UK chargeable gains  regime has no exceptions.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.list_tax_exceptions(scope, code, effective_at=effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to read the Fund. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**ResourceListOfTaxExceptionItem**](../model/ResourceListOfTaxExceptionItem.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The open tax exceptions of the requested Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_tax_exceptions_across_funds**
+> ResourceListOfFundTaxExceptionItem listTaxExceptionsAcrossFunds = list_tax_exceptions_across_funds(effective_at=effective_at, as_at=as_at, root_cause=root_cause)
+
+[EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.
+
+Lists the conditions blocking, or casting doubt on, the tax computation of every Fund the caller can see, each  row carrying the Fund and, where known, the owning entity. Rows are ordered by tax at stake descending with  unknown amounts last. Funds outside the UK chargeable gains regime contribute no rows.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+root_cause = 'root_cause_example' # str (optional)
+api_response = api_instance.list_tax_exceptions_across_funds(effective_at=effective_at, as_at=as_at, root_cause=root_cause)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **effective_at** | **str**| The effective datetime or cut label at which to read the Funds. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the Funds. Defaults to returning the latest version if not specified. | [optional] 
+ **root_cause** | **str**| Optionally, the root cause code to restrict the exceptions to, for example \&quot;PoolOutOfSync\&quot;. Defaults to all root causes. | [optional] 
+
+### Return type
+
+[**ResourceListOfFundTaxExceptionItem**](../model/ResourceListOfFundTaxExceptionItem.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The open tax exceptions across the Funds the caller can see. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **list_valuation_point_complex_market_data**
 > ValuationPointResourceListOfAccountedComplexMarketData listValuationPointComplexMarketData = list_valuation_point_complex_market_data(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, nav_type_code=nav_type_code)
 
@@ -3009,7 +3308,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] PatchFund: Patch a Fund.
 
-Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate, PricingMethodology, ReportingPrices, WhtParameters, ShareClasses.
+Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: ShortCode, DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, TaxTransparency, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, ShareClasses, PricingMethodology, ReportingPrices, DealingEstimates, WhtParameters, ValuationTemplateId.
 
 ### Example
 
@@ -3017,7 +3316,7 @@ Update fields on a Fund.  The behaviour is defined by the JSON Patch specificati
 api_instance = api_client_factory.build(FundsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-operation = [{"value":"UpdatedFundName","path":"/displayName","op":"add"},{"path":"/description","op":"remove"},{"value":{"scope":"myFundConfigScope","code":"myFundConfigCode"},"path":"/fundConfigurationId","op":"add"},{"value":{"scope":"myAborScope","code":"myAborCode"},"path":"/aborId","op":"add"},{"value":["shareClassScope"],"path":"/shareClassInstrumentScopes","op":"add"},{"value":{"instrumentIdentifiers":{"Instrument/default/ClientInternal":"shareClass526"},"launchPrice":2.5,"launchDate":"2024-02-01T00:00:00.0000000+00:00"},"path":"/shareClassInstruments/-","op":"add"},{"value":"Standalone","path":"/type","op":"add"},{"value":"2024-01-01","path":"/inceptionDate","op":"add"},{"value":2,"path":"/decimalPlaces","op":"add"},{"value":{"day":24,"month":12},"path":"/yearEndDate","op":"add"}] # List[Operation]
+operation = [{"value":"UpdatedFundName","path":"/displayName","op":"add"},{"path":"/description","op":"remove"},{"value":{"scope":"myFundConfigScope","code":"myFundConfigCode"},"path":"/fundConfigurationId","op":"add"},{"value":{"instrumentIdentifiers":{"Instrument/default/ClientInternal":"shareClass526"},"launchPrice":2.5,"launchDate":"2024-02-01T00:00:00.0000000+00:00"},"path":"/shareClassInstruments/-","op":"add"},{"value":"Standalone","path":"/type","op":"add"},{"value":"2024-01-01","path":"/inceptionDate","op":"add"},{"value":2,"path":"/decimalPlaces","op":"add"}] # List[Operation]
 effective_at = 'effective_at_example' # str (optional)
 api_response = api_instance.patch_fund(scope, code, operation, effective_at=effective_at)
 pprint(api_response)
@@ -3030,7 +3329,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Fund. | [required] 
  **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
  **operation** | [**List[Operation]**](../model/Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
- **effective_at** | **str**| The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only DisplayName and Description can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only displayName, description, pricingMethodology, reportingPrices and dealingEstimates, or a field inside the first              and last, can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.              A field patched with an effectiveAt merges over the block in force at that datetime and does not carry into a version of              the block that starts later: a whole pricingMethodology or dealingEstimates set from a later datetime keeps its own values. | [optional] 
 
 ### Return type
 
@@ -3165,7 +3464,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.
 
-Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.
+Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses each transaction's system-generated reversal/TrueUp rows into a single SystemCorrection  row carrying their net cashflow, while user-entered rows are always shown individually). Base  currency columns are out of scope for this variant and are not returned.
 
 ### Example
 
@@ -3365,7 +3664,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.
 
-Updates an existing Valuation Point.
+Updates an existing Valuation Point. Supplying a pricingMethodologyOverride approves or overrides the swing  decision the Valuation Point deals at, which additionally requires the ApprovePricingMethodology action on the Fund.
 
 ### Example
 
@@ -3505,6 +3804,52 @@ Name | Type | Description  | Notes
 
 ---
 
+# **upsert_external_dealing_estimates**
+> UpsertExternalDealingEstimatesResponse upsertExternalDealingEstimates = upsert_external_dealing_estimates(scope, code, request_body)
+
+[EARLY ACCESS] UpsertExternalDealingEstimates: Load dealing estimates sent by an external transfer agent
+
+Loads the dealing estimates a third-party transfer agent dealt for the fund at a dealing point. Each request  key names one set: a dealing point, the sending source and the orders it dealt, each keyed by the source's own  line id. The orders are written in the fund's scope with the code  `{fundCode}-{source}-{yyyyMMddHHmmss}-{lineId}`, the dealing point written in UTC to the second, in the  External order state, priced at the dealing point, so the fund's External dealing source reads them at that  valuation point. A line whose code would exceed 64 characters is refused.                A set replaces what the same source sent before: every External order of that source for the fund's share  classes at the dealing point that the set does not restate is deleted, and the response names them. Two  sets in one request naming the same source and dealing point are refused after the first.                The fund must list External among its dealing estimate sources. Each line must name a share class of the  fund and exactly one of a positive number of units or a positive amount in a valid currency. A set sent  after its dealing point is loaded and flagged late; one sent exactly at the dealing point is on time.  Whether the set is complete is recorded on each order and is not yet enforced at pricing.                Each order carries the properties `Order/TA/PriceDate` (date), `Order/TA/DealingSource` (string),  `Order/TA/DealingSourceReference` (string), `Order/TA/Complete` (string, `True` or `False`),  `Order/TA/Late` (string, `True` or `False`) and `Order/TA/SentAt` (date). LUSID defines these as transfer  agency system properties.                Sets are validated independently: a set that fails validation is reported under failures and the others  still load. The sets that pass are then written together in one command, so a reader never sees half a  dealing point, and a refusal at write time fails the whole request and leaves the book as it was. A request  carries at most 200 sets and at most 2000 lines across all of them.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"Set1":{"dealingPoint":"2025-06-02T12:00:00.0000000+00:00","source":{"system":"ExampleTA","reference":"BATCH-20250602-001"},"complete":true,"sentAt":"2025-06-02T11:45:00.0000000+00:00","lines":{"line-1":{"instrumentIdentifierType":"ClientInternal","instrumentIdentifier":"FUND-1-CLASS-A","instrumentScope":"example-scope","tradeType":"Subscription","amount":{"value":100000.0,"currency":"GBP"}},"line-2":{"instrumentIdentifierType":"ClientInternal","instrumentIdentifier":"FUND-1-CLASS-A","instrumentScope":"example-scope","tradeType":"Redemption","units":2500.0}}}} # Dict[str, UpsertExternalDealingEstimatesRequest]
+api_response = api_instance.upsert_external_dealing_estimates(scope, code, request_body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the fund. | [required] 
+ **code** | **str**| The code of the fund. Together with the scope this uniquely identifies the fund. | [required] 
+ **request_body** | [**Dict[str, UpsertExternalDealingEstimatesRequest]**](../model/UpsertExternalDealingEstimatesRequest.md)| The sets to load, keyed by a correlation key of the caller&#39;s choosing. | [required] 
+
+### Return type
+
+[**UpsertExternalDealingEstimatesResponse**](../model/UpsertExternalDealingEstimatesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The sets loaded and any that failed, keyed by the request key. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **upsert_fee_properties**
 > FeeProperties upsertFeeProperties = upsert_fee_properties(scope, code, fee_code, request_body=request_body)
 
@@ -3613,7 +3958,7 @@ api_instance = api_client_factory.build(FundsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 valuation_point_code = 'valuation_point_code_example' # str
-nav_activity_adjustment = [{"asAt":"2024-01-01T00:00:00.0000000+00:00","portfolioScope":"portfolioScope1","portfolioCode":"portfolioCode1","transactionId":"transactionId1","navActivityAdjustmentType":"PortfolioTransaction"}] # List[NavActivityAdjustment]
+nav_activity_adjustment = [{"asAt":"2024-01-01T00:00:00.0000000+00:00","portfolioScope":"portfolioScope1","portfolioCode":"portfolioCode1","transactionId":"transactionId1","navActivityAdjustmentType":"PortfolioTransaction"},{"asAt":"2024-01-01T00:00:00.0000000+00:00","corporateActionSourceScope":"corporateActionSourceScope1","corporateActionSourceCode":"corporateActionSourceCode1","instrumentEventId":"instrumentEventId1","navActivityAdjustmentType":"InstrumentEventActivity"}] # List[NavActivityAdjustment]
 nav_type_code = 'nav_type_code_example' # str (optional)
 valuation_point_code_variant = 'valuation_point_code_variant_example' # str (optional)
 api_response = api_instance.upsert_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
@@ -3644,6 +3989,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The date and time of the successfully applied Nav Activity Adjustments. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_tax_cost_records**
+> UpsertTaxCostRecordsResponse upsertTaxCostRecords = upsert_tax_cost_records(scope, code, request_body)
+
+[EXPERIMENTAL] UpsertTaxCostRecords: [EXPERIMENTAL] UpsertTaxCostRecords: Upsert Tax Cost Records for a specified Fund.
+
+Create or update Tax Cost Records for the given Fund. Each record is keyed by its code; a record with an  existing code is replaced in full.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"TaxCostRecordCode":{"portfolioScope":"PortfolioScope","portfolioCode":"PortfolioCode","instrumentIdentifier":"LUID_00003D4X","navTypeCode":"DefaultNavType","taxCost":1250.5,"carriedForwardAmount":75.25,"effectivePeriodEnd":"2024-12-31T00:00:00.0000000+00:00","sourceValuationPointId":"VP-2024-12-31"}} # Dict[str, TaxCostRecordRequest]
+api_response = api_instance.upsert_tax_cost_records(scope, code, request_body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **request_body** | [**Dict[str, TaxCostRecordRequest]**](../model/TaxCostRecordRequest.md)| The Tax Cost Records to upsert, keyed by the code of each record. | [required] 
+
+### Return type
+
+[**UpsertTaxCostRecordsResponse**](../model/UpsertTaxCostRecordsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Tax Cost Records upserted and any that failed, keyed by the record code. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

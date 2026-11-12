@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_order_history**](OrderManagementApi.md#get_order_history) | **GET** /api/api/ordermanagement/order/{scope}/{code}/$history | GetOrderHistory: Get the history of an order and related entity changes
 [**move_orders**](OrderManagementApi.md#move_orders) | **POST** /api/api/ordermanagement/moveorders | [EARLY ACCESS] MoveOrders: Move orders to new or existing block
 [**place_blocks**](OrderManagementApi.md#place_blocks) | **POST** /api/api/ordermanagement/placeblocks | [EARLY ACCESS] PlaceBlocks: Places blocks for a given list of placement requests.
+[**preview_blocks**](OrderManagementApi.md#preview_blocks) | **POST** /api/api/ordermanagement/$previewblocks | PreviewBlocks: Preview the blocks a set of orders would form
 [**run_allocation_service**](OrderManagementApi.md#run_allocation_service) | **POST** /api/api/ordermanagement/allocate | RunAllocationService: Runs the Allocation Service
 [**run_allocation_service_with_weights**](OrderManagementApi.md#run_allocation_service_with_weights) | **POST** /api/api/ordermanagement/allocate/weighted | [EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
 [**sweep_blocks**](OrderManagementApi.md#sweep_blocks) | **POST** /api/api/ordermanagement/SweepBlocks | [EXPERIMENTAL] SweepBlocks: Sweeps specified blocks, for each block that meets the requirements. The request may be partially successful.
@@ -389,8 +390,50 @@ Name | Type | Description  | Notes
 
 ---
 
+# **preview_blocks**
+> ResourceListOfProposedBlockAndOrders previewBlocks = preview_blocks(preview_blocks_request)
+
+PreviewBlocks: Preview the blocks a set of orders would form
+
+Groups a set of orders into blocks according to the requested grouping mode, with each block's side and  net size derived from its orders. Nothing is created: the result is a set of block and order requests, in  the shape accepted by CreateOrders, which may be posted there as they are.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(OrderManagementApi)
+preview_blocks_request = PreviewBlocksRequest()
+api_response = api_instance.preview_blocks(preview_blocks_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **preview_blocks_request** | [**PreviewBlocksRequest**](../model/PreviewBlocksRequest.md)| The orders to group and how to group them. | [required] 
+
+### Return type
+
+[**ResourceListOfProposedBlockAndOrders**](../model/ResourceListOfProposedBlockAndOrders.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The proposed blocks and their orders. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **run_allocation_service**
-> AllocationServiceRunResponse runAllocationService = run_allocation_service(resource_id, allocation_algorithm=allocation_algorithm)
+> AllocationServiceRunResponse runAllocationService = run_allocation_service(resource_id, allocation_algorithm=allocation_algorithm, cancel_and_correct=cancel_and_correct)
 
 RunAllocationService: Runs the Allocation Service
 
@@ -402,7 +445,8 @@ Allocates Executions for a given list of placements back to their originating or
 api_instance = api_client_factory.build(OrderManagementApi)
 resource_id = [{"scope":"MyScope","code":"PLAC00000123"}] # List[ResourceId]
 allocation_algorithm = 'allocation_algorithm_example' # str (optional)
-api_response = api_instance.run_allocation_service(resource_id, allocation_algorithm=allocation_algorithm)
+cancel_and_correct = False # bool (optional)
+api_response = api_instance.run_allocation_service(resource_id, allocation_algorithm=allocation_algorithm, cancel_and_correct=cancel_and_correct)
 pprint(api_response)
 ```
 
@@ -412,6 +456,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **resource_id** | [**List[ResourceId]**](../model/ResourceId.md)| The List of Placement IDs for which you wish to allocate Executions. | [required] 
  **allocation_algorithm** | **str**| A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \&quot;PR-FIFO\&quot;.  This defaults to \&quot;PR-FIFO\&quot;. | [optional] 
+ **cancel_and_correct** | **bool**| Whether to re-allocate allocations that already have booked transactions or to skip them.  The transactions booked against the re-allocated allocations are cancelled, and a subsequent call to  BookTransactions books corrected ones.  Defaults to false, which leaves allocations with booked transactions untouched. | [optional] [default to False]
 
 ### Return type
 
@@ -434,7 +479,7 @@ Name | Type | Description  | Notes
 ---
 
 # **run_allocation_service_with_weights**
-> AllocationServiceRunResponse runAllocationServiceWithWeights = run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm)
+> AllocationServiceRunResponse runAllocationServiceWithWeights = run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm, cancel_and_correct=cancel_and_correct)
 
 [EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
 
@@ -446,7 +491,8 @@ Allocates Executions for a given list of placements to a specified set of portfo
 api_instance = api_client_factory.build(OrderManagementApi)
 weighted_allocation_service_run_request = WeightedAllocationServiceRunRequest()
 allocation_algorithm = 'allocation_algorithm_example' # str (optional)
-api_response = api_instance.run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm)
+cancel_and_correct = False # bool (optional)
+api_response = api_instance.run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm, cancel_and_correct=cancel_and_correct)
 pprint(api_response)
 ```
 
@@ -456,6 +502,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **weighted_allocation_service_run_request** | [**WeightedAllocationServiceRunRequest**](../model/WeightedAllocationServiceRunRequest.md)| The placement IDs to allocate against, and the portfolio weights to use for the allocation split. | [required] 
  **allocation_algorithm** | **str**| A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \&quot;PR-LF\&quot;.  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \&quot;PR-LF\&quot;. Valid values are \&quot;PR-LF\&quot;, \&quot;PR-SF\&quot;, \&quot;LF\&quot;, \&quot;SF\&quot;. | [optional] 
+ **cancel_and_correct** | **bool**| Whether to cancel the transactions booked against this placement&#39;s allocations once the run has re-split the  full executed quantity by the weights. A subsequent call to BookTransactions then books corrected ones.  Defaults to true. Set to false to leave the booked transactions in place. | [optional] [default to False]
 
 ### Return type
 

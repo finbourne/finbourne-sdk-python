@@ -33,6 +33,7 @@ class NavActivityAdjustmentResponseType(str, Enum):  # type: ignore[misc]
     INSTRUMENTACTIVITYADJUSTMENT = 'InstrumentActivityAdjustment'
     QUOTEACTIVITYADJUSTMENT = 'QuoteActivityAdjustment'
     COMPLEXMARKETDATAACTIVITYADJUSTMENT = 'ComplexMarketDataActivityAdjustment'
+    INSTRUMENTEVENTACTIVITYADJUSTMENT = 'InstrumentEventActivityAdjustment'
 
     @classmethod
     def from_json(cls, json_str: str) -> NavActivityAdjustmentResponseType:

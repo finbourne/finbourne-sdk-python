@@ -5,7 +5,7 @@ Base class for representing market data options in LUSID.  Abstractly, these are
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **market_data_options_type** | **str** | Required | Available values: CurveOptions. Available values: CurveOptions. |
+| **market_data_options_type** | **str** | Required | Available values: CurveOptions, VolCubeOptions. Available values: CurveOptions, VolCubeOptions. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Base class for representing market data options in LUSID.  Abstractly, these are
 from finbourne.sdk.services.lusid.models.MarketDataOptions import MarketDataOptions
 
 instance = MarketDataOptions(
-    market_data_options_type="..."  # required — Available values: CurveOptions. Available values: CurveOptions.
+    market_data_options_type="..."  # required — Available values: CurveOptions, VolCubeOptions. Available values: CurveOptions, VolCubeOptions.
 )
 ```
 

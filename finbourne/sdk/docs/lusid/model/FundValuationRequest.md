@@ -16,6 +16,7 @@ Specification object for the parameters of a valuation
 | **fund_valuation_schedule** | [FundValuationSchedule](FundValuationSchedule.md) | Required | *No description available.* |
 | **market_data_overrides** | [MarketDataOverrides](MarketDataOverrides.md) | Optional | *No description available.* |
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -36,7 +37,8 @@ instance = FundValuationRequest(
     include_order_flow=OrderFlowConfiguration(...),  # optional
     fund_valuation_schedule=FundValuationSchedule(...),  # required
     market_data_overrides=MarketDataOverrides(...),  # optional
-    corporate_action_source_id=ResourceId(...)  # optional
+    corporate_action_source_id=ResourceId(...),  # optional
+    recipe_id=ResourceId(...)  # optional
 )
 ```
 
@@ -46,6 +48,7 @@ instance = FundValuationRequest(
 - [OrderFlowConfiguration](OrderFlowConfiguration.md)
 - [FundValuationSchedule](FundValuationSchedule.md)
 - [MarketDataOverrides](MarketDataOverrides.md)
+- [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 
 

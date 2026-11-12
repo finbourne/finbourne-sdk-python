@@ -18,7 +18,10 @@ A margin run: the valuation of the collateral agreements for a business date, pl
 | **failed_shards** | **int** | Required | The number of shards that failed to value. |
 | **issues** | [List[MarginRunIssue]](MarginRunIssue.md) | Required | Agreements the run could not value or roll up into a call, or the caller may not calculate margin for, with the reason. |
 | **shards** | [List[MarginRunShard]](MarginRunShard.md) | Required | The valuation shards the run is planned as, with their progress. |
-| **scenario** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **scenarios** | [List[ResourceId]](ResourceId.md) | Required | The stored scenarios the run values the agreements under, each beside the base market the run always values. Empty if only the base market was valued. |
+| **capture_diagnostics** | **bool** | Optional | Whether the run stored the working behind its figures, so that they can be explained. Null for a run made before runs could store it, which did not. |
+| **optimisation** | [MarginRunOptimisation](MarginRunOptimisation.md) | Optional | *No description available.* |
+| **allocation** | [MarginRunAllocation](MarginRunAllocation.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -42,14 +45,19 @@ instance = MarginRun(
     failed_shards=0,  # required — The number of shards that failed to value.
     issues=[],  # required — Agreements the run could not value or roll up into a call, or the caller may not calculate margin for, with the reason.
     shards=[],  # required — The valuation shards the run is planned as, with their progress.
-    scenario=ResourceId(...)  # optional
+    scenarios=[],  # required — The stored scenarios the run values the agreements under, each beside the base market the run always values. Empty if only the base market was valued.
+    capture_diagnostics=True,  # optional — Whether the run stored the working behind its figures, so that they can be explained. Null for a run made before runs could store it, which did not.
+    optimisation=MarginRunOptimisation(...),  # optional
+    allocation=MarginRunAllocation(...)  # optional
 )
 ```
 
 - [ResourceId](ResourceId.md) — used in `agreements`
 - [MarginRunIssue](MarginRunIssue.md) — used in `issues`
 - [MarginRunShard](MarginRunShard.md) — used in `shards`
-- [ResourceId](ResourceId.md)
+- [ResourceId](ResourceId.md) — used in `scenarios`
+- [MarginRunOptimisation](MarginRunOptimisation.md)
+- [MarginRunAllocation](MarginRunAllocation.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

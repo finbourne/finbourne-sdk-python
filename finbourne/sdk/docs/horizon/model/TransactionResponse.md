@@ -6,7 +6,7 @@ Response containing details of a single transaction for a run. A transaction bui
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **transaction_id** | **str** | Required | *No description available.* |
-| **publication_status** | **str** | Required | The outcome the screens show for this row: Sent, Skipped or Failed. |
+| **publication_status** | **str** | Required | The outcome the screens show for this row: Sent, Skipped or Failed, or the element status for an element not yet built. |
 | **portfolio_scope** | **str** | Optional | *No description available.* |
 | **portfolio_code** | **str** | Optional | *No description available.* |
 | **instrument_id** | **str** | Optional | *No description available.* |
@@ -22,6 +22,8 @@ Response containing details of a single transaction for a run. A transaction bui
 | **destinations** | [List[DestinationResponse]](DestinationResponse.md) | Required | *No description available.* |
 | **failure_stage** | **str** | Optional | *No description available.* |
 | **instrument_scope** | **str** | Optional | The scope the build resolved the instrument in; null for rows built before it was recorded. |
+| **outcome** | **str** | Required | The same value as PublicationStatus under the name the screens use; PublicationStatus stays for existing clients. |
+| **event_type** | **str** | Optional | The TPF event type that triggered this publication (New, Amended, Cancelled, ...); Queued for an element not yet built; null otherwise. |
 
 
 ## Usage
@@ -33,7 +35,7 @@ from finbourne.sdk.services.horizon.models.TransactionResponse import Transactio
 
 instance = TransactionResponse(
     transaction_id="...",  # required
-    publication_status="...",  # required — The outcome the screens show for this row: Sent, Skipped or Failed.
+    publication_status="...",  # required — The outcome the screens show for this row: Sent, Skipped or Failed, or the element status for an element not yet built.
     portfolio_scope="...",  # optional
     portfolio_code="...",  # optional
     instrument_id="...",  # optional
@@ -48,7 +50,9 @@ instance = TransactionResponse(
     sent_at=datetime.now(),  # optional
     destinations=[],  # required
     failure_stage="...",  # optional
-    instrument_scope="..."  # optional — The scope the build resolved the instrument in; null for rows built before it was recorded.
+    instrument_scope="...",  # optional — The scope the build resolved the instrument in; null for rows built before it was recorded.
+    outcome="...",  # required — The same value as PublicationStatus under the name the screens use; PublicationStatus stays for existing clients.
+    event_type="..."  # optional — The TPF event type that triggered this publication (New, Amended, Cancelled, ...); Queued for an element not yet built; null otherwise.
 )
 ```
 

@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.adjustment_entry_response import AdjustmentEntryResponse
 from finbourne.sdk.services.lusid.models.override_entry_response import OverrideEntryResponse
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.suppression_entry_response import SuppressionEntryResponse
@@ -39,7 +40,8 @@ class VirtualTransactionOverrideRecord(BaseModel):
     override_application_status:  Optional[StrictStr] = Field(default=None,alias="overrideApplicationStatus", description="Whether all, some, or none of this record's override and suppression entries are currently applied. Available values: Full, Partial, Orphaned.") 
     cancel_active: Optional[StrictBool] = Field(default=None, description="True when an active event-level Cancel instruction also exists for this instrument event, taking precedence over the entries in this record.", alias="cancelActive")
     version: Optional[Version] = None
-    __properties: ClassVar[List[str]] = ["instrumentEventId", "sourcePortfolioId", "overrides", "suppressions", "overrideMatchStatus", "overrideApplicationStatus", "cancelActive", "version"]
+    adjustments: Optional[Dict[str, AdjustmentEntryResponse]] = Field(default=None, description="The adjustments in this record, keyed by the virtual transaction id they were stored against.")
+    __properties: ClassVar[List[str]] = ["instrumentEventId", "sourcePortfolioId", "overrides", "suppressions", "overrideMatchStatus", "overrideApplicationStatus", "cancelActive", "version", "adjustments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +97,13 @@ class VirtualTransactionOverrideRecord(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each value in adjustments (dict)
+        _field_dict = {}
+        if self.adjustments:
+            for _key in self.adjustments:
+                if self.adjustments[_key]:
+                    _field_dict[_key] = self.adjustments[_key].to_dict(by_alias=by_alias)
+            _dict['adjustments'] = _field_dict
         # set to None if instrument_event_id (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_event_id is None and "instrument_event_id" in self.model_fields_set:
@@ -125,6 +134,11 @@ class VirtualTransactionOverrideRecord(BaseModel):
         if self.cancel_active is None and "cancel_active" in self.model_fields_set:
             _dict['cancelActive'] = None
 
+        # set to None if adjustments (nullable) is None
+        # and model_fields_set contains the field
+        if self.adjustments is None and "adjustments" in self.model_fields_set:
+            _dict['adjustments'] = None
+
         return _dict
 
     @classmethod
@@ -154,7 +168,13 @@ class VirtualTransactionOverrideRecord(BaseModel):
             "override_match_status": obj.get("overrideMatchStatus"),
             "override_application_status": obj.get("overrideApplicationStatus"),
             "cancel_active": obj.get("cancelActive"),
-            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "adjustments": dict(
+                (_k, AdjustmentEntryResponse.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("adjustments")) is not None
+            else None
         })
         return _obj
 

@@ -6,8 +6,10 @@ An individual item that makes up (one side of) a rec result. Polymorphic by item
 
 `RecResultItem` can be one of the following types:
 
+* [RecResultExternalIdentifiersItem](./RecResultExternalIdentifiersItem.md)
 * [RecResultHoldingItem](./RecResultHoldingItem.md)
 * [RecResultRelationalDataItem](./RecResultRelationalDataItem.md)
+* [RecResultResourceIdItem](./RecResultResourceIdItem.md)
 * [RecResultSettlementActivityItem](./RecResultSettlementActivityItem.md)
 * [RecResultTransactionItem](./RecResultTransactionItem.md)
 
@@ -19,12 +21,13 @@ An individual item that makes up (one side of) a rec result. Polymorphic by item
 from finbourne.sdk.services.lusid.models.RecResultItem import RecResultItem
 
 # Construct using any of the compatible types above
-rec_result_holding_item_instance = lusid.models.rec_result_holding_item.RecResultHoldingItem(
-                        portfolio_id = lusid.models.resource_id.ResourceId(
-                            scope = '', 
-                            code = '', ), 
-                        holding_id = '', 
-                        tax_lot_id = '', 
+rec_result_external_identifiers_item_instance = lusid.models.rec_result_external_identifiers_item.RecResultExternalIdentifiersItem(
+                        entity_scope = '', 
+                        entity_unique_id = '', 
+                        entity_display_name = '', 
+                        identifiers = {
+                            'key' : ''
+                            }, 
                         item_type = '', 
                         rule_and_attribute_values = {
                             'key' : ''
@@ -33,13 +36,15 @@ rec_result_holding_item_instance = lusid.models.rec_result_holding_item.RecResul
                             null
                             ], )
 
-instance = RecResultItem(rec_result_holding_item_instance)
+instance = RecResultItem(rec_result_external_identifiers_item_instance)
 ```
 
 ## Related Models
 
+- [RecResultExternalIdentifiersItem](./RecResultExternalIdentifiersItem.md)
 - [RecResultHoldingItem](./RecResultHoldingItem.md)
 - [RecResultRelationalDataItem](./RecResultRelationalDataItem.md)
+- [RecResultResourceIdItem](./RecResultResourceIdItem.md)
 - [RecResultSettlementActivityItem](./RecResultSettlementActivityItem.md)
 - [RecResultTransactionItem](./RecResultTransactionItem.md)
 

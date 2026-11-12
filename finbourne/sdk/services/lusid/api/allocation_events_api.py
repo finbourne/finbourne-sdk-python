@@ -64,7 +64,7 @@ class AllocationEventsApi:
 
     @validate_call
     def book_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
 
         Freeze a computed Allocation Event under a booking reference, from an effective datetime. Once booked the  event can no longer be replaced or reallocated. Booking again under the same reference returns the event  unchanged; booking under a different reference is refused.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -90,7 +90,7 @@ class AllocationEventsApi:
 
     @validate_call
     def book_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
 
         Freeze a computed Allocation Event under a booking reference, from an effective datetime. Once booked the  event can no longer be replaced or reallocated. Booking again under the same reference returns the event  unchanged; booking under a different reference is refused.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -215,7 +215,7 @@ class AllocationEventsApi:
 
     @validate_call
     def create_allocation_event(self, scope: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
 
         Raise a new Allocation Event. The scope is provided in the route and the code in the request body. The event  names the Allocation Map it is shared by, the kind of event, the amount and the date. Its per-investor shares  are computed on creation from the map as it stood on the event date, so the response comes back Computed.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -237,7 +237,7 @@ class AllocationEventsApi:
 
     @validate_call
     def create_allocation_event_with_http_info(self, scope: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
 
         Raise a new Allocation Event. The scope is provided in the route and the code in the request body. The event  names the Allocation Map it is shared by, the kind of event, the amount and the date. Its per-investor shares  are computed on creation from the map as it stood on the event date, so the response comes back Computed.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -350,7 +350,7 @@ class AllocationEventsApi:
 
     @validate_call
     def delete_allocation_event(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
         Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -374,7 +374,7 @@ class AllocationEventsApi:
 
     @validate_call
     def delete_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
         Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -486,7 +486,7 @@ class AllocationEventsApi:
 
     @validate_call
     def get_allocation_event(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
 
         Retrieve a particular Allocation Event at an effective and asAt datetime, including its computed  per-investor shares and, once booked, its booking reference.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -512,7 +512,7 @@ class AllocationEventsApi:
 
     @validate_call
     def get_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
 
         Retrieve a particular Allocation Event at an effective and asAt datetime, including its computed  per-investor shares and, once booked, its booking reference.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -788,7 +788,7 @@ class AllocationEventsApi:
 
     @validate_call
     def get_allocation_event_receivables(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationReceivablesAgeing:
-        """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
 
         What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -814,7 +814,7 @@ class AllocationEventsApi:
 
     @validate_call
     def get_allocation_event_receivables_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationReceivablesAgeing]:
-        """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
 
         What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -935,7 +935,7 @@ class AllocationEventsApi:
 
     @validate_call
     def list_allocation_events(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAllocationEvent:
-        """[EXPERIMENTAL] ListAllocationEvents: List Allocation Events.  # noqa: E501
+        """[EARLY ACCESS] ListAllocationEvents: List Allocation Events.  # noqa: E501
 
         List all the Allocation Events matching a particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the Allocation Events. Defaults to the current LUSID system datetime if not specified.
@@ -965,7 +965,7 @@ class AllocationEventsApi:
 
     @validate_call
     def list_allocation_events_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAllocationEvent]:
-        """[EXPERIMENTAL] ListAllocationEvents: List Allocation Events.  # noqa: E501
+        """[EARLY ACCESS] ListAllocationEvents: List Allocation Events.  # noqa: E501
 
         List all the Allocation Events matching a particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the Allocation Events. Defaults to the current LUSID system datetime if not specified.
@@ -1235,7 +1235,7 @@ class AllocationEventsApi:
 
     @validate_call
     def plan_allocation_event_booking(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationPostingPlan:
-        """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
 
         Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1261,7 +1261,7 @@ class AllocationEventsApi:
 
     @validate_call
     def plan_allocation_event_booking_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationPostingPlan]:
-        """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
 
         Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1537,7 +1537,7 @@ class AllocationEventsApi:
 
     @validate_call
     def reallocate_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_reallocate_request: AllocationEventReallocateRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
 
         Recompute the per-investor shares of an unbooked Allocation Event against its map, from an effective  datetime, recording the reason. Any basis values supplied replace those used before. A booked Allocation  Event cannot be reallocated.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1563,7 +1563,7 @@ class AllocationEventsApi:
 
     @validate_call
     def reallocate_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_reallocate_request: AllocationEventReallocateRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
 
         Recompute the per-investor shares of an unbooked Allocation Event against its map, from an effective  datetime, recording the reason. Any basis values supplied replace those used before. A booked Allocation  Event cannot be reallocated.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1688,7 +1688,7 @@ class AllocationEventsApi:
 
     @validate_call
     def receive_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
 
         Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1714,7 +1714,7 @@ class AllocationEventsApi:
 
     @validate_call
     def receive_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
 
         Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1839,7 +1839,7 @@ class AllocationEventsApi:
 
     @validate_call
     def reverse_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
 
         Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1865,7 +1865,7 @@ class AllocationEventsApi:
 
     @validate_call
     def reverse_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
 
         Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -1990,7 +1990,7 @@ class AllocationEventsApi:
 
     @validate_call
     def unbook_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
 
         Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -2016,7 +2016,7 @@ class AllocationEventsApi:
 
     @validate_call
     def unbook_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
 
         Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -2141,7 +2141,7 @@ class AllocationEventsApi:
 
     @validate_call
     def upsert_allocation_event(self, scope: StrictStr, code: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> AllocationEvent:
-        """[EXPERIMENTAL] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
 
         Update or insert an Allocation Event. If the Allocation Event does not exist it is created, otherwise it is  replaced and its shares recomputed. The code in the request body must match the code in the route. A booked  Allocation Event is frozen and cannot be replaced.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -2165,7 +2165,7 @@ class AllocationEventsApi:
 
     @validate_call
     def upsert_allocation_event_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> ApiResponse[AllocationEvent]:
-        """[EXPERIMENTAL] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
+        """[EARLY ACCESS] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
 
         Update or insert an Allocation Event. If the Allocation Event does not exist it is created, otherwise it is  replaced and its shares recomputed. The code in the request body must match the code in the route. A booked  Allocation Event is frozen and cannot be replaced.  # noqa: E501
         :param scope: The scope of the Allocation Event. (required)
@@ -2288,7 +2288,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def book_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
             Freeze a computed Allocation Event under a booking reference, from an effective datetime. Once booked the  event can no longer be replaced or reallocated. Booking again under the same reference returns the event  unchanged; booking under a different reference is refused.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -2314,7 +2314,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def book_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] BookAllocationEvent: Book an Allocation Event.  # noqa: E501
 
             Freeze a computed Allocation Event under a booking reference, from an effective datetime. Once booked the  event can no longer be replaced or reallocated. Booking again under the same reference returns the event  unchanged; booking under a different reference is refused.  # noqa: E501
 
@@ -2440,7 +2440,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def create_allocation_event_async(self, scope: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
             Raise a new Allocation Event. The scope is provided in the route and the code in the request body. The event  names the Allocation Map it is shared by, the kind of event, the amount and the date. Its per-investor shares  are computed on creation from the map as it stood on the event date, so the response comes back Computed.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -2462,7 +2462,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def create_allocation_event_with_http_info_async(self, scope: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] CreateAllocationEvent: Create an Allocation Event.  # noqa: E501
 
             Raise a new Allocation Event. The scope is provided in the route and the code in the request body. The event  names the Allocation Map it is shared by, the kind of event, the amount and the date. Its per-investor shares  are computed on creation from the map as it stood on the event date, so the response comes back Computed.  # noqa: E501
 
@@ -2576,7 +2576,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def delete_allocation_event_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
             Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -2600,7 +2600,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def delete_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] DeleteAllocationEvent: Delete an Allocation Event.  # noqa: E501
 
             Delete an Allocation Event. Given an effective datetime, the Allocation Event is deleted from that datetime  and remains retrievable at earlier effective datetimes. Given none, an Allocation Event that was created  without an effective datetime is removed from the beginning of time, so that its code can be reused;  this includes an event first created without an effective datetime and later upserted with dated versions,  whose dated versions are removed with it. Otherwise it is deleted from the current LUSID system datetime.  Only an Allocation Event that has not been booked can be deleted.  # noqa: E501
 
@@ -2713,7 +2713,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def get_allocation_event_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
             Retrieve a particular Allocation Event at an effective and asAt datetime, including its computed  per-investor shares and, once booked, its booking reference.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -2739,7 +2739,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def get_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] GetAllocationEvent: Get an Allocation Event.  # noqa: E501
 
             Retrieve a particular Allocation Event at an effective and asAt datetime, including its computed  per-investor shares and, once booked, its booking reference.  # noqa: E501
 
@@ -3017,7 +3017,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def get_allocation_event_receivables_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationReceivablesAgeing:
-            """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
             What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -3043,7 +3043,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def get_allocation_event_receivables_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationReceivablesAgeing]:
-            """[EXPERIMENTAL] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] GetAllocationEventReceivables: Get the receivables of an Allocation Event.  # noqa: E501
 
             What each investor still owes on a booked capital call as of the effective datetime, with how many days past  due it is and the ageing bucket that puts it in.  # noqa: E501
 
@@ -3165,7 +3165,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def list_allocation_events_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAllocationEvent:
-            """[EXPERIMENTAL] ListAllocationEvents: List Allocation Events.  # noqa: E501
+            """[EARLY ACCESS] ListAllocationEvents: List Allocation Events.  # noqa: E501
             List all the Allocation Events matching a particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the Allocation Events. Defaults to the current LUSID system datetime if not specified.
@@ -3195,7 +3195,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def list_allocation_events_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAllocationEvent]:
-            """[EXPERIMENTAL] ListAllocationEvents: List Allocation Events.  # noqa: E501
+            """[EARLY ACCESS] ListAllocationEvents: List Allocation Events.  # noqa: E501
 
             List all the Allocation Events matching a particular criteria.  # noqa: E501
 
@@ -3467,7 +3467,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def plan_allocation_event_booking_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationPostingPlan:
-            """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
             Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -3493,7 +3493,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def plan_allocation_event_booking_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_book_request: AllocationEventBookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationPostingPlan]:
-            """[EXPERIMENTAL] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] PlanAllocationEventBooking: Plan the booking of an Allocation Event.  # noqa: E501
 
             Show everything booking a computed Allocation Event under a booking reference would write, validated as the  booking itself would be, without writing any of it: the investors' lines, the roll-ups above them through the  fund structure and the fund-side transactions. A booking that would be refused fails here with every problem  listed; warnings the map's policy lets through come back on the plan.  # noqa: E501
 
@@ -3771,7 +3771,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def reallocate_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_reallocate_request: AllocationEventReallocateRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
             Recompute the per-investor shares of an unbooked Allocation Event against its map, from an effective  datetime, recording the reason. Any basis values supplied replace those used before. A booked Allocation  Event cannot be reallocated.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -3797,7 +3797,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def reallocate_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_reallocate_request: AllocationEventReallocateRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] ReallocateAllocationEvent: Reallocate an Allocation Event.  # noqa: E501
 
             Recompute the per-investor shares of an unbooked Allocation Event against its map, from an effective  datetime, recording the reason. Any basis values supplied replace those used before. A booked Allocation  Event cannot be reallocated.  # noqa: E501
 
@@ -3923,7 +3923,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def receive_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
             Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -3949,7 +3949,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def receive_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_receipt_request: AllocationEventReceiptRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] ReceiveAllocationEvent: Record a receipt against an Allocation Event.  # noqa: E501
 
             Record cash received from an investor against a booked capital call. The receipt is applied to what the  investor owes on the call; anything over is recorded as a refund payable, so the outstanding amount never  goes negative. A bank charge is borne by the partner or the fund as the map's policy says, and a receipt in  another currency is converted at the rate given.  # noqa: E501
 
@@ -4075,7 +4075,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def reverse_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
             Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -4101,7 +4101,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def reverse_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_reverse_request: AllocationEventReverseRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] ReverseAllocationEvent: Reverse an Allocation Event.  # noqa: E501
 
             Reverse a booked Allocation Event: every posting the booking wrote is mirrored under the reversal reference and  the event is left Reversed. A reversal falling in a closed period posts in the current period unless it is  marked backdated. A reversal cannot itself be reversed; raise a new event naming the reversed one in its  replaces field to put corrected shares in the books.  # noqa: E501
 
@@ -4227,7 +4227,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def unbook_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
             Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -4253,7 +4253,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def unbook_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_unbook_request: AllocationEventUnbookRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] UnbookAllocationEvent: Unbook an Allocation Event.  # noqa: E501
 
             Take an Allocation Event whose booking stopped half way back to Computed, cancelling every posting the  booking wrote, and record why. Only an event in the Booking status can be unbooked: one that is Booked is  reversed instead.  # noqa: E501
 
@@ -4379,7 +4379,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def upsert_allocation_event_async(self, scope: StrictStr, code: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> AllocationEvent:
-            """[EXPERIMENTAL] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
             Update or insert an Allocation Event. If the Allocation Event does not exist it is created, otherwise it is  replaced and its shares recomputed. The code in the request body must match the code in the route. A booked  Allocation Event is frozen and cannot be replaced.  # noqa: E501
             
             :param scope: The scope of the Allocation Event. (required)
@@ -4403,7 +4403,7 @@ class AllocationEventsApi:
 
     @validate_call
     async def upsert_allocation_event_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_event_request: AllocationEventRequest, **kwargs) -> ApiResponse[AllocationEvent]:
-            """[EXPERIMENTAL] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
+            """[EARLY ACCESS] UpsertAllocationEvent: Upsert an Allocation Event.  # noqa: E501
 
             Update or insert an Allocation Event. If the Allocation Event does not exist it is created, otherwise it is  replaced and its shares recomputed. The code in the request body must match the code in the route. A booked  Allocation Event is frozen and cannot be replaced.  # noqa: E501
 

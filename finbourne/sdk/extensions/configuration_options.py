@@ -7,12 +7,14 @@ class ConfigurationOptions:
         total_timeout_ms: Optional[int] = None, 
         connect_timeout_ms: Optional[int] = None, 
         read_timeout_ms: Optional[int] = None, 
-        rate_limit_retries: Optional[int] = None
+        rate_limit_retries: Optional[int] = None,
+        number_of_retries: Optional[int] = None
     ):
         self.total_timeout_ms = total_timeout_ms
         self.connect_timeout_ms = connect_timeout_ms
         self.read_timeout_ms = read_timeout_ms
         self.rate_limit_retries = rate_limit_retries
+        self.number_of_retries = number_of_retries
         
     @property
     def total_timeout_ms(self):
@@ -65,3 +67,17 @@ class ConfigurationOptions:
             if value < 0:
                 raise ValueError("rate_limit_retries must be an integer greater than or equal to zero")
         self.__rate_limit_retries = value
+
+    @property
+    def number_of_retries(self):
+        """Retries for conflicts (409), server errors (5xx) and errors with a Retry-After header. Rate limiting (429) uses rate_limit_retries."""
+        return self.__number_of_retries
+
+    @number_of_retries.setter
+    def number_of_retries(self, value):
+        if value is not None:
+            if not isinstance(value, int):
+                raise TypeError(f"number_of_retries must be type int but type '{type(value)}' used")
+            if value < 0:
+                raise ValueError("number_of_retries must be an integer greater than or equal to zero")
+        self.__number_of_retries = value

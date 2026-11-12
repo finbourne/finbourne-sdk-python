@@ -22,12 +22,14 @@ The request used to create a Fund.
 | **primary_nav_type** | [NavTypeDefinition](NavTypeDefinition.md) | Required | *No description available.* |
 | **additional_nav_types** | [List[NavTypeDefinition]](NavTypeDefinition.md) | Optional | The definitions for any additional NAVs on the Fund. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
-| **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
-| **instrument_scope** | **str** | Optional | The scope in which the instruments are created when CreateInstrument is true. Defaults to the default instrument scope. Legacy share class instruments are resolved in ShareClassInstrumentScopes instead. |
+| **create_instrument** | **bool** | Optional | Whether to master an instrument upon fund creation. For unitised funds (Classes, Series, or Partners), an instrument is mastered per share class. For non-unitised funds, a single instrument is mastered for the fund itself, with a ClientInternal identifier of {FundScope}:{Code}. Defaults to false. |
+| **instrument_scope** | **str** | Optional | The scope in which instruments are mastered when CreateInstrument is true. For non-unitised funds the fund scope also forms part of the fund instrument&#39;s ClientInternal identifier: {FundScope}:{Code}. Defaults to the default instrument scope. Legacy share class instruments are resolved via ShareClassInstrumentScopes instead. |
 | **share_classes** | [List[ShareClassDefinition]](ShareClassDefinition.md) | Optional | An optional list of Share Class definitions for the Fund. |
 | **pricing_methodology** | [PricingMethodology](PricingMethodology.md) | Optional | *No description available.* |
 | **reporting_prices** | [List[ReportingPrice]](ReportingPrice.md) | Optional | Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices. |
+| **dealing_estimates** | [DealingEstimates](DealingEstimates.md) | Optional | *No description available.* |
 | **wht_parameters** | [WhtParameters](WhtParameters.md) | Optional | *No description available.* |
+| **valuation_template_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -55,12 +57,14 @@ instance = FundDefinitionRequest(
     primary_nav_type=NavTypeDefinition(...),  # required
     additional_nav_types=[],  # optional — The definitions for any additional NAVs on the Fund.
     properties=ModelProperty(...),  # optional — A set of properties for the Fund.
-    create_instrument=True,  # optional — Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false.
-    instrument_scope="...",  # optional — The scope in which the instruments are created when CreateInstrument is true. Defaults to the default instrument scope. Legacy share class instruments are resolved in ShareClassInstrumentScopes instead.
+    create_instrument=True,  # optional — Whether to master an instrument upon fund creation. For unitised funds (Classes, Series, or Partners), an instrument is mastered per share class. For non-unitised funds, a single instrument is mastered for the fund itself, with a ClientInternal identifier of {FundScope}:{Code}. Defaults to false.
+    instrument_scope="...",  # optional — The scope in which instruments are mastered when CreateInstrument is true. For non-unitised funds the fund scope also forms part of the fund instrument&#39;s ClientInternal identifier: {FundScope}:{Code}. Defaults to the default instrument scope. Legacy share class instruments are resolved via ShareClassInstrumentScopes instead.
     share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
     pricing_methodology=PricingMethodology(...),  # optional
     reporting_prices=[],  # optional — Share class prices the Fund publishes at each valuation point under labels of its own, alongside the dealing price, for example a mid price for performance reporting. Optional. Each source other than Mid must be published by the valuation recipe of every active NAV type. Labels must be unique and cannot be dealingPrice, dealingBid or dealingOffer. Patch the list whole at /reportingPrices.
-    wht_parameters=WhtParameters(...)  # optional
+    dealing_estimates=DealingEstimates(...),  # optional
+    wht_parameters=WhtParameters(...),  # optional
+    valuation_template_id=ResourceId(...)  # optional
 )
 ```
 
@@ -73,7 +77,9 @@ instance = FundDefinitionRequest(
 - [ShareClassDefinition](ShareClassDefinition.md) — used in `share_classes`
 - [PricingMethodology](PricingMethodology.md)
 - [ReportingPrice](ReportingPrice.md) — used in `reporting_prices`
+- [DealingEstimates](DealingEstimates.md)
 - [WhtParameters](WhtParameters.md)
+- [ResourceId](ResourceId.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

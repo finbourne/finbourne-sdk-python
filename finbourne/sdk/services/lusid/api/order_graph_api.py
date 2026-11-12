@@ -50,7 +50,7 @@ class OrderGraphApi:
             self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
-    def list_order_graph_blocks(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, **kwargs) -> PagedResourceListOfOrderGraphBlock:
+    def list_order_graph_blocks(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, include_swept: Optional[bool] = None, **kwargs) -> PagedResourceListOfOrderGraphBlock:
         """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
         Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
@@ -68,6 +68,8 @@ class OrderGraphApi:
         :type property_keys: List[str]
         :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
         :type use_compliance_v2: bool
+        :param include_swept: Include Swept Order Blocks. (default: true)
+        :type include_swept: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -78,11 +80,11 @@ class OrderGraphApi:
             message = "Error! Please call the list_order_graph_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_order_graph_blocks_with_http_info(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, **kwargs)
+        response = self.list_order_graph_blocks_with_http_info(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, include_swept, **kwargs)
         return response.data
 
     @validate_call
-    def list_order_graph_blocks_with_http_info(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphBlock]:
+    def list_order_graph_blocks_with_http_info(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, include_swept: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphBlock]:
         """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
         Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
@@ -100,6 +102,8 @@ class OrderGraphApi:
         :type property_keys: List[str]
         :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
         :type use_compliance_v2: bool
+        :param include_swept: Include Swept Order Blocks. (default: true)
+        :type include_swept: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -129,7 +133,8 @@ class OrderGraphApi:
             'limit',
             'filter',
             'property_keys',
-            'use_compliance_v2'
+            'use_compliance_v2',
+            'include_swept'
         ]
         _all_params.extend(
             [
@@ -185,6 +190,9 @@ class OrderGraphApi:
 
         if _params.get('use_compliance_v2') is not None:  # noqa: E501
             _query_params.append(('useComplianceV2', _params['use_compliance_v2']))
+
+        if _params.get('include_swept') is not None:  # noqa: E501
+            _query_params.append(('includeSwept', _params['include_swept']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -565,7 +573,7 @@ class OrderGraphApi:
 
 
     @validate_call
-    async def list_order_graph_blocks_async(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, **kwargs) -> PagedResourceListOfOrderGraphBlock:
+    async def list_order_graph_blocks_async(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, include_swept: Optional[bool] = None, **kwargs) -> PagedResourceListOfOrderGraphBlock:
             """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
             Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
             
@@ -583,6 +591,8 @@ class OrderGraphApi:
             :type property_keys: List[str]
             :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
             :type use_compliance_v2: bool
+            :param include_swept: Include Swept Order Blocks. (default: true)
+            :type include_swept: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -593,11 +603,11 @@ class OrderGraphApi:
                 message = "Error! Please call the list_order_graph_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_order_graph_blocks_with_http_info_async(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, **kwargs)
+            response = await self.list_order_graph_blocks_with_http_info_async(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, include_swept, **kwargs)
             return response.data
 
     @validate_call
-    async def list_order_graph_blocks_with_http_info_async(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphBlock]:
+    async def list_order_graph_blocks_with_http_info_async(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, include_swept: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphBlock]:
             """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
             Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
@@ -616,6 +626,8 @@ class OrderGraphApi:
             :type property_keys: List[str]
             :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
             :type use_compliance_v2: bool
+            :param include_swept: Include Swept Order Blocks. (default: true)
+            :type include_swept: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -645,7 +657,8 @@ class OrderGraphApi:
                 'limit',
                 'filter',
                 'property_keys',
-                'use_compliance_v2'
+                'use_compliance_v2',
+                'include_swept'
             ]
             _all_params.extend(
                 [
@@ -701,6 +714,9 @@ class OrderGraphApi:
 
             if _params.get('use_compliance_v2') is not None:  # noqa: E501
                 _query_params.append(('useComplianceV2', _params['use_compliance_v2']))
+
+            if _params.get('include_swept') is not None:  # noqa: E501
+                _query_params.append(('includeSwept', _params['include_swept']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

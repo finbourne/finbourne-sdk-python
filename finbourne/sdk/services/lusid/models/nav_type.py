@@ -48,11 +48,13 @@ class NavType(BaseModel):
     amortisation_rule_set_id: Optional[ResourceId] = Field(default=None, alias="amortisationRuleSetId")
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
     transaction_template_scope:  StrictStr = Field(...,alias="transactionTemplateScope", description="The Transaction Template Scope used by the NavType.") 
-    transaction_exclusion_filter:  Optional[StrictStr] = Field(default=None,alias="transactionExclusionFilter", description="Optional filter expression to exclude specific transactions from this NavType's derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties.") 
+    transaction_exclusion_filter:  Optional[StrictStr] = Field(default=None,alias="transactionExclusionFilter", description="Optional filter expression to exclude specific transactions from this NavType's derived portfolios. The filter can reference Transaction, Portfolio, or Instrument fields and properties. The filter can be changed by patching the NavType, which propagates it to the NavType's derived portfolios. A NavType never inherits the filter of the Fund's portfolios: omitting the filter, or setting it to an empty string, means no filter. A transaction amended across a Final valuation point so that it newly matches the filter is reversed in the next valuation point, and one amended so that it stops matching is posted in the next valuation point as a true-up.") 
     pricing_basis:  Optional[StrictStr] = Field(default=None,alias="pricingBasis", description="The side of the quote this Nav Type values the fund on: Mid, Bid or Ask. Overrides the pricing basis of the valuation recipe's market options for this Nav Type only, so a bid NAV and an ask NAV can share one recipe. Omit it to value on the recipe's own pricing basis. Available values: Mid, Bid, Ask.") 
     swing_pricing: Optional[SwingPricingRule] = Field(default=None, alias="swingPricing")
     notional_dealing_cost_table_id: Optional[ResourceId] = Field(default=None, alias="notionalDealingCostTableId")
-    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope", "transactionExclusionFilter", "pricingBasis", "swingPricing", "notionalDealingCostTableId"]
+    valuation_template_id: Optional[ResourceId] = Field(default=None, alias="valuationTemplateId")
+    chargeable_gains_regime:  Optional[StrictStr] = Field(default=None,alias="chargeableGainsRegime", description="The chargeable gains regime the Nav Type's derived portfolio is elected into. This can be: Default or UkChargeableGains. Omit it, or supply Default, to leave the derived portfolio inheriting its parent portfolio's regime. Under UkChargeableGains, in-scope holdings in the derived portfolio are depleted under the UK chargeable gains rules regardless of the Nav Type's accounting method; it requires the Fund's base currency to be GBP. Available values: Default, UkChargeableGains.") 
+    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope", "transactionExclusionFilter", "pricingBasis", "swingPricing", "notionalDealingCostTableId", "valuationTemplateId", "chargeableGainsRegime"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,6 +111,9 @@ class NavType(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of notional_dealing_cost_table_id
         if self.notional_dealing_cost_table_id:
             _dict['notionalDealingCostTableId'] = self.notional_dealing_cost_table_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of valuation_template_id
+        if self.valuation_template_id:
+            _dict['valuationTemplateId'] = self.valuation_template_id.to_dict(by_alias=by_alias)
         # set to None if code (nullable) is None
         # and model_fields_set contains the field
         if self.code is None and "code" in self.model_fields_set:
@@ -154,6 +159,11 @@ class NavType(BaseModel):
         if self.pricing_basis is None and "pricing_basis" in self.model_fields_set:
             _dict['pricingBasis'] = None
 
+        # set to None if chargeable_gains_regime (nullable) is None
+        # and model_fields_set contains the field
+        if self.chargeable_gains_regime is None and "chargeable_gains_regime" in self.model_fields_set:
+            _dict['chargeableGainsRegime'] = None
+
         return _dict
 
     @classmethod
@@ -187,7 +197,9 @@ class NavType(BaseModel):
             "transaction_exclusion_filter": obj.get("transactionExclusionFilter"),
             "pricing_basis": obj.get("pricingBasis"),
             "swing_pricing": SwingPricingRule.from_dict(_v) if (_v := obj.get("swingPricing")) is not None else None,
-            "notional_dealing_cost_table_id": ResourceId.from_dict(_v) if (_v := obj.get("notionalDealingCostTableId")) is not None else None
+            "notional_dealing_cost_table_id": ResourceId.from_dict(_v) if (_v := obj.get("notionalDealingCostTableId")) is not None else None,
+            "valuation_template_id": ResourceId.from_dict(_v) if (_v := obj.get("valuationTemplateId")) is not None else None,
+            "chargeable_gains_regime": obj.get("chargeableGainsRegime")
         })
         return _obj
 

@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_allocation_map_exception**](AllocationMapsApi.md#add_allocation_map_exception) | **POST** /api/api/allocationmaps/{scope}/{code}/exceptions | [EXPERIMENTAL] AddAllocationMapException: Add an exception to an Allocation Map.
-[**create_allocation_map**](AllocationMapsApi.md#create_allocation_map) | **POST** /api/api/allocationmaps/{scope} | [EXPERIMENTAL] CreateAllocationMap: Create an Allocation Map.
-[**delete_allocation_map**](AllocationMapsApi.md#delete_allocation_map) | **DELETE** /api/api/allocationmaps/{scope}/{code} | [EXPERIMENTAL] DeleteAllocationMap: Delete an Allocation Map.
-[**get_allocation_map**](AllocationMapsApi.md#get_allocation_map) | **GET** /api/api/allocationmaps/{scope}/{code} | [EXPERIMENTAL] GetAllocationMap: Get an Allocation Map.
-[**list_allocation_maps**](AllocationMapsApi.md#list_allocation_maps) | **GET** /api/api/allocationmaps | [EXPERIMENTAL] ListAllocationMaps: List Allocation Maps.
-[**remove_allocation_map_exception**](AllocationMapsApi.md#remove_allocation_map_exception) | **DELETE** /api/api/allocationmaps/{scope}/{code}/exceptions/{investorRecordId} | [EXPERIMENTAL] RemoveAllocationMapException: Remove an exception from an Allocation Map.
-[**resolve_allocation_map**](AllocationMapsApi.md#resolve_allocation_map) | **POST** /api/api/allocationmaps/{scope}/{code}/resolve | [EXPERIMENTAL] ResolveAllocationMap: Resolve an Allocation Map.
-[**upsert_allocation_map**](AllocationMapsApi.md#upsert_allocation_map) | **PUT** /api/api/allocationmaps/{scope}/{code} | [EXPERIMENTAL] UpsertAllocationMap: Upsert an Allocation Map.
+[**add_allocation_map_exception**](AllocationMapsApi.md#add_allocation_map_exception) | **POST** /api/api/allocationmaps/{scope}/{code}/exceptions | [EARLY ACCESS] AddAllocationMapException: Add an exception to an Allocation Map.
+[**create_allocation_map**](AllocationMapsApi.md#create_allocation_map) | **POST** /api/api/allocationmaps/{scope} | [EARLY ACCESS] CreateAllocationMap: Create an Allocation Map.
+[**delete_allocation_map**](AllocationMapsApi.md#delete_allocation_map) | **DELETE** /api/api/allocationmaps/{scope}/{code} | [EARLY ACCESS] DeleteAllocationMap: Delete an Allocation Map.
+[**get_allocation_map**](AllocationMapsApi.md#get_allocation_map) | **GET** /api/api/allocationmaps/{scope}/{code} | [EARLY ACCESS] GetAllocationMap: Get an Allocation Map.
+[**list_allocation_maps**](AllocationMapsApi.md#list_allocation_maps) | **GET** /api/api/allocationmaps | [EARLY ACCESS] ListAllocationMaps: List Allocation Maps.
+[**remove_allocation_map_exception**](AllocationMapsApi.md#remove_allocation_map_exception) | **DELETE** /api/api/allocationmaps/{scope}/{code}/exceptions/{investorRecordId} | [EARLY ACCESS] RemoveAllocationMapException: Remove an exception from an Allocation Map.
+[**resolve_allocation_map**](AllocationMapsApi.md#resolve_allocation_map) | **POST** /api/api/allocationmaps/{scope}/{code}/resolve | [EARLY ACCESS] ResolveAllocationMap: Resolve an Allocation Map.
+[**upsert_allocation_map**](AllocationMapsApi.md#upsert_allocation_map) | **PUT** /api/api/allocationmaps/{scope}/{code} | [EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.
 
 
 ### Example
@@ -42,7 +42,7 @@ api_instance = api_client_factory.build(AllocationMapsApi)
 # **add_allocation_map_exception**
 > AllocationMap addAllocationMapException = add_allocation_map_exception(scope, code, allocation_map_exception, effective_at=effective_at)
 
-[EXPERIMENTAL] AddAllocationMapException: Add an exception to an Allocation Map.
+[EARLY ACCESS] AddAllocationMapException: Add an exception to an Allocation Map.
 
 Add a per-investor exception (an exclusion or a fixed percentage) to the map's participants, from an  effective datetime. The result is a new bitemporal version of the map. An investor record may carry at most  one exception; to change it, remove the existing one first or upsert the whole map.
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 # **create_allocation_map**
 > AllocationMap createAllocationMap = create_allocation_map(scope, allocation_map_request)
 
-[EXPERIMENTAL] CreateAllocationMap: Create an Allocation Map.
+[EARLY ACCESS] CreateAllocationMap: Create an Allocation Map.
 
 Create a new Allocation Map. The scope is provided in the route and the code in the request body. The map  names the structure member it hangs off, who participates, and the basis used to share each kind of event.
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 # **delete_allocation_map**
 > DeletedEntityResponse deleteAllocationMap = delete_allocation_map(scope, code, effective_at=effective_at)
 
-[EXPERIMENTAL] DeleteAllocationMap: Delete an Allocation Map.
+[EARLY ACCESS] DeleteAllocationMap: Delete an Allocation Map.
 
 Delete an Allocation Map from an effective datetime. The Allocation Map is no longer readable from that  effective datetime onwards.
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 # **get_allocation_map**
 > AllocationMap getAllocationMap = get_allocation_map(scope, code, effective_at=effective_at, as_at=as_at)
 
-[EXPERIMENTAL] GetAllocationMap: Get an Allocation Map.
+[EARLY ACCESS] GetAllocationMap: Get an Allocation Map.
 
 Retrieve the definition of a particular Allocation Map at an effective and asAt datetime, including its  participants, exceptions and the basis declared for each event type.
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 # **list_allocation_maps**
 > PagedResourceListOfAllocationMap listAllocationMaps = list_allocation_maps(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
 
-[EXPERIMENTAL] ListAllocationMaps: List Allocation Maps.
+[EARLY ACCESS] ListAllocationMaps: List Allocation Maps.
 
 List all the Allocation Maps matching a particular criteria.
 
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 # **remove_allocation_map_exception**
 > AllocationMap removeAllocationMapException = remove_allocation_map_exception(scope, code, investor_record_id, effective_at=effective_at)
 
-[EXPERIMENTAL] RemoveAllocationMapException: Remove an exception from an Allocation Map.
+[EARLY ACCESS] RemoveAllocationMapException: Remove an exception from an Allocation Map.
 
 Remove the exception held against an investor record, from an effective datetime. The result is a new  bitemporal version of the map in which that investor is treated like every other participant.
 
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 # **resolve_allocation_map**
 > AllocationMapResolution resolveAllocationMap = resolve_allocation_map(scope, code, allocation_map_resolve_request, effective_at=effective_at, as_at=as_at)
 
-[EXPERIMENTAL] ResolveAllocationMap: Resolve an Allocation Map.
+[EARLY ACCESS] ResolveAllocationMap: Resolve an Allocation Map.
 
 Dry-run the map against an event: share the supplied amount across the participants in force at the  effective datetime, applying fixed-percentage exceptions off the top and the declared basis to the remainder.  Nothing is booked. Basis values (for example committed capital per investor) are supplied in the request  until the investor register can provide them.
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 # **upsert_allocation_map**
 > AllocationMap upsertAllocationMap = upsert_allocation_map(scope, code, allocation_map_request)
 
-[EXPERIMENTAL] UpsertAllocationMap: Upsert an Allocation Map.
+[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.
 
 Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.
 

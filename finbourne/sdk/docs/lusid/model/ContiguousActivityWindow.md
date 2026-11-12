@@ -6,7 +6,7 @@ The activity window for a running series of instances: each instance's window st
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **initial_activity_since_effective_at** | [RecActivitySinceEffectiveAt](RecActivitySinceEffectiveAt.md) | Required | *No description available.* |
-| **window_type** | **str** | Required | Polymorphic discriminator. Supported types: Contiguous. Contiguous requires effectiveAtProgression Series. Available values: Contiguous, FixedLookback, Explicit, ClosedPeriod, ContiguousAsAt. |
+| **window_type** | **str** | Required | Polymorphic discriminator. Supported types: Contiguous, FixedPeriodLookback. Contiguous requires effectiveAtProgression Series; FixedPeriodLookback is accepted under any progression. Available values: Contiguous, FixedPeriodLookback, Explicit, ClosedPeriod, ContiguousAsAt. |
 
 
 ## Usage
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.ContiguousActivityWindow import Contigu
 
 instance = ContiguousActivityWindow(
     initial_activity_since_effective_at=RecActivitySinceEffectiveAt(...),  # required
-    window_type="..."  # required — Polymorphic discriminator. Supported types: Contiguous. Contiguous requires effectiveAtProgression Series. Available values: Contiguous, FixedLookback, Explicit, ClosedPeriod, ContiguousAsAt.
+    window_type="..."  # required — Polymorphic discriminator. Supported types: Contiguous, FixedPeriodLookback. Contiguous requires effectiveAtProgression Series; FixedPeriodLookback is accepted under any progression. Available values: Contiguous, FixedPeriodLookback, Explicit, ClosedPeriod, ContiguousAsAt.
 )
 ```
 

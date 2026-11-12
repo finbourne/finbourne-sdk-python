@@ -35,7 +35,7 @@ class FilteredFundIdList(ReferenceList):
     nav_type_codes_hint: Optional[List[StrictStr]] = Field(default=None, alias="navTypeCodesHint")
     nav_type_selection:  Optional[StrictStr] = Field(default=None,alias="navTypeSelection", description="Available values: First, All.") 
     resolved_fund_nav_type_codes: Optional[List[FundNavTypeCodes]] = Field(default=None, alias="resolvedFundNavTypeCodes")
-    reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList.") 
+    reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList, FilteredPortfolioIdList.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["referenceListType", "filter", "values", "navTypeCodesHint", "navTypeSelection", "resolvedFundNavTypeCodes"]
 
@@ -69,7 +69,7 @@ class FilteredFundIdList(ReferenceList):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList', 'FilteredFundIdList']
+        _allowed = ['PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList', 'FilteredFundIdList', 'FilteredPortfolioIdList']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

@@ -20,18 +20,22 @@ from typing_extensions import Annotated
 
 import finbourne.sdk.services.lusid.models as packageModels
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.accept_margin_call_request import AcceptMarginCallRequest
 from finbourne.sdk.services.lusid.models.batch_accept_margin_calls_request import BatchAcceptMarginCallsRequest
 from finbourne.sdk.services.lusid.models.batch_accept_margin_calls_response import BatchAcceptMarginCallsResponse
+from finbourne.sdk.services.lusid.models.collateral_allocation import CollateralAllocation
 from finbourne.sdk.services.lusid.models.dispute_margin_call_request import DisputeMarginCallRequest
 from finbourne.sdk.services.lusid.models.margin_call import MarginCall
+from finbourne.sdk.services.lusid.models.margin_explanation import MarginExplanation
 from finbourne.sdk.services.lusid.models.margin_run import MarginRun
 from finbourne.sdk.services.lusid.models.margin_run_request import MarginRunRequest
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_margin_call import PagedResourceListOfMarginCall
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_margin_line import PagedResourceListOfMarginLine
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_margin_run import PagedResourceListOfMarginRun
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_netting_recommendation import PagedResourceListOfNettingRecommendation
+from finbourne.sdk.services.lusid.models.rank_margin_call_request import RankMarginCallRequest
 from finbourne.sdk.services.lusid.models.record_counterparty_demand_request import RecordCounterpartyDemandRequest
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
@@ -695,6 +699,462 @@ class CollateralApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_margin_call_allocation(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> CollateralAllocation:
+        """[EXPERIMENTAL] GetMarginCallAllocation: [EXPERIMENTAL] GetMarginCallAllocation: Get the collateral proposed for a margin call.  # noqa: E501
+
+        Retrieve the assets the run's allocation pass proposes to deliver for the call, or to take back for a return, with  every holding it considered and either its rank or the constraint that excluded it. Each line carries what a  transaction moving it needs: the instrument, the portfolio and custodian account, the units, the price and the  consideration. Not found until the run's allocation pass has completed, or when the call moves no collateral of ours.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param agreement_scope: The scope of the call's collateral agreement. (required)
+        :type agreement_scope: str
+        :param agreement_code: The code of the call's collateral agreement. (required)
+        :type agreement_code: str
+        :param item: The margin item of the call. (required)
+        :type item: str
+        :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+        :type margin_type: str
+        :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+        :type direction: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: CollateralAllocation
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_margin_call_allocation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_margin_call_allocation_with_http_info(run_id, agreement_scope, agreement_code, item, margin_type, direction, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_margin_call_allocation_with_http_info(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> ApiResponse[CollateralAllocation]:
+        """[EXPERIMENTAL] GetMarginCallAllocation: [EXPERIMENTAL] GetMarginCallAllocation: Get the collateral proposed for a margin call.  # noqa: E501
+
+        Retrieve the assets the run's allocation pass proposes to deliver for the call, or to take back for a return, with  every holding it considered and either its rank or the constraint that excluded it. Each line carries what a  transaction moving it needs: the instrument, the portfolio and custodian account, the units, the price and the  consideration. Not found until the run's allocation pass has completed, or when the call moves no collateral of ours.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param agreement_scope: The scope of the call's collateral agreement. (required)
+        :type agreement_scope: str
+        :param agreement_code: The code of the call's collateral agreement. (required)
+        :type agreement_code: str
+        :param item: The margin item of the call. (required)
+        :type item: str
+        :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+        :type margin_type: str
+        :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+        :type direction: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(CollateralAllocation, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_id',
+            'agreement_scope',
+            'agreement_code',
+            'item',
+            'margin_type',
+            'direction'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_margin_call_allocation" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['run_id'] is not None:
+            _path_params['runId'] = _params['run_id']
+
+        if _params['agreement_scope'] is not None:
+            _path_params['agreementScope'] = _params['agreement_scope']
+
+        if _params['agreement_code'] is not None:
+            _path_params['agreementCode'] = _params['agreement_code']
+
+        if _params['item'] is not None:
+            _path_params['item'] = _params['item']
+
+        if _params['margin_type'] is not None:
+            _path_params['marginType'] = _params['margin_type']
+
+        if _params['direction'] is not None:
+            _path_params['direction'] = _params['direction']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CollateralAllocation",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/collateral/margincalls/{runId}/{agreementScope}/{agreementCode}/{item}/{marginType}/{direction}/$allocation', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_margin_call_explanation(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> MarginExplanation:
+        """[EXPERIMENTAL] GetMarginCallExplanation: Explain a margin call.  # noqa: E501
+
+        Show how the required amount of one initial-margin call of a run was arrived at, as a tree of components. Only an  initial-margin call whose run stored its working can be explained, as the call's ExplainAvailable says. The working  of portfolios the caller may not read is replaced by a single redacted component that keeps its parent adding up.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param agreement_scope: The scope of the call's collateral agreement. (required)
+        :type agreement_scope: str
+        :param agreement_code: The code of the call's collateral agreement. (required)
+        :type agreement_code: str
+        :param item: The margin item of the call. (required)
+        :type item: str
+        :param margin_type: The margin type of the call. Only InitialMargin calls can be explained. (required)
+        :type margin_type: str
+        :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+        :type direction: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: MarginExplanation
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_margin_call_explanation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_margin_call_explanation_with_http_info(run_id, agreement_scope, agreement_code, item, margin_type, direction, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_margin_call_explanation_with_http_info(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> ApiResponse[MarginExplanation]:
+        """[EXPERIMENTAL] GetMarginCallExplanation: Explain a margin call.  # noqa: E501
+
+        Show how the required amount of one initial-margin call of a run was arrived at, as a tree of components. Only an  initial-margin call whose run stored its working can be explained, as the call's ExplainAvailable says. The working  of portfolios the caller may not read is replaced by a single redacted component that keeps its parent adding up.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param agreement_scope: The scope of the call's collateral agreement. (required)
+        :type agreement_scope: str
+        :param agreement_code: The code of the call's collateral agreement. (required)
+        :type agreement_code: str
+        :param item: The margin item of the call. (required)
+        :type item: str
+        :param margin_type: The margin type of the call. Only InitialMargin calls can be explained. (required)
+        :type margin_type: str
+        :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+        :type direction: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(MarginExplanation, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_id',
+            'agreement_scope',
+            'agreement_code',
+            'item',
+            'margin_type',
+            'direction'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_margin_call_explanation" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['run_id'] is not None:
+            _path_params['runId'] = _params['run_id']
+
+        if _params['agreement_scope'] is not None:
+            _path_params['agreementScope'] = _params['agreement_scope']
+
+        if _params['agreement_code'] is not None:
+            _path_params['agreementCode'] = _params['agreement_code']
+
+        if _params['item'] is not None:
+            _path_params['item'] = _params['item']
+
+        if _params['margin_type'] is not None:
+            _path_params['marginType'] = _params['margin_type']
+
+        if _params['direction'] is not None:
+            _path_params['direction'] = _params['direction']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "MarginExplanation",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/collateral/margincalls/{runId}/{agreementScope}/{agreementCode}/{item}/{marginType}/{direction}/$explain', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_margin_line_explanation(self, run_id: StrictStr, line_key: StrictStr, figure: Optional[StrictStr] = None, **kwargs) -> MarginExplanation:
+        """[EXPERIMENTAL] GetMarginLineExplanation: Explain a margin line.  # noqa: E501
+
+        Show how the figures of one margin line of a run were arrived at, as a tree of components for each figure. The run  must have stored its working, as its lines' ExplainAvailable says. The working of portfolios the caller may not  read is replaced by a single redacted component that keeps its parent adding up. A line the caller may not read is  reported as not found.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param line_key: The key of the margin line, as listed in the line's LineKey. (required)
+        :type line_key: str
+        :param figure: The figure of the line to explain: VariationMargin or InitialMargin. Explains every figure of the line that the run explained if not specified. Available values: VariationMargin, InitialMargin.
+        :type figure: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: MarginExplanation
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_margin_line_explanation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_margin_line_explanation_with_http_info(run_id, line_key, figure, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_margin_line_explanation_with_http_info(self, run_id: StrictStr, line_key: StrictStr, figure: Optional[StrictStr] = None, **kwargs) -> ApiResponse[MarginExplanation]:
+        """[EXPERIMENTAL] GetMarginLineExplanation: Explain a margin line.  # noqa: E501
+
+        Show how the figures of one margin line of a run were arrived at, as a tree of components for each figure. The run  must have stored its working, as its lines' ExplainAvailable says. The working of portfolios the caller may not  read is replaced by a single redacted component that keeps its parent adding up. A line the caller may not read is  reported as not found.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param line_key: The key of the margin line, as listed in the line's LineKey. (required)
+        :type line_key: str
+        :param figure: The figure of the line to explain: VariationMargin or InitialMargin. Explains every figure of the line that the run explained if not specified. Available values: VariationMargin, InitialMargin.
+        :type figure: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(MarginExplanation, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_id',
+            'line_key',
+            'figure'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_margin_line_explanation" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['run_id'] is not None:
+            _path_params['runId'] = _params['run_id']
+
+        if _params['line_key'] is not None:
+            _path_params['lineKey'] = _params['line_key']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('figure') is not None:  # noqa: E501
+            _query_params.append(('figure', _params['figure']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "MarginExplanation",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/collateral/runs/{runId}/lines/{lineKey}/$explain', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def get_margin_run(self, run_id: StrictStr, **kwargs) -> MarginRun:
         """[EXPERIMENTAL] GetMarginRun: Get a margin run.  # noqa: E501
 
@@ -999,11 +1459,11 @@ class CollateralApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_margin_calls(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfMarginCall:
+    def list_margin_calls(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, effective_from: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfMarginCall:
         """[EXPERIMENTAL] ListMarginCalls: List margin calls.  # noqa: E501
 
-        List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. Restricted to the agreements the caller may read.  # noqa: E501
-        :param effective_at: The business date, datetime or cut label to list the current margin calls for. Defaults to today if not specified. Ignored when a run id is given.
+        List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. With an effectiveFrom the current calls of each date from it to effectiveAt are listed, in date order.  Restricted to the agreements the caller may read.  # noqa: E501
+        :param effective_at: The business date, datetime or cut label to list the current margin calls for, or the last date of the range when effectiveFrom is given. Defaults to today if not specified. Ignored when a run id is given.
         :type effective_at: str
         :param run_id: The identifier of the margin run to list the calls of. Lists the current calls for the business date if not specified.
         :type run_id: str
@@ -1013,6 +1473,10 @@ class CollateralApi:
         :type limit: int
         :param filter: Expression to filter the results. The filterable fields are RunId, AgreementId.Scope, AgreementId.Code, Counterparty.Code, Counterparty.IdTypeScope, Counterparty.IdTypeCode, Item, MarginType, Method, Settlement, Direction, Currency, Required, Held, Call, CounterpartyDemand, Difference, MatchStatus, AgreedAmount, DisputedAmount, DisputeOwner, State and Deadline. For example, to find the breaks, specify \"MatchStatus eq 'Break'\". For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
+        :param scenarios: The scenarios, each as scope/code, whose calls are listed beside the base case calls, which are always listed. Lists the base case calls only if not specified.
+        :type scenarios: List[str]
+        :param effective_from: The first business date, datetime or cut label of a range ending at effectiveAt, for a time series of calls. Lists the one business date if not specified. Ignored when a run id is given.
+        :type effective_from: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1023,15 +1487,15 @@ class CollateralApi:
             message = "Error! Please call the list_margin_calls_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_margin_calls_with_http_info(effective_at, run_id, page, limit, filter, **kwargs)
+        response = self.list_margin_calls_with_http_info(effective_at, run_id, page, limit, filter, scenarios, effective_from, **kwargs)
         return response.data
 
     @validate_call
-    def list_margin_calls_with_http_info(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginCall]:
+    def list_margin_calls_with_http_info(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, effective_from: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginCall]:
         """[EXPERIMENTAL] ListMarginCalls: List margin calls.  # noqa: E501
 
-        List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. Restricted to the agreements the caller may read.  # noqa: E501
-        :param effective_at: The business date, datetime or cut label to list the current margin calls for. Defaults to today if not specified. Ignored when a run id is given.
+        List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. With an effectiveFrom the current calls of each date from it to effectiveAt are listed, in date order.  Restricted to the agreements the caller may read.  # noqa: E501
+        :param effective_at: The business date, datetime or cut label to list the current margin calls for, or the last date of the range when effectiveFrom is given. Defaults to today if not specified. Ignored when a run id is given.
         :type effective_at: str
         :param run_id: The identifier of the margin run to list the calls of. Lists the current calls for the business date if not specified.
         :type run_id: str
@@ -1041,6 +1505,10 @@ class CollateralApi:
         :type limit: int
         :param filter: Expression to filter the results. The filterable fields are RunId, AgreementId.Scope, AgreementId.Code, Counterparty.Code, Counterparty.IdTypeScope, Counterparty.IdTypeCode, Item, MarginType, Method, Settlement, Direction, Currency, Required, Held, Call, CounterpartyDemand, Difference, MatchStatus, AgreedAmount, DisputedAmount, DisputeOwner, State and Deadline. For example, to find the breaks, specify \"MatchStatus eq 'Break'\". For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
+        :param scenarios: The scenarios, each as scope/code, whose calls are listed beside the base case calls, which are always listed. Lists the base case calls only if not specified.
+        :type scenarios: List[str]
+        :param effective_from: The first business date, datetime or cut label of a range ending at effectiveAt, for a time series of calls. Lists the one business date if not specified. Ignored when a run id is given.
+        :type effective_from: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1068,7 +1536,9 @@ class CollateralApi:
             'run_id',
             'page',
             'limit',
-            'filter'
+            'filter',
+            'scenarios',
+            'effective_from'
         ]
         _all_params.extend(
             [
@@ -1114,6 +1584,13 @@ class CollateralApi:
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
 
+        if _params.get('scenarios') is not None:  # noqa: E501
+            _query_params.append(('scenarios', _params['scenarios']))
+            _collection_formats['scenarios'] = 'multi'
+
+        if _params.get('effective_from') is not None:  # noqa: E501
+            _query_params.append(('effectiveFrom', _params['effective_from']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1151,7 +1628,7 @@ class CollateralApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_margin_lines(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfMarginLine:
+    def list_margin_lines(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfMarginLine:
         """[EXPERIMENTAL] ListMarginLines: List the margin lines of a run.  # noqa: E501
 
         List the holding lines behind every margin call of a run, restricted to the agreements the caller may read.  # noqa: E501
@@ -1163,6 +1640,8 @@ class CollateralApi:
         :type limit: int
         :param filter: Expression to filter the results. The filterable fields are AgreementId.Scope, AgreementId.Code, Item, PortfolioId.Scope, PortfolioId.Code, HoldingId, CustodianAccountScope, CustodianAccountCode, CustodianAccountName, Units, Pv, VariationMargin and CollateralValue. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
+        :param scenarios: The scenarios, each as scope/code, whose lines are listed beside the base case lines, which are always listed. Lists the base case lines only if not specified.
+        :type scenarios: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1173,11 +1652,11 @@ class CollateralApi:
             message = "Error! Please call the list_margin_lines_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_margin_lines_with_http_info(run_id, page, limit, filter, **kwargs)
+        response = self.list_margin_lines_with_http_info(run_id, page, limit, filter, scenarios, **kwargs)
         return response.data
 
     @validate_call
-    def list_margin_lines_with_http_info(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginLine]:
+    def list_margin_lines_with_http_info(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginLine]:
         """[EXPERIMENTAL] ListMarginLines: List the margin lines of a run.  # noqa: E501
 
         List the holding lines behind every margin call of a run, restricted to the agreements the caller may read.  # noqa: E501
@@ -1189,6 +1668,8 @@ class CollateralApi:
         :type limit: int
         :param filter: Expression to filter the results. The filterable fields are AgreementId.Scope, AgreementId.Code, Item, PortfolioId.Scope, PortfolioId.Code, HoldingId, CustodianAccountScope, CustodianAccountCode, CustodianAccountName, Units, Pv, VariationMargin and CollateralValue. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
+        :param scenarios: The scenarios, each as scope/code, whose lines are listed beside the base case lines, which are always listed. Lists the base case lines only if not specified.
+        :type scenarios: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1215,7 +1696,8 @@ class CollateralApi:
             'run_id',
             'page',
             'limit',
-            'filter'
+            'filter',
+            'scenarios'
         ]
         _all_params.extend(
             [
@@ -1258,6 +1740,10 @@ class CollateralApi:
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
 
+        if _params.get('scenarios') is not None:  # noqa: E501
+            _query_params.append(('scenarios', _params['scenarios']))
+            _collection_formats['scenarios'] = 'multi'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1279,6 +1765,150 @@ class CollateralApi:
 
         return self.sync_api_client.call_api(
             '/api/api/collateral/runs/{runId}/lines', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_margin_run_recommendations(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfNettingRecommendation:
+        """[EXPERIMENTAL] ListMarginRunRecommendations: List a margin run's netting recommendations.  # noqa: E501
+
+        List the trades a run's optimisation pass found would attract less initial margin in another netting set of the  run, with both sets' initial margin before and after the move. Empty until the run's optimisation pass has  completed. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+        :type filter: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfNettingRecommendation
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_margin_run_recommendations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_margin_run_recommendations_with_http_info(run_id, page, limit, filter, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_margin_run_recommendations_with_http_info(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfNettingRecommendation]:
+        """[EXPERIMENTAL] ListMarginRunRecommendations: List a margin run's netting recommendations.  # noqa: E501
+
+        List the trades a run's optimisation pass found would attract less initial margin in another netting set of the  run, with both sets' initial margin before and after the move. Empty until the run's optimisation pass has  completed. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+        :type filter: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfNettingRecommendation, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_id',
+            'page',
+            'limit',
+            'filter'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_margin_run_recommendations" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['run_id'] is not None:
+            _path_params['runId'] = _params['run_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfNettingRecommendation",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/collateral/runs/{runId}/recommendations', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1415,6 +2045,325 @@ class CollateralApi:
 
         return self.sync_api_client.call_api(
             '/api/api/collateral/runs', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_netting_recommendations(self, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfNettingRecommendation:
+        """[EXPERIMENTAL] ListNettingRecommendations: List the current netting recommendations.  # noqa: E501
+
+        List the netting recommendations in force for a business date: those of the latest run for the date whose  optimisation pass completed, with an agreement that run could not value served from the most recent run that  did. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+        :param effective_at: The business date, datetime or cut label to list the current recommendations for. Defaults to today if not specified.
+        :type effective_at: str
+        :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+        :type filter: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfNettingRecommendation
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_netting_recommendations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_netting_recommendations_with_http_info(effective_at, page, limit, filter, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_netting_recommendations_with_http_info(self, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfNettingRecommendation]:
+        """[EXPERIMENTAL] ListNettingRecommendations: List the current netting recommendations.  # noqa: E501
+
+        List the netting recommendations in force for a business date: those of the latest run for the date whose  optimisation pass completed, with an agreement that run could not value served from the most recent run that  did. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+        :param effective_at: The business date, datetime or cut label to list the current recommendations for. Defaults to today if not specified.
+        :type effective_at: str
+        :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+        :type filter: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfNettingRecommendation, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'effective_at',
+            'page',
+            'limit',
+            'filter'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_netting_recommendations" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfNettingRecommendation",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/collateral/recommendations', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def rank_margin_call(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, rank_margin_call_request: Optional[RankMarginCallRequest] = None, **kwargs) -> CollateralAllocation:
+        """[EXPERIMENTAL] RankMarginCall: [EXPERIMENTAL] RankMarginCall: Rank the collateral for a margin call again, with the caller's choices.  # noqa: E501
+
+        Value the call's agreement as of now for the run's business date and rank its free, eligible holdings for the  call again, keeping the assets and units the caller chose. Each choice is validated against the agreement's  constraints and kept with its reason when it fails one; the rest of the call is filled from the ranking, cheapest  first, unless fillRemainder is false. Nothing is stored: the result is what to book, for the caller to decide on.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param agreement_scope: The scope of the call's collateral agreement. (required)
+        :type agreement_scope: str
+        :param agreement_code: The code of the call's collateral agreement. (required)
+        :type agreement_code: str
+        :param item: The margin item of the call. (required)
+        :type item: str
+        :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+        :type margin_type: str
+        :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+        :type direction: str
+        :param rank_margin_call_request: The assets the caller chose, and whether to fill the rest.
+        :type rank_margin_call_request: RankMarginCallRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: CollateralAllocation
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the rank_margin_call_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.rank_margin_call_with_http_info(run_id, agreement_scope, agreement_code, item, margin_type, direction, rank_margin_call_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def rank_margin_call_with_http_info(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, rank_margin_call_request: Optional[RankMarginCallRequest] = None, **kwargs) -> ApiResponse[CollateralAllocation]:
+        """[EXPERIMENTAL] RankMarginCall: [EXPERIMENTAL] RankMarginCall: Rank the collateral for a margin call again, with the caller's choices.  # noqa: E501
+
+        Value the call's agreement as of now for the run's business date and rank its free, eligible holdings for the  call again, keeping the assets and units the caller chose. Each choice is validated against the agreement's  constraints and kept with its reason when it fails one; the rest of the call is filled from the ranking, cheapest  first, unless fillRemainder is false. Nothing is stored: the result is what to book, for the caller to decide on.  # noqa: E501
+        :param run_id: The identifier of the margin run. (required)
+        :type run_id: str
+        :param agreement_scope: The scope of the call's collateral agreement. (required)
+        :type agreement_scope: str
+        :param agreement_code: The code of the call's collateral agreement. (required)
+        :type agreement_code: str
+        :param item: The margin item of the call. (required)
+        :type item: str
+        :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+        :type margin_type: str
+        :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+        :type direction: str
+        :param rank_margin_call_request: The assets the caller chose, and whether to fill the rest.
+        :type rank_margin_call_request: RankMarginCallRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(CollateralAllocation, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_id',
+            'agreement_scope',
+            'agreement_code',
+            'item',
+            'margin_type',
+            'direction',
+            'rank_margin_call_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method rank_margin_call" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['run_id'] is not None:
+            _path_params['runId'] = _params['run_id']
+
+        if _params['agreement_scope'] is not None:
+            _path_params['agreementScope'] = _params['agreement_scope']
+
+        if _params['agreement_code'] is not None:
+            _path_params['agreementCode'] = _params['agreement_code']
+
+        if _params['item'] is not None:
+            _path_params['item'] = _params['item']
+
+        if _params['margin_type'] is not None:
+            _path_params['marginType'] = _params['margin_type']
+
+        if _params['direction'] is not None:
+            _path_params['direction'] = _params['direction']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['rank_margin_call_request'] is not None:
+            _body_params = _params['rank_margin_call_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CollateralAllocation",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/collateral/margincalls/{runId}/{agreementScope}/{agreementCode}/{item}/{marginType}/{direction}/$rank', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1726,17 +2675,17 @@ class CollateralApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def run_margin_calculation(self, margin_run_request: MarginRunRequest, **kwargs) -> MarginRun:
+    def run_margin_calculation(self, margin_run_request: MarginRunRequest, **kwargs) -> PagedResourceListOfMarginRun:
         """[EXPERIMENTAL] RunMarginCalculation: Run the margin calculation.  # noqa: E501
 
-        Value the collateral agreements for a business date in the background and publish their margin calls as a run.  The run is returned as planned; poll GetMarginRun for its progress, and list its calls as they are published.  # noqa: E501
-        :param margin_run_request: The business date to value, and optionally the asAt and the agreements to include. (required)
+        Value the collateral agreements for a business date, or for each weekday of a span, in the background and publish  their margin calls as a run for each date. The base case is always valued, with each scenario named in the request  valued beside it as a case of the same run. A date after the asAt is a projection on the market as at the asAt.  The runs are returned as planned, in date order; poll GetMarginRun for the progress of each, and list the calls as they are published.  # noqa: E501
+        :param margin_run_request: The business date to value, or the span of dates ending at it, and optionally the asAt, the agreements to include and the scenarios to value beside the base case. (required)
         :type margin_run_request: MarginRunRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: MarginRun
+        :rtype: PagedResourceListOfMarginRun
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_margin_calculation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -1746,11 +2695,11 @@ class CollateralApi:
         return response.data
 
     @validate_call
-    def run_margin_calculation_with_http_info(self, margin_run_request: MarginRunRequest, **kwargs) -> ApiResponse[MarginRun]:
+    def run_margin_calculation_with_http_info(self, margin_run_request: MarginRunRequest, **kwargs) -> ApiResponse[PagedResourceListOfMarginRun]:
         """[EXPERIMENTAL] RunMarginCalculation: Run the margin calculation.  # noqa: E501
 
-        Value the collateral agreements for a business date in the background and publish their margin calls as a run.  The run is returned as planned; poll GetMarginRun for its progress, and list its calls as they are published.  # noqa: E501
-        :param margin_run_request: The business date to value, and optionally the asAt and the agreements to include. (required)
+        Value the collateral agreements for a business date, or for each weekday of a span, in the background and publish  their margin calls as a run for each date. The base case is always valued, with each scenario named in the request  valued beside it as a case of the same run. A date after the asAt is a projection on the market as at the asAt.  The runs are returned as planned, in date order; poll GetMarginRun for the progress of each, and list the calls as they are published.  # noqa: E501
+        :param margin_run_request: The business date to value, or the span of dates ending at it, and optionally the asAt, the agreements to include and the scenarios to value beside the base case. (required)
         :type margin_run_request: MarginRunRequest
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1769,7 +2718,7 @@ class CollateralApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(MarginRun, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PagedResourceListOfMarginRun, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1831,7 +2780,7 @@ class CollateralApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '202': "MarginRun",
+            '202': "PagedResourceListOfMarginRun",
             '400': "LusidValidationProblemDetails",
         }
 
@@ -2498,6 +3447,465 @@ class CollateralApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_margin_call_allocation_async(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> CollateralAllocation:
+            """[EXPERIMENTAL] GetMarginCallAllocation: [EXPERIMENTAL] GetMarginCallAllocation: Get the collateral proposed for a margin call.  # noqa: E501
+            Retrieve the assets the run's allocation pass proposes to deliver for the call, or to take back for a return, with  every holding it considered and either its rank or the constraint that excluded it. Each line carries what a  transaction moving it needs: the instrument, the portfolio and custodian account, the units, the price and the  consideration. Not found until the run's allocation pass has completed, or when the call moves no collateral of ours.  # noqa: E501
+            
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param agreement_scope: The scope of the call's collateral agreement. (required)
+            :type agreement_scope: str
+            :param agreement_code: The code of the call's collateral agreement. (required)
+            :type agreement_code: str
+            :param item: The margin item of the call. (required)
+            :type item: str
+            :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+            :type margin_type: str
+            :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+            :type direction: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: CollateralAllocation
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_margin_call_allocation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_margin_call_allocation_with_http_info_async(run_id, agreement_scope, agreement_code, item, margin_type, direction, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_margin_call_allocation_with_http_info_async(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> ApiResponse[CollateralAllocation]:
+            """[EXPERIMENTAL] GetMarginCallAllocation: [EXPERIMENTAL] GetMarginCallAllocation: Get the collateral proposed for a margin call.  # noqa: E501
+
+            Retrieve the assets the run's allocation pass proposes to deliver for the call, or to take back for a return, with  every holding it considered and either its rank or the constraint that excluded it. Each line carries what a  transaction moving it needs: the instrument, the portfolio and custodian account, the units, the price and the  consideration. Not found until the run's allocation pass has completed, or when the call moves no collateral of ours.  # noqa: E501
+
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param agreement_scope: The scope of the call's collateral agreement. (required)
+            :type agreement_scope: str
+            :param agreement_code: The code of the call's collateral agreement. (required)
+            :type agreement_code: str
+            :param item: The margin item of the call. (required)
+            :type item: str
+            :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+            :type margin_type: str
+            :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+            :type direction: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(CollateralAllocation, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_id',
+                'agreement_scope',
+                'agreement_code',
+                'item',
+                'margin_type',
+                'direction'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_margin_call_allocation" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['run_id'] is not None:
+                _path_params['runId'] = _params['run_id']
+
+            if _params['agreement_scope'] is not None:
+                _path_params['agreementScope'] = _params['agreement_scope']
+
+            if _params['agreement_code'] is not None:
+                _path_params['agreementCode'] = _params['agreement_code']
+
+            if _params['item'] is not None:
+                _path_params['item'] = _params['item']
+
+            if _params['margin_type'] is not None:
+                _path_params['marginType'] = _params['margin_type']
+
+            if _params['direction'] is not None:
+                _path_params['direction'] = _params['direction']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "CollateralAllocation",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/collateral/margincalls/{runId}/{agreementScope}/{agreementCode}/{item}/{marginType}/{direction}/$allocation', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_margin_call_explanation_async(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> MarginExplanation:
+            """[EXPERIMENTAL] GetMarginCallExplanation: Explain a margin call.  # noqa: E501
+            Show how the required amount of one initial-margin call of a run was arrived at, as a tree of components. Only an  initial-margin call whose run stored its working can be explained, as the call's ExplainAvailable says. The working  of portfolios the caller may not read is replaced by a single redacted component that keeps its parent adding up.  # noqa: E501
+            
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param agreement_scope: The scope of the call's collateral agreement. (required)
+            :type agreement_scope: str
+            :param agreement_code: The code of the call's collateral agreement. (required)
+            :type agreement_code: str
+            :param item: The margin item of the call. (required)
+            :type item: str
+            :param margin_type: The margin type of the call. Only InitialMargin calls can be explained. (required)
+            :type margin_type: str
+            :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+            :type direction: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: MarginExplanation
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_margin_call_explanation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_margin_call_explanation_with_http_info_async(run_id, agreement_scope, agreement_code, item, margin_type, direction, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_margin_call_explanation_with_http_info_async(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, **kwargs) -> ApiResponse[MarginExplanation]:
+            """[EXPERIMENTAL] GetMarginCallExplanation: Explain a margin call.  # noqa: E501
+
+            Show how the required amount of one initial-margin call of a run was arrived at, as a tree of components. Only an  initial-margin call whose run stored its working can be explained, as the call's ExplainAvailable says. The working  of portfolios the caller may not read is replaced by a single redacted component that keeps its parent adding up.  # noqa: E501
+
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param agreement_scope: The scope of the call's collateral agreement. (required)
+            :type agreement_scope: str
+            :param agreement_code: The code of the call's collateral agreement. (required)
+            :type agreement_code: str
+            :param item: The margin item of the call. (required)
+            :type item: str
+            :param margin_type: The margin type of the call. Only InitialMargin calls can be explained. (required)
+            :type margin_type: str
+            :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+            :type direction: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(MarginExplanation, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_id',
+                'agreement_scope',
+                'agreement_code',
+                'item',
+                'margin_type',
+                'direction'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_margin_call_explanation" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['run_id'] is not None:
+                _path_params['runId'] = _params['run_id']
+
+            if _params['agreement_scope'] is not None:
+                _path_params['agreementScope'] = _params['agreement_scope']
+
+            if _params['agreement_code'] is not None:
+                _path_params['agreementCode'] = _params['agreement_code']
+
+            if _params['item'] is not None:
+                _path_params['item'] = _params['item']
+
+            if _params['margin_type'] is not None:
+                _path_params['marginType'] = _params['margin_type']
+
+            if _params['direction'] is not None:
+                _path_params['direction'] = _params['direction']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "MarginExplanation",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/collateral/margincalls/{runId}/{agreementScope}/{agreementCode}/{item}/{marginType}/{direction}/$explain', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_margin_line_explanation_async(self, run_id: StrictStr, line_key: StrictStr, figure: Optional[StrictStr] = None, **kwargs) -> MarginExplanation:
+            """[EXPERIMENTAL] GetMarginLineExplanation: Explain a margin line.  # noqa: E501
+            Show how the figures of one margin line of a run were arrived at, as a tree of components for each figure. The run  must have stored its working, as its lines' ExplainAvailable says. The working of portfolios the caller may not  read is replaced by a single redacted component that keeps its parent adding up. A line the caller may not read is  reported as not found.  # noqa: E501
+            
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param line_key: The key of the margin line, as listed in the line's LineKey. (required)
+            :type line_key: str
+            :param figure: The figure of the line to explain: VariationMargin or InitialMargin. Explains every figure of the line that the run explained if not specified. Available values: VariationMargin, InitialMargin.
+            :type figure: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: MarginExplanation
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_margin_line_explanation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_margin_line_explanation_with_http_info_async(run_id, line_key, figure, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_margin_line_explanation_with_http_info_async(self, run_id: StrictStr, line_key: StrictStr, figure: Optional[StrictStr] = None, **kwargs) -> ApiResponse[MarginExplanation]:
+            """[EXPERIMENTAL] GetMarginLineExplanation: Explain a margin line.  # noqa: E501
+
+            Show how the figures of one margin line of a run were arrived at, as a tree of components for each figure. The run  must have stored its working, as its lines' ExplainAvailable says. The working of portfolios the caller may not  read is replaced by a single redacted component that keeps its parent adding up. A line the caller may not read is  reported as not found.  # noqa: E501
+
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param line_key: The key of the margin line, as listed in the line's LineKey. (required)
+            :type line_key: str
+            :param figure: The figure of the line to explain: VariationMargin or InitialMargin. Explains every figure of the line that the run explained if not specified. Available values: VariationMargin, InitialMargin.
+            :type figure: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(MarginExplanation, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_id',
+                'line_key',
+                'figure'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_margin_line_explanation" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['run_id'] is not None:
+                _path_params['runId'] = _params['run_id']
+
+            if _params['line_key'] is not None:
+                _path_params['lineKey'] = _params['line_key']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('figure') is not None:  # noqa: E501
+                _query_params.append(('figure', _params['figure']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "MarginExplanation",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/collateral/runs/{runId}/lines/{lineKey}/$explain', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_margin_run_async(self, run_id: StrictStr, **kwargs) -> MarginRun:
             """[EXPERIMENTAL] GetMarginRun: Get a margin run.  # noqa: E501
             Retrieve a margin run with its progress: the status of each shard, the calls and lines published so far, and  anything it could not value.  # noqa: E501
@@ -2804,11 +4212,11 @@ class CollateralApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_margin_calls_async(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfMarginCall:
+    async def list_margin_calls_async(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, effective_from: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfMarginCall:
             """[EXPERIMENTAL] ListMarginCalls: List margin calls.  # noqa: E501
-            List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. Restricted to the agreements the caller may read.  # noqa: E501
+            List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. With an effectiveFrom the current calls of each date from it to effectiveAt are listed, in date order.  Restricted to the agreements the caller may read.  # noqa: E501
             
-            :param effective_at: The business date, datetime or cut label to list the current margin calls for. Defaults to today if not specified. Ignored when a run id is given.
+            :param effective_at: The business date, datetime or cut label to list the current margin calls for, or the last date of the range when effectiveFrom is given. Defaults to today if not specified. Ignored when a run id is given.
             :type effective_at: str
             :param run_id: The identifier of the margin run to list the calls of. Lists the current calls for the business date if not specified.
             :type run_id: str
@@ -2818,6 +4226,10 @@ class CollateralApi:
             :type limit: int
             :param filter: Expression to filter the results. The filterable fields are RunId, AgreementId.Scope, AgreementId.Code, Counterparty.Code, Counterparty.IdTypeScope, Counterparty.IdTypeCode, Item, MarginType, Method, Settlement, Direction, Currency, Required, Held, Call, CounterpartyDemand, Difference, MatchStatus, AgreedAmount, DisputedAmount, DisputeOwner, State and Deadline. For example, to find the breaks, specify \"MatchStatus eq 'Break'\". For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
+            :param scenarios: The scenarios, each as scope/code, whose calls are listed beside the base case calls, which are always listed. Lists the base case calls only if not specified.
+            :type scenarios: List[str]
+            :param effective_from: The first business date, datetime or cut label of a range ending at effectiveAt, for a time series of calls. Lists the one business date if not specified. Ignored when a run id is given.
+            :type effective_from: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2828,16 +4240,16 @@ class CollateralApi:
                 message = "Error! Please call the list_margin_calls_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_margin_calls_with_http_info_async(effective_at, run_id, page, limit, filter, **kwargs)
+            response = await self.list_margin_calls_with_http_info_async(effective_at, run_id, page, limit, filter, scenarios, effective_from, **kwargs)
             return response.data
 
     @validate_call
-    async def list_margin_calls_with_http_info_async(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginCall]:
+    async def list_margin_calls_with_http_info_async(self, effective_at: Optional[StrictStr] = None, run_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, effective_from: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginCall]:
             """[EXPERIMENTAL] ListMarginCalls: List margin calls.  # noqa: E501
 
-            List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. Restricted to the agreements the caller may read.  # noqa: E501
+            List the margin calls of one run when a run id is given. Otherwise list the current calls for a business date:  those of the latest run for the date, with an agreement that run could not value served from the most recent run  that did. With an effectiveFrom the current calls of each date from it to effectiveAt are listed, in date order.  Restricted to the agreements the caller may read.  # noqa: E501
 
-            :param effective_at: The business date, datetime or cut label to list the current margin calls for. Defaults to today if not specified. Ignored when a run id is given.
+            :param effective_at: The business date, datetime or cut label to list the current margin calls for, or the last date of the range when effectiveFrom is given. Defaults to today if not specified. Ignored when a run id is given.
             :type effective_at: str
             :param run_id: The identifier of the margin run to list the calls of. Lists the current calls for the business date if not specified.
             :type run_id: str
@@ -2847,6 +4259,10 @@ class CollateralApi:
             :type limit: int
             :param filter: Expression to filter the results. The filterable fields are RunId, AgreementId.Scope, AgreementId.Code, Counterparty.Code, Counterparty.IdTypeScope, Counterparty.IdTypeCode, Item, MarginType, Method, Settlement, Direction, Currency, Required, Held, Call, CounterpartyDemand, Difference, MatchStatus, AgreedAmount, DisputedAmount, DisputeOwner, State and Deadline. For example, to find the breaks, specify \"MatchStatus eq 'Break'\". For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
+            :param scenarios: The scenarios, each as scope/code, whose calls are listed beside the base case calls, which are always listed. Lists the base case calls only if not specified.
+            :type scenarios: List[str]
+            :param effective_from: The first business date, datetime or cut label of a range ending at effectiveAt, for a time series of calls. Lists the one business date if not specified. Ignored when a run id is given.
+            :type effective_from: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2874,7 +4290,9 @@ class CollateralApi:
                 'run_id',
                 'page',
                 'limit',
-                'filter'
+                'filter',
+                'scenarios',
+                'effective_from'
             ]
             _all_params.extend(
                 [
@@ -2920,6 +4338,13 @@ class CollateralApi:
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
 
+            if _params.get('scenarios') is not None:  # noqa: E501
+                _query_params.append(('scenarios', _params['scenarios']))
+                _collection_formats['scenarios'] = 'multi'
+
+            if _params.get('effective_from') is not None:  # noqa: E501
+                _query_params.append(('effectiveFrom', _params['effective_from']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2957,7 +4382,7 @@ class CollateralApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_margin_lines_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfMarginLine:
+    async def list_margin_lines_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfMarginLine:
             """[EXPERIMENTAL] ListMarginLines: List the margin lines of a run.  # noqa: E501
             List the holding lines behind every margin call of a run, restricted to the agreements the caller may read.  # noqa: E501
             
@@ -2969,6 +4394,8 @@ class CollateralApi:
             :type limit: int
             :param filter: Expression to filter the results. The filterable fields are AgreementId.Scope, AgreementId.Code, Item, PortfolioId.Scope, PortfolioId.Code, HoldingId, CustodianAccountScope, CustodianAccountCode, CustodianAccountName, Units, Pv, VariationMargin and CollateralValue. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
+            :param scenarios: The scenarios, each as scope/code, whose lines are listed beside the base case lines, which are always listed. Lists the base case lines only if not specified.
+            :type scenarios: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2979,11 +4406,11 @@ class CollateralApi:
                 message = "Error! Please call the list_margin_lines_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_margin_lines_with_http_info_async(run_id, page, limit, filter, **kwargs)
+            response = await self.list_margin_lines_with_http_info_async(run_id, page, limit, filter, scenarios, **kwargs)
             return response.data
 
     @validate_call
-    async def list_margin_lines_with_http_info_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginLine]:
+    async def list_margin_lines_with_http_info_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, scenarios: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfMarginLine]:
             """[EXPERIMENTAL] ListMarginLines: List the margin lines of a run.  # noqa: E501
 
             List the holding lines behind every margin call of a run, restricted to the agreements the caller may read.  # noqa: E501
@@ -2996,6 +4423,8 @@ class CollateralApi:
             :type limit: int
             :param filter: Expression to filter the results. The filterable fields are AgreementId.Scope, AgreementId.Code, Item, PortfolioId.Scope, PortfolioId.Code, HoldingId, CustodianAccountScope, CustodianAccountCode, CustodianAccountName, Units, Pv, VariationMargin and CollateralValue. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
+            :param scenarios: The scenarios, each as scope/code, whose lines are listed beside the base case lines, which are always listed. Lists the base case lines only if not specified.
+            :type scenarios: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3022,7 +4451,8 @@ class CollateralApi:
                 'run_id',
                 'page',
                 'limit',
-                'filter'
+                'filter',
+                'scenarios'
             ]
             _all_params.extend(
                 [
@@ -3065,6 +4495,10 @@ class CollateralApi:
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
 
+            if _params.get('scenarios') is not None:  # noqa: E501
+                _query_params.append(('scenarios', _params['scenarios']))
+                _collection_formats['scenarios'] = 'multi'
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -3086,6 +4520,151 @@ class CollateralApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/collateral/runs/{runId}/lines', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_margin_run_recommendations_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfNettingRecommendation:
+            """[EXPERIMENTAL] ListMarginRunRecommendations: List a margin run's netting recommendations.  # noqa: E501
+            List the trades a run's optimisation pass found would attract less initial margin in another netting set of the  run, with both sets' initial margin before and after the move. Empty until the run's optimisation pass has  completed. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+            
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+            :type filter: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfNettingRecommendation
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_margin_run_recommendations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_margin_run_recommendations_with_http_info_async(run_id, page, limit, filter, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_margin_run_recommendations_with_http_info_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfNettingRecommendation]:
+            """[EXPERIMENTAL] ListMarginRunRecommendations: List a margin run's netting recommendations.  # noqa: E501
+
+            List the trades a run's optimisation pass found would attract less initial margin in another netting set of the  run, with both sets' initial margin before and after the move. Empty until the run's optimisation pass has  completed. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+            :type filter: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfNettingRecommendation, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_id',
+                'page',
+                'limit',
+                'filter'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_margin_run_recommendations" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['run_id'] is not None:
+                _path_params['runId'] = _params['run_id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfNettingRecommendation",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/collateral/runs/{runId}/recommendations', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -3223,6 +4802,327 @@ class CollateralApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/collateral/runs', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_netting_recommendations_async(self, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfNettingRecommendation:
+            """[EXPERIMENTAL] ListNettingRecommendations: List the current netting recommendations.  # noqa: E501
+            List the netting recommendations in force for a business date: those of the latest run for the date whose  optimisation pass completed, with an agreement that run could not value served from the most recent run that  did. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+            
+            :param effective_at: The business date, datetime or cut label to list the current recommendations for. Defaults to today if not specified.
+            :type effective_at: str
+            :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+            :type filter: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfNettingRecommendation
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_netting_recommendations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_netting_recommendations_with_http_info_async(effective_at, page, limit, filter, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_netting_recommendations_with_http_info_async(self, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfNettingRecommendation]:
+            """[EXPERIMENTAL] ListNettingRecommendations: List the current netting recommendations.  # noqa: E501
+
+            List the netting recommendations in force for a business date: those of the latest run for the date whose  optimisation pass completed, with an agreement that run could not value served from the most recent run that  did. Restricted to recommendations whose source and target agreements the caller may read.  # noqa: E501
+
+            :param effective_at: The business date, datetime or cut label to list the current recommendations for. Defaults to today if not specified.
+            :type effective_at: str
+            :param page: The pagination token to use to continue listing recommendations; this value is returned from the previous call.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the results. The filterable fields are RunId, SourceAgreementId.Scope, SourceAgreementId.Code, SourceItem, TargetAgreementId.Scope, TargetAgreementId.Code, TargetItem, Transfer, InstrumentType, Currency, MaturityBucket, SavingPerDay, OneOffCost, PaybackDays and InitialMarginChange. For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+            :type filter: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfNettingRecommendation, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'effective_at',
+                'page',
+                'limit',
+                'filter'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_netting_recommendations" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfNettingRecommendation",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/collateral/recommendations', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def rank_margin_call_async(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, rank_margin_call_request: Optional[RankMarginCallRequest] = None, **kwargs) -> CollateralAllocation:
+            """[EXPERIMENTAL] RankMarginCall: [EXPERIMENTAL] RankMarginCall: Rank the collateral for a margin call again, with the caller's choices.  # noqa: E501
+            Value the call's agreement as of now for the run's business date and rank its free, eligible holdings for the  call again, keeping the assets and units the caller chose. Each choice is validated against the agreement's  constraints and kept with its reason when it fails one; the rest of the call is filled from the ranking, cheapest  first, unless fillRemainder is false. Nothing is stored: the result is what to book, for the caller to decide on.  # noqa: E501
+            
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param agreement_scope: The scope of the call's collateral agreement. (required)
+            :type agreement_scope: str
+            :param agreement_code: The code of the call's collateral agreement. (required)
+            :type agreement_code: str
+            :param item: The margin item of the call. (required)
+            :type item: str
+            :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+            :type margin_type: str
+            :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+            :type direction: str
+            :param rank_margin_call_request: The assets the caller chose, and whether to fill the rest.
+            :type rank_margin_call_request: RankMarginCallRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: CollateralAllocation
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the rank_margin_call_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.rank_margin_call_with_http_info_async(run_id, agreement_scope, agreement_code, item, margin_type, direction, rank_margin_call_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def rank_margin_call_with_http_info_async(self, run_id: StrictStr, agreement_scope: StrictStr, agreement_code: StrictStr, item: StrictStr, margin_type: StrictStr, direction: StrictStr, rank_margin_call_request: Optional[RankMarginCallRequest] = None, **kwargs) -> ApiResponse[CollateralAllocation]:
+            """[EXPERIMENTAL] RankMarginCall: [EXPERIMENTAL] RankMarginCall: Rank the collateral for a margin call again, with the caller's choices.  # noqa: E501
+
+            Value the call's agreement as of now for the run's business date and rank its free, eligible holdings for the  call again, keeping the assets and units the caller chose. Each choice is validated against the agreement's  constraints and kept with its reason when it fails one; the rest of the call is filled from the ranking, cheapest  first, unless fillRemainder is false. Nothing is stored: the result is what to book, for the caller to decide on.  # noqa: E501
+
+            :param run_id: The identifier of the margin run. (required)
+            :type run_id: str
+            :param agreement_scope: The scope of the call's collateral agreement. (required)
+            :type agreement_scope: str
+            :param agreement_code: The code of the call's collateral agreement. (required)
+            :type agreement_code: str
+            :param item: The margin item of the call. (required)
+            :type item: str
+            :param margin_type: The margin type of the call. One of VariationMargin or InitialMargin. (required)
+            :type margin_type: str
+            :param direction: Who posts under the call. One of WePost, TheyPost or None. (required)
+            :type direction: str
+            :param rank_margin_call_request: The assets the caller chose, and whether to fill the rest.
+            :type rank_margin_call_request: RankMarginCallRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(CollateralAllocation, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_id',
+                'agreement_scope',
+                'agreement_code',
+                'item',
+                'margin_type',
+                'direction',
+                'rank_margin_call_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method rank_margin_call" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['run_id'] is not None:
+                _path_params['runId'] = _params['run_id']
+
+            if _params['agreement_scope'] is not None:
+                _path_params['agreementScope'] = _params['agreement_scope']
+
+            if _params['agreement_code'] is not None:
+                _path_params['agreementCode'] = _params['agreement_code']
+
+            if _params['item'] is not None:
+                _path_params['item'] = _params['item']
+
+            if _params['margin_type'] is not None:
+                _path_params['marginType'] = _params['margin_type']
+
+            if _params['direction'] is not None:
+                _path_params['direction'] = _params['direction']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['rank_margin_call_request'] is not None:
+                _body_params = _params['rank_margin_call_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "CollateralAllocation",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/collateral/margincalls/{runId}/{agreementScope}/{agreementCode}/{item}/{marginType}/{direction}/$rank', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -3536,17 +5436,17 @@ class CollateralApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def run_margin_calculation_async(self, margin_run_request: MarginRunRequest, **kwargs) -> MarginRun:
+    async def run_margin_calculation_async(self, margin_run_request: MarginRunRequest, **kwargs) -> PagedResourceListOfMarginRun:
             """[EXPERIMENTAL] RunMarginCalculation: Run the margin calculation.  # noqa: E501
-            Value the collateral agreements for a business date in the background and publish their margin calls as a run.  The run is returned as planned; poll GetMarginRun for its progress, and list its calls as they are published.  # noqa: E501
+            Value the collateral agreements for a business date, or for each weekday of a span, in the background and publish  their margin calls as a run for each date. The base case is always valued, with each scenario named in the request  valued beside it as a case of the same run. A date after the asAt is a projection on the market as at the asAt.  The runs are returned as planned, in date order; poll GetMarginRun for the progress of each, and list the calls as they are published.  # noqa: E501
             
-            :param margin_run_request: The business date to value, and optionally the asAt and the agreements to include. (required)
+            :param margin_run_request: The business date to value, or the span of dates ending at it, and optionally the asAt, the agreements to include and the scenarios to value beside the base case. (required)
             :type margin_run_request: MarginRunRequest
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: MarginRun
+            :rtype: PagedResourceListOfMarginRun
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_margin_calculation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -3556,12 +5456,12 @@ class CollateralApi:
             return response.data
 
     @validate_call
-    async def run_margin_calculation_with_http_info_async(self, margin_run_request: MarginRunRequest, **kwargs) -> ApiResponse[MarginRun]:
+    async def run_margin_calculation_with_http_info_async(self, margin_run_request: MarginRunRequest, **kwargs) -> ApiResponse[PagedResourceListOfMarginRun]:
             """[EXPERIMENTAL] RunMarginCalculation: Run the margin calculation.  # noqa: E501
 
-            Value the collateral agreements for a business date in the background and publish their margin calls as a run.  The run is returned as planned; poll GetMarginRun for its progress, and list its calls as they are published.  # noqa: E501
+            Value the collateral agreements for a business date, or for each weekday of a span, in the background and publish  their margin calls as a run for each date. The base case is always valued, with each scenario named in the request  valued beside it as a case of the same run. A date after the asAt is a projection on the market as at the asAt.  The runs are returned as planned, in date order; poll GetMarginRun for the progress of each, and list the calls as they are published.  # noqa: E501
 
-            :param margin_run_request: The business date to value, and optionally the asAt and the agreements to include. (required)
+            :param margin_run_request: The business date to value, or the span of dates ending at it, and optionally the asAt, the agreements to include and the scenarios to value beside the base case. (required)
             :type margin_run_request: MarginRunRequest
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -3580,7 +5480,7 @@ class CollateralApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(MarginRun, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(PagedResourceListOfMarginRun, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -3642,7 +5542,7 @@ class CollateralApi:
             _auth_settings = ['oauth2']  # noqa: E501
 
             _response_types_map = {
-                '202': "MarginRun",
+                '202': "PagedResourceListOfMarginRun",
                 '400': "LusidValidationProblemDetails",
             }
 

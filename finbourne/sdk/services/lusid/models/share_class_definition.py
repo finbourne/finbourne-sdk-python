@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
+from finbourne.sdk.services.lusid.models.share_class_rounding_convention import ShareClassRoundingConvention
 from finbourne.sdk.services.lusid.models.simple_rounding_convention import SimpleRoundingConvention
 from finbourne.sdk.services.lusid.models.time_zone_conventions import TimeZoneConventions
 from finbourne.sdk.services.lusid.models.trading_conventions import TradingConventions
@@ -43,7 +44,7 @@ class ShareClassDefinition(BaseModel):
     distribution_type:  Optional[StrictStr] = Field(default=None,alias="distributionType", description="The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.") 
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency of the ShareClass instrument.") 
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
-    rounding_conventions_price: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass quotes.", alias="roundingConventionsPrice")
+    rounding_conventions_price: Optional[List[ShareClassRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass quotes.", alias="roundingConventionsPrice")
     rounding_conventions_units: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass units.", alias="roundingConventionsUnits")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     distribution_payment_type:  Optional[StrictStr] = Field(default=None,alias="distributionPaymentType", description="The tax treatment applied to distributions. Available values: Invalid, Gross, Net.") 
@@ -188,7 +189,7 @@ class ShareClassDefinition(BaseModel):
             "distribution_type": obj.get("distributionType"),
             "dom_ccy": obj.get("domCcy"),
             "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None,
-            "rounding_conventions_price": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventionsPrice")) is not None else None,
+            "rounding_conventions_price": [ShareClassRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventionsPrice")) is not None else None,
             "rounding_conventions_units": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventionsUnits")) is not None else None,
             "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None,
             "distribution_payment_type": obj.get("distributionPaymentType"),

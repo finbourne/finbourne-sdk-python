@@ -56,7 +56,7 @@ class AllocationMapsApi:
 
     @validate_call
     def add_allocation_map_exception(self, scope: StrictStr, code: StrictStr, allocation_map_exception: AllocationMapException, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationMap:
-        """[EXPERIMENTAL] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
 
         Add a per-investor exception (an exclusion or a fixed percentage) to the map's participants, from an  effective datetime. The result is a new bitemporal version of the map. An investor record may carry at most  one exception; to change it, remove the existing one first or upsert the whole map.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -82,7 +82,7 @@ class AllocationMapsApi:
 
     @validate_call
     def add_allocation_map_exception_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_map_exception: AllocationMapException, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationMap]:
-        """[EXPERIMENTAL] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
 
         Add a per-investor exception (an exclusion or a fixed percentage) to the map's participants, from an  effective datetime. The result is a new bitemporal version of the map. An investor record may carry at most  one exception; to change it, remove the existing one first or upsert the whole map.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -207,7 +207,7 @@ class AllocationMapsApi:
 
     @validate_call
     def create_allocation_map(self, scope: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> AllocationMap:
-        """[EXPERIMENTAL] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
 
         Create a new Allocation Map. The scope is provided in the route and the code in the request body. The map  names the structure member it hangs off, who participates, and the basis used to share each kind of event.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -229,7 +229,7 @@ class AllocationMapsApi:
 
     @validate_call
     def create_allocation_map_with_http_info(self, scope: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> ApiResponse[AllocationMap]:
-        """[EXPERIMENTAL] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
 
         Create a new Allocation Map. The scope is provided in the route and the code in the request body. The map  names the structure member it hangs off, who participates, and the basis used to share each kind of event.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -342,7 +342,7 @@ class AllocationMapsApi:
 
     @validate_call
     def delete_allocation_map(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
 
         Delete an Allocation Map from an effective datetime. The Allocation Map is no longer readable from that  effective datetime onwards.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -366,7 +366,7 @@ class AllocationMapsApi:
 
     @validate_call
     def delete_allocation_map_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
 
         Delete an Allocation Map from an effective datetime. The Allocation Map is no longer readable from that  effective datetime onwards.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -478,7 +478,7 @@ class AllocationMapsApi:
 
     @validate_call
     def get_allocation_map(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationMap:
-        """[EXPERIMENTAL] GetAllocationMap: Get an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] GetAllocationMap: Get an Allocation Map.  # noqa: E501
 
         Retrieve the definition of a particular Allocation Map at an effective and asAt datetime, including its  participants, exceptions and the basis declared for each event type.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -504,7 +504,7 @@ class AllocationMapsApi:
 
     @validate_call
     def get_allocation_map_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationMap]:
-        """[EXPERIMENTAL] GetAllocationMap: Get an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] GetAllocationMap: Get an Allocation Map.  # noqa: E501
 
         Retrieve the definition of a particular Allocation Map at an effective and asAt datetime, including its  participants, exceptions and the basis declared for each event type.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -625,7 +625,7 @@ class AllocationMapsApi:
 
     @validate_call
     def list_allocation_maps(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAllocationMap:
-        """[EXPERIMENTAL] ListAllocationMaps: List Allocation Maps.  # noqa: E501
+        """[EARLY ACCESS] ListAllocationMaps: List Allocation Maps.  # noqa: E501
 
         List all the Allocation Maps matching a particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the Allocation Maps. Defaults to the current LUSID system datetime if not specified.
@@ -655,7 +655,7 @@ class AllocationMapsApi:
 
     @validate_call
     def list_allocation_maps_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAllocationMap]:
-        """[EXPERIMENTAL] ListAllocationMaps: List Allocation Maps.  # noqa: E501
+        """[EARLY ACCESS] ListAllocationMaps: List Allocation Maps.  # noqa: E501
 
         List all the Allocation Maps matching a particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the Allocation Maps. Defaults to the current LUSID system datetime if not specified.
@@ -789,7 +789,7 @@ class AllocationMapsApi:
 
     @validate_call
     def remove_allocation_map_exception(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationMap:
-        """[EXPERIMENTAL] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
 
         Remove the exception held against an investor record, from an effective datetime. The result is a new  bitemporal version of the map in which that investor is treated like every other participant.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -815,7 +815,7 @@ class AllocationMapsApi:
 
     @validate_call
     def remove_allocation_map_exception_with_http_info(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationMap]:
-        """[EXPERIMENTAL] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
 
         Remove the exception held against an investor record, from an effective datetime. The result is a new  bitemporal version of the map in which that investor is treated like every other participant.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -933,7 +933,7 @@ class AllocationMapsApi:
 
     @validate_call
     def resolve_allocation_map(self, scope: StrictStr, code: StrictStr, allocation_map_resolve_request: AllocationMapResolveRequest, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationMapResolution:
-        """[EXPERIMENTAL] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
 
         Dry-run the map against an event: share the supplied amount across the participants in force at the  effective datetime, applying fixed-percentage exceptions off the top and the declared basis to the remainder.  Nothing is booked. Basis values (for example committed capital per investor) are supplied in the request  until the investor register can provide them.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -961,7 +961,7 @@ class AllocationMapsApi:
 
     @validate_call
     def resolve_allocation_map_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_map_resolve_request: AllocationMapResolveRequest, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationMapResolution]:
-        """[EXPERIMENTAL] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
 
         Dry-run the map against an event: share the supplied amount across the participants in force at the  effective datetime, applying fixed-percentage exceptions off the top and the declared basis to the remainder.  Nothing is booked. Basis values (for example committed capital per investor) are supplied in the request  until the investor register can provide them.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -1095,7 +1095,7 @@ class AllocationMapsApi:
 
     @validate_call
     def upsert_allocation_map(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> AllocationMap:
-        """[EXPERIMENTAL] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
 
         Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -1119,7 +1119,7 @@ class AllocationMapsApi:
 
     @validate_call
     def upsert_allocation_map_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> ApiResponse[AllocationMap]:
-        """[EXPERIMENTAL] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
+        """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
 
         Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
         :param scope: The scope of the Allocation Map. (required)
@@ -1242,7 +1242,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def add_allocation_map_exception_async(self, scope: StrictStr, code: StrictStr, allocation_map_exception: AllocationMapException, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationMap:
-            """[EXPERIMENTAL] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
             Add a per-investor exception (an exclusion or a fixed percentage) to the map's participants, from an  effective datetime. The result is a new bitemporal version of the map. An investor record may carry at most  one exception; to change it, remove the existing one first or upsert the whole map.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -1268,7 +1268,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def add_allocation_map_exception_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_map_exception: AllocationMapException, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationMap]:
-            """[EXPERIMENTAL] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] AddAllocationMapException: Add an exception to an Allocation Map.  # noqa: E501
 
             Add a per-investor exception (an exclusion or a fixed percentage) to the map's participants, from an  effective datetime. The result is a new bitemporal version of the map. An investor record may carry at most  one exception; to change it, remove the existing one first or upsert the whole map.  # noqa: E501
 
@@ -1394,7 +1394,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def create_allocation_map_async(self, scope: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> AllocationMap:
-            """[EXPERIMENTAL] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
             Create a new Allocation Map. The scope is provided in the route and the code in the request body. The map  names the structure member it hangs off, who participates, and the basis used to share each kind of event.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -1416,7 +1416,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def create_allocation_map_with_http_info_async(self, scope: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> ApiResponse[AllocationMap]:
-            """[EXPERIMENTAL] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] CreateAllocationMap: Create an Allocation Map.  # noqa: E501
 
             Create a new Allocation Map. The scope is provided in the route and the code in the request body. The map  names the structure member it hangs off, who participates, and the basis used to share each kind of event.  # noqa: E501
 
@@ -1530,7 +1530,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def delete_allocation_map_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
             Delete an Allocation Map from an effective datetime. The Allocation Map is no longer readable from that  effective datetime onwards.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -1554,7 +1554,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def delete_allocation_map_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] DeleteAllocationMap: Delete an Allocation Map.  # noqa: E501
 
             Delete an Allocation Map from an effective datetime. The Allocation Map is no longer readable from that  effective datetime onwards.  # noqa: E501
 
@@ -1667,7 +1667,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def get_allocation_map_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationMap:
-            """[EXPERIMENTAL] GetAllocationMap: Get an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] GetAllocationMap: Get an Allocation Map.  # noqa: E501
             Retrieve the definition of a particular Allocation Map at an effective and asAt datetime, including its  participants, exceptions and the basis declared for each event type.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -1693,7 +1693,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def get_allocation_map_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationMap]:
-            """[EXPERIMENTAL] GetAllocationMap: Get an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] GetAllocationMap: Get an Allocation Map.  # noqa: E501
 
             Retrieve the definition of a particular Allocation Map at an effective and asAt datetime, including its  participants, exceptions and the basis declared for each event type.  # noqa: E501
 
@@ -1815,7 +1815,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def list_allocation_maps_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAllocationMap:
-            """[EXPERIMENTAL] ListAllocationMaps: List Allocation Maps.  # noqa: E501
+            """[EARLY ACCESS] ListAllocationMaps: List Allocation Maps.  # noqa: E501
             List all the Allocation Maps matching a particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the Allocation Maps. Defaults to the current LUSID system datetime if not specified.
@@ -1845,7 +1845,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def list_allocation_maps_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAllocationMap]:
-            """[EXPERIMENTAL] ListAllocationMaps: List Allocation Maps.  # noqa: E501
+            """[EARLY ACCESS] ListAllocationMaps: List Allocation Maps.  # noqa: E501
 
             List all the Allocation Maps matching a particular criteria.  # noqa: E501
 
@@ -1980,7 +1980,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def remove_allocation_map_exception_async(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> AllocationMap:
-            """[EXPERIMENTAL] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
             Remove the exception held against an investor record, from an effective datetime. The result is a new  bitemporal version of the map in which that investor is treated like every other participant.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -2006,7 +2006,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def remove_allocation_map_exception_with_http_info_async(self, scope: StrictStr, code: StrictStr, investor_record_id: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationMap]:
-            """[EXPERIMENTAL] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] RemoveAllocationMapException: Remove an exception from an Allocation Map.  # noqa: E501
 
             Remove the exception held against an investor record, from an effective datetime. The result is a new  bitemporal version of the map in which that investor is treated like every other participant.  # noqa: E501
 
@@ -2125,7 +2125,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def resolve_allocation_map_async(self, scope: StrictStr, code: StrictStr, allocation_map_resolve_request: AllocationMapResolveRequest, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AllocationMapResolution:
-            """[EXPERIMENTAL] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
             Dry-run the map against an event: share the supplied amount across the participants in force at the  effective datetime, applying fixed-percentage exceptions off the top and the declared basis to the remainder.  Nothing is booked. Basis values (for example committed capital per investor) are supplied in the request  until the investor register can provide them.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -2153,7 +2153,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def resolve_allocation_map_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_map_resolve_request: AllocationMapResolveRequest, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AllocationMapResolution]:
-            """[EXPERIMENTAL] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] ResolveAllocationMap: Resolve an Allocation Map.  # noqa: E501
 
             Dry-run the map against an event: share the supplied amount across the participants in force at the  effective datetime, applying fixed-percentage exceptions off the top and the declared basis to the remainder.  Nothing is booked. Basis values (for example committed capital per investor) are supplied in the request  until the investor register can provide them.  # noqa: E501
 
@@ -2288,7 +2288,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def upsert_allocation_map_async(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> AllocationMap:
-            """[EXPERIMENTAL] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
             Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
             
             :param scope: The scope of the Allocation Map. (required)
@@ -2312,7 +2312,7 @@ class AllocationMapsApi:
 
     @validate_call
     async def upsert_allocation_map_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_map_request: AllocationMapRequest, **kwargs) -> ApiResponse[AllocationMap]:
-            """[EXPERIMENTAL] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
+            """[EARLY ACCESS] UpsertAllocationMap: Upsert an Allocation Map.  # noqa: E501
 
             Update or insert an Allocation Map. If the Allocation Map does not exist it is created, otherwise it is  updated. The code in the request body must match the code in the route.  # noqa: E501
 

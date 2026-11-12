@@ -27,7 +27,7 @@ from finbourne.sdk.services.luminesce.models.export_type import ExportType
 
 class DownloadQueryResultRequest(BaseModel):
     """
-    How to download the results of a background query: in what format, which of them, and (so far for csv only) formatted as the grid shows them.  # noqa: E501
+    How to download the results of a background query: in what format, which of them, and (so far for csv, pipe and json only) formatted as the grid shows them.  # noqa: E501
     """
     format: Optional[ExportType] = None
     sort_by:  Optional[StrictStr] = Field(default=None,alias="sortBy", description="Order the results by these fields. Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`. Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`. Default is null, the sort order specified in the query itself.") 

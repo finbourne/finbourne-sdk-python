@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
+from finbourne.sdk.services.lusid.models.realised_gain_loss_chargeable_gains import RealisedGainLossChargeableGains
 
 
 class RealisedGainLoss(BaseModel):
@@ -46,7 +47,8 @@ class RealisedGainLoss(BaseModel):
     trade_date_to_settlement_date_realised_currency: Optional[CurrencyAndAmount] = Field(default=None, alias="tradeDateToSettlementDateRealisedCurrency")
     transaction_type:  Optional[StrictStr] = Field(default=None,alias="transactionType", description="The transaction type resolved for the allocation slice that realised this record, which can differ from the output transaction's type when a slice resolves against the opposite side of the book (for example a Buy whose slice covers a short).") 
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The sub-holding key properties of the holding this record was realised against, identifying the allocation slice it belongs to.")
-    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "units", "purchaseTradeDate", "purchaseSettlementDate", "purchasePrice", "costTradeCcy", "costPortfolioCcy", "realisedTradeCcy", "realisedTotal", "realisedMarket", "realisedCurrency", "taxLotId", "realisedAmortisation", "tradeDateToSettlementDateRealisedCurrency", "transactionType", "properties"]
+    chargeable_gains: Optional[RealisedGainLossChargeableGains] = Field(default=None, alias="chargeableGains")
+    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "units", "purchaseTradeDate", "purchaseSettlementDate", "purchasePrice", "costTradeCcy", "costPortfolioCcy", "realisedTradeCcy", "realisedTotal", "realisedMarket", "realisedCurrency", "taxLotId", "realisedAmortisation", "tradeDateToSettlementDateRealisedCurrency", "transactionType", "properties", "chargeableGains"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,6 +117,9 @@ class RealisedGainLoss(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of chargeable_gains
+        if self.chargeable_gains:
+            _dict['chargeableGains'] = self.chargeable_gains.to_dict(by_alias=by_alias)
         # set to None if instrument_scope (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_scope is None and "instrument_scope" in self.model_fields_set:
@@ -183,7 +188,8 @@ class RealisedGainLoss(BaseModel):
                 for _k, _v in _val.items()
             )
             if (_val := obj.get("properties")) is not None
-            else None
+            else None,
+            "chargeable_gains": RealisedGainLossChargeableGains.from_dict(_v) if (_v := obj.get("chargeableGains")) is not None else None
         })
         return _obj
 

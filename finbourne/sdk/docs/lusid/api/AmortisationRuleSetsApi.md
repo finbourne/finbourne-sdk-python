@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_amortisation_rule_set**](AmortisationRuleSetsApi.md#create_amortisation_rule_set) | **POST** /api/api/amortisation/rulesets/{scope} | [EXPERIMENTAL] CreateAmortisationRuleSet: Create an amortisation rule set.
+[**delete_amortisation_rules_interval**](AmortisationRuleSetsApi.md#delete_amortisation_rules_interval) | **DELETE** /api/api/amortisation/rulesets/{scope}/{code}/rulesIntervals | DeleteAmortisationRulesInterval: Delete a rules interval of an amortisation rule set.
 [**delete_amortisation_ruleset**](AmortisationRuleSetsApi.md#delete_amortisation_ruleset) | **DELETE** /api/api/amortisation/rulesets/{scope}/{code} | [EXPERIMENTAL] DeleteAmortisationRuleset: Delete an amortisation rule set.
 [**get_amortisation_rule_set**](AmortisationRuleSetsApi.md#get_amortisation_rule_set) | **GET** /api/api/amortisation/rulesets/{scope}/{code} | [EXPERIMENTAL] GetAmortisationRuleSet: Retrieve the definition of a single amortisation rule set
 [**list_amortisation_rule_sets**](AmortisationRuleSetsApi.md#list_amortisation_rule_sets) | **GET** /api/api/amortisation/rulesets | [EXPERIMENTAL] ListAmortisationRuleSets: List amortisation rule sets.
@@ -75,6 +76,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Create a rule set for amortisation. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_amortisation_rules_interval**
+> DeletedEntityResponse deleteAmortisationRulesInterval = delete_amortisation_rules_interval(scope, code, from_date)
+
+DeleteAmortisationRulesInterval: Delete a rules interval of an amortisation rule set.
+
+Deletes the rules interval that starts at the given from date. The interval before it, if any, then applies  until the next interval starts. If there is no interval before it, the rule set has no rules until the next  interval starts.                The from date must be the start of an interval. A date inside an interval does not identify one.                The interval remains viewable at previous as at times.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AmortisationRuleSetsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+from_date = 'from_date_example' # str
+api_response = api_instance.delete_amortisation_rules_interval(scope, code, from_date)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The rule set scope. | [required] 
+ **code** | **str**| The rule set code. | [required] 
+ **from_date** | **str**| The from date of the interval to delete, as a date, datetime or cut label. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

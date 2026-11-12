@@ -225,7 +225,7 @@ class WithholdingTaxApi:
     def batch_upsert_withholding_tax_rates(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, rule_source: Optional[StrictStr] = None, **kwargs) -> BatchUpsertWithholdingTaxRatesResponse:
         """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
 
-        Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls.  # noqa: E501
+        Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls. Rate tiers are fractions between 0  and 1 inclusive (0.30 is 30%); a row with a tier above 1 is rejected.  # noqa: E501
         :param scope: The Scope of the rate dataset's relational dataset definition. (required)
         :type scope: str
         :param code: The Code of the rate dataset's relational dataset definition. (required)
@@ -253,7 +253,7 @@ class WithholdingTaxApi:
     def batch_upsert_withholding_tax_rates_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, rule_source: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertWithholdingTaxRatesResponse]:
         """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
 
-        Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls.  # noqa: E501
+        Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls. Rate tiers are fractions between 0  and 1 inclusive (0.30 is 30%); a row with a tier above 1 is rejected.  # noqa: E501
         :param scope: The Scope of the rate dataset's relational dataset definition. (required)
         :type scope: str
         :param code: The Code of the rate dataset's relational dataset definition. (required)
@@ -1960,7 +1960,7 @@ class WithholdingTaxApi:
     @validate_call
     async def batch_upsert_withholding_tax_rates_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, rule_source: Optional[StrictStr] = None, **kwargs) -> BatchUpsertWithholdingTaxRatesResponse:
             """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
-            Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls.  # noqa: E501
+            Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls. Rate tiers are fractions between 0  and 1 inclusive (0.30 is 30%); a row with a tier above 1 is rejected.  # noqa: E501
             
             :param scope: The Scope of the rate dataset's relational dataset definition. (required)
             :type scope: str
@@ -1989,7 +1989,7 @@ class WithholdingTaxApi:
     async def batch_upsert_withholding_tax_rates_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertWithholdingTaxRateRequest], success_mode: Optional[StrictStr] = None, rule_source: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertWithholdingTaxRatesResponse]:
             """[EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.  # noqa: E501
 
-            Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls.  # noqa: E501
+            Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls. Rate tiers are fractions between 0  and 1 inclusive (0.30 is 30%); a row with a tier above 1 is rejected.  # noqa: E501
 
             :param scope: The Scope of the rate dataset's relational dataset definition. (required)
             :type scope: str

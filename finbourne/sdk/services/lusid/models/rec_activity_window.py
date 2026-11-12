@@ -11,37 +11,189 @@
 """
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
-from datetime import datetime
 from uuid import UUID
 
 
 
-from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.rec_activity_since_effective_at import RecActivitySinceEffectiveAt
+from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
+from finbourne.sdk.services.lusid.models.contiguous_activity_window import ContiguousActivityWindow
+from finbourne.sdk.services.lusid.models.fixed_period_lookback_activity_window import FixedPeriodLookbackActivityWindow
+from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
+RECACTIVITYWINDOW_ONE_OF_SCHEMAS = ["ContiguousActivityWindow", "FixedPeriodLookbackActivityWindow"]
 
 class RecActivityWindow(BaseModel):
     """
-    Base class for the activity windows that give the date range a rec definition's activity-based  reconciliations cover. Polymorphic by windowType; each supported type has a corresponding inherited class.  # noqa: E501
+    Base class for the activity windows that give the date range a rec definition's activity-based  reconciliations cover. Polymorphic by windowType; each supported type has a corresponding inherited class.
     """
-    initial_activity_since_effective_at: RecActivitySinceEffectiveAt = Field(alias="initialActivitySinceEffectiveAt")
-    window_type:  StrictStr = Field(...,alias="windowType", description="Polymorphic discriminator. Supported types: Contiguous. Contiguous requires effectiveAtProgression Series. Available values: Contiguous, FixedLookback, Explicit, ClosedPeriod, ContiguousAsAt.") 
-    additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["initialActivitySinceEffectiveAt", "windowType"]
+    # data type: ContiguousActivityWindow
+    oneof_schema_1_validator: Optional[ContiguousActivityWindow] = None
+    # data type: FixedPeriodLookbackActivityWindow
+    oneof_schema_2_validator: Optional[FixedPeriodLookbackActivityWindow] = None
+    if TYPE_CHECKING:
+        actual_instance: Union[ContiguousActivityWindow, FixedPeriodLookbackActivityWindow]
+    else:
+        actual_instance: Any
+    one_of_schemas: ClassVar[List[str]] = RECACTIVITYWINDOW_ONE_OF_SCHEMAS
 
     model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
+        validate_assignment=True
     )
+
+    discriminator_value_class_map: ClassVar[Dict[str, str]] = {
+    }
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])  # type: ignore[index]
+        else:
+            super().__init__(**kwargs)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_variant_dict(cls, value: Any) -> Any:
+        # When callers (or a parent model's pydantic validation) pass a raw
+        # dict of variant fields instead of an already-wrapped instance, route
+        # it through from_dict so the concrete oneOf variant is selected.
+        if isinstance(value, dict) and "actual_instance" not in value:
+            return {"actual_instance": cls.from_dict(value).actual_instance}
+        return value
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_oneof(cls, v):
+        _instance = RecActivityWindow.model_construct()
+        error_messages = []
+        match = 0
+        matchclass = ""
+        # validate data type: ContiguousActivityWindow
+        if not isinstance(v, ContiguousActivityWindow):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ContiguousActivityWindow`")
+        else:
+            match += 1
+            matchclass = matchclass + " ContiguousActivityWindow"
+        # validate data type: FixedPeriodLookbackActivityWindow
+        if not isinstance(v, FixedPeriodLookbackActivityWindow):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `FixedPeriodLookbackActivityWindow`")
+        else:
+            match += 1
+            matchclass = matchclass + " FixedPeriodLookbackActivityWindow"
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when setting `actual_instance` in RecActivityWindow with oneOf schemas: ContiguousActivityWindow, FixedPeriodLookbackActivityWindow. Details: Matched classes " + matchclass)
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when setting `actual_instance` in RecActivityWindow with oneOf schemas: ContiguousActivityWindow, FixedPeriodLookbackActivityWindow. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> RecActivityWindow:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> RecActivityWindow:
+        """Returns the object represented by the json string"""
+        instance = RecActivityWindow.model_construct()
+        error_messages = []
+        match = 0
+        matchclass = ""
+        
+
+        # use oneOf discriminator to lookup the data type
+        _data_type = json.loads(json_str).get("windowType")
+        if not _data_type:
+            raise ValueError("Failed to lookup data type from the field `windowType` in the input.")
+
+        # check if data type is `ContiguousActivityWindow`
+        if _data_type == "Contiguous":
+            instance.actual_instance = ContiguousActivityWindow.from_json(json_str)
+            return instance
+
+        # check if data type is `FixedPeriodLookbackActivityWindow`
+        if _data_type == "FixedPeriodLookback":
+            instance.actual_instance = FixedPeriodLookbackActivityWindow.from_json(json_str)
+            return instance
+
+        # deserialize data into ContiguousActivityWindow
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(ContiguousActivityWindow, "_ContiguousActivityWindow__properties", None) or getattr(ContiguousActivityWindow, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for ContiguousActivityWindow: {_extra}")
+            instance.actual_instance = ContiguousActivityWindow.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " ContiguousActivityWindow"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into FixedPeriodLookbackActivityWindow
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(FixedPeriodLookbackActivityWindow, "_FixedPeriodLookbackActivityWindow__properties", None) or getattr(FixedPeriodLookbackActivityWindow, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for FixedPeriodLookbackActivityWindow: {_extra}")
+            instance.actual_instance = FixedPeriodLookbackActivityWindow.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " FixedPeriodLookbackActivityWindow"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into RecActivityWindow with oneOf schemas: ContiguousActivityWindow, FixedPeriodLookbackActivityWindow. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into RecActivityWindow with oneOf schemas: ContiguousActivityWindow, FixedPeriodLookbackActivityWindow. Details: " + ", ".join(error_messages))
+        else:
+            return instance
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
+
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
+
+    def to_dict(self, by_alias=True) -> Any:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
+            return None
+
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
+            return self.actual_instance.to_dict(by_alias=by_alias)
+        else:
+            # primitive type
+            return self.actual_instance
 
     def __str__(self):
         """For `print` and `pprint`"""
-        return pprint.pformat(self. model_dump(by_alias=False))
+        return pprint.pformat(self.model_dump(by_alias=False))
 
     def __repr__(self):
         """For `print` and `pprint`"""
@@ -49,54 +201,6 @@ class RecActivityWindow(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self. model_dump(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
-
-    @classmethod
-    def from_json(cls, json_str: str) -> RecActivityWindow:
-        """Create an instance of RecActivityWindow from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self, by_alias=True):
-        """Returns the dictionary representation of the model"""
-        _dict = self. model_dump(by_alias=by_alias,
-                          mode='json',
-                          exclude={
-                            "additional_properties"
-                          },
-                          exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of initial_activity_since_effective_at
-        if self.initial_activity_since_effective_at:
-            _dict['initialActivitySinceEffectiveAt'] = self.initial_activity_since_effective_at.to_dict(by_alias=by_alias)
-        # puts key-value pairs in additional_properties in the top level
-        if self.additional_properties is not None:
-            for _key, _value in self.additional_properties.items():
-                _dict[_key] = _value
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> RecActivityWindow:
-        """Create an instance of RecActivityWindow from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return RecActivityWindow.model_validate(obj)
-
-        _obj = RecActivityWindow.model_validate({
-            "initial_activity_since_effective_at": RecActivitySinceEffectiveAt.from_dict(_v) if (_v := obj.get("initialActivitySinceEffectiveAt")) is not None else None,
-            "window_type": obj.get("windowType")
-        })
-        # store additional fields in additional_properties
-        for _key in obj.keys():
-            if _key not in cls.__properties:
-                _obj.additional_properties[_key] = obj.get(_key)
-
-        return _obj
-
-RecActivityWindow.model_rebuild()
 

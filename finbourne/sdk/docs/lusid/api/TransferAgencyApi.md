@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**calculate_order_dates**](TransferAgencyApi.md#calculate_order_dates) | **POST** /api/api/transferagency/orderdates | [EXPERIMENTAL] CalculateOrderDates: Calculate the key dates associated with transfer agency orders
+[**cancel_transfer_agency_transactions**](TransferAgencyApi.md#cancel_transfer_agency_transactions) | **POST** /api/api/transferagency/transactions/cancel | [EXPERIMENTAL] CancelTransferAgencyTransactions: Cancel transfer agency transactions, un-pricing their orders
 [**delete_transfer_agency_orders**](TransferAgencyApi.md#delete_transfer_agency_orders) | **POST** /api/api/transferagency/orders/$delete | [EXPERIMENTAL] DeleteTransferAgencyOrders: Delete transfer agency orders
 [**estimate_transfer_agency_orders**](TransferAgencyApi.md#estimate_transfer_agency_orders) | **POST** /api/api/transferagency/orders/$estimate | [EXPERIMENTAL] EstimateTransferAgencyOrders: Estimate the values of transfer agency orders
 [**upsert_transfer_agency_orders**](TransferAgencyApi.md#upsert_transfer_agency_orders) | **POST** /api/api/transferagency/orders | [EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders
@@ -71,6 +72,50 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully calculated dates and any failed calculations. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **cancel_transfer_agency_transactions**
+> CancelTransferAgencyTransactionsResponse cancelTransferAgencyTransactions = cancel_transfer_agency_transactions(request_body, success_mode=success_mode)
+
+[EXPERIMENTAL] CancelTransferAgencyTransactions: Cancel transfer agency transactions, un-pricing their orders
+
+Reverses the pricing of a transfer agency order, identified by the security transaction that pricing booked:  cancels that transaction in the investor's portfolio, amends the paired cash transaction back to its  pre-pricing amount, and moves the order from 'Priced' back to 'New'. Both changes are bitemporal, so the  priced state is still visible at an earlier as-at.  A transaction that was never booked, that names no order, that is the cash leg rather than the security leg,  or whose order is not in 'Priced' fails on its own. A leg already cancelled outside this flow is left alone and  the order is still returned to 'New'. A transaction named under two request keys fails the whole request.  The response contains both successfully un-priced orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransferAgencyApi)
+request_body = {"Transaction1":{"portfolioId":{"scope":"example-scope","code":"investor-portfolio"},"transactionId":"txn-0002"}} # Dict[str, CancelTransferAgencyTransactionRequest]
+success_mode = 'Partial' # str (optional)
+api_response = api_instance.cancel_transfer_agency_transactions(request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, CancelTransferAgencyTransactionRequest]**](../model/CancelTransferAgencyTransactionRequest.md)| The security transactions to cancel, keyed by a unique request identifier. | [required] 
+ **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [optional] [default to &#39;Partial&#39;]
+
+### Return type
+
+[**CancelTransferAgencyTransactionsResponse**](../model/CancelTransferAgencyTransactionsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully un-priced orders and any failures. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

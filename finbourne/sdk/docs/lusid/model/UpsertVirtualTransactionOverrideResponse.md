@@ -12,6 +12,7 @@ The result of upserting overrides and suppressions of virtual transactions for a
 | **overrides** | **Dict[str, Optional[List[StoredOverrideDefinition]]]** | Optional | The replacement transactions persisted for the instrument event, keyed by the virtual transaction id being overridden. |
 | **suppressions** | **List[str]** | Optional | The virtual transaction ids suppressed for the instrument event. |
 | **cancel_active** | **bool** | Optional | True when an active event-level Cancel instruction also exists for this instrument event, taking precedence over the entries in this record. |
+| **adjustments** | [Dict[str, AdjustmentDefinitionResponse]](AdjustmentDefinitionResponse.md) | Optional | The adjustments stored for the instrument event, keyed by virtual transaction id. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -30,6 +31,7 @@ instance = UpsertVirtualTransactionOverrideResponse(
     overrides=,  # optional — The replacement transactions persisted for the instrument event, keyed by the virtual transaction id being overridden.
     suppressions=,  # optional — The virtual transaction ids suppressed for the instrument event.
     cancel_active=True,  # optional — True when an active event-level Cancel instruction also exists for this instrument event, taking precedence over the entries in this record.
+    adjustments=AdjustmentDefinitionResponse(...),  # optional — The adjustments stored for the instrument event, keyed by virtual transaction id.
     links=[]  # optional
 )
 ```
@@ -38,6 +40,7 @@ instance = UpsertVirtualTransactionOverrideResponse(
 ## Related Models
 
 - [Version](Version.md)
+- [AdjustmentDefinitionResponse](AdjustmentDefinitionResponse.md) — used in `adjustments`
 - [Link](Link.md)
 
 

@@ -29,7 +29,7 @@ class DecimalList(ReferenceList):
     DecimalList
     """
     values: List[Union[StrictFloat, StrictInt]]
-    reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList.") 
+    reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList, FilteredPortfolioIdList.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["referenceListType", "values"]
 
@@ -43,7 +43,7 @@ class DecimalList(ReferenceList):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList', 'FilteredFundIdList']
+        _allowed = ['PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList', 'FilteredFundIdList', 'FilteredPortfolioIdList']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

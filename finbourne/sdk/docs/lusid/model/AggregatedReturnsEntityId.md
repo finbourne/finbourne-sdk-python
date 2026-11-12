@@ -1,13 +1,13 @@
 # AggregatedReturnsEntityId
 
-Identifies an entity whose aggregated (time-weighted) returns are calculated: its scope, code and  type. Mirrors the valuation endpoint's entity identifier. Currently, supports only the  `Portfolio` entity type.
+Identifies an entity whose aggregated (time-weighted) returns are calculated: its scope, code and  type. Mirrors the valuation endpoint's entity identifier. Supports the `Portfolio` and  `PortfolioGroup` entity types.
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **scope** | **str** | Required | *No description available.* |
 | **code** | **str** | Required | *No description available.* |
-| **entity_type** | **str** | Required | Available values: Portfolio. |
+| **entity_type** | **str** | Required | Available values: Portfolio, PortfolioGroup. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.AggregatedReturnsEntityId import Aggreg
 instance = AggregatedReturnsEntityId(
     scope="...",  # required
     code="...",  # required
-    entity_type="..."  # required — Available values: Portfolio.
+    entity_type="..."  # required — Available values: Portfolio, PortfolioGroup.
 )
 ```
 

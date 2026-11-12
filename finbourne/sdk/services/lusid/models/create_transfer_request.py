@@ -35,7 +35,7 @@ class CreateTransferRequest(BaseModel):
     instrument_identifier_out:  StrictStr = Field(...,alias="instrumentIdentifierOut", description="The LUSID instrument id of the instrument moving out. A position in this instrument must exist in the outgoing portfolio on the outgoing trade date.") 
     instrument_identifier_in:  StrictStr = Field(...,alias="instrumentIdentifierIn", description="The LUSID instrument id of the instrument moving in. Equal to InstrumentIdentifierOut for a transfer between portfolios.") 
     pricing_method:  StrictStr = Field(...,alias="pricingMethod", description="How the legs are priced. 'AtCost' uses the cost per unit of the outgoing holding; 'AtPrice' uses the supplied TransactionPriceOut, which is then required. Available values: AtCost, AtPrice.") 
-    tax_lot_structure:  Optional[StrictStr] = Field(default=None,alias="taxLotStructure", description="What happens to the tax lots of the outgoing position. Only 'Consolidate' is currently supported; 'Preserve' is rejected. Defaults to 'Consolidate'. Available values: Consolidate, Preserve.") 
+    tax_lot_structure:  Optional[StrictStr] = Field(default=None,alias="taxLotStructure", description="What happens to the tax lots of the outgoing position. Defaults to 'Consolidate'. 'Preserve' carries each outgoing lot onto the incoming position; it is not supported when the incoming portfolio uses the AverageCost or Default accounting method, or across share classes in different currencies. Available values: Consolidate, Preserve.") 
     units_out: Union[StrictFloat, StrictInt] = Field(description="The number of units to move out. Must be greater than zero.", alias="unitsOut")
     units_in: Union[StrictFloat, StrictInt] = Field(description="The number of units to move in. Must be greater than zero.", alias="unitsIn")
     amount_out: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total consideration of the outgoing leg. Recorded, not applied.", alias="amountOut")
@@ -47,19 +47,22 @@ class CreateTransferRequest(BaseModel):
     exchange_rate_out: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The FX rate to apply to the outgoing leg.", alias="exchangeRateOut")
     exchange_rate_in: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The FX rate to apply to the incoming leg.", alias="exchangeRateIn")
     transaction_price_out: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The unit price of the outgoing leg. Required when PricingMethod is 'AtPrice', and ignored when it is 'AtCost'.", alias="transactionPriceOut")
-    transaction_price_in: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The unit price of the incoming leg. Ignored for a transfer, which carries the outgoing price across; defaults to the outgoing price for a switch.", alias="transactionPriceIn")
+    transaction_price_in: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The unit price of the incoming leg. Not accepted for a transfer of one instrument between portfolios, which carries the outgoing price across. For a switch, required when PricingMethod is 'AtPrice' and defaults to the outgoing price otherwise.", alias="transactionPriceIn")
     counterparty_id_out:  Optional[StrictStr] = Field(default=None,alias="counterpartyIdOut", description="The counterparty identifier of the outgoing leg.") 
     counterparty_id_in:  Optional[StrictStr] = Field(default=None,alias="counterpartyIdIn", description="The counterparty identifier of the incoming leg. Defaults to CounterpartyIdOut.") 
     custodian_account_id_out: Optional[ResourceId] = Field(default=None, alias="custodianAccountIdOut")
     custodian_account_id_in: Optional[ResourceId] = Field(default=None, alias="custodianAccountIdIn")
-    source:  StrictStr = Field(...,alias="source", description="The transaction source the generated legs are booked against.") 
+    source_out:  Optional[StrictStr] = Field(default=None,alias="sourceOut", description="The transaction source the outgoing leg is booked against, and the incoming leg too when SourceIn is not supplied. Defaults to 'default'.") 
     accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description="An accounting method to record against the transfer. Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
     properties_out: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Transaction Properties to set on the outgoing transaction leg, and on the incoming transaction leg when PropertiesIn is absent. Supplying an empty collection for PropertiesIn leaves the incoming leg with no properties.", alias="propertiesOut")
     properties_in: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Transaction Properties to set on the incoming transaction leg, replacing rather than adding to PropertiesOut.", alias="propertiesIn")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Properties to set on the transfer itself, in the Transfer domain. These are separate from PropertiesOut and PropertiesIn, which are Transaction domain and land on the legs.")
     transaction_to_portfolio_rate_out: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The rate from the outgoing leg's trade currency to the outgoing portfolio's base currency, applied whenever supplied.", alias="transactionToPortfolioRateOut")
     transaction_to_portfolio_rate_in: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The rate from the incoming leg's trade currency to the incoming portfolio's base currency. Required when the two portfolios have different base currencies, and applied whenever supplied.", alias="transactionToPortfolioRateIn")
-    __properties: ClassVar[List[str]] = ["transferId", "portfolioIdOut", "portfolioIdIn", "instrumentIdentifierOut", "instrumentIdentifierIn", "pricingMethod", "taxLotStructure", "unitsOut", "unitsIn", "amountOut", "weightOut", "tradeDateOut", "tradeDateIn", "settlementDateOut", "settlementDateIn", "exchangeRateOut", "exchangeRateIn", "transactionPriceOut", "transactionPriceIn", "counterpartyIdOut", "counterpartyIdIn", "custodianAccountIdOut", "custodianAccountIdIn", "source", "accountingMethod", "propertiesOut", "propertiesIn", "properties", "transactionToPortfolioRateOut", "transactionToPortfolioRateIn"]
+    source_in:  Optional[StrictStr] = Field(default=None,alias="sourceIn", description="The transaction source the incoming leg is booked against. Defaults to SourceOut.") 
+    transaction_type_out:  Optional[StrictStr] = Field(default=None,alias="transactionTypeOut", description="The transaction type to book the outgoing leg as. Supply it together with TransactionTypeIn, or supply neither. If not supplied, it will be derived from the transfer type. It must be a different type from TransactionTypeIn, must be configured under SourceOut in the transaction type scope of PortfolioIdOut, and must reduce a position.") 
+    transaction_type_in:  Optional[StrictStr] = Field(default=None,alias="transactionTypeIn", description="The transaction type to book the incoming leg as. Supply it together with TransactionTypeOut, or supply neither. If not supplied, it will be derived from the transfer type. It must be configured under SourceIn in the transaction type scope of PortfolioIdIn, and must increase a position.") 
+    __properties: ClassVar[List[str]] = ["transferId", "portfolioIdOut", "portfolioIdIn", "instrumentIdentifierOut", "instrumentIdentifierIn", "pricingMethod", "taxLotStructure", "unitsOut", "unitsIn", "amountOut", "weightOut", "tradeDateOut", "tradeDateIn", "settlementDateOut", "settlementDateIn", "exchangeRateOut", "exchangeRateIn", "transactionPriceOut", "transactionPriceIn", "counterpartyIdOut", "counterpartyIdIn", "custodianAccountIdOut", "custodianAccountIdIn", "sourceOut", "accountingMethod", "propertiesOut", "propertiesIn", "properties", "transactionToPortfolioRateOut", "transactionToPortfolioRateIn", "sourceIn", "transactionTypeOut", "transactionTypeIn"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -181,6 +184,11 @@ class CreateTransferRequest(BaseModel):
         if self.counterparty_id_in is None and "counterparty_id_in" in self.model_fields_set:
             _dict['counterpartyIdIn'] = None
 
+        # set to None if source_out (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_out is None and "source_out" in self.model_fields_set:
+            _dict['sourceOut'] = None
+
         # set to None if accounting_method (nullable) is None
         # and model_fields_set contains the field
         if self.accounting_method is None and "accounting_method" in self.model_fields_set:
@@ -210,6 +218,21 @@ class CreateTransferRequest(BaseModel):
         # and model_fields_set contains the field
         if self.transaction_to_portfolio_rate_in is None and "transaction_to_portfolio_rate_in" in self.model_fields_set:
             _dict['transactionToPortfolioRateIn'] = None
+
+        # set to None if source_in (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_in is None and "source_in" in self.model_fields_set:
+            _dict['sourceIn'] = None
+
+        # set to None if transaction_type_out (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_type_out is None and "transaction_type_out" in self.model_fields_set:
+            _dict['transactionTypeOut'] = None
+
+        # set to None if transaction_type_in (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_type_in is None and "transaction_type_in" in self.model_fields_set:
+            _dict['transactionTypeIn'] = None
 
         return _dict
 
@@ -246,7 +269,7 @@ class CreateTransferRequest(BaseModel):
             "counterparty_id_in": obj.get("counterpartyIdIn"),
             "custodian_account_id_out": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountIdOut")) is not None else None,
             "custodian_account_id_in": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountIdIn")) is not None else None,
-            "source": obj.get("source"),
+            "source_out": obj.get("sourceOut"),
             "accounting_method": obj.get("accountingMethod"),
             "properties_out": dict(
                 (_k, PerpetualProperty.from_dict(_v))
@@ -267,7 +290,10 @@ class CreateTransferRequest(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "transaction_to_portfolio_rate_out": obj.get("transactionToPortfolioRateOut"),
-            "transaction_to_portfolio_rate_in": obj.get("transactionToPortfolioRateIn")
+            "transaction_to_portfolio_rate_in": obj.get("transactionToPortfolioRateIn"),
+            "source_in": obj.get("sourceIn"),
+            "transaction_type_out": obj.get("transactionTypeOut"),
+            "transaction_type_in": obj.get("transactionTypeIn")
         })
         return _obj
 

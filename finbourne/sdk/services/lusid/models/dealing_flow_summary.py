@@ -25,12 +25,16 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class DealingFlowSummary(BaseModel):
     """
-    The transfer agency estimates a swing decision was made on: how many orders were dealt at the valuation point and what they summed.  # noqa: E501
+    The transfer agency estimates a swing decision was made on: the orders dealt at the valuation point, what they summed, and how many pending orders were left out and what those were worth.  # noqa: E501
     """
     count: StrictInt = Field(description="How many orders were summed.")
     gross_inflow: Union[StrictFloat, StrictInt] = Field(description="The sum of the inflows, in the fund currency. Zero or more.", alias="grossInflow")
     gross_outflow: Union[StrictFloat, StrictInt] = Field(description="The sum of the outflows, in the fund currency, as a magnitude. Zero or more.", alias="grossOutflow")
-    __properties: ClassVar[List[str]] = ["count", "grossInflow", "grossOutflow"]
+    pending_not_counted: StrictInt = Field(description="How many pending orders at the valuation point were left out of the sums because the fund's dealing estimates do not count pending orders. Zero when the fund counts them.", alias="pendingNotCounted")
+    pending_gross_inflow: Union[StrictFloat, StrictInt] = Field(description="The sum of the inflows among the pending orders left out, in the fund currency, with units at the estimate price. Zero or more; zero when the fund counts pending orders.", alias="pendingGrossInflow")
+    pending_gross_outflow: Union[StrictFloat, StrictInt] = Field(description="The sum of the outflows among the pending orders left out, in the fund currency, as a magnitude, with units at the estimate price. Zero or more; zero when the fund counts pending orders.", alias="pendingGrossOutflow")
+    pending_unvalued_count: StrictInt = Field(description="How many of the pending orders left out could not be valued, such as a unit order with no price yet. They are in pendingNotCounted but absent from pendingGrossInflow and pendingGrossOutflow.", alias="pendingUnvaluedCount")
+    __properties: ClassVar[List[str]] = ["count", "grossInflow", "grossOutflow", "pendingNotCounted", "pendingGrossInflow", "pendingGrossOutflow", "pendingUnvaluedCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +84,11 @@ class DealingFlowSummary(BaseModel):
         _obj = DealingFlowSummary.model_validate({
             "count": obj.get("count"),
             "gross_inflow": obj.get("grossInflow"),
-            "gross_outflow": obj.get("grossOutflow")
+            "gross_outflow": obj.get("grossOutflow"),
+            "pending_not_counted": obj.get("pendingNotCounted"),
+            "pending_gross_inflow": obj.get("pendingGrossInflow"),
+            "pending_gross_outflow": obj.get("pendingGrossOutflow"),
+            "pending_unvalued_count": obj.get("pendingUnvaluedCount")
         })
         return _obj
 

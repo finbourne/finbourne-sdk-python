@@ -11,7 +11,9 @@ TPF send history record
 | **batch_id** | **UUID** | Required | Unique identifier of the batch |
 | **run_id** | **UUID** | Required | The run that processed the transaction for this instance, as shown in run monitoring |
 | **run_start_time** | **datetime** | Required | Timestamp when the batch/run started |
-| **publication_status** | **str** | Required | Publication status of the transaction (Sent | Skipped | Failed) |
+| **publication_status** | **str** | Required | Outcome of the transaction&#39;s build (Sent | Skipped | Failed) |
+| **outcome** | **str** | Required | The same value as PublicationStatus under the name the screens use; PublicationStatus stays for existing clients. |
+| **event_type** | **str** | Optional | The TPF event type that triggered this publication (New, Amended, Cancelled, NothingToDo, InstrumentMatured, InstrumentPartialClosure, InstrumentFullClosure, InstrumentInterestPayment, LastSentPropertyUpdated). Null for rows persisted before it was recorded, for transactions skipped as excluded, and for rows written before the build computed it (for example a transaction not found in LUSID). Never Queued: the search returns built rows only. Distinct from PublicationStatus, which says what happened to the row. |
 | **instrument_name** | **str** | Required | Instrument name |
 | **instrument_type** | **str** | Required | Instrument type |
 | **trade_date** | **datetime** | Required | Trade date of the transaction |
@@ -42,7 +44,9 @@ instance = TpfTransactionSearchResponse(
     batch_id="...",  # required — Unique identifier of the batch
     run_id="...",  # required — The run that processed the transaction for this instance, as shown in run monitoring
     run_start_time=datetime.now(),  # required — Timestamp when the batch/run started
-    publication_status="...",  # required — Publication status of the transaction (Sent | Skipped | Failed)
+    publication_status="...",  # required — Outcome of the transaction&#39;s build (Sent | Skipped | Failed)
+    outcome="...",  # required — The same value as PublicationStatus under the name the screens use; PublicationStatus stays for existing clients.
+    event_type="...",  # optional — The TPF event type that triggered this publication (New, Amended, Cancelled, NothingToDo, InstrumentMatured, InstrumentPartialClosure, InstrumentFullClosure, InstrumentInterestPayment, LastSentPropertyUpdated). Null for rows persisted before it was recorded, for transactions skipped as excluded, and for rows written before the build computed it (for example a transaction not found in LUSID). Never Queued: the search returns built rows only. Distinct from PublicationStatus, which says what happened to the row.
     instrument_name="...",  # required — Instrument name
     instrument_type="...",  # required — Instrument type
     trade_date=datetime.now(),  # required — Trade date of the transaction

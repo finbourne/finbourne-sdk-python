@@ -27,6 +27,7 @@ class ApiConfiguration:
         connect_timeout_ms=None,
         read_timeout_ms=None,
         rate_limit_retries=None,
+        number_of_retries=None,
     ):
         """
         The configuration required to access LUSID, read more at https://support.finbourne.com/getting-started-with-apis-sdks
@@ -55,6 +56,7 @@ class ApiConfiguration:
         self.__connect_timeout_ms = connect_timeout_ms
         self.__read_timeout_ms = read_timeout_ms
         self.__rate_limit_retries = rate_limit_retries
+        self.__number_of_retries = number_of_retries
 
     @property
     def token_url(self):
@@ -218,6 +220,10 @@ class ApiConfiguration:
     def rate_limit_retries(self):
         return self.__rate_limit_retries
 
+    @property
+    def number_of_retries(self):
+        return self.__number_of_retries
+
 
     def build_api_client_config(
         self,
@@ -267,7 +273,9 @@ class ApiConfiguration:
                         self.read_timeout_ms if self.read_timeout_ms is not None else Configuration.DEFAULT_READ_TIMEOUT_MS
                 ),
                 rate_limit_retries=opts.rate_limit_retries if opts is not None and opts.rate_limit_retries is not None else 
-                        self.rate_limit_retries if self.rate_limit_retries is not None else Configuration.DEFAULT_RATE_LIMIT_RETRIES
+                        self.rate_limit_retries if self.rate_limit_retries is not None else Configuration.DEFAULT_RATE_LIMIT_RETRIES,
+                number_of_retries=opts.number_of_retries if opts is not None and opts.number_of_retries is not None else
+                        self.number_of_retries if self.number_of_retries is not None else Configuration.DEFAULT_RETRIES
             )
             if tcp_keep_alive:
                 config.socket_options = socket_options or keep_alive_socket_options()

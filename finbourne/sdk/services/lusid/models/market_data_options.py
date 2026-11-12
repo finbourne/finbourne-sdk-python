@@ -26,14 +26,14 @@ import finbourne.sdk.services.lusid.models
 if TYPE_CHECKING:
 
     from finbourne.sdk.services.lusid.models import (
-        CurveOptions)
+        CurveOptions, VolCubeOptions)
 
 
 class MarketDataOptions(BaseModel):
     """
     Base class for representing market data options in LUSID.  Abstractly, these are any options that one should be able to specify for ComplexMarketData entities.  For example, CurveOptions allows one to decide how the data provided in a discountFactorCurve is interpolated.  This base class should not be directly instantiated;  each supported MarketDataOptionsType has a corresponding inherited class.  # noqa: E501
     """
-    market_data_options_type:  StrictStr = Field(...,alias="marketDataOptionsType", description="Available values: CurveOptions. Available values: CurveOptions.") 
+    market_data_options_type:  StrictStr = Field(...,alias="marketDataOptionsType", description="Available values: CurveOptions, VolCubeOptions. Available values: CurveOptions, VolCubeOptions.") 
     __properties: ClassVar[List[str]] = ["marketDataOptionsType"]
 
     @field_validator('market_data_options_type')
@@ -46,7 +46,7 @@ class MarketDataOptions(BaseModel):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['CurveOptions']
+        _allowed = ['CurveOptions', 'VolCubeOptions']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -64,7 +64,8 @@ class MarketDataOptions(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
-        'CurveOptions': 'CurveOptions'
+        'CurveOptions': 'CurveOptions',
+        'VolCubeOptions': 'VolCubeOptions'
     }
 
     @classmethod
@@ -93,7 +94,7 @@ class MarketDataOptions(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[CurveOptions, MarketDataOptions]:
+    def from_json(cls, json_str: str) -> Union[CurveOptions, VolCubeOptions, MarketDataOptions]:
         """Create an instance of MarketDataOptions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -107,7 +108,7 @@ class MarketDataOptions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[CurveOptions, MarketDataOptions]:
+    def from_dict(cls, obj: dict) -> Union[CurveOptions, VolCubeOptions, MarketDataOptions]:
         """Create an instance of MarketDataOptions from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

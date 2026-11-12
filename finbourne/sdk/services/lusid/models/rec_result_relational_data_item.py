@@ -27,14 +27,15 @@ from finbourne.sdk.services.lusid.models.writeback_suggestion import WritebackSu
 
 class RecResultRelationalDataItem(BaseModel):
     """
-    A relational data point item within a rec result: one row of a relational dataset. The dataset and the unique  id of the data point identify the row. All rec types use this item shape.  # noqa: E501
+    A relational data point item within a rec result: one row of a relational dataset. The dataset and the unique  id of the data point identify the row. All rec types use this item shape. Also holds the display name of the  dataset.  # noqa: E501
     """
     relational_dataset_definition_id: ResourceId = Field(alias="relationalDatasetDefinitionId")
+    relational_dataset_definition_display_name:  Optional[StrictStr] = Field(default=None,alias="relationalDatasetDefinitionDisplayName", description="The display name of the relational dataset definition the item's row belongs to, as it stood at the asAt the run read its data. Null where the run did not read it.") 
     relational_data_point_unique_id:  StrictStr = Field(...,alias="relationalDataPointUniqueId", description="The unique id of the relational data point the run read, as minted by the relational dataset store. Opaque: compare it whole, do not parse it.") 
-    item_type:  StrictStr = Field(...,alias="itemType", description="The polymorphic item-type discriminator: Holding, ValuedHolding, Transaction, SettlementActivity or RelationalDataPoint. Names the item rather than the rec type: Holding and CashHolding recs produce Holding items, a Valuation rec produces ValuedHolding items, both transaction rec types produce Transaction items, and a relational dataset side produces RelationalDataPoint items whatever the rec type. Available values: SettlementActivity, Holding, Transaction, ValuedHolding, RelationalDataPoint.") 
+    item_type:  StrictStr = Field(...,alias="itemType", description="The polymorphic item-type discriminator: Holding, ValuedHolding, Transaction, SettlementActivity, RelationalDataPoint or the entity type of a LusidEntity rec. Names the item rather than the rec type: Holding and CashHolding recs produce Holding items, a Valuation rec produces ValuedHolding items, both transaction rec types produce Transaction items, and a relational dataset side produces RelationalDataPoint items whatever the rec type. A LusidEntity rec produces items of its entity type, for example Instrument items. Available values: SettlementActivity, Holding, Transaction, ValuedHolding, RelationalDataPoint, Instrument, LegalEntity, Portfolio.") 
     rule_and_attribute_values: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The core rule, aggregate rule and supplemental attribute values for the item, keyed by name.", alias="ruleAndAttributeValues")
     writeback_suggestions: List[WritebackSuggestion] = Field(description="The writebacks suggested against this item, as configured by the matching ruleset's writebackConfigurations. Only ever populated on target-side items. Suggestions only: a user is expected to review them before acting. Required, but may be empty.", alias="writebackSuggestions")
-    __properties: ClassVar[List[str]] = ["relationalDatasetDefinitionId", "relationalDataPointUniqueId", "itemType", "ruleAndAttributeValues", "writebackSuggestions"]
+    __properties: ClassVar[List[str]] = ["relationalDatasetDefinitionId", "relationalDatasetDefinitionDisplayName", "relationalDataPointUniqueId", "itemType", "ruleAndAttributeValues", "writebackSuggestions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +82,11 @@ class RecResultRelationalDataItem(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['writebackSuggestions'] = _items
+        # set to None if relational_dataset_definition_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.relational_dataset_definition_display_name is None and "relational_dataset_definition_display_name" in self.model_fields_set:
+            _dict['relationalDatasetDefinitionDisplayName'] = None
+
         # set to None if rule_and_attribute_values (nullable) is None
         # and model_fields_set contains the field
         if self.rule_and_attribute_values is None and "rule_and_attribute_values" in self.model_fields_set:
@@ -99,6 +105,7 @@ class RecResultRelationalDataItem(BaseModel):
 
         _obj = RecResultRelationalDataItem.model_validate({
             "relational_dataset_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationalDatasetDefinitionId")) is not None else None,
+            "relational_dataset_definition_display_name": obj.get("relationalDatasetDefinitionDisplayName"),
             "relational_data_point_unique_id": obj.get("relationalDataPointUniqueId"),
             "item_type": obj.get("itemType"),
             "rule_and_attribute_values": obj.get("ruleAndAttributeValues"),

@@ -26,14 +26,14 @@ import finbourne.sdk.services.lusid.models
 if TYPE_CHECKING:
 
     from finbourne.sdk.services.lusid.models import (
-        ComplexMarketDataActivity, InstrumentActivity, PortfolioSettlementInstruction, PortfolioTransaction, QuoteActivity)
+        ComplexMarketDataActivity, InstrumentActivity, InstrumentEventActivity, PortfolioSettlementInstruction, PortfolioTransaction, QuoteActivity)
 
 
 class NavActivityAdjustment(BaseModel):
     """
     NavActivityAdjustment
     """
-    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity, ComplexMarketDataActivity.") 
+    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity, ComplexMarketDataActivity, InstrumentEventActivity.") 
     __properties: ClassVar[List[str]] = ["navActivityAdjustmentType"]
 
     @field_validator('nav_activity_adjustment_type')
@@ -46,7 +46,7 @@ class NavActivityAdjustment(BaseModel):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['PortfolioTransaction', 'PortfolioSettlementInstruction', 'InstrumentActivity', 'QuoteActivity', 'ComplexMarketDataActivity']
+        _allowed = ['PortfolioTransaction', 'PortfolioSettlementInstruction', 'InstrumentActivity', 'QuoteActivity', 'ComplexMarketDataActivity', 'InstrumentEventActivity']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -66,6 +66,7 @@ class NavActivityAdjustment(BaseModel):
     __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
         'ComplexMarketDataActivity': 'ComplexMarketDataActivity',
         'InstrumentActivity': 'InstrumentActivity',
+        'InstrumentEventActivity': 'InstrumentEventActivity',
         'PortfolioSettlementInstruction': 'PortfolioSettlementInstruction',
         'PortfolioTransaction': 'PortfolioTransaction',
         'QuoteActivity': 'QuoteActivity'
@@ -97,7 +98,7 @@ class NavActivityAdjustment(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[ComplexMarketDataActivity, InstrumentActivity, PortfolioSettlementInstruction, PortfolioTransaction, QuoteActivity, NavActivityAdjustment]:
+    def from_json(cls, json_str: str) -> Union[ComplexMarketDataActivity, InstrumentActivity, InstrumentEventActivity, PortfolioSettlementInstruction, PortfolioTransaction, QuoteActivity, NavActivityAdjustment]:
         """Create an instance of NavActivityAdjustment from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -111,7 +112,7 @@ class NavActivityAdjustment(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[ComplexMarketDataActivity, InstrumentActivity, PortfolioSettlementInstruction, PortfolioTransaction, QuoteActivity, NavActivityAdjustment]:
+    def from_dict(cls, obj: dict) -> Union[ComplexMarketDataActivity, InstrumentActivity, InstrumentEventActivity, PortfolioSettlementInstruction, PortfolioTransaction, QuoteActivity, NavActivityAdjustment]:
         """Create an instance of NavActivityAdjustment from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

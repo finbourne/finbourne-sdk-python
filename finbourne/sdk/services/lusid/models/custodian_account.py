@@ -40,7 +40,8 @@ class CustodianAccount(BaseModel):
     custodian: LegalEntity
     account_type:  Optional[StrictStr] = Field(default=None,alias="accountType", description="The type of the Custodian Account. This is a free-text field that accepts any value. Optional, with no default.") 
     tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for disposals from this account. This can be: Cost or AmortisedCost. If not specified or reset with Default, resolution falls through to the transaction type and then the portfolio's default. Available values: Default, Cost, AmortisedCost.") 
-    __properties: ClassVar[List[str]] = ["custodianAccountId", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodian", "accountType", "taxLotSelectionCostBasis"]
+    inactive_from: Optional[datetime] = Field(default=None, description="The date from which the account is inactive. Transactions with a trade date before this date still resolve to the account; those on or after it leave the account unresolved. Absent when the account is active.", alias="inactiveFrom")
+    __properties: ClassVar[List[str]] = ["custodianAccountId", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodian", "accountType", "taxLotSelectionCostBasis", "inactiveFrom"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,6 +110,11 @@ class CustodianAccount(BaseModel):
         if self.tax_lot_selection_cost_basis is None and "tax_lot_selection_cost_basis" in self.model_fields_set:
             _dict['taxLotSelectionCostBasis'] = None
 
+        # set to None if inactive_from (nullable) is None
+        # and model_fields_set contains the field
+        if self.inactive_from is None and "inactive_from" in self.model_fields_set:
+            _dict['inactiveFrom'] = None
+
         return _dict
 
     @classmethod
@@ -135,7 +141,8 @@ class CustodianAccount(BaseModel):
             else None,
             "custodian": LegalEntity.from_dict(_v) if (_v := obj.get("custodian")) is not None else None,
             "account_type": obj.get("accountType"),
-            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis")
+            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis"),
+            "inactive_from": obj.get("inactiveFrom")
         })
         return _obj
 

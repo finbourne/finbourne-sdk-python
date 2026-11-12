@@ -15,6 +15,7 @@ A transaction that remains unsettled as at the valuation point, with per-bucket 
 | **stock_is_overdue** | **bool** | Optional | Whether the stock component is overdue for settlement. |
 | **deferred_cash_settlement_status** | **str** | Optional | The settlement status of the deferred cash component. |
 | **deferred_cash_is_overdue** | **bool** | Optional | Whether the deferred cash component is overdue for settlement. |
+| **revaluation** | [UnsettledTransactionRevaluation](UnsettledTransactionRevaluation.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -34,7 +35,8 @@ instance = UnsettledTransaction(
     stock_settlement_status="...",  # optional — The settlement status of the stock component.
     stock_is_overdue=True,  # optional — Whether the stock component is overdue for settlement.
     deferred_cash_settlement_status="...",  # optional — The settlement status of the deferred cash component.
-    deferred_cash_is_overdue=True  # optional — Whether the deferred cash component is overdue for settlement.
+    deferred_cash_is_overdue=True,  # optional — Whether the deferred cash component is overdue for settlement.
+    revaluation=UnsettledTransactionRevaluation(...)  # optional
 )
 ```
 
@@ -43,6 +45,7 @@ instance = UnsettledTransaction(
 
 - [OutputTransaction](OutputTransaction.md)
 - [PortfolioId](PortfolioId.md)
+- [UnsettledTransactionRevaluation](UnsettledTransactionRevaluation.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

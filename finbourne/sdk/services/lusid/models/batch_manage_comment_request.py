@@ -29,12 +29,11 @@ class BatchManageCommentRequest(BaseModel):
     One item of a batch comment request. The operation (add/edit/delete) is inferred from the  combination of commentId and commentText.  # noqa: E501
     """
     instance_id: RecInstanceId = Field(alias="instanceId")
-    rec_type:  StrictStr = Field(...,alias="recType", description="The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.") 
-    run_number: StrictInt = Field(description="The run of the instance whose results this item targets.", alias="runNumber")
+    rec_type:  StrictStr = Field(...,alias="recType", description="The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.") 
     rec_result_id:  StrictStr = Field(...,alias="recResultId", description="The rec result the comment operation targets.") 
     comment_id:  Optional[StrictStr] = Field(default=None,alias="commentId", description="The comment id. Null with text = add; provided with text = edit; provided with null text = delete.") 
     comment_text:  Optional[StrictStr] = Field(default=None,alias="commentText", description="The comment body. See operation inference.") 
-    __properties: ClassVar[List[str]] = ["instanceId", "recType", "runNumber", "recResultId", "commentId", "commentText"]
+    __properties: ClassVar[List[str]] = ["instanceId", "recType", "recResultId", "commentId", "commentText"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +96,6 @@ class BatchManageCommentRequest(BaseModel):
         _obj = BatchManageCommentRequest.model_validate({
             "instance_id": RecInstanceId.from_dict(_v) if (_v := obj.get("instanceId")) is not None else None,
             "rec_type": obj.get("recType"),
-            "run_number": obj.get("runNumber"),
             "rec_result_id": obj.get("recResultId"),
             "comment_id": obj.get("commentId"),
             "comment_text": obj.get("commentText")

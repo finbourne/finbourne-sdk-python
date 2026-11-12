@@ -14,6 +14,7 @@ One investor record's share of a resolved allocation event.
 | **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **component** | **str** | Optional | The component of the event the share belongs to. Absent when the event was resolved whole. |
 | **origin_member_short_code** | **str** | Optional | The deal the share is for, when a capital call&#39;s use of proceeds split one component across deals. Absent when the component&#39;s own origin applies. |
+| **recallable_amount** | **float** | Optional | For the ROC component of a Distribution with a recallable amount, the investor record&#39;s pro rata share of it. Absent otherwise. |
 
 
 ## Usage
@@ -32,7 +33,8 @@ instance = AllocationMapAllocation(
     commitment_line_id="...",  # optional — For a Commitment event, the commitment line the share is recorded against. Absent for other event types.
     portfolio_id=ResourceId(...),  # optional
     component="...",  # optional — The component of the event the share belongs to. Absent when the event was resolved whole.
-    origin_member_short_code="..."  # optional — The deal the share is for, when a capital call&#39;s use of proceeds split one component across deals. Absent when the component&#39;s own origin applies.
+    origin_member_short_code="...",  # optional — The deal the share is for, when a capital call&#39;s use of proceeds split one component across deals. Absent when the component&#39;s own origin applies.
+    recallable_amount=0.0  # optional — For the ROC component of a Distribution with a recallable amount, the investor record&#39;s pro rata share of it. Absent otherwise.
 )
 ```
 

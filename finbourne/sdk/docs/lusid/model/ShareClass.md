@@ -16,7 +16,7 @@
 | **distribution_type** | **str** | Optional | The type of distribution the ShareClass will calculate. Available values: Income, Accumulation. |
 | **dom_ccy** | **str** | Required | The domestic currency of the ShareClass instrument. |
 | **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
-| **rounding_conventions_price** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass quotes. |
+| **rounding_conventions_price** | [List[ShareClassRoundingConvention]](ShareClassRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass quotes. |
 | **rounding_conventions_units** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass units. |
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **distribution_payment_type** | **str** | Optional | The tax treatment applied to distributions. Available values: Invalid, Gross, Net. |
@@ -56,7 +56,7 @@ instance = ShareClass(
 - [Series](Series.md) — used in `series`
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [TradingConventions](TradingConventions.md)
-- [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_price`
+- [ShareClassRoundingConvention](ShareClassRoundingConvention.md) — used in `rounding_conventions_price`
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_units`
 - [TimeZoneConventions](TimeZoneConventions.md)
 - [WhtParameters](WhtParameters.md)

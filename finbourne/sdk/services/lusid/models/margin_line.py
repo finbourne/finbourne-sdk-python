@@ -43,7 +43,17 @@ class MarginLine(BaseModel):
     collateral_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The holding's value as collateral after haircuts, when it is held as collateral.", alias="collateralValue")
     initial_margin_item:  Optional[StrictStr] = Field(default=None,alias="initialMarginItem", description="The initial-margin item the line falls under, when the holding matched one. Filterable.") 
     initial_margin: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The holding's share of its netting set's initial margin, before the threshold, when it contributes to it.", alias="initialMargin")
-    __properties: ClassVar[List[str]] = ["runId", "agreementId", "item", "portfolioId", "holdingId", "custodianAccountScope", "custodianAccountCode", "custodianAccountName", "instrumentIdentifiers", "units", "pv", "variationMargin", "collateralValue", "initialMarginItem", "initialMargin"]
+    scenario: Optional[ResourceId] = None
+    line_key:  Optional[StrictStr] = Field(default=None,alias="lineKey", description="A key that identifies the line within its run, with which its explanation is asked for. A line valued under a scenario has a different key from the same holding in the base market. Null for a line stored before lines carried a key.") 
+    explain_available: Optional[StrictBool] = Field(default=None, description="Whether the working behind the line's figures was stored, so that the line can be explained. One flag covers every figure of the line.", alias="explainAvailable")
+    instrument_type:  Optional[StrictStr] = Field(default=None,alias="instrumentType", description="LUSID's type for the instrument held, when the run read it.") 
+    asset_class:  Optional[StrictStr] = Field(default=None,alias="assetClass", description="The instrument's asset class, when the run read it.") 
+    currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="The currency the holding is denominated in, when the run read it.") 
+    maturity_date: Optional[datetime] = Field(default=None, description="The instrument's maturity, when it has one.", alias="maturityDate")
+    notional: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The holding's notional in its own currency, when the instrument has one.")
+    gross_initial_margin: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The regulatory-grid charge on the holding before its netting set's net-to-gross scaling. Null under other methods.", alias="grossInitialMargin")
+    movable_to: List[StrictStr] = Field(description="The initial-margin netting sets of other agreements in the run the holding could be re-booked into, as scope/code/item. Recorded for base-case trading lines under an initial-margin item; empty otherwise.", alias="movableTo")
+    __properties: ClassVar[List[str]] = ["runId", "agreementId", "item", "portfolioId", "holdingId", "custodianAccountScope", "custodianAccountCode", "custodianAccountName", "instrumentIdentifiers", "units", "pv", "variationMargin", "collateralValue", "initialMarginItem", "initialMargin", "scenario", "lineKey", "explainAvailable", "instrumentType", "assetClass", "currency", "maturityDate", "notional", "grossInitialMargin", "movableTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +95,9 @@ class MarginLine(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of portfolio_id
         if self.portfolio_id:
             _dict['portfolioId'] = self.portfolio_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of scenario
+        if self.scenario:
+            _dict['scenario'] = self.scenario.to_dict(by_alias=by_alias)
         # set to None if holding_id (nullable) is None
         # and model_fields_set contains the field
         if self.holding_id is None and "holding_id" in self.model_fields_set:
@@ -130,6 +143,41 @@ class MarginLine(BaseModel):
         if self.initial_margin is None and "initial_margin" in self.model_fields_set:
             _dict['initialMargin'] = None
 
+        # set to None if line_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.line_key is None and "line_key" in self.model_fields_set:
+            _dict['lineKey'] = None
+
+        # set to None if instrument_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_type is None and "instrument_type" in self.model_fields_set:
+            _dict['instrumentType'] = None
+
+        # set to None if asset_class (nullable) is None
+        # and model_fields_set contains the field
+        if self.asset_class is None and "asset_class" in self.model_fields_set:
+            _dict['assetClass'] = None
+
+        # set to None if currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.currency is None and "currency" in self.model_fields_set:
+            _dict['currency'] = None
+
+        # set to None if maturity_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.maturity_date is None and "maturity_date" in self.model_fields_set:
+            _dict['maturityDate'] = None
+
+        # set to None if notional (nullable) is None
+        # and model_fields_set contains the field
+        if self.notional is None and "notional" in self.model_fields_set:
+            _dict['notional'] = None
+
+        # set to None if gross_initial_margin (nullable) is None
+        # and model_fields_set contains the field
+        if self.gross_initial_margin is None and "gross_initial_margin" in self.model_fields_set:
+            _dict['grossInitialMargin'] = None
+
         return _dict
 
     @classmethod
@@ -156,7 +204,17 @@ class MarginLine(BaseModel):
             "variation_margin": obj.get("variationMargin"),
             "collateral_value": obj.get("collateralValue"),
             "initial_margin_item": obj.get("initialMarginItem"),
-            "initial_margin": obj.get("initialMargin")
+            "initial_margin": obj.get("initialMargin"),
+            "scenario": ResourceId.from_dict(_v) if (_v := obj.get("scenario")) is not None else None,
+            "line_key": obj.get("lineKey"),
+            "explain_available": obj.get("explainAvailable"),
+            "instrument_type": obj.get("instrumentType"),
+            "asset_class": obj.get("assetClass"),
+            "currency": obj.get("currency"),
+            "maturity_date": obj.get("maturityDate"),
+            "notional": obj.get("notional"),
+            "gross_initial_margin": obj.get("grossInitialMargin"),
+            "movable_to": obj.get("movableTo")
         })
         return _obj
 

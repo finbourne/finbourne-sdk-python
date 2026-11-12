@@ -41,13 +41,15 @@ class RecResult(BaseModel):
     """
     An individual reconciliation result — the aggregate result for a set of core rule values within a  rec type, with its type/status, review and exception axes, rule values and item-level detail.  # noqa: E501
     """
-    id:  StrictStr = Field(...,alias="id", description="The id of the result within its run: its result type and result number, e.g. 'break-3'. Unique within one run of one rec type of an instance; the same id in another run of the instance names the same result, for as long as it keeps its result type.") 
+    id:  StrictStr = Field(...,alias="id", description="The id of the result within its instance: its rec type, result type and result number, e.g. 'Holding-break-3'. Unique within the instance, and kept across its runs for as long as the result keeps its result type.") 
     result_number: StrictInt = Field(description="The result's number within its result type. Kept across runs while the result keeps its type; never reused once assigned.", alias="resultNumber")
     first_run_seen: StrictInt = Field(description="The run in which the result was first assigned its id.", alias="firstRunSeen")
-    rec_type:  StrictStr = Field(...,alias="recType", description="The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.") 
+    rec_type:  StrictStr = Field(...,alias="recType", description="The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.") 
     external_rec_type_name:  Optional[StrictStr] = Field(default=None,alias="externalRecTypeName", description="The client's name for an External rec type, as stamped from the matching ruleset's externalRecType when the run executed. Null for native rec types. Filterable.") 
     instance_id: RecInstanceId = Field(alias="instanceId")
+    as_at_instantiated: datetime = Field(description="The asAt datetime at which the instance was first created.", alias="asAtInstantiated")
     rec_definition_id: ResourceId = Field(alias="recDefinitionId")
+    rec_definition_display_name:  StrictStr = Field(...,alias="recDefinitionDisplayName", description="The display name of the rec definition the rec was instantiated for, as it stood as-at instantiation. Not re-synchronised if the definition is later renamed.") 
     run_number: StrictInt = Field(description="The run number within the instance. Increments with each re-run.", alias="runNumber")
     run_as_at: datetime = Field(description="The asAt datetime at which the run happened.", alias="runAsAt")
     dates_reconciled: RecDatesReconciled = Field(alias="datesReconciled")
@@ -68,7 +70,7 @@ class RecResult(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "resultNumber", "firstRunSeen", "recType", "externalRecTypeName", "instanceId", "recDefinitionId", "runNumber", "runAsAt", "datesReconciled", "resultType", "resultCardinality", "resultLifeCycle", "exception", "review", "coreRules", "aggregateRules", "supplementalAttributes", "items", "linkedResults", "comments", "properties", "assignedUser", "assignedRole", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "resultNumber", "firstRunSeen", "recType", "externalRecTypeName", "instanceId", "asAtInstantiated", "recDefinitionId", "recDefinitionDisplayName", "runNumber", "runAsAt", "datesReconciled", "resultType", "resultCardinality", "resultLifeCycle", "exception", "review", "coreRules", "aggregateRules", "supplementalAttributes", "items", "linkedResults", "comments", "properties", "assignedUser", "assignedRole", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -222,7 +224,9 @@ class RecResult(BaseModel):
             "rec_type": obj.get("recType"),
             "external_rec_type_name": obj.get("externalRecTypeName"),
             "instance_id": RecInstanceId.from_dict(_v) if (_v := obj.get("instanceId")) is not None else None,
+            "as_at_instantiated": obj.get("asAtInstantiated"),
             "rec_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("recDefinitionId")) is not None else None,
+            "rec_definition_display_name": obj.get("recDefinitionDisplayName"),
             "run_number": obj.get("runNumber"),
             "run_as_at": obj.get("runAsAt"),
             "dates_reconciled": RecDatesReconciled.from_dict(_v) if (_v := obj.get("datesReconciled")) is not None else None,

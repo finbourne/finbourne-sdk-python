@@ -32,7 +32,7 @@ class QuoteActivity(NavActivityAdjustment):
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The EffectiveAt time of the entity event that need to be added to the closed period.") 
     entity_unique_id:  StrictStr = Field(...,alias="entityUniqueId", description="The EntityUniqueId from the entity which needs to be added as a post close activity.") 
     instrument_id:  StrictStr = Field(...,alias="instrumentId", description="The InstrumentId from the quote which needs to be added as a post close activity.") 
-    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity, ComplexMarketDataActivity.") 
+    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity, ComplexMarketDataActivity, InstrumentEventActivity.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["navActivityAdjustmentType", "asAt", "effectiveAt", "entityUniqueId", "instrumentId"]
 
@@ -46,7 +46,7 @@ class QuoteActivity(NavActivityAdjustment):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['PortfolioTransaction', 'PortfolioSettlementInstruction', 'InstrumentActivity', 'QuoteActivity', 'ComplexMarketDataActivity']
+        _allowed = ['PortfolioTransaction', 'PortfolioSettlementInstruction', 'InstrumentActivity', 'QuoteActivity', 'ComplexMarketDataActivity', 'InstrumentEventActivity']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

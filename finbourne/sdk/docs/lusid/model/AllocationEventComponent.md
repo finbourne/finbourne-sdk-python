@@ -10,6 +10,8 @@ One component of an Allocation Event: a part of the amount shared on its own bas
 | **origin_member_short_code** | **str** | Optional | The member of the structure the component originates from, for a basis measured per deal such as PaidInForDeal. Absent means the map&#39;s own member. |
 | **waterfall_tier** | **str** | Optional | For a distribution component, the tier of the waterfall it was paid under: ReturnOfContributions, PreferredReturn, CatchUp, CarriedInterest or Residual. |
 | **tax_character** | **str** | Optional | For a distribution component, the tax character of the amount: ROC, Gain, Income or Deemed. |
+| **recallable_amount** | **float** | Optional | For the ROC component of a Distribution only, how much of the component the fund may call back, between zero and the component amount. Shared pro rata to each investor&#39;s ROC share. Absent means the allocation map&#39;s recall window decides. |
+| **recallable_until** | **datetime** | Optional | For the ROC component of a Distribution only, the last date the recallable amount may be called back. Must not be before the event date and requires a non-zero recallable amount. |
 
 
 ## Usage
@@ -24,7 +26,9 @@ instance = AllocationEventComponent(
     amount=0.0,  # required — The part of the event amount this component carries, in the event currency. May be zero, in which case the component allocates nothing.
     origin_member_short_code="...",  # optional — The member of the structure the component originates from, for a basis measured per deal such as PaidInForDeal. Absent means the map&#39;s own member.
     waterfall_tier="...",  # optional — For a distribution component, the tier of the waterfall it was paid under: ReturnOfContributions, PreferredReturn, CatchUp, CarriedInterest or Residual.
-    tax_character="..."  # optional — For a distribution component, the tax character of the amount: ROC, Gain, Income or Deemed.
+    tax_character="...",  # optional — For a distribution component, the tax character of the amount: ROC, Gain, Income or Deemed.
+    recallable_amount=0.0,  # optional — For the ROC component of a Distribution only, how much of the component the fund may call back, between zero and the component amount. Shared pro rata to each investor&#39;s ROC share. Absent means the allocation map&#39;s recall window decides.
+    recallable_until=datetime.now()  # optional — For the ROC component of a Distribution only, the last date the recallable amount may be called back. Must not be before the event date and requires a non-zero recallable amount.
 )
 ```
 

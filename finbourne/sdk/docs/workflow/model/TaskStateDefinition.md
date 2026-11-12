@@ -8,7 +8,7 @@ A Task Definition/Task has a given set of States
 | **name** | **str** | Required | The Name of this State |
 | **display_name** | **str** | Optional | The display name of this State |
 | **description** | **str** | Optional | The description of this State |
-| **category** | **str** | Optional | The category of this State |
+| **category** | **str** | Optional | The category of this State. Free text; categories understood by the LUSID web app are: NotStarted, Waiting, Warning, Exceptions, InProgress, Error, CompletedSuccess, CompletedFail, AwaitingApproval, Critical, HighPriority, MediumPriority, LowPriority, Other |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = TaskStateDefinition(
     name="...",  # required — The Name of this State
     display_name="...",  # optional — The display name of this State
     description="...",  # optional — The description of this State
-    category="..."  # optional — The category of this State
+    category="..."  # optional — The category of this State. Free text; categories understood by the LUSID web app are: NotStarted, Waiting, Warning, Exceptions, InProgress, Error, CompletedSuccess, CompletedFail, AwaitingApproval, Critical, HighPriority, MediumPriority, LowPriority, Other
 )
 ```
 

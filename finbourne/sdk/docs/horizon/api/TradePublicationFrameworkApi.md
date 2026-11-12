@@ -92,23 +92,22 @@ Name | Type | Description  | Notes
 ---
 
 # **get_tpf_file_deliveries**
-> PagedResourceListOfTpfFileDeliveryResponse getTpfFileDeliveries = get_tpf_file_deliveries(instance_id, status=status, date_from=date_from, date_to=date_to, limit=limit, page=page)
+> PagedResourceListOfTpfFileDeliveryResponse getTpfFileDeliveries = get_tpf_file_deliveries(instance_id, filter=filter, sort_by=sort_by, limit=limit, page=page)
 
 [EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance
 
-Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.
+Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable via a Finbourne Filtering DSL expression and sortable. Supports pagination for large result sets.
 
 ### Example
 
 ```python
 api_instance = api_client_factory.build(TradePublicationFrameworkApi)
 instance_id = 'instance_id_example' # str
-status = horizon.TpfFileDeliveryDisplayStatus() # TpfFileDeliveryDisplayStatus (optional)
-date_from = '2013-10-20T19:20:30+01:00' # datetime (optional)
-date_to = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
 limit = 50 # int (optional)
 page = '' # str (optional)
-api_response = api_instance.get_tpf_file_deliveries(instance_id, status=status, date_from=date_from, date_to=date_to, limit=limit, page=page)
+api_response = api_instance.get_tpf_file_deliveries(instance_id, filter=filter, sort_by=sort_by, limit=limit, page=page)
 pprint(api_response)
 ```
 
@@ -117,9 +116,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Integration instance ID | [required] 
- **status** | [**TpfFileDeliveryDisplayStatus**](../model/.md)| Filter by delivery outcome (Delivered, Failed, Pending) | [optional] 
- **date_from** | **datetime**| Filter deliveries from this time (inclusive) | [optional] 
- **date_to** | **datetime**| Filter deliveries to this time (inclusive) | [optional] 
+ **filter** | **str**| Filter expression (e.g. \&quot;DestinationStatus eq &#39;Delivered&#39;\&quot;). Filterable properties: runId, referenceId, runStartTime, fileName, generatedAt, rowCount, fileHash, destinationType, destinationPath, destinationName, deliveredAt, destinationStatus, destinationError, attempt | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Sort fields (e.g. \&quot;generatedAt DESC\&quot;). Up to 2 fields allowed | [optional] 
  **limit** | **int**| Page size for pagination (default 50, max 500) | [optional] [default to 50]
  **page** | **str**| Pagination token from previous response | [optional] [default to &#39;&#39;]
 
@@ -148,7 +146,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions across instances
 
-Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.
+Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, eventType, skipReason, failureReason, failureStage, fileName, sentAt, portfolioScope, portfolioCode, runId. Publication status is filtered by the status body field, not the filter. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.
 
 ### Example
 
@@ -448,7 +446,7 @@ Name | Type | Description  | Notes
  **status** | **str**| Filter by publication status (Sent, Skipped, Failed). This is the publication outcome, not the batched-transaction status. | [optional] 
  **page** | **str**| The pagination token from the previous response; &lt;i&gt;filter&lt;/i&gt; and &lt;i&gt;sortBy&lt;/i&gt; must be unchanged. | [optional] [default to &#39;&#39;]
  **page_size** | **int**| Number of results per page. | [optional] [default to 100]
- **filter** | **str**| A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status&#x3D; query parameter for that. | [optional] 
+ **filter** | **str**| A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt, eventType. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status&#x3D; query parameter for that. eventType is the TPF event type (New, Amended, Cancelled, ..., or Queued for an element not yet built). Comparing a field with null is rejected. | [optional] 
  **sort_by** | [**List[str]**](../model/str.md)| Up to two filterable fields, each suffixed \&quot; ASC\&quot; or \&quot; DESC\&quot;. Defaults to Id ASC. | [optional] 
 
 ### Return type

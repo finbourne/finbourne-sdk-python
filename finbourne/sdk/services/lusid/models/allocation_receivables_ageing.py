@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.allocation_receivable import AllocationReceivable
+from finbourne.sdk.services.lusid.models.allocation_register_receivable import AllocationRegisterReceivable
 
 
 class AllocationReceivablesAgeing(BaseModel):
@@ -30,9 +31,10 @@ class AllocationReceivablesAgeing(BaseModel):
     """
     as_of: Optional[datetime] = Field(default=None, description="The date the receivables are aged as of.", alias="asOf")
     due_date: Optional[datetime] = Field(default=None, description="The date the cash was due.", alias="dueDate")
-    outstanding: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total still owed across all investor records.")
-    receivables: Optional[List[AllocationReceivable]] = Field(default=None, description="One entry per investor record that was called.")
-    __properties: ClassVar[List[str]] = ["asOf", "dueDate", "outstanding", "receivables"]
+    outstanding: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="What the investors still owe, looking through feeders to their LPs so a roll-up is not counted twice.")
+    receivables: Optional[List[AllocationReceivable]] = Field(default=None, description="One entry per investor record and side that was called on a register.")
+    registers: Optional[List[AllocationRegisterReceivable]] = Field(default=None, description="What each register is owed on its own lines, a feeder's roll-up included.")
+    __properties: ClassVar[List[str]] = ["asOf", "dueDate", "outstanding", "receivables", "registers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +77,13 @@ class AllocationReceivablesAgeing(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['receivables'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in registers (list)
+        _items = []
+        if self.registers:
+            for _item in self.registers:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['registers'] = _items
         # set to None if due_date (nullable) is None
         # and model_fields_set contains the field
         if self.due_date is None and "due_date" in self.model_fields_set:
@@ -84,6 +93,11 @@ class AllocationReceivablesAgeing(BaseModel):
         # and model_fields_set contains the field
         if self.receivables is None and "receivables" in self.model_fields_set:
             _dict['receivables'] = None
+
+        # set to None if registers (nullable) is None
+        # and model_fields_set contains the field
+        if self.registers is None and "registers" in self.model_fields_set:
+            _dict['registers'] = None
 
         return _dict
 
@@ -100,7 +114,8 @@ class AllocationReceivablesAgeing(BaseModel):
             "as_of": obj.get("asOf"),
             "due_date": obj.get("dueDate"),
             "outstanding": obj.get("outstanding"),
-            "receivables": [AllocationReceivable.from_dict(_item) for _item in _v] if (_v := obj.get("receivables")) is not None else None
+            "receivables": [AllocationReceivable.from_dict(_item) for _item in _v] if (_v := obj.get("receivables")) is not None else None,
+            "registers": [AllocationRegisterReceivable.from_dict(_item) for _item in _v] if (_v := obj.get("registers")) is not None else None
         })
         return _obj
 

@@ -5,13 +5,15 @@ An individual reconciliation result — the aggregate result for a set of core r
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | **str** | Required | The id of the result within its run: its result type and result number, e.g. &#39;break-3&#39;. Unique within one run of one rec type of an instance; the same id in another run of the instance names the same result, for as long as it keeps its result type. |
+| **id** | **str** | Required | The id of the result within its instance: its rec type, result type and result number, e.g. &#39;Holding-break-3&#39;. Unique within the instance, and kept across its runs for as long as the result keeps its result type. |
 | **result_number** | **int** | Required | The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned. |
 | **first_run_seen** | **int** | Required | The run in which the result was first assigned its id. |
-| **rec_type** | **str** | Required | The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. |
+| **rec_type** | **str** | Required | The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
 | **external_rec_type_name** | **str** | Optional | The client&#39;s name for an External rec type, as stamped from the matching ruleset&#39;s externalRecType when the run executed. Null for native rec types. Filterable. |
 | **instance_id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
+| **as_at_instantiated** | **datetime** | Required | The asAt datetime at which the instance was first created. |
 | **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **rec_definition_display_name** | **str** | Required | The display name of the rec definition the rec was instantiated for, as it stood as-at instantiation. Not re-synchronised if the definition is later renamed. |
 | **run_number** | **int** | Required | The run number within the instance. Increments with each re-run. |
 | **run_as_at** | **datetime** | Required | The asAt datetime at which the run happened. |
 | **dates_reconciled** | [RecDatesReconciled](RecDatesReconciled.md) | Required | *No description available.* |
@@ -42,13 +44,15 @@ An individual reconciliation result — the aggregate result for a set of core r
 from finbourne.sdk.services.lusid.models.RecResult import RecResult
 
 instance = RecResult(
-    id="...",  # required — The id of the result within its run: its result type and result number, e.g. &#39;break-3&#39;. Unique within one run of one rec type of an instance; the same id in another run of the instance names the same result, for as long as it keeps its result type.
+    id="...",  # required — The id of the result within its instance: its rec type, result type and result number, e.g. &#39;Holding-break-3&#39;. Unique within the instance, and kept across its runs for as long as the result keeps its result type.
     result_number=0,  # required — The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned.
     first_run_seen=0,  # required — The run in which the result was first assigned its id.
-    rec_type="...",  # required — The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.
+    rec_type="...",  # required — The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
     external_rec_type_name="...",  # optional — The client&#39;s name for an External rec type, as stamped from the matching ruleset&#39;s externalRecType when the run executed. Null for native rec types. Filterable.
     instance_id=RecInstanceId(...),  # required
+    as_at_instantiated=datetime.now(),  # required — The asAt datetime at which the instance was first created.
     rec_definition_id=ResourceId(...),  # required
+    rec_definition_display_name="...",  # required — The display name of the rec definition the rec was instantiated for, as it stood as-at instantiation. Not re-synchronised if the definition is later renamed.
     run_number=0,  # required — The run number within the instance. Increments with each re-run.
     run_as_at=datetime.now(),  # required — The asAt datetime at which the run happened.
     dates_reconciled=RecDatesReconciled(...),  # required

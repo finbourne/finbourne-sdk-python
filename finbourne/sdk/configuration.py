@@ -137,6 +137,7 @@ class Configuration:
                     connect_timeout_ms=DEFAULT_CONNECT_TIMEOUT_MS,
                     read_timeout_ms=DEFAULT_READ_TIMEOUT_MS),
                 rate_limit_retries: int = DEFAULT_RATE_LIMIT_RETRIES,
+                number_of_retries: int = DEFAULT_RETRIES,
                 socket_options: Optional[Any] = None,
                 tcp_keep_alive: bool = True,
                  **kwargs: Any) -> None:
@@ -266,6 +267,9 @@ class Configuration:
         
         self.timeouts: Timeouts = timeouts
         self.rate_limit_retries: int = rate_limit_retries
+        self.number_of_retries: int = number_of_retries
+        """Retries for conflicts (409), server errors (5xx) and errors with a Retry-After header, separate from the urllib3 `retries` above
+        """
 
     def __deepcopy__(self, memo):
         cls = self.__class__
@@ -558,6 +562,18 @@ class Configuration:
         if value < 0:
             raise ValueError(f"rate_limit_retries must be greater than or equal to zero but was '{value}'")
         self._rate_limit_retries = value
+
+    @property
+    def number_of_retries(self):
+        return self._number_of_retries
+
+    @number_of_retries.setter
+    def number_of_retries(self, value):
+        if not isinstance(value, int):
+            raise TypeError(f"number_of_retries must be type int but type '{type(value)}' used")
+        if value < 0:
+            raise ValueError(f"number_of_retries must be greater than or equal to zero but was '{value}'")
+        self._number_of_retries = value
     
     @property
     def token_url(self):

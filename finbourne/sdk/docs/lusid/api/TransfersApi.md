@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_transfer**](TransfersApi.md#create_transfer) | **POST** /api/api/transfers | [EXPERIMENTAL] CreateTransfer: Create a transfer.
 [**delete_transfer**](TransfersApi.md#delete_transfer) | **DELETE** /api/api/transfers/{scope}/{code} | [EXPERIMENTAL] DeleteTransfer: Delete a transfer.
+[**edit_transfer**](TransfersApi.md#edit_transfer) | **POST** /api/api/transfers/$edit | [EXPERIMENTAL] EditTransfer: Edit a transfer.
 [**get_transfer**](TransfersApi.md#get_transfer) | **POST** /api/api/transfers/$get | [EXPERIMENTAL] GetTransfer: Get a transfer
 [**list_transfers**](TransfersApi.md#list_transfers) | **GET** /api/api/transfers | [EXPERIMENTAL] ListTransfers: List transfers
 
@@ -124,6 +125,51 @@ Name | Type | Description  | Notes
 **200** | The asAt the deletion landed at. |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No transfer with the given scope, code and portfolios. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **edit_transfer**
+> EditTransferResponse editTransfer = edit_transfer(edit_transfer_request, preserve_properties=preserve_properties)
+
+[EXPERIMENTAL] EditTransfer: Edit a transfer.
+
+Replace an existing transfer with the request, which carries the same fields as a create request and is  validated in the same way. Both transaction legs are rebooked under their existing ids and the Transfer  entity is updated, as a single atomic operation: if any part of the request is rejected, nothing is  changed. A field not supplied is cleared, and the outgoing position is checked with the transfer's own  outgoing leg counted back in.                Properties are treated separately from fields: by default, a property not supplied is kept on the  transfer or leg that holds it, and only the properties supplied are updated. Set preserveProperties to  false to replace the whole property set of the transfer and both legs with the ones supplied.                A transfer is identified by its scope, its code and both of its portfolios, none of which can be changed.  Where no transfer has that scope and code between those portfolios, the request is reported as not found.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransfersApi)
+edit_transfer_request = EditTransferRequest()
+preserve_properties = True # bool (optional)
+api_response = api_instance.edit_transfer(edit_transfer_request, preserve_properties=preserve_properties)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **edit_transfer_request** | [**EditTransferRequest**](../model/EditTransferRequest.md)| The transfer as it should now stand. | [required] 
+ **preserve_properties** | **bool**| If set to false, the entire property set of the transfer and both legs               will be overwritten by the provided properties. If not specified or set to true, only the properties               provided will be updated. | [optional] [default to True]
+
+### Return type
+
+[**EditTransferResponse**](../model/EditTransferResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The transfer that was edited. |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | No transfer exists with the requested scope, code and portfolios. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

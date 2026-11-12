@@ -41,6 +41,7 @@ class ModelOptionsType(str, Enum):  # type: ignore[misc]
     BONDLOOKUPMODELOPTIONS = 'BondLookupModelOptions'
     BONDFORWARDMODELOPTIONS = 'BondForwardModelOptions'
     SIMPLEMODELOPTIONS = 'SimpleModelOptions'
+    STRIPBONDMODELOPTIONS = 'StripBondModelOptions'
 
     @classmethod
     def from_json(cls, json_str: str) -> ModelOptionsType:

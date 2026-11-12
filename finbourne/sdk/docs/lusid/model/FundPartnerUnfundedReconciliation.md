@@ -21,6 +21,7 @@ The unfunded commitment statement of one partner over a period: the register's o
 | **difference** | **float** | Required | Closing unfunded less the register&#39;s unfunded at the closing datetime. Zero when the statement ties. |
 | **ties** | **bool** | Required | Whether the closing unfunded equals the register&#39;s unfunded at the closing datetime. |
 | **lines** | [List[FundPartnerUnfundedReconciliationLine]](FundPartnerUnfundedReconciliationLine.md) | Required | Every booked allocation to the partner over the period, in event date order, with the ILPA transaction type each is reported under and its effect on unfunded. |
+| **warnings** | [List[FundPartnerUnfundedReconciliationWarning]](FundPartnerUnfundedReconciliationWarning.md) | Optional | Soft warnings about how the statement was built. Empty when the period and the register agree without caveats. |
 
 
 ## Usage
@@ -46,12 +47,14 @@ instance = FundPartnerUnfundedReconciliation(
     register_unfunded=0.0,  # required — The unfunded commitment at the closing datetime, from the register.
     difference=0.0,  # required — Closing unfunded less the register&#39;s unfunded at the closing datetime. Zero when the statement ties.
     ties=True,  # required — Whether the closing unfunded equals the register&#39;s unfunded at the closing datetime.
-    lines=[]  # required — Every booked allocation to the partner over the period, in event date order, with the ILPA transaction type each is reported under and its effect on unfunded.
+    lines=[],  # required — Every booked allocation to the partner over the period, in event date order, with the ILPA transaction type each is reported under and its effect on unfunded.
+    warnings=[]  # optional — Soft warnings about how the statement was built. Empty when the period and the register agree without caveats.
 )
 ```
 
 - [ResourceId](ResourceId.md)
 - [FundPartnerUnfundedReconciliationLine](FundPartnerUnfundedReconciliationLine.md) — used in `lines`
+- [FundPartnerUnfundedReconciliationWarning](FundPartnerUnfundedReconciliationWarning.md) — used in `warnings`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

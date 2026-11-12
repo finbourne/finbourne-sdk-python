@@ -13,6 +13,7 @@ The overrides and suppressions stored against a single instrument event in a sin
 | **override_application_status** | **str** | Optional | Whether all, some, or none of this record&#39;s override and suppression entries are currently applied. Available values: Full, Partial, Orphaned. |
 | **cancel_active** | **bool** | Optional | True when an active event-level Cancel instruction also exists for this instrument event, taking precedence over the entries in this record. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **adjustments** | [Dict[str, AdjustmentEntryResponse]](AdjustmentEntryResponse.md) | Optional | The adjustments in this record, keyed by the virtual transaction id they were stored against. |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = VirtualTransactionOverrideRecord(
     override_match_status="...",  # optional — Whether every override and suppression entry in this record still matches a virtual transaction the event currently generates. Available values: Matched, Orphaned.
     override_application_status="...",  # optional — Whether all, some, or none of this record&#39;s override and suppression entries are currently applied. Available values: Full, Partial, Orphaned.
     cancel_active=True,  # optional — True when an active event-level Cancel instruction also exists for this instrument event, taking precedence over the entries in this record.
-    version=Version(...)  # optional
+    version=Version(...),  # optional
+    adjustments=AdjustmentEntryResponse(...)  # optional — The adjustments in this record, keyed by the virtual transaction id they were stored against.
 )
 ```
 
@@ -38,6 +40,7 @@ instance = VirtualTransactionOverrideRecord(
 - [OverrideEntryResponse](OverrideEntryResponse.md) — used in `overrides`
 - [SuppressionEntryResponse](SuppressionEntryResponse.md) — used in `suppressions`
 - [Version](Version.md)
+- [AdjustmentEntryResponse](AdjustmentEntryResponse.md) — used in `adjustments`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

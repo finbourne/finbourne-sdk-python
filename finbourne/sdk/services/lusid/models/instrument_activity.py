@@ -31,7 +31,7 @@ class InstrumentActivity(NavActivityAdjustment):
     as_at: datetime = Field(description="The asAt time for which the adjustment is being applied.", alias="asAt")
     scope:  StrictStr = Field(...,alias="scope", description="The Scope of the given entity") 
     lusid_instrument_id:  StrictStr = Field(...,alias="lusidInstrumentId", description="The LusidInstrumentId of the given entity") 
-    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity, ComplexMarketDataActivity.") 
+    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity, ComplexMarketDataActivity, InstrumentEventActivity.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["navActivityAdjustmentType", "asAt", "scope", "lusidInstrumentId"]
 
@@ -45,7 +45,7 @@ class InstrumentActivity(NavActivityAdjustment):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['PortfolioTransaction', 'PortfolioSettlementInstruction', 'InstrumentActivity', 'QuoteActivity', 'ComplexMarketDataActivity']
+        _allowed = ['PortfolioTransaction', 'PortfolioSettlementInstruction', 'InstrumentActivity', 'QuoteActivity', 'ComplexMarketDataActivity', 'InstrumentEventActivity']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

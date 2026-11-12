@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.aggregation_measure_failure_detail import AggregationMeasureFailureDetail
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.recipe_provenance import RecipeProvenance
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.result_data_schema import ResultDataSchema
 from finbourne.sdk.services.lusid.models.scenario_diagnostics import ScenarioDiagnostics
@@ -41,8 +42,9 @@ class ListAggregationResponse(BaseModel):
     aggregation_failures: Optional[List[AggregationMeasureFailureDetail]] = Field(default=None, alias="aggregationFailures")
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
     scenario_diagnostics: Optional[ScenarioDiagnostics] = Field(default=None, alias="scenarioDiagnostics")
+    recipe_provenance: Optional[RecipeProvenance] = Field(default=None, alias="recipeProvenance")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["aggregationEffectiveAt", "aggregationAsAt", "href", "data", "aggregationCurrency", "dataSchema", "aggregationFailures", "recipeId", "scenarioDiagnostics", "links"]
+    __properties: ClassVar[List[str]] = ["aggregationEffectiveAt", "aggregationAsAt", "href", "data", "aggregationCurrency", "dataSchema", "aggregationFailures", "recipeId", "scenarioDiagnostics", "recipeProvenance", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,6 +96,9 @@ class ListAggregationResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of scenario_diagnostics
         if self.scenario_diagnostics:
             _dict['scenarioDiagnostics'] = self.scenario_diagnostics.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of recipe_provenance
+        if self.recipe_provenance:
+            _dict['recipeProvenance'] = self.recipe_provenance.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -147,6 +152,7 @@ class ListAggregationResponse(BaseModel):
             "aggregation_failures": [AggregationMeasureFailureDetail.from_dict(_item) for _item in _v] if (_v := obj.get("aggregationFailures")) is not None else None,
             "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "scenario_diagnostics": ScenarioDiagnostics.from_dict(_v) if (_v := obj.get("scenarioDiagnostics")) is not None else None,
+            "recipe_provenance": RecipeProvenance.from_dict(_v) if (_v := obj.get("recipeProvenance")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

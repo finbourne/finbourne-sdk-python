@@ -32,7 +32,7 @@ class ComplexMarketDataActivityAdjustment(NavActivityAdjustmentResponse):
     as_at: datetime = Field(description="The asAt time for which the adjustment is being applied.", alias="asAt")
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The EffectiveAt time of the entity event that need to be added to the closed period.") 
     entity_unique_id:  StrictStr = Field(...,alias="entityUniqueId", description="The EntityUniqueId from the entity which needs to be added as a post close activity.") 
-    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment, ComplexMarketDataActivityAdjustment.") 
+    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment, ComplexMarketDataActivityAdjustment, InstrumentEventActivityAdjustment.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["navActivityAdjustmentType", "navActivityAdjustmentSource", "asAt", "effectiveAt", "entityUniqueId"]
 
@@ -46,7 +46,7 @@ class ComplexMarketDataActivityAdjustment(NavActivityAdjustmentResponse):
         # which pydantic uses to route the union. We detect that shape by
         # allowable-value count alone (single value → treat as discriminator).
 
-        _allowed = ['PortfolioTransactionAdjustment', 'PortfolioSettlementInstructionAdjustment', 'InstrumentActivityAdjustment', 'QuoteActivityAdjustment', 'ComplexMarketDataActivityAdjustment']
+        _allowed = ['PortfolioTransactionAdjustment', 'PortfolioSettlementInstructionAdjustment', 'InstrumentActivityAdjustment', 'QuoteActivityAdjustment', 'ComplexMarketDataActivityAdjustment', 'InstrumentEventActivityAdjustment']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

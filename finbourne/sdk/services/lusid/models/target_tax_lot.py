@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.chargeable_gains_take_on import ChargeableGainsTakeOn
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 
 
@@ -39,7 +40,8 @@ class TargetTaxLot(BaseModel):
     variation_margin_portfolio_ccy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The variation margin in portfolio currency of the tax-lot's opening transaction.", alias="variationMarginPortfolioCcy")
     amortised_cost: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amortised cost of the tax-lot in the settlement currency, for example a supplied amortised cost at migration. If supplied, this value seeds the tax-lot's amortised cost at the adjustment date and amortisation continues forward from it; if not supplied, the amortised cost defaults to the cost of the tax-lot.", alias="amortisedCost")
     current_face: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The current face of the tax-lot, i.e. its outstanding notional after any reduction by the instrument's pool factor. If supplied, this value seeds the tax-lot's current face, so that later paydowns on an asset-backed instrument reduce the cost against it; if not supplied, a tax-lot that already has a current face keeps its pool factor as its units change.", alias="currentFace")
-    __properties: ClassVar[List[str]] = ["units", "cost", "portfolioCost", "price", "purchaseDate", "settlementDate", "notionalCost", "variationMargin", "variationMarginPortfolioCcy", "amortisedCost", "currentFace"]
+    chargeable_gains_take_on: Optional[ChargeableGainsTakeOn] = Field(default=None, alias="chargeableGainsTakeOn")
+    __properties: ClassVar[List[str]] = ["units", "cost", "portfolioCost", "price", "purchaseDate", "settlementDate", "notionalCost", "variationMargin", "variationMarginPortfolioCcy", "amortisedCost", "currentFace", "chargeableGainsTakeOn"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,9 @@ class TargetTaxLot(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of cost
         if self.cost:
             _dict['cost'] = self.cost.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of chargeable_gains_take_on
+        if self.chargeable_gains_take_on:
+            _dict['chargeableGainsTakeOn'] = self.chargeable_gains_take_on.to_dict(by_alias=by_alias)
         # set to None if portfolio_cost (nullable) is None
         # and model_fields_set contains the field
         if self.portfolio_cost is None and "portfolio_cost" in self.model_fields_set:
@@ -145,7 +150,8 @@ class TargetTaxLot(BaseModel):
             "variation_margin": obj.get("variationMargin"),
             "variation_margin_portfolio_ccy": obj.get("variationMarginPortfolioCcy"),
             "amortised_cost": obj.get("amortisedCost"),
-            "current_face": obj.get("currentFace")
+            "current_face": obj.get("currentFace"),
+            "chargeable_gains_take_on": ChargeableGainsTakeOn.from_dict(_v) if (_v := obj.get("chargeableGainsTakeOn")) is not None else None
         })
         return _obj
 

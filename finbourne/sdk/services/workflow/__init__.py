@@ -100,6 +100,8 @@ from finbourne.sdk.services.workflow.models.launcher_schedule import LauncherSch
 from finbourne.sdk.services.workflow.models.launcher_summaries import LauncherSummaries
 from finbourne.sdk.services.workflow.models.library_response import LibraryResponse
 from finbourne.sdk.services.workflow.models.link import Link
+from finbourne.sdk.services.workflow.models.luminesce_multi_query import LuminesceMultiQuery
+from finbourne.sdk.services.workflow.models.luminesce_multi_query_response import LuminesceMultiQueryResponse
 from finbourne.sdk.services.workflow.models.luminesce_view import LuminesceView
 from finbourne.sdk.services.workflow.models.luminesce_view_response import LuminesceViewResponse
 from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check import LusidEntityDataQualityCheck
@@ -288,6 +290,8 @@ __all__ = [
     "LauncherSummaries",
     "LibraryResponse",
     "Link",
+    "LuminesceMultiQuery",
+    "LuminesceMultiQueryResponse",
     "LuminesceView",
     "LuminesceViewResponse",
     "LusidEntityDataQualityCheck",

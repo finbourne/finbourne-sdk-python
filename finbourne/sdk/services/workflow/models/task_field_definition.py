@@ -35,9 +35,10 @@ class TaskFieldDefinition(BaseModel):
     value_constraints: Optional[ValueConstraints] = Field(default=None, alias="valueConstraints")
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="Display name for field definition") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description for field definition") 
-    category:  Optional[StrictStr] = Field(default=None,alias="category", description="Category for field definition") 
+    category:  Optional[StrictStr] = Field(default=None,alias="category", description="Display group for the field. Fields sharing a category are presented together in the UI") 
     contains_url: Optional[StrictBool] = Field(default=None, description="Field contains url", alias="containsUrl")
-    __properties: ClassVar[List[str]] = ["name", "type", "readOnlyStates", "valueConstraints", "displayName", "description", "category", "containsUrl"]
+    multiline: Optional[StrictBool] = Field(default=None, description="Whether the field should be rendered as a multi-line text area")
+    __properties: ClassVar[List[str]] = ["name", "type", "readOnlyStates", "valueConstraints", "displayName", "description", "category", "containsUrl", "multiline"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +100,11 @@ class TaskFieldDefinition(BaseModel):
         if self.contains_url is None and "contains_url" in self.model_fields_set:
             _dict['containsUrl'] = None
 
+        # set to None if multiline (nullable) is None
+        # and model_fields_set contains the field
+        if self.multiline is None and "multiline" in self.model_fields_set:
+            _dict['multiline'] = None
+
         return _dict
 
     @classmethod
@@ -118,7 +124,8 @@ class TaskFieldDefinition(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "category": obj.get("category"),
-            "contains_url": obj.get("containsUrl")
+            "contains_url": obj.get("containsUrl"),
+            "multiline": obj.get("multiline")
         })
         return _obj
 

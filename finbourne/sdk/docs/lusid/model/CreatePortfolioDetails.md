@@ -8,6 +8,7 @@
 | **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. If not supplied, the portfolio&#39;s current value is left unchanged; supply Default to reset it. A reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost. |
 | **fractional_units_true_up_configuration** | [FractionalUnitsTrueUpConfiguration](FractionalUnitsTrueUpConfiguration.md) | Optional | *No description available.* |
 | **holdings_fungibility** | **str** | Optional | Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. If not supplied, the portfolio&#39;s current value is left unchanged; supply Default to reset it. A reset or never-configured flag reads back as absent. Available values: Default, Enabled. |
+| **chargeable_gains_regime** | **str** | Optional | The chargeable gains regime the portfolio is elected into. This can be: Default or UkChargeableGains. If not supplied, the portfolio&#39;s current value is left unchanged; supply Default to reset it. A reset or never-configured regime reads back as absent. Available values: Default, UkChargeableGains. |
 | **wht_parameters** | [WhtParameters](WhtParameters.md) | Optional | *No description available.* |
 
 
@@ -23,6 +24,7 @@ instance = CreatePortfolioDetails(
     tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. If not supplied, the portfolio&#39;s current value is left unchanged; supply Default to reset it. A reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
     fractional_units_true_up_configuration=FractionalUnitsTrueUpConfiguration(...),  # optional
     holdings_fungibility="...",  # optional — Whether the portfolio&#39;s holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. If not supplied, the portfolio&#39;s current value is left unchanged; supply Default to reset it. A reset or never-configured flag reads back as absent. Available values: Default, Enabled.
+    chargeable_gains_regime="...",  # optional — The chargeable gains regime the portfolio is elected into. This can be: Default or UkChargeableGains. If not supplied, the portfolio&#39;s current value is left unchanged; supply Default to reset it. A reset or never-configured regime reads back as absent. Available values: Default, UkChargeableGains.
     wht_parameters=WhtParameters(...)  # optional
 )
 ```

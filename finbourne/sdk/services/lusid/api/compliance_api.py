@@ -27,19 +27,25 @@ from finbourne.sdk.services.lusid.models.compliance_rule_response import Complia
 from finbourne.sdk.services.lusid.models.compliance_rule_result_v2 import ComplianceRuleResultV2
 from finbourne.sdk.services.lusid.models.compliance_rule_result_v2_with_contributions import ComplianceRuleResultV2WithContributions
 from finbourne.sdk.services.lusid.models.compliance_rule_template import ComplianceRuleTemplate
+from finbourne.sdk.services.lusid.models.compliance_rule_v3_describe_response import ComplianceRuleV3DescribeResponse
+from finbourne.sdk.services.lusid.models.compliance_rule_v3_response import ComplianceRuleV3Response
 from finbourne.sdk.services.lusid.models.compliance_run_configuration import ComplianceRunConfiguration
 from finbourne.sdk.services.lusid.models.compliance_run_info_v2 import ComplianceRunInfoV2
+from finbourne.sdk.services.lusid.models.compliance_run_v3_response import ComplianceRunV3Response
 from finbourne.sdk.services.lusid.models.compliance_template import ComplianceTemplate
 from finbourne.sdk.services.lusid.models.create_compliance_template_request import CreateComplianceTemplateRequest
 from finbourne.sdk.services.lusid.models.decorated_compliance_run_summary import DecoratedComplianceRunSummary
 from finbourne.sdk.services.lusid.models.decorated_compliance_run_summary_request import DecoratedComplianceRunSummaryRequest
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_rule_response import PagedResourceListOfComplianceRuleResponse
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_rule_v3_response import PagedResourceListOfComplianceRuleV3Response
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_run_info_v2 import PagedResourceListOfComplianceRunInfoV2
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_template import PagedResourceListOfComplianceTemplate
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_order_breach_history import PagedResourceListOfOrderBreachHistory
+from finbourne.sdk.services.lusid.models.run_compliance_v3_request import RunComplianceV3Request
 from finbourne.sdk.services.lusid.models.update_compliance_template_request import UpdateComplianceTemplateRequest
 from finbourne.sdk.services.lusid.models.upsert_compliance_rule_request import UpsertComplianceRuleRequest
+from finbourne.sdk.services.lusid.models.upsert_compliance_rule_v3_request import UpsertComplianceRuleV3Request
 from finbourne.sdk.services.lusid.models.upsert_compliance_run_summary_request import UpsertComplianceRunSummaryRequest
 from finbourne.sdk.services.lusid.models.upsert_compliance_run_summary_result import UpsertComplianceRunSummaryResult
 from finbourne.sdk.api_client import ApiClient
@@ -330,6 +336,134 @@ class ComplianceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def delete_compliance_rule_v3(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
+        """[EXPERIMENTAL] DeleteComplianceRuleV3: [EXPERIMENTAL] Delete a V3 compliance rule.  # noqa: E501
+
+        Use this endpoint to delete a V3 compliance rule.  # noqa: E501
+        :param scope: The compliance rule's scope. (required)
+        :type scope: str
+        :param code: The compliance rule's code. (required)
+        :type code: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: DeletedEntityResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the delete_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.delete_compliance_rule_v3_with_http_info(scope, code, **kwargs)
+        return response.data
+
+    @validate_call
+    def delete_compliance_rule_v3_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+        """[EXPERIMENTAL] DeleteComplianceRuleV3: [EXPERIMENTAL] Delete a V3 compliance rule.  # noqa: E501
+
+        Use this endpoint to delete a V3 compliance rule.  # noqa: E501
+        :param scope: The compliance rule's scope. (required)
+        :type scope: str
+        :param code: The compliance rule's code. (required)
+        :type code: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(DeletedEntityResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_compliance_rule_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "DeletedEntityResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/rules/{scope}/{code}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def delete_compliance_template(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
         """[EARLY ACCESS] DeleteComplianceTemplate: Delete a ComplianceRuleTemplate  # noqa: E501
 
@@ -442,6 +576,145 @@ class ComplianceApi:
 
         return self.sync_api_client.call_api(
             '/api/api/compliance/templates/{scope}/{code}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def describe_compliance_rule_v3(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ComplianceRuleV3DescribeResponse:
+        """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
+
+        Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+        :param scope: The compliance rule's scope. (required)
+        :type scope: str
+        :param code: The compliance rule's code. (required)
+        :type code: str
+        :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ComplianceRuleV3DescribeResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the describe_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.describe_compliance_rule_v3_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def describe_compliance_rule_v3_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRuleV3DescribeResponse]:
+        """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
+
+        Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+        :param scope: The compliance rule's scope. (required)
+        :type scope: str
+        :param code: The compliance rule's code. (required)
+        :type code: str
+        :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ComplianceRuleV3DescribeResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method describe_compliance_rule_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ComplianceRuleV3DescribeResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/rules/{scope}/{code}/$describe', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -878,6 +1151,145 @@ class ComplianceApi:
 
         return self.sync_api_client.call_api(
             '/api/api/compliance/runs/summary/{runScope}/{runCode}/{ruleScope}/{ruleCode}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_compliance_rule_v3(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ComplianceRuleV3Response:
+        """[EXPERIMENTAL] GetComplianceRuleV3: [EXPERIMENTAL] Get a V3 compliance rule.  # noqa: E501
+
+        Use this endpoint to retrieve a single V3 compliance rule.  # noqa: E501
+        :param scope: The compliance rule's scope. (required)
+        :type scope: str
+        :param code: The compliance rule's code. (required)
+        :type code: str
+        :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ComplianceRuleV3Response
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_compliance_rule_v3_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_compliance_rule_v3_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRuleV3Response]:
+        """[EXPERIMENTAL] GetComplianceRuleV3: [EXPERIMENTAL] Get a V3 compliance rule.  # noqa: E501
+
+        Use this endpoint to retrieve a single V3 compliance rule.  # noqa: E501
+        :param scope: The compliance rule's scope. (required)
+        :type scope: str
+        :param code: The compliance rule's code. (required)
+        :type code: str
+        :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_compliance_rule_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ComplianceRuleV3Response",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/rules/{scope}/{code}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1437,6 +1849,162 @@ class ComplianceApi:
 
         return self.sync_api_client.call_api(
             '/api/api/compliance/rules', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_compliance_rules_v3(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfComplianceRuleV3Response:
+        """[EXPERIMENTAL] ListComplianceRulesV3: [EXPERIMENTAL] List V3 compliance rules.  # noqa: E501
+
+        Use this endpoint to retrieve the V3 compliance rules in the client's scopes.  # noqa: E501
+        :param as_at: Optional. The asAt datetime at which to list rules. Default: latest.
+        :type as_at: datetime
+        :param page: Optional. The pagination token from a previous call.
+        :type page: str
+        :param limit: Optional. When paginating, limit the number of returned results to this many.
+        :type limit: int
+        :param filter: Not yet supported on this experimental endpoint; supplying a filter returns a 400.
+        :type filter: str
+        :param sort_by: Optional. A list of field names to sort by, each suffixed by \"ASC\" or \"DESC\".
+        :type sort_by: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfComplianceRuleV3Response
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_compliance_rules_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_compliance_rules_v3_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_compliance_rules_v3_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceRuleV3Response]:
+        """[EXPERIMENTAL] ListComplianceRulesV3: [EXPERIMENTAL] List V3 compliance rules.  # noqa: E501
+
+        Use this endpoint to retrieve the V3 compliance rules in the client's scopes.  # noqa: E501
+        :param as_at: Optional. The asAt datetime at which to list rules. Default: latest.
+        :type as_at: datetime
+        :param page: Optional. The pagination token from a previous call.
+        :type page: str
+        :param limit: Optional. When paginating, limit the number of returned results to this many.
+        :type limit: int
+        :param filter: Not yet supported on this experimental endpoint; supplying a filter returns a 400.
+        :type filter: str
+        :param sort_by: Optional. A list of field names to sort by, each suffixed by \"ASC\" or \"DESC\".
+        :type sort_by: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'as_at',
+            'page',
+            'limit',
+            'filter',
+            'sort_by'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_compliance_rules_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfComplianceRuleV3Response",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/rules', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2223,6 +2791,260 @@ class ComplianceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def run_compliance_v3(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ComplianceRunV3Response:
+        """[EXPERIMENTAL] RunComplianceV3: [EXPERIMENTAL] Run V3 compliance rules against a portfolio group.  # noqa: E501
+
+        Use this endpoint to run one or more V3 compliance rules against a portfolio group, valuing holdings  with the supplied recipe, and return each rule's result.  # noqa: E501
+        :param run_compliance_v3_request:
+        :type run_compliance_v3_request: RunComplianceV3Request
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ComplianceRunV3Response
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the run_compliance_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.run_compliance_v3_with_http_info(run_compliance_v3_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def run_compliance_v3_with_http_info(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ApiResponse[ComplianceRunV3Response]:
+        """[EXPERIMENTAL] RunComplianceV3: [EXPERIMENTAL] Run V3 compliance rules against a portfolio group.  # noqa: E501
+
+        Use this endpoint to run one or more V3 compliance rules against a portfolio group, valuing holdings  with the supplied recipe, and return each rule's result.  # noqa: E501
+        :param run_compliance_v3_request:
+        :type run_compliance_v3_request: RunComplianceV3Request
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ComplianceRunV3Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_compliance_v3_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method run_compliance_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['run_compliance_v3_request'] is not None:
+            _body_params = _params['run_compliance_v3_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ComplianceRunV3Response",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/runs', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def run_compliance_v3_pre_trade(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ComplianceRunV3Response:
+        """[EXPERIMENTAL] RunComplianceV3PreTrade: [EXPERIMENTAL] Run V3 compliance rules pre-trade against a portfolio group.  # noqa: E501
+
+        Use this endpoint to run one or more V3 compliance rules against a portfolio group including its live  order flow (pre-trade), valuing holdings with the supplied recipe, and return each rule's result.  # noqa: E501
+        :param run_compliance_v3_request:
+        :type run_compliance_v3_request: RunComplianceV3Request
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ComplianceRunV3Response
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the run_compliance_v3_pre_trade_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.run_compliance_v3_pre_trade_with_http_info(run_compliance_v3_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def run_compliance_v3_pre_trade_with_http_info(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ApiResponse[ComplianceRunV3Response]:
+        """[EXPERIMENTAL] RunComplianceV3PreTrade: [EXPERIMENTAL] Run V3 compliance rules pre-trade against a portfolio group.  # noqa: E501
+
+        Use this endpoint to run one or more V3 compliance rules against a portfolio group including its live  order flow (pre-trade), valuing holdings with the supplied recipe, and return each rule's result.  # noqa: E501
+        :param run_compliance_v3_request:
+        :type run_compliance_v3_request: RunComplianceV3Request
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ComplianceRunV3Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'run_compliance_v3_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method run_compliance_v3_pre_trade" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['run_compliance_v3_request'] is not None:
+            _body_params = _params['run_compliance_v3_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ComplianceRunV3Response",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/runs/$pretrade', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def update_compliance_template(self, scope: StrictStr, code: StrictStr, update_compliance_template_request: UpdateComplianceTemplateRequest, **kwargs) -> ComplianceRuleTemplate:
         """[EARLY ACCESS] UpdateComplianceTemplate: Update a ComplianceRuleTemplate  # noqa: E501
 
@@ -2493,6 +3315,133 @@ class ComplianceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def upsert_compliance_rule_v3(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ComplianceRuleV3Response:
+        """[EXPERIMENTAL] UpsertComplianceRuleV3: [EXPERIMENTAL] Upsert a V3 compliance rule.  # noqa: E501
+
+        Use this endpoint to create or update a single V3 compliance rule. The rule's own record fully  describes what it checks.  # noqa: E501
+        :param upsert_compliance_rule_v3_request:
+        :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ComplianceRuleV3Response
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the upsert_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.upsert_compliance_rule_v3_with_http_info(upsert_compliance_rule_v3_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def upsert_compliance_rule_v3_with_http_info(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ApiResponse[ComplianceRuleV3Response]:
+        """[EXPERIMENTAL] UpsertComplianceRuleV3: [EXPERIMENTAL] Upsert a V3 compliance rule.  # noqa: E501
+
+        Use this endpoint to create or update a single V3 compliance rule. The rule's own record fully  describes what it checks.  # noqa: E501
+        :param upsert_compliance_rule_v3_request:
+        :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'upsert_compliance_rule_v3_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method upsert_compliance_rule_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['upsert_compliance_rule_v3_request'] is not None:
+            _body_params = _params['upsert_compliance_rule_v3_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ComplianceRuleV3Response",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/rules', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def upsert_compliance_run_summary(self, upsert_compliance_run_summary_request: Optional[UpsertComplianceRunSummaryRequest] = None, **kwargs) -> UpsertComplianceRunSummaryResult:
         """[EARLY ACCESS] UpsertComplianceRunSummary: Upsert a compliance run summary.  # noqa: E501
 
@@ -2604,6 +3553,133 @@ class ComplianceApi:
 
         return self.sync_api_client.call_api(
             '/api/api/compliance/runs/summary', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def validate_compliance_rule_v3(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ComplianceRuleV3Response:
+        """[EXPERIMENTAL] ValidateComplianceRuleV3: [EXPERIMENTAL] Validate a V3 compliance rule definition.  # noqa: E501
+
+        Use this endpoint to validate a V3 compliance rule definition against the vocabulary and its  referenced reference lists without persisting it. A validation failure returns a 400.  # noqa: E501
+        :param upsert_compliance_rule_v3_request:
+        :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ComplianceRuleV3Response
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the validate_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.validate_compliance_rule_v3_with_http_info(upsert_compliance_rule_v3_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def validate_compliance_rule_v3_with_http_info(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ApiResponse[ComplianceRuleV3Response]:
+        """[EXPERIMENTAL] ValidateComplianceRuleV3: [EXPERIMENTAL] Validate a V3 compliance rule definition.  # noqa: E501
+
+        Use this endpoint to validate a V3 compliance rule definition against the vocabulary and its  referenced reference lists without persisting it. A validation failure returns a 400.  # noqa: E501
+        :param upsert_compliance_rule_v3_request:
+        :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'upsert_compliance_rule_v3_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method validate_compliance_rule_v3" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['upsert_compliance_rule_v3_request'] is not None:
+            _body_params = _params['upsert_compliance_rule_v3_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ComplianceRuleV3Response",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/compliance/v3/rules/$validate', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -2889,6 +3965,135 @@ class ComplianceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def delete_compliance_rule_v3_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
+            """[EXPERIMENTAL] DeleteComplianceRuleV3: [EXPERIMENTAL] Delete a V3 compliance rule.  # noqa: E501
+            Use this endpoint to delete a V3 compliance rule.  # noqa: E501
+            
+            :param scope: The compliance rule's scope. (required)
+            :type scope: str
+            :param code: The compliance rule's code. (required)
+            :type code: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: DeletedEntityResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the delete_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.delete_compliance_rule_v3_with_http_info_async(scope, code, **kwargs)
+            return response.data
+
+    @validate_call
+    async def delete_compliance_rule_v3_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+            """[EXPERIMENTAL] DeleteComplianceRuleV3: [EXPERIMENTAL] Delete a V3 compliance rule.  # noqa: E501
+
+            Use this endpoint to delete a V3 compliance rule.  # noqa: E501
+
+            :param scope: The compliance rule's scope. (required)
+            :type scope: str
+            :param code: The compliance rule's code. (required)
+            :type code: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(DeletedEntityResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method delete_compliance_rule_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "DeletedEntityResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/rules/{scope}/{code}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def delete_compliance_template_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
             """[EARLY ACCESS] DeleteComplianceTemplate: Delete a ComplianceRuleTemplate  # noqa: E501
             Delete the compliance rule template uniquely defined by the scope and code.  # noqa: E501
@@ -3002,6 +4207,146 @@ class ComplianceApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/compliance/templates/{scope}/{code}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def describe_compliance_rule_v3_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ComplianceRuleV3DescribeResponse:
+            """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
+            Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+            
+            :param scope: The compliance rule's scope. (required)
+            :type scope: str
+            :param code: The compliance rule's code. (required)
+            :type code: str
+            :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ComplianceRuleV3DescribeResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the describe_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.describe_compliance_rule_v3_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def describe_compliance_rule_v3_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRuleV3DescribeResponse]:
+            """[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.  # noqa: E501
+
+            Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.  # noqa: E501
+
+            :param scope: The compliance rule's scope. (required)
+            :type scope: str
+            :param code: The compliance rule's code. (required)
+            :type code: str
+            :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ComplianceRuleV3DescribeResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method describe_compliance_rule_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ComplianceRuleV3DescribeResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/rules/{scope}/{code}/$describe', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -3441,6 +4786,146 @@ class ComplianceApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/compliance/runs/summary/{runScope}/{runCode}/{ruleScope}/{ruleCode}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_compliance_rule_v3_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ComplianceRuleV3Response:
+            """[EXPERIMENTAL] GetComplianceRuleV3: [EXPERIMENTAL] Get a V3 compliance rule.  # noqa: E501
+            Use this endpoint to retrieve a single V3 compliance rule.  # noqa: E501
+            
+            :param scope: The compliance rule's scope. (required)
+            :type scope: str
+            :param code: The compliance rule's code. (required)
+            :type code: str
+            :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ComplianceRuleV3Response
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_compliance_rule_v3_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_compliance_rule_v3_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRuleV3Response]:
+            """[EXPERIMENTAL] GetComplianceRuleV3: [EXPERIMENTAL] Get a V3 compliance rule.  # noqa: E501
+
+            Use this endpoint to retrieve a single V3 compliance rule.  # noqa: E501
+
+            :param scope: The compliance rule's scope. (required)
+            :type scope: str
+            :param code: The compliance rule's code. (required)
+            :type code: str
+            :param as_at: Optional. The asAt datetime at which to retrieve the rule. Default: latest.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_compliance_rule_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ComplianceRuleV3Response",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/rules/{scope}/{code}', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -4004,6 +5489,163 @@ class ComplianceApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/compliance/rules', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_compliance_rules_v3_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfComplianceRuleV3Response:
+            """[EXPERIMENTAL] ListComplianceRulesV3: [EXPERIMENTAL] List V3 compliance rules.  # noqa: E501
+            Use this endpoint to retrieve the V3 compliance rules in the client's scopes.  # noqa: E501
+            
+            :param as_at: Optional. The asAt datetime at which to list rules. Default: latest.
+            :type as_at: datetime
+            :param page: Optional. The pagination token from a previous call.
+            :type page: str
+            :param limit: Optional. When paginating, limit the number of returned results to this many.
+            :type limit: int
+            :param filter: Not yet supported on this experimental endpoint; supplying a filter returns a 400.
+            :type filter: str
+            :param sort_by: Optional. A list of field names to sort by, each suffixed by \"ASC\" or \"DESC\".
+            :type sort_by: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfComplianceRuleV3Response
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_compliance_rules_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_compliance_rules_v3_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_compliance_rules_v3_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceRuleV3Response]:
+            """[EXPERIMENTAL] ListComplianceRulesV3: [EXPERIMENTAL] List V3 compliance rules.  # noqa: E501
+
+            Use this endpoint to retrieve the V3 compliance rules in the client's scopes.  # noqa: E501
+
+            :param as_at: Optional. The asAt datetime at which to list rules. Default: latest.
+            :type as_at: datetime
+            :param page: Optional. The pagination token from a previous call.
+            :type page: str
+            :param limit: Optional. When paginating, limit the number of returned results to this many.
+            :type limit: int
+            :param filter: Not yet supported on this experimental endpoint; supplying a filter returns a 400.
+            :type filter: str
+            :param sort_by: Optional. A list of field names to sort by, each suffixed by \"ASC\" or \"DESC\".
+            :type sort_by: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'as_at',
+                'page',
+                'limit',
+                'filter',
+                'sort_by'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_compliance_rules_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfComplianceRuleV3Response",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/rules', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -4795,6 +6437,262 @@ class ComplianceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def run_compliance_v3_async(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ComplianceRunV3Response:
+            """[EXPERIMENTAL] RunComplianceV3: [EXPERIMENTAL] Run V3 compliance rules against a portfolio group.  # noqa: E501
+            Use this endpoint to run one or more V3 compliance rules against a portfolio group, valuing holdings  with the supplied recipe, and return each rule's result.  # noqa: E501
+            
+            :param run_compliance_v3_request:
+            :type run_compliance_v3_request: RunComplianceV3Request
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ComplianceRunV3Response
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the run_compliance_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.run_compliance_v3_with_http_info_async(run_compliance_v3_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def run_compliance_v3_with_http_info_async(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ApiResponse[ComplianceRunV3Response]:
+            """[EXPERIMENTAL] RunComplianceV3: [EXPERIMENTAL] Run V3 compliance rules against a portfolio group.  # noqa: E501
+
+            Use this endpoint to run one or more V3 compliance rules against a portfolio group, valuing holdings  with the supplied recipe, and return each rule's result.  # noqa: E501
+
+            :param run_compliance_v3_request:
+            :type run_compliance_v3_request: RunComplianceV3Request
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ComplianceRunV3Response, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_compliance_v3_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method run_compliance_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['run_compliance_v3_request'] is not None:
+                _body_params = _params['run_compliance_v3_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ComplianceRunV3Response",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/runs', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def run_compliance_v3_pre_trade_async(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ComplianceRunV3Response:
+            """[EXPERIMENTAL] RunComplianceV3PreTrade: [EXPERIMENTAL] Run V3 compliance rules pre-trade against a portfolio group.  # noqa: E501
+            Use this endpoint to run one or more V3 compliance rules against a portfolio group including its live  order flow (pre-trade), valuing holdings with the supplied recipe, and return each rule's result.  # noqa: E501
+            
+            :param run_compliance_v3_request:
+            :type run_compliance_v3_request: RunComplianceV3Request
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ComplianceRunV3Response
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the run_compliance_v3_pre_trade_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.run_compliance_v3_pre_trade_with_http_info_async(run_compliance_v3_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def run_compliance_v3_pre_trade_with_http_info_async(self, run_compliance_v3_request: Optional[RunComplianceV3Request] = None, **kwargs) -> ApiResponse[ComplianceRunV3Response]:
+            """[EXPERIMENTAL] RunComplianceV3PreTrade: [EXPERIMENTAL] Run V3 compliance rules pre-trade against a portfolio group.  # noqa: E501
+
+            Use this endpoint to run one or more V3 compliance rules against a portfolio group including its live  order flow (pre-trade), valuing holdings with the supplied recipe, and return each rule's result.  # noqa: E501
+
+            :param run_compliance_v3_request:
+            :type run_compliance_v3_request: RunComplianceV3Request
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ComplianceRunV3Response, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'run_compliance_v3_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method run_compliance_v3_pre_trade" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['run_compliance_v3_request'] is not None:
+                _body_params = _params['run_compliance_v3_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ComplianceRunV3Response",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/runs/$pretrade', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def update_compliance_template_async(self, scope: StrictStr, code: StrictStr, update_compliance_template_request: UpdateComplianceTemplateRequest, **kwargs) -> ComplianceRuleTemplate:
             """[EARLY ACCESS] UpdateComplianceTemplate: Update a ComplianceRuleTemplate  # noqa: E501
             Use this endpoint to update a specified compliance template.  # noqa: E501
@@ -5067,6 +6965,134 @@ class ComplianceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def upsert_compliance_rule_v3_async(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ComplianceRuleV3Response:
+            """[EXPERIMENTAL] UpsertComplianceRuleV3: [EXPERIMENTAL] Upsert a V3 compliance rule.  # noqa: E501
+            Use this endpoint to create or update a single V3 compliance rule. The rule's own record fully  describes what it checks.  # noqa: E501
+            
+            :param upsert_compliance_rule_v3_request:
+            :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ComplianceRuleV3Response
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the upsert_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.upsert_compliance_rule_v3_with_http_info_async(upsert_compliance_rule_v3_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def upsert_compliance_rule_v3_with_http_info_async(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ApiResponse[ComplianceRuleV3Response]:
+            """[EXPERIMENTAL] UpsertComplianceRuleV3: [EXPERIMENTAL] Upsert a V3 compliance rule.  # noqa: E501
+
+            Use this endpoint to create or update a single V3 compliance rule. The rule's own record fully  describes what it checks.  # noqa: E501
+
+            :param upsert_compliance_rule_v3_request:
+            :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'upsert_compliance_rule_v3_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method upsert_compliance_rule_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['upsert_compliance_rule_v3_request'] is not None:
+                _body_params = _params['upsert_compliance_rule_v3_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ComplianceRuleV3Response",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/rules', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def upsert_compliance_run_summary_async(self, upsert_compliance_run_summary_request: Optional[UpsertComplianceRunSummaryRequest] = None, **kwargs) -> UpsertComplianceRunSummaryResult:
             """[EARLY ACCESS] UpsertComplianceRunSummary: Upsert a compliance run summary.  # noqa: E501
             Use this endpoint to upsert a compliance run result summary.  # noqa: E501
@@ -5179,6 +7205,134 @@ class ComplianceApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/compliance/runs/summary', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def validate_compliance_rule_v3_async(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ComplianceRuleV3Response:
+            """[EXPERIMENTAL] ValidateComplianceRuleV3: [EXPERIMENTAL] Validate a V3 compliance rule definition.  # noqa: E501
+            Use this endpoint to validate a V3 compliance rule definition against the vocabulary and its  referenced reference lists without persisting it. A validation failure returns a 400.  # noqa: E501
+            
+            :param upsert_compliance_rule_v3_request:
+            :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ComplianceRuleV3Response
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the validate_compliance_rule_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.validate_compliance_rule_v3_with_http_info_async(upsert_compliance_rule_v3_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def validate_compliance_rule_v3_with_http_info_async(self, upsert_compliance_rule_v3_request: Optional[UpsertComplianceRuleV3Request] = None, **kwargs) -> ApiResponse[ComplianceRuleV3Response]:
+            """[EXPERIMENTAL] ValidateComplianceRuleV3: [EXPERIMENTAL] Validate a V3 compliance rule definition.  # noqa: E501
+
+            Use this endpoint to validate a V3 compliance rule definition against the vocabulary and its  referenced reference lists without persisting it. A validation failure returns a 400.  # noqa: E501
+
+            :param upsert_compliance_rule_v3_request:
+            :type upsert_compliance_rule_v3_request: UpsertComplianceRuleV3Request
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ComplianceRuleV3Response, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'upsert_compliance_rule_v3_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method validate_compliance_rule_v3" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['upsert_compliance_rule_v3_request'] is not None:
+                _body_params = _params['upsert_compliance_rule_v3_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ComplianceRuleV3Response",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/compliance/v3/rules/$validate', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

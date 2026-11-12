@@ -1,10 +1,10 @@
-# ResourceListOfCashFlowDetail
+# ResourceListOfTaxClassification
 
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [List[CashFlowDetail]](CashFlowDetail.md) | Required | *No description available.* |
+| **values** | [List[TaxClassification]](TaxClassification.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 | **next_page** | **str** | Optional | *No description available.* |
@@ -16,9 +16,9 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.ResourceListOfCashFlowDetail import ResourceListOfCashFlowDetail
+from finbourne.sdk.services.lusid.models.ResourceListOfTaxClassification import ResourceListOfTaxClassification
 
-instance = ResourceListOfCashFlowDetail(
+instance = ResourceListOfTaxClassification(
     values=[],  # required
     href="...",  # optional
     links=[],  # optional
@@ -30,7 +30,7 @@ instance = ResourceListOfCashFlowDetail(
 
 ## Related Models
 
-- [CashFlowDetail](CashFlowDetail.md)
+- [TaxClassification](TaxClassification.md)
 - [Link](Link.md)
 
 

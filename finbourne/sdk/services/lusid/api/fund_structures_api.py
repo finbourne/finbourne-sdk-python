@@ -56,7 +56,7 @@ class FundStructuresApi:
 
     @validate_call
     def add_fund_structure_member(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
-        """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
 
         Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -82,7 +82,7 @@ class FundStructuresApi:
 
     @validate_call
     def add_fund_structure_member_with_http_info(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
-        """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
 
         Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -361,7 +361,7 @@ class FundStructuresApi:
 
     @validate_call
     def create_fund_structure(self, scope: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
-        """[EXPERIMENTAL] CreateFundStructure: Create a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] CreateFundStructure: Create a Fund Structure.  # noqa: E501
 
         Create a new Fund Structure Model. The scope and code of the Fund Structure are provided in the request body.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -383,7 +383,7 @@ class FundStructuresApi:
 
     @validate_call
     def create_fund_structure_with_http_info(self, scope: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> ApiResponse[FundStructure]:
-        """[EXPERIMENTAL] CreateFundStructure: Create a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] CreateFundStructure: Create a Fund Structure.  # noqa: E501
 
         Create a new Fund Structure Model. The scope and code of the Fund Structure are provided in the request body.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -496,7 +496,7 @@ class FundStructuresApi:
 
     @validate_call
     def delete_fund_structure(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
 
         Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
         :param scope: The scope of the Fund Structure to be deleted. (required)
@@ -520,7 +520,7 @@ class FundStructuresApi:
 
     @validate_call
     def delete_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
 
         Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
         :param scope: The scope of the Fund Structure to be deleted. (required)
@@ -632,7 +632,7 @@ class FundStructuresApi:
 
     @validate_call
     def get_fund_structure(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundStructure:
-        """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] GetFundStructure: Get a Fund Structure.  # noqa: E501
 
         Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -660,7 +660,7 @@ class FundStructuresApi:
 
     @validate_call
     def get_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundStructure]:
-        """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] GetFundStructure: Get a Fund Structure.  # noqa: E501
 
         Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -788,7 +788,7 @@ class FundStructuresApi:
 
     @validate_call
     def list_fund_structures(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundStructure:
-        """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
+        """[EARLY ACCESS] ListFundStructures: List Fund Structures.  # noqa: E501
 
         List all the Fund Structures matching the given criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
@@ -820,7 +820,7 @@ class FundStructuresApi:
 
     @validate_call
     def list_fund_structures_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundStructure]:
-        """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
+        """[EARLY ACCESS] ListFundStructures: List Fund Structures.  # noqa: E501
 
         List all the Fund Structures matching the given criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
@@ -961,7 +961,7 @@ class FundStructuresApi:
 
     @validate_call
     def remove_fund_structure_member(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
-        """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
 
         Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -987,7 +987,7 @@ class FundStructuresApi:
 
     @validate_call
     def remove_fund_structure_member_with_http_info(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
-        """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
 
         Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -1105,7 +1105,7 @@ class FundStructuresApi:
 
     @validate_call
     def upsert_fund_structure(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
-        """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
 
         Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -1129,7 +1129,7 @@ class FundStructuresApi:
 
     @validate_call
     def upsert_fund_structure_with_http_info(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> ApiResponse[FundStructure]:
-        """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+        """[EARLY ACCESS] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
 
         Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
         :param scope: The scope of the Fund Structure. (required)
@@ -1252,7 +1252,7 @@ class FundStructuresApi:
 
     @validate_call
     async def add_fund_structure_member_async(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
-            """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
             Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
             
             :param scope: The scope of the Fund Structure. (required)
@@ -1278,7 +1278,7 @@ class FundStructuresApi:
 
     @validate_call
     async def add_fund_structure_member_with_http_info_async(self, scope: StrictStr, code: StrictStr, fund_structure_member_request: FundStructureMemberRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
-            """[EXPERIMENTAL] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] AddFundStructureMember: Add a member to a Fund Structure.  # noqa: E501
 
             Add a node and the links that join it to existing members, from an effective datetime. The result is a new  bitemporal version of the structure. The change applies to the version in force at that datetime; if a  later version of the structure already exists the request is rejected, since the member would otherwise  drop out when that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
 
@@ -1559,7 +1559,7 @@ class FundStructuresApi:
 
     @validate_call
     async def create_fund_structure_async(self, scope: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
-            """[EXPERIMENTAL] CreateFundStructure: Create a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] CreateFundStructure: Create a Fund Structure.  # noqa: E501
             Create a new Fund Structure Model. The scope and code of the Fund Structure are provided in the request body.  # noqa: E501
             
             :param scope: The scope of the Fund Structure. (required)
@@ -1581,7 +1581,7 @@ class FundStructuresApi:
 
     @validate_call
     async def create_fund_structure_with_http_info_async(self, scope: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> ApiResponse[FundStructure]:
-            """[EXPERIMENTAL] CreateFundStructure: Create a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] CreateFundStructure: Create a Fund Structure.  # noqa: E501
 
             Create a new Fund Structure Model. The scope and code of the Fund Structure are provided in the request body.  # noqa: E501
 
@@ -1695,7 +1695,7 @@ class FundStructuresApi:
 
     @validate_call
     async def delete_fund_structure_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
             Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
             
             :param scope: The scope of the Fund Structure to be deleted. (required)
@@ -1719,7 +1719,7 @@ class FundStructuresApi:
 
     @validate_call
     async def delete_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] DeleteFundStructure: Delete a Fund Structure.  # noqa: E501
 
             Delete a Fund Structure from the given effective datetime. It remains retrievable at earlier effective datetimes.  # noqa: E501
 
@@ -1832,7 +1832,7 @@ class FundStructuresApi:
 
     @validate_call
     async def get_fund_structure_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundStructure:
-            """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] GetFundStructure: Get a Fund Structure.  # noqa: E501
             Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
             
             :param scope: The scope of the Fund Structure. (required)
@@ -1860,7 +1860,7 @@ class FundStructuresApi:
 
     @validate_call
     async def get_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundStructure]:
-            """[EXPERIMENTAL] GetFundStructure: Get a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] GetFundStructure: Get a Fund Structure.  # noqa: E501
 
             Retrieve the definition of a particular Fund Structure at an effective and asAt datetime, including its nodes,  edges, allocation groups and the funds its nodes refer to.  # noqa: E501
 
@@ -1989,7 +1989,7 @@ class FundStructuresApi:
 
     @validate_call
     async def list_fund_structures_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundStructure:
-            """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
+            """[EARLY ACCESS] ListFundStructures: List Fund Structures.  # noqa: E501
             List all the Fund Structures matching the given criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the Fund Structures. Defaults to the current LUSID system datetime if not specified.
@@ -2021,7 +2021,7 @@ class FundStructuresApi:
 
     @validate_call
     async def list_fund_structures_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundStructure]:
-            """[EXPERIMENTAL] ListFundStructures: List Fund Structures.  # noqa: E501
+            """[EARLY ACCESS] ListFundStructures: List Fund Structures.  # noqa: E501
 
             List all the Fund Structures matching the given criteria.  # noqa: E501
 
@@ -2163,7 +2163,7 @@ class FundStructuresApi:
 
     @validate_call
     async def remove_fund_structure_member_async(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> FundStructure:
-            """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
             Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
             
             :param scope: The scope of the Fund Structure. (required)
@@ -2189,7 +2189,7 @@ class FundStructuresApi:
 
     @validate_call
     async def remove_fund_structure_member_with_http_info_async(self, scope: StrictStr, code: StrictStr, node_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundStructure]:
-            """[EXPERIMENTAL] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] RemoveFundStructureMember: Remove a member from a Fund Structure.  # noqa: E501
 
             Remove a node and every link that touches it, from an effective datetime. The result is a new bitemporal  version of the structure. The change applies to the version in force at that datetime; if a later version  of the structure already exists the request is rejected, since the member would otherwise reappear when  that version begins. Upsert the full definition for each affected version in that case.  # noqa: E501
 
@@ -2308,7 +2308,7 @@ class FundStructuresApi:
 
     @validate_call
     async def upsert_fund_structure_async(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> FundStructure:
-            """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
             Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
             
             :param scope: The scope of the Fund Structure. (required)
@@ -2332,7 +2332,7 @@ class FundStructuresApi:
 
     @validate_call
     async def upsert_fund_structure_with_http_info_async(self, scope: StrictStr, code: StrictStr, fund_structure_request: FundStructureRequest, **kwargs) -> ApiResponse[FundStructure]:
-            """[EXPERIMENTAL] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
+            """[EARLY ACCESS] UpsertFundStructure: Upsert a Fund Structure.  # noqa: E501
 
             Create or replace the full definition of a Fund Structure from an effective datetime. A change to the  definition becomes a new bitemporal version: the structure as it was declared at earlier effective datetimes,  and as of earlier asAt datetimes, remains retrievable.  # noqa: E501
 

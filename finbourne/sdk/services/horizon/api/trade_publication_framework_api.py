@@ -19,7 +19,6 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 
 import finbourne.sdk.services.horizon.models as packageModels
-from datetime import datetime
 from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
@@ -35,7 +34,6 @@ from finbourne.sdk.services.horizon.models.replay_transactions_request import Re
 from finbourne.sdk.services.horizon.models.replay_transactions_response import ReplayTransactionsResponse
 from finbourne.sdk.services.horizon.models.resolve_failed_delivery_request import ResolveFailedDeliveryRequest
 from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response import ResolveFailedDeliveryResponse
-from finbourne.sdk.services.horizon.models.tpf_file_delivery_display_status import TpfFileDeliveryDisplayStatus
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
 from finbourne.sdk.services.horizon.models.tpf_transaction_search_request import TpfTransactionSearchRequest
 from finbourne.sdk.api_client import ApiClient
@@ -201,18 +199,16 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_tpf_file_deliveries(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
+    def get_tpf_file_deliveries(self, instance_id: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
         """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
 
-        Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+        Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable via a Finbourne Filtering DSL expression and sortable. Supports pagination for large result sets.  # noqa: E501
         :param instance_id: Integration instance ID (required)
         :type instance_id: str
-        :param status: Filter by delivery outcome (Delivered, Failed, Pending)
-        :type status: TpfFileDeliveryDisplayStatus
-        :param date_from: Filter deliveries from this time (inclusive)
-        :type date_from: datetime
-        :param date_to: Filter deliveries to this time (inclusive)
-        :type date_to: datetime
+        :param filter: Filter expression (e.g. \"DestinationStatus eq 'Delivered'\"). Filterable properties: runId, referenceId, runStartTime, fileName, generatedAt, rowCount, fileHash, destinationType, destinationPath, destinationName, deliveredAt, destinationStatus, destinationError, attempt
+        :type filter: str
+        :param sort_by: Sort fields (e.g. \"generatedAt DESC\"). Up to 2 fields allowed
+        :type sort_by: List[str]
         :param limit: Page size for pagination (default 50, max 500)
         :type limit: int
         :param page: Pagination token from previous response
@@ -227,22 +223,20 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the get_tpf_file_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_tpf_file_deliveries_with_http_info(instance_id, status, date_from, date_to, limit, page, **kwargs)
+        response = self.get_tpf_file_deliveries_with_http_info(instance_id, filter, sort_by, limit, page, **kwargs)
         return response.data
 
     @validate_call
-    def get_tpf_file_deliveries_with_http_info(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfFileDeliveryResponse]:
+    def get_tpf_file_deliveries_with_http_info(self, instance_id: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfFileDeliveryResponse]:
         """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
 
-        Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+        Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable via a Finbourne Filtering DSL expression and sortable. Supports pagination for large result sets.  # noqa: E501
         :param instance_id: Integration instance ID (required)
         :type instance_id: str
-        :param status: Filter by delivery outcome (Delivered, Failed, Pending)
-        :type status: TpfFileDeliveryDisplayStatus
-        :param date_from: Filter deliveries from this time (inclusive)
-        :type date_from: datetime
-        :param date_to: Filter deliveries to this time (inclusive)
-        :type date_to: datetime
+        :param filter: Filter expression (e.g. \"DestinationStatus eq 'Delivered'\"). Filterable properties: runId, referenceId, runStartTime, fileName, generatedAt, rowCount, fileHash, destinationType, destinationPath, destinationName, deliveredAt, destinationStatus, destinationError, attempt
+        :type filter: str
+        :param sort_by: Sort fields (e.g. \"generatedAt DESC\"). Up to 2 fields allowed
+        :type sort_by: List[str]
         :param limit: Page size for pagination (default 50, max 500)
         :type limit: int
         :param page: Pagination token from previous response
@@ -271,9 +265,8 @@ class TradePublicationFrameworkApi:
 
         _all_params = [
             'instance_id',
-            'status',
-            'date_from',
-            'date_to',
+            'filter',
+            'sort_by',
             'limit',
             'page'
         ]
@@ -309,20 +302,12 @@ class TradePublicationFrameworkApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status']))
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
 
-        if _params.get('date_from') is not None:  # noqa: E501
-            if isinstance(_params['date_from'], datetime):
-                _query_params.append(('dateFrom', _params['date_from'].strftime(self.sync_api_client.configuration.datetime_format)))
-            else:
-                _query_params.append(('dateFrom', _params['date_from']))
-
-        if _params.get('date_to') is not None:  # noqa: E501
-            if isinstance(_params['date_to'], datetime):
-                _query_params.append(('dateTo', _params['date_to'].strftime(self.sync_api_client.configuration.datetime_format)))
-            else:
-                _query_params.append(('dateTo', _params['date_to']))
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
 
         if _params.get('limit') is not None:  # noqa: E501
             _query_params.append(('limit', _params['limit']))
@@ -370,7 +355,7 @@ class TradePublicationFrameworkApi:
     def get_tpf_transaction_history_search(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
         """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions across instances  # noqa: E501
 
-        Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
+        Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, eventType, skipReason, failureReason, failureStage, fileName, sentAt, portfolioScope, portfolioCode, runId. Publication status is filtered by the status body field, not the filter. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
         :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
         :type tpf_transaction_search_request: TpfTransactionSearchRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -390,7 +375,7 @@ class TradePublicationFrameworkApi:
     def get_tpf_transaction_history_search_with_http_info(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
         """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions across instances  # noqa: E501
 
-        Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
+        Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, eventType, skipReason, failureReason, failureStage, fileName, sentAt, portfolioScope, portfolioCode, runId. Publication status is filtered by the status body field, not the filter. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
         :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
         :type tpf_transaction_search_request: TpfTransactionSearchRequest
         :param _preload_content: if False, the ApiResponse.data will
@@ -1238,7 +1223,7 @@ class TradePublicationFrameworkApi:
         :type page: str
         :param page_size: Number of results per page.
         :type page_size: int
-        :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+        :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt, eventType. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that. eventType is the TPF event type (New, Amended, Cancelled, ..., or Queued for an element not yet built). Comparing a field with null is rejected.
         :type filter: str
         :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
         :type sort_by: List[str]
@@ -1269,7 +1254,7 @@ class TradePublicationFrameworkApi:
         :type page: str
         :param page_size: Number of results per page.
         :type page_size: int
-        :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+        :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt, eventType. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that. eventType is the TPF event type (New, Amended, Cancelled, ..., or Queued for an element not yet built). Comparing a field with null is rejected.
         :type filter: str
         :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
         :type sort_by: List[str]
@@ -1949,18 +1934,16 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_tpf_file_deliveries_async(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
+    async def get_tpf_file_deliveries_async(self, instance_id: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
             """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
-            Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+            Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable via a Finbourne Filtering DSL expression and sortable. Supports pagination for large result sets.  # noqa: E501
             
             :param instance_id: Integration instance ID (required)
             :type instance_id: str
-            :param status: Filter by delivery outcome (Delivered, Failed, Pending)
-            :type status: TpfFileDeliveryDisplayStatus
-            :param date_from: Filter deliveries from this time (inclusive)
-            :type date_from: datetime
-            :param date_to: Filter deliveries to this time (inclusive)
-            :type date_to: datetime
+            :param filter: Filter expression (e.g. \"DestinationStatus eq 'Delivered'\"). Filterable properties: runId, referenceId, runStartTime, fileName, generatedAt, rowCount, fileHash, destinationType, destinationPath, destinationName, deliveredAt, destinationStatus, destinationError, attempt
+            :type filter: str
+            :param sort_by: Sort fields (e.g. \"generatedAt DESC\"). Up to 2 fields allowed
+            :type sort_by: List[str]
             :param limit: Page size for pagination (default 50, max 500)
             :type limit: int
             :param page: Pagination token from previous response
@@ -1975,23 +1958,21 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the get_tpf_file_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_tpf_file_deliveries_with_http_info_async(instance_id, status, date_from, date_to, limit, page, **kwargs)
+            response = await self.get_tpf_file_deliveries_with_http_info_async(instance_id, filter, sort_by, limit, page, **kwargs)
             return response.data
 
     @validate_call
-    async def get_tpf_file_deliveries_with_http_info_async(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfFileDeliveryResponse]:
+    async def get_tpf_file_deliveries_with_http_info_async(self, instance_id: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfFileDeliveryResponse]:
             """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
 
-            Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+            Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable via a Finbourne Filtering DSL expression and sortable. Supports pagination for large result sets.  # noqa: E501
 
             :param instance_id: Integration instance ID (required)
             :type instance_id: str
-            :param status: Filter by delivery outcome (Delivered, Failed, Pending)
-            :type status: TpfFileDeliveryDisplayStatus
-            :param date_from: Filter deliveries from this time (inclusive)
-            :type date_from: datetime
-            :param date_to: Filter deliveries to this time (inclusive)
-            :type date_to: datetime
+            :param filter: Filter expression (e.g. \"DestinationStatus eq 'Delivered'\"). Filterable properties: runId, referenceId, runStartTime, fileName, generatedAt, rowCount, fileHash, destinationType, destinationPath, destinationName, deliveredAt, destinationStatus, destinationError, attempt
+            :type filter: str
+            :param sort_by: Sort fields (e.g. \"generatedAt DESC\"). Up to 2 fields allowed
+            :type sort_by: List[str]
             :param limit: Page size for pagination (default 50, max 500)
             :type limit: int
             :param page: Pagination token from previous response
@@ -2020,9 +2001,8 @@ class TradePublicationFrameworkApi:
 
             _all_params = [
                 'instance_id',
-                'status',
-                'date_from',
-                'date_to',
+                'filter',
+                'sort_by',
                 'limit',
                 'page'
             ]
@@ -2058,20 +2038,12 @@ class TradePublicationFrameworkApi:
 
             # process the query parameters
             _query_params = []
-            if _params.get('status') is not None:  # noqa: E501
-                _query_params.append(('status', _params['status']))
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
 
-            if _params.get('date_from') is not None:  # noqa: E501
-                if isinstance(_params['date_from'], datetime):
-                    _query_params.append(('dateFrom', _params['date_from'].strftime(self.api_client.configuration.datetime_format)))
-                else:
-                    _query_params.append(('dateFrom', _params['date_from']))
-
-            if _params.get('date_to') is not None:  # noqa: E501
-                if isinstance(_params['date_to'], datetime):
-                    _query_params.append(('dateTo', _params['date_to'].strftime(self.api_client.configuration.datetime_format)))
-                else:
-                    _query_params.append(('dateTo', _params['date_to']))
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
 
             if _params.get('limit') is not None:  # noqa: E501
                 _query_params.append(('limit', _params['limit']))
@@ -2118,7 +2090,7 @@ class TradePublicationFrameworkApi:
     @validate_call
     async def get_tpf_transaction_history_search_async(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
             """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions across instances  # noqa: E501
-            Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
+            Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, eventType, skipReason, failureReason, failureStage, fileName, sentAt, portfolioScope, portfolioCode, runId. Publication status is filtered by the status body field, not the filter. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
             
             :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
             :type tpf_transaction_search_request: TpfTransactionSearchRequest
@@ -2139,7 +2111,7 @@ class TradePublicationFrameworkApi:
     async def get_tpf_transaction_history_search_with_http_info_async(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
             """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions across instances  # noqa: E501
 
-            Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, publicationStatus, skipReason, failureReason, fileName, portfolioScope, portfolioCode. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
+            Matches on transaction ID and/or instrument identifier, optionally narrowed by instance, trade date range, publication status and a Finbourne Filtering expression. Multiple values within transactionIds or instrumentIdentifiers are OR'd; the two filters are AND'd. Instrument identifiers are matched exactly against the stored instrument id; Isin, Figi, Ticker, Cusip, Sedol or ClientInternal values are also resolved against LUSID instruments in the default scope. Transaction IDs that are empty or have leading or trailing whitespace are rejected (400). Filterable properties (via the filter body field): transactionId, instanceName, runStartTime, instrumentName, instrumentType, instrumentId, tradeDate, settlementDate, eventType, skipReason, failureReason, failureStage, fileName, sentAt, portfolioScope, portfolioCode, runId. Publication status is filtered by the status body field, not the filter. Sortable by the same properties. RunStartTime DESC is the default tiebreaker. Supports pagination.  # noqa: E501
 
             :param tpf_transaction_search_request: Search filters, sort order, and pagination options.
             :type tpf_transaction_search_request: TpfTransactionSearchRequest
@@ -2993,7 +2965,7 @@ class TradePublicationFrameworkApi:
             :type page: str
             :param page_size: Number of results per page.
             :type page_size: int
-            :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+            :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt, eventType. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that. eventType is the TPF event type (New, Amended, Cancelled, ..., or Queued for an element not yet built). Comparing a field with null is rejected.
             :type filter: str
             :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
             :type sort_by: List[str]
@@ -3025,7 +2997,7 @@ class TradePublicationFrameworkApi:
             :type page: str
             :param page_size: Number of results per page.
             :type page_size: int
-            :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that.
+            :param filter: A Finbourne filter on: transactionId, portfolioScope, portfolioCode, instrumentId, instrumentType, instrumentName, tradeDate, settlementDate, status, skipReason, failureReason, outputFileName, sentAt, eventType. The status field here is the batched-transaction status (Complete, Skipped, Failed), not the publication status — use the ?status= query parameter for that. eventType is the TPF event type (New, Amended, Cancelled, ..., or Queued for an element not yet built). Comparing a field with null is rejected.
             :type filter: str
             :param sort_by: Up to two filterable fields, each suffixed \" ASC\" or \" DESC\". Defaults to Id ASC.
             :type sort_by: List[str]

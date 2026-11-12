@@ -6,22 +6,30 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_compliance_template**](ComplianceApi.md#create_compliance_template) | **POST** /api/api/compliance/templates/{scope} | [EARLY ACCESS] CreateComplianceTemplate: Create a Compliance Rule Template
 [**delete_compliance_rule**](ComplianceApi.md#delete_compliance_rule) | **DELETE** /api/api/compliance/rules/{scope}/{code} | [EARLY ACCESS] DeleteComplianceRule: Delete compliance rule.
+[**delete_compliance_rule_v3**](ComplianceApi.md#delete_compliance_rule_v3) | **DELETE** /api/api/compliance/v3/rules/{scope}/{code} | [EXPERIMENTAL] DeleteComplianceRuleV3: [EXPERIMENTAL] Delete a V3 compliance rule.
 [**delete_compliance_template**](ComplianceApi.md#delete_compliance_template) | **DELETE** /api/api/compliance/templates/{scope}/{code} | [EARLY ACCESS] DeleteComplianceTemplate: Delete a ComplianceRuleTemplate
+[**describe_compliance_rule_v3**](ComplianceApi.md#describe_compliance_rule_v3) | **GET** /api/api/compliance/v3/rules/{scope}/{code}/$describe | [EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.
 [**get_compliance_rule**](ComplianceApi.md#get_compliance_rule) | **GET** /api/api/compliance/rules/{scope}/{code} | [EARLY ACCESS] GetComplianceRule: Get compliance rule.
 [**get_compliance_rule_breakdown**](ComplianceApi.md#get_compliance_rule_breakdown) | **GET** /api/api/compliance/runs/breakdown/{runScope}/{runCode}/{ruleScope}/{ruleCode} | [EARLY ACCESS] GetComplianceRuleBreakdown: Get the position-level breakdown for a single rule of a compliance run.
 [**get_compliance_rule_result**](ComplianceApi.md#get_compliance_rule_result) | **GET** /api/api/compliance/runs/summary/{runScope}/{runCode}/{ruleScope}/{ruleCode} | [EARLY ACCESS] GetComplianceRuleResult: Get detailed results for a specific rule within a compliance run.
+[**get_compliance_rule_v3**](ComplianceApi.md#get_compliance_rule_v3) | **GET** /api/api/compliance/v3/rules/{scope}/{code} | [EXPERIMENTAL] GetComplianceRuleV3: [EXPERIMENTAL] Get a V3 compliance rule.
 [**get_compliance_template**](ComplianceApi.md#get_compliance_template) | **GET** /api/api/compliance/templates/{scope}/{code} | [EARLY ACCESS] GetComplianceTemplate: Get the requested compliance template.
 [**get_decorated_compliance_run_summary**](ComplianceApi.md#get_decorated_compliance_run_summary) | **GET** /api/api/compliance/runs/summary/{scope}/{code}/$decorate | [EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.
 [**get_filtered_decorated_compliance_run_summary**](ComplianceApi.md#get_filtered_decorated_compliance_run_summary) | **POST** /api/api/compliance/runs/summary/$decorate | [EARLY ACCESS] GetFilteredDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run, optionally restricted to a set of portfolios or portfolio groups.
 [**list_compliance_rules**](ComplianceApi.md#list_compliance_rules) | **GET** /api/api/compliance/rules | [EARLY ACCESS] ListComplianceRules: List compliance rules.
+[**list_compliance_rules_v3**](ComplianceApi.md#list_compliance_rules_v3) | **GET** /api/api/compliance/v3/rules | [EXPERIMENTAL] ListComplianceRulesV3: [EXPERIMENTAL] List V3 compliance rules.
 [**list_compliance_runs**](ComplianceApi.md#list_compliance_runs) | **GET** /api/api/compliance/runs | [EARLY ACCESS] ListComplianceRuns: List historical compliance run identifiers.
 [**list_compliance_templates**](ComplianceApi.md#list_compliance_templates) | **GET** /api/api/compliance/templates | [EARLY ACCESS] ListComplianceTemplates: List compliance templates.
 [**list_order_breach_history**](ComplianceApi.md#list_order_breach_history) | **GET** /api/api/compliance/runs/breaches | [EXPERIMENTAL] ListOrderBreachHistory: List Historical Order Breaches.
 [**run_compliance**](ComplianceApi.md#run_compliance) | **POST** /api/api/compliance/runs | [EARLY ACCESS] RunCompliance: Run a compliance check.
 [**run_compliance_preview**](ComplianceApi.md#run_compliance_preview) | **POST** /api/api/compliance/preview/runs | [EARLY ACCESS] RunCompliancePreview: Run a compliance check.
+[**run_compliance_v3**](ComplianceApi.md#run_compliance_v3) | **POST** /api/api/compliance/v3/runs | [EXPERIMENTAL] RunComplianceV3: [EXPERIMENTAL] Run V3 compliance rules against a portfolio group.
+[**run_compliance_v3_pre_trade**](ComplianceApi.md#run_compliance_v3_pre_trade) | **POST** /api/api/compliance/v3/runs/$pretrade | [EXPERIMENTAL] RunComplianceV3PreTrade: [EXPERIMENTAL] Run V3 compliance rules pre-trade against a portfolio group.
 [**update_compliance_template**](ComplianceApi.md#update_compliance_template) | **PUT** /api/api/compliance/templates/{scope}/{code} | [EARLY ACCESS] UpdateComplianceTemplate: Update a ComplianceRuleTemplate
 [**upsert_compliance_rule**](ComplianceApi.md#upsert_compliance_rule) | **POST** /api/api/compliance/rules | [EARLY ACCESS] UpsertComplianceRule: Upsert a compliance rule.
+[**upsert_compliance_rule_v3**](ComplianceApi.md#upsert_compliance_rule_v3) | **POST** /api/api/compliance/v3/rules | [EXPERIMENTAL] UpsertComplianceRuleV3: [EXPERIMENTAL] Upsert a V3 compliance rule.
 [**upsert_compliance_run_summary**](ComplianceApi.md#upsert_compliance_run_summary) | **POST** /api/api/compliance/runs/summary | [EARLY ACCESS] UpsertComplianceRunSummary: Upsert a compliance run summary.
+[**validate_compliance_rule_v3**](ComplianceApi.md#validate_compliance_rule_v3) | **POST** /api/api/compliance/v3/rules/$validate | [EXPERIMENTAL] ValidateComplianceRuleV3: [EXPERIMENTAL] Validate a V3 compliance rule definition.
 
 
 ### Example
@@ -137,6 +145,50 @@ Name | Type | Description  | Notes
 
 ---
 
+# **delete_compliance_rule_v3**
+> DeletedEntityResponse deleteComplianceRuleV3 = delete_compliance_rule_v3(scope, code)
+
+[EXPERIMENTAL] DeleteComplianceRuleV3: [EXPERIMENTAL] Delete a V3 compliance rule.
+
+Use this endpoint to delete a V3 compliance rule.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+api_response = api_instance.delete_compliance_rule_v3(scope, code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The compliance rule&#39;s scope. | [required] 
+ **code** | **str**| The compliance rule&#39;s code. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The response from deleting a V3 compliance rule. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **delete_compliance_template**
 > DeletedEntityResponse deleteComplianceTemplate = delete_compliance_template(scope, code)
 
@@ -174,6 +226,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The response from deleting a compliance rule template. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **describe_compliance_rule_v3**
+> ComplianceRuleV3DescribeResponse describeComplianceRuleV3 = describe_compliance_rule_v3(scope, code, as_at=as_at)
+
+[EXPERIMENTAL] DescribeComplianceRuleV3: [EXPERIMENTAL] Describe a V3 compliance rule in plain English.
+
+Use this endpoint to retrieve a plain-English description of a V3 compliance rule. The description  generator is delivered separately, so the description lines are currently empty.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.describe_compliance_rule_v3(scope, code, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The compliance rule&#39;s scope. | [required] 
+ **code** | **str**| The compliance rule&#39;s code. | [required] 
+ **as_at** | **datetime**| Optional. The asAt datetime at which to retrieve the rule. Default: latest. | [optional] 
+
+### Return type
+
+[**ComplianceRuleV3DescribeResponse**](../model/ComplianceRuleV3DescribeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The plain-English description of the V3 compliance rule. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -318,6 +416,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested compliance run summary details for a specific rule. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_compliance_rule_v3**
+> ComplianceRuleV3Response getComplianceRuleV3 = get_compliance_rule_v3(scope, code, as_at=as_at)
+
+[EXPERIMENTAL] GetComplianceRuleV3: [EXPERIMENTAL] Get a V3 compliance rule.
+
+Use this endpoint to retrieve a single V3 compliance rule.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_compliance_rule_v3(scope, code, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The compliance rule&#39;s scope. | [required] 
+ **code** | **str**| The compliance rule&#39;s code. | [required] 
+ **as_at** | **datetime**| Optional. The asAt datetime at which to retrieve the rule. Default: latest. | [optional] 
+
+### Return type
+
+[**ComplianceRuleV3Response**](../model/ComplianceRuleV3Response.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested V3 compliance rule. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -502,6 +646,56 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The list of compliance rules. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_compliance_rules_v3**
+> PagedResourceListOfComplianceRuleV3Response listComplianceRulesV3 = list_compliance_rules_v3(as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
+
+[EXPERIMENTAL] ListComplianceRulesV3: [EXPERIMENTAL] List V3 compliance rules.
+
+Use this endpoint to retrieve the V3 compliance rules in the client's scopes.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+api_response = api_instance.list_compliance_rules_v3(as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **as_at** | **datetime**| Optional. The asAt datetime at which to list rules. Default: latest. | [optional] 
+ **page** | **str**| Optional. The pagination token from a previous call. | [optional] 
+ **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. | [optional] 
+ **filter** | **str**| Not yet supported on this experimental endpoint; supplying a filter returns a 400. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Optional. A list of field names to sort by, each suffixed by \&quot;ASC\&quot; or \&quot;DESC\&quot;. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfComplianceRuleV3Response**](../model/PagedResourceListOfComplianceRuleV3Response.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of V3 compliance rules. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -757,6 +951,90 @@ Name | Type | Description  | Notes
 
 ---
 
+# **run_compliance_v3**
+> ComplianceRunV3Response runComplianceV3 = run_compliance_v3(run_compliance_v3_request=run_compliance_v3_request)
+
+[EXPERIMENTAL] RunComplianceV3: [EXPERIMENTAL] Run V3 compliance rules against a portfolio group.
+
+Use this endpoint to run one or more V3 compliance rules against a portfolio group, valuing holdings  with the supplied recipe, and return each rule's result.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+run_compliance_v3_request = RunComplianceV3Request()
+api_response = api_instance.run_compliance_v3(run_compliance_v3_request=run_compliance_v3_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_compliance_v3_request** | [**RunComplianceV3Request**](../model/RunComplianceV3Request.md)|  | [optional] 
+
+### Return type
+
+[**ComplianceRunV3Response**](../model/ComplianceRunV3Response.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The result of each V3 compliance rule that was run. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **run_compliance_v3_pre_trade**
+> ComplianceRunV3Response runComplianceV3PreTrade = run_compliance_v3_pre_trade(run_compliance_v3_request=run_compliance_v3_request)
+
+[EXPERIMENTAL] RunComplianceV3PreTrade: [EXPERIMENTAL] Run V3 compliance rules pre-trade against a portfolio group.
+
+Use this endpoint to run one or more V3 compliance rules against a portfolio group including its live  order flow (pre-trade), valuing holdings with the supplied recipe, and return each rule's result.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+run_compliance_v3_request = RunComplianceV3Request()
+api_response = api_instance.run_compliance_v3_pre_trade(run_compliance_v3_request=run_compliance_v3_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_compliance_v3_request** | [**RunComplianceV3Request**](../model/RunComplianceV3Request.md)|  | [optional] 
+
+### Return type
+
+[**ComplianceRunV3Response**](../model/ComplianceRunV3Response.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The result of each V3 compliance rule that was run pre-trade. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **update_compliance_template**
 > ComplianceRuleTemplate updateComplianceTemplate = update_compliance_template(scope, code, update_compliance_template_request)
 
@@ -845,6 +1123,48 @@ Name | Type | Description  | Notes
 
 ---
 
+# **upsert_compliance_rule_v3**
+> ComplianceRuleV3Response upsertComplianceRuleV3 = upsert_compliance_rule_v3(upsert_compliance_rule_v3_request=upsert_compliance_rule_v3_request)
+
+[EXPERIMENTAL] UpsertComplianceRuleV3: [EXPERIMENTAL] Upsert a V3 compliance rule.
+
+Use this endpoint to create or update a single V3 compliance rule. The rule's own record fully  describes what it checks.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+upsert_compliance_rule_v3_request = UpsertComplianceRuleV3Request()
+api_response = api_instance.upsert_compliance_rule_v3(upsert_compliance_rule_v3_request=upsert_compliance_rule_v3_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upsert_compliance_rule_v3_request** | [**UpsertComplianceRuleV3Request**](../model/UpsertComplianceRuleV3Request.md)|  | [optional] 
+
+### Return type
+
+[**ComplianceRuleV3Response**](../model/ComplianceRuleV3Response.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The upserted V3 compliance rule. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **upsert_compliance_run_summary**
 > UpsertComplianceRunSummaryResult upsertComplianceRunSummary = upsert_compliance_run_summary(upsert_compliance_run_summary_request=upsert_compliance_run_summary_request)
 
@@ -880,6 +1200,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The upserted compliance run summary. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **validate_compliance_rule_v3**
+> ComplianceRuleV3Response validateComplianceRuleV3 = validate_compliance_rule_v3(upsert_compliance_rule_v3_request=upsert_compliance_rule_v3_request)
+
+[EXPERIMENTAL] ValidateComplianceRuleV3: [EXPERIMENTAL] Validate a V3 compliance rule definition.
+
+Use this endpoint to validate a V3 compliance rule definition against the vocabulary and its  referenced reference lists without persisting it. A validation failure returns a 400.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ComplianceApi)
+upsert_compliance_rule_v3_request = UpsertComplianceRuleV3Request()
+api_response = api_instance.validate_compliance_rule_v3(upsert_compliance_rule_v3_request=upsert_compliance_rule_v3_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upsert_compliance_rule_v3_request** | [**UpsertComplianceRuleV3Request**](../model/UpsertComplianceRuleV3Request.md)|  | [optional] 
+
+### Return type
+
+[**ComplianceRuleV3Response**](../model/ComplianceRuleV3Response.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The validated V3 compliance rule definition. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

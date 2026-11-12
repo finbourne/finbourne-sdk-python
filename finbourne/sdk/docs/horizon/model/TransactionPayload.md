@@ -1,6 +1,6 @@
 # TransactionPayload
 
-record containing the payload for a single transaction. Columns is compiled once from the TPF instance configuration and is identical across every item in the paginated result. PublicationStatus is the row's outcome: Sent, or Failed when the file holding it reached no destination.
+record containing the payload for a single transaction. Columns is compiled once from the TPF instance configuration and is identical across every item in the paginated result. PublicationStatus is the row's outcome: Sent, or Failed when the file holding it reached no destination. Outcome carries the same value under the name the screens use.
 ## Properties
 
 | Name | Type | Required | Description |
@@ -10,6 +10,7 @@ record containing the payload for a single transaction. Columns is compiled once
 | **values** | **Dict[str, str]** | Required | *No description available.* |
 | **raw_csv_row** | **str** | Required | *No description available.* |
 | **publication_status** | **str** | Required | *No description available.* |
+| **outcome** | **str** | Required | *No description available.* |
 
 
 ## Usage
@@ -24,7 +25,8 @@ instance = TransactionPayload(
     columns=,  # required
     values=,  # required
     raw_csv_row="...",  # required
-    publication_status="..."  # required
+    publication_status="...",  # required
+    outcome="..."  # required
 )
 ```
 

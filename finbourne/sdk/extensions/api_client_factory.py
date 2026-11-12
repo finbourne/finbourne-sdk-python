@@ -130,6 +130,7 @@ class SyncApiClientFactory:
 
         wrapped_rest_client = rest_client_wrapper(
             rest_object=rc, 
+            retries=self.configuration.number_of_retries,
             rate_limit_retries=self.configuration.rate_limit_retries)
         self.__api_client.rest_client = wrapped_rest_client
 
@@ -218,6 +219,7 @@ class ApiClientFactory:
         rest_client_wrapper = RetryingRestWrapperAsync
         wrapped_rest_client = rest_client_wrapper(
             rest_object=rc, 
+            retries=self.configuration.number_of_retries,
             rate_limit_retries=self.configuration.rate_limit_retries)
         self.__api_client.rest_client = wrapped_rest_client
         set_additional_api_client_headers(

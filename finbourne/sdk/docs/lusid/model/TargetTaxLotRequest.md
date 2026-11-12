@@ -15,6 +15,7 @@
 | **variation_margin_portfolio_ccy** | **float** | Optional | The variation margin in portfolio currency of the tax-lot&#39;s opening transaction. |
 | **amortised_cost** | **float** | Optional | The amortised cost of the tax-lot in the settlement currency, for example a supplied amortised cost at migration. If supplied, this value seeds the tax-lot&#39;s amortised cost at the adjustment date and amortisation continues forward from it; if not supplied, the amortised cost defaults to the cost of the tax-lot. |
 | **current_face** | **float** | Optional | The current face of the tax-lot, i.e. its outstanding notional after any reduction by the instrument&#39;s pool factor. If supplied, this value seeds the tax-lot&#39;s current face, so that later paydowns on an asset-backed instrument reduce the cost against it; if not supplied, a tax-lot that already has a current face keeps its pool factor as its units change. |
+| **chargeable_gains_take_on** | [ChargeableGainsTakeOn](ChargeableGainsTakeOn.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -35,11 +36,13 @@ instance = TargetTaxLotRequest(
     variation_margin=0.0,  # optional — The variation margin of the tax-lot&#39;s opening transaction.
     variation_margin_portfolio_ccy=0.0,  # optional — The variation margin in portfolio currency of the tax-lot&#39;s opening transaction.
     amortised_cost=0.0,  # optional — The amortised cost of the tax-lot in the settlement currency, for example a supplied amortised cost at migration. If supplied, this value seeds the tax-lot&#39;s amortised cost at the adjustment date and amortisation continues forward from it; if not supplied, the amortised cost defaults to the cost of the tax-lot.
-    current_face=0.0  # optional — The current face of the tax-lot, i.e. its outstanding notional after any reduction by the instrument&#39;s pool factor. If supplied, this value seeds the tax-lot&#39;s current face, so that later paydowns on an asset-backed instrument reduce the cost against it; if not supplied, a tax-lot that already has a current face keeps its pool factor as its units change.
+    current_face=0.0,  # optional — The current face of the tax-lot, i.e. its outstanding notional after any reduction by the instrument&#39;s pool factor. If supplied, this value seeds the tax-lot&#39;s current face, so that later paydowns on an asset-backed instrument reduce the cost against it; if not supplied, a tax-lot that already has a current face keeps its pool factor as its units change.
+    chargeable_gains_take_on=ChargeableGainsTakeOn(...)  # optional
 )
 ```
 
 - [CurrencyAndAmount](CurrencyAndAmount.md)
+- [ChargeableGainsTakeOn](ChargeableGainsTakeOn.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -5,8 +5,8 @@ Response model for TPF file delivery search results
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **run_id** | **str** | Optional | *No description available.* |
-| **run_start_time** | **datetime** | Optional | *No description available.* |
+| **run_id** | **str** | Optional | The run id of the latest execution attempt in this row&#39;s run chain (the root run, its automatic retries and resends); equals referenceId when the chain has a single attempt or no recorded execution. |
+| **run_start_time** | **datetime** | Optional | When the row&#39;s root run started (the batch start), not the latest attempt&#39;s start. |
 | **file_name** | **str** | Required | *No description available.* |
 | **generated_at** | **datetime** | Required | When the file was built, or when the attempt failed before a file was built. |
 | **row_count** | **int** | Required | *No description available.* |
@@ -19,6 +19,8 @@ Response model for TPF file delivery search results
 | **file_uuid** | **UUID** | Required | *No description available.* |
 | **can_resend** | **bool** | Required | Whether the data the file is rebuilt from is still retained, so a resend can be requested. |
 | **delivered_at** | **datetime** | Optional | When the file reached the destination; null for a Failed or Pending row. |
+| **attempt** | **int** | Optional | The highest attempt number (1-based) made for this delivery&#39;s run, including automatic retries and resends. |
+| **reference_id** | **str** | Optional | The root run id of this row&#39;s run chain, the same value run history reports as referenceId. |
 
 
 ## Usage
@@ -29,8 +31,8 @@ Response model for TPF file delivery search results
 from finbourne.sdk.services.horizon.models.TpfFileDeliveryResponse import TpfFileDeliveryResponse
 
 instance = TpfFileDeliveryResponse(
-    run_id="...",  # optional
-    run_start_time=datetime.now(),  # optional
+    run_id="...",  # optional — The run id of the latest execution attempt in this row&#39;s run chain (the root run, its automatic retries and resends); equals referenceId when the chain has a single attempt or no recorded execution.
+    run_start_time=datetime.now(),  # optional — When the row&#39;s root run started (the batch start), not the latest attempt&#39;s start.
     file_name="...",  # required
     generated_at=datetime.now(),  # required — When the file was built, or when the attempt failed before a file was built.
     row_count=0,  # required
@@ -42,7 +44,9 @@ instance = TpfFileDeliveryResponse(
     destination_name="...",  # optional
     file_uuid="...",  # required
     can_resend=True,  # required — Whether the data the file is rebuilt from is still retained, so a resend can be requested.
-    delivered_at=datetime.now()  # optional — When the file reached the destination; null for a Failed or Pending row.
+    delivered_at=datetime.now(),  # optional — When the file reached the destination; null for a Failed or Pending row.
+    attempt=0,  # optional — The highest attempt number (1-based) made for this delivery&#39;s run, including automatic retries and resends.
+    reference_id="..."  # optional — The root run id of this row&#39;s run chain, the same value run history reports as referenceId.
 )
 ```
 

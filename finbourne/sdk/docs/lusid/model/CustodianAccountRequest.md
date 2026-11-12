@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **scope** | **str** | Optional | The Scope assigned to the Custodian Account, where left blank the parent Portfolio Scope will be used |
+| **scope** | **str** | Optional | The Scope assigned to the Custodian Account, where left blank the parent Portfolio Scope will be used. A new Custodian Account must be in the parent Portfolio Scope. An existing Custodian Account in a different scope can still be updated |
 | **code** | **str** | Required | Unique Code representing the Custodian Account |
 | **status** | **str** | Optional | The Account status. Available values: Active, Inactive, Deleted. |
 | **account_number** | **str** | Required | The Custodian Account Number |
@@ -25,7 +25,7 @@
 from finbourne.sdk.services.lusid.models.CustodianAccountRequest import CustodianAccountRequest
 
 instance = CustodianAccountRequest(
-    scope="...",  # optional — The Scope assigned to the Custodian Account, where left blank the parent Portfolio Scope will be used
+    scope="...",  # optional — The Scope assigned to the Custodian Account, where left blank the parent Portfolio Scope will be used. A new Custodian Account must be in the parent Portfolio Scope. An existing Custodian Account in a different scope can still be updated
     code="...",  # required — Unique Code representing the Custodian Account
     status="...",  # optional — The Account status. Available values: Active, Inactive, Deleted.
     account_number="...",  # required — The Custodian Account Number

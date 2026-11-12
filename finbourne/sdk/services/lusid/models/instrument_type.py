@@ -83,6 +83,7 @@ class InstrumentType(str, Enum):  # type: ignore[misc]
     PREFERREDSHARE = 'PreferredShare'
     CAPITALINTEREST = 'CapitalInterest'
     WHOLELOANFACILITY = 'WholeLoanFacility'
+    STRIPBOND = 'StripBond'
 
     @classmethod
     def from_json(cls, json_str: str) -> InstrumentType:

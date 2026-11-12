@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the matching ruleset. |
-| **rec_type** | **str** | Required | The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. |
+| **rec_type** | **str** | Required | The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
 | **external_rec_type** | [ExternalRecType](ExternalRecType.md) | Optional | *No description available.* |
 | **dataset_schemas** | [RecDatasetSchemas](RecDatasetSchemas.md) | Optional | *No description available.* |
 | **filters** | [GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
@@ -14,7 +14,7 @@
 | **core_tolerances** | [List[ToleranceBase]](ToleranceBase.md) | Optional | Tolerance configurations applied to core rule matching, in the specified order. |
 | **aggregate_tolerances** | [List[ToleranceBase]](ToleranceBase.md) | Optional | Tolerance configurations applied to aggregate rule matching. |
 | **allow_partial_matching** | **bool** | Optional | Whether to permit partial matches when applying rules. Optional, defaults to true if a value is not provided. |
-| **supplemental_attributes** | [List[SupplementalAttribute]](SupplementalAttribute.md) | Optional | Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself. |
+| **supplemental_attributes** | [List[SupplementalAttribute]](SupplementalAttribute.md) | Optional | Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself. Each attribute&#39;s formulas are compiled and evaluated as a rule&#39;s are, so both must return the same value type. |
 | **writeback_configurations** | [List[WritebackConfiguration]](WritebackConfiguration.md) | Optional | The writeback suggestions generated against this ruleset&#39;s results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty. |
 | **populate_result_properties** | [List[PopulateResultProperty]](PopulateResultProperty.md) | Optional | The RecResult properties to populate on this ruleset&#39;s results, each from a formula over the result. Optional, and may be empty; at most 20. |
 
@@ -28,7 +28,7 @@ from finbourne.sdk.services.lusid.models.UpdateMatchingRulesetRequest import Upd
 
 instance = UpdateMatchingRulesetRequest(
     display_name="...",  # required — The name of the matching ruleset.
-    rec_type="...",  # required — The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument.
+    rec_type="...",  # required — The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
     external_rec_type=ExternalRecType(...),  # optional
     dataset_schemas=RecDatasetSchemas(...),  # optional
     filters=GroupReconciliationFilters(...),  # optional
@@ -37,7 +37,7 @@ instance = UpdateMatchingRulesetRequest(
     core_tolerances=[],  # optional — Tolerance configurations applied to core rule matching, in the specified order.
     aggregate_tolerances=[],  # optional — Tolerance configurations applied to aggregate rule matching.
     allow_partial_matching=True,  # optional — Whether to permit partial matches when applying rules. Optional, defaults to true if a value is not provided.
-    supplemental_attributes=[],  # optional — Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself.
+    supplemental_attributes=[],  # optional — Supplemental attributes that decorate reconciliation results with additional values without participating in the reconciliation itself. Each attribute&#39;s formulas are compiled and evaluated as a rule&#39;s are, so both must return the same value type.
     writeback_configurations=[],  # optional — The writeback suggestions generated against this ruleset&#39;s results. Suggestions are made at item level on target-side items only, and are suggestions only: a user is expected to review them before acting. Optional, and may be empty.
     populate_result_properties=[]  # optional — The RecResult properties to populate on this ruleset&#39;s results, each from a formula over the result. Optional, and may be empty; at most 20.
 )

@@ -34,8 +34,9 @@ class CreatePortfolioDetails(BaseModel):
     tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. If not supplied, the portfolio's current value is left unchanged; supply Default to reset it. A reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.") 
     fractional_units_true_up_configuration: Optional[FractionalUnitsTrueUpConfiguration] = Field(default=None, alias="fractionalUnitsTrueUpConfiguration")
     holdings_fungibility:  Optional[StrictStr] = Field(default=None,alias="holdingsFungibility", description="Whether the portfolio's holdings are fungible across the currencies of a currency group. This can be: Default or Enabled. If not supplied, the portfolio's current value is left unchanged; supply Default to reset it. A reset or never-configured flag reads back as absent. Available values: Default, Enabled.") 
+    chargeable_gains_regime:  Optional[StrictStr] = Field(default=None,alias="chargeableGainsRegime", description="The chargeable gains regime the portfolio is elected into. This can be: Default or UkChargeableGains. If not supplied, the portfolio's current value is left unchanged; supply Default to reset it. A reset or never-configured regime reads back as absent. Available values: Default, UkChargeableGains.") 
     wht_parameters: Optional[WhtParameters] = Field(default=None, alias="whtParameters")
-    __properties: ClassVar[List[str]] = ["corporateActionSourceId", "taxLotSelectionCostBasis", "fractionalUnitsTrueUpConfiguration", "holdingsFungibility", "whtParameters"]
+    __properties: ClassVar[List[str]] = ["corporateActionSourceId", "taxLotSelectionCostBasis", "fractionalUnitsTrueUpConfiguration", "holdingsFungibility", "chargeableGainsRegime", "whtParameters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +91,11 @@ class CreatePortfolioDetails(BaseModel):
         if self.holdings_fungibility is None and "holdings_fungibility" in self.model_fields_set:
             _dict['holdingsFungibility'] = None
 
+        # set to None if chargeable_gains_regime (nullable) is None
+        # and model_fields_set contains the field
+        if self.chargeable_gains_regime is None and "chargeable_gains_regime" in self.model_fields_set:
+            _dict['chargeableGainsRegime'] = None
+
         return _dict
 
     @classmethod
@@ -106,6 +112,7 @@ class CreatePortfolioDetails(BaseModel):
             "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis"),
             "fractional_units_true_up_configuration": FractionalUnitsTrueUpConfiguration.from_dict(_v) if (_v := obj.get("fractionalUnitsTrueUpConfiguration")) is not None else None,
             "holdings_fungibility": obj.get("holdingsFungibility"),
+            "chargeable_gains_regime": obj.get("chargeableGainsRegime"),
             "wht_parameters": WhtParameters.from_dict(_v) if (_v := obj.get("whtParameters")) is not None else None
         })
         return _obj

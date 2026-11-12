@@ -21,6 +21,8 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.collateral_funding_terms import CollateralFundingTerms
+from finbourne.sdk.services.lusid.models.collateral_optimisation_terms import CollateralOptimisationTerms
 from finbourne.sdk.services.lusid.models.counterparty_identifier import CounterpartyIdentifier
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.margin_item import MarginItem
@@ -46,12 +48,16 @@ class CollateralAgreement(BaseModel):
     rounding: Optional[MarginRounding] = None
     settlement_lag: Optional[MarginSettlementLag] = Field(default=None, alias="settlementLag")
     match_tolerance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The tolerance within which our margin figure and the counterparty's are considered to match. Optional.", alias="matchTolerance")
+    funding: Optional[CollateralFundingTerms] = None
+    optimisation: Optional[CollateralOptimisationTerms] = None
     variation_margin: Optional[List[MarginItem]] = Field(default=None, description="The variation margin arrangements under the agreement.", alias="variationMargin")
     initial_margin: Optional[List[MarginItem]] = Field(default=None, description="The initial margin arrangements under the agreement.", alias="initialMargin")
     version: Optional[Version] = None
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties to decorate onto the Collateral Agreement. Filterable.")
+    notification_cut_label:  Optional[StrictStr] = Field(default=None,alias="notificationCutLabel", description="The cut label giving the time of day by which collateral we deliver under a margin call must settle. Each run resolves it on the business date and records it as the call's deadline; the allocation excludes assets that cannot settle by it. Optional.") 
+    return_notification_cut_label:  Optional[StrictStr] = Field(default=None,alias="returnNotificationCutLabel", description="The cut label giving the time of day by which collateral the counterparty delivers, or returns to us, must settle. Recorded as the deadline of the calls they post under. Optional.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "counterpartyId", "applicabilityFilter", "baseCurrency", "cutLabel", "recipeId", "minimumTransferAmount", "rounding", "settlementLag", "matchTolerance", "variationMargin", "initialMargin", "version", "properties", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "counterpartyId", "applicabilityFilter", "baseCurrency", "cutLabel", "recipeId", "minimumTransferAmount", "rounding", "settlementLag", "matchTolerance", "funding", "optimisation", "variationMargin", "initialMargin", "version", "properties", "notificationCutLabel", "returnNotificationCutLabel", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,6 +108,12 @@ class CollateralAgreement(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of settlement_lag
         if self.settlement_lag:
             _dict['settlementLag'] = self.settlement_lag.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of funding
+        if self.funding:
+            _dict['funding'] = self.funding.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of optimisation
+        if self.optimisation:
+            _dict['optimisation'] = self.optimisation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in variation_margin (list)
         _items = []
         if self.variation_margin:
@@ -178,6 +190,16 @@ class CollateralAgreement(BaseModel):
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
 
+        # set to None if notification_cut_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.notification_cut_label is None and "notification_cut_label" in self.model_fields_set:
+            _dict['notificationCutLabel'] = None
+
+        # set to None if return_notification_cut_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.return_notification_cut_label is None and "return_notification_cut_label" in self.model_fields_set:
+            _dict['returnNotificationCutLabel'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -206,6 +228,8 @@ class CollateralAgreement(BaseModel):
             "rounding": MarginRounding.from_dict(_v) if (_v := obj.get("rounding")) is not None else None,
             "settlement_lag": MarginSettlementLag.from_dict(_v) if (_v := obj.get("settlementLag")) is not None else None,
             "match_tolerance": obj.get("matchTolerance"),
+            "funding": CollateralFundingTerms.from_dict(_v) if (_v := obj.get("funding")) is not None else None,
+            "optimisation": CollateralOptimisationTerms.from_dict(_v) if (_v := obj.get("optimisation")) is not None else None,
             "variation_margin": [MarginItem.from_dict(_item) for _item in _v] if (_v := obj.get("variationMargin")) is not None else None,
             "initial_margin": [MarginItem.from_dict(_item) for _item in _v] if (_v := obj.get("initialMargin")) is not None else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
@@ -215,6 +239,8 @@ class CollateralAgreement(BaseModel):
             )
             if (_val := obj.get("properties")) is not None
             else None,
+            "notification_cut_label": obj.get("notificationCutLabel"),
+            "return_notification_cut_label": obj.get("returnNotificationCutLabel"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

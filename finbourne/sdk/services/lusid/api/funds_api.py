@@ -41,6 +41,7 @@ from finbourne.sdk.services.lusid.models.fund_definition_request import FundDefi
 from finbourne.sdk.services.lusid.models.fund_partner_unfunded_reconciliation import FundPartnerUnfundedReconciliation
 from finbourne.sdk.services.lusid.models.fund_properties import FundProperties
 from finbourne.sdk.services.lusid.models.fund_request import FundRequest
+from finbourne.sdk.services.lusid.models.fund_tax_scope import FundTaxScope
 from finbourne.sdk.services.lusid.models.fund_valuation_request import FundValuationRequest
 from finbourne.sdk.services.lusid.models.list_aggregation_response import ListAggregationResponse
 from finbourne.sdk.services.lusid.models.management_fee_request import ManagementFeeRequest
@@ -56,6 +57,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_en
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_partner import PagedResourceListOfFundPartner
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_partner_capital_account import PagedResourceListOfPartnerCapitalAccount
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_tax_cost_record import PagedResourceListOfTaxCostRecord
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_instrument import PagedResourceListOfValuationPointInstrument
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_overview import PagedResourceListOfValuationPointOverview
 from finbourne.sdk.services.lusid.models.partner_allocation_run_request import PartnerAllocationRunRequest
@@ -67,16 +69,23 @@ from finbourne.sdk.services.lusid.models.partner_statement_diff import PartnerSt
 from finbourne.sdk.services.lusid.models.partner_statement_request import PartnerStatementRequest
 from finbourne.sdk.services.lusid.models.partnership_config_pack import PartnershipConfigPack
 from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
+from finbourne.sdk.services.lusid.models.resource_list_of_fund_tax_exception_item import ResourceListOfFundTaxExceptionItem
 from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment_response import ResourceListOfNavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.resource_list_of_partner_statement import ResourceListOfPartnerStatement
 from finbourne.sdk.services.lusid.models.resource_list_of_series import ResourceListOfSeries
+from finbourne.sdk.services.lusid.models.resource_list_of_tax_exception_item import ResourceListOfTaxExceptionItem
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.revert_valuation_point_response import RevertValuationPointResponse
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
 from finbourne.sdk.services.lusid.models.set_share_class_instruments_request import SetShareClassInstrumentsRequest
 from finbourne.sdk.services.lusid.models.single_valuation_point_query_parameters import SingleValuationPointQueryParameters
+from finbourne.sdk.services.lusid.models.tax_cost_record_request import TaxCostRecordRequest
+from finbourne.sdk.services.lusid.models.tax_sync_status import TaxSyncStatus
 from finbourne.sdk.services.lusid.models.update_valuation_point_request import UpdateValuationPointRequest
+from finbourne.sdk.services.lusid.models.upsert_external_dealing_estimates_request import UpsertExternalDealingEstimatesRequest
+from finbourne.sdk.services.lusid.models.upsert_external_dealing_estimates_response import UpsertExternalDealingEstimatesResponse
 from finbourne.sdk.services.lusid.models.upsert_fund_bookmark_request import UpsertFundBookmarkRequest
+from finbourne.sdk.services.lusid.models.upsert_tax_cost_records_response import UpsertTaxCostRecordsResponse
 from finbourne.sdk.services.lusid.models.upsert_valuation_point_request import UpsertValuationPointRequest
 from finbourne.sdk.services.lusid.models.valuation_point import ValuationPoint
 from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters import ValuationPointDataQueryParameters
@@ -2586,6 +2595,142 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def delete_tax_cost_record(self, scope: StrictStr, code: StrictStr, tax_cost_record_code: StrictStr, **kwargs) -> DeletedEntityResponse:
+        """[EXPERIMENTAL] DeleteTaxCostRecord: [EXPERIMENTAL] DeleteTaxCostRecord: Delete a Tax Cost Record.  # noqa: E501
+
+        Delete the given Tax Cost Record.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param tax_cost_record_code: The code of the Tax Cost Record to be deleted. (required)
+        :type tax_cost_record_code: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: DeletedEntityResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the delete_tax_cost_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.delete_tax_cost_record_with_http_info(scope, code, tax_cost_record_code, **kwargs)
+        return response.data
+
+    @validate_call
+    def delete_tax_cost_record_with_http_info(self, scope: StrictStr, code: StrictStr, tax_cost_record_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+        """[EXPERIMENTAL] DeleteTaxCostRecord: [EXPERIMENTAL] DeleteTaxCostRecord: Delete a Tax Cost Record.  # noqa: E501
+
+        Delete the given Tax Cost Record.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param tax_cost_record_code: The code of the Tax Cost Record to be deleted. (required)
+        :type tax_cost_record_code: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(DeletedEntityResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'tax_cost_record_code'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_tax_cost_record" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+        if _params['tax_cost_record_code'] is not None:
+            _path_params['taxCostRecordCode'] = _params['tax_cost_record_code']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "DeletedEntityResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/taxcostrecords/{taxCostRecordCode}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def delete_valuation_point(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
         """[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
 
@@ -4323,6 +4468,153 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_fund_tax_scope(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> FundTaxScope:
+        """[EARLY ACCESS] GetFundTaxScope: [EARLY ACCESS] GetFundTaxScope: Get the UK chargeable-gains tax scope of a fund.  # noqa: E501
+
+        Returns the fund's portfolios within the UK chargeable-gains regime and the exclusions the regime's figures  apply. A fund portfolio is in scope when its own details elect the regime. A NAV type that elects the regime  puts its derived portfolio for each fund portfolio in scope, since that is where the fund accounts for the  holdings under the election.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label at which to read the tax scope. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the tax scope. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: FundTaxScope
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_fund_tax_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_fund_tax_scope_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_fund_tax_scope_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FundTaxScope]:
+        """[EARLY ACCESS] GetFundTaxScope: [EARLY ACCESS] GetFundTaxScope: Get the UK chargeable-gains tax scope of a fund.  # noqa: E501
+
+        Returns the fund's portfolios within the UK chargeable-gains regime and the exclusions the regime's figures  apply. A fund portfolio is in scope when its own details elect the regime. A NAV type that elects the regime  puts its derived portfolio for each fund portfolio in scope, since that is where the fund accounts for the  holdings under the election.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label at which to read the tax scope. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the tax scope. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(FundTaxScope, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'effective_at',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_fund_tax_scope" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "FundTaxScope",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/tax/scope', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def get_holding_contributors_for_fund(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfHoldingContributor:
         """[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
 
@@ -5219,6 +5511,7 @@ class FundsApi:
         _response_types_map = {
             '200': "FundPartnerUnfundedReconciliation",
             '400': "LusidValidationProblemDetails",
+            '404': "LusidValidationProblemDetails",
         }
 
         return self.sync_api_client.call_api(
@@ -5688,6 +5981,145 @@ class FundsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/funds/{scope}/{code}/series', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_tax_sync_status(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> TaxSyncStatus:
+        """[EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.  # noqa: E501
+
+        For each portfolio in the Fund, compares the asAt the tax engine last processed the Fund (its latest valuation  point) with the asAt of the latest transaction booked to the portfolio, and says whether the tax position has  caught up.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: TaxSyncStatus
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_tax_sync_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_tax_sync_status_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_tax_sync_status_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TaxSyncStatus]:
+        """[EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.  # noqa: E501
+
+        For each portfolio in the Fund, compares the asAt the tax engine last processed the Fund (its latest valuation  point) with the asAt of the latest transaction booked to the portfolio, and says whether the tax position has  caught up.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(TaxSyncStatus, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_tax_sync_status" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "TaxSyncStatus",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/tax/sync', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -6630,7 +7062,7 @@ class FundsApi:
         :type show_cancelled_transactions: bool
         :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
-        :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter. Defaults to False if not specified.
+        :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of              a transaction that has since been amended to be excluded is returned regardless of this option.              Defaults to False if not specified.
         :type return_excluded_transactions: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -6676,7 +7108,7 @@ class FundsApi:
         :type show_cancelled_transactions: bool
         :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
-        :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter. Defaults to False if not specified.
+        :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of              a transaction that has since been amended to be excluded is returned regardless of this option.              Defaults to False if not specified.
         :type return_excluded_transactions: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -8653,6 +9085,472 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def list_tax_cost_records(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTaxCostRecord:
+        """[EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.  # noqa: E501
+
+        List all the Tax Cost Records matching a particular criteria.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label at which to list the Tax Cost Records. Defaults to the current LUSID              system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to list the Tax Cost Records. Defaults to returning the latest version of each record if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing Tax Cost Records; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the results.              For example, to filter on the portfolio code, specify \"portfolioCode eq 'MyPortfolio'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+        :type sort_by: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfTaxCostRecord
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_tax_cost_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_tax_cost_records_with_http_info(scope, code, effective_at, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_tax_cost_records_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaxCostRecord]:
+        """[EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.  # noqa: E501
+
+        List all the Tax Cost Records matching a particular criteria.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label at which to list the Tax Cost Records. Defaults to the current LUSID              system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to list the Tax Cost Records. Defaults to returning the latest version of each record if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing Tax Cost Records; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the results.              For example, to filter on the portfolio code, specify \"portfolioCode eq 'MyPortfolio'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+        :type sort_by: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfTaxCostRecord, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'effective_at',
+            'as_at',
+            'page',
+            'limit',
+            'filter',
+            'sort_by'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_tax_cost_records" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfTaxCostRecord",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/taxcostrecords', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_tax_exceptions(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ResourceListOfTaxExceptionItem:
+        """[EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.  # noqa: E501
+
+        Lists the conditions blocking, or casting doubt on, the Fund's tax computation at the given effective and asAt  datetimes, ordered by tax at stake descending with unknown amounts last. A Fund outside the UK chargeable gains  regime has no exceptions.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label at which to read the Fund. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResourceListOfTaxExceptionItem
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_tax_exceptions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_tax_exceptions_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_tax_exceptions_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfTaxExceptionItem]:
+        """[EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.  # noqa: E501
+
+        Lists the conditions blocking, or casting doubt on, the Fund's tax computation at the given effective and asAt  datetimes, ordered by tax at stake descending with unknown amounts last. A Fund outside the UK chargeable gains  regime has no exceptions.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param effective_at: The effective datetime or cut label at which to read the Fund. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResourceListOfTaxExceptionItem, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'effective_at',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_tax_exceptions" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResourceListOfTaxExceptionItem",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/tax/exceptions', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_tax_exceptions_across_funds(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, root_cause: Optional[StrictStr] = None, **kwargs) -> ResourceListOfFundTaxExceptionItem:
+        """[EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.  # noqa: E501
+
+        Lists the conditions blocking, or casting doubt on, the tax computation of every Fund the caller can see, each  row carrying the Fund and, where known, the owning entity. Rows are ordered by tax at stake descending with  unknown amounts last. Funds outside the UK chargeable gains regime contribute no rows.  # noqa: E501
+        :param effective_at: The effective datetime or cut label at which to read the Funds. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the Funds. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param root_cause: Optionally, the root cause code to restrict the exceptions to, for example \"PoolOutOfSync\". Defaults to all root causes.
+        :type root_cause: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResourceListOfFundTaxExceptionItem
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_tax_exceptions_across_funds_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_tax_exceptions_across_funds_with_http_info(effective_at, as_at, root_cause, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_tax_exceptions_across_funds_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, root_cause: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfFundTaxExceptionItem]:
+        """[EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.  # noqa: E501
+
+        Lists the conditions blocking, or casting doubt on, the tax computation of every Fund the caller can see, each  row carrying the Fund and, where known, the owning entity. Rows are ordered by tax at stake descending with  unknown amounts last. Funds outside the UK chargeable gains regime contribute no rows.  # noqa: E501
+        :param effective_at: The effective datetime or cut label at which to read the Funds. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to read the Funds. Defaults to returning the latest version if not specified.
+        :type as_at: datetime
+        :param root_cause: Optionally, the root cause code to restrict the exceptions to, for example \"PoolOutOfSync\". Defaults to all root causes.
+        :type root_cause: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResourceListOfFundTaxExceptionItem, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'effective_at',
+            'as_at',
+            'root_cause'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_tax_exceptions_across_funds" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('root_cause') is not None:  # noqa: E501
+            _query_params.append(('rootCause', _params['root_cause']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResourceListOfFundTaxExceptionItem",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/tax/exceptions', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def list_valuation_point_complex_market_data(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedComplexMarketData:
         """[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
 
@@ -9378,14 +10276,14 @@ class FundsApi:
     def patch_fund(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> Fund:
         """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
 
-        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate, PricingMethodology, ReportingPrices, WhtParameters, ShareClasses.  # noqa: E501
+        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: ShortCode, DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, TaxTransparency, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, ShareClasses, PricingMethodology, ReportingPrices, DealingEstimates, WhtParameters, ValuationTemplateId.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
         :type code: str
         :param operation: The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. (required)
         :type operation: List[Operation]
-        :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only DisplayName and Description can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.
+        :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only displayName, description, pricingMethodology, reportingPrices and dealingEstimates, or a field inside the first              and last, can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.              A field patched with an effectiveAt merges over the block in force at that datetime and does not carry into a version of              the block that starts later: a whole pricingMethodology or dealingEstimates set from a later datetime keeps its own values.
         :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -9404,14 +10302,14 @@ class FundsApi:
     def patch_fund_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fund]:
         """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
 
-        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate, PricingMethodology, ReportingPrices, WhtParameters, ShareClasses.  # noqa: E501
+        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: ShortCode, DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, TaxTransparency, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, ShareClasses, PricingMethodology, ReportingPrices, DealingEstimates, WhtParameters, ValuationTemplateId.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
         :type code: str
         :param operation: The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. (required)
         :type operation: List[Operation]
-        :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only DisplayName and Description can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.
+        :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only displayName, description, pricingMethodology, reportingPrices and dealingEstimates, or a field inside the first              and last, can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.              A field patched with an effectiveAt merges over the block in force at that datetime and does not carry into a version of              the block that starts later: a whole pricingMethodology or dealingEstimates set from a later datetime keeps its own values.
         :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -9886,7 +10784,7 @@ class FundsApi:
     def query_cash_statement_local_currency(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundCashStatementLocalCurrency:
         """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
 
-        Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
+        Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses each transaction's system-generated reversal/TrueUp rows into a single SystemCorrection  row carrying their net cashflow, while user-entered rows are always shown individually). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -9922,7 +10820,7 @@ class FundsApi:
     def query_cash_statement_local_currency_with_http_info(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundCashStatementLocalCurrency]:
         """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
 
-        Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
+        Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses each transaction's system-generated reversal/TrueUp rows into a single SystemCorrection  row carrying their net cashflow, while user-entered rows are always shown individually). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -10529,7 +11427,7 @@ class FundsApi:
     def update_valuation_point(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPoint:
         """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
 
-        Updates an existing Valuation Point.  # noqa: E501
+        Updates an existing Valuation Point. Supplying a pricingMethodologyOverride approves or overrides the swing  decision the Valuation Point deals at, which additionally requires the ApprovePricingMethodology action on the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -10555,7 +11453,7 @@ class FundsApi:
     def update_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPoint]:
         """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
 
-        Updates an existing Valuation Point.  # noqa: E501
+        Updates an existing Valuation Point. Supplying a pricingMethodologyOverride approves or overrides the swing  decision the Valuation Point deals at, which additionally requires the ApprovePricingMethodology action on the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -10964,6 +11862,149 @@ class FundsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/funds/{scope}/{code}/valuationpoints', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def upsert_external_dealing_estimates(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertExternalDealingEstimatesRequest], **kwargs) -> UpsertExternalDealingEstimatesResponse:
+        """[EARLY ACCESS] UpsertExternalDealingEstimates: Load dealing estimates sent by an external transfer agent  # noqa: E501
+
+        Loads the dealing estimates a third-party transfer agent dealt for the fund at a dealing point. Each request  key names one set: a dealing point, the sending source and the orders it dealt, each keyed by the source's own  line id. The orders are written in the fund's scope with the code  `{fundCode}-{source}-{yyyyMMddHHmmss}-{lineId}`, the dealing point written in UTC to the second, in the  External order state, priced at the dealing point, so the fund's External dealing source reads them at that  valuation point. A line whose code would exceed 64 characters is refused.                A set replaces what the same source sent before: every External order of that source for the fund's share  classes at the dealing point that the set does not restate is deleted, and the response names them. Two  sets in one request naming the same source and dealing point are refused after the first.                The fund must list External among its dealing estimate sources. Each line must name a share class of the  fund and exactly one of a positive number of units or a positive amount in a valid currency. A set sent  after its dealing point is loaded and flagged late; one sent exactly at the dealing point is on time.  Whether the set is complete is recorded on each order and is not yet enforced at pricing.                Each order carries the properties `Order/TA/PriceDate` (date), `Order/TA/DealingSource` (string),  `Order/TA/DealingSourceReference` (string), `Order/TA/Complete` (string, `True` or `False`),  `Order/TA/Late` (string, `True` or `False`) and `Order/TA/SentAt` (date). LUSID defines these as transfer  agency system properties.                Sets are validated independently: a set that fails validation is reported under failures and the others  still load. The sets that pass are then written together in one command, so a reader never sees half a  dealing point, and a refusal at write time fails the whole request and leaves the book as it was. A request  carries at most 200 sets and at most 2000 lines across all of them.  # noqa: E501
+        :param scope: The scope of the fund. (required)
+        :type scope: str
+        :param code: The code of the fund. Together with the scope this uniquely identifies the fund. (required)
+        :type code: str
+        :param request_body: The sets to load, keyed by a correlation key of the caller's choosing. (required)
+        :type request_body: Dict[str, UpsertExternalDealingEstimatesRequest]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: UpsertExternalDealingEstimatesResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the upsert_external_dealing_estimates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.upsert_external_dealing_estimates_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
+
+    @validate_call
+    def upsert_external_dealing_estimates_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertExternalDealingEstimatesRequest], **kwargs) -> ApiResponse[UpsertExternalDealingEstimatesResponse]:
+        """[EARLY ACCESS] UpsertExternalDealingEstimates: Load dealing estimates sent by an external transfer agent  # noqa: E501
+
+        Loads the dealing estimates a third-party transfer agent dealt for the fund at a dealing point. Each request  key names one set: a dealing point, the sending source and the orders it dealt, each keyed by the source's own  line id. The orders are written in the fund's scope with the code  `{fundCode}-{source}-{yyyyMMddHHmmss}-{lineId}`, the dealing point written in UTC to the second, in the  External order state, priced at the dealing point, so the fund's External dealing source reads them at that  valuation point. A line whose code would exceed 64 characters is refused.                A set replaces what the same source sent before: every External order of that source for the fund's share  classes at the dealing point that the set does not restate is deleted, and the response names them. Two  sets in one request naming the same source and dealing point are refused after the first.                The fund must list External among its dealing estimate sources. Each line must name a share class of the  fund and exactly one of a positive number of units or a positive amount in a valid currency. A set sent  after its dealing point is loaded and flagged late; one sent exactly at the dealing point is on time.  Whether the set is complete is recorded on each order and is not yet enforced at pricing.                Each order carries the properties `Order/TA/PriceDate` (date), `Order/TA/DealingSource` (string),  `Order/TA/DealingSourceReference` (string), `Order/TA/Complete` (string, `True` or `False`),  `Order/TA/Late` (string, `True` or `False`) and `Order/TA/SentAt` (date). LUSID defines these as transfer  agency system properties.                Sets are validated independently: a set that fails validation is reported under failures and the others  still load. The sets that pass are then written together in one command, so a reader never sees half a  dealing point, and a refusal at write time fails the whole request and leaves the book as it was. A request  carries at most 200 sets and at most 2000 lines across all of them.  # noqa: E501
+        :param scope: The scope of the fund. (required)
+        :type scope: str
+        :param code: The code of the fund. Together with the scope this uniquely identifies the fund. (required)
+        :type code: str
+        :param request_body: The sets to load, keyed by a correlation key of the caller's choosing. (required)
+        :type request_body: Dict[str, UpsertExternalDealingEstimatesRequest]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(UpsertExternalDealingEstimatesResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'request_body'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method upsert_external_dealing_estimates" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "UpsertExternalDealingEstimatesResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/dealingestimates/$external', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -11425,6 +12466,149 @@ class FundsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/funds/{scope}/{code}/navAdjustment', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def upsert_tax_cost_records(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, TaxCostRecordRequest], **kwargs) -> UpsertTaxCostRecordsResponse:
+        """[EXPERIMENTAL] UpsertTaxCostRecords: [EXPERIMENTAL] UpsertTaxCostRecords: Upsert Tax Cost Records for a specified Fund.  # noqa: E501
+
+        Create or update Tax Cost Records for the given Fund. Each record is keyed by its code; a record with an  existing code is replaced in full.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param request_body: The Tax Cost Records to upsert, keyed by the code of each record. (required)
+        :type request_body: Dict[str, TaxCostRecordRequest]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: UpsertTaxCostRecordsResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the upsert_tax_cost_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.upsert_tax_cost_records_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
+
+    @validate_call
+    def upsert_tax_cost_records_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, TaxCostRecordRequest], **kwargs) -> ApiResponse[UpsertTaxCostRecordsResponse]:
+        """[EXPERIMENTAL] UpsertTaxCostRecords: [EXPERIMENTAL] UpsertTaxCostRecords: Upsert Tax Cost Records for a specified Fund.  # noqa: E501
+
+        Create or update Tax Cost Records for the given Fund. Each record is keyed by its code; a record with an  existing code is replaced in full.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param request_body: The Tax Cost Records to upsert, keyed by the code of each record. (required)
+        :type request_body: Dict[str, TaxCostRecordRequest]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(UpsertTaxCostRecordsResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'request_body'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method upsert_tax_cost_records" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "UpsertTaxCostRecordsResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/taxcostrecords', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -13928,6 +15112,143 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def delete_tax_cost_record_async(self, scope: StrictStr, code: StrictStr, tax_cost_record_code: StrictStr, **kwargs) -> DeletedEntityResponse:
+            """[EXPERIMENTAL] DeleteTaxCostRecord: [EXPERIMENTAL] DeleteTaxCostRecord: Delete a Tax Cost Record.  # noqa: E501
+            Delete the given Tax Cost Record.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param tax_cost_record_code: The code of the Tax Cost Record to be deleted. (required)
+            :type tax_cost_record_code: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: DeletedEntityResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the delete_tax_cost_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.delete_tax_cost_record_with_http_info_async(scope, code, tax_cost_record_code, **kwargs)
+            return response.data
+
+    @validate_call
+    async def delete_tax_cost_record_with_http_info_async(self, scope: StrictStr, code: StrictStr, tax_cost_record_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+            """[EXPERIMENTAL] DeleteTaxCostRecord: [EXPERIMENTAL] DeleteTaxCostRecord: Delete a Tax Cost Record.  # noqa: E501
+
+            Delete the given Tax Cost Record.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param tax_cost_record_code: The code of the Tax Cost Record to be deleted. (required)
+            :type tax_cost_record_code: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(DeletedEntityResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'tax_cost_record_code'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method delete_tax_cost_record" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+            if _params['tax_cost_record_code'] is not None:
+                _path_params['taxCostRecordCode'] = _params['tax_cost_record_code']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "DeletedEntityResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/taxcostrecords/{taxCostRecordCode}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def delete_valuation_point_async(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
             """[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
             Deletes the given Valuation Point.  # noqa: E501
@@ -15676,6 +16997,154 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_fund_tax_scope_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> FundTaxScope:
+            """[EARLY ACCESS] GetFundTaxScope: [EARLY ACCESS] GetFundTaxScope: Get the UK chargeable-gains tax scope of a fund.  # noqa: E501
+            Returns the fund's portfolios within the UK chargeable-gains regime and the exclusions the regime's figures  apply. A fund portfolio is in scope when its own details elect the regime. A NAV type that elects the regime  puts its derived portfolio for each fund portfolio in scope, since that is where the fund accounts for the  holdings under the election.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label at which to read the tax scope. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the tax scope. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: FundTaxScope
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_fund_tax_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_fund_tax_scope_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_fund_tax_scope_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FundTaxScope]:
+            """[EARLY ACCESS] GetFundTaxScope: [EARLY ACCESS] GetFundTaxScope: Get the UK chargeable-gains tax scope of a fund.  # noqa: E501
+
+            Returns the fund's portfolios within the UK chargeable-gains regime and the exclusions the regime's figures  apply. A fund portfolio is in scope when its own details elect the regime. A NAV type that elects the regime  puts its derived portfolio for each fund portfolio in scope, since that is where the fund accounts for the  holdings under the election.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label at which to read the tax scope. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the tax scope. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(FundTaxScope, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'effective_at',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_fund_tax_scope" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "FundTaxScope",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/tax/scope', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_holding_contributors_for_fund_async(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfHoldingContributor:
             """[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
             Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
@@ -16577,6 +18046,7 @@ class FundsApi:
             _response_types_map = {
                 '200': "FundPartnerUnfundedReconciliation",
                 '400': "LusidValidationProblemDetails",
+                '404': "LusidValidationProblemDetails",
             }
 
             return await self.api_client.call_api_async(
@@ -17049,6 +18519,146 @@ class FundsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/funds/{scope}/{code}/series', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_tax_sync_status_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> TaxSyncStatus:
+            """[EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.  # noqa: E501
+            For each portfolio in the Fund, compares the asAt the tax engine last processed the Fund (its latest valuation  point) with the asAt of the latest transaction booked to the portfolio, and says whether the tax position has  caught up.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: TaxSyncStatus
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_tax_sync_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_tax_sync_status_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_tax_sync_status_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TaxSyncStatus]:
+            """[EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.  # noqa: E501
+
+            For each portfolio in the Fund, compares the asAt the tax engine last processed the Fund (its latest valuation  point) with the asAt of the latest transaction booked to the portfolio, and says whether the tax position has  caught up.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(TaxSyncStatus, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_tax_sync_status" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "TaxSyncStatus",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/tax/sync', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -17996,7 +19606,7 @@ class FundsApi:
             :type show_cancelled_transactions: bool
             :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
-            :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter. Defaults to False if not specified.
+            :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of              a transaction that has since been amended to be excluded is returned regardless of this option.              Defaults to False if not specified.
             :type return_excluded_transactions: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -18043,7 +19653,7 @@ class FundsApi:
             :type show_cancelled_transactions: bool
             :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
-            :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter. Defaults to False if not specified.
+            :param return_excluded_transactions: Option to specify whether or not to include transactions excluded by the              NavType's TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of              a transaction that has since been amended to be excluded is returned regardless of this option.              Defaults to False if not specified.
             :type return_excluded_transactions: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -20030,6 +21640,475 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def list_tax_cost_records_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTaxCostRecord:
+            """[EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.  # noqa: E501
+            List all the Tax Cost Records matching a particular criteria.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label at which to list the Tax Cost Records. Defaults to the current LUSID              system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to list the Tax Cost Records. Defaults to returning the latest version of each record if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing Tax Cost Records; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the results.              For example, to filter on the portfolio code, specify \"portfolioCode eq 'MyPortfolio'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+            :type sort_by: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfTaxCostRecord
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_tax_cost_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_tax_cost_records_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_tax_cost_records_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaxCostRecord]:
+            """[EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.  # noqa: E501
+
+            List all the Tax Cost Records matching a particular criteria.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label at which to list the Tax Cost Records. Defaults to the current LUSID              system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to list the Tax Cost Records. Defaults to returning the latest version of each record if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing Tax Cost Records; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the results.              For example, to filter on the portfolio code, specify \"portfolioCode eq 'MyPortfolio'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+            :type sort_by: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfTaxCostRecord, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'effective_at',
+                'as_at',
+                'page',
+                'limit',
+                'filter',
+                'sort_by'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_tax_cost_records" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfTaxCostRecord",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/taxcostrecords', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_tax_exceptions_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ResourceListOfTaxExceptionItem:
+            """[EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.  # noqa: E501
+            Lists the conditions blocking, or casting doubt on, the Fund's tax computation at the given effective and asAt  datetimes, ordered by tax at stake descending with unknown amounts last. A Fund outside the UK chargeable gains  regime has no exceptions.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label at which to read the Fund. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResourceListOfTaxExceptionItem
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_tax_exceptions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_tax_exceptions_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_tax_exceptions_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfTaxExceptionItem]:
+            """[EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.  # noqa: E501
+
+            Lists the conditions blocking, or casting doubt on, the Fund's tax computation at the given effective and asAt  datetimes, ordered by tax at stake descending with unknown amounts last. A Fund outside the UK chargeable gains  regime has no exceptions.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param effective_at: The effective datetime or cut label at which to read the Fund. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the Fund. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResourceListOfTaxExceptionItem, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'effective_at',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_tax_exceptions" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResourceListOfTaxExceptionItem",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/tax/exceptions', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_tax_exceptions_across_funds_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, root_cause: Optional[StrictStr] = None, **kwargs) -> ResourceListOfFundTaxExceptionItem:
+            """[EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.  # noqa: E501
+            Lists the conditions blocking, or casting doubt on, the tax computation of every Fund the caller can see, each  row carrying the Fund and, where known, the owning entity. Rows are ordered by tax at stake descending with  unknown amounts last. Funds outside the UK chargeable gains regime contribute no rows.  # noqa: E501
+            
+            :param effective_at: The effective datetime or cut label at which to read the Funds. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the Funds. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param root_cause: Optionally, the root cause code to restrict the exceptions to, for example \"PoolOutOfSync\". Defaults to all root causes.
+            :type root_cause: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResourceListOfFundTaxExceptionItem
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_tax_exceptions_across_funds_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_tax_exceptions_across_funds_with_http_info_async(effective_at, as_at, root_cause, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_tax_exceptions_across_funds_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, root_cause: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfFundTaxExceptionItem]:
+            """[EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.  # noqa: E501
+
+            Lists the conditions blocking, or casting doubt on, the tax computation of every Fund the caller can see, each  row carrying the Fund and, where known, the owning entity. Rows are ordered by tax at stake descending with  unknown amounts last. Funds outside the UK chargeable gains regime contribute no rows.  # noqa: E501
+
+            :param effective_at: The effective datetime or cut label at which to read the Funds. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to read the Funds. Defaults to returning the latest version if not specified.
+            :type as_at: datetime
+            :param root_cause: Optionally, the root cause code to restrict the exceptions to, for example \"PoolOutOfSync\". Defaults to all root causes.
+            :type root_cause: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResourceListOfFundTaxExceptionItem, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'effective_at',
+                'as_at',
+                'root_cause'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_tax_exceptions_across_funds" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('root_cause') is not None:  # noqa: E501
+                _query_params.append(('rootCause', _params['root_cause']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResourceListOfFundTaxExceptionItem",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/tax/exceptions', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def list_valuation_point_complex_market_data_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedComplexMarketData:
             """[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
             Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).  # noqa: E501
@@ -20758,7 +22837,7 @@ class FundsApi:
     @validate_call
     async def patch_fund_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> Fund:
             """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
-            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate, PricingMethodology, ReportingPrices, WhtParameters, ShareClasses.  # noqa: E501
+            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: ShortCode, DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, TaxTransparency, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, ShareClasses, PricingMethodology, ReportingPrices, DealingEstimates, WhtParameters, ValuationTemplateId.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -20766,7 +22845,7 @@ class FundsApi:
             :type code: str
             :param operation: The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. (required)
             :type operation: List[Operation]
-            :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only DisplayName and Description can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.
+            :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only displayName, description, pricingMethodology, reportingPrices and dealingEstimates, or a field inside the first              and last, can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.              A field patched with an effectiveAt merges over the block in force at that datetime and does not carry into a version of              the block that starts later: a whole pricingMethodology or dealingEstimates set from a later datetime keeps its own values.
             :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -20785,7 +22864,7 @@ class FundsApi:
     async def patch_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fund]:
             """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
 
-            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate, PricingMethodology, ReportingPrices, WhtParameters, ShareClasses.  # noqa: E501
+            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: ShortCode, DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, TaxTransparency, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, ShareClasses, PricingMethodology, ReportingPrices, DealingEstimates, WhtParameters, ValuationTemplateId.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -20793,7 +22872,7 @@ class FundsApi:
             :type code: str
             :param operation: The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. (required)
             :type operation: List[Operation]
-            :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only DisplayName and Description can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.
+            :param effective_at: The effective datetime or cut label from which the patch applies. If not specified, the patch applies for all time.              Only displayName, description, pricingMethodology, reportingPrices and dealingEstimates, or a field inside the first              and last, can be patched with an effectiveAt, and the Fund is returned as at that datetime.              A value patched with an effectiveAt stays in force from that datetime. A later patch of the same field without an effectiveAt              changes it only before that datetime; to change it from that datetime, patch it again with the same effectiveAt.              A field patched with an effectiveAt merges over the block in force at that datetime and does not carry into a version of              the block that starts later: a whole pricingMethodology or dealingEstimates set from a later datetime keeps its own values.
             :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -21269,7 +23348,7 @@ class FundsApi:
     @validate_call
     async def query_cash_statement_local_currency_async(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundCashStatementLocalCurrency:
             """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
-            Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
+            Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses each transaction's system-generated reversal/TrueUp rows into a single SystemCorrection  row carrying their net cashflow, while user-entered rows are always shown individually). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -21306,7 +23385,7 @@ class FundsApi:
     async def query_cash_statement_local_currency_with_http_info_async(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundCashStatementLocalCurrency]:
             """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
 
-            Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
+            Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses each transaction's system-generated reversal/TrueUp rows into a single SystemCorrection  row carrying their net cashflow, while user-entered rows are always shown individually). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -21916,7 +23995,7 @@ class FundsApi:
     @validate_call
     async def update_valuation_point_async(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPoint:
             """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
-            Updates an existing Valuation Point.  # noqa: E501
+            Updates an existing Valuation Point. Supplying a pricingMethodologyOverride approves or overrides the swing  decision the Valuation Point deals at, which additionally requires the ApprovePricingMethodology action on the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -21943,7 +24022,7 @@ class FundsApi:
     async def update_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPoint]:
             """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
 
-            Updates an existing Valuation Point.  # noqa: E501
+            Updates an existing Valuation Point. Supplying a pricingMethodologyOverride approves or overrides the swing  decision the Valuation Point deals at, which additionally requires the ApprovePricingMethodology action on the Fund.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -22355,6 +24434,150 @@ class FundsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/funds/{scope}/{code}/valuationpoints', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def upsert_external_dealing_estimates_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertExternalDealingEstimatesRequest], **kwargs) -> UpsertExternalDealingEstimatesResponse:
+            """[EARLY ACCESS] UpsertExternalDealingEstimates: Load dealing estimates sent by an external transfer agent  # noqa: E501
+            Loads the dealing estimates a third-party transfer agent dealt for the fund at a dealing point. Each request  key names one set: a dealing point, the sending source and the orders it dealt, each keyed by the source's own  line id. The orders are written in the fund's scope with the code  `{fundCode}-{source}-{yyyyMMddHHmmss}-{lineId}`, the dealing point written in UTC to the second, in the  External order state, priced at the dealing point, so the fund's External dealing source reads them at that  valuation point. A line whose code would exceed 64 characters is refused.                A set replaces what the same source sent before: every External order of that source for the fund's share  classes at the dealing point that the set does not restate is deleted, and the response names them. Two  sets in one request naming the same source and dealing point are refused after the first.                The fund must list External among its dealing estimate sources. Each line must name a share class of the  fund and exactly one of a positive number of units or a positive amount in a valid currency. A set sent  after its dealing point is loaded and flagged late; one sent exactly at the dealing point is on time.  Whether the set is complete is recorded on each order and is not yet enforced at pricing.                Each order carries the properties `Order/TA/PriceDate` (date), `Order/TA/DealingSource` (string),  `Order/TA/DealingSourceReference` (string), `Order/TA/Complete` (string, `True` or `False`),  `Order/TA/Late` (string, `True` or `False`) and `Order/TA/SentAt` (date). LUSID defines these as transfer  agency system properties.                Sets are validated independently: a set that fails validation is reported under failures and the others  still load. The sets that pass are then written together in one command, so a reader never sees half a  dealing point, and a refusal at write time fails the whole request and leaves the book as it was. A request  carries at most 200 sets and at most 2000 lines across all of them.  # noqa: E501
+            
+            :param scope: The scope of the fund. (required)
+            :type scope: str
+            :param code: The code of the fund. Together with the scope this uniquely identifies the fund. (required)
+            :type code: str
+            :param request_body: The sets to load, keyed by a correlation key of the caller's choosing. (required)
+            :type request_body: Dict[str, UpsertExternalDealingEstimatesRequest]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: UpsertExternalDealingEstimatesResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the upsert_external_dealing_estimates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.upsert_external_dealing_estimates_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
+
+    @validate_call
+    async def upsert_external_dealing_estimates_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, UpsertExternalDealingEstimatesRequest], **kwargs) -> ApiResponse[UpsertExternalDealingEstimatesResponse]:
+            """[EARLY ACCESS] UpsertExternalDealingEstimates: Load dealing estimates sent by an external transfer agent  # noqa: E501
+
+            Loads the dealing estimates a third-party transfer agent dealt for the fund at a dealing point. Each request  key names one set: a dealing point, the sending source and the orders it dealt, each keyed by the source's own  line id. The orders are written in the fund's scope with the code  `{fundCode}-{source}-{yyyyMMddHHmmss}-{lineId}`, the dealing point written in UTC to the second, in the  External order state, priced at the dealing point, so the fund's External dealing source reads them at that  valuation point. A line whose code would exceed 64 characters is refused.                A set replaces what the same source sent before: every External order of that source for the fund's share  classes at the dealing point that the set does not restate is deleted, and the response names them. Two  sets in one request naming the same source and dealing point are refused after the first.                The fund must list External among its dealing estimate sources. Each line must name a share class of the  fund and exactly one of a positive number of units or a positive amount in a valid currency. A set sent  after its dealing point is loaded and flagged late; one sent exactly at the dealing point is on time.  Whether the set is complete is recorded on each order and is not yet enforced at pricing.                Each order carries the properties `Order/TA/PriceDate` (date), `Order/TA/DealingSource` (string),  `Order/TA/DealingSourceReference` (string), `Order/TA/Complete` (string, `True` or `False`),  `Order/TA/Late` (string, `True` or `False`) and `Order/TA/SentAt` (date). LUSID defines these as transfer  agency system properties.                Sets are validated independently: a set that fails validation is reported under failures and the others  still load. The sets that pass are then written together in one command, so a reader never sees half a  dealing point, and a refusal at write time fails the whole request and leaves the book as it was. A request  carries at most 200 sets and at most 2000 lines across all of them.  # noqa: E501
+
+            :param scope: The scope of the fund. (required)
+            :type scope: str
+            :param code: The code of the fund. Together with the scope this uniquely identifies the fund. (required)
+            :type code: str
+            :param request_body: The sets to load, keyed by a correlation key of the caller's choosing. (required)
+            :type request_body: Dict[str, UpsertExternalDealingEstimatesRequest]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(UpsertExternalDealingEstimatesResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'request_body'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method upsert_external_dealing_estimates" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "UpsertExternalDealingEstimatesResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/dealingestimates/$external', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -22819,6 +25042,150 @@ class FundsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/funds/{scope}/{code}/navAdjustment', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def upsert_tax_cost_records_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, TaxCostRecordRequest], **kwargs) -> UpsertTaxCostRecordsResponse:
+            """[EXPERIMENTAL] UpsertTaxCostRecords: [EXPERIMENTAL] UpsertTaxCostRecords: Upsert Tax Cost Records for a specified Fund.  # noqa: E501
+            Create or update Tax Cost Records for the given Fund. Each record is keyed by its code; a record with an  existing code is replaced in full.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param request_body: The Tax Cost Records to upsert, keyed by the code of each record. (required)
+            :type request_body: Dict[str, TaxCostRecordRequest]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: UpsertTaxCostRecordsResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the upsert_tax_cost_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.upsert_tax_cost_records_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
+
+    @validate_call
+    async def upsert_tax_cost_records_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, TaxCostRecordRequest], **kwargs) -> ApiResponse[UpsertTaxCostRecordsResponse]:
+            """[EXPERIMENTAL] UpsertTaxCostRecords: [EXPERIMENTAL] UpsertTaxCostRecords: Upsert Tax Cost Records for a specified Fund.  # noqa: E501
+
+            Create or update Tax Cost Records for the given Fund. Each record is keyed by its code; a record with an  existing code is replaced in full.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param request_body: The Tax Cost Records to upsert, keyed by the code of each record. (required)
+            :type request_body: Dict[str, TaxCostRecordRequest]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(UpsertTaxCostRecordsResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'request_body'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method upsert_tax_cost_records" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "UpsertTaxCostRecordsResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/taxcostrecords', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

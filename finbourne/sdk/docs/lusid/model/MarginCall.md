@@ -35,6 +35,9 @@ A margin call a run produced under a collateral agreement: our figure, the count
 | **supersedes** | [MarginCallReference](MarginCallReference.md) | Optional | *No description available.* |
 | **carried_from** | [MarginCallReference](MarginCallReference.md) | Optional | *No description available.* |
 | **carried_disputed_amount** | **float** | Optional | The amount left in dispute on the carried call. Informational; not added to this call. |
+| **scenario** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **explain_available** | **bool** | Optional | Whether the working behind the call&#39;s required amount was stored, so that the call can be explained. Only an initial-margin call can be explained, and only when the run stored its working. |
+| **proposed_allocation** | [List[CollateralAllocationLine]](CollateralAllocationLine.md) | Optional | The assets the allocation pass proposes to deliver for the call, or to take back for a return, cheapest first. Null until the run&#39;s allocation pass has completed, or when the call moves no collateral of ours. |
 
 
 ## Usage
@@ -74,7 +77,10 @@ instance = MarginCall(
     deadline=datetime.now(),  # optional — The time the call must be agreed by. Empty until agreements carry a notification time.
     supersedes=MarginCallReference(...),  # optional
     carried_from=MarginCallReference(...),  # optional
-    carried_disputed_amount=0.0  # optional — The amount left in dispute on the carried call. Informational; not added to this call.
+    carried_disputed_amount=0.0,  # optional — The amount left in dispute on the carried call. Informational; not added to this call.
+    scenario=ResourceId(...),  # optional
+    explain_available=True,  # optional — Whether the working behind the call&#39;s required amount was stored, so that the call can be explained. Only an initial-margin call can be explained, and only when the run stored its working.
+    proposed_allocation=[]  # optional — The assets the allocation pass proposes to deliver for the call, or to take back for a return, cheapest first. Null until the run&#39;s allocation pass has completed, or when the call moves no collateral of ours.
 )
 ```
 
@@ -82,6 +88,8 @@ instance = MarginCall(
 - [CounterpartyIdentifier](CounterpartyIdentifier.md)
 - [MarginCallReference](MarginCallReference.md)
 - [MarginCallReference](MarginCallReference.md)
+- [ResourceId](ResourceId.md)
+- [CollateralAllocationLine](CollateralAllocationLine.md) — used in `proposed_allocation`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

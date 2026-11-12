@@ -56,7 +56,7 @@ Also how a rate with no replacement is expired, there being no effectiveTo field
 api_instance = api_client_factory.build(WithholdingTaxApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-request_body = {"gb-treaty-us":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"US"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00"}} # Dict[str, DeleteWithholdingTaxRateRequest]
+request_body = {"gb-equity-custodian-b":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"CorporateFund","assetClass":"Equity","custodian":"CustodianB"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00"}} # Dict[str, DeleteWithholdingTaxRateRequest]
 success_mode = 'Atomic' # str (optional)
 rule_source = 'rule_source_example' # str (optional)
 api_response = api_instance.batch_delete_withholding_tax_rates(scope, code, request_body, success_mode=success_mode, rule_source=rule_source)
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] BatchUpsertWithholdingTaxRates: Batch upsert Withholding Tax rate rows, applying the write-time gates before any row lands.
 
-Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls.
+Row identity is the series identifiers plus effectiveAt; a rate is superseded by loading a row with a  later effectiveAt for the same series identifiers. One batch carries one rule source, so a feed mixing rows  from a source with rows that apply at every source is loaded in two calls. Rate tiers are fractions between 0  and 1 inclusive (0.30 is 30%); a row with a tier above 1 is rejected.
 
 ### Example
 
@@ -106,7 +106,7 @@ Row identity is the series identifiers plus effectiveAt; a rate is superseded by
 api_instance = api_client_factory.build(WithholdingTaxApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-request_body = {"gb-treaty-us":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"US"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.3,"treatyRate":0.15,"treatyRAS":true}},"gb-treaty-fr":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"TreatyEligible","instrumentDomicile":"FR"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.25,"treatyRate":0.15,"treatyRAS":false}}} # Dict[str, UpsertWithholdingTaxRateRequest]
+request_body = {"gb-equity":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"CorporateFund","assetClass":"Equity"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.35,"treatyRate":0.15,"treatyRAS":true}},"gb-equity-custodian-b":{"seriesIdentifiers":{"taxCountry":"GB","profileType":"CorporateFund","assetClass":"Equity","custodian":"CustodianB"},"effectiveAt":"2026-01-01T00:00:00.0000000+00:00","valueFields":{"countryRate":0.35,"treatyRate":0.15,"treatyRAS":false}}} # Dict[str, UpsertWithholdingTaxRateRequest]
 success_mode = 'Atomic' # str (optional)
 rule_source = 'rule_source_example' # str (optional)
 api_response = api_instance.batch_upsert_withholding_tax_rates(scope, code, request_body, success_mode=success_mode, rule_source=rule_source)

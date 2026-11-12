@@ -10,7 +10,7 @@ Options for configuring how ComplexMarketData representing a 'curve' is interpre
 | **back_extrapolation_type** | **str** | Optional | What type of extrapolation is used to build the curve.    Imagine that the curve is facing the observer(you), then the \&quot;back\&quot; direction is the furthest point on the curve onward.  example: 30Y tenor to infinity    Default value: Flat. Available values: None, Flat, Linear. |
 | **interpolation_type** | **str** | Optional | What type of interpolation is used to build the curve. Default value: LinearOnRates. Available values: LinearOnRates, LinearOnLogOfRates, LinearOnDiscountFactors, LinearOnLogDiscountFactors, PiecewiseLinearForward, MonotoneConvex, LinearOnLogProbability. |
 | **origin_anchor** | **str** | Optional | How the curve builder anchors the origin of a bootstrapped curve, i.e. the value the curve  carries in front of its shortest calibration instrument. Default value: ZeroRate, the  historical anchor, under which existing curves are unchanged. Available values: ZeroRate, FirstInstrumentRate. |
-| **market_data_options_type** | **str** | Required | Available values: CurveOptions. Available values: CurveOptions. |
+| **market_data_options_type** | **str** | Required | Available values: CurveOptions, VolCubeOptions. Available values: CurveOptions, VolCubeOptions. |
 
 
 ## Usage
@@ -26,7 +26,7 @@ instance = CurveOptions(
     back_extrapolation_type="...",  # optional — What type of extrapolation is used to build the curve.    Imagine that the curve is facing the observer(you), then the \&quot;back\&quot; direction is the furthest point on the curve onward.  example: 30Y tenor to infinity    Default value: Flat. Available values: None, Flat, Linear.
     interpolation_type="...",  # optional — What type of interpolation is used to build the curve. Default value: LinearOnRates. Available values: LinearOnRates, LinearOnLogOfRates, LinearOnDiscountFactors, LinearOnLogDiscountFactors, PiecewiseLinearForward, MonotoneConvex, LinearOnLogProbability.
     origin_anchor="...",  # optional — How the curve builder anchors the origin of a bootstrapped curve, i.e. the value the curve  carries in front of its shortest calibration instrument. Default value: ZeroRate, the  historical anchor, under which existing curves are unchanged. Available values: ZeroRate, FirstInstrumentRate.
-    market_data_options_type="..."  # required — Available values: CurveOptions. Available values: CurveOptions.
+    market_data_options_type="..."  # required — Available values: CurveOptions, VolCubeOptions. Available values: CurveOptions, VolCubeOptions.
 )
 ```
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**get_matching_ruleset**](RecsApi.md#get_matching_ruleset) | **GET** /api/api/recs/matchingrulesets/{scope}/{code} | [EXPERIMENTAL] GetMatchingRuleset: GetMatchingRuleset
 [**get_rec_definition**](RecsApi.md#get_rec_definition) | **GET** /api/api/recs/definitions/{scope}/{code} | [EXPERIMENTAL] GetRecDefinition: GetRecDefinition
 [**get_rec_instance**](RecsApi.md#get_rec_instance) | **GET** /api/api/recs/instances/{instanceIdType}/{instanceIdValue} | [EXPERIMENTAL] GetRecInstance: GetRecInstance
-[**get_rec_result**](RecsApi.md#get_rec_result) | **GET** /api/api/recs/results/{instanceIdType}/{instanceIdValue}/{recType}/{runNumber}/{id} | [EXPERIMENTAL] GetRecResult: GetRecResult
+[**get_rec_result**](RecsApi.md#get_rec_result) | **GET** /api/api/recs/results/{instanceIdType}/{instanceIdValue}/{id} | [EXPERIMENTAL] GetRecResult: GetRecResult
 [**get_rec_result_set**](RecsApi.md#get_rec_result_set) | **GET** /api/api/recs/resultsets/{entityUniqueId} | [EXPERIMENTAL] GetRecResultSet: GetRecResultSet
 [**instantiate_rec**](RecsApi.md#instantiate_rec) | **POST** /api/api/recs/instances | [EXPERIMENTAL] InstantiateRec: InstantiateRec
 [**list_matching_rulesets**](RecsApi.md#list_matching_rulesets) | **GET** /api/api/recs/matchingrulesets | [EXPERIMENTAL] ListMatchingRulesets: ListMatchingRulesets
@@ -109,7 +109,7 @@ Add, edit or delete comments on rec results in a batch.  The batch limit per req
 
 ```python
 api_instance = api_client_factory.build(RecsApi)
-request_body = {"add-a-comment":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultId":"break-1","commentText":"Investigating this break."},"delete-a-comment":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultId":"break-1","commentId":"00000000-0000-0000-0000-000000000009"}} # Dict[str, BatchManageCommentRequest]
+request_body = {"add-a-comment":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","recResultId":"Holding-break-1","commentText":"Investigating this break."},"delete-a-comment":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","recResultId":"Holding-break-1","commentId":"00000000-0000-0000-0000-000000000009"}} # Dict[str, BatchManageCommentRequest]
 success_mode = 'Partial' # str (optional)
 api_response = api_instance.batch_manage_rec_result_comments(request_body, success_mode=success_mode)
 pprint(api_response)
@@ -153,7 +153,7 @@ Apply a batch of review actions (decisions, assignments, comments, properties) t
 
 ```python
 api_instance = api_client_factory.build(RecsApi)
-request_body = {"accept-a-break":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultIds":["break-1"],"decision":{"value":"Accept","affirm":false}},"force-match-two":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","runNumber":1,"recResultIds":["break-2","break-3"],"decision":{"value":"ForceMatch","affirm":false,"coreRulesExcused":["Broker Name"]}}} # Dict[str, BatchReviewRecResultRequest]
+request_body = {"accept-a-break":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","recResultIds":["Holding-break-1"],"decision":{"value":"Accept","affirm":false}},"force-match-two":{"instanceId":{"instanceIdType":"Manual","instanceIdValue":"00000000-0000-0000-0000-000000000001"},"recType":"Holding","recResultIds":["Holding-break-2","Holding-break-3"],"decision":{"value":"ForceMatch","affirm":false,"coreRulesExcused":["Broker Name"]}}} # Dict[str, BatchReviewRecResultRequest]
 success_mode = 'Partial' # str (optional)
 api_response = api_instance.batch_review_rec_results(request_body, success_mode=success_mode)
 pprint(api_response)
@@ -499,11 +499,11 @@ Name | Type | Description  | Notes
 ---
 
 # **get_rec_result**
-> RecResult getRecResult = get_rec_result(instance_id_type, instance_id_value, rec_type, run_number, id, as_at=as_at, property_keys=property_keys)
+> RecResult getRecResult = get_rec_result(instance_id_type, instance_id_value, id, as_at=as_at, property_keys=property_keys)
 
 [EXPERIMENTAL] GetRecResult: GetRecResult
 
-Retrieve a single rec result by its display id, as it stood in the run named.
+Retrieve a single rec result by its id.
 
 ### Example
 
@@ -511,12 +511,10 @@ Retrieve a single rec result by its display id, as it stood in the run named.
 api_instance = api_client_factory.build(RecsApi)
 instance_id_type = 'instance_id_type_example' # str
 instance_id_value = 'instance_id_value_example' # str
-rec_type = 'rec_type_example' # str
-run_number = 56 # int
 id = 'id_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
-api_response = api_instance.get_rec_result(instance_id_type, instance_id_value, rec_type, run_number, id, as_at=as_at, property_keys=property_keys)
+api_response = api_instance.get_rec_result(instance_id_type, instance_id_value, id, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -526,9 +524,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id_type** | **str**| How the instance was created: \&quot;WorkflowServiceTaskId\&quot; or \&quot;Manual\&quot;. Available values: WorkflowServiceTaskId, Manual. | [required] 
  **instance_id_value** | **str**| The unique identifier of the rec instance. | [required] 
- **rec_type** | **str**| The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. | [required] 
- **run_number** | **int**| The run of the instance whose view of the result is read. | [required] 
- **id** | **str**| The display id of the rec result, e.g. \&quot;break-3\&quot;. | [required] 
+ **id** | **str**| The id of the rec result, e.g. \&quot;Holding-break-3\&quot;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the result. Defaults to latest if not specified. | [optional] 
  **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto the result. The keys its matching ruleset populates always come back, so list only others here. | [optional] 
 
@@ -901,7 +897,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.
 
-Submit a rec result set review for approval, or resubmit after addressing requested revisions.
+A resubmission is refused while any flagged result awaits revision. If the request flagged no results, the review can be resubmitted at once.
 
 ### Example
 

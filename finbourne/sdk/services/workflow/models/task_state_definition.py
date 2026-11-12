@@ -30,7 +30,7 @@ class TaskStateDefinition(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The Name of this State") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of this State") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of this State") 
-    category:  Optional[StrictStr] = Field(default=None,alias="category", description="The category of this State") 
+    category:  Optional[StrictStr] = Field(default=None,alias="category", description="The category of this State. Free text; categories understood by the LUSID web app are: NotStarted, Waiting, Warning, Exceptions, InProgress, Error, CompletedSuccess, CompletedFail, AwaitingApproval, Critical, HighPriority, MediumPriority, LowPriority, Other") 
     __properties: ClassVar[List[str]] = ["name", "displayName", "description", "category"]
 
     model_config = ConfigDict(

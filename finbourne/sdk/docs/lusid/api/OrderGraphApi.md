@@ -35,7 +35,7 @@ api_instance = api_client_factory.build(OrderGraphApi)
 ---
 
 # **list_order_graph_blocks**
-> PagedResourceListOfOrderGraphBlock listOrderGraphBlocks = list_order_graph_blocks(as_at=as_at, pagination_token=pagination_token, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, use_compliance_v2=use_compliance_v2)
+> PagedResourceListOfOrderGraphBlock listOrderGraphBlocks = list_order_graph_blocks(as_at=as_at, pagination_token=pagination_token, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, use_compliance_v2=use_compliance_v2, include_swept=include_swept)
 
 ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.
 
@@ -52,7 +52,8 @@ limit = 56 # int (optional)
 filter = '' # str (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
 use_compliance_v2 = False # bool (optional)
-api_response = api_instance.list_order_graph_blocks(as_at=as_at, pagination_token=pagination_token, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, use_compliance_v2=use_compliance_v2)
+include_swept = True # bool (optional)
+api_response = api_instance.list_order_graph_blocks(as_at=as_at, pagination_token=pagination_token, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, use_compliance_v2=use_compliance_v2, include_swept=include_swept)
 pprint(api_response)
 ```
 
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
  **filter** | **str**| See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid | [optional] [default to &#39;&#39;]
  **property_keys** | [**List[str]**](../model/str.md)| Must be block-level properties. See https://support.lusid.com/docs/properties | [optional] 
  **use_compliance_v2** | **bool**| Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false) | [optional] [default to False]
+ **include_swept** | **bool**| Include Swept Order Blocks. (default: true) | [optional] [default to True]
 
 ### Return type
 

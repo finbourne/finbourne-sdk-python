@@ -28,15 +28,19 @@ from finbourne.sdk.services.lusid.models.writeback_suggestion import WritebackSu
 
 class RecResultTransactionItem(BaseModel):
     """
-    A transaction item within a rec result.  # noqa: E501
+    A transaction item within a rec result. Names the portfolio and the transaction's resolved instrument alongside,  for display.  # noqa: E501
     """
     portfolio_id: ResourceId = Field(alias="portfolioId")
+    portfolio_display_name:  Optional[StrictStr] = Field(default=None,alias="portfolioDisplayName", description="The display name of the item's portfolio, as it stood at the asAt the run read its data. Null where the run did not read it.") 
     transaction_id:  Optional[StrictStr] = Field(default=None,alias="transactionId", description="The transaction identifier.") 
+    transaction_instrument_scope:  Optional[StrictStr] = Field(default=None,alias="transactionInstrumentScope", description="The scope of the transaction's resolved instrument. Null where the source does not state one.") 
+    transaction_lusid_instrument_id:  Optional[StrictStr] = Field(default=None,alias="transactionLusidInstrumentId", description="The LUID of the transaction's resolved instrument. Null where the source does not state it.") 
+    transaction_instrument_name:  Optional[StrictStr] = Field(default=None,alias="transactionInstrumentName", description="The name of the transaction's resolved instrument, as it stood at the asAt the run read its data. Null where the run did not resolve it.") 
     holding_impacts: List[RecResultHoldingImpact] = Field(description="The holdings, and where the source states them the tax lots, the item impacted. A distinct set ordered by holdingId then taxLotId; may be empty. An input transaction has not run the movements engine and impacts nothing yet.", alias="holdingImpacts")
-    item_type:  StrictStr = Field(...,alias="itemType", description="The polymorphic item-type discriminator: Holding, ValuedHolding, Transaction, SettlementActivity or RelationalDataPoint. Names the item rather than the rec type: Holding and CashHolding recs produce Holding items, a Valuation rec produces ValuedHolding items, both transaction rec types produce Transaction items, and a relational dataset side produces RelationalDataPoint items whatever the rec type. Available values: SettlementActivity, Holding, Transaction, ValuedHolding, RelationalDataPoint.") 
+    item_type:  StrictStr = Field(...,alias="itemType", description="The polymorphic item-type discriminator: Holding, ValuedHolding, Transaction, SettlementActivity, RelationalDataPoint or the entity type of a LusidEntity rec. Names the item rather than the rec type: Holding and CashHolding recs produce Holding items, a Valuation rec produces ValuedHolding items, both transaction rec types produce Transaction items, and a relational dataset side produces RelationalDataPoint items whatever the rec type. A LusidEntity rec produces items of its entity type, for example Instrument items. Available values: SettlementActivity, Holding, Transaction, ValuedHolding, RelationalDataPoint, Instrument, LegalEntity, Portfolio.") 
     rule_and_attribute_values: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The core rule, aggregate rule and supplemental attribute values for the item, keyed by name.", alias="ruleAndAttributeValues")
     writeback_suggestions: List[WritebackSuggestion] = Field(description="The writebacks suggested against this item, as configured by the matching ruleset's writebackConfigurations. Only ever populated on target-side items. Suggestions only: a user is expected to review them before acting. Required, but may be empty.", alias="writebackSuggestions")
-    __properties: ClassVar[List[str]] = ["portfolioId", "transactionId", "holdingImpacts", "itemType", "ruleAndAttributeValues", "writebackSuggestions"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "portfolioDisplayName", "transactionId", "transactionInstrumentScope", "transactionLusidInstrumentId", "transactionInstrumentName", "holdingImpacts", "itemType", "ruleAndAttributeValues", "writebackSuggestions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,10 +94,30 @@ class RecResultTransactionItem(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['writebackSuggestions'] = _items
+        # set to None if portfolio_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.portfolio_display_name is None and "portfolio_display_name" in self.model_fields_set:
+            _dict['portfolioDisplayName'] = None
+
         # set to None if transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.transaction_id is None and "transaction_id" in self.model_fields_set:
             _dict['transactionId'] = None
+
+        # set to None if transaction_instrument_scope (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_instrument_scope is None and "transaction_instrument_scope" in self.model_fields_set:
+            _dict['transactionInstrumentScope'] = None
+
+        # set to None if transaction_lusid_instrument_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_lusid_instrument_id is None and "transaction_lusid_instrument_id" in self.model_fields_set:
+            _dict['transactionLusidInstrumentId'] = None
+
+        # set to None if transaction_instrument_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.transaction_instrument_name is None and "transaction_instrument_name" in self.model_fields_set:
+            _dict['transactionInstrumentName'] = None
 
         # set to None if rule_and_attribute_values (nullable) is None
         # and model_fields_set contains the field
@@ -113,7 +137,11 @@ class RecResultTransactionItem(BaseModel):
 
         _obj = RecResultTransactionItem.model_validate({
             "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
+            "portfolio_display_name": obj.get("portfolioDisplayName"),
             "transaction_id": obj.get("transactionId"),
+            "transaction_instrument_scope": obj.get("transactionInstrumentScope"),
+            "transaction_lusid_instrument_id": obj.get("transactionLusidInstrumentId"),
+            "transaction_instrument_name": obj.get("transactionInstrumentName"),
             "holding_impacts": [RecResultHoldingImpact.from_dict(_item) for _item in _v] if (_v := obj.get("holdingImpacts")) is not None else None,
             "item_type": obj.get("itemType"),
             "rule_and_attribute_values": obj.get("ruleAndAttributeValues"),

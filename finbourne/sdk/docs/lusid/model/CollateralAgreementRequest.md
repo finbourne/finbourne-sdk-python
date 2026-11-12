@@ -15,10 +15,14 @@ The request used to create a Collateral Agreement.
 | **rounding** | [MarginRounding](MarginRounding.md) | Required | *No description available.* |
 | **settlement_lag** | [MarginSettlementLag](MarginSettlementLag.md) | Required | *No description available.* |
 | **match_tolerance** | **float** | Optional | The tolerance within which our margin figure and the counterparty&#39;s are considered to match. Optional. |
+| **funding** | [CollateralFundingTerms](CollateralFundingTerms.md) | Optional | *No description available.* |
+| **optimisation** | [CollateralOptimisationTerms](CollateralOptimisationTerms.md) | Optional | *No description available.* |
 | **variation_margin** | [List[MarginItem]](MarginItem.md) | Optional | The variation margin arrangements under the agreement. |
 | **initial_margin** | [List[MarginItem]](MarginItem.md) | Optional | The initial margin arrangements under the agreement. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties to decorate onto the Collateral Agreement. Filterable. |
 | **effective_at** | **datetime** | Optional | The effective datetime from which the Collateral Agreement applies. Defaults to the beginning of time if not specified, so that the agreement is visible at every effective datetime. |
+| **notification_cut_label** | **str** | Optional | The cut label giving the time of day by which collateral we deliver under a margin call must settle. Each run resolves it on the business date and records it as the call&#39;s deadline; the allocation excludes assets that cannot settle by it. Optional. |
+| **return_notification_cut_label** | **str** | Optional | The cut label giving the time of day by which collateral the counterparty delivers, or returns to us, must settle. Recorded as the deadline of the calls they post under. Optional. |
 
 
 ## Usage
@@ -39,10 +43,14 @@ instance = CollateralAgreementRequest(
     rounding=MarginRounding(...),  # required
     settlement_lag=MarginSettlementLag(...),  # required
     match_tolerance=0.0,  # optional — The tolerance within which our margin figure and the counterparty&#39;s are considered to match. Optional.
+    funding=CollateralFundingTerms(...),  # optional
+    optimisation=CollateralOptimisationTerms(...),  # optional
     variation_margin=[],  # optional — The variation margin arrangements under the agreement.
     initial_margin=[],  # optional — The initial margin arrangements under the agreement.
     properties=ModelProperty(...),  # optional — A set of properties to decorate onto the Collateral Agreement. Filterable.
-    effective_at=datetime.now()  # optional — The effective datetime from which the Collateral Agreement applies. Defaults to the beginning of time if not specified, so that the agreement is visible at every effective datetime.
+    effective_at=datetime.now(),  # optional — The effective datetime from which the Collateral Agreement applies. Defaults to the beginning of time if not specified, so that the agreement is visible at every effective datetime.
+    notification_cut_label="...",  # optional — The cut label giving the time of day by which collateral we deliver under a margin call must settle. Each run resolves it on the business date and records it as the call&#39;s deadline; the allocation excludes assets that cannot settle by it. Optional.
+    return_notification_cut_label="..."  # optional — The cut label giving the time of day by which collateral the counterparty delivers, or returns to us, must settle. Recorded as the deadline of the calls they post under. Optional.
 )
 ```
 
@@ -50,6 +58,8 @@ instance = CollateralAgreementRequest(
 - [ResourceId](ResourceId.md)
 - [MarginRounding](MarginRounding.md)
 - [MarginSettlementLag](MarginSettlementLag.md)
+- [CollateralFundingTerms](CollateralFundingTerms.md)
+- [CollateralOptimisationTerms](CollateralOptimisationTerms.md)
 - [MarginItem](MarginItem.md) — used in `variation_margin`
 - [MarginItem](MarginItem.md) — used in `initial_margin`
 - [ModelProperty](ModelProperty.md) — used in `properties`

@@ -1414,19 +1414,15 @@ class RecsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_rec_result(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
+    def get_rec_result(self, instance_id_type: StrictStr, instance_id_value: StrictStr, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
         """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-        Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
+        Retrieve a single rec result by its id.  # noqa: E501
         :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
         :type instance_id_type: str
         :param instance_id_value: The unique identifier of the rec instance. (required)
         :type instance_id_value: str
-        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. (required)
-        :type rec_type: str
-        :param run_number: The run of the instance whose view of the result is read. (required)
-        :type run_number: int
-        :param id: The display id of the rec result, e.g. \"break-3\". (required)
+        :param id: The id of the rec result, e.g. \"Holding-break-3\". (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
@@ -1442,23 +1438,19 @@ class RecsApi:
             message = "Error! Please call the get_rec_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_rec_result_with_http_info(instance_id_type, instance_id_value, rec_type, run_number, id, as_at, property_keys, **kwargs)
+        response = self.get_rec_result_with_http_info(instance_id_type, instance_id_value, id, as_at, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_rec_result_with_http_info(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
+    def get_rec_result_with_http_info(self, instance_id_type: StrictStr, instance_id_value: StrictStr, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
         """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-        Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
+        Retrieve a single rec result by its id.  # noqa: E501
         :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
         :type instance_id_type: str
         :param instance_id_value: The unique identifier of the rec instance. (required)
         :type instance_id_value: str
-        :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. (required)
-        :type rec_type: str
-        :param run_number: The run of the instance whose view of the result is read. (required)
-        :type run_number: int
-        :param id: The display id of the rec result, e.g. \"break-3\". (required)
+        :param id: The id of the rec result, e.g. \"Holding-break-3\". (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
         :type as_at: datetime
@@ -1489,8 +1481,6 @@ class RecsApi:
         _all_params = [
             'instance_id_type',
             'instance_id_value',
-            'rec_type',
-            'run_number',
             'id',
             'as_at',
             'property_keys'
@@ -1526,12 +1516,6 @@ class RecsApi:
 
         if _params['instance_id_value'] is not None:
             _path_params['instanceIdValue'] = _params['instance_id_value']
-
-        if _params['rec_type'] is not None:
-            _path_params['recType'] = _params['rec_type']
-
-        if _params['run_number'] is not None:
-            _path_params['runNumber'] = _params['run_number']
 
         if _params['id'] is not None:
             _path_params['id'] = _params['id']
@@ -1569,7 +1553,7 @@ class RecsApi:
         }
 
         return self.sync_api_client.call_api(
-            '/api/api/recs/results/{instanceIdType}/{instanceIdValue}/{recType}/{runNumber}/{id}', 'GET',
+            '/api/api/recs/results/{instanceIdType}/{instanceIdValue}/{id}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2661,7 +2645,7 @@ class RecsApi:
     def submit_rec_result_set_review(self, entity_unique_id: StrictStr, submit_rec_result_set_review_request: SubmitRecResultSetReviewRequest, **kwargs) -> RecResultSet:
         """[EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
 
-        Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
+        A resubmission is refused while any flagged result awaits revision. If the request flagged no results, the review can be resubmitted at once.  # noqa: E501
         :param entity_unique_id: The entity unique id of the rec result set (its version.entityUniqueId). (required)
         :type entity_unique_id: str
         :param submit_rec_result_set_review_request: The submission request. (required)
@@ -2683,7 +2667,7 @@ class RecsApi:
     def submit_rec_result_set_review_with_http_info(self, entity_unique_id: StrictStr, submit_rec_result_set_review_request: SubmitRecResultSetReviewRequest, **kwargs) -> ApiResponse[RecResultSet]:
         """[EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
 
-        Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
+        A resubmission is refused while any flagged result awaits revision. If the request flagged no results, the review can be resubmitted at once.  # noqa: E501
         :param entity_unique_id: The entity unique id of the rec result set (its version.entityUniqueId). (required)
         :type entity_unique_id: str
         :param submit_rec_result_set_review_request: The submission request. (required)
@@ -4720,19 +4704,15 @@ class RecsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_rec_result_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
+    async def get_rec_result_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
             """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
-            Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
+            Retrieve a single rec result by its id.  # noqa: E501
             
             :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
             :type instance_id_type: str
             :param instance_id_value: The unique identifier of the rec instance. (required)
             :type instance_id_value: str
-            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. (required)
-            :type rec_type: str
-            :param run_number: The run of the instance whose view of the result is read. (required)
-            :type run_number: int
-            :param id: The display id of the rec result, e.g. \"break-3\". (required)
+            :param id: The id of the rec result, e.g. \"Holding-break-3\". (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
@@ -4748,24 +4728,20 @@ class RecsApi:
                 message = "Error! Please call the get_rec_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_rec_result_with_http_info_async(instance_id_type, instance_id_value, rec_type, run_number, id, as_at, property_keys, **kwargs)
+            response = await self.get_rec_result_with_http_info_async(instance_id_type, instance_id_value, id, as_at, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_rec_result_with_http_info_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, rec_type: StrictStr, run_number: int, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
+    async def get_rec_result_with_http_info_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
             """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
 
-            Retrieve a single rec result by its display id, as it stood in the run named.  # noqa: E501
+            Retrieve a single rec result by its id.  # noqa: E501
 
             :param instance_id_type: How the instance was created: \"WorkflowServiceTaskId\" or \"Manual\". Available values: WorkflowServiceTaskId, Manual. (required)
             :type instance_id_type: str
             :param instance_id_value: The unique identifier of the rec instance. (required)
             :type instance_id_value: str
-            :param rec_type: The rec type the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument. (required)
-            :type rec_type: str
-            :param run_number: The run of the instance whose view of the result is read. (required)
-            :type run_number: int
-            :param id: The display id of the rec result, e.g. \"break-3\". (required)
+            :param id: The id of the rec result, e.g. \"Holding-break-3\". (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
             :type as_at: datetime
@@ -4796,8 +4772,6 @@ class RecsApi:
             _all_params = [
                 'instance_id_type',
                 'instance_id_value',
-                'rec_type',
-                'run_number',
                 'id',
                 'as_at',
                 'property_keys'
@@ -4833,12 +4807,6 @@ class RecsApi:
 
             if _params['instance_id_value'] is not None:
                 _path_params['instanceIdValue'] = _params['instance_id_value']
-
-            if _params['rec_type'] is not None:
-                _path_params['recType'] = _params['rec_type']
-
-            if _params['run_number'] is not None:
-                _path_params['runNumber'] = _params['run_number']
 
             if _params['id'] is not None:
                 _path_params['id'] = _params['id']
@@ -4876,7 +4844,7 @@ class RecsApi:
             }
 
             return await self.api_client.call_api_async(
-                '/api/api/recs/results/{instanceIdType}/{instanceIdValue}/{recType}/{runNumber}/{id}', 'GET',
+                '/api/api/recs/results/{instanceIdType}/{instanceIdValue}/{id}', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -5974,7 +5942,7 @@ class RecsApi:
     @validate_call
     async def submit_rec_result_set_review_async(self, entity_unique_id: StrictStr, submit_rec_result_set_review_request: SubmitRecResultSetReviewRequest, **kwargs) -> RecResultSet:
             """[EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
-            Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
+            A resubmission is refused while any flagged result awaits revision. If the request flagged no results, the review can be resubmitted at once.  # noqa: E501
             
             :param entity_unique_id: The entity unique id of the rec result set (its version.entityUniqueId). (required)
             :type entity_unique_id: str
@@ -5997,7 +5965,7 @@ class RecsApi:
     async def submit_rec_result_set_review_with_http_info_async(self, entity_unique_id: StrictStr, submit_rec_result_set_review_request: SubmitRecResultSetReviewRequest, **kwargs) -> ApiResponse[RecResultSet]:
             """[EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
 
-            Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
+            A resubmission is refused while any flagged result awaits revision. If the request flagged no results, the review can be resubmitted at once.  # noqa: E501
 
             :param entity_unique_id: The entity unique id of the rec result set (its version.entityUniqueId). (required)
             :type entity_unique_id: str

@@ -21,7 +21,9 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.margin_run_allocation import MarginRunAllocation
 from finbourne.sdk.services.lusid.models.margin_run_issue import MarginRunIssue
+from finbourne.sdk.services.lusid.models.margin_run_optimisation import MarginRunOptimisation
 from finbourne.sdk.services.lusid.models.margin_run_shard import MarginRunShard
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
@@ -43,8 +45,11 @@ class MarginRun(BaseModel):
     failed_shards: StrictInt = Field(description="The number of shards that failed to value.", alias="failedShards")
     issues: List[MarginRunIssue] = Field(description="Agreements the run could not value or roll up into a call, or the caller may not calculate margin for, with the reason.")
     shards: List[MarginRunShard] = Field(description="The valuation shards the run is planned as, with their progress.")
-    scenario: Optional[ResourceId] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "effectiveAt", "asAt", "status", "agreements", "callCount", "lineCount", "shardCount", "completedShards", "failedShards", "issues", "shards", "scenario"]
+    scenarios: List[ResourceId] = Field(description="The stored scenarios the run values the agreements under, each beside the base market the run always values. Empty if only the base market was valued.")
+    capture_diagnostics: Optional[StrictBool] = Field(default=None, description="Whether the run stored the working behind its figures, so that they can be explained. Null for a run made before runs could store it, which did not.", alias="captureDiagnostics")
+    optimisation: Optional[MarginRunOptimisation] = None
+    allocation: Optional[MarginRunAllocation] = None
+    __properties: ClassVar[List[str]] = ["href", "id", "effectiveAt", "asAt", "status", "agreements", "callCount", "lineCount", "shardCount", "completedShards", "failedShards", "issues", "shards", "scenarios", "captureDiagnostics", "optimisation", "allocation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,13 +106,28 @@ class MarginRun(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['shards'] = _items
-        # override the default output from pydantic by calling `to_dict()` of scenario
-        if self.scenario:
-            _dict['scenario'] = self.scenario.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in scenarios (list)
+        _items = []
+        if self.scenarios:
+            for _item in self.scenarios:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['scenarios'] = _items
+        # override the default output from pydantic by calling `to_dict()` of optimisation
+        if self.optimisation:
+            _dict['optimisation'] = self.optimisation.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of allocation
+        if self.allocation:
+            _dict['allocation'] = self.allocation.to_dict(by_alias=by_alias)
         # set to None if href (nullable) is None
         # and model_fields_set contains the field
         if self.href is None and "href" in self.model_fields_set:
             _dict['href'] = None
+
+        # set to None if capture_diagnostics (nullable) is None
+        # and model_fields_set contains the field
+        if self.capture_diagnostics is None and "capture_diagnostics" in self.model_fields_set:
+            _dict['captureDiagnostics'] = None
 
         return _dict
 
@@ -134,7 +154,10 @@ class MarginRun(BaseModel):
             "failed_shards": obj.get("failedShards"),
             "issues": [MarginRunIssue.from_dict(_item) for _item in _v] if (_v := obj.get("issues")) is not None else None,
             "shards": [MarginRunShard.from_dict(_item) for _item in _v] if (_v := obj.get("shards")) is not None else None,
-            "scenario": ResourceId.from_dict(_v) if (_v := obj.get("scenario")) is not None else None
+            "scenarios": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("scenarios")) is not None else None,
+            "capture_diagnostics": obj.get("captureDiagnostics"),
+            "optimisation": MarginRunOptimisation.from_dict(_v) if (_v := obj.get("optimisation")) is not None else None,
+            "allocation": MarginRunAllocation.from_dict(_v) if (_v := obj.get("allocation")) is not None else None
         })
         return _obj
 

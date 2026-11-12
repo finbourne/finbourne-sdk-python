@@ -5,7 +5,7 @@ The per-result review axis: the workflow state and the recorded review decision.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **status** | **str** | Required | The review workflow state: NotRequired, Required or Reviewed. Available values: NotRequired, Required, Reviewed. |
+| **status** | **str** | Required | The review workflow state: NotRequired, Required or Reviewed. The review configuration sets it. A run sets it to Required when a Force Match no longer holds. Available values: NotRequired, Required, Reviewed. |
 | **decision** | **str** | Optional | The recorded review decision. Null until a decision is made. Available values: Acknowledge, FixAtSource, FixAsGroup, Accept, ForceMatch, Tolerate. |
 | **decision_group** | [RecResultDecisionGroup](RecResultDecisionGroup.md) | Optional | *No description available.* |
 
@@ -18,7 +18,7 @@ The per-result review axis: the workflow state and the recorded review decision.
 from finbourne.sdk.services.lusid.models.RecResultReview import RecResultReview
 
 instance = RecResultReview(
-    status="...",  # required — The review workflow state: NotRequired, Required or Reviewed. Available values: NotRequired, Required, Reviewed.
+    status="...",  # required — The review workflow state: NotRequired, Required or Reviewed. The review configuration sets it. A run sets it to Required when a Force Match no longer holds. Available values: NotRequired, Required, Reviewed.
     decision="...",  # optional — The recorded review decision. Null until a decision is made. Available values: Acknowledge, FixAtSource, FixAsGroup, Accept, ForceMatch, Tolerate.
     decision_group=RecResultDecisionGroup(...)  # optional
 )
