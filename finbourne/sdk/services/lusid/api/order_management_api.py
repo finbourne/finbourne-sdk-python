@@ -1388,7 +1388,7 @@ class OrderManagementApi:
 
     @validate_call
     def run_allocation_service_with_weights(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> AllocationServiceRunResponse:
-        """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
+        """RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
 
         Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
         :param weighted_allocation_service_run_request: The placement IDs to allocate against, and the portfolio weights to use for the allocation split. (required)
@@ -1412,7 +1412,7 @@ class OrderManagementApi:
 
     @validate_call
     def run_allocation_service_with_weights_with_http_info(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
-        """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
+        """RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
 
         Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
         :param weighted_allocation_service_run_request: The placement IDs to allocate against, and the portfolio weights to use for the allocation split. (required)
@@ -3241,7 +3241,7 @@ class OrderManagementApi:
 
     @validate_call
     async def run_allocation_service_with_weights_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> AllocationServiceRunResponse:
-            """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
+            """RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
             Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
             
             :param weighted_allocation_service_run_request: The placement IDs to allocate against, and the portfolio weights to use for the allocation split. (required)
@@ -3265,7 +3265,7 @@ class OrderManagementApi:
 
     @validate_call
     async def run_allocation_service_with_weights_with_http_info_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, cancel_and_correct: Optional[bool] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
-            """[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
+            """RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights  # noqa: E501
 
             Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.  # noqa: E501
 

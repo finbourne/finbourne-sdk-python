@@ -8,8 +8,9 @@ An individual reconciliation result — the aggregate result for a set of core r
 | **id** | **str** | Required | The id of the result within its instance: its rec type, result type and result number, e.g. &#39;Holding-break-3&#39;. Unique within the instance, and kept across its runs for as long as the result keeps its result type. |
 | **result_number** | **int** | Required | The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned. |
 | **first_run_seen** | **int** | Required | The run in which the result was first assigned its id. |
-| **rec_type** | **str** | Required | The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
+| **rec_type** | **str** | Required | The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio, CustomEntity. |
 | **external_rec_type_name** | **str** | Optional | The client&#39;s name for an External rec type, as stamped from the matching ruleset&#39;s externalRecType when the run executed. Null for native rec types. Filterable. |
+| **custom_entity_type** | **str** | Optional | The name of the custom entity type, which starts with ~. Set when the rec type is CustomEntity and null for every other rec type. Filterable. |
 | **instance_id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
 | **as_at_instantiated** | **datetime** | Required | The asAt datetime at which the instance was first created. |
 | **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
@@ -47,8 +48,9 @@ instance = RecResult(
     id="...",  # required — The id of the result within its instance: its rec type, result type and result number, e.g. &#39;Holding-break-3&#39;. Unique within the instance, and kept across its runs for as long as the result keeps its result type.
     result_number=0,  # required — The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned.
     first_run_seen=0,  # required — The run in which the result was first assigned its id.
-    rec_type="...",  # required — The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
+    rec_type="...",  # required — The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio, CustomEntity.
     external_rec_type_name="...",  # optional — The client&#39;s name for an External rec type, as stamped from the matching ruleset&#39;s externalRecType when the run executed. Null for native rec types. Filterable.
+    custom_entity_type="...",  # optional — The name of the custom entity type, which starts with ~. Set when the rec type is CustomEntity and null for every other rec type. Filterable.
     instance_id=RecInstanceId(...),  # required
     as_at_instantiated=datetime.now(),  # required — The asAt datetime at which the instance was first created.
     rec_definition_id=ResourceId(...),  # required

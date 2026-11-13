@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the matching ruleset. |
-| **rec_type** | **str** | Required | The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
+| **rec_type** | **str** | Required | The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. A custom entity type is written as its name, which starts with ~. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
 | **external_rec_type** | [ExternalRecType](ExternalRecType.md) | Optional | *No description available.* |
 | **dataset_schemas** | [RecDatasetSchemas](RecDatasetSchemas.md) | Optional | *No description available.* |
 | **filters** | [GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
@@ -28,7 +28,7 @@ from finbourne.sdk.services.lusid.models.UpdateMatchingRulesetRequest import Upd
 
 instance = UpdateMatchingRulesetRequest(
     display_name="...",  # required — The name of the matching ruleset.
-    rec_type="...",  # required — The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
+    rec_type="...",  # required — The type of reconciliation to perform. External reconciles non-native data on both sides, described by the datasetSchemas and the externalRecType. A custom entity type is written as its name, which starts with ~. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
     external_rec_type=ExternalRecType(...),  # optional
     dataset_schemas=RecDatasetSchemas(...),  # optional
     filters=GroupReconciliationFilters(...),  # optional

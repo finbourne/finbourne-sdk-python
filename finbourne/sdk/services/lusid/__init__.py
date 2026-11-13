@@ -1574,6 +1574,7 @@ from finbourne.sdk.services.lusid.models.rec_result import RecResult
 from finbourne.sdk.services.lusid.models.rec_result_assignment_update import RecResultAssignmentUpdate
 from finbourne.sdk.services.lusid.models.rec_result_count_by_review_status import RecResultCountByReviewStatus
 from finbourne.sdk.services.lusid.models.rec_result_counts import RecResultCounts
+from finbourne.sdk.services.lusid.models.rec_result_custom_entity_item import RecResultCustomEntityItem
 from finbourne.sdk.services.lusid.models.rec_result_decision_group import RecResultDecisionGroup
 from finbourne.sdk.services.lusid.models.rec_result_decision_update import RecResultDecisionUpdate
 from finbourne.sdk.services.lusid.models.rec_result_exception import RecResultException
@@ -3801,6 +3802,7 @@ __all__ = [
     "RecResultAssignmentUpdate",
     "RecResultCountByReviewStatus",
     "RecResultCounts",
+    "RecResultCustomEntityItem",
     "RecResultDecisionGroup",
     "RecResultDecisionUpdate",
     "RecResultException",

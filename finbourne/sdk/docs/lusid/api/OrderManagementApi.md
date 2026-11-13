@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**place_blocks**](OrderManagementApi.md#place_blocks) | **POST** /api/api/ordermanagement/placeblocks | [EARLY ACCESS] PlaceBlocks: Places blocks for a given list of placement requests.
 [**preview_blocks**](OrderManagementApi.md#preview_blocks) | **POST** /api/api/ordermanagement/$previewblocks | PreviewBlocks: Preview the blocks a set of orders would form
 [**run_allocation_service**](OrderManagementApi.md#run_allocation_service) | **POST** /api/api/ordermanagement/allocate | RunAllocationService: Runs the Allocation Service
-[**run_allocation_service_with_weights**](OrderManagementApi.md#run_allocation_service_with_weights) | **POST** /api/api/ordermanagement/allocate/weighted | [EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
+[**run_allocation_service_with_weights**](OrderManagementApi.md#run_allocation_service_with_weights) | **POST** /api/api/ordermanagement/allocate/weighted | RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
 [**sweep_blocks**](OrderManagementApi.md#sweep_blocks) | **POST** /api/api/ordermanagement/SweepBlocks | [EXPERIMENTAL] SweepBlocks: Sweeps specified blocks, for each block that meets the requirements. The request may be partially successful.
 [**update_orders**](OrderManagementApi.md#update_orders) | **POST** /api/api/ordermanagement/updateorders | [EARLY ACCESS] UpdateOrders: Update existing orders
 [**update_placements**](OrderManagementApi.md#update_placements) | **POST** /api/api/ordermanagement/$updateplacements | [EARLY ACCESS] UpdatePlacements: Update existing placements
@@ -481,7 +481,7 @@ Name | Type | Description  | Notes
 # **run_allocation_service_with_weights**
 > AllocationServiceRunResponse runAllocationServiceWithWeights = run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm, cancel_and_correct=cancel_and_correct)
 
-[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
+RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
 
 Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.
 

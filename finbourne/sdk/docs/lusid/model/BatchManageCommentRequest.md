@@ -6,7 +6,7 @@ One item of a batch comment request. The operation (add/edit/delete) is inferred
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instance_id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
-| **rec_type** | **str** | Required | The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio. |
+| **rec_type** | **str** | Required | The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio, CustomEntity. |
 | **rec_result_id** | **str** | Required | The rec result the comment operation targets. |
 | **comment_id** | **str** | Optional | The comment id. Null with text &#x3D; add; provided with text &#x3D; edit; provided with null text &#x3D; delete. |
 | **comment_text** | **str** | Optional | The comment body. See operation inference. |
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.BatchManageCommentRequest import BatchM
 
 instance = BatchManageCommentRequest(
     instance_id=RecInstanceId(...),  # required
-    rec_type="...",  # required — The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio.
+    rec_type="...",  # required — The rec type whose results this item targets (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio, CustomEntity.
     rec_result_id="...",  # required — The rec result the comment operation targets.
     comment_id="...",  # optional — The comment id. Null with text &#x3D; add; provided with text &#x3D; edit; provided with null text &#x3D; delete.
     comment_text="..."  # optional — The comment body. See operation inference.

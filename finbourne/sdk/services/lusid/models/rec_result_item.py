@@ -20,6 +20,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, model_validator, conlist, ValidationError
+from finbourne.sdk.services.lusid.models.rec_result_custom_entity_item import RecResultCustomEntityItem
 from finbourne.sdk.services.lusid.models.rec_result_external_identifiers_item import RecResultExternalIdentifiersItem
 from finbourne.sdk.services.lusid.models.rec_result_holding_item import RecResultHoldingItem
 from finbourne.sdk.services.lusid.models.rec_result_relational_data_item import RecResultRelationalDataItem
@@ -28,26 +29,28 @@ from finbourne.sdk.services.lusid.models.rec_result_settlement_activity_item imp
 from finbourne.sdk.services.lusid.models.rec_result_transaction_item import RecResultTransactionItem
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
-RECRESULTITEM_ONE_OF_SCHEMAS = ["RecResultExternalIdentifiersItem", "RecResultHoldingItem", "RecResultRelationalDataItem", "RecResultResourceIdItem", "RecResultSettlementActivityItem", "RecResultTransactionItem"]
+RECRESULTITEM_ONE_OF_SCHEMAS = ["RecResultCustomEntityItem", "RecResultExternalIdentifiersItem", "RecResultHoldingItem", "RecResultRelationalDataItem", "RecResultResourceIdItem", "RecResultSettlementActivityItem", "RecResultTransactionItem"]
 
 class RecResultItem(BaseModel):
     """
     An individual item that makes up (one side of) a rec result. Polymorphic by itemType; each value has a  corresponding inherited class.
     """
+    # data type: RecResultCustomEntityItem
+    oneof_schema_1_validator: Optional[RecResultCustomEntityItem] = None
     # data type: RecResultExternalIdentifiersItem
-    oneof_schema_1_validator: Optional[RecResultExternalIdentifiersItem] = None
+    oneof_schema_2_validator: Optional[RecResultExternalIdentifiersItem] = None
     # data type: RecResultHoldingItem
-    oneof_schema_2_validator: Optional[RecResultHoldingItem] = None
+    oneof_schema_3_validator: Optional[RecResultHoldingItem] = None
     # data type: RecResultRelationalDataItem
-    oneof_schema_3_validator: Optional[RecResultRelationalDataItem] = None
+    oneof_schema_4_validator: Optional[RecResultRelationalDataItem] = None
     # data type: RecResultResourceIdItem
-    oneof_schema_4_validator: Optional[RecResultResourceIdItem] = None
+    oneof_schema_5_validator: Optional[RecResultResourceIdItem] = None
     # data type: RecResultSettlementActivityItem
-    oneof_schema_5_validator: Optional[RecResultSettlementActivityItem] = None
+    oneof_schema_6_validator: Optional[RecResultSettlementActivityItem] = None
     # data type: RecResultTransactionItem
-    oneof_schema_6_validator: Optional[RecResultTransactionItem] = None
+    oneof_schema_7_validator: Optional[RecResultTransactionItem] = None
     if TYPE_CHECKING:
-        actual_instance: Union[RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem]
+        actual_instance: Union[RecResultCustomEntityItem, RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem]
     else:
         actual_instance: Any
     one_of_schemas: ClassVar[List[str]] = RECRESULTITEM_ONE_OF_SCHEMAS
@@ -85,6 +88,12 @@ class RecResultItem(BaseModel):
         error_messages = []
         match = 0
         matchclass = ""
+        # validate data type: RecResultCustomEntityItem
+        if not isinstance(v, RecResultCustomEntityItem):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RecResultCustomEntityItem`")
+        else:
+            match += 1
+            matchclass = matchclass + " RecResultCustomEntityItem"
         # validate data type: RecResultExternalIdentifiersItem
         if not isinstance(v, RecResultExternalIdentifiersItem):
             error_messages.append(f"Error! Input type `{type(v)}` is not `RecResultExternalIdentifiersItem`")
@@ -123,10 +132,10 @@ class RecResultItem(BaseModel):
             matchclass = matchclass + " RecResultTransactionItem"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in RecResultItem with oneOf schemas: RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in RecResultItem with oneOf schemas: RecResultCustomEntityItem, RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in RecResultItem with oneOf schemas: RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in RecResultItem with oneOf schemas: RecResultCustomEntityItem, RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -147,6 +156,11 @@ class RecResultItem(BaseModel):
         _data_type = json.loads(json_str).get("itemType")
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `itemType` in the input.")
+
+        # check if data type is `RecResultCustomEntityItem`
+        if _data_type == "CustomEntity":
+            instance.actual_instance = RecResultCustomEntityItem.from_json(json_str)
+            return instance
 
         # check if data type is `RecResultHoldingItem`
         if _data_type == "Holding":
@@ -188,6 +202,24 @@ class RecResultItem(BaseModel):
             instance.actual_instance = RecResultHoldingItem.from_json(json_str)
             return instance
 
+        # deserialize data into RecResultCustomEntityItem
+        try:
+            # Enforce additionalProperties: false at the oneOf level so
+            # variants with disjoint field sets don't all match the same
+            # payload (the field-by-field from_dict below silently drops
+            # unknown keys, which would otherwise let every variant match).
+            _payload = json.loads(json_str)
+            if isinstance(_payload, dict):
+                _allowed = getattr(RecResultCustomEntityItem, "_RecResultCustomEntityItem__properties", None) or getattr(RecResultCustomEntityItem, "__properties", None)
+                if _allowed is not None:
+                    _extra = [k for k in _payload.keys() if k not in _allowed]
+                    if _extra:
+                        raise ValueError(f"Extra fields not permitted for RecResultCustomEntityItem: {_extra}")
+            instance.actual_instance = RecResultCustomEntityItem.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " RecResultCustomEntityItem"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into RecResultExternalIdentifiersItem
         try:
             # Enforce additionalProperties: false at the oneOf level so
@@ -299,10 +331,10 @@ class RecResultItem(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into RecResultItem with oneOf schemas: RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into RecResultItem with oneOf schemas: RecResultCustomEntityItem, RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into RecResultItem with oneOf schemas: RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into RecResultItem with oneOf schemas: RecResultCustomEntityItem, RecResultExternalIdentifiersItem, RecResultHoldingItem, RecResultRelationalDataItem, RecResultResourceIdItem, RecResultSettlementActivityItem, RecResultTransactionItem. Details: " + ", ".join(error_messages))
         else:
             return instance
 

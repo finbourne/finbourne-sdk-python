@@ -6,6 +6,7 @@ An individual item that makes up (one side of) a rec result. Polymorphic by item
 
 `RecResultItem` can be one of the following types:
 
+* [RecResultCustomEntityItem](./RecResultCustomEntityItem.md)
 * [RecResultExternalIdentifiersItem](./RecResultExternalIdentifiersItem.md)
 * [RecResultHoldingItem](./RecResultHoldingItem.md)
 * [RecResultRelationalDataItem](./RecResultRelationalDataItem.md)
@@ -21,8 +22,8 @@ An individual item that makes up (one side of) a rec result. Polymorphic by item
 from finbourne.sdk.services.lusid.models.RecResultItem import RecResultItem
 
 # Construct using any of the compatible types above
-rec_result_external_identifiers_item_instance = lusid.models.rec_result_external_identifiers_item.RecResultExternalIdentifiersItem(
-                        entity_scope = '', 
+rec_result_custom_entity_item_instance = lusid.models.rec_result_custom_entity_item.RecResultCustomEntityItem(
+                        entity_type = '', 
                         entity_unique_id = '', 
                         entity_display_name = '', 
                         identifiers = {
@@ -36,11 +37,12 @@ rec_result_external_identifiers_item_instance = lusid.models.rec_result_external
                             null
                             ], )
 
-instance = RecResultItem(rec_result_external_identifiers_item_instance)
+instance = RecResultItem(rec_result_custom_entity_item_instance)
 ```
 
 ## Related Models
 
+- [RecResultCustomEntityItem](./RecResultCustomEntityItem.md)
 - [RecResultExternalIdentifiersItem](./RecResultExternalIdentifiersItem.md)
 - [RecResultHoldingItem](./RecResultHoldingItem.md)
 - [RecResultRelationalDataItem](./RecResultRelationalDataItem.md)

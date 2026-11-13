@@ -1977,6 +1977,7 @@
 * [RecResultAssignmentUpdate](lusid/model/RecResultAssignmentUpdate.md)
 * [RecResultCountByReviewStatus](lusid/model/RecResultCountByReviewStatus.md)
 * [RecResultCounts](lusid/model/RecResultCounts.md)
+* [RecResultCustomEntityItem](lusid/model/RecResultCustomEntityItem.md)
 * [RecResultDecisionGroup](lusid/model/RecResultDecisionGroup.md)
 * [RecResultDecisionUpdate](lusid/model/RecResultDecisionUpdate.md)
 * [RecResultException](lusid/model/RecResultException.md)
