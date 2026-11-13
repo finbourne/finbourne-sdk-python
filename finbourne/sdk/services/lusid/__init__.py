@@ -1540,6 +1540,7 @@ from finbourne.sdk.services.lusid.models.realised_gain_loss_chargeable_gains imp
 from finbourne.sdk.services.lusid.models.realised_gain_loss_matched_lot import RealisedGainLossMatchedLot
 from finbourne.sdk.services.lusid.models.rec_activity_since_effective_at import RecActivitySinceEffectiveAt
 from finbourne.sdk.services.lusid.models.rec_activity_window import RecActivityWindow
+from finbourne.sdk.services.lusid.models.rec_aged_result import RecAgedResult
 from finbourne.sdk.services.lusid.models.rec_approval_decision import RecApprovalDecision
 from finbourne.sdk.services.lusid.models.rec_as_at_policy import RecAsAtPolicy
 from finbourne.sdk.services.lusid.models.rec_closed_exception_counts import RecClosedExceptionCounts
@@ -1590,6 +1591,9 @@ from finbourne.sdk.services.lusid.models.rec_result_review import RecResultRevie
 from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
 from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
 from finbourne.sdk.services.lusid.models.rec_result_settlement_activity_item import RecResultSettlementActivityItem
+from finbourne.sdk.services.lusid.models.rec_result_streak import RecResultStreak
+from finbourne.sdk.services.lusid.models.rec_result_streak_predecessor import RecResultStreakPredecessor
+from finbourne.sdk.services.lusid.models.rec_result_sub_streak import RecResultSubStreak
 from finbourne.sdk.services.lusid.models.rec_result_transaction_item import RecResultTransactionItem
 from finbourne.sdk.services.lusid.models.rec_review import RecReview
 from finbourne.sdk.services.lusid.models.rec_review_configuration import RecReviewConfiguration
@@ -1744,6 +1748,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_string import Resource
 from finbourne.sdk.services.lusid.models.resource_list_of_tax_classification import ResourceListOfTaxClassification
 from finbourne.sdk.services.lusid.models.resource_list_of_tax_classification_exception_record import ResourceListOfTaxClassificationExceptionRecord
 from finbourne.sdk.services.lusid.models.resource_list_of_tax_exception_item import ResourceListOfTaxExceptionItem
+from finbourne.sdk.services.lusid.models.resource_list_of_tax_provision import ResourceListOfTaxProvision
 from finbourne.sdk.services.lusid.models.resource_list_of_tax_rule_set import ResourceListOfTaxRuleSet
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction import ResourceListOfTransaction
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_fee_type import ResourceListOfTransactionFeeType
@@ -1838,6 +1843,7 @@ from finbourne.sdk.services.lusid.models.settlement_activity_query import Settle
 from finbourne.sdk.services.lusid.models.settlement_configuration_category import SettlementConfigurationCategory
 from finbourne.sdk.services.lusid.models.settlement_configuration_method_override import SettlementConfigurationMethodOverride
 from finbourne.sdk.services.lusid.models.settlement_cycle import SettlementCycle
+from finbourne.sdk.services.lusid.models.settlement_fx import SettlementFx
 from finbourne.sdk.services.lusid.models.settlement_in_lieu import SettlementInLieu
 from finbourne.sdk.services.lusid.models.settlement_instruction_amend_request import SettlementInstructionAmendRequest
 from finbourne.sdk.services.lusid.models.settlement_instruction_query import SettlementInstructionQuery
@@ -1923,6 +1929,7 @@ from finbourne.sdk.services.lusid.models.swing_trigger import SwingTrigger
 from finbourne.sdk.services.lusid.models.swing_trigger_evaluation import SwingTriggerEvaluation
 from finbourne.sdk.services.lusid.models.target_tax_lot import TargetTaxLot
 from finbourne.sdk.services.lusid.models.target_tax_lot_request import TargetTaxLotRequest
+from finbourne.sdk.services.lusid.models.tax_accounting_period import TaxAccountingPeriod
 from finbourne.sdk.services.lusid.models.tax_classification import TaxClassification
 from finbourne.sdk.services.lusid.models.tax_classification_decision_step import TaxClassificationDecisionStep
 from finbourne.sdk.services.lusid.models.tax_classification_detail import TaxClassificationDetail
@@ -1932,9 +1939,29 @@ from finbourne.sdk.services.lusid.models.tax_classification_field_version import
 from finbourne.sdk.services.lusid.models.tax_classification_inputs import TaxClassificationInputs
 from finbourne.sdk.services.lusid.models.tax_cost_record import TaxCostRecord
 from finbourne.sdk.services.lusid.models.tax_cost_record_request import TaxCostRecordRequest
+from finbourne.sdk.services.lusid.models.tax_deemed_disposal_response import TaxDeemedDisposalResponse
+from finbourne.sdk.services.lusid.models.tax_deemed_disposals_response import TaxDeemedDisposalsResponse
 from finbourne.sdk.services.lusid.models.tax_exception_item import TaxExceptionItem
 from finbourne.sdk.services.lusid.models.tax_exception_root_cause import TaxExceptionRootCause
+from finbourne.sdk.services.lusid.models.tax_fund_reconciliation_holding_response import TaxFundReconciliationHoldingResponse
+from finbourne.sdk.services.lusid.models.tax_fund_reconciliation_proxy_row import TaxFundReconciliationProxyRow
+from finbourne.sdk.services.lusid.models.tax_fund_reconciliation_response import TaxFundReconciliationResponse
+from finbourne.sdk.services.lusid.models.tax_ledger_reconciliation_holding_response import TaxLedgerReconciliationHoldingResponse
+from finbourne.sdk.services.lusid.models.tax_ledger_reconciliation_response import TaxLedgerReconciliationResponse
 from finbourne.sdk.services.lusid.models.tax_portfolio_sync_status import TaxPortfolioSyncStatus
+from finbourne.sdk.services.lusid.models.tax_provision import TaxProvision
+from finbourne.sdk.services.lusid.models.tax_provision_movement import TaxProvisionMovement
+from finbourne.sdk.services.lusid.models.tax_reconciliation_bridge_row import TaxReconciliationBridgeRow
+from finbourne.sdk.services.lusid.models.tax_reconciliation_difference_row import TaxReconciliationDifferenceRow
+from finbourne.sdk.services.lusid.models.tax_return_disposal_row import TaxReturnDisposalRow
+from finbourne.sdk.services.lusid.models.tax_return_excluded_row import TaxReturnExcludedRow
+from finbourne.sdk.services.lusid.models.tax_return_loan_relationship_row import TaxReturnLoanRelationshipRow
+from finbourne.sdk.services.lusid.models.tax_return_memo_row import TaxReturnMemoRow
+from finbourne.sdk.services.lusid.models.tax_return_response import TaxReturnResponse
+from finbourne.sdk.services.lusid.models.tax_return_spread_instalment import TaxReturnSpreadInstalment
+from finbourne.sdk.services.lusid.models.tax_return_transition_request import TaxReturnTransitionRequest
+from finbourne.sdk.services.lusid.models.tax_return_vintage import TaxReturnVintage
+from finbourne.sdk.services.lusid.models.tax_return_workflow_step import TaxReturnWorkflowStep
 from finbourne.sdk.services.lusid.models.tax_rule import TaxRule
 from finbourne.sdk.services.lusid.models.tax_rule_set import TaxRuleSet
 from finbourne.sdk.services.lusid.models.tax_sync_status import TaxSyncStatus
@@ -3768,6 +3795,7 @@ __all__ = [
     "RealisedGainLossMatchedLot",
     "RecActivitySinceEffectiveAt",
     "RecActivityWindow",
+    "RecAgedResult",
     "RecApprovalDecision",
     "RecAsAtPolicy",
     "RecClosedExceptionCounts",
@@ -3818,6 +3846,9 @@ __all__ = [
     "RecResultSet",
     "RecResultSetApprovalDecisionRequest",
     "RecResultSettlementActivityItem",
+    "RecResultStreak",
+    "RecResultStreakPredecessor",
+    "RecResultSubStreak",
     "RecResultTransactionItem",
     "RecReview",
     "RecReviewConfiguration",
@@ -3972,6 +4003,7 @@ __all__ = [
     "ResourceListOfTaxClassification",
     "ResourceListOfTaxClassificationExceptionRecord",
     "ResourceListOfTaxExceptionItem",
+    "ResourceListOfTaxProvision",
     "ResourceListOfTaxRuleSet",
     "ResourceListOfTransaction",
     "ResourceListOfTransactionFeeType",
@@ -4066,6 +4098,7 @@ __all__ = [
     "SettlementConfigurationCategory",
     "SettlementConfigurationMethodOverride",
     "SettlementCycle",
+    "SettlementFx",
     "SettlementInLieu",
     "SettlementInstructionAmendRequest",
     "SettlementInstructionQuery",
@@ -4151,6 +4184,7 @@ __all__ = [
     "SwingTriggerEvaluation",
     "TargetTaxLot",
     "TargetTaxLotRequest",
+    "TaxAccountingPeriod",
     "TaxClassification",
     "TaxClassificationDecisionStep",
     "TaxClassificationDetail",
@@ -4160,9 +4194,29 @@ __all__ = [
     "TaxClassificationInputs",
     "TaxCostRecord",
     "TaxCostRecordRequest",
+    "TaxDeemedDisposalResponse",
+    "TaxDeemedDisposalsResponse",
     "TaxExceptionItem",
     "TaxExceptionRootCause",
+    "TaxFundReconciliationHoldingResponse",
+    "TaxFundReconciliationProxyRow",
+    "TaxFundReconciliationResponse",
+    "TaxLedgerReconciliationHoldingResponse",
+    "TaxLedgerReconciliationResponse",
     "TaxPortfolioSyncStatus",
+    "TaxProvision",
+    "TaxProvisionMovement",
+    "TaxReconciliationBridgeRow",
+    "TaxReconciliationDifferenceRow",
+    "TaxReturnDisposalRow",
+    "TaxReturnExcludedRow",
+    "TaxReturnLoanRelationshipRow",
+    "TaxReturnMemoRow",
+    "TaxReturnResponse",
+    "TaxReturnSpreadInstalment",
+    "TaxReturnTransitionRequest",
+    "TaxReturnVintage",
+    "TaxReturnWorkflowStep",
     "TaxRule",
     "TaxRuleSet",
     "TaxSyncStatus",

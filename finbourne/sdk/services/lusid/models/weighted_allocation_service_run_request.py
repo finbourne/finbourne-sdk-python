@@ -30,7 +30,7 @@ class WeightedAllocationServiceRunRequest(BaseModel):
     The request body for the RunAllocationServiceWithWeights endpoint.  # noqa: E501
     """
     placement_ids: List[ResourceId] = Field(description="The set of Placement IDs to allocate.", alias="placementIds")
-    portfolio_weights: Optional[List[PortfolioWeight]] = Field(default=None, description="The set of Portfolios and their associated weights to use for allocation.", alias="portfolioWeights")
+    portfolio_weights: List[PortfolioWeight] = Field(description="The set of Portfolios and their associated weights to use for allocation.", alias="portfolioWeights")
     __properties: ClassVar[List[str]] = ["placementIds", "portfolioWeights"]
 
     model_config = ConfigDict(
@@ -81,11 +81,6 @@ class WeightedAllocationServiceRunRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['portfolioWeights'] = _items
-        # set to None if portfolio_weights (nullable) is None
-        # and model_fields_set contains the field
-        if self.portfolio_weights is None and "portfolio_weights" in self.model_fields_set:
-            _dict['portfolioWeights'] = None
-
         return _dict
 
     @classmethod

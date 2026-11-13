@@ -30,7 +30,9 @@ class CollateralInstrument(BaseModel):
     """
     units: Union[StrictFloat, StrictInt] = Field(description="The amount of the instrument in the basket for this repurchase agreement.")
     instrument: MasteredInstrument
-    __properties: ClassVar[List[str]] = ["units", "instrument"]
+    collateral_start_date: Optional[datetime] = Field(default=None, description="The date from which the instrument is held as collateral for this repurchase agreement.  Read only: an instrument upsert cannot set or change it. An existing value must be sent back unchanged.  When not set, the instrument is held from the StartDate of the FlexibleRepo.", alias="collateralStartDate")
+    collateral_end_date: Optional[datetime] = Field(default=None, description="The date on which the instrument stops being held as collateral for this repurchase agreement.  Read only: an instrument upsert cannot set or change it. An existing value must be sent back unchanged.  When not set, the instrument is held until the MaturityDate of the FlexibleRepo.", alias="collateralEndDate")
+    __properties: ClassVar[List[str]] = ["units", "instrument", "collateralStartDate", "collateralEndDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,16 @@ class CollateralInstrument(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of instrument
         if self.instrument:
             _dict['instrument'] = self.instrument.to_dict(by_alias=by_alias)
+        # set to None if collateral_start_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.collateral_start_date is None and "collateral_start_date" in self.model_fields_set:
+            _dict['collateralStartDate'] = None
+
+        # set to None if collateral_end_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.collateral_end_date is None and "collateral_end_date" in self.model_fields_set:
+            _dict['collateralEndDate'] = None
+
         return _dict
 
     @classmethod
@@ -82,7 +94,9 @@ class CollateralInstrument(BaseModel):
 
         _obj = CollateralInstrument.model_validate({
             "units": obj.get("units"),
-            "instrument": MasteredInstrument.from_dict(_v) if (_v := obj.get("instrument")) is not None else None
+            "instrument": MasteredInstrument.from_dict(_v) if (_v := obj.get("instrument")) is not None else None,
+            "collateral_start_date": obj.get("collateralStartDate"),
+            "collateral_end_date": obj.get("collateralEndDate")
         })
         return _obj
 

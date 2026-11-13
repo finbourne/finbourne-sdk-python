@@ -7,6 +7,7 @@ A Settlement Instruction with its Matched Transaction (if any)
 |------|------|----------|-------------|
 | **settlement_instruction** | [TransactionSettlementInstruction](TransactionSettlementInstruction.md) | Optional | *No description available.* |
 | **matched_transaction** | [OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
+| **settlement_fx** | [SettlementFx](SettlementFx.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.lusid.models.SettlementInstructionWithTransaction im
 
 instance = SettlementInstructionWithTransaction(
     settlement_instruction=TransactionSettlementInstruction(...),  # optional
-    matched_transaction=OutputTransaction(...)  # optional
+    matched_transaction=OutputTransaction(...),  # optional
+    settlement_fx=SettlementFx(...)  # optional
 )
 ```
 
@@ -27,6 +29,7 @@ instance = SettlementInstructionWithTransaction(
 
 - [TransactionSettlementInstruction](TransactionSettlementInstruction.md)
 - [OutputTransaction](OutputTransaction.md)
+- [SettlementFx](SettlementFx.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

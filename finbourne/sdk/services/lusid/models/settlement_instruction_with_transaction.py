@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.output_transaction import OutputTransaction
+from finbourne.sdk.services.lusid.models.settlement_fx import SettlementFx
 from finbourne.sdk.services.lusid.models.transaction_settlement_instruction import TransactionSettlementInstruction
 
 
@@ -31,7 +32,8 @@ class SettlementInstructionWithTransaction(BaseModel):
     """
     settlement_instruction: Optional[TransactionSettlementInstruction] = Field(default=None, alias="settlementInstruction")
     matched_transaction: Optional[OutputTransaction] = Field(default=None, alias="matchedTransaction")
-    __properties: ClassVar[List[str]] = ["settlementInstruction", "matchedTransaction"]
+    settlement_fx: Optional[SettlementFx] = Field(default=None, alias="settlementFx")
+    __properties: ClassVar[List[str]] = ["settlementInstruction", "matchedTransaction", "settlementFx"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +75,9 @@ class SettlementInstructionWithTransaction(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of matched_transaction
         if self.matched_transaction:
             _dict['matchedTransaction'] = self.matched_transaction.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of settlement_fx
+        if self.settlement_fx:
+            _dict['settlementFx'] = self.settlement_fx.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
@@ -86,7 +91,8 @@ class SettlementInstructionWithTransaction(BaseModel):
 
         _obj = SettlementInstructionWithTransaction.model_validate({
             "settlement_instruction": TransactionSettlementInstruction.from_dict(_v) if (_v := obj.get("settlementInstruction")) is not None else None,
-            "matched_transaction": OutputTransaction.from_dict(_v) if (_v := obj.get("matchedTransaction")) is not None else None
+            "matched_transaction": OutputTransaction.from_dict(_v) if (_v := obj.get("matchedTransaction")) is not None else None,
+            "settlement_fx": SettlementFx.from_dict(_v) if (_v := obj.get("settlementFx")) is not None else None
         })
         return _obj
 

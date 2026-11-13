@@ -10,7 +10,7 @@ An instrument event equipped with additional metadata.
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The set of identifiers which determine the instrument this event relates to. |
 | **lusid_instrument_id** | **str** | Required | The LUID for the instrument. |
 | **instrument_scope** | **str** | Required | The scope of the instrument. |
-| **description** | **str** | Required | The description of the instrument event. |
+| **description** | **str** | Optional | The description of the instrument event. |
 | **event_date_range** | [EventDateRange](EventDateRange.md) | Required | *No description available.* |
 | **completeness** | **str** | Optional | Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). Available values: Complete, Incomplete. *(read-only)* |
 | **instrument_event** | [InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
@@ -35,7 +35,7 @@ instance = InstrumentEventHolder(
     instrument_identifiers=,  # required — The set of identifiers which determine the instrument this event relates to.
     lusid_instrument_id="...",  # required — The LUID for the instrument.
     instrument_scope="...",  # required — The scope of the instrument.
-    description="...",  # required — The description of the instrument event.
+    description="...",  # optional — The description of the instrument event.
     event_date_range=EventDateRange(...),  # required
     completeness="...",  # optional — Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). Available values: Complete, Incomplete.
     instrument_event=InstrumentEvent(...),  # required

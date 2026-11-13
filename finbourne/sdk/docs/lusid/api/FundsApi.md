@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**accrue_carry**](FundsApi.md#accrue_carry) | **POST** /api/api/funds/{scope}/{code}/carry/$accrue | [EARLY ACCESS] AccrueCarry: [EXPERIMENTAL] AccrueCarry: Accrue carried interest to the Fund&#39;s partners.
 [**add_allocation_groups**](FundsApi.md#add_allocation_groups) | **POST** /api/api/funds/{scope}/{code}/allocationgroups | [EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.
 [**add_series**](FundsApi.md#add_series) | **POST** /api/api/funds/{scope}/{code}/series | [EARLY ACCESS] AddSeries: Add Series to a Fund.
+[**advance_tax_return**](FundsApi.md#advance_tax_return) | **POST** /api/api/funds/{scope}/{code}/tax/return/advance | [EARLY ACCESS] AdvanceTaxReturn: [EARLY ACCESS] AdvanceTaxReturn: Advance the tax return one workflow step.
+[**approve_tax_provision**](FundsApi.md#approve_tax_provision) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/{diaryEntryCode}/tax/provision/approve | [EARLY ACCESS] ApproveTaxProvision: [EARLY ACCESS] ApproveTaxProvision: Approve the deferred-tax provision of a Valuation Point.
 [**calculate_management_fees**](FundsApi.md#calculate_management_fees) | **POST** /api/api/funds/{scope}/{code}/fees/$calculate | [EARLY ACCESS] CalculateManagementFees: [EXPERIMENTAL] CalculateManagementFees: Calculate the management fee per partner for a period.
 [**create_facility**](FundsApi.md#create_facility) | **POST** /api/api/funds/{scope}/{code}/facilities | [EXPERIMENTAL] CreateFacility: [EXPERIMENTAL] CreateFacility: Create a Facility.
 [**create_fee**](FundsApi.md#create_fee) | **POST** /api/api/funds/{scope}/{code}/fees | [EARLY ACCESS] CreateFee: Create a Fee.
@@ -42,6 +44,14 @@ Method | HTTP request | Description
 [**get_partners**](FundsApi.md#get_partners) | **GET** /api/api/funds/{scope}/{code}/partners | [EARLY ACCESS] GetPartners: [EARLY ACCESS] GetPartners: Get the partners of a partnership fund.
 [**get_partnership_config_pack**](FundsApi.md#get_partnership_config_pack) | **GET** /api/api/funds/{scope}/{code}/partnershipaccounting/configpack | [EARLY ACCESS] GetPartnershipConfigPack: [EXPERIMENTAL] GetPartnershipConfigPack: Get the partnership configuration pack of a Fund.
 [**get_series**](FundsApi.md#get_series) | **GET** /api/api/funds/{scope}/{code}/series | [EARLY ACCESS] GetSeries: [EARLY ACCESS] GetSeries: List the Series of a Fund.
+[**get_tax_deemed_disposal**](FundsApi.md#get_tax_deemed_disposal) | **GET** /api/api/funds/{scope}/{code}/tax/deemed-disposals/{holdingId}/{date} | [EARLY ACCESS] GetTaxDeemedDisposal: [EARLY ACCESS] GetTaxDeemedDisposal: Get one deemed disposal.
+[**get_tax_deemed_disposals**](FundsApi.md#get_tax_deemed_disposals) | **GET** /api/api/funds/{scope}/{code}/tax/deemed-disposals | [EARLY ACCESS] GetTaxDeemedDisposals: [EARLY ACCESS] GetTaxDeemedDisposals: List the deemed disposals of a Fund or company.
+[**get_tax_fund_reconciliation**](FundsApi.md#get_tax_fund_reconciliation) | **GET** /api/api/funds/{scope}/{code}/tax/fund-reconciliation | [EARLY ACCESS] GetTaxFundReconciliation: [EARLY ACCESS] GetTaxFundReconciliation: Reconcile a company&#39;s tax figures to its member funds.
+[**get_tax_fund_reconciliation_holding**](FundsApi.md#get_tax_fund_reconciliation_holding) | **GET** /api/api/funds/{scope}/{code}/tax/fund-reconciliation/holdings/{holdingId} | [EARLY ACCESS] GetTaxFundReconciliationHolding: [EARLY ACCESS] GetTaxFundReconciliationHolding: Drill into one holding of the company-to-funds reconciliation.
+[**get_tax_ledger_reconciliation**](FundsApi.md#get_tax_ledger_reconciliation) | **GET** /api/api/funds/{scope}/{code}/tax/ledger-reconciliation | [EARLY ACCESS] GetTaxLedgerReconciliation: [EARLY ACCESS] GetTaxLedgerReconciliation: Reconcile the tax figures of a Fund or company to its ledger.
+[**get_tax_ledger_reconciliation_holding**](FundsApi.md#get_tax_ledger_reconciliation_holding) | **GET** /api/api/funds/{scope}/{code}/tax/ledger-reconciliation/holdings/{holdingId} | [EARLY ACCESS] GetTaxLedgerReconciliationHolding: [EARLY ACCESS] GetTaxLedgerReconciliationHolding: Drill into one holding of the tax-to-ledger reconciliation.
+[**get_tax_provision**](FundsApi.md#get_tax_provision) | **GET** /api/api/funds/{scope}/{code}/tax/provision | [EARLY ACCESS] GetTaxProvision: [EARLY ACCESS] GetTaxProvision: Get the deferred-tax provision of a Valuation Point.
+[**get_tax_return**](FundsApi.md#get_tax_return) | **GET** /api/api/funds/{scope}/{code}/tax/return | [EARLY ACCESS] GetTaxReturn: [EARLY ACCESS] GetTaxReturn: Get the year-end tax return of a Fund or company.
 [**get_tax_sync_status**](FundsApi.md#get_tax_sync_status) | **GET** /api/api/funds/{scope}/{code}/tax/sync | [EARLY ACCESS] GetTaxSyncStatus: [EARLY ACCESS] GetTaxSyncStatus: Get the tax sync position of each portfolio in a Fund.
 [**get_valuation_for_fund**](FundsApi.md#get_valuation_for_fund) | **POST** /api/api/funds/{scope}/{code}/$valuation | [EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.
 [**get_valuation_point_data**](FundsApi.md#get_valuation_point_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$query | [EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.
@@ -62,6 +72,7 @@ Method | HTTP request | Description
 [**list_tax_cost_records**](FundsApi.md#list_tax_cost_records) | **GET** /api/api/funds/{scope}/{code}/taxcostrecords | [EXPERIMENTAL] ListTaxCostRecords: [EXPERIMENTAL] ListTaxCostRecords: List Tax Cost Records for a specified Fund.
 [**list_tax_exceptions**](FundsApi.md#list_tax_exceptions) | **GET** /api/api/funds/{scope}/{code}/tax/exceptions | [EARLY ACCESS] ListTaxExceptions: [EARLY ACCESS] ListTaxExceptions: List the open tax exceptions of a Fund.
 [**list_tax_exceptions_across_funds**](FundsApi.md#list_tax_exceptions_across_funds) | **GET** /api/api/tax/exceptions | [EARLY ACCESS] ListTaxExceptionsAcrossFunds: [EARLY ACCESS] ListTaxExceptionsAcrossFunds: List the open tax exceptions across every Fund.
+[**list_tax_provisions**](FundsApi.md#list_tax_provisions) | **GET** /api/api/funds/{scope}/{code}/tax/provisions | [EARLY ACCESS] ListTaxProvisions: [EARLY ACCESS] ListTaxProvisions: List the deferred-tax provisions of a Fund.
 [**list_valuation_point_complex_market_data**](FundsApi.md#list_valuation_point_complex_market_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/complexmarketdata/$query | [EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
 [**list_valuation_point_instruments**](FundsApi.md#list_valuation_point_instruments) | **GET** /api/api/funds/{scope}/{code}/valuationpoints/instruments/$query | [EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point
 [**list_valuation_point_overview**](FundsApi.md#list_valuation_point_overview) | **GET** /api/api/funds/{scope}/{code}/valuationPointOverview | [EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
@@ -72,6 +83,7 @@ Method | HTTP request | Description
 [**query_cash_statement_local_currency**](FundsApi.md#query_cash_statement_local_currency) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/cashstatementlocalcurrency/$query | [EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.
 [**revert_valuation_point_to_estimate**](FundsApi.md#revert_valuation_point_to_estimate) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$reverttoestimate | [EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.
 [**run_partner_allocations**](FundsApi.md#run_partner_allocations) | **POST** /api/api/funds/{scope}/{code}/partnerallocations/$run | [EARLY ACCESS] RunPartnerAllocations: [EXPERIMENTAL] RunPartnerAllocations: Allocate a period&#39;s income to the Fund&#39;s partners.
+[**send_back_tax_return**](FundsApi.md#send_back_tax_return) | **POST** /api/api/funds/{scope}/{code}/tax/return/send-back | [EARLY ACCESS] SendBackTaxReturn: [EARLY ACCESS] SendBackTaxReturn: Send the tax return back one workflow step.
 [**set_share_class_instruments**](FundsApi.md#set_share_class_instruments) | **PUT** /api/api/funds/{scope}/{code}/shareclasses | [EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.
 [**update_valuation_point**](FundsApi.md#update_valuation_point) | **PUT** /api/api/funds/{scope}/{code}/valuationpoints | [EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.
 [**upsert_bookmark**](FundsApi.md#upsert_bookmark) | **POST** /api/api/funds/{scope}/{code}/bookmarks | [EARLY ACCESS] UpsertBookmark: Upsert a bookmark.
@@ -289,6 +301,104 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated Fund with the added Series. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **advance_tax_return**
+> TaxReturnResponse advanceTaxReturn = advance_tax_return(scope, code, tax_return_transition_request, effective_at=effective_at, tax_period=tax_period)
+
+[EARLY ACCESS] AdvanceTaxReturn: [EARLY ACCESS] AdvanceTaxReturn: Advance the tax return one workflow step.
+
+Moves the return from Draft to Prepared, Prepared to Reviewed, Reviewed to SignedOff or SignedOff to Final. Advancing past Reviewed requires the tax records to be in sync with the ledger. Each step is recorded with the supplied reason.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+tax_return_transition_request = TaxReturnTransitionRequest()
+effective_at = 'effective_at_example' # str (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.advance_tax_return(scope, code, tax_return_transition_request, effective_at=effective_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **tax_return_transition_request** | [**TaxReturnTransitionRequest**](../model/TaxReturnTransitionRequest.md)| The reason for advancing the return. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxReturnResponse**](../model/TaxReturnResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tax return after the transition. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **approve_tax_provision**
+> TaxProvision approveTaxProvision = approve_tax_provision(scope, code, diary_entry_code, nav_type_code=nav_type_code)
+
+[EARLY ACCESS] ApproveTaxProvision: [EARLY ACCESS] ApproveTaxProvision: Approve the deferred-tax provision of a Valuation Point.
+
+Moves the Valuation Point's deferred-tax provision from Estimate to Approved, stores it as the official  document and books the movement since the previous approved Valuation Point as an accrual on the Fund.  Approving an already approved provision fails. Until tax elections can be configured on the Fund every  provision is struck under the default elections: a 20% rate, indexation allowance applied and losses carried  forward.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+diary_entry_code = 'diary_entry_code_example' # str
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.approve_tax_provision(scope, code, diary_entry_code, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **diary_entry_code** | **str**| The Diary Entry code of the Valuation Point whose provision is approved. | [required] 
+ **nav_type_code** | **str**| When provided, approves the provision of the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**TaxProvision**](../model/TaxProvision.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The approved deferred-tax provision |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -1985,6 +2095,412 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_tax_deemed_disposal**
+> TaxDeemedDisposalResponse getTaxDeemedDisposal = get_tax_deemed_disposal(scope, code, holding_id, var_date, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxDeemedDisposal: [EARLY ACCESS] GetTaxDeemedDisposal: Get one deemed disposal.
+
+Returns the deemed disposal of a holding on a given date.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+holding_id = 'holding_id_example' # str
+var_date = 'var_date_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_deemed_disposal(scope, code, holding_id, var_date, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **holding_id** | **str**| The identifier of the holding to drill into, as returned by the parent reconciliation. | [required] 
+ **var_date** | **str**| The date of the deemed disposal. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to read the deemed disposal. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxDeemedDisposalResponse**](../model/TaxDeemedDisposalResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deemed disposal. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_deemed_disposals**
+> TaxDeemedDisposalsResponse getTaxDeemedDisposals = get_tax_deemed_disposals(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxDeemedDisposals: [EARLY ACCESS] GetTaxDeemedDisposals: List the deemed disposals of a Fund or company.
+
+Returns the period-end deemed disposals, the vintages they roll into and the seven-year spreading matrix. A company's disposals are actual and a fund's are notional.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_deemed_disposals(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the deemed disposals. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxDeemedDisposalsResponse**](../model/TaxDeemedDisposalsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deemed disposals for the period. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_fund_reconciliation**
+> TaxFundReconciliationResponse getTaxFundReconciliation = get_tax_fund_reconciliation(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxFundReconciliation: [EARLY ACCESS] GetTaxFundReconciliation: Reconcile a company's tax figures to its member funds.
+
+Compares the company's return total to the sum of its member funds' notional figures and explains each difference by scope, pool averaging, matching, indexation, the kink test or an out-of-sync holding. Only available for a company; a fund returns a failure.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_fund_reconciliation(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the reconciliation. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxFundReconciliationResponse**](../model/TaxFundReconciliationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The company-to-funds reconciliation for the period. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_fund_reconciliation_holding**
+> TaxFundReconciliationHoldingResponse getTaxFundReconciliationHolding = get_tax_fund_reconciliation_holding(scope, code, holding_id, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxFundReconciliationHolding: [EARLY ACCESS] GetTaxFundReconciliationHolding: Drill into one holding of the company-to-funds reconciliation.
+
+Returns the company figure for a holding beside each member fund's notional figure, with the category and explanation of any difference.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+holding_id = 'holding_id_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_fund_reconciliation_holding(scope, code, holding_id, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **holding_id** | **str**| The identifier of the holding to drill into, as returned by the parent reconciliation. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the reconciliation. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxFundReconciliationHoldingResponse**](../model/TaxFundReconciliationHoldingResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The holding-level reconciliation. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_ledger_reconciliation**
+> TaxLedgerReconciliationResponse getTaxLedgerReconciliation = get_tax_ledger_reconciliation(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxLedgerReconciliation: [EARLY ACCESS] GetTaxLedgerReconciliation: Reconcile the tax figures of a Fund or company to its ledger.
+
+Compares the ledger's capital gain or loss for the period to the comparable tax figure, explains each difference as an excluded holding, a tax cost adjustment or an out-of-sync holding, and bridges from the ledger figure to the return total.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_ledger_reconciliation(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the reconciliation. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxLedgerReconciliationResponse**](../model/TaxLedgerReconciliationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tax-to-ledger reconciliation for the period. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_ledger_reconciliation_holding**
+> TaxLedgerReconciliationHoldingResponse getTaxLedgerReconciliationHolding = get_tax_ledger_reconciliation_holding(scope, code, holding_id, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxLedgerReconciliationHolding: [EARLY ACCESS] GetTaxLedgerReconciliationHolding: Drill into one holding of the tax-to-ledger reconciliation.
+
+Returns the ledger and tax figures of a single holding side by side with the category and explanation of any difference.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+holding_id = 'holding_id_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_ledger_reconciliation_holding(scope, code, holding_id, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **holding_id** | **str**| The identifier of the holding to drill into, as returned by the parent reconciliation. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the reconciliation. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxLedgerReconciliationHoldingResponse**](../model/TaxLedgerReconciliationHoldingResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The holding-level reconciliation. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_provision**
+> TaxProvision getTaxProvision = get_tax_provision(scope, code, diary_entry_code, as_at=as_at, nav_type_code=nav_type_code)
+
+[EARLY ACCESS] GetTaxProvision: [EARLY ACCESS] GetTaxProvision: Get the deferred-tax provision of a Valuation Point.
+
+Returns the deferred-tax provision struck for the specified Valuation Point. Where the provision has been  approved by the asAt it is returned as stored, otherwise a live estimate is returned. Until tax elections  can be configured on the Fund every provision is struck under the default elections: a 20% rate, indexation  allowance applied and losses carried forward.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+diary_entry_code = 'diary_entry_code_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.get_tax_provision(scope, code, diary_entry_code, as_at=as_at, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **diary_entry_code** | **str**| The Diary Entry code of the Valuation Point the provision is for. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the provision. Defaults to returning the latest version if not specified. | [optional] 
+ **nav_type_code** | **str**| When provided, the provision of the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**TaxProvision**](../model/TaxProvision.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deferred-tax provision of the Valuation Point |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tax_return**
+> TaxReturnResponse getTaxReturn = get_tax_return(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+
+[EARLY ACCESS] GetTaxReturn: [EARLY ACCESS] GetTaxReturn: Get the year-end tax return of a Fund or company.
+
+Returns the chargeable gains on actual disposals (line A), the spread instalments of deemed disposals (line D), the loan relationship net credit or debit (line LR, company level), the holdings outside the regime, the memo rows and the workflow history for the accounting period containing effectiveAt.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.get_tax_return(scope, code, effective_at=effective_at, as_at=as_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to read the return. Defaults to returning the latest version if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxReturnResponse**](../model/TaxReturnResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tax return for the period. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **get_tax_sync_status**
 > TaxSyncStatus getTaxSyncStatus = get_tax_sync_status(scope, code, as_at=as_at)
 
@@ -2134,7 +2650,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.
 
-Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.
+Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.                Lines are returned grouped by portfolio, ordered by portfolio scope and then code (ordinal), with each portfolio's lines in the order the accounting engine produced them, so the order is stable across pages.
 
 ### Example
 
@@ -2196,7 +2712,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.
 
-Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.
+Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.                Rows are returned ordered by PnL bucket (ordinal), then portfolio scope and code (ordinal), then accounting date, activity date and source id, with the remaining Journal Entry Line fields as tie-breakers, so the order is total and stable across pages.
 
 ### Example
 
@@ -2223,7 +2739,7 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
  **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](../model/ValuationPointDataQueryParameters.md)| The arguments to use for generating the PnL summary. | [required] 
  **general_ledger_profile_code** | **str**| The optional code of a General Ledger Profile used to decorate Journal Entry Lines with levels. | [optional] 
- **as_at** | **datetime**| The asAt datetime at which to retrieve PnL summary. Defaults to returning the latest version              of each transaction if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve PnL summary. Defaults to returning the latest version               of each transaction if not specified. | [optional] 
  **filter** | **str**| \&quot;Expression to filter the result set.\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing results from a previous call to GetValuationPointPnlSummary. | [optional] 
@@ -2308,7 +2824,7 @@ Name | Type | Description  | Notes
 
 [EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.
 
-Gets the Transactions for the given Valuation Point for a Fund.
+Gets the Transactions for the given Valuation Point for a Fund.                Transactions are returned grouped by portfolio, ordered by portfolio scope and then code (ordinal), with each portfolio's transactions in the order the accounting engine produced them, so the order is stable across pages.
 
 ### Example
 
@@ -2339,17 +2855,17 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Fund. | [required] 
  **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
  **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](../model/ValuationPointDataQueryParameters.md)| The arguments to use for querying the transactions. | [required] 
- **as_at** | **datetime**| The asAt datetime at which to retrieve transactions. Defaults to returning the latest version              of each transaction if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve transactions. Defaults to returning the latest version               of each transaction if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing transactions from a previous call to GetValuationPointTransactions. | [optional] 
- **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39;, &#39;Transaction&#39;, &#39;Portfolio&#39;, &#39;Account&#39;, &#39;LegalEntity&#39; or &#39;CustodianAccount&#39;              domain to decorate onto the transactions. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39;, &#39;Transaction&#39;, &#39;Portfolio&#39;, &#39;Account&#39;, &#39;LegalEntity&#39; or &#39;CustodianAccount&#39;               domain to decorate onto the transactions. | [optional] 
  **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
- **show_cancelled_transactions** | **bool**| Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified. | [optional] 
+ **show_cancelled_transactions** | **bool**| Option to specify whether or not to include cancelled transactions,               including previous versions of transactions which have since been amended.               Defaults to False if not specified. | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
- **return_excluded_transactions** | **bool**| Option to specify whether or not to include transactions excluded by the              NavType&#39;s TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of              a transaction that has since been amended to be excluded is returned regardless of this option.              Defaults to False if not specified. | [optional] 
+ **return_excluded_transactions** | **bool**| Option to specify whether or not to include transactions excluded by the               NavType&#39;s TransactionExclusionFilter, flagged with isExcluded. The reversal of a previously included version of               a transaction that has since been amended to be excluded is returned regardless of this option.               Defaults to False if not specified. | [optional] 
 
 ### Return type
 
@@ -3081,6 +3597,58 @@ Name | Type | Description  | Notes
 
 ---
 
+# **list_tax_provisions**
+> ResourceListOfTaxProvision listTaxProvisions = list_tax_provisions(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at, nav_type_code=nav_type_code)
+
+[EARLY ACCESS] ListTaxProvisions: [EARLY ACCESS] ListTaxProvisions: List the deferred-tax provisions of a Fund.
+
+Returns the deferred-tax provision of every Valuation Point whose effective date lies in the window, oldest first.  Unapproved Valuation Points are estimated live, so the window may cover at most 100 Valuation Points. Until tax  elections can be configured on the Fund every provision is struck under the default elections: a 20% rate,  indexation allowance applied and losses carried forward.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+from_effective_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+to_effective_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.list_tax_provisions(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **from_effective_at** | **datetime**| The lower bound effective datetime (inclusive) of the Valuation Points to include. Defaults to the start of the Fund if not specified. | [optional] 
+ **to_effective_at** | **datetime**| The upper bound effective datetime (inclusive) of the Valuation Points to include. Defaults to the latest Valuation Point if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the provisions. Defaults to returning the latest version if not specified. | [optional] 
+ **nav_type_code** | **str**| When provided, the provisions of the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**ResourceListOfTaxProvision**](../model/ResourceListOfTaxProvision.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deferred-tax provisions of the Fund&#39;s Valuation Points in the window |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **list_valuation_point_complex_market_data**
 > ValuationPointResourceListOfAccountedComplexMarketData listValuationPointComplexMarketData = list_valuation_point_complex_market_data(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, nav_type_code=nav_type_code)
 
@@ -3606,6 +4174,56 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The allocation of the period to the partners. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **send_back_tax_return**
+> TaxReturnResponse sendBackTaxReturn = send_back_tax_return(scope, code, tax_return_transition_request, effective_at=effective_at, tax_period=tax_period)
+
+[EARLY ACCESS] SendBackTaxReturn: [EARLY ACCESS] SendBackTaxReturn: Send the tax return back one workflow step.
+
+Moves the return one step towards Draft, recording the supplied reason. A Final return cannot be sent back.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+tax_return_transition_request = TaxReturnTransitionRequest()
+effective_at = 'effective_at_example' # str (optional)
+tax_period = 'tax_period_example' # str (optional)
+api_response = api_instance.send_back_tax_return(scope, code, tax_return_transition_request, effective_at=effective_at, tax_period=tax_period)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **tax_return_transition_request** | [**TaxReturnTransitionRequest**](../model/TaxReturnTransitionRequest.md)| The reason for sending the return back. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label that selects the accounting period. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **tax_period** | **str**| An optional accounting period label that overrides the period selected by effectiveAt. | [optional] 
+
+### Return type
+
+[**TaxReturnResponse**](../model/TaxReturnResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The tax return after the transition. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

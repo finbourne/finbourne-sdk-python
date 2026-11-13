@@ -8,6 +8,7 @@ An individual reconciliation result — the aggregate result for a set of core r
 | **id** | **str** | Required | The id of the result within its instance: its rec type, result type and result number, e.g. &#39;Holding-break-3&#39;. Unique within the instance, and kept across its runs for as long as the result keeps its result type. |
 | **result_number** | **int** | Required | The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned. |
 | **first_run_seen** | **int** | Required | The run in which the result was first assigned its id. |
+| **as_at_first_seen** | **datetime** | Required | The runAsAt of the run in which the result first appeared in its instance, the run numbered firstRunSeen. Written once: re-runs leave it unchanged. |
 | **rec_type** | **str** | Required | The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio, CustomEntity. |
 | **external_rec_type_name** | **str** | Optional | The client&#39;s name for an External rec type, as stamped from the matching ruleset&#39;s externalRecType when the run executed. Null for native rec types. Filterable. |
 | **custom_entity_type** | **str** | Optional | The name of the custom entity type, which starts with ~. Set when the rec type is CustomEntity and null for every other rec type. Filterable. |
@@ -29,6 +30,7 @@ An individual reconciliation result — the aggregate result for a set of core r
 | **items** | [RecResultItemDetails](RecResultItemDetails.md) | Required | *No description available.* |
 | **linked_results** | [List[RecLinkedResult]](RecLinkedResult.md) | Required | Results of other rec types in the same rec instance run whose items share an identifier with this result&#39;s items. Only exceptions link, and only to exceptions; symmetric. Set by the linking pass once every rec type of the run has completed, so empty until then. |
 | **comments** | [List[RecUserComment]](RecUserComment.md) | Required | User-authored comments attached to the result. Carried forward across runs. |
+| **streak** | [RecResultStreak](RecResultStreak.md) | Optional | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties in the RecResult domain. Filterable and sortable. Always includes the properties the matching ruleset populates, with a null value where the result holds none yet. |
 | **assigned_user** | **str** | Optional | The LUSID user id assigned to the result. |
 | **assigned_role** | **str** | Optional | The LUSID IAM role id assigned to the result. |
@@ -48,6 +50,7 @@ instance = RecResult(
     id="...",  # required — The id of the result within its instance: its rec type, result type and result number, e.g. &#39;Holding-break-3&#39;. Unique within the instance, and kept across its runs for as long as the result keeps its result type.
     result_number=0,  # required — The result&#39;s number within its result type. Kept across runs while the result keeps its type; never reused once assigned.
     first_run_seen=0,  # required — The run in which the result was first assigned its id.
+    as_at_first_seen=datetime.now(),  # required — The runAsAt of the run in which the result first appeared in its instance, the run numbered firstRunSeen. Written once: re-runs leave it unchanged.
     rec_type="...",  # required — The type of rec that the result belongs to (e.g. Holding). Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity, External, Instrument, LegalEntity, Portfolio, CustomEntity.
     external_rec_type_name="...",  # optional — The client&#39;s name for an External rec type, as stamped from the matching ruleset&#39;s externalRecType when the run executed. Null for native rec types. Filterable.
     custom_entity_type="...",  # optional — The name of the custom entity type, which starts with ~. Set when the rec type is CustomEntity and null for every other rec type. Filterable.
@@ -69,6 +72,7 @@ instance = RecResult(
     items=RecResultItemDetails(...),  # required
     linked_results=[],  # required — Results of other rec types in the same rec instance run whose items share an identifier with this result&#39;s items. Only exceptions link, and only to exceptions; symmetric. Set by the linking pass once every rec type of the run has completed, so empty until then.
     comments=[],  # required — User-authored comments attached to the result. Carried forward across runs.
+    streak=RecResultStreak(...),  # optional
     properties=PerpetualProperty(...),  # optional — Properties in the RecResult domain. Filterable and sortable. Always includes the properties the matching ruleset populates, with a null value where the result holds none yet.
     assigned_user="...",  # optional — The LUSID user id assigned to the result.
     assigned_role="...",  # optional — The LUSID IAM role id assigned to the result.
@@ -89,6 +93,7 @@ instance = RecResult(
 - [RecResultItemDetails](RecResultItemDetails.md)
 - [RecLinkedResult](RecLinkedResult.md) — used in `linked_results`
 - [RecUserComment](RecUserComment.md) — used in `comments`
+- [RecResultStreak](RecResultStreak.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 - [Version](Version.md)
 - [Link](Link.md)

@@ -6,7 +6,7 @@ The request body for the RunAllocationServiceWithWeights endpoint.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **placement_ids** | [List[ResourceId]](ResourceId.md) | Required | The set of Placement IDs to allocate. |
-| **portfolio_weights** | [List[PortfolioWeight]](PortfolioWeight.md) | Optional | The set of Portfolios and their associated weights to use for allocation. |
+| **portfolio_weights** | [List[PortfolioWeight]](PortfolioWeight.md) | Required | The set of Portfolios and their associated weights to use for allocation. |
 
 
 ## Usage
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.WeightedAllocationServiceRunRequest imp
 
 instance = WeightedAllocationServiceRunRequest(
     placement_ids=[],  # required — The set of Placement IDs to allocate.
-    portfolio_weights=[]  # optional — The set of Portfolios and their associated weights to use for allocation.
+    portfolio_weights=[]  # required — The set of Portfolios and their associated weights to use for allocation.
 )
 ```
 
